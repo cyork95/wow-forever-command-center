@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forever Command Center</title>
+<style>
+:root {
+  --bg: #0b1020;
+  --bg2: #12182c;
+  --card: #171e35;
+  --line: #2a3354;
+  --text: #e8ecf7;
+  --muted: #9aa6c4;
+  --blue: #7eb6ff;
+  --gold: #e4c27a;
+  --green: #7dcea0;
+  --red: #f0a0a0;
+  --chip: #243056;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, Segoe UI, Roboto, sans-serif; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: linear-gradient(180deg, #0b1020 70%, transparent);
+  padding: 16px 16px 8px;
+  border-bottom: 1px solid var(--line);
+}
+header h1 { margin: 0; font-size: 20px; letter-spacing: .04em; }
+header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+nav a, nav button {
+  background: var(--chip); color: var(--text); border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.grid { display: grid; gap: 12px; }
+@media (min-width: 800px) { .roster { grid-template-columns: 1fr 1fr; } }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+}
+.card h2 { margin: 0 0 8px; font-size: 15px; color: var(--gold); }
+.meta { color: var(--muted); font-size: 12px; }
+.tag { display: inline-block; background: var(--chip); border-radius: 6px; padding: 2px 7px; font-size: 11px; margin: 2px 4px 0 0; }
+.hi { color: var(--red); }
+.md { color: var(--gold); }
+.lo { color: var(--muted); }
+.done { color: var(--green); }
+.park { color: var(--muted); }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 12px; }
+.filters input, .filters select {
+  background: var(--bg2); color: var(--text); border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 10px; font-size: 14px;
+}
+.filters input { flex: 1; min-width: 140px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; position: sticky; top: 70px; background: var(--card); }
+.hidden { display: none; }
+.pair { color: var(--muted); font-size: 12px; }
+footer { color: var(--muted); font-size: 12px; padding: 24px 16px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap" style="padding-top:0;padding-bottom:0;">
+    <h1>Forever Command Center</h1>
+    <p>CoYo · Skyborne Epic Pack · Beta Sep 17–Oct 21 · Launch Nov 4 · Normal ruleset</p>
+    <nav>
+      <a href="#roster">Roster</a>
+      <a href="#hunts">Hunts</a>
+      <a href="#dates">Dates</a>
+      <a href="#reactions">Reactions</a>
+      <a href="https://docs.google.com/document/d/1trTpOfK53W16wRKFvHRGyP4ST8-XsPARuSrRyqzlnfI/edit" target="_blank">Roster Doc</a>
+      <a href="https://docs.google.com/spreadsheets/d/1turzdeiL91-TS5RI4Hmr4vr6hfwt4UQWNfcJiOSVQiE/edit" target="_blank">Farm Sheet</a>
+      <a href="https://docs.google.com/document/d/1gw6erAInVDqOPQ9l9b4lDd2jnnX8OK7vbIFcX8hraAQ/edit" target="_blank">Creator Reactions</a>
+      <a href="https://docs.google.com/document/d/1s09sx8vnGBtxPOgNmFDzIiyFetHUuI-x3kyppMrAAn4/edit" target="_blank">Old journal</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="roster">
+  <h2 style="color:var(--gold);font-size:16px;">House roster</h2>
+  <div class="grid roster">
+    <div class="card">
+      <h2>Skyrinis Starhollow</h2>
+      <div class="meta">Skyborne · Druid · Feral · Mine / Herb</div>
+      <p>Main look. Cat primary, bear off-tank. Walk on Air + loremaster nodes. Reserve Oct 27. No beta name.</p>
+    </div>
+    <div class="card">
+      <h2>Sorinis Starhollow</h2>
+      <div class="meta">Night Elf · Druid · 51/0/0 Balance · Herb / Alch</div>
+      <p>Owl flagship. Pairs with Akian Xorr (NE Bear, Skin/LW).</p>
+      <p><a href="https://talentsforever.com/druid/60/55322231551521351-0000000000000000000-0000000000000000">Owl tree</a></p>
+    </div>
+    <div class="card">
+      <h2>Taloninis Starhollow</h2>
+      <div class="meta">Skyborne · Hunter · BM · Skin / LW</div>
+      <p>Post-launch alt. Family pet toolbox. Gustjumper + chicken hunts.</p>
+    </div>
+    <div class="card">
+      <h2>Lucinis Starhollow</h2>
+      <div class="meta">Skyborne · Mage · spec TBD · Mine / Herb</div>
+      <p>Second loremaster gatherer. Coldflame Saber / Scroll of the Saber hunt in SFK.</p>
+    </div>
+    <div class="card">
+      <h2>Vesperinis Starhollow</h2>
+      <div class="meta">Night Elf · Priest · Shadow · Mine / BS</div>
+      <p>House blacksmith on the priest, not the shaman.</p>
+    </div>
+    <div class="card">
+      <h2>Malavus Blackwell</h2>
+      <div class="meta">Human · Lock · 34/0/17 Affli · Ench / Tailor</div>
+      <p>Pairs with Vitiate Xorr (Human Pala, Mine/Eng). Face 10, Foxtail, green eyes.</p>
+      <p><a href="https://talentsforever.com/warlock/60/20552300035201051-0000000000000000000-2505005000000000">Lock tree</a></p>
+    </div>
+    <div class="card">
+      <h2>Bramblebeard Emberkeg</h2>
+      <div class="meta">Dwarf · Shaman · spec TBD · Mine / Eng</div>
+      <p>Pairs with Ephai Xorr (Human Warrior, Mine/BS). Enhancement lean, resto still fine for fun.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reactions" class="card" style="margin-top:16px;">
+  <h2>Creator reactions</h2>
+  <p class="meta">Living doc only. Not the roster. Snapshot Sep 23.</p>
+  <p><a href="https://docs.google.com/document/d/1gw6erAInVDqOPQ9l9b4lDd2jnnX8OK7vbIFcX8hraAQ/edit" target="_blank">Open living doc</a></p>
+  <p><span class="tag">Asmon: playing, hyped</span><span class="tag">Xaryu: world yes, UI no</span><span class="tag">Guzu: ticks gone</span><span class="tag">Soda: Legacy ugly / HC later</span><span class="tag">Esfand: trainer skip no</span><span class="tag">Bellular: fog is the memory</span><span class="tag">Farmerfarms: Coldflame battlemage</span></p>
+  <p>Official pulse (Jez / Tim+Nora): all 27 trees viable, Ret seal-twists, 10+20 every patch, Onyxia is the 40, housing is a want not a date, mid-level 27–32 zones are the alt hook.</p>
+</section>
+
+<section id="dates" class="card" style="margin-top:16px;">
+  <h2>Dates & house rules</h2>
+  <p><span class="tag">Beta 9/17–10/21</span><span class="tag">Names 10/27–11/3</span><span class="tag">Launch 11/4</span><span class="tag">3 live names</span></p>
+  <p>Do not take Skyrinis, Sorinis, or Malavus in beta. UI: Render 98 / Contrast 60 / Brightness 40. Friendly plates off. Autoloot off. Ping = G.</p>
+</section>
+
+<section id="hunts" style="margin-top:20px;">
+  <h2 style="color:var(--gold);font-size:16px;">Farm board</h2>
+  <p class="meta">Sheet is source of truth. This board is a snapshot from Sep 23. Mark status on the sheet.</p>
+  <div class="filters">
+    <input id="q" placeholder="Search item, zone, toon…" oninput="draw()">
+    <select id="type" onchange="draw()"><option value="">All types</option></select>
+    <select id="status" onchange="draw()"><option value="">All status</option></select>
+    <select id="prio" onchange="draw()">
+      <option value="">All priority</option>
+      <option>High</option><option>Medium</option><option>Low</option>
+    </select>
+  </div>
+  <div class="card" style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Item</th><th>Type</th><th>Zone</th><th>Toon</th><th>Pri</th><th>Status</th></tr></thead>
+      <tbody id="body"></tbody>
+    </table>
+  </div>
+</section>
+</div>
+<footer class="wrap">Keep hunts on the sheet. Keep names on the roster doc. Creator takes live in the reactions doc, not the roster. Refresh this page when Grok syncs a new snapshot. Old journal is archive only.</footer>
+<script>
+const hunts = [
+  {item:"First Mate Band",type:"Gear",zone:"Deadmines",toon:"Skyrinis / Ephai",prio:"High",status:"Planned",notes:"Mr. Smite Str ring. Bank for 60 set."},
+  {item:"Partners in Crime 2-set",type:"Set",zone:"Deadmines + 60",toon:"Melee",prio:"High",status:"Planned",notes:"First Mate + Better Half."},
+  {item:"Embrace of the Viper",type:"Set",zone:"Wailing Caverns",toon:"Skyrinis",prio:"High",status:"Planned",notes:"5 Fang pieces. Hidden snake cat form."},
+  {item:"Hunter family pet skills",type:"Pet",zone:"World",toon:"Taloninis",prio:"High",status:"Planned",notes:"Family uniques. 10% AP / 100% crit."},
+  {item:"Band of the Better Half",type:"Gear",zone:"Unknown 60",toon:"Skyrinis / Ephai",prio:"High",status:"Parked",notes:"Other half of Deadmines set."},
+  {item:"Malignant Root",type:"Relic",zone:"Wetlands",toon:"Any",prio:"Medium",status:"Planned",notes:"Turn in at Rethiel."},
+  {item:"Library books 10/20",type:"Jewelry",zone:"Libraries",toon:"Loremaster",prio:"Medium",status:"Planned",notes:"Pendant / amulet / loop."},
+  {item:"Barrens rare 2-piece",type:"Set",zone:"Barrens",toon:"Any",prio:"Medium",status:"Planned",notes:"Humar, Swiftmane, Takk. +5% move."},
+  {item:"Hyjal craftable tier",type:"Profession",zone:"Hyjal",toon:"Crafters",prio:"Medium",status:"Planned",notes:"Malleable Essence of Nature."},
+  {item:"Reins of the Pack Kodo",type:"Mount",zone:"Three Corners",toon:"Any Alliance",prio:"Medium",status:"Planned",notes:"ACA crates. 6000 Merchant Favor."},
+  {item:"Windcharged Leaf",type:"Relic",zone:"Zephras / Shen'dar",toon:"Horde test",prio:"Medium",status:"Parked",notes:"Likely Windshaper only."},
+  {item:"Lookie's Spyglass",type:"Trinket",zone:"Deadmines",toon:"Any",prio:"Low",status:"Planned",notes:"Cookie zoom toy."},
+  {item:"Prairie Chicken",type:"Pet",zone:"Westfall",toon:"First Alliance",prio:"Low",status:"Planned",notes:"Feed + /chicken."},
+  {item:"Savory Whimsyfin Delight",type:"Recipe",zone:"Redridge",toon:"Cook",prio:"Low",status:"Planned",notes:"Ogre or murloc 1 hour."},
+  {item:"Musical Gustjumper",type:"Pet",zone:"Zephras Isle",toon:"Taloninis",prio:"Low",status:"Planned",notes:"Serenade frogs on the rock."},
+  {item:"Minimule",type:"Pet",zone:"Three Corners",toon:"Any Alliance",prio:"Low",status:"Planned",notes:"1500 Merchant Favor."},
+  {item:"Black Market BMAH",type:"Vanity",zone:"Riverglades",toon:"Gold",prio:"Low",status:"Parked",notes:"Gold sink. Not gear."},
+  {item:"Coldflame Saber",type:"Gear",zone:"Shadowfang Keep",toon:"Lucinis",prio:"High",status:"Planned",notes:"Baron Silverlaine via Scroll of the Saber. +7 Int / +32 SP / +98 Fire melee vs Frozen. Battlemage toy unless later rungs exist."},
+  {item:"Scroll of the Saber + imbues",type:"Discovery",zone:"Libraries / SFK",toon:"Lucinis",prio:"Medium",status:"Planned",notes:"Comprehension books then saber scroll. Ice Knife dagger freeze. Imbue Spark resets Fire Blast on melee hit. Not a new class."}
+];
+const types = [...new Set(hunts.map(h=>h.type))].sort();
+const statuses = [...new Set(hunts.map(h=>h.status))].sort();
+const typeSel = document.getElementById("type");
+const statusSel = document.getElementById("status");
+types.forEach(t => typeSel.insertAdjacentHTML("beforeend", `<option>${t}</option>`));
+statuses.forEach(t => statusSel.insertAdjacentHTML("beforeend", `<option>${t}</option>`));
+function cls(p,s){
+  if(s==="Done") return "done";
+  if(s==="Parked") return "park";
+  if(p==="High") return "hi";
+  if(p==="Medium") return "md";
+  return "lo";
+}
+function draw(){
+  const q = document.getElementById("q").value.toLowerCase();
+  const t = typeSel.value, s = statusSel.value, p = document.getElementById("prio").value;
+  const rows = hunts.filter(h =>
+    (!t || h.type===t) && (!s || h.status===s) && (!p || h.prio===p) &&
+    (`${h.item} ${h.zone} ${h.toon} ${h.notes}`).toLowerCase().includes(q)
+  );
+  document.getElementById("body").innerHTML = rows.map(h => `
+    <tr>
+      <td><b>${h.item}</b><div class="pair">${h.notes}</div></td>
+      <td>${h.type}</td>
+      <td>${h.zone}</td>
+      <td>${h.toon}</td>
+      <td class="${cls(h.prio,h.status)}">${h.prio}</td>
+      <td class="${cls(h.prio,h.status)}">${h.status}</td>
+    </tr>`).join("");
+}
+draw();
+</script>
+</body>
+</html>
