@@ -2,7 +2,7 @@
 
 The site reads `characters.json`, `checklist.json`, and `stats.json`. Checkboxes stay in the browser. Character stats, gear, gold, and profession skill stay in `stats.json`, which gets replaced when an export comes in.
 
-Drop exports in this folder. JSON is the easiest shape. A SavedVariables `.lua` dump is fine too. Name the file with the character and the date, for example `skyrinis-2026-11-04.json`.
+Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.lua` dump is fine too. Name the file with the character and the date, for example `skyrinis-2026-11-04.json`.
 
 ```json
 {
