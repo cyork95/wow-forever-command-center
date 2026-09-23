@@ -1,11 +1,13 @@
-# Wow Forever Command Center
+# Forever Command Center
 
-Alliance house tracker for World of Warcraft: Forever. The Grok project of the same name is the source of these files.
+GitHub Pages tracker for CoYo's World of Warcraft: Forever house.
 
-Three surfaces, kept separate:
+Pick a character and the page shows that character's race, spec, professions, talent notes, and any stats merged from an addon export. The hunt list is a set of checkboxes. Checks stay in the browser. Download them if you want a backup.
 
-- `Forever_Roster.html` — names, specs, professions, talent trees, and house rules only.
-- `Forever_Farm_Tracker.xlsx` — every hunt. New finds go here first.
-- `forever-command-center.html` — dashboard snapshot of the roster, creator reactions, dates, and the farm board. Refresh it when hunts change.
+## Update the site
 
-House rules live in `AGENTS.md`. Beta names to leave untouched: Skyrinis, Sorinis, and Malavus.
+- New hunt: add a row to `data/checklist.json`.
+- Names, specs, professions: edit `data/characters.json`.
+- Addon dump: put JSON or a SavedVariables file in `data/exports/`, using the shape in `data/EXPORTS.md`. The live numbers on the page come from `data/stats.json` after that dump is merged.
+
+The older roster page, farm workbook, and dashboard snapshot stay in the repo as source notes.

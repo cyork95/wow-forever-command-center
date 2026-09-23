@@ -1,0 +1,18 @@
+{
+  "player": "CoYo",
+  "edition": "Skyborne Epic Pack",
+  "faction": "Alliance",
+  "ruleset": "Normal (PvE)",
+  "beta": "Sep 17 – Oct 21, 2026",
+  "betaCap": 30,
+  "nameReservation": "Oct 27 – Nov 3, 2026",
+  "launch": "Nov 4, 2026",
+  "raids": "Dec 9, 2026",
+  "betaLock": ["skyrinis", "sorinis", "malavus"],
+  "rules": [
+    "First and last name at creation. Elves share the last name Starhollow.",
+    "Do not take Skyrinis, Sorinis, or Malavus in beta. Pools wipe. Use throwaways.",
+    "Faction stays Alliance High Order unless a Horde shaman test wins.",
+    "UI: Render 98, Contrast 60, Brightness 40. Friendly nameplates off. Autoloot off. Ping is the G wheel."
+  ]
+}
