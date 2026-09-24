@@ -65,6 +65,19 @@
     "defaultDone": false
   },
   {
+    "id": "rockslicer",
+    "name": "Rockslicer",
+    "type": "Gear",
+    "zone": "Deadmines",
+    "minLevel": 17,
+    "priority": "High",
+    "status": "Planned",
+    "owners": ["malavus", "sorinis", "taloninis"],
+    "notes": "Unique two-hand axe from Rhahk'Zor. Mines Copper, Tin, Silver, or Iron without Mining. 30 charges, then the mining effect dies and the weapon stays. Farm on Malavus, Sorinis, or Taloninis. Same run as First Mate Band and Lookie's Spyglass.",
+    "source": "House",
+    "defaultDone": false
+  },
+  {
     "id": "partners-in-crime",
     "name": "Partners in Crime 2-set",
     "type": "Set",
@@ -296,6 +309,19 @@
     "owners": ["all"],
     "notes": "Pets, TCG, tier 0, mounts. A gold sink, not a gear plan.",
     "source": "Icy Veins",
+    "defaultDone": false
+  },
+  {
+    "id": "goblin-gumbo-kettle",
+    "name": "Goblin Gumbo Kettle",
+    "type": "Vanity",
+    "zone": "Powderfuse Port / Riverglades",
+    "minLevel": 20,
+    "priority": "Low",
+    "status": "Parked",
+    "owners": ["all"],
+    "notes": "TCG toy, not a cooking recipe. Watch Madam Swyndle on the Black Market. 5-minute poison belch, no nutrition.",
+    "source": "House",
     "defaultDone": false
   },
   {
