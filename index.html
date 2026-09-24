@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,640&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/site.css?v=2">
 </head>
 <body>
   <header class="site">
@@ -23,20 +23,20 @@
   <main class="wrap">
     <div class="section-head">
       <h2>Who is out</h2>
-      <p>Pick the character you are playing. The sheet and the hunt list follow that choice.</p>
+      <p>Pick who you are playing. Their sheet and hunts follow.</p>
     </div>
     <div class="roster" id="roster"></div>
     <div class="sheet" id="sheet"></div>
 
     <div class="section-head">
-      <h2>Checklist</h2>
+      <h2>Hunts</h2>
       <p id="check-count"></p>
     </div>
     <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
     <div class="toolbar">
       <input id="search" type="search" placeholder="Search hunts, zones, notes">
-      <select id="type-filter" aria-label="Item type">
-        <option value="">All types</option>
+      <select id="type-filter" aria-label="Hunt group">
+        <option value="">All hunts</option>
       </select>
       <select id="scope" aria-label="Whose list">
         <option value="character">This character</option>
@@ -58,9 +58,9 @@
   </main>
   <footer class="site">
     <div class="wrap">
-      <p>Checks stay in this browser. Character stats update when an addon export is merged into <code>data/stats.json</code>. New hunts go in <code>data/checklist.json</code> first. The shape of an export is in <code>data/EXPORTS.md</code>.</p>
+      <p>Checks and try counts stay in this browser. Click a hunt for the note and the counter. Character stats update when an addon export is merged into <code>data/stats.json</code>.</p>
     </div>
   </footer>
-  <script src="assets/app.js"></script>
+  <script src="assets/app.js?v=2"></script>
 </body>
 </html>

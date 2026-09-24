@@ -14,6 +14,17 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
+const HUNT_GROUPS = [
+  { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
+  { id: "mounts", label: "Mounts", types: ["Mount"] },
+  { id: "pets", label: "Pets", types: ["Pet"] },
+  { id: "toys", label: "Toys", types: ["Vanity"] },
+  { id: "recipes", label: "Recipes", types: ["Recipe", "Profession"] },
+  { id: "discoveries", label: "Discoveries", types: ["Discovery"] },
+  { id: "keepsakes", label: "Keepsakes", types: ["Tabard"] },
+  { id: "milestones", label: "Milestones", types: ["Milestone"] }
+];
+
 const state = {
   house: null,
   characters: [],
@@ -23,7 +34,9 @@ const state = {
   scope: "character",
   query: "",
   type: "",
-  checks: {}
+  openId: "",
+  checks: {},
+  attempts: {}
 };
 
 function loadStore() {
@@ -31,9 +44,11 @@ function loadStore() {
     const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
     if (saved.selected) state.selected = saved.selected;
     if (saved.checks) state.checks = saved.checks;
+    if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
   } catch {
     state.checks = {};
+    state.attempts = {};
   }
 }
 
@@ -41,8 +56,26 @@ function saveStore() {
   localStorage.setItem(STORE_KEY, JSON.stringify({
     selected: state.selected,
     scope: state.scope,
-    checks: state.checks
+    checks: state.checks,
+    attempts: state.attempts
   }));
+}
+
+function attemptCount(id) {
+  const n = Number(state.attempts[id]);
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
+}
+
+function setAttempts(id, value) {
+  const n = Math.max(0, Math.floor(Number(value) || 0));
+  if (n === 0) delete state.attempts[id];
+  else state.attempts[id] = n;
+  saveStore();
+}
+
+function huntGroup(item) {
+  return HUNT_GROUPS.find((group) => group.types.includes(item.type))
+    || { id: "other", label: "Other", types: [] };
 }
 
 function isChecked(item) {
@@ -67,7 +100,7 @@ function visibleItems() {
   const q = state.query.trim().toLowerCase();
   return state.checklist.filter((item) => {
     if (state.scope === "character" && !matchesCharacter(item, character)) return false;
-    if (state.type && item.type !== state.type) return false;
+    if (state.type && huntGroup(item).id !== state.type) return false;
     if (!q) return true;
     const hay = `${item.name} ${item.zone} ${item.notes} ${item.type}`.toLowerCase();
     return hay.includes(q);
@@ -228,10 +261,115 @@ function badgeClass(item) {
   return "badge";
 }
 
+function whoLabel(item) {
+  const names = {
+    all: "Whole house",
+    alliance: "Any Alliance",
+    horde: "Horde test",
+    melee: "Melee",
+    loremaster: "Loremasters",
+    crafter: "Crafters",
+    hunter: "Hunters",
+    caster: "Casters"
+  };
+  return (item.owners || []).map((id) => {
+    const character = state.characters.find((entry) => entry.id === id);
+    return character ? character.name : (names[id] || id);
+  }).join(", ");
+}
+
+function fact(label, value) {
+  return el("div", { class: "fact" }, [
+    el("span", { text: label }),
+    el("b", { text: value })
+  ]);
+}
+
+function renderHunt(item) {
+  const checked = isChecked(item);
+  const open = state.openId === item.id;
+  const tries = attemptCount(item.id);
+  const group = huntGroup(item);
+  const box = el("input", {
+    type: "checkbox",
+    "aria-label": `Got ${item.name}`
+  });
+  box.checked = checked;
+  box.addEventListener("click", (event) => event.stopPropagation());
+  box.addEventListener("change", () => {
+    state.checks[item.id] = box.checked;
+    saveStore();
+    renderChecklist();
+  });
+
+  const summary = el("button", {
+    type: "button",
+    class: "hunt-open",
+    "aria-expanded": open ? "true" : "false",
+    onclick: () => {
+      state.openId = open ? "" : item.id;
+      renderChecklist();
+    }
+  });
+  summary.append(el("strong", { text: item.name }));
+  const meta = `${group.label} · ${item.zone} · level ${item.minLevel}+`;
+  const attemptText = tries ? `${meta} · ${tries} ${tries === 1 ? "try" : "tries"}` : meta;
+  summary.append(el("span", { class: "sub", text: attemptText }));
+
+  const row = el("div", { class: "hunt-row" }, [
+    box,
+    summary,
+    el("span", { class: badgeClass(item), text: item.status === "Parked" ? "Parked" : item.priority })
+  ]);
+
+  const card = el("article", {
+    class: `hunt group-${group.id}${checked ? " done" : ""}${item.status === "Parked" ? " parked" : ""}${open ? " open" : ""}`
+  }, [row]);
+
+  if (!open) return card;
+
+  const count = el("input", {
+    class: "try-count",
+    type: "number",
+    min: "0",
+    step: "1",
+    value: String(tries),
+    "aria-label": `Tries for ${item.name}`
+  });
+  count.addEventListener("click", (event) => event.stopPropagation());
+  count.addEventListener("change", () => {
+    setAttempts(item.id, count.value);
+    renderChecklist();
+  });
+
+  const step = (delta) => {
+    setAttempts(item.id, attemptCount(item.id) + delta);
+    renderChecklist();
+  };
+
+  const detail = el("div", { class: "hunt-detail" }, [
+    el("p", { class: "hunt-notes", text: item.notes }),
+    el("div", { class: "facts" }, [
+      fact("Zone", item.zone),
+      fact("From", `level ${item.minLevel}`),
+      fact("Source", item.source),
+      fact("For", whoLabel(item))
+    ]),
+    el("div", { class: "tries" }, [
+      el("span", { text: "Tries" }),
+      el("button", { type: "button", text: "−", "aria-label": "One fewer try", onclick: () => step(-1) }),
+      count,
+      el("button", { type: "button", text: "+", "aria-label": "Log a try", onclick: () => step(1) })
+    ])
+  ]);
+  card.append(detail);
+  return card;
+}
+
 function renderChecklist() {
   const items = visibleItems();
   const done = items.filter(isChecked).length;
-  document.getElementById("check-count").textContent = `${done} of ${items.length} checked`;
+  document.getElementById("check-count").textContent = `${done} of ${items.length} in hand`;
   const bar = document.getElementById("progress-bar");
   bar.style.width = items.length ? `${Math.round((done / items.length) * 100)}%` : "0";
 
@@ -242,44 +380,36 @@ function renderChecklist() {
     return;
   }
 
-  const groups = [
-    ["For this character", (item) => (item.owners || []).includes(selectedCharacter().id) || (item.owners || []).some((role) => (selectedCharacter().roles || []).includes(role))],
-    ["Shared hunts", (item) => !((item.owners || []).includes(selectedCharacter().id) || (item.owners || []).some((role) => (selectedCharacter().roles || []).includes(role))) && item.source !== "Pack"],
-    ["Already in the pack", (item) => item.source === "Pack"]
-  ];
-
-  const buckets = state.scope === "character"
-    ? groups.map(([label, test]) => [label, items.filter(test)]).filter(([, rows]) => rows.length)
-    : [["Whole house", items]];
-
-  buckets.forEach(([label, rows]) => {
-    list.append(el("div", { class: "group-label", text: label }));
-    rows.forEach((item) => {
-      const checked = isChecked(item);
-      const box = el("input", { type: "checkbox", id: `check-${item.id}` });
-      box.checked = checked;
-      box.addEventListener("change", () => {
-        state.checks[item.id] = box.checked;
-        saveStore();
-        renderChecklist();
+  const rank = { High: 0, Medium: 1, Low: 2 };
+  HUNT_GROUPS.forEach((group) => {
+    const rows = items
+      .filter((item) => group.types.includes(item.type))
+      .sort((a, b) => {
+        const parked = (a.status === "Parked") - (b.status === "Parked");
+        if (parked) return parked;
+        const priority = (rank[a.priority] ?? 3) - (rank[b.priority] ?? 3);
+        if (priority) return priority;
+        return a.name.localeCompare(b.name);
       });
-      const copy = el("div");
-      copy.append(el("strong", { text: item.name }));
-      copy.append(el("div", { class: "sub", text: `${item.type} · ${item.zone} · level ${item.minLevel}+ · ${item.notes}` }));
-      const row = el("label", { class: `check${checked ? " done" : ""}${item.status === "Parked" ? " parked" : ""}` }, [
-        box,
-        copy,
-        el("span", { class: badgeClass(item), text: item.status === "Parked" ? "Parked" : item.priority })
-      ]);
-      list.append(row);
-    });
+    if (!rows.length) return;
+    const got = rows.filter(isChecked).length;
+    const head = el("div", { class: "group-label" }, [
+      el("span", { text: group.label }),
+      el("em", { text: `${got} / ${rows.length}` })
+    ]);
+    const block = el("section", { class: `hunt-group group-${group.id}` }, [head]);
+    rows.forEach((item) => block.append(renderHunt(item)));
+    list.append(block);
   });
 }
 
 function fillTypes() {
   const select = document.getElementById("type-filter");
-  const types = [...new Set(state.checklist.map((item) => item.type))].sort();
-  types.forEach((type) => select.append(el("option", { value: type, text: type })));
+  HUNT_GROUPS.forEach((group) => {
+    if (state.checklist.some((item) => group.types.includes(item.type))) {
+      select.append(el("option", { value: group.id, text: group.label }));
+    }
+  });
 }
 
 function selectCharacter(id) {
@@ -297,7 +427,8 @@ function exportChecks() {
   const blob = new Blob([JSON.stringify({
     exportedAt: new Date().toISOString(),
     selected: state.selected,
-    checks: state.checks
+    checks: state.checks,
+    attempts: state.attempts
   }, null, 2)], { type: "application/json" });
   const link = el("a", { href: URL.createObjectURL(blob), download: "forever-checklist.json" });
   link.click();
@@ -311,6 +442,7 @@ function importChecks(file) {
       const data = JSON.parse(String(reader.result));
       if (!data.checks || typeof data.checks !== "object") throw new Error("missing checks");
       state.checks = data.checks;
+      if (data.attempts && typeof data.attempts === "object") state.attempts = data.attempts;
       if (data.selected) state.selected = data.selected;
       saveStore();
       render();
