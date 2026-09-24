@@ -100,9 +100,9 @@ function visibleItems() {
   const q = state.query.trim().toLowerCase();
   return state.checklist.filter((item) => {
     if (state.scope === "character" && !matchesCharacter(item, character)) return false;
-    if (state.type && huntGroup(item).id !== state.type) return false;
     if (!q) return true;
-    const hay = `${item.name} ${item.zone} ${item.notes} ${item.type}`.toLowerCase();
+    const parts = (item.parts || []).map((part) => `${part.name} ${part.how || ""}`).join(" ");
+    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type} ${parts}`.toLowerCase();
     return hay.includes(q);
   });
 }
@@ -285,18 +285,80 @@ function fact(label, value) {
   ]);
 }
 
+function piecesReady(item) {
+  if (!item.parts || !item.parts.length) return true;
+  const need = item.need || item.parts.length;
+  return item.parts.filter((part) => isChecked(part)).length >= need;
+}
+
+function renderTries(id, label) {
+  const tries = attemptCount(id);
+  const count = el("input", {
+    class: "try-count",
+    type: "number",
+    min: "0",
+    step: "1",
+    value: String(tries),
+    "aria-label": `Tries for ${label}`
+  });
+  count.addEventListener("click", (event) => event.stopPropagation());
+  count.addEventListener("change", () => {
+    setAttempts(id, count.value);
+    renderChecklist();
+  });
+  const step = (delta) => {
+    setAttempts(id, attemptCount(id) + delta);
+    renderChecklist();
+  };
+  return el("div", { class: "tries" }, [
+    el("span", { text: "Tries" }),
+    el("button", { type: "button", text: "−", "aria-label": "One fewer try", onclick: () => step(-1) }),
+    count,
+    el("button", { type: "button", text: "+", "aria-label": "Log a try", onclick: () => step(1) })
+  ]);
+}
+
+function renderPart(item, part) {
+  const checked = isChecked(part);
+  const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}` });
+  box.checked = checked;
+  box.addEventListener("click", (event) => event.stopPropagation());
+  box.addEventListener("change", () => {
+    state.checks[part.id] = box.checked;
+    if (!piecesReady(item)) state.checks[item.id] = false;
+    saveStore();
+    renderChecklist();
+  });
+  const copy = el("div", { class: "part-copy" }, [
+    el("strong", { text: part.name }),
+    el("p", { text: part.how || "" })
+  ]);
+  return el("div", { class: `part${checked ? " done" : ""}` }, [
+    box,
+    copy,
+    renderTries(part.id, part.name)
+  ]);
+}
+
 function renderHunt(item) {
   const checked = isChecked(item);
   const open = state.openId === item.id;
   const tries = attemptCount(item.id);
   const group = huntGroup(item);
+  const ready = piecesReady(item);
+  const pieceCount = item.parts ? item.parts.filter((part) => isChecked(part)).length : 0;
   const box = el("input", {
     type: "checkbox",
     "aria-label": `Got ${item.name}`
   });
   box.checked = checked;
+  if (item.parts && !ready) box.disabled = true;
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
+    if (item.parts && box.checked && !piecesReady(item)) {
+      box.checked = false;
+      return;
+    }
     state.checks[item.id] = box.checked;
     saveStore();
     renderChecklist();
@@ -313,7 +375,12 @@ function renderHunt(item) {
   });
   summary.append(el("strong", { text: item.name }));
   const meta = `${group.label} · ${item.zone} · level ${item.minLevel}+`;
-  const attemptText = tries ? `${meta} · ${tries} ${tries === 1 ? "try" : "tries"}` : meta;
+  const pieceText = item.parts
+    ? `${pieceCount} of ${item.need || item.parts.length} pieces`
+    : "";
+  const attemptText = [meta, pieceText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
+    .filter(Boolean)
+    .join(" · ");
   summary.append(el("span", { class: "sub", text: attemptText }));
 
   const row = el("div", { class: "hunt-row" }, [
@@ -328,41 +395,29 @@ function renderHunt(item) {
 
   if (!open) return card;
 
-  const count = el("input", {
-    class: "try-count",
-    type: "number",
-    min: "0",
-    step: "1",
-    value: String(tries),
-    "aria-label": `Tries for ${item.name}`
-  });
-  count.addEventListener("click", (event) => event.stopPropagation());
-  count.addEventListener("change", () => {
-    setAttempts(item.id, count.value);
-    renderChecklist();
-  });
-
-  const step = (delta) => {
-    setAttempts(item.id, attemptCount(item.id) + delta);
-    renderChecklist();
-  };
-
-  const detail = el("div", { class: "hunt-detail" }, [
+  const detailKids = [
     el("p", { class: "hunt-notes", text: item.notes }),
+    item.how ? el("p", { text: item.how }) : null,
     el("div", { class: "facts" }, [
       fact("Zone", item.zone),
       fact("From", `level ${item.minLevel}`),
       fact("Source", item.source),
       fact("For", whoLabel(item))
-    ]),
-    el("div", { class: "tries" }, [
-      el("span", { text: "Tries" }),
-      el("button", { type: "button", text: "−", "aria-label": "One fewer try", onclick: () => step(-1) }),
-      count,
-      el("button", { type: "button", text: "+", "aria-label": "Log a try", onclick: () => step(1) })
     ])
-  ]);
-  card.append(detail);
+  ];
+  if (item.parts) {
+    const need = item.need || item.parts.length;
+    detailKids.push(el("p", {
+      class: "piece-rule",
+      text: need === item.parts.length
+        ? "Every piece has to be checked before this hunt can be checked off."
+        : `Check ${need} of ${item.parts.length} pieces before this hunt can be checked off.`
+    }));
+    item.parts.forEach((part) => detailKids.push(renderPart(item, part)));
+  } else {
+    detailKids.push(renderTries(item.id, item.name));
+  }
+  card.append(el("div", { class: "hunt-detail" }, detailKids));
   return card;
 }
 
@@ -400,15 +455,6 @@ function renderChecklist() {
     const block = el("section", { class: `hunt-group group-${group.id}` }, [head]);
     rows.forEach((item) => block.append(renderHunt(item)));
     list.append(block);
-  });
-}
-
-function fillTypes() {
-  const select = document.getElementById("type-filter");
-  HUNT_GROUPS.forEach((group) => {
-    if (state.checklist.some((item) => group.types.includes(item.type))) {
-      select.append(el("option", { value: group.id, text: group.label }));
-    }
   });
 }
 
@@ -488,13 +534,8 @@ async function main() {
   }
   if (!state.characters.some((c) => c.id === state.selected)) state.selected = state.characters[0].id;
   document.getElementById("scope").value = state.scope;
-  fillTypes();
   document.getElementById("search").addEventListener("input", (event) => {
     state.query = event.target.value;
-    renderChecklist();
-  });
-  document.getElementById("type-filter").addEventListener("change", (event) => {
-    state.type = event.target.value;
     renderChecklist();
   });
   document.getElementById("scope").addEventListener("change", (event) => {

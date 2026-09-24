@@ -52,19 +52,6 @@
     "defaultDone": false
   },
   {
-    "id": "first-mate-band",
-    "name": "First Mate Band",
-    "type": "Gear",
-    "zone": "Deadmines",
-    "minLevel": 16,
-    "priority": "High",
-    "status": "Planned",
-    "owners": ["skyrinis"],
-    "notes": "ilvl 22 strength ring from Mr. Smite. Half of the Partners in Crime set. Bank it. Ephai can use the same ring.",
-    "source": "Wowhead",
-    "defaultDone": false
-  },
-  {
     "id": "rockslicer",
     "name": "Rockslicer",
     "type": "Gear",
@@ -73,7 +60,8 @@
     "priority": "High",
     "status": "Planned",
     "owners": ["malavus", "sorinis", "taloninis"],
-    "notes": "Unique two-hand axe from Rhahk'Zor. Mines Copper, Tin, Silver, or Iron without Mining. 30 charges, then the mining effect dies and the weapon stays. Farm on Malavus, Sorinis, or Taloninis. Same run as First Mate Band and Lookie's Spyglass.",
+    "notes": "Unique two-hand axe. Mines Copper, Tin, Silver, or Iron without Mining. 30 charges, then the effect dies and the weapon stays.",
+    "how": "Kill Rhahk'Zor, the first boss at the Deadmines entrance. Farm it on Malavus, Sorinis, or Taloninis, the characters without Mining. Clear the same run for First Mate Band and Lookie's Spyglass.",
     "source": "House",
     "defaultDone": false
   },
@@ -86,8 +74,22 @@
     "priority": "High",
     "status": "Planned",
     "owners": ["melee"],
-    "notes": "First Mate Band plus Band of the Better Half. Angry proc.",
+    "notes": "Two rings. The 2-piece is an angry proc. The set box stays locked until both rings are checked.",
+    "how": "First Mate Band drops inside the Deadmines. Band of the Better Half is a level 60 ring whose source is still unpublished, so that piece stays parked.",
     "source": "Wowhead",
+    "need": 2,
+    "parts": [
+      {
+        "id": "first-mate-band",
+        "name": "First Mate Band",
+        "how": "Kill Mr. Smite on the ship in the Deadmines, after the cannon room. Item level 22 strength ring. Bank it. Ephai can wear the same ring."
+      },
+      {
+        "id": "better-half",
+        "name": "Band of the Better Half",
+        "how": "Level 60 ring, other half of the set. No drop location has been published. Leave it parked until a source is confirmed. Ephai can wear it too."
+      }
+    ],
     "defaultDone": false
   },
   {
@@ -99,8 +101,37 @@
     "priority": "High",
     "status": "Planned",
     "owners": ["skyrinis"],
-    "notes": "Five Fang pieces. Hidden 5-piece turns cat form into a snake. Race-colored. Slither prowls.",
+    "notes": "Five leather pieces from Wailing Caverns. The hidden 5-piece turns Cat Form into a race-colored serpent that slithers while prowling.",
+    "how": "Forever bonuses: 2 pieces +10 Intellect, 3 pieces +10 Attack Power, 4 pieces a heal when you drop to 25% health, 5 pieces a chance to stun with Dream Venom. Boss sources match Classic. Gloves are a trash drop, so expect more tries on that piece. Drop rates in Forever are not published.",
     "source": "Wowhead",
+    "need": 5,
+    "parts": [
+      {
+        "id": "fang-belt",
+        "name": "Belt of the Fang",
+        "how": "Lady Anacondra, the first fanglord in Wailing Caverns."
+      },
+      {
+        "id": "fang-leggings",
+        "name": "Leggings of the Fang",
+        "how": "Lord Cobrahn in Wailing Caverns."
+      },
+      {
+        "id": "fang-armor",
+        "name": "Armor of the Fang",
+        "how": "Lord Pythas in Wailing Caverns. Chest piece. Requires level 18."
+      },
+      {
+        "id": "fang-footpads",
+        "name": "Footpads of the Fang",
+        "how": "Lord Serpentis in Wailing Caverns."
+      },
+      {
+        "id": "fang-gloves",
+        "name": "Gloves of the Fang",
+        "how": "Druid of the Fang trash in Wailing Caverns, not a boss. In Classic this was about a 2% drop, so it is usually the long piece."
+      }
+    ],
     "defaultDone": false
   },
   {
@@ -112,7 +143,8 @@
     "priority": "High",
     "status": "Planned",
     "owners": ["taloninis"],
-    "notes": "Keep the family uniques. 10% attack power and 100% crit. Stable a toolbox.",
+    "notes": "Keep one pet from each family that has a unique skill. The reported payoff is 10% attack power and 100% crit.",
+    "how": "This is a stable plan, not one drop. Tame the family uniques as you level and keep them. The exact family list is not published as a loot table, so it stays one hunt until those pets are named.",
     "source": "TheoryWiseOS",
     "defaultDone": false
   },
@@ -125,21 +157,22 @@
     "priority": "High",
     "status": "Planned",
     "owners": ["lucinis"],
-    "notes": "Baron Silverlaine, via Scroll of the Saber. +7 Intellect, +32 spell power, +98 Fire melee against Frozen. Fingers of Frost does not freeze for the proc.",
-    "source": "HelloJTello",
-    "defaultDone": false
-  },
-  {
-    "id": "better-half",
-    "name": "Band of the Better Half",
-    "type": "Gear",
-    "zone": "Unknown, level 60",
-    "minLevel": 60,
-    "priority": "High",
-    "status": "Parked",
-    "owners": ["skyrinis"],
-    "notes": "Other half of the Deadmines 2-set. Source still unknown. Ephai can use it too.",
-    "source": "Wowhead",
+    "notes": "Mage sword. +7 Intellect, up to +32 spell power, and +98 Fire melee damage against Frozen targets. Fingers of Frost does not count as Frozen for the proc.",
+    "how": "Use Scroll of the Saber on Blade of Silverlaine. Both pieces have to be on the mage. This is a weapon, not a new class.",
+    "source": "Farmerfarms",
+    "need": 2,
+    "parts": [
+      {
+        "id": "scroll-of-the-saber",
+        "name": "Scroll of the Saber",
+        "how": "Mage Comprehension. Decipher the mysterious scrolls mages find in the world until one resolves into Scroll of the Saber. One beta tester saw it on scroll 119. That is not a pity counter."
+      },
+      {
+        "id": "blade-of-silverlaine",
+        "name": "Blade of Silverlaine",
+        "how": "Baron Silverlaine in Shadowfang Keep. This is a new sword, not Silverlaine's Family Seal. Reset and repeat the baron until it drops, then use the scroll on it."
+      }
+    ],
     "defaultDone": false
   },
   {
@@ -151,8 +184,22 @@
     "priority": "Medium",
     "status": "Planned",
     "owners": ["loremaster"],
-    "notes": "Book turn-ins at 10 and 20: Scholarly Pendant, Erudite Amulet, Field Researcher Loop.",
-    "source": "Hozitojones",
+    "notes": "Any class can turn library books in. Ten books pay a neck. Twenty books total pay a ring. The first ten count toward the twenty.",
+    "how": "Alliance turns books in to Garion Wendell in the Stormwind Mage Quarter. Horde uses Owen Thadd in the Undercity Magic Quarter. Carry the book so the turn-in quest appears. Mages who finish this also learn Research, an hourly Study scroll craft. The set box unlocks after both rewards.",
+    "source": "Warcraft Tavern",
+    "need": 2,
+    "parts": [
+      {
+        "id": "library-ten",
+        "name": "Friend of the Library (10 books)",
+        "how": "Turn in 10 different books. Choose Scholarly Pendant (+6 Stamina, +4 Spirit) or Erudite's Amulet (+4 Agility, +6 Stamina). Neither neck has a level requirement."
+      },
+      {
+        "id": "library-twenty",
+        "name": "Greater Friend of the Library (20 books)",
+        "how": "Turn in 20 different books in total. Choose Philanthropist's Ring (+6 Intellect and up to +10 spell damage and healing) or Field Researcher's Loop (+7 Strength, Agility, and Stamina, rogue only)."
+      }
+    ],
     "defaultDone": false
   },
   {
@@ -164,7 +211,8 @@
     "priority": "Medium",
     "status": "Planned",
     "owners": ["all"],
-    "notes": "Turn in at Rethiel. Mid-level flavor unless level 60 stats confirm it.",
+    "notes": "Level 32 ring. +7 Stamina, attack power, and a small spell bonus. Unique turn-in, once per character.",
+    "how": "Kill Nightveiled Rotheap in the Wetlands. /target Nightveiled Rotheap helps. Rotheap Innards is a party drop. Turn the innards in to the Greenwarden. He is hostile to Horde, so this is an Alliance turn-in. You cannot turn in a second one.",
     "source": "HelloJTello",
     "defaultDone": false
   },
@@ -177,8 +225,27 @@
     "priority": "Medium",
     "status": "Planned",
     "owners": ["all"],
-    "notes": "Humar, Swiftmane, and Takk. +5% movement in the Barrens and Stonetalon.",
+    "notes": "Blessing of Kalimdor. Two of the three pieces give 5% movement speed in the Barrens and Stonetalon. The set box unlocks at two.",
+    "how": "The three rares are Humar the Pridelord, Swiftmane, and Takk the Leaper. Wowhead has not published which rare drops which piece, so kill all three on each circuit. Swiftmane patrols fast near Ratchet.",
     "source": "Wowhead",
+    "need": 2,
+    "parts": [
+      {
+        "id": "pack-leader",
+        "name": "Mark of the Pack Leader",
+        "how": "Neck. Requires level 20. +5 Strength and +5 Intellect. Drops from one of the three Barrens rares. The exact rare is not published."
+      },
+      {
+        "id": "zhevra-signet",
+        "name": "Signet of the Zhevra",
+        "how": "Finger. Requires level 18. +6 Agility and +2 Spirit. Drops from one of the three Barrens rares. The exact rare is not published."
+      },
+      {
+        "id": "raptor-hide-cloak",
+        "name": "Raptor Hide Cloak",
+        "how": "Back. Requires level 16. +4 Stamina and +3 Spirit. Drops from one of the three Barrens rares. The exact rare is not published."
+      }
+    ],
     "defaultDone": false
   },
   {
@@ -190,7 +257,8 @@
     "priority": "Medium",
     "status": "Planned",
     "owners": ["crafter"],
-    "notes": "Profession recipes. Malleable Essence of Nature for the buy and the craft.",
+    "notes": "Class crafted sets. Recipes are not published yet, so this stays one hunt until the piece list is real.",
+    "how": "Patterns are expected from endgame content. Crafting uses Malleable Essence of Nature, which comes from disenchanting Hyjal Summit or Barrow Deeps gear. Shoulders seen in the datamine cost 3 essences. Do not split this into pieces until the slots are confirmed.",
     "source": "Chromie",
     "defaultDone": false
   },
@@ -203,21 +271,9 @@
     "priority": "Medium",
     "status": "Planned",
     "owners": ["alliance"],
-    "notes": "Fill Waylaid Crates and turn them in to Marcy Baker. Huey Sunnydale sells the mount for 6000 Merchant's Favor.",
+    "notes": "Alliance kodo from the Azeroth Commerce Authority.",
+    "how": "Fill Waylaid Crates and turn them in to Marcy Baker for Merchant's Favor. Huey Sunnydale at Three Corners sells Reins of the Pack Kodo for 6000 Favor.",
     "source": "Wowhead",
-    "defaultDone": false
-  },
-  {
-    "id": "scroll-of-the-saber",
-    "name": "Scroll of the Saber and mage imbues",
-    "type": "Discovery",
-    "zone": "Libraries / Shadowfang Keep",
-    "minLevel": 20,
-    "priority": "Medium",
-    "status": "Planned",
-    "owners": ["lucinis"],
-    "notes": "Comprehension and Study books, then the scroll. Ice Knife freezes from a dagger. Imbue Spark resets Fire Blast on a melee hit. This is not a new class.",
-    "source": "Farmerfarms",
     "defaultDone": false
   },
   {
@@ -229,7 +285,8 @@
     "priority": "Medium",
     "status": "Parked",
     "owners": ["horde"],
-    "notes": "Shapeshift mana cost down 40. Likely Windshaper only. Confirm in beta before anyone farms it.",
+    "notes": "Reported to cut shapeshift mana cost by 40. Likely a Horde Windshaper relic. Confirm the drop before anyone farms it.",
+    "how": "Named in Zephras and Shen'dar. No confirmed mob or object yet. Leave it parked.",
     "source": "BwuhMG",
     "defaultDone": false
   },
@@ -242,7 +299,8 @@
     "priority": "Low",
     "status": "Planned",
     "owners": ["all"],
-    "notes": "Cookie drop. A zoom toy, not a combat trinket. Grab it with the First Mate Band.",
+    "notes": "Zoom toy, not a combat trinket.",
+    "how": "Kill Cookie, the murloc cook at the end of the Deadmines, on the same run as Mr. Smite.",
     "source": "Blainie",
     "defaultDone": false
   },
@@ -255,7 +313,8 @@
     "priority": "Low",
     "status": "Planned",
     "owners": ["all"],
-    "notes": "Saldean feed, then /chicken until the chicken turns green. Egg pet. First Alliance character.",
+    "notes": "Egg pet for the first Alliance character.",
+    "how": "Buy Special Chicken Feed from Farmer Saldean at Saldean's Farm in Westfall. Use it on a chicken, then type /chicken until the chicken turns green and offers the egg.",
     "source": "Blainie",
     "defaultDone": false
   },
@@ -268,7 +327,8 @@
     "priority": "Low",
     "status": "Planned",
     "owners": ["all"],
-    "notes": "Cooking 85. One Whimsyfin plus Mild Spices makes two. One hour as an ogre or a murloc.",
+    "notes": "Cooking 85. One Whimsyfin plus Mild Spices makes two servings. One hour as an ogre or a murloc.",
+    "how": "Find the recipe in Redridge. This is a cooking recipe, not the Goblin Gumbo Kettle toy.",
     "source": "Chromie",
     "defaultDone": false
   },
@@ -281,7 +341,8 @@
     "priority": "Low",
     "status": "Planned",
     "owners": ["taloninis"],
-    "notes": "Serenade the frogs on the waterfall rock.",
+    "notes": "Frog pet on Zephras Isle.",
+    "how": "Go to the waterfall rock on Zephras Isle and serenade the frogs. Taloninis keeps this one.",
     "source": "lofibanshee",
     "defaultDone": false
   },
@@ -294,7 +355,8 @@
     "priority": "Low",
     "status": "Planned",
     "owners": ["alliance"],
-    "notes": "ACA vendor. 1500 Merchant's Favor. Packmule Treat.",
+    "notes": "Small pack-mule pet.",
+    "how": "Same Azeroth Commerce Authority vendors as the Pack Kodo. 1500 Merchant's Favor, and it teaches Packmule Treat.",
     "source": "Wowhead",
     "defaultDone": false
   },
@@ -307,7 +369,8 @@
     "priority": "Low",
     "status": "Parked",
     "owners": ["all"],
-    "notes": "Pets, TCG, tier 0, mounts. A gold sink, not a gear plan.",
+    "notes": "Gold sink for pets, TCG toys, tier 0, and mounts. Not a gear plan.",
+    "how": "Madam Swyndle's Black Market at Powderfuse Port in Riverglades. Check it when you are nearby. Do not build a route around it.",
     "source": "Icy Veins",
     "defaultDone": false
   },
@@ -320,7 +383,8 @@
     "priority": "Low",
     "status": "Parked",
     "owners": ["all"],
-    "notes": "TCG toy, not a cooking recipe. Watch Madam Swyndle on the Black Market. 5-minute poison belch, no nutrition.",
+    "notes": "TCG toy, not a cooking recipe. Five-minute poison belch, and it does not feed you.",
+    "how": "Watch Madam Swyndle on the Black Market at Powderfuse Port in Riverglades. Parked vanity.",
     "source": "House",
     "defaultDone": false
   },
