@@ -9,7 +9,7 @@
                                      "level":  11,
                                      "zone":  "Dun Morogh",
                                      "subzone":  "Brewnall Village",
-                                     "goldCopper":  994,
+                                     "goldCopper":  2080,
                                      "health":  "260 max",
                                      "powerType":  "Mana",
                                      "stats":  {
@@ -102,7 +102,7 @@
                                      "owned":  [
 
                                                ],
-                                     "playedSeconds":  24140,
+                                     "playedSeconds":  25008,
                                      "statistics":  {
                                                         "Character":  [
                                                                           {
@@ -111,11 +111,11 @@
                                                                           },
                                                                           {
                                                                               "name":  "Quests completed",
-                                                                              "value":  "71"
+                                                                              "value":  "76"
                                                                           },
                                                                           {
                                                                               "name":  "Areas explored",
-                                                                              "value":  "4"
+                                                                              "value":  "6"
                                                                           },
                                                                           {
                                                                               "name":  "Instance lockouts",
@@ -125,11 +125,19 @@
                                                         "Kills":  [
                                                                       {
                                                                           "name":  "Total kills",
-                                                                          "value":  "96"
+                                                                          "value":  "175"
                                                                       },
                                                                       {
                                                                           "name":  "Creature types",
-                                                                          "value":  "15"
+                                                                          "value":  "18"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Rockjaw Bonesnapper",
+                                                                          "value":  "41"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Rockjaw Skullthumper",
+                                                                          "value":  "34"
                                                                       },
                                                                       {
                                                                           "name":  "Frostmane Seer",
@@ -141,7 +149,7 @@
                                                                       },
                                                                       {
                                                                           "name":  "Winter Wolf",
-                                                                          "value":  "12"
+                                                                          "value":  "13"
                                                                       },
                                                                       {
                                                                           "name":  "Snow Tracker Wolf",
@@ -177,6 +185,26 @@
                                                                            "Rough Weightstone"
                                                                        ]
                                                  },
+                                     "crafts":  {
+                                                    "Mining":  [
+                                                                   2657,
+                                                                   1230161
+                                                               ],
+                                                    "Cooking":  [
+                                                                    2538,
+                                                                    2540,
+                                                                    8604,
+                                                                    1229737
+                                                                ],
+                                                    "Blacksmithing":  [
+                                                                          2660,
+                                                                          2663,
+                                                                          2737,
+                                                                          3115,
+                                                                          12260,
+                                                                          1245287
+                                                                      ]
+                                                },
                                      "items":  [
                                                    "Apprentice\u0027s Mining Pack",
                                                    "Avala\u0027s Binding",
@@ -188,12 +216,12 @@
                                                    "Copper Mace",
                                                    "Copper Ore",
                                                    "Crag Boar Rib",
+                                                   "Disciple\u0027s Bracers",
                                                    "Dwarven Kite Shield",
-                                                   "Dwarven Leather Pants",
                                                    "Earth Totem",
                                                    "Fishing Pole",
-                                                   "Flanged Mace",
                                                    "Frayed Belt",
+                                                   "Frostbit Staff",
                                                    "Frosthowl\u0027s Footwarmers",
                                                    "Goat Fur Cloak",
                                                    "Hearthstone",
@@ -205,7 +233,7 @@
                                                    "Minor Healing Potion",
                                                    "Plans: Copper Chain Vest",
                                                    "Primitive Mantle",
-                                                   "Rabbit\u0027s Foot",
+                                                   "Rancher\u0027s Trousers",
                                                    "Recipe: Beer Basted Boar Ribs",
                                                    "Recipe: Minor Mageblood Elixir",
                                                    "Recipe: Peace Tea",
@@ -221,9 +249,41 @@
                                                    "Tough Hunk of Bread",
                                                    "Tough Jerky",
                                                    "Warm Winter Robe",
-                                                   "White Wolf Gloves",
-                                                   "Wooly Mittens"
+                                                   "White Wolf Gloves"
                                                ],
+                                     "itemCounts":  {
+                                                        "117":  17,
+                                                        "118":  3,
+                                                        "159":  12,
+                                                        "774":  3,
+                                                        "818":  5,
+                                                        "1210":  1,
+                                                        "2067":  1,
+                                                        "2555":  1,
+                                                        "2589":  52,
+                                                        "2672":  6,
+                                                        "2770":  1,
+                                                        "2835":  5,
+                                                        "2840":  13,
+                                                        "2886":  1,
+                                                        "2888":  3,
+                                                        "2889":  1,
+                                                        "2901":  1,
+                                                        "3085":  1,
+                                                        "3239":  5,
+                                                        "3609":  1,
+                                                        "4238":  1,
+                                                        "4540":  4,
+                                                        "5175":  1,
+                                                        "5572":  1,
+                                                        "5956":  1,
+                                                        "6256":  1,
+                                                        "6529":  1,
+                                                        "6948":  1,
+                                                        "249879":  1,
+                                                        "250375":  1,
+                                                        "279960":  3
+                                                    },
                                      "collections":  {
                                                          "Mounts":  0,
                                                          "Pets":  0,
@@ -239,11 +299,11 @@
                                                 ],
                                      "sources":  {
                                                      "CharacterExport":  "2026-09-23T17:41:04",
-                                                     "Nova Instance Tracker":  "2026-09-25T18:01:14",
+                                                     "Nova Instance Tracker":  "2026-09-25T18:46:26",
                                                      "Syndicator":  null,
                                                      "Profession Master":  "2026-09-23T18:50:21",
-                                                     "AllTheThings":  "2026-09-25T17:47:02",
-                                                     "KillDex":  "2026-09-25T18:01:24"
+                                                     "AllTheThings":  "2026-09-25T18:45:21",
+                                                     "KillDex":  "2026-09-25T18:46:48"
                                                  }
                                  },
                        "ullrathor":  {
@@ -513,6 +573,22 @@
                                                                          "Roasted Boar Meat"
                                                                      ]
                                                      },
+                                         "crafts":  {
+                                                        "Alchemy":  [
+                                                                        7183,
+                                                                        1245246,
+                                                                        1245250
+                                                                    ],
+                                                        "Cooking":  [
+                                                                        2538,
+                                                                        2540,
+                                                                        2542,
+                                                                        6412,
+                                                                        7751,
+                                                                        8604,
+                                                                        1229737
+                                                                    ]
+                                                    },
                                          "items":  [
                                                        "Apprentice Wizard\u0027s Gown",
                                                        "Apprentice\u0027s Herb Pouch",
@@ -551,6 +627,31 @@
                                                        "Verner\u0027s Note",
                                                        "Westfall Stew"
                                                    ],
+                                         "itemCounts":  {
+                                                            "118":  6,
+                                                            "728":  1,
+                                                            "733":  3,
+                                                            "765":  16,
+                                                            "769":  20,
+                                                            "785":  2,
+                                                            "858":  2,
+                                                            "1179":  13,
+                                                            "1251":  19,
+                                                            "1283":  1,
+                                                            "1294":  1,
+                                                            "2447":  11,
+                                                            "2449":  14,
+                                                            "2678":  10,
+                                                            "3371":  10,
+                                                            "4470":  5,
+                                                            "4471":  1,
+                                                            "4541":  10,
+                                                            "5534":  1,
+                                                            "6256":  1,
+                                                            "6948":  1,
+                                                            "15208":  1,
+                                                            "279967":  1
+                                                        },
                                          "collections":  {
                                                              "Mounts":  0,
                                                              "Pets":  0,

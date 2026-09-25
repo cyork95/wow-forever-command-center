@@ -604,6 +604,48 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 
 .drop-note { color: var(--teal); }
 
+.profession { margin-bottom: 12px; }
+.profession > .who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 10px; }
+.profession > .who h3 { margin: 0; }
+.profession > .who .meta { margin: 0; }
+
+.craft-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 8px;
+}
+
+.craft {
+  background: #182014;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.craft.known { border-color: #4b5f3d; }
+.craft-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.craft-head small { color: var(--danger); font-size: 12px; }
+.craft-head .badge { font-size: 10px; padding: 2px 6px; margin-left: auto; }
+
+.diff { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; background: var(--line); }
+.diff-orange { background: #ff8040; }
+.diff-yellow { background: #ffff00; }
+.diff-green { background: #40bf40; }
+.diff-grey { background: #808080; }
+.diff-locked { background: transparent; border: 1px solid var(--danger); }
+
+.reagents { list-style: none; margin: 6px 0 0; padding: 0; font-size: 13px; }
+.reagents li { padding: 1px 0; }
+.reagents li.short { color: var(--muted); }
+.reagents li.have { color: var(--cream); }
+.reagents small { color: var(--muted); }
+.reagents a { color: inherit; text-decoration: underline dotted; }
+
+.learn { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.learn a { color: var(--teal); }
+.learn .meta { margin: 0; }
+.owned-note { color: var(--teal); }
+
 footer.site {
   border-top: 1px solid var(--line);
   padding: 22px 0 40px;

@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "dungeons", "addons", "house"];
+const TABS = ["roster", "hunts", "professions", "dungeons", "addons", "house"];
 
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
@@ -35,6 +35,10 @@ const state = {
   addons: null,
   dungeons: null,
   dungeonQuery: "",
+  professions: null,
+  profLoading: false,
+  profView: "known",
+  profQuery: "",
   openDungeons: new Set(),
   selected: "skyrinis",
   scope: "character",
@@ -55,6 +59,7 @@ function loadStore() {
     if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
     if (typeof saved.place === "string") state.place = saved.place;
+    if (["known", "make", "learn", "all"].includes(saved.profView)) state.profView = saved.profView;
     if (TABS.includes(saved.tab)) state.tab = saved.tab;
   } catch {
     state.checks = {};
@@ -67,6 +72,7 @@ function saveStore() {
     selected: state.selected,
     scope: state.scope,
     place: state.place,
+    profView: state.profView,
     tab: state.tab,
     checks: state.checks,
     attempts: state.attempts
@@ -719,6 +725,7 @@ function selectCharacter(id) {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderProfessions();
 }
 
 function exportChecks() {
@@ -865,6 +872,7 @@ function renderQuest(quest) {
   }
   if (quest.rewards) kids.push(el("p", { class: "meta", text: quest.rewards }));
   if (quest.note) kids.push(el("p", { class: "meta", text: quest.note }));
+  if (asList(quest.noteItems).length) kids.push(el("ul", { class: "loot" }, asList(quest.noteItems).map(renderLootItem)));
   return el("article", { class: "quest" }, kids);
 }
 
@@ -954,6 +962,175 @@ function renderDungeons() {
   if (!shown) root.append(el("p", { class: "empty-note", text: "Nothing in the journal matches that." }));
 }
 
+async function loadProfessions() {
+  if (state.professions || state.profLoading) return;
+  state.profLoading = true;
+  try {
+    state.professions = await loadJson("data/professions.json");
+  } catch (error) {
+    state.professions = { professions: {}, items: {}, missing: true };
+    console.error(error);
+  }
+  state.profLoading = false;
+  renderProfessions();
+}
+
+function itemName(id) {
+  const items = (state.professions && state.professions.items) || {};
+  return items[String(id)] || "";
+}
+
+function renderItemName(id, fallback) {
+  const name = itemName(id) || fallback;
+  if (name) return el("span", { text: name });
+  return el("a", {
+    href: `https://www.wowhead.com/classic/item=${id}`,
+    target: "_blank",
+    rel: "noreferrer",
+    "data-wowhead": `item=${id}&domain=classic`,
+    text: `Item ${id}`
+  });
+}
+
+function craftDifficulty(craft, skill) {
+  const [orange, yellow, green, grey] = asList(craft.levels);
+  if (orange === undefined) return { id: "unknown", label: "" };
+  if (skill < orange) return { id: "locked", label: `Needs ${orange}` };
+  if (yellow !== undefined && skill < yellow) return { id: "orange", label: "Orange" };
+  if (green !== undefined && skill < green) return { id: "yellow", label: "Yellow" };
+  if (grey !== undefined && skill < grey) return { id: "green", label: "Green" };
+  return { id: "grey", label: "Grey" };
+}
+
+function makeCount(craft, counts) {
+  let most = Infinity;
+  asList(craft.reagents).forEach(([id, need]) => {
+    const have = Number(counts[String(id)]) || 0;
+    most = Math.min(most, Math.floor(have / (Number(need) || 1)));
+  });
+  return Number.isFinite(most) ? most : 0;
+}
+
+function characterProfessions(character, live) {
+  const all = Object.keys((state.professions && state.professions.professions) || {});
+  const names = [...asList(character.professions)];
+  Object.keys(live.crafts || {}).forEach((name) => { if (!names.includes(name)) names.push(name); });
+  asList(live.professions).forEach((p) => { if (p && !names.includes(p.name)) names.push(p.name); });
+  return names.filter((name) => all.includes(name));
+}
+
+function renderCraft(craft, known, skill, counts) {
+  const difficulty = craftDifficulty(craft, skill);
+  const quality = nameKey(craft.quality) || "common";
+  const canMake = known ? makeCount(craft, counts) : 0;
+  const head = el("div", { class: "craft-head" }, [
+    el("span", { class: `diff diff-${difficulty.id}`, title: difficulty.label || null }),
+    el("strong", { class: `item q-${quality}`, text: craft.makes ? `${craft.name} ×${craft.makes}` : craft.name }),
+    difficulty.id === "locked" ? el("small", { text: difficulty.label }) : null,
+    known && canMake ? el("span", { class: "badge medium", text: `Can make ${canMake}` }) : null
+  ]);
+  const reagents = el("ul", { class: "reagents" }, asList(craft.reagents).map(([id, need]) => {
+    const have = Number(counts[String(id)]) || 0;
+    return el("li", { class: have >= need ? "have" : "short" }, [
+      el("span", { text: `${need}× ` }),
+      renderItemName(id),
+      el("small", { text: ` (${have})` })
+    ]);
+  }));
+  const kids = [head, reagents];
+  if (!known) {
+    const learn = craft.learn || {};
+    if (learn.how === "Recipe") {
+      asList(learn.recipes).forEach((recipe) => {
+        const name = itemName(recipe.id);
+        const owned = name ? ownedNote({ name }) : "";
+        kids.push(el("p", { class: "learn" }, [
+          el("span", { text: "Learn from " }),
+          renderItemName(recipe.id),
+          owned ? el("span", { class: "owned-note", text: ` · ${owned}` }) : null,
+          asList(recipe.where).length ? el("span", { class: "meta", text: ` · ${asList(recipe.where).join(" · ")}` }) : null
+        ]));
+      });
+    } else {
+      const where = asList(learn.where).join(", ");
+      kids.push(el("p", { class: "learn", text: where ? `${learn.how}: ${where}` : learn.how || "Unknown" }));
+    }
+  }
+  return el("article", { class: `craft${known ? " known" : ""}` }, kids);
+}
+
+function renderProfessions() {
+  const root = document.getElementById("prof-list");
+  const note = document.getElementById("prof-source");
+  const picker = document.getElementById("prof-character");
+  if (!root || !note || !picker || !state.characters.length) return;
+  if (picker.options.length !== state.characters.length) {
+    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
+  }
+  picker.value = state.selected;
+  document.getElementById("prof-view").value = state.profView;
+  root.replaceChildren();
+  const data = state.professions;
+  if (!data) {
+    note.textContent = "Loading the craft list…";
+    return;
+  }
+  if (data.missing) {
+    note.textContent = "No craft list yet. Install Profession Master, run scripts/scan-addons.ps1, then commit data/professions.json.";
+    return;
+  }
+  const version = versionLabel(data.version);
+  note.textContent = `From ${data.source}${version ? ` ${version}` : ""}. Reagent counts cover bags, bank, and mail.`;
+
+  const character = selectedCharacter();
+  const live = (state.stats.characters || {})[character.id] || {};
+  const counts = live.itemCounts || {};
+  const q = nameKey(state.profQuery);
+  const names = characterProfessions(character, live);
+  if (!names.length) {
+    root.append(el("p", { class: "empty-note", text: `${character.name} has no professions on record yet.` }));
+    return;
+  }
+  names.forEach((name) => {
+    const crafts = asList(data.professions[name]);
+    const knownIds = new Set(asList((live.crafts || {})[name]).map(Number));
+    const skillRow = asList(live.professions).find((p) => p && p.name === name);
+    const skill = skillRow ? Number(skillRow.current) || 0 : 0;
+    const known = crafts.filter((craft) => knownIds.has(craft.id));
+    const makeable = known.filter((craft) => makeCount(craft, counts) > 0);
+    let rows = state.profView === "known" ? known
+      : state.profView === "make" ? makeable
+      : state.profView === "learn" ? crafts.filter((craft) => !knownIds.has(craft.id) && (craft.learn || {}).how !== "Not available")
+      : crafts;
+    if (q) {
+      rows = rows.filter((craft) => {
+        const reagentNames = asList(craft.reagents).map(([id]) => itemName(id)).join(" ");
+        return nameKey(`${craft.name} ${reagentNames}`).includes(q);
+      });
+    }
+    rows = [...rows].sort((a, b) => (asList(a.levels)[0] || 0) - (asList(b.levels)[0] || 0) || a.name.localeCompare(b.name));
+
+    const skillText = skillRow ? (skillRow.max ? `${skill}/${skillRow.max}` : `${skill}`) : "not learned";
+    const box = el("section", { class: "card profession" });
+    box.append(el("div", { class: "who" }, [
+      el("h3", { text: name }),
+      el("span", { class: "meta", text: [skillText, `${known.length} of ${crafts.length} known`, makeable.length ? `${makeable.length} can make now` : ""].filter(Boolean).join(" · ") })
+    ]));
+    if (!rows.length) {
+      const empty = state.profView === "known" ? "None known yet. Opening this profession's window in game updates the list."
+        : state.profView === "make" ? "Nothing to make from what is in the bags."
+        : "Nothing here.";
+      box.append(el("p", { class: "empty-note", text: q ? "Nothing matches that search." : empty }));
+    } else {
+      const shown = rows.slice(0, 200);
+      box.append(el("div", { class: "craft-list" }, shown.map((craft) => renderCraft(craft, knownIds.has(craft.id), skill, counts))));
+      if (rows.length > shown.length) box.append(el("p", { class: "meta", text: `Showing the first ${shown.length} of ${rows.length}. Search to narrow it.` }));
+    }
+    root.append(box);
+  });
+  if (window.$WowheadPower && typeof window.$WowheadPower.refreshLinks === "function") window.$WowheadPower.refreshLinks();
+}
+
 function showTab(id) {
   if (!TABS.includes(id)) id = "roster";
   state.tab = id;
@@ -966,6 +1143,7 @@ function showTab(id) {
   document.querySelectorAll("[data-panel]").forEach((panel) => {
     panel.hidden = panel.dataset.panel !== id;
   });
+  if (id === "professions") loadProfessions();
   const url = new URL(location.href);
   url.hash = id === "roster" ? "" : id;
   history.replaceState(null, "", url);
@@ -992,6 +1170,7 @@ function render() {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderProfessions();
   renderDungeons();
   renderAddons();
 }
@@ -1045,6 +1224,16 @@ async function main() {
   document.getElementById("search").addEventListener("input", (event) => {
     state.query = event.target.value;
     renderChecklist();
+  });
+  document.getElementById("prof-character").addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("prof-view").addEventListener("change", (event) => {
+    state.profView = event.target.value;
+    saveStore();
+    renderProfessions();
+  });
+  document.getElementById("prof-search").addEventListener("input", (event) => {
+    state.profQuery = event.target.value;
+    renderProfessions();
   });
   document.getElementById("dungeon-search").addEventListener("input", (event) => {
     state.dungeonQuery = event.target.value;

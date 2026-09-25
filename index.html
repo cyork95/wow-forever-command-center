@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=10">
+  <link rel="stylesheet" href="assets/site.css?v=11">
 </head>
 <body>
   <div class="frame">
@@ -25,6 +25,7 @@
     <nav class="tabs" role="tablist" aria-label="Command center">
         <button type="button" class="tab" role="tab" id="tab-roster" data-tab="roster" aria-controls="panel-roster" aria-selected="true">Roster</button>
         <button type="button" class="tab" role="tab" id="tab-hunts" data-tab="hunts" aria-controls="panel-hunts" aria-selected="false" tabindex="-1">Hunts</button>
+        <button type="button" class="tab" role="tab" id="tab-professions" data-tab="professions" aria-controls="panel-professions" aria-selected="false" tabindex="-1">Professions</button>
         <button type="button" class="tab" role="tab" id="tab-dungeons" data-tab="dungeons" aria-controls="panel-dungeons" aria-selected="false" tabindex="-1">Dungeons</button>
         <button type="button" class="tab" role="tab" id="tab-addons" data-tab="addons" aria-controls="panel-addons" aria-selected="false" tabindex="-1">Addons</button>
         <button type="button" class="tab" role="tab" id="tab-house" data-tab="house" aria-controls="panel-house" aria-selected="false" tabindex="-1">House</button>
@@ -63,6 +64,24 @@
       </div>
     </section>
 
+    <section class="panel" id="panel-professions" role="tabpanel" aria-labelledby="tab-professions" data-panel="professions" hidden>
+      <div class="section-head">
+        <h2>Professions</h2>
+        <p id="prof-source">Loading the craft list…</p>
+      </div>
+      <div class="toolbar">
+        <select id="prof-character" aria-label="Character"></select>
+        <select id="prof-view" aria-label="Which crafts">
+          <option value="known">Known crafts</option>
+          <option value="make">Can make now</option>
+          <option value="learn">Still to learn</option>
+          <option value="all">Everything</option>
+        </select>
+        <input id="prof-search" type="search" placeholder="Search crafts and reagents">
+      </div>
+      <div id="prof-list"></div>
+    </section>
+
     <section class="panel" id="panel-dungeons" role="tabpanel" aria-labelledby="tab-dungeons" data-panel="dungeons" hidden>
       <div class="section-head">
         <h2>Dungeons</h2>
@@ -96,6 +115,8 @@
     </div>
   </footer>
   </div>
-  <script src="assets/app.js?v=10"></script>
+  <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
+  <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
+  <script src="assets/app.js?v=11"></script>
 </body>
 </html>

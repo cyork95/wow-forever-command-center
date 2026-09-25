@@ -6,6 +6,7 @@ $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "read-saves.ps1")
 . (Join-Path $PSScriptRoot "screenshots.ps1")
 . (Join-Path $PSScriptRoot "dungeon-journal.ps1")
+. (Join-Path $PSScriptRoot "professions.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -191,6 +192,17 @@ if ($journal) {
   Write-JsonFile (Join-Path $repo "data\dungeons.json") $journal
   $lootCount = ($journal.dungeons | ForEach-Object { $_.bosses } | ForEach-Object { @($_.loot).Count } | Measure-Object -Sum).Sum
   Write-Output "Wrote $($journal.dungeons.Count) dungeons and $lootCount drops to data/dungeons.json"
+}
+
+$house = Read-JsonFile (Join-Path $repo "data\house.json")
+$faction = if ($house.faction -match 'Horde') { "Horde" } else { "Alliance" }
+$crafts = Read-ProfessionCrafts $addonsPath $wtfRoot $ProfessionNames $faction
+if ($crafts) {
+  $craftCount = ($crafts.professions.Values | ForEach-Object { @($_).Count } | Measure-Object -Sum).Sum
+  $json = $crafts | ConvertTo-Json -Depth 8 -Compress
+  $utf8 = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText((Join-Path $repo "data\professions.json"), $json + "`n", $utf8)
+  Write-Output "Wrote $craftCount crafts across $($crafts.professions.Count) professions to data/professions.json"
 }
 
 function Unescape-LuaString($value) {
@@ -496,7 +508,9 @@ function Apply-Snapshot($record, $snap, $character) {
     $rec["professions"] = $profs
   }
   if ($snap.recipes) { $rec["recipes"] = $snap.recipes }
+  if ($snap.crafts) { $rec["crafts"] = $snap.crafts }
   if ($snap.items) { $rec["items"] = $snap.items }
+  if ($snap.itemCounts) { $rec["itemCounts"] = $snap.itemCounts }
 
   if ($snap.att) {
     $rec["collections"] = [ordered]@{
