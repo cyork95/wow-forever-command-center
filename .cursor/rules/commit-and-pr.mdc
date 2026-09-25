@@ -1,0 +1,15 @@
+---
+description: Commit finished work and open a pull request without waiting to be asked
+alwaysApply: true
+---
+
+# Commits and pull requests
+
+When a task changes files in this repo, finish by committing and opening a pull request. Do this without asking first.
+
+- Follow the repo git safety rules: no config changes, no force push, no skipped hooks, no amend unless the amend rules allow it.
+- Do not commit secrets. `scripts/addons.local.json` stays untracked.
+- Stage only files that belong to the task.
+- Commit message: one or two sentences on why the change exists.
+- Push the branch and open a pull request with `gh`. Return the PR URL.
+- If the work is already on a feature branch with a PR, push the new commit to that branch instead of opening a second PR.

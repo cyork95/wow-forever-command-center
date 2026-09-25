@@ -19,6 +19,7 @@ const state = {
   characters: [],
   checklist: [],
   stats: { updated: null, characters: {} },
+  addons: null,
   selected: "skyrinis",
   scope: "character",
   query: "",
@@ -167,7 +168,7 @@ function renderSheet() {
   }
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
-  const skills = new Map((live.professions || []).map((p) => [p.name, p]));
+  const skills = new Map(asList(live.professions).map((p) => [p.name, p]));
   character.professions.forEach((name) => {
     const skill = skills.get(name);
     const label = skill ? `${name} ${skill.current}/${skill.max}` : name;
@@ -201,13 +202,13 @@ function renderSheet() {
   STAT_KEYS.forEach((key) => grid.append(statBox(key, extra[key])));
   stats.append(grid);
 
-  if (Array.isArray(live.gear) && live.gear.length) {
+  if (asList(live.gear).length) {
     const table = el("table", { class: "gear" });
     const head = el("tr");
     ["Slot", "Item", "ilvl"].forEach((label) => head.append(el("th", { text: label })));
     table.append(el("thead", {}, [head]));
     const body = el("tbody");
-    live.gear.forEach((piece) => {
+    asList(live.gear).forEach((piece) => {
       const row = el("tr");
       row.append(el("td", { text: dash(piece.slot) }));
       row.append(el("td", { text: dash(piece.name) }));
@@ -218,7 +219,43 @@ function renderSheet() {
     stats.append(table);
   }
 
-  sheet.replaceChildren(identity, stats);
+  const lifetime = el("article", { class: "card lifetime" });
+  lifetime.append(el("h3", { text: "Statistics" }));
+  const groups = statisticGroups(live.statistics);
+  if (!groups.length) {
+    lifetime.append(el("p", { class: "empty-note", text: "Open the character window and use the bottom tab on the right. CharacterExport does not copy that pane yet, so paste the counters you care about into the export under statistics." }));
+  } else {
+    const wrap = el("div", { class: "stat-groups" });
+    groups.forEach((group) => {
+      const block = el("section");
+      block.append(el("h4", { text: group.name }));
+      const list = el("dl");
+      group.rows.forEach((row) => {
+        const line = el("div");
+        line.append(el("dt", { text: dash(row.name) }));
+        line.append(el("dd", { text: dash(row.value) }));
+        list.append(line);
+      });
+      block.append(list);
+      wrap.append(block);
+    });
+    lifetime.append(wrap);
+  }
+
+  sheet.replaceChildren(identity, stats, lifetime);
+}
+
+function statisticGroups(statistics) {
+  if (!statistics) return [];
+  if (Array.isArray(statistics)) {
+    return statistics.length ? [{ name: "Statistics", rows: statistics }] : [];
+  }
+  return Object.entries(statistics).map(([name, rows]) => ({
+    name,
+    rows: Array.isArray(rows)
+      ? rows
+      : Object.entries(rows || {}).map(([label, value]) => ({ name: label, value }))
+  })).filter((group) => group.rows.length);
 }
 
 function badgeClass(item) {
@@ -321,11 +358,83 @@ function importChecks(file) {
   reader.readAsText(file);
 }
 
+function cleanAddonText(value) {
+  return String(value || "").replace(/\|T[^|]*\|t/g, "").replace(/\s+/g, " ").trim();
+}
+
+function versionLabel(version) {
+  if (!version) return null;
+  const text = String(version);
+  return /^v/i.test(text) ? text : `v${text}`;
+}
+
+function asList(value) {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  if (typeof value === "string") return [value];
+  if (typeof value === "object" && Object.keys(value).length === 0) return [];
+  return [value];
+}
+
+function renderAddons() {
+  const root = document.getElementById("addons");
+  const note = document.getElementById("addon-scan");
+  if (!root || !note) return;
+  root.replaceChildren();
+  const scan = state.addons;
+  if (!scan || !asList(scan.addons).length) {
+    note.textContent = "No scan yet. Run scripts/scan-addons.ps1, then commit data/addons.json.";
+    return;
+  }
+  const when = scan.scannedAt ? scan.scannedAt.slice(0, 10) : "an unknown date";
+  note.textContent = `Scanned ${when}. ${scan.count || asList(scan.addons).length} installed.`;
+  const groups = [
+    ["Can feed the site", (addon) => addon.feedsSite],
+    ["Interface", (addon) => !addon.feedsSite]
+  ];
+  groups.forEach(([label, pick]) => {
+    const items = asList(scan.addons).filter(pick);
+    if (!items.length) return;
+    root.append(el("h3", { class: "group-label", text: label }));
+    const grid = el("div", { class: "addon-grid" });
+    items.forEach((addon) => {
+      const card = el("article", { class: "card addon-card" });
+      const head = el("div", { class: "who" });
+      head.append(el("h3", { text: cleanAddonText(addon.title || addon.folder) }));
+      head.append(el("span", {
+        class: addon.feedsSite ? "badge" : "badge parked",
+        text: addon.feedsSite ? "Feeds the site" : "Interface"
+      }));
+      card.append(head);
+      const bits = [versionLabel(addon.version), cleanAddonText(addon.author)].filter(Boolean);
+      if (addon.enabled === true) bits.push(addon.loaded === false ? "Enabled, not loaded" : "Loaded");
+      if (addon.enabled === false) bits.push("Disabled");
+      if (addon.uncataloged) bits.push("Not in the catalog");
+      if (bits.length) card.append(el("p", { class: "meta", text: bits.join(" · ") }));
+      card.append(el("p", { text: addon.purpose || "" }));
+      const collects = asList(addon.collects);
+      if (collects.length) {
+        const list = el("ul");
+        collects.forEach((item) => list.append(el("li", { text: item })));
+        card.append(list);
+      }
+      const saves = asList(addon.savedVariables);
+      if (saves.length) {
+        const onDisk = addon.saveOnDisk ? "on disk" : "not saved yet";
+        card.append(el("p", { class: "meta", text: `Saves: ${saves.join(", ")} (${onDisk})` }));
+      }
+      grid.append(card);
+    });
+    root.append(grid);
+  });
+}
+
 function render() {
   renderHouse();
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderAddons();
 }
 
 async function loadJson(path) {
@@ -339,16 +448,18 @@ async function main() {
   const params = new URLSearchParams(location.search);
   if (params.get("c")) state.selected = params.get("c");
   try {
-    const [house, characters, checklist, stats] = await Promise.all([
+    const [house, characters, checklist, stats, addons] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
-      loadJson("data/stats.json")
+      loadJson("data/stats.json"),
+      loadJson("data/addons.json").catch(() => null)
     ]);
     state.house = house;
     state.characters = characters;
     state.checklist = checklist;
     state.stats = stats;
+    state.addons = addons;
   } catch (error) {
     document.getElementById("lede").textContent = "The tracker data did not load. Open the GitHub Pages site, or serve this folder over http.";
     console.error(error);
