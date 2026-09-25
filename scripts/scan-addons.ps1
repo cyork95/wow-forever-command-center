@@ -327,11 +327,33 @@ function Parse-JsonExport($text, $when) {
   return $data
 }
 
+function Get-RowField($row, $name) {
+  if ($null -eq $row) { return $null }
+  if ($row -is [System.Collections.IDictionary]) {
+    if ($row.Contains($name)) { return $row[$name] }
+    return $null
+  }
+  $prop = $row.PSObject.Properties[$name]
+  if ($prop) { return $prop.Value }
+  return $null
+}
+
+function Add-CarriedField($payload, $row, $existing, $name) {
+  $value = Get-RowField $row $name
+  if ($null -eq $value) { $value = Get-RowField $existing $name }
+  if ($null -ne $value) { $payload[$name] = $value }
+}
+
 $sources = @()
 $sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport' })
 if (Test-Path $gameRoot) {
   $sources += @(Get-ChildItem -Path $gameRoot -File -Recurse -Depth 2 -Include *.txt,*.json -ErrorAction SilentlyContinue |
     Where-Object { $_.FullName -notmatch '\\Interface\\' -and $_.Length -lt 5MB })
+}
+foreach ($root in $exportRoots) {
+  if (-not (Test-Path $root)) { continue }
+  $sources += @(Get-ChildItem -Path $root -Recurse -File -Include *.txt,*.json,*.lua -ErrorAction SilentlyContinue |
+    Where-Object { $_.Length -lt 5MB })
 }
 
 $parsed = @()
@@ -379,6 +401,8 @@ foreach ($row in $kept.Values) {
   $date = ([datetime]$row.exportedAt).ToString("yyyy-MM-dd")
   $slug = ($row.character.ToLowerInvariant() -replace '[^a-z0-9]+', '-').Trim('-')
   $exportPath = Join-Path $exportsDir "$slug-$date.json"
+  $existing = $stats.characters.PSObject.Properties[$row.matchedId]
+  $existingRecord = if ($existing) { $existing.Value } else { $null }
   $payload = [ordered]@{
     character = $row.character
     exportedAt = $row.exportedAt
@@ -395,7 +419,9 @@ foreach ($row in $kept.Values) {
     gear = @($row.gear)
     owned = @($row.owned)
   }
-  if ($row.PSObject.Properties.Name -contains "power") { $payload.power = $row.power }
+  foreach ($field in @("power", "playedSeconds", "statistics")) {
+    Add-CarriedField $payload $row $existingRecord $field
+  }
   Write-JsonFile $exportPath $payload
   $stats.characters | Add-Member -NotePropertyName $row.matchedId -NotePropertyValue ([pscustomobject]$payload) -Force
   $merged++
