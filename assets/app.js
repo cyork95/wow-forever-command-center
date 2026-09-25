@@ -335,6 +335,28 @@ function renderSheet() {
     lifetime.append(wrap);
   }
 
+  const shots = asList(state.screenshots)
+    .filter((shot) => String(shot.file || "").startsWith(`assets/shots/${character.id}/`))
+    .sort((a, b) => String(b.takenAt).localeCompare(String(a.takenAt)));
+  if (shots.length) {
+    identity.append(el("h4", { class: "shots-head", text: `Screenshots (${shots.length})` }));
+    const grid = el("div", { class: "shots" });
+    shots.forEach((shot) => {
+      const when = new Date(shot.takenAt);
+      const date = Number.isNaN(when.getTime())
+        ? ""
+        : when.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+      const label = shot.caption || `Screenshot from ${date}`;
+      const link = el("a", { href: shot.file, target: "_blank", rel: "noreferrer", "aria-label": `Open full size: ${label}` }, [
+        el("img", { src: shot.file, alt: label, loading: "lazy" })
+      ]);
+      grid.append(el("figure", {}, [
+        link,
+        el("figcaption", { text: [date, shot.caption].filter(Boolean).join(" · ") })
+      ]));
+    });
+    identity.append(grid);
+  }
   sheet.replaceChildren(identity, stats, lifetime);
 }
 
@@ -690,18 +712,20 @@ async function main() {
   const params = new URLSearchParams(location.search);
   if (params.get("c")) state.selected = params.get("c");
   try {
-    const [house, characters, checklist, stats, addons] = await Promise.all([
+    const [house, characters, checklist, stats, addons, screenshots] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
-      loadJson("data/addons.json").catch(() => null)
+      loadJson("data/addons.json").catch(() => null),
+      loadJson("data/screenshots.json").catch(() => [])
     ]);
     state.house = house;
     state.characters = characters;
     state.checklist = checklist;
     state.stats = stats;
     state.addons = addons;
+    state.screenshots = screenshots;
     buildOwned();
   } catch (error) {
     document.getElementById("lede").textContent = "The tracker data did not load. Open the GitHub Pages site, or serve this folder over http.";

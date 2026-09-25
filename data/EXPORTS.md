@@ -45,7 +45,7 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 }
 ```
 
-`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches.
+`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.
 
 `scripts/scan-addons.ps1` also reads addon saves under `WTF` and adds these fields to each character in `stats.json`:
 
@@ -53,4 +53,18 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 - `recipes`: known recipes by profession from Profession Master. Recipe hunts check themselves once learned. Its skill levels raise `professions[].current`.
 - `collections`: AllTheThings counts for mounts, pets, toys, titles, and achievements. `playedSeconds` comes from AllTheThings too.
 - `statistics.Character` and `statistics.Kills`: deaths, quests, areas explored, lockouts, and KillDex kill counts. Other groups you add stay.
-- `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`. `statistics` is the character window's statistics tab, grouped however you like. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.
+- `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`.
+
+Screenshots live in `screenshots.json`, one entry per file in the game's `Screenshots` folder:
+
+```json
+{
+  "source": "WoWScrnShot_092426_184911.jpg",
+  "takenAt": "2026-09-24T18:49:11",
+  "who": "Flann Anvilhew",
+  "caption": "Father Gavin offers Rime's Wrath.",
+  "file": "assets/shots/flann/2026-09-24-184911.jpg"
+}
+```
+
+The scan fills `source` and `takenAt`. Set `who` and `caption` by hand or through the nightly skill. The scan fills `file` once `who` matches a roster character.

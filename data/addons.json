@@ -1,5 +1,5 @@
 {
-    "scannedAt":  "2026-09-25T15:39:23",
+    "scannedAt":  "2026-09-25T15:49:03",
     "count":  38,
     "addons":  [
                    {
@@ -339,10 +339,10 @@
                        "title":  "Memento",
                        "version":  "v2.30",
                        "author":  "Arcane Wizard | created by diomsg",
-                       "purpose":  "Journal of first-time events, such as the first kill or first loot of an item.",
+                       "purpose":  "Takes a screenshot on level-ups, achievements, deaths, boss kills, and other moments.",
                        "feedsSite":  true,
                        "uncataloged":  false,
-                       "collects":  "First-time loot and kill records",
+                       "collects":  "Screenshots for the character\u0027s gallery",
                        "savedVariables":  [
                                               "Memento_Options_v6",
                                               "Memento_DataBossKill"

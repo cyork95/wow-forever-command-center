@@ -204,6 +204,19 @@ h2 {
 
 .sources { margin: 10px 0 0; font-size: 13px; overflow-wrap: anywhere; }
 
+.shots-head { margin: 18px 0 8px; font-size: 14px; color: var(--gold); }
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.shots figure { margin: 0; }
+.shots a { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.shots img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.2s; }
+.shots a:hover img, .shots a:focus-visible img { transform: scale(1.03); }
+.shots figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
 .rules { list-style: none; padding: 0; margin: 8px 0 0; }
 .rules li { border-radius: 12px; display: block; margin-top: 8px; }
 

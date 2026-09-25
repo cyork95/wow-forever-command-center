@@ -4,6 +4,7 @@
 
 $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "read-saves.ps1")
+. (Join-Path $PSScriptRoot "screenshots.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -540,3 +541,5 @@ if ($merged -gt 0 -or $applied -gt 0) {
 $unmatched | Select-Object -Unique | ForEach-Object {
   Write-Output "Skipped unmatched character: $_"
 }
+
+Update-Screenshots $gameRoot $repo $characters

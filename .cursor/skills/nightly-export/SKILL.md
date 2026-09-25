@@ -44,7 +44,19 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - AllTheThings: time played, deaths, quests, areas explored, and collection counts.
 - Nova Instance Tracker: level, gold, and lockouts when its save is newer than the dump.
 - KillDex: total kills, creature types, and the top five mobs.
-- Memento has no data in its save yet, so it is skipped.
+- Memento: its save holds only settings. Its screenshots are handled in the next section.
+
+## 3b. Name the new screenshots
+
+Memento takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, and similar moments. The scan adds each new file to `data/screenshots.json` with `who: null` and prints `Screenshots with no character yet (N): ...`.
+
+For each of those entries:
+
+1. Open the image from `C:\Program Files (x86)\World of Warcraft\_classic_beta_\Screenshots\<source>` with the Read tool.
+2. Memento hides the UI, but the player's own name stays over their head. Set `who` to that full name, for example `Flann Anvilhew`. If the name is not visible (a loading screen, say), use the character from the nearest shot in the same session. If you still cannot tell, ask the user.
+3. Set `caption` to one short sentence about what the shot shows: the quest, the boss, the level, or the place. Only name places and NPCs you can read or are sure of.
+
+Then run the scan again. Shots whose `who` is on the roster get a 1280px copy under `assets/shots/<id>/`, and the site shows them in that character's card. Shots of characters not on the roster stay in the log with `file: null` and are not published.
 
 ## 4. Add statistics the dump cannot carry
 
@@ -59,7 +71,7 @@ Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in 
 Follow `.cursor/rules/commit-and-pr.mdc`.
 
 - Start from an up-to-date `main` on a branch named `export-YYYY-MM-DD`. If that branch already has an open PR tonight, push to it instead.
-- Stage only the new raw file under `exports/`, `data/addons.json`, `data/stats.json`, the new `data/exports/*.json`, and `data/characters.json` if a character was added.
+- Stage only the new raw file under `exports/`, `data/addons.json`, `data/stats.json`, the new `data/exports/*.json`, `data/screenshots.json`, new files under `assets/shots/`, and `data/characters.json` if a character was added.
 - Never stage `scripts/addons.local.json`.
 - Commit message example: `Log Flann's Sep 25 beta session so the sheet shows level 12 and the new Mining skill.`
 - Push, run `gh pr create`, and return the PR URL.
