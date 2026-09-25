@@ -249,33 +249,145 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
   width: 0;
 }
 
+.hunt-group { margin: 22px 0 8px; }
+
 .group-label {
-  margin: 16px 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 0 8px;
   color: var(--gold);
   font-size: 13px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.check {
+.group-label em {
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hunt {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 14px;
+  margin-bottom: 8px;
+  background: #182014;
+  overflow: hidden;
+}
+
+.hunt.group-mounts { border-left-color: #d7a15a; }
+.hunt.group-pets { border-left-color: var(--teal); }
+.hunt.group-toys { border-left-color: #c98ad4; }
+.hunt.group-recipes { border-left-color: #8fbf73; }
+.hunt.group-discoveries { border-left-color: #7eb6e0; }
+.hunt.group-keepsakes { border-left-color: #e7d7a1; }
+.hunt.group-milestones { border-left-color: #d0d0c8; }
+.hunt.done { opacity: 0.7; }
+.hunt.parked { border-style: dashed; border-left-style: solid; }
+.hunt.open { background: #202a1a; box-shadow: var(--shadow); }
+
+.hunt-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.hunt-row input { width: 18px; height: 18px; accent-color: var(--gold); }
+
+.hunt-open {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.hunt-open strong { display: block; font-weight: 600; }
+.hunt-open .sub { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+.hunt.open .hunt-open strong { color: var(--gold); }
+
+.hunt-detail {
+  padding: 0 14px 14px 44px;
+}
+
+.hunt-notes { margin: 0 0 12px; max-width: 70ch; }
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fact {
+  background: var(--panel-2);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+.fact span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.fact b { font-weight: 560; font-size: 14px; }
+
+.tries {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tries > span {
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.tries button, .try-count {
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  min-width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.try-count {
+  width: 72px;
+  text-align: center;
+  cursor: text;
+}
+
+.tries button:hover { border-color: var(--gold); }
+
+.piece-rule { margin: 0 0 10px; color: var(--gold); }
+
+.part {
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 12px;
   align-items: start;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  margin-bottom: 8px;
-  background: #182014;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
 }
 
-.check.done { opacity: 0.72; }
-.check.parked { border-style: dashed; }
-
-.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--gold); }
-
-.check strong { font-weight: 600; }
-.check .sub { color: var(--muted); font-size: 14px; margin-top: 3px; }
+.part.done { opacity: 0.72; }
+.part-copy p { margin: 4px 0 0; color: var(--muted); }
+.hunt-row input:disabled { cursor: not-allowed; opacity: 0.45; }
 
 .badge {
   font-size: 12px;
@@ -336,6 +448,8 @@ footer.site {
 @media (max-width: 860px) {
   .sheet { grid-template-columns: 1fr; }
   .section-head { display: block; }
-  .check { grid-template-columns: auto 1fr; }
-  .badge { grid-column: 2; justify-self: start; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .hunt-detail { padding-left: 14px; }
+  .hunt-row, .part { grid-template-columns: auto 1fr; }
+  .badge, .part .tries { grid-column: 2; justify-self: start; }
 }
