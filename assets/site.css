@@ -195,6 +195,15 @@ h2 {
   font-size: 14px;
 }
 
+.profs span.extra { background: transparent; border: 1px dashed var(--line); color: var(--muted); }
+
+.recipes { margin: 12px 0; }
+.recipes summary { cursor: pointer; color: var(--gold); }
+.recipes h4 { margin: 10px 0 2px; font-size: 14px; }
+.recipes .meta { margin: 0; overflow-wrap: anywhere; }
+
+.sources { margin: 10px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+
 .rules { list-style: none; padding: 0; margin: 8px 0 0; }
 .rules li { border-radius: 12px; display: block; margin-top: 8px; }
 

@@ -17,7 +17,7 @@ The user pastes the text from `/cexport` in game. Save it, scan, merge, then com
 
 - Folder: `exports/beta/` when the realm contains `Beta`, otherwise `exports/live/`.
 - File: `<first>-<last>-YYYY-MM-DD.txt` in lowercase, using today's date. Example: `exports/beta/flann-anvilhew-2026-09-25.txt`. If that file exists, add `-2`, `-3`, and so on.
-- Write the paste verbatim with the Write tool. Do not trim or reformat it. The scanner uses the file's write time as `exportedAt`, so the new file becomes the newest dump.
+- Write the paste verbatim with the Write tool. Do not trim or reformat it. The scanner reads the date in the file name as `exportedAt`, so the new file becomes the newest dump.
 - If the user typed statistics counters (kills, quests, deaths) outside the paste, save them in the JSON step below, not in the raw file.
 
 ## 3. Run the scan
@@ -34,15 +34,25 @@ Read the output:
 
 - `Wrote N addons to data/addons.json` means the addon list refreshed.
 - `Merged <name> into data/stats.json (<id>)` means the sheet updated. It also writes `data/exports/<name>-<date>.json`.
+- `Updated <name> from Nova Instance Tracker, Syndicator, ...` means the scan read that character's addon saves under `WTF`. This runs even without a paste. The saves are written when the user logs out or types `/reload`, so a character still logged in shows last session's numbers.
 - `Skipped unmatched character: <name>` means the name is not in `data/characters.json`. Ask whether to add them, with race, class, spec, and professions from the dump. Do not guess a spec. After adding them, run the scan again.
+
+The scan pulls these from addon saves, so none of their in-game export buttons are needed:
+
+- Syndicator: item names in bags, bank, mail, and worn gear. Hunts with a matching name check themselves on the site.
+- Profession Master: known recipes and profession skill. A recipe hunt checks itself once the recipe is learned.
+- AllTheThings: time played, deaths, quests, areas explored, and collection counts.
+- Nova Instance Tracker: level, gold, and lockouts when its save is newer than the dump.
+- KillDex: total kills, creature types, and the top five mobs.
+- Memento has no data in its save yet, so it is skipped.
 
 ## 4. Add statistics the dump cannot carry
 
-CharacterExport does not copy the Statistics tab. If the user gave counters, add them to the new `data/exports/<name>-<date>.json` and to that character in `data/stats.json` under `statistics`, using the shape in `data/EXPORTS.md`. The scanner keeps them on later runs.
+CharacterExport does not copy the Statistics tab. The scan fills the `Character` and `Kills` groups from the saves above. If the user gave other counters, add them to that character in `data/stats.json` under `statistics`, using the shape in `data/EXPORTS.md`. The scanner keeps them on later runs.
 
 ## 5. Report what changed
 
-Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in a few sentences: level, zone, gold, profession skill changes, and new or removed addons. If the bags or collections show a hunt from `data/checklist.json`, mention it, but only mark it done if the user asks. New hunts go to the Farm Sheet and `data/checklist.json`, not the Roster Doc.
+Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in a few sentences: level, zone, gold, profession skill changes, new recipes, and new or removed addons. Name any hunt from `data/checklist.json` that now checks itself because the item or recipe showed up. New hunts go to the Farm Sheet and `data/checklist.json`, not the Roster Doc.
 
 ## 6. Commit and open a PR
 

@@ -79,7 +79,45 @@ function huntGroup(item) {
     || { id: "other", label: "Other", types: [] };
 }
 
+const RECIPE_PREFIX = /^(recipe|plans|pattern|formula|schematic|manual|design|technique):\s*/i;
+
+function nameKey(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function buildOwned() {
+  const items = new Map();
+  const recipes = new Map();
+  const put = (map, name, note) => {
+    const key = nameKey(name);
+    if (key && !map.has(key)) map.set(key, note);
+  };
+  Object.entries(state.stats.characters || {}).forEach(([id, live]) => {
+    const character = state.characters.find((c) => c.id === id);
+    const who = character ? character.name.split(" ")[0] : id;
+    asList(live.gear).forEach((piece) => put(items, piece.name, `Worn by ${who}`));
+    asList(live.items).forEach((name) => put(items, name, `In ${who}'s bags`));
+    asList(live.owned).forEach((name) => put(items, name, `Owned by ${who}`));
+    Object.values(live.recipes || {}).forEach((list) => {
+      asList(list).forEach((name) => put(recipes, name, `${who} knows it`));
+    });
+  });
+  state.owned = { items, recipes };
+}
+
+function ownedNote(item) {
+  const owned = state.owned;
+  if (!owned || !item.name) return "";
+  const held = owned.items.get(nameKey(item.name));
+  if (held) return held;
+  if (item.type === "Recipe" || RECIPE_PREFIX.test(item.name)) {
+    return owned.recipes.get(nameKey(item.name.replace(RECIPE_PREFIX, ""))) || "";
+  }
+  return "";
+}
+
 function isChecked(item) {
+  if (ownedNote(item)) return true;
   if (Object.prototype.hasOwnProperty.call(state.checks, item.id)) return state.checks[item.id];
   return !!item.defaultDone;
 }
@@ -202,10 +240,17 @@ function renderSheet() {
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
   const skills = new Map(asList(live.professions).map((p) => [p.name, p]));
+  const skillLabel = (name, skill) => {
+    if (!skill) return name;
+    return skill.max ? `${name} ${skill.current}/${skill.max}` : `${name} ${skill.current}`;
+  };
   character.professions.forEach((name) => {
-    const skill = skills.get(name);
-    const label = skill ? `${name} ${skill.current}/${skill.max}` : name;
-    profs.append(el("span", { text: label }));
+    profs.append(el("span", { text: skillLabel(name, skills.get(name)) }));
+  });
+  skills.forEach((skill, name) => {
+    if (!character.professions.includes(name)) {
+      profs.append(el("span", { class: "extra", text: skillLabel(name, skill) }));
+    }
   });
   identity.append(profs);
   identity.append(el("p", { class: "meta", text: character.talentNote }));
@@ -215,11 +260,22 @@ function renderSheet() {
   if (character.pairsWith) {
     identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
   }
+  const recipeGroups = Object.entries(live.recipes || {}).filter(([, list]) => asList(list).length);
+  if (recipeGroups.length) {
+    const total = recipeGroups.reduce((sum, [, list]) => sum + asList(list).length, 0);
+    const box = el("details", { class: "recipes" });
+    box.append(el("summary", { text: `${total} known recipes` }));
+    recipeGroups.forEach(([prof, list]) => {
+      box.append(el("h4", { text: prof }));
+      box.append(el("p", { class: "meta", text: asList(list).join(", ") }));
+    });
+    identity.append(box);
+  }
 
   const stats = el("article", { class: "card" });
   stats.append(el("h3", { text: "Stats" }));
   const updated = state.stats.updated
-    ? `Export merged ${state.stats.updated}.`
+    ? `Updated ${state.stats.updated}.`
     : "No addon export merged yet. Level, gear, and gold show up here after the next dump.";
   stats.append(el("p", { class: "empty-note", text: updated }));
   const grid = el("div", { class: "stat-grid" });
@@ -233,7 +289,11 @@ function renderSheet() {
   ].forEach(([label, value]) => grid.append(statBox(label, value)));
   const extra = live.stats || {};
   STAT_KEYS.forEach((key) => grid.append(statBox(key, extra[key])));
+  Object.entries(live.collections || {}).forEach(([label, value]) => grid.append(statBox(label, value)));
   stats.append(grid);
+  const sources = Object.entries(live.sources || {})
+    .map(([name, when]) => (when ? `${name} ${String(when).slice(5, 10).replace("-", "/")}` : name));
+  if (sources.length) stats.append(el("p", { class: "meta sources", text: `From ${sources.join(" · ")}` }));
 
   if (asList(live.gear).length) {
     const table = el("table", { class: "gear" });
@@ -357,8 +417,10 @@ function renderTries(id, label) {
 
 function renderPart(item, part) {
   const checked = isChecked(part);
-  const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}` });
+  const found = ownedNote(part);
+  const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}`, title: found || null });
   box.checked = checked;
+  if (found) box.disabled = true;
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
     state.checks[part.id] = box.checked;
@@ -368,7 +430,7 @@ function renderPart(item, part) {
   });
   const copy = el("div", { class: "part-copy" }, [
     el("strong", { text: part.name }),
-    el("p", { text: part.how || "" })
+    el("p", { text: found ? `${found}. ${part.how || ""}` : part.how || "" })
   ]);
   return el("div", { class: `part${checked ? " done" : ""}` }, [
     box,
@@ -384,12 +446,14 @@ function renderHunt(item) {
   const group = huntGroup(item);
   const ready = piecesReady(item);
   const pieceCount = item.parts ? item.parts.filter((part) => isChecked(part)).length : 0;
+  const found = ownedNote(item);
   const box = el("input", {
     type: "checkbox",
-    "aria-label": `Got ${item.name}`
+    "aria-label": `Got ${item.name}`,
+    title: found || null
   });
   box.checked = checked;
-  if (item.parts && !ready) box.disabled = true;
+  if ((item.parts && !ready) || found) box.disabled = true;
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
     if (item.parts && box.checked && !piecesReady(item)) {
@@ -415,7 +479,7 @@ function renderHunt(item) {
   const pieceText = item.parts
     ? `${pieceCount} of ${item.need || item.parts.length} pieces`
     : "";
-  const attemptText = [meta, pieceText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
+  const attemptText = [meta, pieceText, found, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
     .filter(Boolean)
     .join(" · ");
   summary.append(el("span", { class: "sub", text: attemptText }));
@@ -638,6 +702,7 @@ async function main() {
     state.checklist = checklist;
     state.stats = stats;
     state.addons = addons;
+    buildOwned();
   } catch (error) {
     document.getElementById("lede").textContent = "The tracker data did not load. Open the GitHub Pages site, or serve this folder over http.";
     console.error(error);

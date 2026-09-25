@@ -10,6 +10,6 @@ Pick a character and the page shows that character's race, spec, professions, ta
 - Names, specs, professions: edit `data/characters.json`.
 - Addon dump: put JSON or a SavedVariables file in `data/exports/`, using the shape in `data/EXPORTS.md`. The live numbers on the page come from `data/stats.json` after that dump is merged.
 - Nightly: type `/cexport` in game, copy the text, and paste it into Cursor. The `nightly-export` skill saves it as `exports/beta/<first>-<last>-YYYY-MM-DD.txt`, runs the scan below, and opens a PR.
-- Installed addons and a fresh CharacterExport merge: copy `scripts/addons.example.json` to `scripts/addons.local.json`, set `addonsPath` to your `Interface\AddOns` folder, then run `powershell -File scripts/scan-addons.ps1`. Commit `data/addons.json` and any updated `data/stats.json`.
+- Installed addons and a fresh CharacterExport merge: copy `scripts/addons.example.json` to `scripts/addons.local.json`, set `addonsPath` to your `Interface\AddOns` folder, then run `powershell -File scripts/scan-addons.ps1`. Commit `data/addons.json` and any updated `data/stats.json`. The scan also reads the Syndicator, Profession Master, AllTheThings, Nova Instance Tracker, and KillDex saves, so bag items, recipes, kills, and quests reach the sheet without their in-game export buttons. Log out or `/reload` first so the saves are written.
 
 The older roster page, farm workbook, and dashboard snapshot stay in the repo as source notes.

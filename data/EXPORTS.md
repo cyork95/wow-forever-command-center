@@ -45,4 +45,12 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 }
 ```
 
-`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.
+`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches.
+
+`scripts/scan-addons.ps1` also reads addon saves under `WTF` and adds these fields to each character in `stats.json`:
+
+- `items`: item names from Syndicator (bags, bank, mail, worn). Hunts with a matching name check themselves.
+- `recipes`: known recipes by profession from Profession Master. Recipe hunts check themselves once learned. Its skill levels raise `professions[].current`.
+- `collections`: AllTheThings counts for mounts, pets, toys, titles, and achievements. `playedSeconds` comes from AllTheThings too.
+- `statistics.Character` and `statistics.Kills`: deaths, quests, areas explored, lockouts, and KillDex kill counts. Other groups you add stay.
+- `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`. `statistics` is the character window's statistics tab, grouped however you like. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.

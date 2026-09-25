@@ -1,43 +1,240 @@
 {
-  "updated": "2026-09-23",
-  "characters": {
-    "flann": {
-      "character": "Flann Anvilhew",
-      "exportedAt": "2026-09-23T17:41:04",
-      "addon": "CharacterExport Forever",
-      "realm": "Classic Beta PvE 2",
-      "level": 10,
-      "zone": "Dun Morogh",
-      "subzone": "Brewnall Village",
-      "goldCopper": 2310,
-      "health": "260 max",
-      "powerType": "Mana",
-      "stats": {
-        "Strength": 30,
-        "Agility": 21,
-        "Stamina": 34,
-        "Intellect": 29,
-        "Armor": 181,
-        "Attack Power": 60,
-        "Melee Crit": "5.35%",
-        "Spell Crit": "5.35%"
-      },
-      "professions": [
-        { "name": "Mining", "current": 25, "max": 75 },
-        { "name": "Blacksmithing", "current": 16, "max": 75 },
-        { "name": "First Aid", "current": 1, "max": 75 }
-      ],
-      "gear": [
-        { "slot": "Back", "name": "Loose Chain Cloak", "itemLevel": 6, "quality": "Poor" },
-        { "slot": "Shirt", "name": "Primitive Mantle", "itemLevel": 1, "quality": "Common" },
-        { "slot": "Hands", "name": "Wooly Mittens", "itemLevel": 12, "quality": "Common" },
-        { "slot": "Waist", "name": "Frayed Belt", "itemLevel": 3, "quality": "Poor" },
-        { "slot": "Legs", "name": "Dwarven Leather Pants", "itemLevel": 5, "quality": "Common" },
-        { "slot": "Feet", "name": "Frosthowl's Footwarmers", "itemLevel": 9, "quality": "Common" },
-        { "slot": "Main Hand", "name": "Copper Mace", "itemLevel": 9, "quality": "Common" },
-        { "slot": "Off Hand", "name": "Dwarven Kite Shield", "itemLevel": 5, "quality": "Common" }
-      ],
-      "owned": []
-    }
-  }
+    "updated":  "2026-09-25",
+    "characters":  {
+                       "flann":  {
+                                     "character":  "Flann Anvilhew",
+                                     "exportedAt":  "2026-09-23T17:41:04",
+                                     "addon":  "CharacterExport Forever",
+                                     "realm":  "Classic Beta PvE 2",
+                                     "level":  11,
+                                     "zone":  "Dun Morogh",
+                                     "subzone":  "Brewnall Village",
+                                     "goldCopper":  987,
+                                     "health":  "260 max",
+                                     "powerType":  "Mana",
+                                     "stats":  {
+                                                   "Strength":  30,
+                                                   "Agility":  21,
+                                                   "Stamina":  34,
+                                                   "Intellect":  29,
+                                                   "Armor":  181,
+                                                   "Attack Power":  60,
+                                                   "Melee Crit":  "5.35%",
+                                                   "Spell Crit":  "5.35%"
+                                               },
+                                     "professions":  [
+                                                         {
+                                                             "name":  "Mining",
+                                                             "current":  35,
+                                                             "max":  75
+                                                         },
+                                                         {
+                                                             "name":  "Blacksmithing",
+                                                             "current":  16,
+                                                             "max":  75
+                                                         },
+                                                         {
+                                                             "name":  "First Aid",
+                                                             "current":  1,
+                                                             "max":  75
+                                                         },
+                                                         {
+                                                             "name":  "Cooking",
+                                                             "current":  6,
+                                                             "max":  null
+                                                         },
+                                                         {
+                                                             "name":  "Fishing",
+                                                             "current":  1,
+                                                             "max":  null
+                                                         }
+                                                     ],
+                                     "gear":  [
+                                                  {
+                                                      "slot":  "Back",
+                                                      "name":  "Loose Chain Cloak",
+                                                      "itemLevel":  6,
+                                                      "quality":  "Poor"
+                                                  },
+                                                  {
+                                                      "slot":  "Shirt",
+                                                      "name":  "Primitive Mantle",
+                                                      "itemLevel":  1,
+                                                      "quality":  "Common"
+                                                  },
+                                                  {
+                                                      "slot":  "Hands",
+                                                      "name":  "Wooly Mittens",
+                                                      "itemLevel":  12,
+                                                      "quality":  "Common"
+                                                  },
+                                                  {
+                                                      "slot":  "Waist",
+                                                      "name":  "Frayed Belt",
+                                                      "itemLevel":  3,
+                                                      "quality":  "Poor"
+                                                  },
+                                                  {
+                                                      "slot":  "Legs",
+                                                      "name":  "Dwarven Leather Pants",
+                                                      "itemLevel":  5,
+                                                      "quality":  "Common"
+                                                  },
+                                                  {
+                                                      "slot":  "Feet",
+                                                      "name":  "Frosthowl\u0027s Footwarmers",
+                                                      "itemLevel":  9,
+                                                      "quality":  "Common"
+                                                  },
+                                                  {
+                                                      "slot":  "Main Hand",
+                                                      "name":  "Copper Mace",
+                                                      "itemLevel":  9,
+                                                      "quality":  "Common"
+                                                  },
+                                                  {
+                                                      "slot":  "Off Hand",
+                                                      "name":  "Dwarven Kite Shield",
+                                                      "itemLevel":  5,
+                                                      "quality":  "Common"
+                                                  }
+                                              ],
+                                     "owned":  [
+
+                                               ],
+                                     "playedSeconds":  21379,
+                                     "recipes":  {
+                                                     "Mining":  [
+                                                                    "Copper Bar",
+                                                                    "Lodestone"
+                                                                ],
+                                                     "Cooking":  [
+                                                                     "Basic Campfire Kit",
+                                                                     "Charred Wolf Meat",
+                                                                     "Herb Baked Egg",
+                                                                     "Roasted Boar Meat"
+                                                                 ],
+                                                     "Blacksmithing":  [
+                                                                           "Copper Bracers",
+                                                                           "Copper Mace",
+                                                                           "Copper Rod",
+                                                                           "Rough Copper Vest",
+                                                                           "Rough Sharpening Stone",
+                                                                           "Rough Weightstone"
+                                                                       ]
+                                                 },
+                                     "items":  [
+                                                   "Apprentice\u0027s Mining Pack",
+                                                   "Avala\u0027s Binding",
+                                                   "Barrel of Shimmer Stout",
+                                                   "Beer Basted Boar Ribs",
+                                                   "Blacksmith Hammer",
+                                                   "Canvas Latchbag",
+                                                   "Copper Bar",
+                                                   "Copper Mace",
+                                                   "Copper Ore",
+                                                   "Crag Boar Rib",
+                                                   "Dwarven Kite Shield",
+                                                   "Dwarven Leather Pants",
+                                                   "Earth Totem",
+                                                   "Fishing Pole",
+                                                   "Flanged Mace",
+                                                   "Frayed Belt",
+                                                   "Frosthowl\u0027s Footwarmers",
+                                                   "Goat Fur Cloak",
+                                                   "Hearthstone",
+                                                   "Linen Bag",
+                                                   "Linen Cloth",
+                                                   "Lodestone",
+                                                   "Malachite",
+                                                   "Mining Pick",
+                                                   "Minor Healing Potion",
+                                                   "Plans: Copper Chain Vest",
+                                                   "Primitive Mantle",
+                                                   "Rabbit\u0027s Foot",
+                                                   "Recipe: Beer Basted Boar Ribs",
+                                                   "Recipe: Minor Mageblood Elixir",
+                                                   "Recipe: Peace Tea",
+                                                   "Recipe: Swiftness Potion",
+                                                   "Refreshing Spring Water",
+                                                   "Rough Stone",
+                                                   "Rough Weightstone",
+                                                   "Shadowgem",
+                                                   "Shiny Bauble",
+                                                   "Small Green Pouch",
+                                                   "Stringy Wolf Meat",
+                                                   "Tigerseye",
+                                                   "Tough Hunk of Bread",
+                                                   "Tough Jerky",
+                                                   "Warm Winter Robe",
+                                                   "White Wolf Gloves",
+                                                   "Wooly Mittens"
+                                               ],
+                                     "collections":  {
+                                                         "Mounts":  0,
+                                                         "Pets":  0,
+                                                         "Toys":  0,
+                                                         "Titles":  0,
+                                                         "Achievements":  1
+                                                     },
+                                     "statistics":  {
+                                                        "Character":  [
+                                                                          {
+                                                                              "name":  "Deaths",
+                                                                              "value":  "0"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Quests completed",
+                                                                              "value":  "65"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Areas explored",
+                                                                              "value":  "2"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Instance lockouts",
+                                                                              "value":  "0"
+                                                                          }
+                                                                      ],
+                                                        "Kills":  [
+                                                                      {
+                                                                          "name":  "Total kills",
+                                                                          "value":  "89"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Creature types",
+                                                                          "value":  "14"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Frostmane Seer",
+                                                                          "value":  "31"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Minor Ice Elemental",
+                                                                          "value":  "19"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Winter Wolf",
+                                                                          "value":  "10"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Frostmane Snowstrider",
+                                                                          "value":  "6"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Ice Claw Bear",
+                                                                          "value":  "4"
+                                                                      }
+                                                                  ]
+                                                    },
+                                     "sources":  {
+                                                     "CharacterExport":  "2026-09-23T17:41:04",
+                                                     "Nova Instance Tracker":  "2026-09-24T19:10:09",
+                                                     "Syndicator":  null,
+                                                     "Profession Master":  "2026-09-23T18:50:21",
+                                                     "AllTheThings":  "2026-09-24T18:25:57",
+                                                     "KillDex":  "2026-09-24T19:26:55"
+                                                 }
+                                 }
+                   }
 }
