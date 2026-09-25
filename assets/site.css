@@ -143,6 +143,27 @@ h2 {
   margin-top: 14px;
 }
 
+.sheet .lifetime { grid-column: 1 / -1; }
+
+.stat-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.stat-groups h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.stat-groups dl { margin: 0; }
+.stat-groups div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; border-bottom: 1px solid var(--line); }
+.stat-groups dt { color: var(--muted); }
+.stat-groups dd { margin: 0; font-weight: 600; }
+
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -391,6 +412,27 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
   border-radius: 999px;
   padding: 8px 12px;
   cursor: pointer;
+}
+
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.addon-card h3 { font-size: 22px; }
+
+.addon-card .who {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: start;
+}
+
+.addon-card ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
 }
 
 .actions button:hover, .char:hover { border-color: var(--gold); }

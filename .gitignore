@@ -9,3 +9,6 @@ Desktop.ini
 .env
 *.pem
 credentials.json
+
+# Machine-specific WoW path for scripts/scan-addons.ps1
+scripts/addons.local.json

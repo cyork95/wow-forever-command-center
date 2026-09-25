@@ -1,0 +1,236 @@
+{
+  "AllTheThings": {
+    "purpose": "Collection tracker for mounts, pets, toys, recipes, appearances, and quests.",
+    "feedsSite": true,
+    "collects": ["Missing collection items", "Completion by category"],
+    "match": ["AllTheThings"]
+  },
+  "Auctionator": {
+    "purpose": "Auction house prices, shopping lists, and posting.",
+    "feedsSite": true,
+    "collects": ["Shopping list prices", "Posted auctions"],
+    "match": ["Auctionator"]
+  },
+  "Baganator": {
+    "purpose": "Bag, bank, and reagent inventory view. Inventory data lives in Syndicator.",
+    "feedsSite": true,
+    "collects": ["Bag and bank item counts"],
+    "match": ["Baganator"]
+  },
+  "Syndicator": {
+    "purpose": "Stores bag, bank, and warband inventory for Baganator.",
+    "feedsSite": true,
+    "collects": ["Owned reagents and gear across characters"],
+    "match": ["Syndicator"]
+  },
+  "CanIMogIt": {
+    "purpose": "Marks whether an item appearance is collected.",
+    "feedsSite": true,
+    "collects": ["Uncollected appearances on dropped gear"],
+    "match": ["CanIMogIt", "Can I Mog It?"]
+  },
+  "CharacterExportForever": {
+    "purpose": "Writes the character dump the command center already merges: level, zone, gold, stats, professions, and gear.",
+    "feedsSite": true,
+    "collects": ["Level, zone, and gold", "Primary stats and gear", "Profession skill", "Installed addon list"],
+    "match": ["CharacterExport", "CharacterExportForever", "CharacterExport Forever"]
+  },
+  "Farmer": {
+    "purpose": "Gathering routes and node timers.",
+    "feedsSite": true,
+    "collects": ["Farm routes", "Node timers"],
+    "match": ["Farmer"]
+  },
+  "Gathering": {
+    "purpose": "Herb and ore node locations on the map.",
+    "feedsSite": true,
+    "collects": ["Gathering node locations"],
+    "match": ["Gathering"]
+  },
+  "KillDex": {
+    "purpose": "Tracks kills by creature.",
+    "feedsSite": true,
+    "collects": ["Kill counts by mob"],
+    "match": ["KillDex"]
+  },
+  "Memento": {
+    "purpose": "Journal of first-time events, such as the first kill or first loot of an item.",
+    "feedsSite": true,
+    "collects": ["First-time loot and kill records"],
+    "match": ["Memento"]
+  },
+  "MobInfo2": {
+    "purpose": "Mob health, drops, and location notes.",
+    "feedsSite": true,
+    "collects": ["Drop rates", "Mob locations"],
+    "match": ["MobInfo2", "MobInfo2 Retail Forever"]
+  },
+  "NovaInstanceTracker": {
+    "purpose": "Instance lockouts and run history.",
+    "feedsSite": true,
+    "collects": ["Lockouts", "Instance runs"],
+    "match": ["NovaInstanceTracker", "Nova Instance Tracker"]
+  },
+  "Parcel": {
+    "purpose": "Mail and auction delivery.",
+    "feedsSite": true,
+    "collects": ["Inbox items"],
+    "match": ["Parcel"]
+  },
+  "RareScanner": {
+    "purpose": "Alerts for rare mobs and treasures.",
+    "feedsSite": true,
+    "collects": ["Rares already seen"],
+    "match": ["RareScanner"]
+  },
+  "WhatsTraining": {
+    "purpose": "Lists spells still available from trainers.",
+    "feedsSite": true,
+    "collects": ["Unlearned trainer spells"],
+    "match": ["WhatsTraining", "What's Training?"]
+  },
+  "ProfessionShoppingList": {
+    "purpose": "Reagents still needed for queued crafts.",
+    "feedsSite": true,
+    "collects": ["Missing reagents"],
+    "match": ["ProfessionShoppingList", "Profession Shopping List"]
+  },
+  "ProfessionMaster": {
+    "purpose": "Profession window for the Forever client.",
+    "feedsSite": true,
+    "collects": ["Known recipes", "Profession skill"],
+    "match": ["ProfessionMaster", "ProfessionMasterForever", "Profession Master Forever"]
+  },
+  "TradeBoard": {
+    "purpose": "Trade-skill board for the Forever client.",
+    "feedsSite": true,
+    "collects": ["Listed crafts"],
+    "match": ["TradeBoard", "TradeBoardForever", "Trade Board Forever"]
+  },
+  "TalentsForever": {
+    "purpose": "Talent calculator and saved builds.",
+    "feedsSite": true,
+    "collects": ["Saved talent builds"],
+    "match": ["TalentsForever", "Talents Forever"]
+  },
+  "TomTom": {
+    "purpose": "Waypoints and coordinates.",
+    "feedsSite": true,
+    "collects": ["Saved waypoints"],
+    "match": ["TomTom"]
+  },
+  "ArcaneWizard": {
+    "purpose": "Shared library used by other addons. Nothing here belongs on the sheet.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["ArcaneWizard", "Arcane Wizard", "Arcane Wizard: Library"]
+  },
+  "AzerothPublicLibrary": {
+    "purpose": "Shared library for the Forever client. Nothing here belongs on the sheet.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["AzerothPublicLibrary", "Azeroth Public Library", "Azeroth Public Library: Forever (Beta)"]
+  },
+  "BugGrabber": {
+    "purpose": "Captures Lua errors for BugSack.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["BugGrabber", "!BugGrabber"]
+  },
+  "BugSack": {
+    "purpose": "Shows the errors BugGrabber captured.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["BugSack"]
+  },
+  "Chattynator": {
+    "purpose": "Chat frame replacement.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["Chattynator"]
+  },
+  "Coolinator": {
+    "purpose": "Cooldown display.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["Coolinator"]
+  },
+  "DarkMode": {
+    "purpose": "Dark theme for the default UI.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["DarkMode", "DarkMode  by D4KiR"]
+  },
+  "DialogueUI": {
+    "purpose": "Replaces the gossip and quest window.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["DialogueUI", "Dialogue UI"]
+  },
+  "MiniDruidMana": {
+    "purpose": "Extra mana display for druid forms.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["MiniDruidMana"]
+  },
+  "MinimapButtonButton": {
+    "purpose": "Collects minimap buttons into one menu.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["MinimapButtonButton", "MBB"]
+  },
+  "Platynator": {
+    "purpose": "Nameplates.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["Platynator"]
+  },
+  "RestedXP": {
+    "purpose": "Leveling guide. Progress stays in the guide, not on this sheet.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["RestedXP", "RestedXP Guides"]
+  },
+  "XLoot": {
+    "purpose": "Loot frame. The modules under it are the same loot UI.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLoot"]
+  },
+  "XLootFrame": {
+    "purpose": "Loot window used by XLoot.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLootFrame", "XLoot Frame", "XLoot_Frame"]
+  },
+  "XLootGroup": {
+    "purpose": "Group loot rolls used by XLoot.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLootGroup", "XLoot Group", "XLoot_Group"]
+  },
+  "XLootMaster": {
+    "purpose": "Master-looter window used by XLoot.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLootMaster", "XLoot Master", "XLoot_Master"]
+  },
+  "XLootMonitor": {
+    "purpose": "Loot monitor used by XLoot.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLootMonitor", "XLoot Monitor", "XLoot_Monitor"]
+  },
+  "XLootOptions": {
+    "purpose": "Settings window for XLoot.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLootOptions", "XLoot Options", "XLoot_Options"]
+  },
+  "XLootToast": {
+    "purpose": "Loot toasts used by XLoot.",
+    "feedsSite": false,
+    "collects": [],
+    "match": ["XLootToast", "XLoot Toast", "XLoot_Toast"]
+  }
+}
