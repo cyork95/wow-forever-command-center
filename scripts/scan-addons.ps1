@@ -57,7 +57,7 @@ $interfaceDir = Split-Path -Parent $addonsPath
 $gameRoot = Split-Path -Parent $interfaceDir
 $wtfRoot = Join-Path $gameRoot "WTF"
 $catalog = Read-JsonFile $catalogPath
-$characters = @(Read-JsonFile $charactersPath)
+$characters = @(Read-JsonFile $charactersPath | ForEach-Object { $_ })
 
 $saveFiles = @()
 if (Test-Path $wtfRoot) {
@@ -363,6 +363,12 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
   $raw = Get-Content -Raw -Path $source.FullName -ErrorAction SilentlyContinue
   if (-not $raw) { continue }
   $when = $source.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
+  $fileDate = $null
+  if ($source.BaseName -match '(\d{4}-\d{2}-\d{2})') { $fileDate = $Matches[1] }
+  elseif ($source.BaseName -match '(\d{1,2})_(\d{1,2})_(\d{2})$') {
+    $fileDate = "20{0}-{1:D2}-{2:D2}" -f $Matches[3], [int]$Matches[1], [int]$Matches[2]
+  }
+  if ($fileDate -and -not $when.StartsWith($fileDate)) { $when = "${fileDate}T12:00:00" }
   foreach ($body in (Get-ExportBodies $raw)) {
     $row = $null
     if ($body.TrimStart().StartsWith("{") -or $body.TrimStart().StartsWith("[")) {
@@ -389,7 +395,7 @@ if (-not $stats.characters) {
 $merged = 0
 $unmatched = @()
 $kept = @{}
-foreach ($row in $parsed) {
+foreach ($row in ($parsed | Sort-Object { [datetime]$_.exportedAt } -Descending)) {
   $key = if ($row.matchedId) { [string]$row.matchedId } else { "name:" + [string]$row.character }
   if (-not $kept.ContainsKey($key)) { $kept[$key] = $row }
 }

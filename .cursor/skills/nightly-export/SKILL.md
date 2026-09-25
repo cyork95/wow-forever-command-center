@@ -1,0 +1,55 @@
+---
+name: nightly-export
+description: Saves a pasted CharacterExport Forever dump into exports/, runs the local addon scan, and merges the character into data/stats.json and data/exports/. Use when the user pastes game details (text with "Location:", "Character Stats:", "Character:", or "AddOns Count:"), says "nightly export", "here's my export", or asks to log tonight's session.
+---
+
+# Nightly export
+
+The user pastes the text from `/cexport` in game. Save it, scan, merge, then commit and open a PR. Do not ask before running the scan.
+
+## 1. Check the paste
+
+- It must contain a `Character: Name-Realm` line. If it does not, ask for the `/cexport` text and stop.
+- One file per character. If the paste has more than one `Character:` line, split it at each `Location:` line that starts a new dump.
+- Beta guard: if the realm contains `Beta` and the name is Skyrinis, Sorinis, or Malavus, stop and tell the user. Those names are reserved and never go in beta.
+
+## 2. Save the raw dump
+
+- Folder: `exports/beta/` when the realm contains `Beta`, otherwise `exports/live/`.
+- File: `<first>-<last>-YYYY-MM-DD.txt` in lowercase, using today's date. Example: `exports/beta/flann-anvilhew-2026-09-25.txt`. If that file exists, add `-2`, `-3`, and so on.
+- Write the paste verbatim with the Write tool. Do not trim or reformat it. The scanner uses the file's write time as `exportedAt`, so the new file becomes the newest dump.
+- If the user typed statistics counters (kills, quests, deaths) outside the paste, save them in the JSON step below, not in the raw file.
+
+## 3. Run the scan
+
+`scripts/addons.local.json` must exist and is never committed. If it is missing, copy `scripts/addons.example.json`, set `addonsPath` to `C:\Program Files (x86)\World of Warcraft\_classic_beta_\Interface\AddOns`, and continue.
+
+Run from the repo root. On this machine the Shell tool needs `required_permissions: ["all"]`, and PowerShell 5 does not accept `&&`.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/scan-addons.ps1
+```
+
+Read the output:
+
+- `Wrote N addons to data/addons.json` means the addon list refreshed.
+- `Merged <name> into data/stats.json (<id>)` means the sheet updated. It also writes `data/exports/<name>-<date>.json`.
+- `Skipped unmatched character: <name>` means the name is not in `data/characters.json`. Ask whether to add them, with race, class, spec, and professions from the dump. Do not guess a spec. After adding them, run the scan again.
+
+## 4. Add statistics the dump cannot carry
+
+CharacterExport does not copy the Statistics tab. If the user gave counters, add them to the new `data/exports/<name>-<date>.json` and to that character in `data/stats.json` under `statistics`, using the shape in `data/EXPORTS.md`. The scanner keeps them on later runs.
+
+## 5. Report what changed
+
+Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in a few sentences: level, zone, gold, profession skill changes, and new or removed addons. If the bags or collections show a hunt from `data/checklist.json`, mention it, but only mark it done if the user asks. New hunts go to the Farm Sheet and `data/checklist.json`, not the Roster Doc.
+
+## 6. Commit and open a PR
+
+Follow `.cursor/rules/commit-and-pr.mdc`.
+
+- Start from an up-to-date `main` on a branch named `export-YYYY-MM-DD`. If that branch already has an open PR tonight, push to it instead.
+- Stage only the new raw file under `exports/`, `data/addons.json`, `data/stats.json`, the new `data/exports/*.json`, and `data/characters.json` if a character was added.
+- Never stage `scripts/addons.local.json`.
+- Commit message example: `Log Flann's Sep 25 beta session so the sheet shows level 12 and the new Mining skill.`
+- Push, run `gh pr create`, and return the PR URL.
