@@ -36,8 +36,13 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
   "gear": [
     { "slot": "Main Hand", "name": "Smite's Mighty Hammer", "itemLevel": 22, "quality": "Rare" }
   ],
-  "owned": ["Prairie Chicken", "First Mate Band"]
+  "owned": ["Prairie Chicken", "First Mate Band"],
+  "statistics": {
+    "Kills": [{ "name": "Total kills", "value": "128" }],
+    "Quests": [{ "name": "Quests completed", "value": "42" }],
+    "Deaths": [{ "name": "Total deaths", "value": "3" }]
+  }
 }
 ```
 
-`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.
+`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.

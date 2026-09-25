@@ -1,0 +1,764 @@
+Location:
+Zone: Dun Morogh
+Subzone: Brewnall Village
+Map: Dun Morogh
+Map ID: 1426
+Parent Map: Eastern Kingdoms
+Parent Map ID: 1415
+Coordinates: 30.3, 45.8
+Hearthstone Location: Coldridge Valley
+
+Character Stats:
+Character: Flann Anvilhew-Classic Beta PvE 2
+Faction: Alliance
+Level: 10
+Race: Dwarf
+Class: Shaman
+Primary Stat: Intellect
+Average Item Level: 2.88
+Equipped Item Level: 1.94
+PvP Item Level: 2.88
+Health: n/a/260
+XP: 141/7600
+XP To Level: 7459
+XP Progress: 1.86%
+Rested XP: 264
+Armor: 181
+== Primary Attributes ==
+Strength: 30
+Agility: 21
+Stamina: 34
+Intellect: 29
+Attack Power: 60
+== Combat Ratings ==
+Critical Strike: 0 rating / 5.35%
+Haste: 0 rating / 0%
+Mastery: 0 rating / 0%
+Versatility: 0 rating / 0%
+Leech: 0 rating / 0%
+Speed: 0 rating / 0%
+Avoidance: 0 rating / 0%
+[Some character values were restricted by the client and could not be exported.]
+
+Currencies:
+Gold: 0g 23s 10c
+Currency Count: 0
+
+[No currencies found.]
+
+Collections:
+== Mounts ==
+Mount Count: 0/136
+[No mounts found.]
+
+== Battle Pets ==
+Pet Count: 0/0
+[No battle pets found.]
+
+== Toys ==
+Toy Count: 0/20
+[No toys found.]
+
+Bags:
+== Backpack (20/20) ==
+[Hearthstone] x1 [ID: 6948, iLvl: 1, Q: 1]
+[Rough Weightstone] x5 [ID: 3239, iLvl: 5, Q: 1]
+[Beer Basted Boar Ribs] x3 [ID: 2888, iLvl: 10, Q: 1]
+[Tough Hunk of Bread] x4 [ID: 4540, iLvl: 5, Q: 1]
+[Refreshing Spring Water] x11 [ID: 159, iLvl: 5, Q: 1]
+[Tough Jerky] x14 [ID: 117, iLvl: 5, Q: 1]
+[Flanged Mace] x1 [ID: 766, iLvl: 7, Q: 1]
+- Type: Weapon / One-Handed Maces
+- Equip Slot: Main Hand
+- DPS: 3
+[Blacksmith Hammer] x1 [ID: 5956, iLvl: 1, Q: 1]
+- Type: Weapon / Miscellaneous
+- Equip Slot: Main Hand
+- DPS: 0.75
+[Recipe: Beer Basted Boar Ribs] x1 [ID: 2889, iLvl: 8, Q: 1]
+[Chunk of Boar Meat] x2 [ID: 769, iLvl: 5, Q: 1]
+[Copper Bar] x7 [ID: 2840, iLvl: 10, Q: 1]
+[Linen Cloth] x19 [ID: 2589, iLvl: 5, Q: 1]
+[Plans: Copper Chain Vest] x1 [ID: 3609, iLvl: 10, Q: 2]
+[Linen Bag] x1 [ID: 4238, iLvl: 5, Q: 1]
+[Mostly Dry Firewood] x8 [ID: 286339, iLvl: 1, Q: 1]
+[Rough Stone] x3 [ID: 2835, iLvl: 5, Q: 1]
+[Earth Totem] x1 [ID: 5175, iLvl: 4, Q: 1]
+[Shadowgem] x1 [ID: 1210, iLvl: 20, Q: 2]
+[Stringy Wolf Meat] x2 [ID: 2672, iLvl: 5, Q: 1]
+[Small Green Pouch] x1 [ID: 5572, iLvl: 5, Q: 1]
+
+== Small Green Pouch (6/6) ==
+[Recipe: Minor Mageblood Elixir] x1 [ID: 250375, iLvl: 1, Q: 1]
+[Restabilization Cog] x8 [ID: 3083, iLvl: 1, Q: 1]
+[Worn Leather Gloves] x1 [ID: 1422, iLvl: 6, Q: 0]
+- Type: Armor / Leather
+- Equip Slot: Hands
+- ARMOR: 22
+[Gyromechanic Gear] x8 [ID: 3084, iLvl: 1, Q: 1]
+[Loose Chain Cloak] x1 [ID: 2644, iLvl: 6, Q: 0]
+- Type: Armor / Cloth
+- Equip Slot: Back
+- ARMOR: 5
+[Cracked Buckler] x1 [ID: 2212, iLvl: 6, Q: 0]
+- Type: Armor / Shields
+- Equip Slot: Off Hand
+- ARMOR: 61
+
+== Canvas Latchbag (6/6) ==
+[Scroll: KWYJIBO] x1 [ID: 211780, iLvl: 10, Q: 1]
+[Frostmane Staff] x1 [ID: 2257, iLvl: 10, Q: 1]
+- Type: Weapon / Staves
+- Equip Slot: Two-Hand Weapon
+- DPS: 5.65
+[Recipe: Swiftness Potion] x1 [ID: 2555, iLvl: 15, Q: 2]
+[Crag Boar Rib] x1 [ID: 2886, iLvl: 5, Q: 1]
+[Barrel of Barleybrew Scalder] x1 [ID: 2548, iLvl: 1, Q: 1]
+[Cask of Evershine] x1 [ID: 2696, iLvl: 1, Q: 1]
+
+== Linen Bag (6/6) ==
+[Patchwork Cloak] x1 [ID: 1429, iLvl: 6, Q: 0]
+- Type: Armor / Cloth
+- Equip Slot: Back
+- ARMOR: 5
+[Loose Chain Pants] x1 [ID: 2646, iLvl: 8, Q: 0]
+- Type: Armor / Mail
+- Equip Slot: Legs
+- ARMOR: 73
+[Cracked Sledge] x1 [ID: 1414, iLvl: 9, Q: 0]
+- Type: Weapon / Two-Handed Maces
+- Equip Slot: Two-Hand Weapon
+- DPS: 3.79
+[Snow Boots] x1 [ID: 6173, iLvl: 5, Q: 1]
+- Type: Armor / Cloth
+- Equip Slot: Feet
+- ARMOR: 7
+[Linen Cloth] x4 [ID: 2589, iLvl: 5, Q: 1]
+[Scroll of Spirit] x1 [ID: 1181, iLvl: 10, Q: 1]
+
+== Linen Bag (1/6) ==
+[Minor Healing Potion] x3 [ID: 118, iLvl: 5, Q: 1]
+
+== Apprentice's Mining Pack (4/4) ==
+[Mining Pick] x1 [ID: 2901, iLvl: 4, Q: 1]
+- Type: Weapon / Miscellaneous
+- Equip Slot: Main Hand
+- DPS: 1.5
+[Tigerseye] x4 [ID: 818, iLvl: 15, Q: 2]
+[Malachite] x3 [ID: 774, iLvl: 7, Q: 2]
+[Copper Ore] x5 [ID: 2770, iLvl: 10, Q: 1]
+
+Bank:
+[Bank data unavailable - open your personal bank at least once to build cache.]
+
+Equipment:
+== Head ==
+[Empty]
+
+== Neck ==
+[Empty]
+
+== Shoulder ==
+[Empty]
+
+== Back ==
+[Loose Chain Cloak] x1 [ID: 2644, iLvl: 6, Q: 0]
+- Rarity: Poor
+- Item Level: 6
+- Type: Back
+- Equip Slot: Back
+- Item String: item:2644::::::::10:1489:::::::::
+- Binding: Bind on Pickup
+- ARMOR: 5
+
+== Chest ==
+[Empty]
+
+== Shirt ==
+[Primitive Mantle] x1 [ID: 154, iLvl: 1, Q: 1]
+- Rarity: Common
+- Item Level: 1
+- Type: Armor / Miscellaneous
+- Equip Slot: Shirt
+- Item String: item:154::::::::10:1489::75:::::::
+
+== Tabard ==
+[Empty]
+
+== Wrist ==
+[Empty]
+
+== Hands ==
+[Wooly Mittens] x1 [ID: 10550, iLvl: 12, Q: 1]
+- Rarity: Common
+- Item Level: 12
+- Durability: 16/16
+- Type: Armor / Cloth
+- Equip Slot: Hands
+- Item String: item:10550::::::::10:1489::11:::::::
+- Binding: Bind on Pickup
+- ARMOR: 13
+
+== Waist ==
+[Frayed Belt] x1 [ID: 3363, iLvl: 3, Q: 0]
+- Rarity: Poor
+- Item Level: 3
+- Durability: 12/12
+- Type: Armor / Cloth
+- Equip Slot: Waist
+- Item String: item:3363::::::::10:1489:::::::::
+- Binding: Bind on Pickup
+- ARMOR: 3
+
+== Legs ==
+[Dwarven Leather Pants] x1 [ID: 61, iLvl: 5, Q: 1]
+- Rarity: Common
+- Item Level: 5
+- Durability: 35/35
+- Type: Armor / Leather
+- Equip Slot: Legs
+- Item String: item:61::::::::10:1489::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 29
+
+== Feet ==
+[Frosthowl's Footwarmers] x1 [ID: 281322, iLvl: 9, Q: 1]
+- Rarity: Common
+- Item Level: 9
+- Durability: 25/25
+- Type: Armor / Leather
+- Equip Slot: Feet
+- Item String: item:281322::::::::10:1489::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 34
+
+== Finger 1 ==
+[Empty]
+
+== Finger 2 ==
+[Empty]
+
+== Trinket 1 ==
+[Empty]
+
+== Trinket 2 ==
+[Empty]
+
+== Main Hand ==
+[Copper Mace] x1 [ID: 2844, iLvl: 9, Q: 1]
+- Rarity: Common
+- Item Level: 9
+- Durability: 35/35
+- Damage: 7 - 13
+- Speed: 2.6
+- Type: Weapon / One-Handed Maces
+- Equip Slot: One-Hand Weapon
+- Item String: item:2844::::::::10:1489::::::::Player-4620-00BF6B1C:
+- Binding: Quest Item
+- DPS: 3.85
+
+== Off Hand ==
+[Dwarven Kite Shield] x1 [ID: 6176, iLvl: 5, Q: 1]
+- Rarity: Common
+- Item Level: 5
+- Durability: 35/35
+- Type: Armor / Shields
+- Equip Slot: Off Hand
+- Item String: item:6176::::::::10:1489::11:::::::
+- Binding: Bind Type: 6
+- ARMOR: 55
+
+Lockouts:
+Instance Lockout Count: 0
+
+== Saved Instances ==
+[No saved instances found.]
+
+== World Bosses ==
+World Boss Lockout Count: 0
+[No world boss lockouts found.]
+
+Progress:
+
+== Mythic+ ==
+[No Mythic+ progress returned by the Forever APIs.]
+
+== PvP ==
+Honor Level: 1
+Honor Progress: 0/5500
+
+Achievements:
+Achievement Points: 0
+Achievements Completed: 2/111
+
+== Recent Achievements ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18
+
+== Category Summary ==
+Druid - Completed: 0/3
+Alchemy - Completed: 0/3
+Ranks - Completed: 0/5
+Explorer - Completed: 0/3
+Eastern Kingdoms - Completed: 0/23
+Hunter - Completed: 0/3
+Blacksmithing - Completed: 0/3
+Reputations - Completed: 0/4
+Kalimdor - Completed: 2/20
+Mage - Completed: 0/3
+Enchanting - Completed: 0/3
+Season Journey - Completed: 0/3
+Paladin - Completed: 0/3
+Engineering - Completed: 0/3
+Priest - Completed: 0/3
+Leatherworking - Completed: 0/3
+Dungeons - Completed: 0/3
+Rogue - Completed: 0/3
+Tailoring - Completed: 0/3
+Raids - Completed: 0/3
+Shaman - Completed: 0/3
+Warlock - Completed: 0/3
+Adventure - Completed: 0/2
+Warrior - Completed: 0/3
+
+== Tracked Achievements ==
+[No tracked achievements.]
+
+Achievement (completed):
+Completed Achievement List Count: 2
+
+== Kalimdor ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18
+
+Appearance (collected):
+Collected Appearance Source Count: 166
+
+== Head ==
+[Unknown Appearance] (Source ID: 77344, Item ID: 134110, Appearance ID: 29124)
+
+== Shoulder ==
+[Unknown Appearance] (Source ID: 77343, Item ID: 134112, Appearance ID: 24531)
+
+== Back ==
+[Unknown Appearance] (Source ID: 156274, Item ID: 1372, Appearance ID: 63443)
+[Unknown Appearance] (Source ID: 156276, Item ID: 1376, Appearance ID: 63453)
+[Unknown Appearance] (Source ID: 156303, Item ID: 1421, Appearance ID: 63478)
+[Unknown Appearance] (Source ID: 156664, Item ID: 2165, Appearance ID: 63443)
+[Unknown Appearance] (Source ID: 156941, Item ID: 2652, Appearance ID: 64004)
+[Unknown Appearance] (Source ID: 157351, Item ID: 3511, Appearance ID: 64343)
+[Unknown Appearance] (Source ID: 157831, Item ID: 4665, Appearance ID: 64258)
+[Unknown Appearance] (Source ID: 157859, Item ID: 4701, Appearance ID: 64774)
+[Unknown Appearance] (Source ID: 158159, Item ID: 5405, Appearance ID: 63983)
+[Unknown Appearance] (Source ID: 158203, Item ID: 5591, Appearance ID: 65000)
+[Unknown Appearance] (Source ID: 158225, Item ID: 5618, Appearance ID: 65018)
+[Unknown Appearance] (Source ID: 158351, Item ID: 6185, Appearance ID: 63521)
+[Unknown Appearance] (Source ID: 158522, Item ID: 6520, Appearance ID: 63867)
+[Unknown Appearance] (Source ID: 158543, Item ID: 6549, Appearance ID: 65259)
+[Unknown Appearance] (Source ID: 77345, Item ID: 134111, Appearance ID: 2352)
+[Unknown Appearance] (Source ID: 301114, Item ID: 257277, Appearance ID: 64157)
+[Unknown Appearance] (Source ID: 311845, Item ID: 281250, Appearance ID: 65253)
+Loose Chain Cloak (Source ID: 156934, Item ID: 2644, Appearance ID: 64003)
+Patchwork Cloak (Source ID: 156308, Item ID: 1429, Appearance ID: 63424)
+
+== Chest ==
+[Unknown Appearance] (Source ID: 156268, Item ID: 1364, Appearance ID: 63446)
+[Unknown Appearance] (Source ID: 156279, Item ID: 1380, Appearance ID: 63456)
+[Unknown Appearance] (Source ID: 156306, Item ID: 1425, Appearance ID: 63481)
+[Unknown Appearance] (Source ID: 156311, Item ID: 1433, Appearance ID: 63485)
+[Unknown Appearance] (Source ID: 156365, Item ID: 1561, Appearance ID: 63539)
+[Unknown Appearance] (Source ID: 156398, Item ID: 1737, Appearance ID: 63570)
+[Unknown Appearance] (Source ID: 156944, Item ID: 2656, Appearance ID: 63570)
+[Unknown Appearance] (Source ID: 157949, Item ID: 4907, Appearance ID: 64844)
+[Unknown Appearance] (Source ID: 158306, Item ID: 6085, Appearance ID: 65075)
+[Unknown Appearance] (Source ID: 158315, Item ID: 6098, Appearance ID: 65083)
+[Unknown Appearance] (Source ID: 158323, Item ID: 6123, Appearance ID: 65090)
+[Unknown Appearance] (Source ID: 159422, Item ID: 9598, Appearance ID: 64815)
+[Unknown Appearance] (Source ID: 160117, Item ID: 10656, Appearance ID: 64247)
+[Unknown Appearance] (Source ID: 160224, Item ID: 11189, Appearance ID: 66515)
+[Unknown Appearance] (Source ID: 104602, Item ID: 168659, Appearance ID: 40282)
+[Unknown Appearance] (Source ID: 302717, Item ID: 263408, Appearance ID: 130283)
+[Unknown Appearance] (Source ID: 302719, Item ID: 263410, Appearance ID: 130293)
+[Unknown Appearance] (Source ID: 302726, Item ID: 263421, Appearance ID: 130370)
+[Unknown Appearance] (Source ID: 304856, Item ID: 270000, Appearance ID: 65147)
+
+== Shirt ==
+[Unknown Appearance] (Source ID: 156054, Item ID: 53, Appearance ID: 63238)
+[Unknown Appearance] (Source ID: 83202, Item ID: 142503, Appearance ID: 33155)
+[Unknown Appearance] (Source ID: 307623, Item ID: 271668, Appearance ID: 130048)
+Primitive Mantle (Source ID: 156074, Item ID: 154, Appearance ID: 63257)
+Red Linen Shirt (Source ID: 156906, Item ID: 2575, Appearance ID: 63978)
+
+== Tabard ==
+[Unknown Appearance] (Source ID: 83203, Item ID: 142504, Appearance ID: 33156)
+
+== Wrist ==
+[Unknown Appearance] (Source ID: 156093, Item ID: 710, Appearance ID: 63276)
+[Unknown Appearance] (Source ID: 156217, Item ID: 1182, Appearance ID: 63397)
+[Unknown Appearance] (Source ID: 156273, Item ID: 1370, Appearance ID: 63451)
+[Unknown Appearance] (Source ID: 156302, Item ID: 1420, Appearance ID: 63477)
+[Unknown Appearance] (Source ID: 156394, Item ID: 1732, Appearance ID: 63566)
+[Unknown Appearance] (Source ID: 156940, Item ID: 2651, Appearance ID: 63566)
+[Unknown Appearance] (Source ID: 157270, Item ID: 3365, Appearance ID: 64275)
+[Unknown Appearance] (Source ID: 157277, Item ID: 3375, Appearance ID: 64280)
+[Unknown Appearance] (Source ID: 158160, Item ID: 5419, Appearance ID: 63887)
+[Unknown Appearance] (Source ID: 158202, Item ID: 5590, Appearance ID: 64999)
+[Unknown Appearance] (Source ID: 158299, Item ID: 6061, Appearance ID: 64207)
+[Unknown Appearance] (Source ID: 160223, Item ID: 11187, Appearance ID: 66012)
+[Unknown Appearance] (Source ID: 104604, Item ID: 168665, Appearance ID: 40284)
+[Unknown Appearance] (Source ID: 301117, Item ID: 257280, Appearance ID: 63412)
+Ironwrought Bracers (Source ID: 158347, Item ID: 6177, Appearance ID: 65111)
+
+== Hands ==
+[Unknown Appearance] (Source ID: 156097, Item ID: 719, Appearance ID: 63280)
+[Unknown Appearance] (Source ID: 156266, Item ID: 1359, Appearance ID: 63444)
+[Unknown Appearance] (Source ID: 156271, Item ID: 1368, Appearance ID: 63449)
+[Unknown Appearance] (Source ID: 156277, Item ID: 1377, Appearance ID: 63454)
+[Unknown Appearance] (Source ID: 156309, Item ID: 1430, Appearance ID: 63483)
+[Unknown Appearance] (Source ID: 156328, Item ID: 1479, Appearance ID: 63502)
+[Unknown Appearance] (Source ID: 156396, Item ID: 1734, Appearance ID: 63568)
+[Unknown Appearance] (Source ID: 156888, Item ID: 2547, Appearance ID: 63568)
+[Unknown Appearance] (Source ID: 156942, Item ID: 2653, Appearance ID: 63568)
+[Unknown Appearance] (Source ID: 158201, Item ID: 5589, Appearance ID: 64998)
+[Unknown Appearance] (Source ID: 158214, Item ID: 5606, Appearance ID: 65009)
+[Unknown Appearance] (Source ID: 158343, Item ID: 6171, Appearance ID: 63449)
+[Unknown Appearance] (Source ID: 160225, Item ID: 11190, Appearance ID: 64110)
+[Unknown Appearance] (Source ID: 94331, Item ID: 158329, Appearance ID: 37207)
+[Unknown Appearance] (Source ID: 301101, Item ID: 257264, Appearance ID: 130331)
+Archery Training Gloves (Source ID: 158154, Item ID: 5394, Appearance ID: 63479)
+Wooly Mittens (Source ID: 160071, Item ID: 10550, Appearance ID: 66413)
+Worn Leather Gloves (Source ID: 156304, Item ID: 1422, Appearance ID: 63479)
+
+== Waist ==
+[Unknown Appearance] (Source ID: 156196, Item ID: 983, Appearance ID: 63377)
+[Unknown Appearance] (Source ID: 156205, Item ID: 1154, Appearance ID: 63315)
+[Unknown Appearance] (Source ID: 156300, Item ID: 1418, Appearance ID: 63475)
+[Unknown Appearance] (Source ID: 156669, Item ID: 2172, Appearance ID: 63788)
+[Unknown Appearance] (Source ID: 156931, Item ID: 2635, Appearance ID: 63564)
+[Unknown Appearance] (Source ID: 157274, Item ID: 3370, Appearance ID: 64277)
+[Unknown Appearance] (Source ID: 157276, Item ID: 3374, Appearance ID: 64279)
+[Unknown Appearance] (Source ID: 157834, Item ID: 4669, Appearance ID: 64756)
+[Unknown Appearance] (Source ID: 158168, Item ID: 5458, Appearance ID: 64986)
+[Unknown Appearance] (Source ID: 158204, Item ID: 5592, Appearance ID: 64850)
+[Unknown Appearance] (Source ID: 158296, Item ID: 6058, Appearance ID: 65069)
+[Unknown Appearance] (Source ID: 159505, Item ID: 9758, Appearance ID: 66004)
+[Unknown Appearance] (Source ID: 162359, Item ID: 15472, Appearance ID: 67658)
+[Unknown Appearance] (Source ID: 84223, Item ID: 143539, Appearance ID: 33252)
+[Unknown Appearance] (Source ID: 301100, Item ID: 257263, Appearance ID: 130359)
+[Unknown Appearance] (Source ID: 301109, Item ID: 257272, Appearance ID: 130360)
+Frayed Belt (Source ID: 157268, Item ID: 3363, Appearance ID: 64273)
+
+== Legs ==
+[Unknown Appearance] (Source ID: 156053, Item ID: 52, Appearance ID: 63237)
+[Unknown Appearance] (Source ID: 156061, Item ID: 79, Appearance ID: 63244)
+[Unknown Appearance] (Source ID: 156073, Item ID: 153, Appearance ID: 63256)
+[Unknown Appearance] (Source ID: 156269, Item ID: 1366, Appearance ID: 63447)
+[Unknown Appearance] (Source ID: 156278, Item ID: 1378, Appearance ID: 63455)
+[Unknown Appearance] (Source ID: 156305, Item ID: 1423, Appearance ID: 63480)
+[Unknown Appearance] (Source ID: 156310, Item ID: 1431, Appearance ID: 63484)
+[Unknown Appearance] (Source ID: 156349, Item ID: 1507, Appearance ID: 63523)
+[Unknown Appearance] (Source ID: 156723, Item ID: 2238, Appearance ID: 63836)
+[Unknown Appearance] (Source ID: 156943, Item ID: 2654, Appearance ID: 63569)
+[Unknown Appearance] (Source ID: 157381, Item ID: 3578, Appearance ID: 64370)
+[Unknown Appearance] (Source ID: 158156, Item ID: 5398, Appearance ID: 64978)
+[Unknown Appearance] (Source ID: 158305, Item ID: 6084, Appearance ID: 65074)
+[Unknown Appearance] (Source ID: 158324, Item ID: 6124, Appearance ID: 65091)
+[Unknown Appearance] (Source ID: 159423, Item ID: 9599, Appearance ID: 64246)
+[Unknown Appearance] (Source ID: 159424, Item ID: 9600, Appearance ID: 65955)
+[Unknown Appearance] (Source ID: 159494, Item ID: 9747, Appearance ID: 64443)
+[Unknown Appearance] (Source ID: 160116, Item ID: 10655, Appearance ID: 66445)
+[Unknown Appearance] (Source ID: 160479, Item ID: 12295, Appearance ID: 63750)
+[Unknown Appearance] (Source ID: 198608, Item ID: 216696, Appearance ID: 42568)
+[Unknown Appearance] (Source ID: 302718, Item ID: 263409, Appearance ID: 130285)
+[Unknown Appearance] (Source ID: 302727, Item ID: 263422, Appearance ID: 130279)
+[Unknown Appearance] (Source ID: 302728, Item ID: 263423, Appearance ID: 130352)
+Dwarven Leather Pants (Source ID: 156060, Item ID: 61, Appearance ID: 63243)
+Loose Chain Pants (Source ID: 156936, Item ID: 2646, Appearance ID: 63569)
+
+== Feet ==
+[Unknown Appearance] (Source ID: 156216, Item ID: 1173, Appearance ID: 63396)
+[Unknown Appearance] (Source ID: 156270, Item ID: 1367, Appearance ID: 63448)
+[Unknown Appearance] (Source ID: 156275, Item ID: 1374, Appearance ID: 63452)
+[Unknown Appearance] (Source ID: 156301, Item ID: 1419, Appearance ID: 63476)
+[Unknown Appearance] (Source ID: 156904, Item ID: 2571, Appearance ID: 63976)
+[Unknown Appearance] (Source ID: 157218, Item ID: 3289, Appearance ID: 64239)
+[Unknown Appearance] (Source ID: 158157, Item ID: 5399, Appearance ID: 64979)
+[Unknown Appearance] (Source ID: 158275, Item ID: 5944, Appearance ID: 64542)
+[Unknown Appearance] (Source ID: 159425, Item ID: 9601, Appearance ID: 65956)
+[Unknown Appearance] (Source ID: 160226, Item ID: 11191, Appearance ID: 63975)
+[Unknown Appearance] (Source ID: 104603, Item ID: 168664, Appearance ID: 40283)
+[Unknown Appearance] (Source ID: 301099, Item ID: 257257, Appearance ID: 130344)
+[Unknown Appearance] (Source ID: 301118, Item ID: 257281, Appearance ID: 130345)
+Frosthowl's Footwarmers (Source ID: 311907, Item ID: 281322, Appearance ID: 67507)
+Snow Boots (Source ID: 158344, Item ID: 6173, Appearance ID: 65108)
+
+== One-Handed Maces ==
+[Unknown Appearance] (Source ID: 156041, Item ID: 36, Appearance ID: 63225)
+[Unknown Appearance] (Source ID: 156110, Item ID: 781, Appearance ID: 63293)
+[Unknown Appearance] (Source ID: 156207, Item ID: 1158, Appearance ID: 63387)
+[Unknown Appearance] (Source ID: 156351, Item ID: 1510, Appearance ID: 63525)
+[Unknown Appearance] (Source ID: 156588, Item ID: 2048, Appearance ID: 63716)
+[Unknown Appearance] (Source ID: 157807, Item ID: 4563, Appearance ID: 64039)
+[Unknown Appearance] (Source ID: 158200, Item ID: 5587, Appearance ID: 64997)
+[Unknown Appearance] (Source ID: 160067, Item ID: 10544, Appearance ID: 66410)
+[Unknown Appearance] (Source ID: 301113, Item ID: 257276, Appearance ID: 67554)
+Copper Mace (Source ID: 156999, Item ID: 2844, Appearance ID: 63366)
+Flanged Mace (Source ID: 156105, Item ID: 766, Appearance ID: 63288)
+
+== Shields ==
+[Unknown Appearance] (Source ID: 156698, Item ID: 2210, Appearance ID: 63814)
+[Unknown Appearance] (Source ID: 156699, Item ID: 2211, Appearance ID: 63815)
+[Unknown Appearance] (Source ID: 156701, Item ID: 2213, Appearance ID: 63717)
+[Unknown Appearance] (Source ID: 156702, Item ID: 2214, Appearance ID: 63817)
+[Unknown Appearance] (Source ID: 156730, Item ID: 2249, Appearance ID: 63671)
+[Unknown Appearance] (Source ID: 157414, Item ID: 3651, Appearance ID: 64403)
+[Unknown Appearance] (Source ID: 158155, Item ID: 5395, Appearance ID: 64977)
+[Unknown Appearance] (Source ID: 158205, Item ID: 5593, Appearance ID: 65001)
+Cracked Buckler (Source ID: 156700, Item ID: 2212, Appearance ID: 63816)
+Dwarven Kite Shield (Source ID: 158346, Item ID: 6176, Appearance ID: 65110)
+
+== Held In Off-hand ==
+[Unknown Appearance] (Source ID: 162653, Item ID: 15932, Appearance ID: 64611)
+
+== Staves ==
+[Unknown Appearance] (Source ID: 156293, Item ID: 1411, Appearance ID: 63469)
+[Unknown Appearance] (Source ID: 156356, Item ID: 1515, Appearance ID: 63530)
+[Unknown Appearance] (Source ID: 157420, Item ID: 3661, Appearance ID: 64408)
+[Unknown Appearance] (Source ID: 158153, Item ID: 5393, Appearance ID: 64976)
+[Unknown Appearance] (Source ID: 158370, Item ID: 6215, Appearance ID: 63648)
+[Unknown Appearance] (Source ID: 159426, Item ID: 9603, Appearance ID: 65957)
+[Unknown Appearance] (Source ID: 301119, Item ID: 257282, Appearance ID: 63388)
+Smooth Walking Staff (Source ID: 158198, Item ID: 5581, Appearance ID: 64996)
+
+Appearances:
+== Category Summary ==
+Head - Collected: 1/237
+Shoulder - Collected: 1/228
+Back - Collected: 18/160
+Chest - Collected: 18/434
+Shirt - Collected: 5/35
+Tabard - Collected: 1/25
+Wrist - Collected: 14/257
+Hands - Collected: 14/362
+Waist - Collected: 17/321
+Legs - Collected: 24/312
+Feet - Collected: 15/364
+Wand - Collected: 0/47
+One-Handed Axes - Collected: 0/55
+One-Handed Swords - Collected: 0/85
+One-Handed Maces - Collected: 11/87
+Daggers - Collected: 0/86
+Fist Weapons - Collected: 0/16
+Shields - Collected: 10/115
+Held In Off-hand - Collected: 1/114
+Two-Handed Axes - Collected: 0/48
+Two-Handed Swords - Collected: 0/56
+Two-Handed Maces - Collected: 0/58
+Staves - Collected: 8/86
+Polearms - Collected: 0/23
+Bows - Collected: 0/40
+Guns - Collected: 0/36
+Crossbows - Collected: 0/7
+
+== Transmog Sets ==
+Collected Sets: 0/6
+
+== Latest Appearances ==
+[No latest appearances returned by the Forever APIs.]
+
+== Favorites ==
+[No favorite appearances returned by the Forever APIs.]
+
+== Outfits ==
+Outfit Count: 0
+
+Reputations:
+Darnassus (Friendly) - Value: 3137 (3000-9000) - Progress: 137/6000
+Gnomeregan Exiles (Friendly) - Value: 5543 (3000-9000) - Progress: 2543/6000
+Ironforge (Friendly) - Value: 6443 (3000-9000) - Progress: 3443/6000
+Stormwind (Friendly) - Value: 3137 (3000-9000) - Progress: 137/6000
+
+Quests:
+== Dun Morogh ==
+Bitter Rivals (Level 6) [Ready to turn in] (ID: 310)
+  - [x] In the basement of the Thunderbrew Distillery in Kharanos, replace a barrel of Thunder Ale with a Barrel of Barleybrew Scalder.
+Finding Warmth (Level 8) [In Progress] (ID: 99159)
+  - [ ] 8/14 Mostly Dry Firewood
+Return to Bellowfiz (Level 8) [Ready to turn in] (ID: 320)
+  - [x] Give the cask of Evershine to Pilot Bellowfiz at Steelgrill's Depot.
+Frostmane Hold (Level 9) [Ready to turn in] (ID: 287)
+  - [x] 5/5 Frostmane Headhunter slain
+  - [x] Fully explore Frostmane Hold
+The Perfect Stout (Level 9) [In Progress] (ID: 315)
+  - [ ] 0/6 Shimmerweed
+Operation Recombobulation (Level 10) [Ready to turn in] (ID: 412)
+  - [x] 8/8 Restabilization Cog
+  - [x] 8/8 Gyromechanic Gear
+
+== Camping ==
+Camping 101: Blacksmithing (Level 6) [In Progress] (ID: 96044)
+  - [ ] Raise your blacksmithing skill to 20
+Camping 101: Cooking (Level 6) [In Progress] (ID: 96629)
+  - [ ] Learn cooking from Gremlock Pilsnor in Kharanos
+Camping 101: First Aid (Level 6) [In Progress] (ID: 96047)
+  - [ ] Raise your first aid skill to 20
+
+Quest (completed):
+Completed Quest Count: 53
+Resolved Quest Titles: 53
+Unresolved Quest Titles: 0
+Tracking Quest Count: 0
+
+== Resolved Quests ==
+A Favor for Evershine (ID: 319)
+A New Threat (ID: 170)
+A Refugee's Quandary (ID: 3361)
+Ammo for Rumbleshot (ID: 5541)
+Archaic Rune (ID: 98581)
+Beer Basted Boar Ribs (ID: 384)
+Bring Back the Mug (ID: 3365)
+Call of Earth (ID: 94373)
+Call of Earth (ID: 94374)
+Call of Earth (ID: 94375)
+Camping 101: Mining (ID: 96046)
+Camping 101: Mining (ID: 97907)
+Camping 101: Mining (ID: 97923)
+Camping 101: Mining (ID: 97935)
+Camping 101: Mining (ID: 97948)
+Camping 101: Mining (ID: 97959)
+Camping 101: Mining (ID: 97970)
+Coldridge Valley Mail Delivery (ID: 233)
+Coldridge Valley Mail Delivery (ID: 234)
+Dawn in the Mountains (ID: 99158)
+Dwarven Outfitters (ID: 179)
+Evershine (ID: 318)
+Flintfire's Shipment (ID: 98321)
+Frosthowl (ID: 98326)
+Grund and Gozwin (ID: 97277)
+Scalding Mornbrew Delivery (ID: 3364)
+Secure the Mountain (ID: 98319)
+Secure the Mountain (ID: 98322)
+Secure the Mountain (ID: 98323)
+Senir's Observations (ID: 282)
+Senir's Observations (ID: 420)
+Stocking Jetsteam (ID: 317)
+Supplies to Tannok (ID: 2160)
+The Adventurer (ID: 96627)
+The Adventurer (ID: 96628)
+The Adventurer (ID: 96630)
+The Adventurer (ID: 96638)
+The Adventurer (ID: 96652)
+The Adventurer (ID: 96656)
+The Adventurer (ID: 96659)
+The Boar Hunter (ID: 183)
+The Great Outdoors (ID: 95998)
+The Great Outdoors (ID: 96101)
+The Great Outdoors (ID: 96604)
+The Great Outdoors (ID: 96605)
+The Great Outdoors (ID: 96606)
+The Great Outdoors (ID: 96607)
+The Great Outdoors (ID: 96608)
+The Grizzled Den (ID: 313)
+The Stolen Journal (ID: 218)
+The Troll Cave (ID: 182)
+Tools for Steelgrill (ID: 400)
+Tundra MacGrann's Stolen Stash (ID: 312)
+
+Skills:
+== Professions ==
+Blacksmithing 16/75
+Mining 25/75
+
+== Secondary Skills ==
+First Aid 1/75
+
+== Weapon Skills ==
+Maces 44/50
+Staves 1/50
+Unarmed 1/50
+
+Profession Details:
+[Profession details unavailable - open each profession window at least once to build cache.]
+
+Talents:
+Active Specialization: Shaman
+Loadout Name: Shaman
+Active Config ID: 4481329
+
+Talent Import String:
+CEdBzT2eoXLGqEykspPS/k8VfDAAAAAAAA
+
+== Talent Tree (Shaman / Shaman) ==
+[No selected talent nodes returned by the Forever talent APIs.]
+
+Spellbook:
+== General ==
+Armor Proficiency (Passive, ID: 1293712, Known)
+Attack (ID: 6603, Known, Usable)
+Big Game Hunter (Passive, ID: 1259721, Known)
+Block (Passive, ID: 107, Known)
+Dodge (Passive, ID: 81, Known)
+Find Treasure (ID: 2481, Known, Usable)
+Languages (Passive, ID: 1293657, Known)
+Mace Specialization (Passive, ID: 1259719, Known)
+Stoneform (ID: 20594, Known, Usable)
+
+== Class ==
+Lightning Shield (ID: 324, Known, Usable)
+Rockbiter Weapon (ID: 8017, Known, Usable)
+Rockbiter Weapon (ID: 8018, Known, Usable)
+Stoneskin Totem (ID: 8071, Known, Usable)
+
+== Spec ==
+Healing Wave (ID: 331, Known, Usable)
+Healing Wave (ID: 332, Known, Usable)
+
+== Elemental Combat ==
+Earth Shock (ID: 8042, Known, Usable)
+Earth Shock (ID: 8044, Known, Usable)
+Earthbind Totem (ID: 2484, Known, Usable)
+Lightning Bolt (ID: 403, Known, Usable)
+Lightning Bolt (ID: 529, Known, Usable)
+
+AddOns:
+AddOns Count: 39
+
+AllTheThings - Enabled: yes - Loadable: yes - Loaded: yes - Version: 5.3.13-108-g1bf370c
+Arcane Wizard: Library - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.35
+Auctionator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 339
+Azeroth Public Library: Forever (Beta) - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.4.1-forever-beta
+Baganator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 829
+BugGrabber - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.0
+BugSack - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.2
+Can I Mog It? - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1-3
+CharacterExport Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.0-forever-beta
+Chattynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 224
+Coolinator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 149
+DarkMode  by D4KiR  - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.8.6
+Dialogue UI - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.5
+Farmer - Enabled: yes - Loadable: yes - Loaded: yes - Version: 3.27.22
+Gathering - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.74
+KillDex - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.1
+Memento - Enabled: yes - Loadable: yes - Loaded: yes - Version: v2.29
+MiniDruidMana - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.4.8
+MinimapButtonButton - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.24.11
+MobInfo2 Retail Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.1.6
+Nova Instance Tracker - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.28
+Parcel - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.0
+Platynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 490
+RareScanner - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1.b3
+RestedXP Guides - Enabled: yes - Loadable: yes - Loaded: yes - Version: v4.11.9
+Syndicator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 282
+TomTom - Enabled: yes - Loadable: yes - Loaded: yes - Version: v4.3.11-release
+What's Training? - Enabled: yes - Loadable: yes - Loaded: yes - Version: 11.0.0-beta5
+XLoot - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Frame - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Group - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Master - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Monitor - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Options - Enabled: yes - Loadable: no - Loaded: yes - Reason: DEMAND_LOADED - Version: 12.18.1
+XLoot Toast - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+Profession Shopping List - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.0-07
+Profession Master Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.9
+Trade Board Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.9
+Talents Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.31.3
