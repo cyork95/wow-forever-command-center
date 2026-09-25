@@ -38,6 +38,7 @@ const state = {
   openDungeons: new Set(),
   selected: "skyrinis",
   scope: "character",
+  place: "",
   query: "",
   type: "",
   openId: "",
@@ -53,6 +54,7 @@ function loadStore() {
     if (saved.checks) state.checks = saved.checks;
     if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
+    if (typeof saved.place === "string") state.place = saved.place;
     if (TABS.includes(saved.tab)) state.tab = saved.tab;
   } catch {
     state.checks = {};
@@ -64,6 +66,7 @@ function saveStore() {
   localStorage.setItem(STORE_KEY, JSON.stringify({
     selected: state.selected,
     scope: state.scope,
+    place: state.place,
     tab: state.tab,
     checks: state.checks,
     attempts: state.attempts
@@ -155,26 +158,70 @@ function killLog(mobs) {
 
 function buildDrops() {
   const drops = new Map();
-  const put = (name, where) => {
+  const dropDungeons = new Map();
+  const put = (name, where, dungeon) => {
     const key = nameKey(name);
     if (!key) return;
     if (!drops.has(key)) drops.set(key, []);
     drops.get(key).push(where);
+    if (!dropDungeons.has(key)) dropDungeons.set(key, new Set());
+    dropDungeons.get(key).add(dungeon);
   };
-  asList(state.dungeons && state.dungeons.dungeons).forEach((dungeon) => {
+  const dungeons = asList(state.dungeons && state.dungeons.dungeons);
+  dungeons.forEach((dungeon) => {
     asList(dungeon.bosses).forEach((boss) => {
-      asList(boss.loot).forEach((item) => put(item.name, `${boss.name} in ${dungeon.name}`));
+      asList(boss.loot).forEach((item) => put(item.name, `${boss.name} in ${dungeon.name}`, dungeon.name));
     });
     asList(dungeon.quests).forEach((quest) => {
-      asList(quest.rewardItems).forEach((item) => put(item.name, `the ${quest.name} quest in ${dungeon.name}`));
+      asList(quest.rewardItems).forEach((item) => put(item.name, `the ${quest.name} quest in ${dungeon.name}`, dungeon.name));
     });
   });
   const hunts = new Set();
+  const places = new Map();
   state.checklist.forEach((hunt) => {
-    [hunt, ...asList(hunt.parts)].forEach((entry) => hunts.add(nameKey(entry.name)));
+    const entries = [hunt, ...asList(hunt.parts)];
+    entries.forEach((entry) => hunts.add(nameKey(entry.name)));
+    const zone = nameKey(hunt.zone);
+    const inDungeons = new Set(dungeons
+      .map((dungeon) => dungeon.name)
+      .filter((name) => zone.includes(nameKey(name).replace(/^the /, ""))));
+    entries.forEach((entry) => (dropDungeons.get(nameKey(entry.name)) || []).forEach((name) => inDungeons.add(name)));
+    const kind = inDungeons.size ? "dungeon"
+      : hunt.type === "Milestone" || hunt.source === "Pack" ? "none"
+      : "world";
+    places.set(hunt.id, { kind, dungeons: [...inDungeons] });
   });
   state.drops = drops;
   state.huntNames = hunts;
+  state.places = places;
+}
+
+function huntPlace(item) {
+  return (state.places && state.places.get(item.id)) || { kind: "world", dungeons: [] };
+}
+
+function matchesPlace(item) {
+  if (!state.place) return true;
+  const place = huntPlace(item);
+  if (state.place.startsWith("dungeon:")) return place.dungeons.includes(state.place.slice(8));
+  return place.kind === state.place;
+}
+
+function fillPlaceOptions() {
+  const select = document.getElementById("place");
+  const used = new Set();
+  state.checklist.forEach((item) => huntPlace(item).dungeons.forEach((name) => used.add(name)));
+  const order = asList(state.dungeons && state.dungeons.dungeons).map((dungeon) => dungeon.name);
+  const options = [
+    ["", "Anywhere"],
+    ["dungeon", "Dungeons"],
+    ...order.filter((name) => used.has(name)).map((name) => [`dungeon:${name}`, `\u00a0\u00a0\u00a0${name}`]),
+    ["world", "Open world"],
+    ["none", "No trip (packs, milestones)"]
+  ];
+  select.replaceChildren(...options.map(([value, label]) => el("option", { value, text: label })));
+  if (!options.some(([value]) => value === state.place)) state.place = "";
+  select.value = state.place;
 }
 
 function dropNote(name) {
@@ -209,9 +256,10 @@ function visibleItems() {
   const q = state.query.trim().toLowerCase();
   return state.checklist.filter((item) => {
     if (state.scope === "character" && !matchesCharacter(item, character)) return false;
+    if (!matchesPlace(item)) return false;
     if (!q) return true;
     const parts = (item.parts || []).map((part) => `${part.name} ${part.how || ""}`).join(" ");
-    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type} ${parts}`.toLowerCase();
+    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type} ${parts} ${huntPlace(item).dungeons.join(" ")}`.toLowerCase();
     return hay.includes(q);
   });
 }
@@ -988,6 +1036,12 @@ async function main() {
   }
   if (!state.characters.some((c) => c.id === state.selected)) state.selected = state.characters[0].id;
   document.getElementById("scope").value = state.scope;
+  fillPlaceOptions();
+  document.getElementById("place").addEventListener("change", (event) => {
+    state.place = event.target.value;
+    saveStore();
+    renderChecklist();
+  });
   document.getElementById("search").addEventListener("input", (event) => {
     state.query = event.target.value;
     renderChecklist();
