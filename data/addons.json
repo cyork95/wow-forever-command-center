@@ -1,5 +1,5 @@
 {
-    "scannedAt":  "2026-09-25T13:38:42",
+    "scannedAt":  "2026-09-25T15:55:42",
     "count":  38,
     "addons":  [
                    {
@@ -339,10 +339,10 @@
                        "title":  "Memento",
                        "version":  "v2.30",
                        "author":  "Arcane Wizard | created by diomsg",
-                       "purpose":  "Journal of first-time events, such as the first kill or first loot of an item.",
+                       "purpose":  "Takes a screenshot on level-ups, achievements, deaths, boss kills, and other moments.",
                        "feedsSite":  true,
                        "uncataloged":  false,
-                       "collects":  "First-time loot and kill records",
+                       "collects":  "Screenshots for the character\u0027s gallery",
                        "savedVariables":  [
                                               "Memento_Options_v6",
                                               "Memento_DataBossKill"
@@ -478,9 +478,31 @@
                        "loaded":  true
                    },
                    {
+                       "folder":  "Plumber",
+                       "title":  "Plumber",
+                       "version":  "1.9.6",
+                       "author":  "Peterodox",
+                       "purpose":  "Provides a variety of quality-of-life features.|n|nOpen Settings with Slash Command:|n/plumber",
+                       "feedsSite":  false,
+                       "uncataloged":  true,
+                       "collects":  {
+
+                                    },
+                       "savedVariables":  [
+                                              "PlumberDB",
+                                              "PlumberDevData",
+                                              "PlumberStorage",
+                                              "PlumberDB_PC"
+                                          ],
+                       "saveOnDisk":  false,
+                       "saveModified":  null,
+                       "enabled":  null,
+                       "loaded":  null
+                   },
+                   {
                        "folder":  "ProfessionMaster",
                        "title":  "Profession Master Forever",
-                       "version":  "7.0.10",
+                       "version":  "7.0.11",
                        "author":  "Kurki",
                        "purpose":  "Profession window for the Forever client.",
                        "feedsSite":  true,
@@ -586,7 +608,7 @@
                    {
                        "folder":  "TradeBoard",
                        "title":  "Trade Board Forever",
-                       "version":  "7.0.10",
+                       "version":  "7.0.11",
                        "author":  "Kurki",
                        "purpose":  "Trade-skill board for the Forever client.",
                        "feedsSite":  true,
@@ -603,26 +625,6 @@
                        "saveModified":  "2026-09-25T12:00:15",
                        "enabled":  true,
                        "loaded":  true
-                   },
-                   {
-                       "folder":  "WTFix",
-                       "title":  "WTFix",
-                       "version":  "0.9.3",
-                       "author":  "NS",
-                       "purpose":  "SavedVariables recovery layer for WoW Forever",
-                       "feedsSite":  false,
-                       "uncataloged":  true,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-                                              "WTFIX_DB",
-                                              "WTFIX_SNAPSHOT_DB"
-                                          ],
-                       "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
-                       "enabled":  null,
-                       "loaded":  null
                    },
                    {
                        "folder":  "WTFix_Data",

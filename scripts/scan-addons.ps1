@@ -3,6 +3,8 @@
 # Path: copy scripts/addons.example.json to scripts/addons.local.json and set addonsPath.
 
 $ErrorActionPreference = "Stop"
+. (Join-Path $PSScriptRoot "read-saves.ps1")
+. (Join-Path $PSScriptRoot "screenshots.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -57,7 +59,7 @@ $interfaceDir = Split-Path -Parent $addonsPath
 $gameRoot = Split-Path -Parent $interfaceDir
 $wtfRoot = Join-Path $gameRoot "WTF"
 $catalog = Read-JsonFile $catalogPath
-$characters = @(Read-JsonFile $charactersPath)
+$characters = @(Read-JsonFile $charactersPath | ForEach-Object { $_ })
 
 $saveFiles = @()
 if (Test-Path $wtfRoot) {
@@ -363,6 +365,12 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
   $raw = Get-Content -Raw -Path $source.FullName -ErrorAction SilentlyContinue
   if (-not $raw) { continue }
   $when = $source.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
+  $fileDate = $null
+  if ($source.BaseName -match '(\d{4}-\d{2}-\d{2})') { $fileDate = $Matches[1] }
+  elseif ($source.BaseName -match '(\d{1,2})_(\d{1,2})_(\d{2})$') {
+    $fileDate = "20{0}-{1:D2}-{2:D2}" -f $Matches[3], [int]$Matches[1], [int]$Matches[2]
+  }
+  if ($fileDate -and -not $when.StartsWith($fileDate)) { $when = "${fileDate}T12:00:00" }
   foreach ($body in (Get-ExportBodies $raw)) {
     $row = $null
     if ($body.TrimStart().StartsWith("{") -or $body.TrimStart().StartsWith("[")) {
@@ -378,8 +386,7 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
 }
 
 if (-not $parsed.Count) {
-  Write-Output "No CharacterExport save matched the known export shape. Left data/stats.json unchanged."
-  return
+  Write-Output "No CharacterExport dump found. Addon saves still update the sheet."
 }
 
 $stats = Read-JsonFile $statsPath
@@ -389,7 +396,7 @@ if (-not $stats.characters) {
 $merged = 0
 $unmatched = @()
 $kept = @{}
-foreach ($row in $parsed) {
+foreach ($row in ($parsed | Sort-Object { [datetime]$_.exportedAt } -Descending)) {
   $key = if ($row.matchedId) { [string]$row.matchedId } else { "name:" + [string]$row.character }
   if (-not $kept.ContainsKey($key)) { $kept[$key] = $row }
 }
@@ -419,22 +426,140 @@ foreach ($row in $kept.Values) {
     gear = @($row.gear)
     owned = @($row.owned)
   }
-  foreach ($field in @("power", "playedSeconds", "statistics")) {
-    Add-CarriedField $payload $row $existingRecord $field
-  }
+  $carried = @("power", "playedSeconds", "statistics")
+  foreach ($field in $carried) { Add-CarriedField $payload $row $null $field }
   Write-JsonFile $exportPath $payload
+  foreach ($field in $carried) {
+    if (-not $payload.Contains($field)) { Add-CarriedField $payload $null $existingRecord $field }
+  }
   $stats.characters | Add-Member -NotePropertyName $row.matchedId -NotePropertyValue ([pscustomobject]$payload) -Force
   $merged++
   Write-Output "Merged $($row.character) into data/stats.json ($($row.matchedId))"
 }
 
-if ($merged -gt 0) {
+function Merge-StatRows($statistics, $group, $rows) {
+  $groups = [ordered]@{}
+  if ($statistics -is [System.Collections.IDictionary]) {
+    foreach ($k in $statistics.Keys) { $groups[$k] = @($statistics[$k]) }
+  } elseif ($statistics -is [System.Collections.IList]) {
+    if ($statistics.Count) { $groups["Statistics"] = @($statistics) }
+  } elseif ($statistics) {
+    foreach ($p in $statistics.PSObject.Properties) { $groups[$p.Name] = @($p.Value) }
+  }
+  $names = @($rows | ForEach-Object { $_.name })
+  $kept = @($groups[$group] | Where-Object { $_ -and $names -notcontains $_.name })
+  $groups[$group] = @($rows) + $kept
+  return $groups
+}
+
+function Apply-Snapshot($record, $snap, $character) {
+  $rec = [ordered]@{}
+  if ($record) { foreach ($p in $record.PSObject.Properties) { $rec[$p.Name] = $p.Value } }
+  if (-not $rec.Contains("character")) { $rec["character"] = $character.name }
+  $exportedAt = $rec["exportedAt"]
+
+  $best = $exportedAt
+  foreach ($source in @($snap.nova, $snap.att)) {
+    if (-not $source -or $null -eq $source.level) { continue }
+    if (-not $best -or $source.at -gt $best) {
+      $rec["level"] = $source.level
+      $best = $source.at
+    }
+  }
+  if ($snap.nova -and $null -ne $snap.nova.goldCopper -and (-not $exportedAt -or $snap.nova.at -gt $exportedAt)) {
+    $rec["goldCopper"] = $snap.nova.goldCopper
+  }
+  if ($snap.att -and $snap.att.playedSeconds) { $rec["playedSeconds"] = $snap.att.playedSeconds }
+
+  if ($snap.skillLevels) {
+    $profs = @()
+    $seen = @{}
+    foreach ($p in @($rec["professions"])) {
+      if (-not $p) { continue }
+      $current = [int]$p.current
+      if ($snap.skillLevels.Contains($p.name) -and $snap.skillLevels[$p.name] -gt $current) { $current = $snap.skillLevels[$p.name] }
+      $profs += [ordered]@{ name = $p.name; current = $current; max = $p.max }
+      $seen[$p.name] = $true
+    }
+    foreach ($name in $snap.skillLevels.Keys) {
+      if (-not $seen.ContainsKey($name)) { $profs += [ordered]@{ name = $name; current = $snap.skillLevels[$name]; max = $null } }
+    }
+    $rec["professions"] = $profs
+  }
+  if ($snap.recipes) { $rec["recipes"] = $snap.recipes }
+  if ($snap.items) { $rec["items"] = $snap.items }
+
+  if ($snap.att) {
+    $rec["collections"] = [ordered]@{
+      Mounts = $snap.att.mounts
+      Pets = $snap.att.pets
+      Toys = $snap.att.toys
+      Titles = $snap.att.titles
+      Achievements = $snap.att.achievements
+    }
+    $rows = @(
+      [ordered]@{ name = "Deaths"; value = [string]$snap.att.deaths },
+      [ordered]@{ name = "Quests completed"; value = [string]$snap.att.quests },
+      [ordered]@{ name = "Areas explored"; value = [string]$snap.att.exploration }
+    )
+    if ($snap.nova) { $rows += [ordered]@{ name = "Instance lockouts"; value = [string]$snap.nova.lockouts } }
+    $rec["statistics"] = Merge-StatRows $rec["statistics"] "Character" $rows
+  }
+  if ($snap.kills) {
+    $huntKills = [ordered]@{}
+    foreach ($mob in $snap.kills.byMob) {
+      if ($mob.name -and $huntMobs.ContainsKey(([string]$mob.name).ToLowerInvariant())) { $huntKills[[string]$mob.name] = $mob.kills }
+    }
+    $rec["huntKills"] = $huntKills
+    $rec["looted"] = @($snap.kills.looted | Where-Object {
+      $huntNames.ContainsKey($_.ToLowerInvariant()) -or $huntNames.ContainsKey(($_ -replace $recipePrefix, '').ToLowerInvariant())
+    })
+    $rows = @(
+      [ordered]@{ name = "Total kills"; value = [string]$snap.kills.total },
+      [ordered]@{ name = "Creature types"; value = [string]$snap.kills.creatures }
+    )
+    foreach ($mob in $snap.kills.top) { $rows += [ordered]@{ name = $mob.name; value = [string]$mob.kills } }
+    $rec["statistics"] = Merge-StatRows $rec["statistics"] "Kills" $rows
+  }
+
+  $sources = [ordered]@{}
+  if ($exportedAt) { $sources["CharacterExport"] = $exportedAt }
+  foreach ($k in $snap.sources.Keys) { $sources[$k] = $snap.sources[$k] }
+  $rec["sources"] = $sources
+  return [pscustomobject]$rec
+}
+
+$recipePrefix = '^(Recipe|Plans|Pattern|Formula|Schematic|Manual|Design|Technique):\s*'
+$huntNames = @{}
+$huntMobs = @{}
+foreach ($hunt in @(Read-JsonFile (Join-Path $repo "data\checklist.json") | ForEach-Object { $_ })) {
+  foreach ($entry in @($hunt) + @($hunt.parts | Where-Object { $_ })) {
+    if ($entry.name) { $huntNames[([string]$entry.name).ToLowerInvariant()] = $true }
+    foreach ($mob in @($entry.mobs | Where-Object { $_ })) { $huntMobs[([string]$mob).ToLowerInvariant()] = $true }
+  }
+}
+
+$snapshots = Get-SaveSnapshots $wtfRoot $characters
+$applied = 0
+foreach ($character in $characters) {
+  $snap = $snapshots[$character.id]
+  if (-not $snap -or -not $snap.sources.Count) { continue }
+  $existing = $stats.characters.PSObject.Properties[$character.id]
+  $record = Apply-Snapshot $(if ($existing) { $existing.Value } else { $null }) $snap $character
+  $stats.characters | Add-Member -NotePropertyName $character.id -NotePropertyValue $record -Force
+  $applied++
+  Write-Output "Updated $($character.name) from $(@($snap.sources.Keys) -join ', ')"
+}
+
+if ($merged -gt 0 -or $applied -gt 0) {
   $stats.updated = (Get-Date).ToString("yyyy-MM-dd")
   Write-JsonFile $statsPath $stats
 } else {
-  Write-Output "Parsed character dumps, but none matched data/characters.json. Left data/stats.json unchanged."
+  Write-Output "No export or addon save matched data/characters.json. Left data/stats.json unchanged."
 }
 
 $unmatched | Select-Object -Unique | ForEach-Object {
   Write-Output "Skipped unmatched character: $_"
 }
+
+Update-Screenshots $gameRoot $repo $characters

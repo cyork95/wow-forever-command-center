@@ -82,7 +82,78 @@ function huntGroup(item) {
     || { id: "other", label: "Other", types: [] };
 }
 
+const RECIPE_PREFIX = /^(recipe|plans|pattern|formula|schematic|manual|design|technique):\s*/i;
+
+function nameKey(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function buildOwned() {
+  const items = new Map();
+  const recipes = new Map();
+  const looted = new Map();
+  const lootedRecipes = new Map();
+  const kills = new Map();
+  const put = (map, name, note) => {
+    const key = nameKey(name);
+    if (key && !map.has(key)) map.set(key, note);
+  };
+  const lives = Object.entries(state.stats.characters || {}).map(([id, live]) => {
+    const character = state.characters.find((c) => c.id === id);
+    return { who: character ? character.name.split(" ")[0] : id, live };
+  });
+  lives.forEach(({ who, live }) => {
+    asList(live.gear).forEach((piece) => put(items, piece.name, `Worn by ${who}`));
+    asList(live.items).forEach((name) => put(items, name, `In ${who}'s bags`));
+    asList(live.owned).forEach((name) => put(items, name, `Owned by ${who}`));
+    Object.values(live.recipes || {}).forEach((list) => {
+      asList(list).forEach((name) => put(recipes, name, `${who} knows it`));
+    });
+    asList(live.looted).forEach((name) => {
+      put(looted, name, `Looted by ${who}`);
+      if (RECIPE_PREFIX.test(name)) put(lootedRecipes, name.replace(RECIPE_PREFIX, ""), `Looted by ${who}`);
+    });
+    Object.entries(live.huntKills || {}).forEach(([mob, count]) => {
+      const key = nameKey(mob);
+      if (!kills.has(key)) kills.set(key, []);
+      kills.get(key).push({ mob, who, count: Number(count) || 0 });
+    });
+  });
+  state.owned = { items, recipes, looted, lootedRecipes, kills };
+}
+
+function ownedNote(item) {
+  const owned = state.owned;
+  if (!owned || !item.name) return "";
+  const key = nameKey(item.name);
+  const held = owned.items.get(key);
+  if (held) return held;
+  if (item.type === "Recipe" || RECIPE_PREFIX.test(item.name)) {
+    const base = nameKey(item.name.replace(RECIPE_PREFIX, ""));
+    const known = owned.recipes.get(base);
+    if (known) return known;
+    return owned.looted.get(key) || owned.lootedRecipes.get(base) || "";
+  }
+  return owned.looted.get(key) || "";
+}
+
+function killLog(mobs) {
+  const owned = state.owned;
+  const rows = [];
+  new Set(asList(mobs).map(nameKey)).forEach((key) => {
+    ((owned && owned.kills.get(key)) || []).forEach((row) => rows.push(row));
+  });
+  const total = rows.reduce((sum, row) => sum + row.count, 0);
+  const text = rows.map((row) => `${row.mob} ${row.count} (${row.who})`).join(", ");
+  return { total, text };
+}
+
+function huntMobs(item) {
+  return [...asList(item.mobs), ...asList(item.parts).flatMap((part) => asList(part.mobs))];
+}
+
 function isChecked(item) {
+  if (ownedNote(item)) return true;
   if (Object.prototype.hasOwnProperty.call(state.checks, item.id)) return state.checks[item.id];
   return !!item.defaultDone;
 }
@@ -206,10 +277,17 @@ function renderSheet() {
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
   const skills = new Map(asList(live.professions).map((p) => [p.name, p]));
+  const skillLabel = (name, skill) => {
+    if (!skill) return name;
+    return skill.max ? `${name} ${skill.current}/${skill.max}` : `${name} ${skill.current}`;
+  };
   character.professions.forEach((name) => {
-    const skill = skills.get(name);
-    const label = skill ? `${name} ${skill.current}/${skill.max}` : name;
-    profs.append(el("span", { text: label }));
+    profs.append(el("span", { text: skillLabel(name, skills.get(name)) }));
+  });
+  skills.forEach((skill, name) => {
+    if (!character.professions.includes(name)) {
+      profs.append(el("span", { class: "extra", text: skillLabel(name, skill) }));
+    }
   });
   identity.append(profs);
   identity.append(el("p", { class: "meta", text: character.talentNote }));
@@ -219,11 +297,22 @@ function renderSheet() {
   if (character.pairsWith) {
     identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
   }
+  const recipeGroups = Object.entries(live.recipes || {}).filter(([, list]) => asList(list).length);
+  if (recipeGroups.length) {
+    const total = recipeGroups.reduce((sum, [, list]) => sum + asList(list).length, 0);
+    const box = el("details", { class: "recipes" });
+    box.append(el("summary", { text: `${total} known recipes` }));
+    recipeGroups.forEach(([prof, list]) => {
+      box.append(el("h4", { text: prof }));
+      box.append(el("p", { class: "meta", text: asList(list).join(", ") }));
+    });
+    identity.append(box);
+  }
 
   const stats = el("article", { class: "card" });
   stats.append(el("h3", { text: "Stats" }));
   const updated = state.stats.updated
-    ? `Export merged ${state.stats.updated}.`
+    ? `Updated ${state.stats.updated}.`
     : "No addon export merged yet. Level, gear, and gold show up here after the next dump.";
   stats.append(el("p", { class: "empty-note", text: updated }));
   const grid = el("div", { class: "stat-grid" });
@@ -237,7 +326,11 @@ function renderSheet() {
   ].forEach(([label, value]) => grid.append(statBox(label, value)));
   const extra = live.stats || {};
   STAT_KEYS.forEach((key) => grid.append(statBox(key, extra[key])));
+  Object.entries(live.collections || {}).forEach(([label, value]) => grid.append(statBox(label, value)));
   stats.append(grid);
+  const sources = Object.entries(live.sources || {})
+    .map(([name, when]) => (when ? `${name} ${String(when).slice(5, 10).replace("-", "/")}` : name));
+  if (sources.length) stats.append(el("p", { class: "meta sources", text: `From ${sources.join(" · ")}` }));
 
   if (asList(live.gear).length) {
     const table = el("table", { class: "gear" });
@@ -279,6 +372,28 @@ function renderSheet() {
     lifetime.append(wrap);
   }
 
+  const shots = asList(state.screenshots)
+    .filter((shot) => String(shot.file || "").startsWith(`assets/shots/${character.id}/`))
+    .sort((a, b) => String(b.takenAt).localeCompare(String(a.takenAt)));
+  if (shots.length) {
+    identity.append(el("h4", { class: "shots-head", text: `Screenshots (${shots.length})` }));
+    const grid = el("div", { class: "shots" });
+    shots.forEach((shot) => {
+      const when = new Date(shot.takenAt);
+      const date = Number.isNaN(when.getTime())
+        ? ""
+        : when.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+      const label = shot.caption || `Screenshot from ${date}`;
+      const link = el("a", { href: shot.file, target: "_blank", rel: "noreferrer", "aria-label": `Open full size: ${label}` }, [
+        el("img", { src: shot.file, alt: label, loading: "lazy" })
+      ]);
+      grid.append(el("figure", {}, [
+        link,
+        el("figcaption", { text: [date, shot.caption].filter(Boolean).join(" · ") })
+      ]));
+    });
+    identity.append(grid);
+  }
   sheet.replaceChildren(identity, stats, lifetime);
 }
 
@@ -361,8 +476,10 @@ function renderTries(id, label) {
 
 function renderPart(item, part) {
   const checked = isChecked(part);
-  const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}` });
+  const found = ownedNote(part);
+  const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}`, title: found || null });
   box.checked = checked;
+  if (found) box.disabled = true;
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
     state.checks[part.id] = box.checked;
@@ -370,9 +487,11 @@ function renderPart(item, part) {
     saveStore();
     renderChecklist();
   });
+  const partKills = killLog(part.mobs);
   const copy = el("div", { class: "part-copy" }, [
     el("strong", { text: part.name }),
-    el("p", { text: part.how || "" })
+    el("p", { text: found ? `${found}. ${part.how || ""}` : part.how || "" }),
+    partKills.total ? el("p", { class: "kill-log", text: `KillDex: ${partKills.text}` }) : null
   ]);
   return el("div", { class: `part${checked ? " done" : ""}` }, [
     box,
@@ -388,12 +507,14 @@ function renderHunt(item) {
   const group = huntGroup(item);
   const ready = piecesReady(item);
   const pieceCount = item.parts ? item.parts.filter((part) => isChecked(part)).length : 0;
+  const found = ownedNote(item);
   const box = el("input", {
     type: "checkbox",
-    "aria-label": `Got ${item.name}`
+    "aria-label": `Got ${item.name}`,
+    title: found || null
   });
   box.checked = checked;
-  if (item.parts && !ready) box.disabled = true;
+  if ((item.parts && !ready) || found) box.disabled = true;
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
     if (item.parts && box.checked && !piecesReady(item)) {
@@ -419,7 +540,9 @@ function renderHunt(item) {
   const pieceText = item.parts
     ? `${pieceCount} of ${item.need || item.parts.length} pieces`
     : "";
-  const attemptText = [meta, pieceText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
+  const kills = killLog(huntMobs(item));
+  const killText = kills.total ? `${kills.total} ${kills.total === 1 ? "kill" : "kills"} logged` : "";
+  const attemptText = [meta, pieceText, found, killText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
     .filter(Boolean)
     .join(" · ");
   summary.append(el("span", { class: "sub", text: attemptText }));
@@ -446,6 +569,9 @@ function renderHunt(item) {
       fact("For", whoLabel(item))
     ])
   ];
+  if (kills.total && !item.parts) {
+    detailKids.push(el("p", { class: "kill-log", text: `KillDex: ${kills.text}` }));
+  }
   if (item.parts) {
     const need = item.need || item.parts.length;
     detailKids.push(el("p", {
@@ -670,18 +796,21 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons] = await Promise.all([
+    const [house, characters, checklist, stats, addons, screenshots] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
-      loadJson("data/addons.json").catch(() => null)
+      loadJson("data/addons.json").catch(() => null),
+      loadJson("data/screenshots.json").catch(() => [])
     ]);
     state.house = house;
     state.characters = characters;
     state.checklist = checklist;
     state.stats = stats;
     state.addons = addons;
+    state.screenshots = screenshots;
+    buildOwned();
   } catch (error) {
     document.getElementById("lede").textContent = "The tracker data did not load. Open the GitHub Pages site, or serve this folder over http.";
     console.error(error);

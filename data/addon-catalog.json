@@ -54,9 +54,9 @@
     "match": ["KillDex"]
   },
   "Memento": {
-    "purpose": "Journal of first-time events, such as the first kill or first loot of an item.",
+    "purpose": "Takes a screenshot on level-ups, achievements, deaths, boss kills, and other moments.",
     "feedsSite": true,
-    "collects": ["First-time loot and kill records"],
+    "collects": ["Screenshots for the character's gallery"],
     "match": ["Memento"]
   },
   "MobInfo2": {

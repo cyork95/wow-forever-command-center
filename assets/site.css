@@ -253,6 +253,30 @@ h2 {
   font-size: 14px;
 }
 
+.profs span.extra { background: transparent; border: 1px dashed var(--line); color: var(--muted); }
+
+.recipes { margin: 12px 0; }
+.recipes summary { cursor: pointer; color: var(--gold); }
+.recipes h4 { margin: 10px 0 2px; font-size: 14px; }
+.recipes .meta { margin: 0; overflow-wrap: anywhere; }
+
+.sources { margin: 10px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+
+.kill-log { color: var(--gold); font-size: 13px; margin: 4px 0 0; }
+
+.shots-head { margin: 18px 0 8px; font-size: 14px; color: var(--gold); }
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.shots figure { margin: 0; }
+.shots a { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.shots img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.2s; }
+.shots a:hover img, .shots a:focus-visible img { transform: scale(1.03); }
+.shots figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
 .rules { list-style: none; padding: 0; margin: 8px 0 0; }
 .rules li { border-radius: 12px; display: block; margin-top: 8px; }
 
