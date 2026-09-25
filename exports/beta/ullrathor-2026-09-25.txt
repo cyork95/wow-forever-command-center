@@ -1,0 +1,594 @@
+Location:
+Zone: Zephras Isle
+Subzone: Thendal Standing Stones
+Map: Zephras Isle
+Map ID: 2521
+Parent Map: Azeroth
+Parent Map ID: 947
+Coordinates: 46.9, 19.0
+Hearthstone Location: Thendal Village
+
+Character Stats:
+Character: Ullrathor-Classic Beta PvE 2
+Faction: Alliance
+Level: 2
+Race: High Order Skyborne
+Class: Druid
+Primary Stat: Intellect
+Average Item Level: 0.38
+Equipped Item Level: 0.31
+PvP Item Level: 0.38
+Health: n/a/61
+XP: 748/900
+XP To Level: 152
+XP Progress: 83.11%
+Rested XP: 236
+Armor: 107
+== Primary Attributes ==
+Strength: 21
+Agility: 21
+Stamina: 20
+Intellect: 26
+Attack Power: 22
+== Combat Ratings ==
+Critical Strike: 0 rating / 5.04%
+Haste: 0 rating / 0%
+Mastery: 0 rating / 0%
+Versatility: 0 rating / 0%
+Leech: 0 rating / 0%
+Speed: 0 rating / 0%
+Avoidance: 0 rating / 0%
+[Some character values were restricted by the client and could not be exported.]
+
+Currencies:
+Gold: 0g 0s 88c
+Currency Count: 0
+
+[No currencies found.]
+
+Collections:
+== Mounts ==
+Mount Count: 0/136
+[No mounts found.]
+
+== Battle Pets ==
+Pet Count: 0/0
+[No battle pets found.]
+
+== Toys ==
+Toy Count: 0/20
+[No toys found.]
+
+Bags:
+== Backpack (5/20) ==
+[Hearthstone] x1 [ID: 6948, iLvl: 1, Q: 1]
+[Refreshing Spring Water] x2 [ID: 159, iLvl: 5, Q: 1]
+[Shiny Red Apple] x4 [ID: 4536, iLvl: 5, Q: 1]
+[Ancient Heirloom] x1 [ID: 264908, iLvl: 1, Q: 1]
+- Type: Armor / Miscellaneous
+- Equip Slot: Finger
+[Chipped Cirrusfly Stinger] x1 [ID: 251927, iLvl: 1, Q: 0]
+
+== Bag 1 (0/0) ==
+[Empty]
+
+== Bag 2 (0/0) ==
+[Empty]
+
+== Bag 3 (0/0) ==
+[Empty]
+
+== Bag 4 (0/0) ==
+[Empty]
+
+== Reagent Bag (0/0) ==
+[Empty]
+
+Bank:
+[Bank data unavailable - open your personal bank at least once to build cache.]
+
+Equipment:
+== Head ==
+[Empty]
+
+== Neck ==
+[Empty]
+
+== Shoulder ==
+[Empty]
+
+== Back ==
+[Empty]
+
+== Chest ==
+[Empty]
+
+== Shirt ==
+[Thendal Survivalist's Shirt] x1 [ID: 271668, iLvl: 1, Q: 1]
+- Rarity: Common
+- Item Level: 1
+- Type: Armor / Miscellaneous
+- Equip Slot: Shirt
+- Item String: item:271668::::::::2:1484::75:::::::
+
+== Tabard ==
+[Empty]
+
+== Wrist ==
+[Vuldren Hide Bracers] x1 [ID: 257280, iLvl: 5, Q: 1]
+- Rarity: Common
+- Item Level: 5
+- Durability: 16/16
+- Type: Armor / Leather
+- Equip Slot: Wrist
+- Item String: item:257280::::::::2:1484::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 15
+
+== Hands ==
+[Empty]
+
+== Waist ==
+[Empty]
+
+== Legs ==
+[Thendal Survivalist's Pants] x1 [ID: 271666, iLvl: 1, Q: 1]
+- Rarity: Common
+- Item Level: 1
+- Type: Armor / Miscellaneous
+- Equip Slot: Legs
+- Item String: item:271666::::::::2:1484::75:::::::
+
+== Feet ==
+[Ragged Leather Boots] x1 [ID: 1367, iLvl: 3, Q: 0]
+- Rarity: Poor
+- Item Level: 3
+- Durability: 20/20
+- Type: Armor / Leather
+- Equip Slot: Feet
+- Item String: item:1367::::::::2:1484:::::::::
+- Binding: Bind on Equip
+- ARMOR: 16
+
+== Finger 1 ==
+[Empty]
+
+== Finger 2 ==
+[Empty]
+
+== Trinket 1 ==
+[Empty]
+
+== Trinket 2 ==
+[Empty]
+
+== Main Hand ==
+[Handcrafted Staff] x1 [ID: 3661, iLvl: 2, Q: 1]
+- Rarity: Common
+- Item Level: 2
+- Durability: 25/25
+- Damage: 3 - 5
+- Speed: 2.9
+- Type: Weapon / Staves
+- Equip Slot: Two-Hand Weapon
+- Item String: item:3661::::::::2:1484::75:::::::
+- Binding: Bind Type: 10
+- DPS: 1.38
+
+== Off Hand ==
+[Empty]
+
+Lockouts:
+Instance Lockout Count: 0
+
+== Saved Instances ==
+[No saved instances found.]
+
+== World Bosses ==
+World Boss Lockout Count: 0
+[No world boss lockouts found.]
+
+Progress:
+
+== Mythic+ ==
+[No Mythic+ progress returned by the Forever APIs.]
+
+== PvP ==
+Honor Level: 1
+Honor Progress: 0/5500
+
+Achievements:
+Achievement Points: 0
+Achievements Completed: 2/111
+
+== Recent Achievements ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18
+
+== Category Summary ==
+Druid - Completed: 0/3
+Alchemy - Completed: 0/3
+Ranks - Completed: 0/5
+Explorer - Completed: 0/3
+Eastern Kingdoms - Completed: 0/23
+Hunter - Completed: 0/3
+Blacksmithing - Completed: 0/3
+Reputations - Completed: 0/4
+Kalimdor - Completed: 2/20
+Mage - Completed: 0/3
+Enchanting - Completed: 0/3
+Season Journey - Completed: 0/3
+Paladin - Completed: 0/3
+Engineering - Completed: 0/3
+Priest - Completed: 0/3
+Leatherworking - Completed: 0/3
+Dungeons - Completed: 0/3
+Rogue - Completed: 0/3
+Tailoring - Completed: 0/3
+Raids - Completed: 0/3
+Shaman - Completed: 0/3
+Warlock - Completed: 0/3
+Adventure - Completed: 0/2
+Warrior - Completed: 0/3
+
+== Tracked Achievements ==
+[No tracked achievements.]
+
+Achievement (completed):
+Completed Achievement List Count: 2
+
+== Kalimdor ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18
+
+Appearance (collected):
+Collected Appearance Source Count: 156
+
+== Head ==
+[Unknown Appearance] (Source ID: 77344, Item ID: 134110, Appearance ID: 29124)
+
+== Shoulder ==
+[Unknown Appearance] (Source ID: 77343, Item ID: 134112, Appearance ID: 24531)
+
+== Back ==
+[Unknown Appearance] (Source ID: 156274, Item ID: 1372, Appearance ID: 63443)
+[Unknown Appearance] (Source ID: 156276, Item ID: 1376, Appearance ID: 63453)
+[Unknown Appearance] (Source ID: 156303, Item ID: 1421, Appearance ID: 63478)
+[Unknown Appearance] (Source ID: 156308, Item ID: 1429, Appearance ID: 63424)
+[Unknown Appearance] (Source ID: 156664, Item ID: 2165, Appearance ID: 63443)
+[Unknown Appearance] (Source ID: 156934, Item ID: 2644, Appearance ID: 64003)
+[Unknown Appearance] (Source ID: 156941, Item ID: 2652, Appearance ID: 64004)
+[Unknown Appearance] (Source ID: 157028, Item ID: 2905, Appearance ID: 63596)
+[Unknown Appearance] (Source ID: 157145, Item ID: 3153, Appearance ID: 64174)
+[Unknown Appearance] (Source ID: 157351, Item ID: 3511, Appearance ID: 64343)
+[Unknown Appearance] (Source ID: 157831, Item ID: 4665, Appearance ID: 64258)
+[Unknown Appearance] (Source ID: 157859, Item ID: 4701, Appearance ID: 64774)
+[Unknown Appearance] (Source ID: 158159, Item ID: 5405, Appearance ID: 63983)
+[Unknown Appearance] (Source ID: 158203, Item ID: 5591, Appearance ID: 65000)
+[Unknown Appearance] (Source ID: 158225, Item ID: 5618, Appearance ID: 65018)
+[Unknown Appearance] (Source ID: 158351, Item ID: 6185, Appearance ID: 63521)
+[Unknown Appearance] (Source ID: 158522, Item ID: 6520, Appearance ID: 63867)
+[Unknown Appearance] (Source ID: 158543, Item ID: 6549, Appearance ID: 65259)
+[Unknown Appearance] (Source ID: 77345, Item ID: 134111, Appearance ID: 2352)
+[Unknown Appearance] (Source ID: 301114, Item ID: 257277, Appearance ID: 64157)
+[Unknown Appearance] (Source ID: 311845, Item ID: 281250, Appearance ID: 65253)
+
+== Chest ==
+[Unknown Appearance] (Source ID: 156268, Item ID: 1364, Appearance ID: 63446)
+[Unknown Appearance] (Source ID: 156279, Item ID: 1380, Appearance ID: 63456)
+[Unknown Appearance] (Source ID: 156306, Item ID: 1425, Appearance ID: 63481)
+[Unknown Appearance] (Source ID: 156311, Item ID: 1433, Appearance ID: 63485)
+[Unknown Appearance] (Source ID: 156365, Item ID: 1561, Appearance ID: 63539)
+[Unknown Appearance] (Source ID: 157182, Item ID: 3216, Appearance ID: 64208)
+[Unknown Appearance] (Source ID: 157949, Item ID: 4907, Appearance ID: 64844)
+[Unknown Appearance] (Source ID: 158248, Item ID: 5767, Appearance ID: 65035)
+[Unknown Appearance] (Source ID: 158306, Item ID: 6085, Appearance ID: 65075)
+[Unknown Appearance] (Source ID: 158315, Item ID: 6098, Appearance ID: 65083)
+[Unknown Appearance] (Source ID: 158323, Item ID: 6123, Appearance ID: 65090)
+[Unknown Appearance] (Source ID: 159422, Item ID: 9598, Appearance ID: 64815)
+[Unknown Appearance] (Source ID: 160224, Item ID: 11189, Appearance ID: 66515)
+[Unknown Appearance] (Source ID: 104602, Item ID: 168659, Appearance ID: 40282)
+[Unknown Appearance] (Source ID: 302726, Item ID: 263421, Appearance ID: 130370)
+[Unknown Appearance] (Source ID: 304856, Item ID: 270000, Appearance ID: 65147)
+Exterminator's Vest (Source ID: 302717, Item ID: 263408, Appearance ID: 130283)
+
+== Shirt ==
+[Unknown Appearance] (Source ID: 156054, Item ID: 53, Appearance ID: 63238)
+[Unknown Appearance] (Source ID: 156074, Item ID: 154, Appearance ID: 63257)
+[Unknown Appearance] (Source ID: 156906, Item ID: 2575, Appearance ID: 63978)
+[Unknown Appearance] (Source ID: 83202, Item ID: 142503, Appearance ID: 33155)
+Thendal Survivalist's Shirt (Source ID: 307623, Item ID: 271668, Appearance ID: 130048)
+
+== Tabard ==
+[Unknown Appearance] (Source ID: 83203, Item ID: 142504, Appearance ID: 33156)
+
+== Wrist ==
+[Unknown Appearance] (Source ID: 156093, Item ID: 710, Appearance ID: 63276)
+[Unknown Appearance] (Source ID: 156273, Item ID: 1370, Appearance ID: 63451)
+[Unknown Appearance] (Source ID: 156302, Item ID: 1420, Appearance ID: 63477)
+[Unknown Appearance] (Source ID: 156771, Item ID: 2326, Appearance ID: 63875)
+[Unknown Appearance] (Source ID: 157270, Item ID: 3365, Appearance ID: 64275)
+[Unknown Appearance] (Source ID: 157277, Item ID: 3375, Appearance ID: 64280)
+[Unknown Appearance] (Source ID: 158160, Item ID: 5419, Appearance ID: 63887)
+[Unknown Appearance] (Source ID: 158202, Item ID: 5590, Appearance ID: 64999)
+[Unknown Appearance] (Source ID: 160223, Item ID: 11187, Appearance ID: 66012)
+[Unknown Appearance] (Source ID: 104604, Item ID: 168665, Appearance ID: 40284)
+Vuldren Hide Bracers (Source ID: 301117, Item ID: 257280, Appearance ID: 63412)
+
+== Hands ==
+[Unknown Appearance] (Source ID: 156097, Item ID: 719, Appearance ID: 63280)
+[Unknown Appearance] (Source ID: 156266, Item ID: 1359, Appearance ID: 63444)
+[Unknown Appearance] (Source ID: 156271, Item ID: 1368, Appearance ID: 63449)
+[Unknown Appearance] (Source ID: 156277, Item ID: 1377, Appearance ID: 63454)
+[Unknown Appearance] (Source ID: 156304, Item ID: 1422, Appearance ID: 63479)
+[Unknown Appearance] (Source ID: 156309, Item ID: 1430, Appearance ID: 63483)
+[Unknown Appearance] (Source ID: 156328, Item ID: 1479, Appearance ID: 63502)
+[Unknown Appearance] (Source ID: 156539, Item ID: 1965, Appearance ID: 63672)
+[Unknown Appearance] (Source ID: 157144, Item ID: 3152, Appearance ID: 64173)
+[Unknown Appearance] (Source ID: 158154, Item ID: 5394, Appearance ID: 63479)
+[Unknown Appearance] (Source ID: 158214, Item ID: 5606, Appearance ID: 65009)
+[Unknown Appearance] (Source ID: 158343, Item ID: 6171, Appearance ID: 63449)
+[Unknown Appearance] (Source ID: 160071, Item ID: 10550, Appearance ID: 66413)
+[Unknown Appearance] (Source ID: 160225, Item ID: 11190, Appearance ID: 64110)
+[Unknown Appearance] (Source ID: 94331, Item ID: 158329, Appearance ID: 37207)
+[Unknown Appearance] (Source ID: 301101, Item ID: 257264, Appearance ID: 130331)
+
+== Waist ==
+[Unknown Appearance] (Source ID: 156196, Item ID: 983, Appearance ID: 63377)
+[Unknown Appearance] (Source ID: 156300, Item ID: 1418, Appearance ID: 63475)
+[Unknown Appearance] (Source ID: 157268, Item ID: 3363, Appearance ID: 64273)
+[Unknown Appearance] (Source ID: 157274, Item ID: 3370, Appearance ID: 64277)
+[Unknown Appearance] (Source ID: 157276, Item ID: 3374, Appearance ID: 64279)
+[Unknown Appearance] (Source ID: 158168, Item ID: 5458, Appearance ID: 64986)
+[Unknown Appearance] (Source ID: 158296, Item ID: 6058, Appearance ID: 65069)
+[Unknown Appearance] (Source ID: 84223, Item ID: 143539, Appearance ID: 33252)
+[Unknown Appearance] (Source ID: 301100, Item ID: 257263, Appearance ID: 130359)
+
+== Legs ==
+[Unknown Appearance] (Source ID: 156053, Item ID: 52, Appearance ID: 63237)
+[Unknown Appearance] (Source ID: 156060, Item ID: 61, Appearance ID: 63243)
+[Unknown Appearance] (Source ID: 156061, Item ID: 79, Appearance ID: 63244)
+[Unknown Appearance] (Source ID: 156073, Item ID: 153, Appearance ID: 63256)
+[Unknown Appearance] (Source ID: 156269, Item ID: 1366, Appearance ID: 63447)
+[Unknown Appearance] (Source ID: 156278, Item ID: 1378, Appearance ID: 63455)
+[Unknown Appearance] (Source ID: 156305, Item ID: 1423, Appearance ID: 63480)
+[Unknown Appearance] (Source ID: 156310, Item ID: 1431, Appearance ID: 63484)
+[Unknown Appearance] (Source ID: 156349, Item ID: 1507, Appearance ID: 63523)
+[Unknown Appearance] (Source ID: 156723, Item ID: 2238, Appearance ID: 63836)
+[Unknown Appearance] (Source ID: 157381, Item ID: 3578, Appearance ID: 64370)
+[Unknown Appearance] (Source ID: 158156, Item ID: 5398, Appearance ID: 64978)
+[Unknown Appearance] (Source ID: 158324, Item ID: 6124, Appearance ID: 65091)
+[Unknown Appearance] (Source ID: 159424, Item ID: 9600, Appearance ID: 65955)
+[Unknown Appearance] (Source ID: 160116, Item ID: 10655, Appearance ID: 66445)
+[Unknown Appearance] (Source ID: 160479, Item ID: 12295, Appearance ID: 63750)
+[Unknown Appearance] (Source ID: 198608, Item ID: 216696, Appearance ID: 42568)
+[Unknown Appearance] (Source ID: 302727, Item ID: 263422, Appearance ID: 130279)
+Gardening Pants (Source ID: 302718, Item ID: 263409, Appearance ID: 130285)
+Simple Britches (Source ID: 159494, Item ID: 9747, Appearance ID: 64443)
+
+== Feet ==
+[Unknown Appearance] (Source ID: 156216, Item ID: 1173, Appearance ID: 63396)
+[Unknown Appearance] (Source ID: 156275, Item ID: 1374, Appearance ID: 63452)
+[Unknown Appearance] (Source ID: 156301, Item ID: 1419, Appearance ID: 63476)
+[Unknown Appearance] (Source ID: 156904, Item ID: 2571, Appearance ID: 63976)
+[Unknown Appearance] (Source ID: 157218, Item ID: 3289, Appearance ID: 64239)
+[Unknown Appearance] (Source ID: 158344, Item ID: 6173, Appearance ID: 65108)
+[Unknown Appearance] (Source ID: 159425, Item ID: 9601, Appearance ID: 65956)
+[Unknown Appearance] (Source ID: 160226, Item ID: 11191, Appearance ID: 63975)
+[Unknown Appearance] (Source ID: 104603, Item ID: 168664, Appearance ID: 40283)
+[Unknown Appearance] (Source ID: 301118, Item ID: 257281, Appearance ID: 130345)
+[Unknown Appearance] (Source ID: 311907, Item ID: 281322, Appearance ID: 67507)
+Ragged Leather Boots (Source ID: 156270, Item ID: 1367, Appearance ID: 63448)
+
+== One-Handed Maces ==
+[Unknown Appearance] (Source ID: 156041, Item ID: 36, Appearance ID: 63225)
+[Unknown Appearance] (Source ID: 156105, Item ID: 766, Appearance ID: 63288)
+[Unknown Appearance] (Source ID: 156110, Item ID: 781, Appearance ID: 63293)
+[Unknown Appearance] (Source ID: 156207, Item ID: 1158, Appearance ID: 63387)
+[Unknown Appearance] (Source ID: 156351, Item ID: 1510, Appearance ID: 63525)
+[Unknown Appearance] (Source ID: 156588, Item ID: 2048, Appearance ID: 63716)
+[Unknown Appearance] (Source ID: 156735, Item ID: 2259, Appearance ID: 63846)
+[Unknown Appearance] (Source ID: 156999, Item ID: 2844, Appearance ID: 63366)
+[Unknown Appearance] (Source ID: 157807, Item ID: 4563, Appearance ID: 64039)
+[Unknown Appearance] (Source ID: 158200, Item ID: 5587, Appearance ID: 64997)
+[Unknown Appearance] (Source ID: 160067, Item ID: 10544, Appearance ID: 66410)
+[Unknown Appearance] (Source ID: 301113, Item ID: 257276, Appearance ID: 67554)
+
+== Daggers ==
+[Unknown Appearance] (Source ID: 156616, Item ID: 2092, Appearance ID: 63739)
+[Unknown Appearance] (Source ID: 156642, Item ID: 2138, Appearance ID: 63763)
+[Unknown Appearance] (Source ID: 156684, Item ID: 2195, Appearance ID: 63800)
+[Unknown Appearance] (Source ID: 156712, Item ID: 2225, Appearance ID: 63825)
+[Unknown Appearance] (Source ID: 156966, Item ID: 2763, Appearance ID: 63762)
+[Unknown Appearance] (Source ID: 157942, Item ID: 4840, Appearance ID: 64840)
+[Unknown Appearance] (Source ID: 158152, Item ID: 5392, Appearance ID: 63800)
+[Unknown Appearance] (Source ID: 158213, Item ID: 5605, Appearance ID: 64437)
+[Unknown Appearance] (Source ID: 160069, Item ID: 10547, Appearance ID: 63310)
+[Unknown Appearance] (Source ID: 301120, Item ID: 257283, Appearance ID: 64948)
+[Unknown Appearance] (Source ID: 313086, Item ID: 282284, Appearance ID: 63812)
+Sharpened Cirrusfly Stinger (Source ID: 298431, Item ID: 251932, Appearance ID: 64179)
+
+== Held In Off-hand ==
+[Unknown Appearance] (Source ID: 162653, Item ID: 15932, Appearance ID: 64611)
+
+== Two-Handed Maces ==
+[Unknown Appearance] (Source ID: 156221, Item ID: 1195, Appearance ID: 63401)
+[Unknown Appearance] (Source ID: 156296, Item ID: 1414, Appearance ID: 63472)
+[Unknown Appearance] (Source ID: 156355, Item ID: 1514, Appearance ID: 63529)
+[Unknown Appearance] (Source ID: 157157, Item ID: 3190, Appearance ID: 63403)
+[Unknown Appearance] (Source ID: 157808, Item ID: 4564, Appearance ID: 64737)
+[Unknown Appearance] (Source ID: 158206, Item ID: 5595, Appearance ID: 65002)
+[Unknown Appearance] (Source ID: 158246, Item ID: 5761, Appearance ID: 64877)
+
+== Staves ==
+[Unknown Appearance] (Source ID: 156199, Item ID: 1010, Appearance ID: 63380)
+[Unknown Appearance] (Source ID: 156293, Item ID: 1411, Appearance ID: 63469)
+[Unknown Appearance] (Source ID: 156356, Item ID: 1515, Appearance ID: 63530)
+[Unknown Appearance] (Source ID: 156733, Item ID: 2257, Appearance ID: 63845)
+[Unknown Appearance] (Source ID: 158153, Item ID: 5393, Appearance ID: 64976)
+[Unknown Appearance] (Source ID: 158198, Item ID: 5581, Appearance ID: 64996)
+[Unknown Appearance] (Source ID: 158370, Item ID: 6215, Appearance ID: 63648)
+[Unknown Appearance] (Source ID: 159426, Item ID: 9603, Appearance ID: 65957)
+[Unknown Appearance] (Source ID: 301119, Item ID: 257282, Appearance ID: 63388)
+Handcrafted Staff (Source ID: 157420, Item ID: 3661, Appearance ID: 64408)
+
+Appearances:
+== Category Summary ==
+Head - Collected: 1/237
+Shoulder - Collected: 1/228
+Back - Collected: 20/160
+Chest - Collected: 17/434
+Shirt - Collected: 5/35
+Tabard - Collected: 1/25
+Wrist - Collected: 11/257
+Hands - Collected: 14/362
+Waist - Collected: 9/321
+Legs - Collected: 20/312
+Feet - Collected: 12/364
+Wand - Collected: 0/47
+One-Handed Axes - Collected: 0/55
+One-Handed Swords - Collected: 0/84
+One-Handed Maces - Collected: 12/87
+Daggers - Collected: 11/86
+Fist Weapons - Collected: 0/16
+Shields - Collected: 0/115
+Held In Off-hand - Collected: 1/115
+Two-Handed Axes - Collected: 0/48
+Two-Handed Swords - Collected: 0/56
+Two-Handed Maces - Collected: 7/58
+Staves - Collected: 10/86
+Polearms - Collected: 0/23
+Bows - Collected: 0/40
+Guns - Collected: 0/36
+Crossbows - Collected: 0/7
+
+== Transmog Sets ==
+Collected Sets: 0/6
+
+== Latest Appearances ==
+[No latest appearances returned by the Forever APIs.]
+
+== Favorites ==
+[No favorite appearances returned by the Forever APIs.]
+
+== Outfits ==
+Outfit Count: 0
+
+Reputations:
+Darnassus (Neutral) - Value: 500 (0-3000) - Progress: 500/3000
+Gnomeregan Exiles (Neutral) - Value: 2000 (0-3000) - Progress: 2000/3000
+High Order (Friendly) - Value: 3385 (3000-9000) - Progress: 385/6000
+Ironforge (Neutral) - Value: 2000 (0-3000) - Progress: 2000/3000
+Kirin Tor (Friendly) - Value: 3000 (3000-9000) - Progress: 0/6000
+Nightclaw Druids (Neutral) - Value: 0 (0-3000) - Progress: 0/3000
+Stormwind (Friendly) - Value: 3100 (3000-9000) - Progress: 100/6000
+
+Quests:
+== Zephras Isle ==
+Agitators (Level 3) [In Progress] (ID: 92465)
+  - [ ] 0/7 Al'Aketh Convert slain
+  - [ ] 0/6 Roiling Winds destroyed
+The Cirrusfly Queen (Level 3) [Ready to turn in] (ID: 92463)
+  - [x] 1/1 Cirrusfly Queen slain
+Harvesting Windstones (Level 4) [In Progress] (ID: 93552)
+  - [ ] 0/15 Windstone Cluster
+Reading the Ley Lines (Level 4) [Ready to turn in] (ID: 92597)
+  - [x] Use your Read Ley Line ability near the Thendal Grove Ley Line
+
+Quest (completed):
+Completed Quest Count: 7
+Resolved Quest Titles: 7
+Unresolved Quest Titles: 0
+Tracking Quest Count: 0
+
+== Resolved Quests ==
+A Student of Nature (ID: 92485)
+Coming of Age (ID: 92460)
+Elemental Unrest (ID: 92464)
+Falling With Style (ID: 92474)
+Harmony in Balance (ID: 92461)
+Infestation Investigation (ID: 92462)
+The Anchors of Zephras (ID: 94414)
+
+Skills:
+== Weapon Skills ==
+Daggers 1/10
+Feral Combat 1/10
+Maces 1/10
+Staves 6/10
+Two-Handed Maces 1/10
+Unarmed 1/10
+
+Profession Details:
+[Profession details unavailable - open each profession window at least once to build cache.]
+
+Talents:
+Active Specialization: Druid
+Loadout Name: Druid
+Active Config ID: 565846
+
+Talent Import String:
+CwcBge1wt+o5uAlexGcm6qyB1DAAAAAAAA
+
+== Talent Tree (Druid / Druid) ==
+[No selected talent nodes returned by the Forever talent APIs.]
+
+Spellbook:
+== General ==
+Armor Proficiency (Passive, ID: 1293712, Known)
+Attack (ID: 6603, Known, Usable)
+Dodge (Passive, ID: 81, Known)
+Elemental Insight (Passive, ID: 1259707, Known)
+Languages (Passive, ID: 1293657, Known)
+Read Ley Line (ID: 1259705, Known, Usable)
+Walk on Air (ID: 1259416, Known, Usable)
+Wind Blessed (Passive, ID: 1259710, Known)
+
+== Class ==
+Healing Touch (ID: 5185, Known, Usable)
+Mark of the Wild (ID: 1126, Known, Usable)
+
+== Spec ==
+Wrath (ID: 5176, Known, Usable)
+
+AddOns:
+AddOns Count: 38
+
+AllTheThings - Enabled: yes - Loadable: yes - Loaded: yes - Version: 5.3.13-141-g8c98ec1
+AllTheThings Collection History - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.3.4
+Arcane Wizard: Library - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.36
+Auctionator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 339
+Azeroth Public Library: Forever (Beta) - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.4.1-forever-beta
+Baganator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 829
+BugGrabber - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.0
+BugSack - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.2
+Can I Mog It? - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1-3
+CharacterExport Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.0-forever-beta
+Chattynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 224
+DarkMode  by D4KiR  - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.8.11
+Dialogue UI - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.5
+Farmer - Enabled: yes - Loadable: yes - Loaded: yes - Version: 3.27.22
+Gathering - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.75
+KillDex - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.1
+Memento - Enabled: yes - Loadable: yes - Loaded: yes - Version: v2.30
+MiniDruidMana - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.4.8
+MinimapButtonButton - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.24.11
+MobInfo2 Retail Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.1.6
+Nova Instance Tracker - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.28
+Parcel - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.0
+Platynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 490
+Plumber - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.9.6
+RareScanner - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1.b4
+Syndicator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 283
+TomTom - Enabled: yes - Loadable: yes - Loaded: yes - Version: v4.3.11-release
+WTFix preparation data - Enabled: yes - Loadable: yes - Loaded: yes
+XLoot - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Frame - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Group - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Master - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Monitor - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Options - Enabled: yes - Loadable: no - Loaded: yes - Reason: DEMAND_LOADED - Version: 12.18.1
+XLoot Toast - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+Profession Master Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.11
+Trade Board Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.11
+Talents Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.33.0

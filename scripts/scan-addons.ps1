@@ -481,7 +481,7 @@ function Apply-Snapshot($record, $snap, $character) {
       $profs += [ordered]@{ name = $p.name; current = $current; max = $p.max }
       $seen[$p.name] = $true
     }
-    foreach ($name in $snap.skillLevels.Keys) {
+    foreach ($name in ($snap.skillLevels.Keys | Sort-Object)) {
       if (-not $seen.ContainsKey($name)) { $profs += [ordered]@{ name = $name; current = $snap.skillLevels[$name]; max = $null } }
     }
     $rec["professions"] = $profs

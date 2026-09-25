@@ -1,0 +1,60 @@
+{
+    "character":  "Ullrathor",
+    "exportedAt":  "2026-09-25T17:43:30",
+    "addon":  "CharacterExport Forever",
+    "realm":  "Classic Beta PvE 2",
+    "level":  2,
+    "zone":  "Zephras Isle",
+    "subzone":  "Thendal Standing Stones",
+    "goldCopper":  88,
+    "health":  "61 max",
+    "powerType":  null,
+    "stats":  {
+                  "Strength":  "21",
+                  "Agility":  "21",
+                  "Stamina":  "20",
+                  "Intellect":  "26",
+                  "Armor":  "107",
+                  "Attack Power":  "22",
+                  "Melee Crit":  "5.04%",
+                  "Spell Crit":  "5.04%"
+              },
+    "professions":  [
+
+                    ],
+    "gear":  [
+                 {
+                     "slot":  "Shirt",
+                     "name":  "Thendal Survivalist\u0027s Shirt",
+                     "itemLevel":  1,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Wrist",
+                     "name":  "Vuldren Hide Bracers",
+                     "itemLevel":  5,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Legs",
+                     "name":  "Thendal Survivalist\u0027s Pants",
+                     "itemLevel":  1,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Feet",
+                     "name":  "Ragged Leather Boots",
+                     "itemLevel":  3,
+                     "quality":  "Poor"
+                 },
+                 {
+                     "slot":  "Main Hand",
+                     "name":  "Handcrafted Staff",
+                     "itemLevel":  2,
+                     "quality":  "Common"
+                 }
+             ],
+    "owned":  [
+
+              ]
+}

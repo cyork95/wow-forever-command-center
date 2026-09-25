@@ -118,5 +118,20 @@
     "talentNote": "No talent nodes selected. Import string from the Sep 23 export: CEdBzT2eoXLGqEykspPS/k8VfDAAAAAAAA.",
     "talentUrl": null,
     "pairsWith": null
+  },
+  {
+    "id": "ullrathor",
+    "name": "Ullrathor",
+    "race": "Skyborne",
+    "className": "Druid",
+    "spec": "Beta throwaway",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": true,
+    "blurb": "Beta throwaway on Classic Beta PvE 2. Level 2 at the Thendal Standing Stones on Zephras Isle as of the Sep 25 export. Not a launch name.",
+    "talentNote": "No talent nodes selected. Import string from the Sep 25 export: CwcBge1wt+o5uAlexGcm6qyB1DAAAAAAAA.",
+    "talentUrl": null,
+    "pairsWith": null
   }
 ]
