@@ -226,9 +226,8 @@ function Parse-TextExport($text, $when) {
   }
   $name = if ($known) { $known.name } else { ($rawName -split '-')[0].Trim() }
   $realm = $null
-  if ($rawName.Length -gt $name.Length -and $rawName.Substring($name.Length, 1) -eq '-') {
-    $realm = $rawName.Substring($name.Length + 1).Trim()
-  }
+  $dash = $rawName.IndexOf('-')
+  if ($dash -ge 0) { $realm = $rawName.Substring($dash + 1).Trim() }
 
   $level = $null
   if ($text -match '(?m)^Level:\s*(\d+)') { $level = [int]$Matches[1] }

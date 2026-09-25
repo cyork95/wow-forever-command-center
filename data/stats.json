@@ -339,7 +339,7 @@
                                          "character":  "Trendirun Stormflight",
                                          "exportedAt":  "2026-09-25T17:46:23",
                                          "addon":  "CharacterExport Forever",
-                                         "realm":  null,
+                                         "realm":  "Classic Beta PvE 2",
                                          "level":  17,
                                          "zone":  "Westfall",
                                          "subzone":  "Sentinel Hill",
@@ -443,6 +443,56 @@
 
                                                    ],
                                          "playedSeconds":  72745,
+                                         "statistics":  {
+                                                            "Character":  [
+                                                                              {
+                                                                                  "name":  "Deaths",
+                                                                                  "value":  "1"
+                                                                              },
+                                                                              {
+                                                                                  "name":  "Quests completed",
+                                                                                  "value":  "166"
+                                                                              },
+                                                                              {
+                                                                                  "name":  "Areas explored",
+                                                                                  "value":  "2"
+                                                                              },
+                                                                              {
+                                                                                  "name":  "Instance lockouts",
+                                                                                  "value":  "0"
+                                                                              }
+                                                                          ],
+                                                            "Kills":  [
+                                                                          {
+                                                                              "name":  "Total kills",
+                                                                              "value":  "9"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Creature types",
+                                                                              "value":  "7"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Rusty Harvest Golem",
+                                                                              "value":  "3"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Coyote",
+                                                                              "value":  "1"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Fleshripper",
+                                                                              "value":  "1"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Defias Smuggler",
+                                                                              "value":  "1"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Harvest Golem",
+                                                                              "value":  "1"
+                                                                          }
+                                                                      ]
+                                                        },
                                          "recipes":  {
                                                          "Alchemy":  [
                                                                          "Elixir of Minor Defense",
@@ -504,56 +554,6 @@
                                                              "Titles":  0,
                                                              "Achievements":  4
                                                          },
-                                         "statistics":  {
-                                                            "Character":  [
-                                                                              {
-                                                                                  "name":  "Deaths",
-                                                                                  "value":  "1"
-                                                                              },
-                                                                              {
-                                                                                  "name":  "Quests completed",
-                                                                                  "value":  "166"
-                                                                              },
-                                                                              {
-                                                                                  "name":  "Areas explored",
-                                                                                  "value":  "2"
-                                                                              },
-                                                                              {
-                                                                                  "name":  "Instance lockouts",
-                                                                                  "value":  "0"
-                                                                              }
-                                                                          ],
-                                                            "Kills":  [
-                                                                          {
-                                                                              "name":  "Total kills",
-                                                                              "value":  "9"
-                                                                          },
-                                                                          {
-                                                                              "name":  "Creature types",
-                                                                              "value":  "7"
-                                                                          },
-                                                                          {
-                                                                              "name":  "Rusty Harvest Golem",
-                                                                              "value":  "3"
-                                                                          },
-                                                                          {
-                                                                              "name":  "Coyote",
-                                                                              "value":  "1"
-                                                                          },
-                                                                          {
-                                                                              "name":  "Fleshripper",
-                                                                              "value":  "1"
-                                                                          },
-                                                                          {
-                                                                              "name":  "Defias Smuggler",
-                                                                              "value":  "1"
-                                                                          },
-                                                                          {
-                                                                              "name":  "Harvest Golem",
-                                                                              "value":  "1"
-                                                                          }
-                                                                      ]
-                                                        },
                                          "huntKills":  {
 
                                                        },
