@@ -85,6 +85,7 @@ function Read-DungeonJournal($addonsPath) {
         rewardItems = @(Get-JournalItems $quest["rewardItems"] $false)
         rewards = Get-JournalText $quest["rewardSummary"]
         note = Get-JournalText $quest["note"]
+        noteItems = @(Get-JournalItems $quest["noteRewardItems"] $false)
         startItem = $(if ($starter) { [pscustomobject][ordered]@{ name = Get-JournalText $starter[1]; from = Get-JournalText $starter[3] } } else { $null })
       }
     }

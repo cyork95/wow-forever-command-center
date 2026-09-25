@@ -1,6 +1,6 @@
 {
     "source":  "Forever Dungeon Journal",
-    "version":  "1.0.12",
+    "version":  "1.1",
     "dungeons":  [
                      {
                          "name":  "Hall of Thanes",
@@ -148,6 +148,9 @@
                                                             ],
                                             "rewards":  "3,570 XP",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -174,6 +177,9 @@
                                                             ],
                                             "rewards":  "4,590 XP • 7s • Gadgetzan +100",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -200,13 +206,16 @@
                                                             ],
                                             "rewards":  "3,570 XP • 7s • Ironforge +100",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
                                             "name":  "Old Ironforge Incursion",
                                             "level":  16,
                                             "requires":  9,
-                                            "faction":  "Both",
+                                            "faction":  "Alliance",
                                             "classOnly":  null,
                                             "pickup":  "Earthseer Farsen, Dun Morogh (after Underground Map)",
                                             "objective":  "Enter Hall of Thanes and claim Durgen Dirgehammer\u0027s Head.",
@@ -231,6 +240,9 @@
                                                             ],
                                             "rewards":  "4,930 XP • 8s • Ironforge +100 • Gnomeregan Exiles +100",
                                             "note":  "The chain begins by dropping Dark Iron Map from Dark Iron Spies in Dun Morogh.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Dark Iron Map",
                                                               "from":  "Dropped by: Dark Iron Spies in Dun Morogh"
@@ -251,6 +263,9 @@
                                                             ],
                                             "rewards":  "3,900 XP • 16s • Ironforge +100 • Gnomeregan Exiles +100",
                                             "note":  "The tablet is inside one of the vaults in the Reliquary of Kings, in Durgen Dirgehammer\u0027s final boss room. Open the vaults and interact with the tablet before leaving the dungeon.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         }
                                     ]
@@ -386,6 +401,9 @@
                                                             ],
                                             "rewards":  "3,202 XP • 7s • Thunder Bluff +100",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -403,6 +421,9 @@
                                                             ],
                                             "rewards":  "880 XP",
                                             "note":  "Step 1 of 2. Completing this at Maur\u0027s corpse starts Returning the Lost Satchel.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -434,6 +455,9 @@
                                                             ],
                                             "rewards":  "4,422 XP • Thunder Bluff +150",
                                             "note":  "Step 2 of 2. Starts from the Grimtotem Satchel inside the dungeon.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -450,7 +474,29 @@
 
                                                             ],
                                             "rewards":  "3,507 XP • 8s • Orgrimmar +100",
-                                            "note":  "Requires the earlier Hidden Enemies chain steps in Orgrimmar. The next Hidden Enemies step later offers Kris of Orgrimmar, Hammer of Orgrimmar, Axe of Orgrimmar or Staff of Orgrimmar; those are not rewards from this dungeon kill step.",
+                                            "note":  "Requires the earlier Hidden Enemies chain steps in Orgrimmar. The next Hidden Enemies step later offers:",
+                                            "noteItems":  [
+                                                              {
+                                                                  "id":  15443,
+                                                                  "name":  "Kris of Orgrimmar",
+                                                                  "quality":  "Rare"
+                                                              },
+                                                              {
+                                                                  "id":  15445,
+                                                                  "name":  "Hammer of Orgrimmar",
+                                                                  "quality":  "Rare"
+                                                              },
+                                                              {
+                                                                  "id":  15424,
+                                                                  "name":  "Axe of Orgrimmar",
+                                                                  "quality":  "Rare"
+                                                              },
+                                                              {
+                                                                  "id":  15444,
+                                                                  "name":  "Staff of Orgrimmar",
+                                                                  "quality":  "Rare"
+                                                              }
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -468,6 +514,9 @@
                                                             ],
                                             "rewards":  "3,507 XP • 8s",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -499,6 +548,9 @@
                                                             ],
                                             "rewards":  "4,422 XP • Undercity +150",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         }
                                     ]
@@ -723,6 +775,9 @@
                                                             ],
                                             "rewards":  "6,188 XP",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -740,6 +795,9 @@
                                                             ],
                                             "rewards":  "5,280 XP • Step 1 of 5",
                                             "note":  "Step 1 of a 5-part chain. The final chain step lets you choose Monstrous Cleaver, Grave Shroud or Slain Baron\u0027s Signet.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Abominable Head",
                                                               "from":  "Dropped by: The Baron"
@@ -769,6 +827,9 @@
                                                             ],
                                             "rewards":  "7,040 XP • Undercity +150",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -795,6 +856,9 @@
                                                             ],
                                             "rewards":  "9,750 XP • 45s",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Bloodied Insignia",
                                                               "from":  "Dropped by: undead enemies inside Ruins of Lordaeron"
@@ -819,6 +883,9 @@
                                                             ],
                                             "rewards":  "9,750 XP",
                                             "note":  "Community reports indicate the Crest can spawn at one of several locations inside the dungeon. Reported spots include upper floors of towers, side/crypt rooms near The Baron, and the area around Bjork.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Crest of Lordaeron",
                                                               "from":  "Reported random spawn inside Ruins of Lordaeron; check towers, side rooms and the Bjork area"
@@ -843,6 +910,9 @@
                                                             ],
                                             "rewards":  "8,320 XP",
                                             "note":  "Community reports indicate the Crest can spawn at one of several locations inside the dungeon. Reported spots include upper floors of towers, side/crypt rooms near The Baron, and the area around Bjork.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Crest of Lordaeron",
                                                               "from":  "Reported random spawn inside Ruins of Lordaeron; check towers, side rooms and the Bjork area"
@@ -872,6 +942,9 @@
                                                             ],
                                             "rewards":  "7,040 XP • 45s • Undercity +150",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -893,6 +966,9 @@
                                                             ],
                                             "rewards":  "9,750 XP",
                                             "note":  "Item-start quest from the Blood-Stained Letter.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Blood-Stained Letter",
                                                               "from":  "Found in the graveyard inside Ruins of Lordaeron"
@@ -922,6 +998,9 @@
                                                             ],
                                             "rewards":  "8,320 XP",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -948,6 +1027,9 @@
                                                             ],
                                             "rewards":  "Undercity +150",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         }
                                     ]
@@ -1255,6 +1337,9 @@
                                                             ],
                                             "rewards":  "Stormwind +100",
                                             "note":  "Requires the Defias Brotherhood escort step.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1286,6 +1371,9 @@
                                                             ],
                                             "rewards":  "Ironforge +100",
                                             "note":  "The undead side tunnel is before the instance portal.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1303,6 +1391,9 @@
                                                             ],
                                             "rewards":  "Stormwind +50",
                                             "note":  "New Forever quest. The source of the quest-start item is not yet confirmed.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1334,6 +1425,9 @@
                                                             ],
                                             "rewards":  "Ironforge +100",
                                             "note":  "The foreman is in the tunnels before the instance portal.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1370,6 +1464,9 @@
                                                             ],
                                             "rewards":  "Stormwind +100 • Gnomeregan Exiles +100",
                                             "note":  "Follows Speak with Shoni.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1401,6 +1498,9 @@
                                                             ],
                                             "rewards":  "Stormwind +200",
                                             "note":  "Final dungeon step of the Defias Brotherhood chain; complete the earlier steps first.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1418,7 +1518,13 @@
                                                             ],
                                             "rewards":  "7s • Stormwind +50",
                                             "note":  "Starts a follow-up chain that continues with Bazil Thredd.",
-                                            "startItem":  null
+                                            "noteItems":  [
+
+                                                          ],
+                                            "startItem":  {
+                                                              "name":  "An Unsent Letter",
+                                                              "from":  "Looted from Edwin VanCleef"
+                                                          }
                                         }
                                     ]
                      },
@@ -1704,11 +1810,14 @@
                                                                 {
                                                                     "id":  918,
                                                                     "name":  "Deviate Hide Pack",
-                                                                    "quality":  "Uncommon"
+                                                                    "quality":  "Common"
                                                                 }
                                                             ],
                                             "rewards":  "4,640 XP • 18s",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1726,6 +1835,9 @@
                                                             ],
                                             "rewards":  "3,915 XP • 10s",
                                             "note":  "Follows Raptor Horns.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1743,6 +1855,9 @@
                                                             ],
                                             "rewards":  "3,915 XP • 10s",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1774,6 +1889,9 @@
                                                             ],
                                             "rewards":  "5,945 XP • 25s",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1790,7 +1908,19 @@
 
                                                             ],
                                             "rewards":  "7,685 XP",
-                                            "note":  "The direct quest has no item reward. Its follow-up, In Nightmares, later offers Talbar Mantle or Quagmire Galoshes.",
+                                            "note":  "The direct quest has no item reward. Its follow-up, In Nightmares, later offers:",
+                                            "noteItems":  [
+                                                              {
+                                                                  "id":  10657,
+                                                                  "name":  "Talbar Mantle",
+                                                                  "quality":  "Rare"
+                                                              },
+                                                              {
+                                                                  "id":  10658,
+                                                                  "name":  "Quagmire Galoshes",
+                                                                  "quality":  "Rare"
+                                                              }
+                                                          ],
                                             "startItem":  {
                                                               "name":  "Glowing Shard",
                                                               "from":  "Dropped by: Mutanus the Devourer"
@@ -1799,7 +1929,7 @@
                                         {
                                             "name":  "Leaders of the Fang",
                                             "level":  22,
-                                            "requires":  11,
+                                            "requires":  10,
                                             "faction":  "Horde",
                                             "classOnly":  null,
                                             "pickup":  "Nara Wildmane, Thunder Bluff",
@@ -1824,7 +1954,10 @@
                                                                 }
                                                             ],
                                             "rewards":  "6,380 XP • Thunder Bluff +150",
-                                            "note":  null,
+                                            "note":  "Requires the Barrens oasis quest chain. Complete The Barrens Oases, The Forgotten Pools, The Stagnant Oasis and Altered Beings, then Hamuul Runetotem and Nara Wildmane before Leaders of the Fang becomes available.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -1856,6 +1989,9 @@
                                                             ],
                                             "rewards":  "4,930 XP • 10s",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         }
                                     ]
@@ -2165,6 +2301,9 @@
                                                             ],
                                             "rewards":  "8,700 XP • 18s • Undercity +100",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2191,6 +2330,9 @@
                                                             ],
                                             "rewards":  "2,550 XP",
                                             "note":  "Warlock class quest. The fragments come from Shadowfang Keep and Blackfathom Deeps.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2222,6 +2364,9 @@
                                                             ],
                                             "rewards":  "9,135 XP • Undercity +100",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2243,6 +2388,9 @@
                                                             ],
                                             "rewards":  "14,355 XP • Undercity +200",
                                             "note":  "The current Forever quest data also lists Arcane Intellect as a learned reward.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         }
                                     ]
@@ -2472,6 +2620,9 @@
                                                             ],
                                             "rewards":  "Ironforge +50",
                                             "note":  "Forever beta observations show substantially increased XP compared with Classic.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2503,6 +2654,9 @@
                                                             ],
                                             "rewards":  "35s • Darnassus +150",
                                             "note":  "Follows The Corruption Abroad.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2520,6 +2674,9 @@
                                                             ],
                                             "rewards":  "Argent Dawn +150 • Darnassus +150",
                                             "note":  "Leads to Blackfathom Villainy. The quest is technically shareable cross-faction in Classic, but its pickup is deep inside Darnassus.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2551,6 +2708,9 @@
                                                             ],
                                             "rewards":  "Argent Dawn +150 • Darnassus +150",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2587,6 +2747,9 @@
                                                             ],
                                             "rewards":  "65s • Argent Dawn +200 • Darnassus +200",
                                             "note":  "Follows In Search of Thaelrid.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2604,6 +2767,9 @@
                                                             ],
                                             "rewards":  "11s • Darkspear Trolls +75",
                                             "note":  "Step 1 of the Allegiance to the Old Gods chain.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2621,6 +2787,9 @@
                                                             ],
                                             "rewards":  "Darkspear Trolls +25 • Earthen Ring +100",
                                             "note":  "Introductory step leading to The Essence of Aku\u0027Mai.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2638,6 +2807,9 @@
                                                             ],
                                             "rewards":  "14s • Darkspear Trolls +100 • Earthen Ring +150",
                                             "note":  "Follows Trouble in the Deeps.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2664,6 +2836,9 @@
                                                             ],
                                             "rewards":  "40s • Darkspear Trolls +150 • Earthen Ring +150",
                                             "note":  "Follows the Damp Note version of Allegiance to the Old Gods.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2700,6 +2875,9 @@
                                                             ],
                                             "rewards":  "65s • Argent Dawn +200 • Thunder Bluff +200",
                                             "note":  null,
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         },
                                         {
@@ -2717,6 +2895,9 @@
                                                             ],
                                             "rewards":  "45s",
                                             "note":  "The Fathom Stone is also associated with the optional Baron Aquanis encounter.",
+                                            "noteItems":  [
+
+                                                          ],
                                             "startItem":  null
                                         }
                                     ]
