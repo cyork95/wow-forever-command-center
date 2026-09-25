@@ -1,0 +1,108 @@
+{
+    "character":  "Trendirun Stormflight",
+    "exportedAt":  "2026-09-25T17:46:23",
+    "addon":  "CharacterExport Forever",
+    "realm":  null,
+    "level":  17,
+    "zone":  "Westfall",
+    "subzone":  "Sentinel Hill",
+    "goldCopper":  20615,
+    "health":  "219 max",
+    "powerType":  null,
+    "stats":  {
+                  "Strength":  "8",
+                  "Agility":  "9",
+                  "Stamina":  "13",
+                  "Intellect":  "13",
+                  "Armor":  "51",
+                  "Attack Power":  "0",
+                  "Melee Crit":  "1.73%",
+                  "Spell Crit":  "1.73%"
+              },
+    "professions":  [
+                        {
+                            "name":  "Alchemy",
+                            "current":  20,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Herbalism",
+                            "current":  44,
+                            "max":  75
+                        },
+                        {
+                            "name":  "First Aid",
+                            "current":  57,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Fishing",
+                            "current":  20,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Cooking",
+                            "current":  58,
+                            "max":  75
+                        }
+                    ],
+    "gear":  [
+                 {
+                     "slot":  "Back",
+                     "name":  "Cloak of the People\u0027s Militia",
+                     "itemLevel":  15,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Chest",
+                     "name":  "Apprentice Wizard\u0027s Gown",
+                     "itemLevel":  13,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Shirt",
+                     "name":  "Red Linen Shirt",
+                     "itemLevel":  10,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Wrist",
+                     "name":  "Feral Bracers",
+                     "itemLevel":  7,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Hands",
+                     "name":  "Ragged Leather Gloves",
+                     "itemLevel":  4,
+                     "quality":  "Poor"
+                 },
+                 {
+                     "slot":  "Waist",
+                     "name":  "Blackened Leather Belt",
+                     "itemLevel":  5,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Legs",
+                     "name":  "Simple Britches",
+                     "itemLevel":  14,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Feet",
+                     "name":  "Cushioned Boots",
+                     "itemLevel":  12,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Main Hand",
+                     "name":  "Spiked Club",
+                     "itemLevel":  13,
+                     "quality":  "Uncommon"
+                 }
+             ],
+    "owned":  [
+
+              ]
+}

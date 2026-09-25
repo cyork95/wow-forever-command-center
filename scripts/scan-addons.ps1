@@ -216,8 +216,10 @@ function Parse-TextExport($text, $when) {
   if ($text -notmatch '(?m)^Character:\s*(.+)$') { return $null }
   $rawName = $Matches[1].Trim()
   $known = $null
+  $baseName = ($rawName -split '-')[0].Trim()
   foreach ($character in ($characters | Sort-Object { $_.name.Length } -Descending)) {
-    if ($rawName.StartsWith($character.name, [System.StringComparison]::OrdinalIgnoreCase)) {
+    $first = ($character.name -split ' ')[0]
+    if ($rawName.StartsWith($character.name, [System.StringComparison]::OrdinalIgnoreCase) -or $baseName -ieq $first) {
       $known = $character
       break
     }
