@@ -8,10 +8,11 @@
   <meta name="theme-color" content="#141910">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,640&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=6">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=7">
 </head>
 <body>
+  <div class="frame">
   <header class="site">
     <div class="wrap">
       <p class="eyebrow">World of Warcraft: Forever</p>
@@ -21,49 +22,65 @@
     </div>
   </header>
   <main class="wrap">
-    <div class="section-head">
-      <h2>Who is out</h2>
-      <p>Pick who you are playing. Their sheet and hunts follow.</p>
-    </div>
-    <div class="roster" id="roster"></div>
-    <div class="sheet" id="sheet"></div>
+    <nav class="tabs" role="tablist" aria-label="Command center">
+        <button type="button" class="tab" role="tab" id="tab-roster" data-tab="roster" aria-controls="panel-roster" aria-selected="true">Roster</button>
+        <button type="button" class="tab" role="tab" id="tab-hunts" data-tab="hunts" aria-controls="panel-hunts" aria-selected="false" tabindex="-1">Hunts</button>
+        <button type="button" class="tab" role="tab" id="tab-addons" data-tab="addons" aria-controls="panel-addons" aria-selected="false" tabindex="-1">Addons</button>
+        <button type="button" class="tab" role="tab" id="tab-house" data-tab="house" aria-controls="panel-house" aria-selected="false" tabindex="-1">House</button>
+      </nav>
+    <section class="panel" id="panel-roster" role="tabpanel" aria-labelledby="tab-roster" data-panel="roster">
+      <div class="section-head">
+        <h2>Who is out</h2>
+        <p>Pick who you are playing. Their sheet follows.</p>
+      </div>
+      <div class="roster" id="roster"></div>
+      <div class="sheet" id="sheet"></div>
+    </section>
 
-    <div class="section-head">
-      <h2>Hunts</h2>
-      <p id="check-count"></p>
-    </div>
-    <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
-    <div class="toolbar">
-      <input id="search" type="search" placeholder="Search hunts, zones, notes">
-      <select id="scope" aria-label="Whose list">
-        <option value="character">This character</option>
-        <option value="house">Whole house</option>
-      </select>
-    </div>
-    <div id="checklist"></div>
-    <div class="actions">
-      <button type="button" id="export-checks">Download checkboxes</button>
-      <label class="file-btn">Load checkboxes
-        <input id="import-checks" type="file" accept="application/json,.json">
-      </label>
-    </div>
+    <section class="panel" id="panel-hunts" role="tabpanel" aria-labelledby="tab-hunts" data-panel="hunts" hidden>
+      <div class="section-head">
+        <h2>Hunts</h2>
+        <p id="check-count"></p>
+      </div>
+      <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search hunts, zones, notes">
+        <select id="scope" aria-label="Whose list">
+          <option value="character">This character</option>
+          <option value="house">Whole house</option>
+        </select>
+      </div>
+      <div id="checklist"></div>
+      <div class="actions">
+        <button type="button" id="export-checks">Download checkboxes</button>
+        <label class="file-btn">Load checkboxes
+          <input id="import-checks" type="file" accept="application/json,.json">
+        </label>
+      </div>
+    </section>
 
-    <div class="section-head">
-      <h2>House rules</h2>
-    </div>
-    <ul class="rules" id="rules"></ul>
+    <section class="panel" id="panel-addons" role="tabpanel" aria-labelledby="tab-addons" data-panel="addons" hidden>
+      <div class="section-head">
+        <h2>Addons</h2>
+        <p id="addon-scan">Loading the addon scan…</p>
+      </div>
+      <div id="addon-list"></div>
+    </section>
 
-    <div class="section-head">
-      <h2>Addons</h2>
-      <p id="addon-scan">Loading the addon scan…</p>
-    </div>
-    <div id="addons"></div>
+    <section class="panel" id="panel-house" role="tabpanel" aria-labelledby="tab-house" data-panel="house" hidden>
+      <div class="section-head">
+        <h2>House rules</h2>
+        <p>Names, faction, and the beta lock.</p>
+      </div>
+      <ul class="rules" id="rules"></ul>
+    </section>
   </main>
   <footer class="site">
     <div class="wrap">
       <p>Checks and try counts stay in this browser. Click a hunt for the note and the counter. Character stats update when an addon export is merged into <code>data/stats.json</code>.</p>
     </div>
   </footer>
-  <script src="assets/app.js?v=6"></script>
+  </div>
+  <script src="assets/app.js?v=7"></script>
 </body>
 </html>
