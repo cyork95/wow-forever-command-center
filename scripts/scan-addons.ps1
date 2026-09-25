@@ -5,6 +5,7 @@
 $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "read-saves.ps1")
 . (Join-Path $PSScriptRoot "screenshots.ps1")
+. (Join-Path $PSScriptRoot "dungeon-journal.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -184,6 +185,13 @@ Write-JsonFile $addonsOut ([ordered]@{
   addons = $addons
 })
 Write-Output "Wrote $($addons.Count) addons to data/addons.json"
+
+$journal = Read-DungeonJournal $addonsPath
+if ($journal) {
+  Write-JsonFile (Join-Path $repo "data\dungeons.json") $journal
+  $lootCount = ($journal.dungeons | ForEach-Object { $_.bosses } | ForEach-Object { @($_.loot).Count } | Measure-Object -Sum).Sum
+  Write-Output "Wrote $($journal.dungeons.Count) dungeons and $lootCount drops to data/dungeons.json"
+}
 
 function Unescape-LuaString($value) {
   $text = $value -replace '\\n', "`n" -replace '\\r', '' -replace '\\"', '"' -replace '\\t', "`t"

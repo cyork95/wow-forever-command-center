@@ -9,7 +9,7 @@
                                      "level":  11,
                                      "zone":  "Dun Morogh",
                                      "subzone":  "Brewnall Village",
-                                     "goldCopper":  987,
+                                     "goldCopper":  994,
                                      "health":  "260 max",
                                      "powerType":  "Mana",
                                      "stats":  {
@@ -102,7 +102,7 @@
                                      "owned":  [
 
                                                ],
-                                     "playedSeconds":  21379,
+                                     "playedSeconds":  24140,
                                      "statistics":  {
                                                         "Character":  [
                                                                           {
@@ -111,11 +111,11 @@
                                                                           },
                                                                           {
                                                                               "name":  "Quests completed",
-                                                                              "value":  "65"
+                                                                              "value":  "71"
                                                                           },
                                                                           {
                                                                               "name":  "Areas explored",
-                                                                              "value":  "2"
+                                                                              "value":  "4"
                                                                           },
                                                                           {
                                                                               "name":  "Instance lockouts",
@@ -125,11 +125,11 @@
                                                         "Kills":  [
                                                                       {
                                                                           "name":  "Total kills",
-                                                                          "value":  "89"
+                                                                          "value":  "96"
                                                                       },
                                                                       {
                                                                           "name":  "Creature types",
-                                                                          "value":  "14"
+                                                                          "value":  "15"
                                                                       },
                                                                       {
                                                                           "name":  "Frostmane Seer",
@@ -141,7 +141,11 @@
                                                                       },
                                                                       {
                                                                           "name":  "Winter Wolf",
-                                                                          "value":  "10"
+                                                                          "value":  "12"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Snow Tracker Wolf",
+                                                                          "value":  "6"
                                                                       },
                                                                       {
                                                                           "name":  "Frostmane Snowstrider",
@@ -235,11 +239,11 @@
                                                 ],
                                      "sources":  {
                                                      "CharacterExport":  "2026-09-23T17:41:04",
-                                                     "Nova Instance Tracker":  "2026-09-24T19:10:09",
+                                                     "Nova Instance Tracker":  "2026-09-25T18:01:14",
                                                      "Syndicator":  null,
                                                      "Profession Master":  "2026-09-23T18:50:21",
-                                                     "AllTheThings":  "2026-09-24T18:25:57",
-                                                     "KillDex":  "2026-09-24T19:26:55"
+                                                     "AllTheThings":  "2026-09-25T17:47:02",
+                                                     "KillDex":  "2026-09-25T18:01:24"
                                                  }
                                  },
                        "ullrathor":  {

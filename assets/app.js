@@ -14,6 +14,8 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
+const TABS = ["roster", "hunts", "dungeons", "addons", "house"];
+
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
   { id: "mounts", label: "Mounts", types: ["Mount"] },
@@ -31,6 +33,9 @@ const state = {
   checklist: [],
   stats: { updated: null, characters: {} },
   addons: null,
+  dungeons: null,
+  dungeonQuery: "",
+  openDungeons: new Set(),
   selected: "skyrinis",
   scope: "character",
   query: "",
@@ -48,7 +53,7 @@ function loadStore() {
     if (saved.checks) state.checks = saved.checks;
     if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
-    if (["roster", "hunts", "addons", "house"].includes(saved.tab)) state.tab = saved.tab;
+    if (TABS.includes(saved.tab)) state.tab = saved.tab;
   } catch {
     state.checks = {};
     state.attempts = {};
@@ -146,6 +151,35 @@ function killLog(mobs) {
   const total = rows.reduce((sum, row) => sum + row.count, 0);
   const text = rows.map((row) => `${row.mob} ${row.count} (${row.who})`).join(", ");
   return { total, text };
+}
+
+function buildDrops() {
+  const drops = new Map();
+  const put = (name, where) => {
+    const key = nameKey(name);
+    if (!key) return;
+    if (!drops.has(key)) drops.set(key, []);
+    drops.get(key).push(where);
+  };
+  asList(state.dungeons && state.dungeons.dungeons).forEach((dungeon) => {
+    asList(dungeon.bosses).forEach((boss) => {
+      asList(boss.loot).forEach((item) => put(item.name, `${boss.name} in ${dungeon.name}`));
+    });
+    asList(dungeon.quests).forEach((quest) => {
+      asList(quest.rewardItems).forEach((item) => put(item.name, `the ${quest.name} quest in ${dungeon.name}`));
+    });
+  });
+  const hunts = new Set();
+  state.checklist.forEach((hunt) => {
+    [hunt, ...asList(hunt.parts)].forEach((entry) => hunts.add(nameKey(entry.name)));
+  });
+  state.drops = drops;
+  state.huntNames = hunts;
+}
+
+function dropNote(name) {
+  const where = (state.drops && state.drops.get(nameKey(name))) || [];
+  return where.length ? `Drops from ${where.join(" or ")}.` : "";
 }
 
 function huntMobs(item) {
@@ -488,9 +522,11 @@ function renderPart(item, part) {
     renderChecklist();
   });
   const partKills = killLog(part.mobs);
+  const partDrop = dropNote(part.name);
   const copy = el("div", { class: "part-copy" }, [
     el("strong", { text: part.name }),
     el("p", { text: found ? `${found}. ${part.how || ""}` : part.how || "" }),
+    partDrop ? el("p", { class: "drop-note", text: partDrop }) : null,
     partKills.total ? el("p", { class: "kill-log", text: `KillDex: ${partKills.text}` }) : null
   ]);
   return el("div", { class: `part${checked ? " done" : ""}` }, [
@@ -562,6 +598,7 @@ function renderHunt(item) {
   const detailKids = [
     el("p", { class: "hunt-notes", text: item.notes }),
     item.how ? el("p", { text: item.how }) : null,
+    dropNote(item.name) ? el("p", { class: "drop-note", text: dropNote(item.name) }) : null,
     el("div", { class: "facts" }, [
       fact("Zone", item.zone),
       fact("From", `level ${item.minLevel}`),
@@ -739,9 +776,138 @@ function renderAddons() {
   });
 }
 
+function itemMatches(item, q) {
+  return nameKey(`${item.name} ${item.slot || ""}`).includes(q);
+}
+
+function renderLootItem(item) {
+  const owned = ownedNote(item);
+  const quality = nameKey(item.quality) || "common";
+  const bits = [item.slot, owned].filter(Boolean).join(" · ");
+  return el("li", { class: owned ? "owned" : null }, [
+    el("span", { class: `item q-${quality}`, text: item.name }),
+    state.huntNames && state.huntNames.has(nameKey(item.name)) ? el("span", { class: "badge", text: "Hunt" }) : null,
+    bits ? el("small", { text: bits }) : null
+  ]);
+}
+
+function questFactionShown(quest) {
+  const faction = (state.house && state.house.faction) || "Alliance";
+  return !quest.faction || quest.faction === "Both" || quest.faction === faction;
+}
+
+function renderQuest(quest) {
+  const meta = [
+    quest.level ? `Level ${quest.level}` : "",
+    quest.requires ? `needs ${quest.requires}` : "",
+    quest.faction && quest.faction !== "Both" ? quest.faction : "",
+    quest.classOnly ? `${quest.classOnly} only` : ""
+  ].filter(Boolean).join(" · ");
+  const rewards = asList(quest.rewardItems);
+  const kids = [
+    el("strong", { text: quest.name }),
+    meta ? el("small", { text: meta }) : null,
+    quest.objective ? el("p", { text: quest.objective }) : null,
+    quest.pickup ? el("p", { class: "meta", text: `Start: ${quest.pickup}${quest.turnin && quest.turnin !== quest.pickup ? ` · Turn in: ${quest.turnin}` : ""}` }) : null,
+    quest.startItem ? el("p", { class: "meta", text: `Starts from ${quest.startItem.name}${quest.startItem.from ? `. ${quest.startItem.from}` : ""}` }) : null
+  ];
+  if (rewards.length) {
+    kids.push(el("p", { class: "reward-label", text: quest.rewardChoice && rewards.length > 1 ? "Choose one" : "Reward" }));
+    kids.push(el("ul", { class: "loot" }, rewards.map(renderLootItem)));
+  }
+  if (quest.rewards) kids.push(el("p", { class: "meta", text: quest.rewards }));
+  if (quest.note) kids.push(el("p", { class: "meta", text: quest.note }));
+  return el("article", { class: "quest" }, kids);
+}
+
+function renderDungeons() {
+  const root = document.getElementById("dungeon-list");
+  const note = document.getElementById("dungeon-source");
+  if (!root || !note) return;
+  root.replaceChildren();
+  const journal = state.dungeons;
+  if (!journal || !asList(journal.dungeons).length) {
+    note.textContent = "No journal yet. Install Forever Dungeon Journal, run scripts/scan-addons.ps1, then commit data/dungeons.json.";
+    return;
+  }
+  const q = nameKey(state.dungeonQuery);
+  const version = versionLabel(journal.version);
+  note.textContent = `From ${journal.source}${version ? ` ${version}` : ""}. Beta loot can change.`;
+  let shown = 0;
+  asList(journal.dungeons).forEach((dungeon) => {
+    const wholeDungeon = !q || nameKey(`${dungeon.name} ${dungeon.location}`).includes(q);
+    const bosses = asList(dungeon.bosses).map((boss) => {
+      const names = [boss.name, ...asList(boss.aliases)];
+      const bossHit = wholeDungeon || names.some((name) => nameKey(name).includes(q));
+      const loot = bossHit ? asList(boss.loot) : asList(boss.loot).filter((item) => itemMatches(item, q));
+      return { boss, names, loot, show: bossHit || loot.length > 0 };
+    }).filter((row) => row.show);
+    const factionQuests = asList(dungeon.quests).filter(questFactionShown);
+    const quests = wholeDungeon ? factionQuests : factionQuests.filter((quest) => {
+      const hay = [quest.name, quest.objective, quest.pickup, quest.startItem && quest.startItem.name,
+        ...asList(quest.rewardItems).map((item) => item.name)].join(" ");
+      return nameKey(hay).includes(q);
+    });
+    if (!bosses.length && !quests.length) return;
+    shown++;
+
+    const allLoot = asList(dungeon.bosses).flatMap((boss) => asList(boss.loot));
+    const ownedCount = allLoot.filter((item) => ownedNote(item)).length;
+    const summaryBits = [
+      dungeon.level ? `Level ${dungeon.level}` : "",
+      dungeon.location,
+      `${asList(dungeon.bosses).length} bosses`,
+      `${allLoot.length} drops`,
+      ownedCount ? `${ownedCount} owned` : ""
+    ].filter(Boolean).join(" · ");
+    const box = el("details", { class: "card dungeon" });
+    box.open = !!q || state.openDungeons.has(dungeon.name);
+    box.addEventListener("toggle", () => {
+      if (q) return;
+      if (box.open) state.openDungeons.add(dungeon.name);
+      else state.openDungeons.delete(dungeon.name);
+    });
+    box.append(el("summary", {}, [
+      el("h3", { text: dungeon.name }),
+      el("span", { class: "meta", text: summaryBits })
+    ]));
+    if (dungeon.description) box.append(el("p", { class: "dungeon-blurb", text: dungeon.description }));
+
+    if (bosses.length) {
+      const grid = el("div", { class: "boss-grid" });
+      bosses.forEach(({ boss, names, loot }) => {
+        const kills = killLog(names);
+        const aliases = asList(boss.aliases);
+        grid.append(el("section", { class: "boss" }, [
+          el("h4", { text: boss.name }),
+          aliases.length || boss.note
+            ? el("small", { text: [aliases.length ? `Also called ${aliases.join(", ")}` : "", boss.note].filter(Boolean).join(" · ") })
+            : null,
+          kills.total ? el("p", { class: "kill-log", text: `KillDex: ${kills.total} ${kills.total === 1 ? "kill" : "kills"}` }) : null,
+          loot.length
+            ? el("ul", { class: "loot" }, loot.map(renderLootItem))
+            : el("p", { class: "meta", text: "No recorded drops." })
+        ]));
+      });
+      box.append(el("h4", { class: "group-label", text: "Bosses and drops" }));
+      box.append(grid);
+    }
+
+    const hidden = asList(dungeon.quests).length - factionQuests.length;
+    if (quests.length || (wholeDungeon && hidden)) {
+      box.append(el("h4", { class: "group-label" }, [
+        el("span", { text: "Quests" }),
+        hidden ? el("em", { text: `${hidden} for the other faction hidden` }) : null
+      ]));
+      if (quests.length) box.append(el("div", { class: "quest-list" }, quests.map(renderQuest)));
+    }
+    root.append(box);
+  });
+  if (!shown) root.append(el("p", { class: "empty-note", text: "Nothing in the journal matches that." }));
+}
+
 function showTab(id) {
-  const tabs = ["roster", "hunts", "addons", "house"];
-  if (!tabs.includes(id)) id = "roster";
+  if (!TABS.includes(id)) id = "roster";
   state.tab = id;
   saveStore();
   document.querySelectorAll(".tab").forEach((tab) => {
@@ -778,6 +944,7 @@ function render() {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderDungeons();
   renderAddons();
 }
 
@@ -791,18 +958,19 @@ async function main() {
   loadStore();
   const params = new URLSearchParams(location.search);
   const hash = location.hash.replace("#", "");
-  if (["roster", "hunts", "addons", "house"].includes(hash)) state.tab = hash;
+  if (TABS.includes(hash)) state.tab = hash;
   if (params.get("c")) state.selected = params.get("c");
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, screenshots] = await Promise.all([
+    const [house, characters, checklist, stats, addons, screenshots, dungeons] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
-      loadJson("data/screenshots.json").catch(() => [])
+      loadJson("data/screenshots.json").catch(() => []),
+      loadJson("data/dungeons.json").catch(() => null)
     ]);
     state.house = house;
     state.characters = characters;
@@ -810,7 +978,9 @@ async function main() {
     state.stats = stats;
     state.addons = addons;
     state.screenshots = screenshots;
+    state.dungeons = dungeons;
     buildOwned();
+    buildDrops();
   } catch (error) {
     document.getElementById("lede").textContent = "The tracker data did not load. Open the GitHub Pages site, or serve this folder over http.";
     console.error(error);
@@ -821,6 +991,10 @@ async function main() {
   document.getElementById("search").addEventListener("input", (event) => {
     state.query = event.target.value;
     renderChecklist();
+  });
+  document.getElementById("dungeon-search").addEventListener("input", (event) => {
+    state.dungeonQuery = event.target.value;
+    renderDungeons();
   });
   document.getElementById("scope").addEventListener("change", (event) => {
     state.scope = event.target.value;

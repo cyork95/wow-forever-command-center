@@ -45,6 +45,7 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - AllTheThings: time played, deaths, quests, areas explored, and collection counts.
 - Nova Instance Tracker: level, gold, and lockouts when its save is newer than the dump.
 - KillDex: total kills, creature types, and the top five mobs. It also logs kills of mobs named in a hunt's `mobs` list, and marks hunt items it saw drop, so a hunt checks itself as looted even after the item is sold.
+- Forever Dungeon Journal: its boss, loot, and quest tables live in the addon's Lua file. The scan rewrites `data/dungeons.json` from them, so commit that file when it changes.
 - Memento: its save holds only settings. Its screenshots are handled in the next section.
 
 ## 3b. Name the new screenshots
