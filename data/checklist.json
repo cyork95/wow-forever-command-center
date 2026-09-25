@@ -54,6 +54,7 @@
   {
     "id": "rockslicer",
     "name": "Rockslicer",
+    "mobs": ["Rhahk'Zor"],
     "type": "Gear",
     "zone": "Deadmines",
     "minLevel": 17,
@@ -82,6 +83,7 @@
       {
         "id": "first-mate-band",
         "name": "First Mate Band",
+        "mobs": ["Mr. Smite"],
         "how": "Kill Mr. Smite on the ship in the Deadmines, after the cannon room. Item level 22 strength ring. Bank it. Ephai can wear the same ring."
       },
       {
@@ -109,26 +111,31 @@
       {
         "id": "fang-belt",
         "name": "Belt of the Fang",
+        "mobs": ["Lady Anacondra"],
         "how": "Lady Anacondra, the first fanglord in Wailing Caverns."
       },
       {
         "id": "fang-leggings",
         "name": "Leggings of the Fang",
+        "mobs": ["Lord Cobrahn"],
         "how": "Lord Cobrahn in Wailing Caverns."
       },
       {
         "id": "fang-armor",
         "name": "Armor of the Fang",
+        "mobs": ["Lord Pythas"],
         "how": "Lord Pythas in Wailing Caverns. Chest piece. Requires level 18."
       },
       {
         "id": "fang-footpads",
         "name": "Footpads of the Fang",
+        "mobs": ["Lord Serpentis"],
         "how": "Lord Serpentis in Wailing Caverns."
       },
       {
         "id": "fang-gloves",
         "name": "Gloves of the Fang",
+        "mobs": ["Druid of the Fang"],
         "how": "Druid of the Fang trash in Wailing Caverns, not a boss. In Classic this was about a 2% drop, so it is usually the long piece."
       }
     ],
@@ -183,6 +190,7 @@
       {
         "id": "blade-of-silverlaine",
         "name": "Blade of Silverlaine",
+        "mobs": ["Baron Silverlaine"],
         "how": "Baron Silverlaine in Shadowfang Keep. This is a new sword, not Silverlaine's Family Seal. Reset and repeat the baron until it drops, then use the scroll on it."
       }
     ],
@@ -218,6 +226,7 @@
   {
     "id": "malignant-root",
     "name": "Malignant Root",
+    "mobs": ["Nightveiled Rotheap"],
     "type": "Relic",
     "zone": "Wetlands",
     "minLevel": 20,
@@ -246,16 +255,19 @@
       {
         "id": "pack-leader",
         "name": "Mark of the Pack Leader",
+        "mobs": ["Humar the Pridelord", "Swiftmane", "Takk the Leaper"],
         "how": "Neck. Requires level 20. +5 Strength and +5 Intellect. Drops from one of the three Barrens rares. The exact rare is not published."
       },
       {
         "id": "zhevra-signet",
         "name": "Signet of the Zhevra",
+        "mobs": ["Humar the Pridelord", "Swiftmane", "Takk the Leaper"],
         "how": "Finger. Requires level 18. +6 Agility and +2 Spirit. Drops from one of the three Barrens rares. The exact rare is not published."
       },
       {
         "id": "raptor-hide-cloak",
         "name": "Raptor Hide Cloak",
+        "mobs": ["Humar the Pridelord", "Swiftmane", "Takk the Leaper"],
         "how": "Back. Requires level 16. +4 Stamina and +3 Spirit. Drops from one of the three Barrens rares. The exact rare is not published."
       }
     ],
@@ -306,6 +318,7 @@
   {
     "id": "lookies-spyglass",
     "name": "Lookie's Spyglass",
+    "mobs": ["Cookie"],
     "type": "Trinket",
     "zone": "Deadmines",
     "minLevel": 18,
@@ -348,6 +361,7 @@
   {
     "id": "peace-tea",
     "name": "Recipe: Peace Tea",
+    "mobs": ["Frostmane Seer"],
     "type": "Recipe",
     "zone": "Dun Morogh",
     "minLevel": 8,

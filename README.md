@@ -6,7 +6,7 @@ Pick a character and the page shows that character's race, spec, professions, ta
 
 ## Update the site
 
-- New hunt: add a row to `data/checklist.json`.
+- New hunt: add a row to `data/checklist.json`. Give it (or a piece) `"mobs": ["Boss Name"]` when the drop source is known, and the hunt shows KillDex kill counts for those mobs.
 - Names, specs, professions: edit `data/characters.json`.
 - Addon dump: put JSON or a SavedVariables file in `data/exports/`, using the shape in `data/EXPORTS.md`. The live numbers on the page come from `data/stats.json` after that dump is merged.
 - Nightly: type `/cexport` in game, copy the text, and paste it into Cursor. The `nightly-export` skill saves it as `exports/beta/<first>-<last>-YYYY-MM-DD.txt`, runs the scan below, and opens a PR.

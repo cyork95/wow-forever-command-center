@@ -43,7 +43,7 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - Profession Master: known recipes and profession skill. A recipe hunt checks itself once the recipe is learned.
 - AllTheThings: time played, deaths, quests, areas explored, and collection counts.
 - Nova Instance Tracker: level, gold, and lockouts when its save is newer than the dump.
-- KillDex: total kills, creature types, and the top five mobs.
+- KillDex: total kills, creature types, and the top five mobs. It also logs kills of mobs named in a hunt's `mobs` list, and marks hunt items it saw drop, so a hunt checks itself as looted even after the item is sold.
 - Memento: its save holds only settings. Its screenshots are handled in the next section.
 
 ## 3b. Name the new screenshots

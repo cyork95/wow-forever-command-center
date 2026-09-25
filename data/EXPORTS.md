@@ -53,6 +53,8 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 - `recipes`: known recipes by profession from Profession Master. Recipe hunts check themselves once learned. Its skill levels raise `professions[].current`.
 - `collections`: AllTheThings counts for mounts, pets, toys, titles, and achievements. `playedSeconds` comes from AllTheThings too.
 - `statistics.Character` and `statistics.Kills`: deaths, quests, areas explored, lockouts, and KillDex kill counts. Other groups you add stay.
+- `huntKills`: KillDex kills for each mob named in a hunt's `mobs` list. The hunt shows them as kills logged.
+- `looted`: hunt items that KillDex saw drop for this character. The hunt checks itself as looted even after the item is sold or used.
 - `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`.
 
 Screenshots live in `screenshots.json`, one entry per file in the game's `Screenshots` folder:

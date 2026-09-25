@@ -227,6 +227,12 @@
                                                          "Titles":  0,
                                                          "Achievements":  1
                                                      },
+                                     "huntKills":  {
+                                                       "Frostmane Seer":  31
+                                                   },
+                                     "looted":  [
+                                                    "Recipe: Peace Tea"
+                                                ],
                                      "sources":  {
                                                      "CharacterExport":  "2026-09-23T17:41:04",
                                                      "Nova Instance Tracker":  "2026-09-24T19:10:09",

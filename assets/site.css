@@ -204,6 +204,8 @@ h2 {
 
 .sources { margin: 10px 0 0; font-size: 13px; overflow-wrap: anywhere; }
 
+.kill-log { color: var(--gold); font-size: 13px; margin: 4px 0 0; }
+
 .shots-head { margin: 18px 0 8px; font-size: 14px; color: var(--gold); }
 
 .shots {

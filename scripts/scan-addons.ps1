@@ -426,10 +426,12 @@ foreach ($row in $kept.Values) {
     gear = @($row.gear)
     owned = @($row.owned)
   }
-  foreach ($field in @("power", "playedSeconds", "statistics")) {
-    Add-CarriedField $payload $row $existingRecord $field
-  }
+  $carried = @("power", "playedSeconds", "statistics")
+  foreach ($field in $carried) { Add-CarriedField $payload $row $null $field }
   Write-JsonFile $exportPath $payload
+  foreach ($field in $carried) {
+    if (-not $payload.Contains($field)) { Add-CarriedField $payload $null $existingRecord $field }
+  }
   $stats.characters | Add-Member -NotePropertyName $row.matchedId -NotePropertyValue ([pscustomobject]$payload) -Force
   $merged++
   Write-Output "Merged $($row.character) into data/stats.json ($($row.matchedId))"
@@ -504,6 +506,14 @@ function Apply-Snapshot($record, $snap, $character) {
     $rec["statistics"] = Merge-StatRows $rec["statistics"] "Character" $rows
   }
   if ($snap.kills) {
+    $huntKills = [ordered]@{}
+    foreach ($mob in $snap.kills.byMob) {
+      if ($mob.name -and $huntMobs.ContainsKey(([string]$mob.name).ToLowerInvariant())) { $huntKills[[string]$mob.name] = $mob.kills }
+    }
+    $rec["huntKills"] = $huntKills
+    $rec["looted"] = @($snap.kills.looted | Where-Object {
+      $huntNames.ContainsKey($_.ToLowerInvariant()) -or $huntNames.ContainsKey(($_ -replace $recipePrefix, '').ToLowerInvariant())
+    })
     $rows = @(
       [ordered]@{ name = "Total kills"; value = [string]$snap.kills.total },
       [ordered]@{ name = "Creature types"; value = [string]$snap.kills.creatures }
@@ -517,6 +527,16 @@ function Apply-Snapshot($record, $snap, $character) {
   foreach ($k in $snap.sources.Keys) { $sources[$k] = $snap.sources[$k] }
   $rec["sources"] = $sources
   return [pscustomobject]$rec
+}
+
+$recipePrefix = '^(Recipe|Plans|Pattern|Formula|Schematic|Manual|Design|Technique):\s*'
+$huntNames = @{}
+$huntMobs = @{}
+foreach ($hunt in @(Read-JsonFile (Join-Path $repo "data\checklist.json") | ForEach-Object { $_ })) {
+  foreach ($entry in @($hunt) + @($hunt.parts | Where-Object { $_ })) {
+    if ($entry.name) { $huntNames[([string]$entry.name).ToLowerInvariant()] = $true }
+    foreach ($mob in @($entry.mobs | Where-Object { $_ })) { $huntMobs[([string]$mob).ToLowerInvariant()] = $true }
+  }
 }
 
 $snapshots = Get-SaveSnapshots $wtfRoot $characters

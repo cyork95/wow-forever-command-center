@@ -209,11 +209,23 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
           $rows = @($mobs.Values | ForEach-Object {
             [pscustomobject]@{ name = LV $_ "name"; kills = [int](LV $_ "kills"); gold = [long](LV $_ "gold") }
           })
+          $looted = @{}
+          foreach ($mob in $mobs.Values) {
+            $loot = LV $mob "loot"
+            if ($loot -is [System.Collections.IDictionary]) {
+              foreach ($drop in $loot.Values) {
+                $dropName = LV $drop "name"
+                if ($dropName) { $looted[[string]$dropName] = $true }
+              }
+            }
+          }
           $snap.kills = [ordered]@{
             total = ($rows | Measure-Object kills -Sum).Sum
             creatures = $rows.Count
             goldCopper = ($rows | Measure-Object gold -Sum).Sum
             top = @($rows | Where-Object { $_.name } | Sort-Object kills -Descending | Select-Object -First 5)
+            byMob = $rows
+            looted = @($looted.Keys | Sort-Object)
           }
           $snap.sources["KillDex"] = $killFile.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
         }

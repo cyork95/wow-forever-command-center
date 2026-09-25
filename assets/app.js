@@ -88,32 +88,65 @@ function nameKey(value) {
 function buildOwned() {
   const items = new Map();
   const recipes = new Map();
+  const looted = new Map();
+  const lootedRecipes = new Map();
+  const kills = new Map();
   const put = (map, name, note) => {
     const key = nameKey(name);
     if (key && !map.has(key)) map.set(key, note);
   };
-  Object.entries(state.stats.characters || {}).forEach(([id, live]) => {
+  const lives = Object.entries(state.stats.characters || {}).map(([id, live]) => {
     const character = state.characters.find((c) => c.id === id);
-    const who = character ? character.name.split(" ")[0] : id;
+    return { who: character ? character.name.split(" ")[0] : id, live };
+  });
+  lives.forEach(({ who, live }) => {
     asList(live.gear).forEach((piece) => put(items, piece.name, `Worn by ${who}`));
     asList(live.items).forEach((name) => put(items, name, `In ${who}'s bags`));
     asList(live.owned).forEach((name) => put(items, name, `Owned by ${who}`));
     Object.values(live.recipes || {}).forEach((list) => {
       asList(list).forEach((name) => put(recipes, name, `${who} knows it`));
     });
+    asList(live.looted).forEach((name) => {
+      put(looted, name, `Looted by ${who}`);
+      if (RECIPE_PREFIX.test(name)) put(lootedRecipes, name.replace(RECIPE_PREFIX, ""), `Looted by ${who}`);
+    });
+    Object.entries(live.huntKills || {}).forEach(([mob, count]) => {
+      const key = nameKey(mob);
+      if (!kills.has(key)) kills.set(key, []);
+      kills.get(key).push({ mob, who, count: Number(count) || 0 });
+    });
   });
-  state.owned = { items, recipes };
+  state.owned = { items, recipes, looted, lootedRecipes, kills };
 }
 
 function ownedNote(item) {
   const owned = state.owned;
   if (!owned || !item.name) return "";
-  const held = owned.items.get(nameKey(item.name));
+  const key = nameKey(item.name);
+  const held = owned.items.get(key);
   if (held) return held;
   if (item.type === "Recipe" || RECIPE_PREFIX.test(item.name)) {
-    return owned.recipes.get(nameKey(item.name.replace(RECIPE_PREFIX, ""))) || "";
+    const base = nameKey(item.name.replace(RECIPE_PREFIX, ""));
+    const known = owned.recipes.get(base);
+    if (known) return known;
+    return owned.looted.get(key) || owned.lootedRecipes.get(base) || "";
   }
-  return "";
+  return owned.looted.get(key) || "";
+}
+
+function killLog(mobs) {
+  const owned = state.owned;
+  const rows = [];
+  new Set(asList(mobs).map(nameKey)).forEach((key) => {
+    ((owned && owned.kills.get(key)) || []).forEach((row) => rows.push(row));
+  });
+  const total = rows.reduce((sum, row) => sum + row.count, 0);
+  const text = rows.map((row) => `${row.mob} ${row.count} (${row.who})`).join(", ");
+  return { total, text };
+}
+
+function huntMobs(item) {
+  return [...asList(item.mobs), ...asList(item.parts).flatMap((part) => asList(part.mobs))];
 }
 
 function isChecked(item) {
@@ -450,9 +483,11 @@ function renderPart(item, part) {
     saveStore();
     renderChecklist();
   });
+  const partKills = killLog(part.mobs);
   const copy = el("div", { class: "part-copy" }, [
     el("strong", { text: part.name }),
-    el("p", { text: found ? `${found}. ${part.how || ""}` : part.how || "" })
+    el("p", { text: found ? `${found}. ${part.how || ""}` : part.how || "" }),
+    partKills.total ? el("p", { class: "kill-log", text: `KillDex: ${partKills.text}` }) : null
   ]);
   return el("div", { class: `part${checked ? " done" : ""}` }, [
     box,
@@ -501,7 +536,9 @@ function renderHunt(item) {
   const pieceText = item.parts
     ? `${pieceCount} of ${item.need || item.parts.length} pieces`
     : "";
-  const attemptText = [meta, pieceText, found, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
+  const kills = killLog(huntMobs(item));
+  const killText = kills.total ? `${kills.total} ${kills.total === 1 ? "kill" : "kills"} logged` : "";
+  const attemptText = [meta, pieceText, found, killText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
     .filter(Boolean)
     .join(" · ");
   summary.append(el("span", { class: "sub", text: attemptText }));
@@ -528,6 +565,9 @@ function renderHunt(item) {
       fact("For", whoLabel(item))
     ])
   ];
+  if (kills.total && !item.parts) {
+    detailKids.push(el("p", { class: "kill-log", text: `KillDex: ${kills.text}` }));
+  }
   if (item.parts) {
     const need = item.need || item.parts.length;
     detailKids.push(el("p", {
