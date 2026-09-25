@@ -36,6 +36,7 @@ const state = {
   query: "",
   type: "",
   openId: "",
+  tab: "roster",
   checks: {},
   attempts: {}
 };
@@ -47,6 +48,7 @@ function loadStore() {
     if (saved.checks) state.checks = saved.checks;
     if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
+    if (["roster", "hunts", "addons", "house"].includes(saved.tab)) state.tab = saved.tab;
   } catch {
     state.checks = {};
     state.attempts = {};
@@ -57,6 +59,7 @@ function saveStore() {
   localStorage.setItem(STORE_KEY, JSON.stringify({
     selected: state.selected,
     scope: state.scope,
+    tab: state.tab,
     checks: state.checks,
     attempts: state.attempts
   }));
@@ -173,6 +176,7 @@ function renderRoster() {
       "aria-pressed": character.id === state.selected ? "true" : "false",
       onclick: () => selectCharacter(character.id)
     });
+    button.style.setProperty("--class", CLASS_COLOR[character.className] || "var(--gold)");
     const who = el("div", { class: "who" });
     who.append(el("span", { class: "dot", style: `background:${CLASS_COLOR[character.className] || "var(--gold)"}` }));
     who.append(document.createTextNode(character.name));
@@ -555,7 +559,7 @@ function asList(value) {
 }
 
 function renderAddons() {
-  const root = document.getElementById("addons");
+  const root = document.getElementById("addon-list");
   const note = document.getElementById("addon-scan");
   if (!root || !note) return;
   root.replaceChildren();
@@ -579,10 +583,9 @@ function renderAddons() {
       const card = el("article", { class: "card addon-card" });
       const head = el("div", { class: "who" });
       head.append(el("h3", { text: cleanAddonText(addon.title || addon.folder) }));
-      head.append(el("span", {
-        class: addon.feedsSite ? "badge" : "badge parked",
-        text: addon.feedsSite ? "Feeds the site" : "Interface"
-      }));
+      if (addon.feedsSite) {
+        head.append(el("span", { class: "badge", text: "Feeds the site" }));
+      }
       card.append(head);
       const bits = [versionLabel(addon.version), cleanAddonText(addon.author)].filter(Boolean);
       if (addon.enabled === true) bits.push(addon.loaded === false ? "Enabled, not loaded" : "Loaded");
@@ -599,11 +602,48 @@ function renderAddons() {
       const saves = asList(addon.savedVariables);
       if (saves.length) {
         const onDisk = addon.saveOnDisk ? "on disk" : "not saved yet";
-        card.append(el("p", { class: "meta", text: `Saves: ${saves.join(", ")} (${onDisk})` }));
+        const details = el("details", { class: "saves" });
+        details.append(el("summary", { text: `${saves.length} saved ${saves.length === 1 ? "variable" : "variables"}, ${onDisk}` }));
+        details.append(el("p", { class: "meta", text: saves.join(", ") }));
+        card.append(details);
       }
       grid.append(card);
     });
     root.append(grid);
+  });
+}
+
+function showTab(id) {
+  const tabs = ["roster", "hunts", "addons", "house"];
+  if (!tabs.includes(id)) id = "roster";
+  state.tab = id;
+  saveStore();
+  document.querySelectorAll(".tab").forEach((tab) => {
+    const on = tab.dataset.tab === id;
+    tab.setAttribute("aria-selected", on ? "true" : "false");
+    tab.tabIndex = on ? 0 : -1;
+  });
+  document.querySelectorAll("[data-panel]").forEach((panel) => {
+    panel.hidden = panel.dataset.panel !== id;
+  });
+  const url = new URL(location.href);
+  url.hash = id === "roster" ? "" : id;
+  history.replaceState(null, "", url);
+}
+
+function bindTabs() {
+  document.querySelectorAll(".tab").forEach((tab) => {
+    tab.addEventListener("click", () => showTab(tab.dataset.tab));
+  });
+  document.querySelector(".tabs").addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    event.preventDefault();
+    const tabs = [...document.querySelectorAll(".tab")];
+    const index = tabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
+    const step = event.key === "ArrowRight" ? 1 : -1;
+    const next = tabs[(index + step + tabs.length) % tabs.length];
+    next.focus();
+    showTab(next.dataset.tab);
   });
 }
 
@@ -624,7 +664,11 @@ async function loadJson(path) {
 async function main() {
   loadStore();
   const params = new URLSearchParams(location.search);
+  const hash = location.hash.replace("#", "");
+  if (["roster", "hunts", "addons", "house"].includes(hash)) state.tab = hash;
   if (params.get("c")) state.selected = params.get("c");
+  bindTabs();
+  showTab(state.tab);
   try {
     const [house, characters, checklist, stats, addons] = await Promise.all([
       loadJson("data/house.json"),
