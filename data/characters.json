@@ -103,5 +103,20 @@
     "talentNote": "Spec stays open until the shaman trees are in hand. Enhancement first.",
     "talentUrl": null,
     "pairsWith": "Ephai Xorr (Human warrior, Mining / Blacksmithing)"
+  },
+  {
+    "id": "flann",
+    "name": "Flann Anvilhew",
+    "race": "Dwarf",
+    "className": "Shaman",
+    "spec": "Beta throwaway",
+    "professions": ["Mining", "Blacksmithing", "First Aid"],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": true,
+    "blurb": "Beta throwaway on Classic Beta PvE 2. Level 10 in Brewnall Village as of the Sep 23 export. Not a launch name.",
+    "talentNote": "No talent nodes selected. Import string from the Sep 23 export: CEdBzT2eoXLGqEykspPS/k8VfDAAAAAAAA.",
+    "talentUrl": null,
+    "pairsWith": null
   }
 ]

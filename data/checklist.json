@@ -8,9 +8,9 @@
     "priority": "High",
     "status": "Planned",
     "owners": ["all"],
-    "notes": "Beta runs to level 30 through Oct 21. Do not spend Skyrinis, Sorinis, or Malavus. Those names wait for reservation.",
+    "notes": "Done Sep 23, 2026: Flann Anvilhew, level 10 Dwarf shaman, Classic Beta PvE 2. Do not spend Skyrinis, Sorinis, or Malavus. Those names wait for reservation.",
     "source": "House",
-    "defaultDone": false
+    "defaultDone": true
   },
   {
     "id": "milestone-reserve-skyrinis",
@@ -132,6 +132,19 @@
         "how": "Druid of the Fang trash in Wailing Caverns, not a boss. In Classic this was about a 2% drop, so it is usually the long piece."
       }
     ],
+    "defaultDone": false
+  },
+  {
+    "id": "rotmenders-raiment",
+    "name": "Rotmender's Raiment",
+    "type": "Set",
+    "zone": "Ruins of Lordaeron",
+    "minLevel": 17,
+    "priority": "Medium",
+    "status": "Planned",
+    "owners": ["lucinis", "vesperinis", "malavus"],
+    "notes": "Five cloth pieces: Robes, Sash, Leggings, Treads, Gloves. Wear them from level 17, boots at 19. (2) +10 Intellect. (3) 5% less threat. (4) below 15% mana, restore 600 mana over 15 sec, once per 5 min. (5) healing spells can apply Rotmending, 40 health every 3 sec for 15 sec. Robes and gloves bind on equip. Leggings and treads bind on pickup. Drops in Ruins of Lordaeron.",
+    "source": "Stiven_SRB",
     "defaultDone": false
   },
   {
@@ -330,6 +343,19 @@
     "notes": "Cooking 85. One Whimsyfin plus Mild Spices makes two servings. One hour as an ogre or a murloc.",
     "how": "Find the recipe in Redridge. This is a cooking recipe, not the Goblin Gumbo Kettle toy.",
     "source": "Chromie",
+    "defaultDone": false
+  },
+  {
+    "id": "peace-tea",
+    "name": "Recipe: Peace Tea",
+    "type": "Recipe",
+    "zone": "Dun Morogh",
+    "minLevel": 8,
+    "priority": "Medium",
+    "status": "Planned",
+    "owners": ["flann"],
+    "notes": "Drops from Frostmane Seers. Bind on pickup. Cooking 25: one Refreshing Spring Water and two Peacebloom. The drink restores 42 mana over 18 sec, then 2 Healing Power for 15 min if you sit for 10 seconds.",
+    "source": "Beta",
     "defaultDone": false
   },
   {
