@@ -559,7 +559,7 @@ function asList(value) {
 }
 
 function renderAddons() {
-  const root = document.getElementById("addons");
+  const root = document.getElementById("addon-list");
   const note = document.getElementById("addon-scan");
   if (!root || !note) return;
   root.replaceChildren();
