@@ -1,23 +1,23 @@
 {
     "character":  "Flann Anvilhew",
-    "exportedAt":  "2026-09-26T03:01:08",
+    "exportedAt":  "2026-09-26T17:27:17",
     "addon":  "CharacterExport Forever",
     "realm":  "Classic Beta PvE 2",
-    "level":  18,
-    "zone":  "Darkshore",
-    "subzone":  "Auberdine",
-    "goldCopper":  26737,
-    "health":  "519 max",
+    "level":  20,
+    "zone":  "Ironforge",
+    "subzone":  "The Great Forge",
+    "goldCopper":  28863,
+    "health":  "530 max",
     "powerType":  null,
     "stats":  {
-                  "Strength":  "39",
-                  "Agility":  "27",
-                  "Stamina":  "54",
-                  "Intellect":  "43",
-                  "Armor":  "616",
-                  "Attack Power":  "198",
-                  "Melee Crit":  "5.53%",
-                  "Spell Crit":  "5.53%"
+                  "Strength":  "50",
+                  "Agility":  "34",
+                  "Stamina":  "53",
+                  "Intellect":  "51",
+                  "Armor":  "301",
+                  "Attack Power":  "120",
+                  "Melee Crit":  "2.36%",
+                  "Spell Crit":  "2.36%"
               },
     "professions":  [
                         {
@@ -27,7 +27,7 @@
                         },
                         {
                             "name":  "Mining",
-                            "current":  45,
+                            "current":  47,
                             "max":  75
                         },
                         {
@@ -67,27 +67,27 @@
                  },
                  {
                      "slot":  "Wrist",
-                     "name":  "Ivy Cuffs",
-                     "itemLevel":  13,
-                     "quality":  "Common"
+                     "name":  "Ridgeback Bracers",
+                     "itemLevel":  18,
+                     "quality":  "Uncommon"
                  },
                  {
                      "slot":  "Hands",
-                     "name":  "Shucking Gloves",
+                     "name":  "Tomb Robber\u0027s Gloves",
                      "itemLevel":  17,
-                     "quality":  "Uncommon"
+                     "quality":  "Rare"
                  },
                  {
                      "slot":  "Waist",
-                     "name":  "Dryweed Belt",
-                     "itemLevel":  14,
-                     "quality":  "Uncommon"
+                     "name":  "Dusty Belt",
+                     "itemLevel":  17,
+                     "quality":  "Rare"
                  },
                  {
                      "slot":  "Legs",
-                     "name":  "Aboriginal Loincloth",
+                     "name":  "Deepgrave Trousers",
                      "itemLevel":  17,
-                     "quality":  "Uncommon"
+                     "quality":  "Rare"
                  },
                  {
                      "slot":  "Feet",
@@ -103,15 +103,9 @@
                  },
                  {
                      "slot":  "Main Hand",
-                     "name":  "Invader\u0027s Mace",
-                     "itemLevel":  17,
-                     "quality":  "Uncommon"
-                 },
-                 {
-                     "slot":  "Off Hand",
-                     "name":  "Lupine Buckler",
-                     "itemLevel":  17,
-                     "quality":  "Uncommon"
+                     "name":  "Ironforge Greathammer",
+                     "itemLevel":  18,
+                     "quality":  "Rare"
                  }
              ],
     "owned":  [

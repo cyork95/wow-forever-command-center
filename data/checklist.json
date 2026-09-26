@@ -401,6 +401,35 @@
     "defaultDone": false
   },
   {
+    "id": "excitable-slime",
+    "name": "Excitable Slime",
+    "type": "Pet",
+    "zone": "Undercity",
+    "minLevel": 1,
+    "priority": "Low",
+    "status": "Planned",
+    "owners": ["all"],
+    "notes": "Slime pet from a dance quest. Undercity is a Horde city, so an Alliance character has to reach Boyle some other way.",
+    "how": "Buy Nutritious Slime Slude from Boyle in the Apothecarium, south-west Undercity. Jump into the green water, find the Excitable Slime, and spam /dance at it (a /dance macro helps). It offers a quest; hand in the Slime Slude.",
+    "source": "Hozitojones",
+    "defaultDone": false
+  },
+  {
+    "id": "tallstrider-hatchling",
+    "name": "Tallstrider Hatchling",
+    "mobs": ["Strider Clutchmother"],
+    "type": "Pet",
+    "zone": "Darkshore",
+    "minLevel": 18,
+    "priority": "Low",
+    "status": "Owned",
+    "owners": ["flann"],
+    "notes": "Hatchling pet that drops from the Strider Clutchmother. Flann got it on beta.",
+    "how": "Kill the Strider Clutchmother, a teal rare tallstrider south of the Ruins of Auberdine in Darkshore. Her two Foreststrider Fledglings join the fight, so pull them first. She respawns quickly.",
+    "source": "Beta",
+    "defaultDone": true
+  },
+  {
     "id": "bmah",
     "name": "Black Market",
     "type": "Vanity",
@@ -426,6 +455,20 @@
     "notes": "TCG toy, not a cooking recipe. Five-minute poison belch, and it does not feed you.",
     "how": "Watch Madam Swyndle on the Black Market at Powderfuse Port in Riverglades. Parked vanity.",
     "source": "House",
+    "defaultDone": false
+  },
+  {
+    "id": "night-watchman-torch",
+    "name": "Night Watchman's Torch",
+    "type": "Vanity",
+    "zone": "Duskwood",
+    "minLevel": 18,
+    "priority": "Low",
+    "status": "Planned",
+    "owners": ["all"],
+    "notes": "Torch toy. Works anywhere you can place a campfire.",
+    "how": "A dead Night Watch Guard spawns at several spots in Duskwood. Click the body for an instant-finish quest that rewards the torch. Several people can take it before the body despawns, so group up.",
+    "source": "PaladinBeans",
     "defaultDone": false
   },
   {
