@@ -415,6 +415,21 @@
     "defaultDone": false
   },
   {
+    "id": "tallstrider-hatchling",
+    "name": "Tallstrider Hatchling",
+    "mobs": ["Strider Clutchmother"],
+    "type": "Pet",
+    "zone": "Darkshore",
+    "minLevel": 18,
+    "priority": "Low",
+    "status": "Owned",
+    "owners": ["flann"],
+    "notes": "Hatchling pet that drops from the Strider Clutchmother. Flann got it on beta.",
+    "how": "Kill the Strider Clutchmother, a teal rare tallstrider south of the Ruins of Auberdine in Darkshore. Her two Foreststrider Fledglings join the fight, so pull them first. She respawns quickly.",
+    "source": "Beta",
+    "defaultDone": true
+  },
+  {
     "id": "bmah",
     "name": "Black Market",
     "type": "Vanity",
