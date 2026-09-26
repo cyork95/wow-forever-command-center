@@ -53,7 +53,7 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 - `recipes`: known recipes by profession from Profession Master. Recipe hunts check themselves once learned. Its skill levels raise `professions[].current`.
 - `collections`: AllTheThings counts for mounts, pets, toys, titles, and achievements. `playedSeconds` comes from AllTheThings too.
 - `statistics.Character` and `statistics.Kills`: deaths, quests, areas explored, lockouts, and KillDex kill counts. Other groups you add stay.
-- `completedQuests`: quest ids Questie has marked finished. `data/quests.json` has the name, level, and zone for each id. The quests still in the log are not in the save.
+- `completedQuests`: quest ids Questie has marked finished. `data/quests.json` has the name, level, and zone for each id. Names QuestieDB does not know are filled from a CharacterExport `Resolved Quests` list when one is on disk. The quests still in the log are not in the save.
 - `huntKills`: KillDex kills for each mob named in a hunt's `mobs` list. The hunt shows them as kills logged.
 - `looted`: hunt items, and dungeon-journal drops, that KillDex saw drop for this character. A matching hunt checks itself, and the dungeon row shows the drop in hand, even after the item is sold or used.
 - `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`.

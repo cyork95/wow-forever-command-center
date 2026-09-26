@@ -217,6 +217,7 @@ if ($crafts) {
 
 $questCatalog = Read-QuestCatalog $addonsPath
 if ($questCatalog) {
+  $questCatalog = Add-ResolvedQuestNames $questCatalog $repo
   Write-JsonFile (Join-Path $repo "data\quests.json") $questCatalog
   Write-Output "Wrote $(@($questCatalog.quests).Count) quests to data/quests.json"
 }
