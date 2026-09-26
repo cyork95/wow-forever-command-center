@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "professions", "dungeons", "addons", "house"];
+const TABS = ["roster", "hunts", "professions", "dungeons", "macros", "addons", "house"];
 
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
@@ -37,6 +37,8 @@ const state = {
   dungeonQuery: "",
   professions: null,
   profLoading: false,
+  macros: null,
+  macroLoading: false,
   profView: "known",
   profQuery: "",
   openDungeons: new Set(),
@@ -726,6 +728,7 @@ function selectCharacter(id) {
   renderSheet();
   renderChecklist();
   renderProfessions();
+  renderMacros();
 }
 
 function exportChecks() {
@@ -1131,6 +1134,97 @@ function renderProfessions() {
   if (window.$WowheadPower && typeof window.$WowheadPower.refreshLinks === "function") window.$WowheadPower.refreshLinks();
 }
 
+async function loadMacros() {
+  if (state.macros || state.macroLoading) return;
+  state.macroLoading = true;
+  try {
+    state.macros = await loadJson("data/macros.json");
+  } catch (error) {
+    state.macros = [];
+    console.error(error);
+  }
+  state.macroLoading = false;
+  renderMacros();
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (error) {
+    const box = el("textarea", { readonly: "", style: "position:fixed;opacity:0" });
+    box.value = text;
+    document.body.append(box);
+    box.select();
+    const ok = document.execCommand("copy");
+    box.remove();
+    return ok;
+  }
+}
+
+function renderMacro(macro) {
+  const text = asList(macro.lines).join("\n");
+  const owner = state.characters.find((c) => c.id === macro.character);
+  const copy = el("button", { type: "button", class: "macro-copy", text: "Copy" });
+  copy.addEventListener("click", async () => {
+    copy.textContent = (await copyText(text)) ? "Copied" : "Select and copy";
+    setTimeout(() => { copy.textContent = "Copy"; }, 1500);
+  });
+  return el("article", { class: "macro" }, [
+    el("div", { class: "macro-head" }, [
+      el("img", {
+        class: "macro-icon",
+        src: `https://wow.zamimg.com/images/wow/icons/large/${macro.icon || "inv_misc_questionmark"}.jpg`,
+        alt: "",
+        width: "40",
+        height: "40",
+        loading: "lazy"
+      }),
+      el("strong", { text: macro.name }),
+      el("span", {
+        class: macro.scope === "character" ? "badge medium" : "badge",
+        text: macro.scope === "character" ? (owner ? owner.name : "Character") : "Shared"
+      }),
+      copy
+    ]),
+    el("pre", { class: "macro-body", text }),
+    macro.note ? el("p", { class: "meta", text: macro.note }) : null
+  ]);
+}
+
+function renderMacros() {
+  const root = document.getElementById("macro-list");
+  const note = document.getElementById("macro-source");
+  const picker = document.getElementById("macro-character");
+  if (!root || !note || !picker || !state.characters.length) return;
+  if (picker.options.length !== state.characters.length) {
+    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
+  }
+  picker.value = state.selected;
+  root.replaceChildren();
+  if (!state.macros) {
+    note.textContent = "Loading macros…";
+    return;
+  }
+  const who = state.characters.find((c) => c.id === state.selected);
+  const shared = state.macros.filter((m) => m.scope !== "character");
+  const own = state.macros.filter((m) => m.scope === "character" && m.character === state.selected);
+  note.textContent = "Shared macros work on every character on the account. Character macros belong to one toon.";
+  const groups = [
+    { label: "Shared", rows: shared, empty: "No shared macros yet." },
+    { label: `${who ? who.name : "Character"} only`, rows: own, empty: "No character macros for this toon yet." }
+  ];
+  groups.forEach((group) => {
+    root.append(el("h3", { class: "group-label" }, [
+      el("span", { text: group.label }),
+      el("em", { text: `${group.rows.length} ${group.rows.length === 1 ? "macro" : "macros"}` })
+    ]));
+    root.append(group.rows.length
+      ? el("div", { class: "macro-list" }, group.rows.map(renderMacro))
+      : el("p", { class: "empty-note", text: group.empty }));
+  });
+}
+
 function showTab(id) {
   if (!TABS.includes(id)) id = "roster";
   state.tab = id;
@@ -1144,6 +1238,7 @@ function showTab(id) {
     panel.hidden = panel.dataset.panel !== id;
   });
   if (id === "professions") loadProfessions();
+  if (id === "macros") loadMacros();
   const url = new URL(location.href);
   url.hash = id === "roster" ? "" : id;
   history.replaceState(null, "", url);
@@ -1172,6 +1267,7 @@ function render() {
   renderChecklist();
   renderProfessions();
   renderDungeons();
+  renderMacros();
   renderAddons();
 }
 
@@ -1226,6 +1322,7 @@ async function main() {
     renderChecklist();
   });
   document.getElementById("prof-character").addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("macro-character").addEventListener("change", (event) => selectCharacter(event.target.value));
   document.getElementById("prof-view").addEventListener("change", (event) => {
     state.profView = event.target.value;
     saveStore();

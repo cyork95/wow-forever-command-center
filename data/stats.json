@@ -3,24 +3,24 @@
     "characters":  {
                        "flann":  {
                                      "character":  "Flann Anvilhew",
-                                     "exportedAt":  "2026-09-26T03:01:08",
+                                     "exportedAt":  "2026-09-26T17:27:17",
                                      "addon":  "CharacterExport Forever",
                                      "realm":  "Classic Beta PvE 2",
-                                     "level":  18,
-                                     "zone":  "Darkshore",
-                                     "subzone":  "Auberdine",
-                                     "goldCopper":  26737,
-                                     "health":  "519 max",
+                                     "level":  20,
+                                     "zone":  "Ironforge",
+                                     "subzone":  "The Great Forge",
+                                     "goldCopper":  28863,
+                                     "health":  "530 max",
                                      "powerType":  null,
                                      "stats":  {
-                                                   "Strength":  "39",
-                                                   "Agility":  "27",
-                                                   "Stamina":  "54",
-                                                   "Intellect":  "43",
-                                                   "Armor":  "616",
-                                                   "Attack Power":  "198",
-                                                   "Melee Crit":  "5.53%",
-                                                   "Spell Crit":  "5.53%"
+                                                   "Strength":  "50",
+                                                   "Agility":  "34",
+                                                   "Stamina":  "53",
+                                                   "Intellect":  "51",
+                                                   "Armor":  "301",
+                                                   "Attack Power":  "120",
+                                                   "Melee Crit":  "2.36%",
+                                                   "Spell Crit":  "2.36%"
                                                },
                                      "professions":  [
                                                          {
@@ -30,7 +30,7 @@
                                                          },
                                                          {
                                                              "name":  "Mining",
-                                                             "current":  45,
+                                                             "current":  47,
                                                              "max":  75
                                                          },
                                                          {
@@ -70,27 +70,27 @@
                                                   },
                                                   {
                                                       "slot":  "Wrist",
-                                                      "name":  "Ivy Cuffs",
-                                                      "itemLevel":  13,
-                                                      "quality":  "Common"
+                                                      "name":  "Ridgeback Bracers",
+                                                      "itemLevel":  18,
+                                                      "quality":  "Uncommon"
                                                   },
                                                   {
                                                       "slot":  "Hands",
-                                                      "name":  "Shucking Gloves",
+                                                      "name":  "Tomb Robber\u0027s Gloves",
                                                       "itemLevel":  17,
-                                                      "quality":  "Uncommon"
+                                                      "quality":  "Rare"
                                                   },
                                                   {
                                                       "slot":  "Waist",
-                                                      "name":  "Dryweed Belt",
-                                                      "itemLevel":  14,
-                                                      "quality":  "Uncommon"
+                                                      "name":  "Dusty Belt",
+                                                      "itemLevel":  17,
+                                                      "quality":  "Rare"
                                                   },
                                                   {
                                                       "slot":  "Legs",
-                                                      "name":  "Aboriginal Loincloth",
+                                                      "name":  "Deepgrave Trousers",
                                                       "itemLevel":  17,
-                                                      "quality":  "Uncommon"
+                                                      "quality":  "Rare"
                                                   },
                                                   {
                                                       "slot":  "Feet",
@@ -106,21 +106,15 @@
                                                   },
                                                   {
                                                       "slot":  "Main Hand",
-                                                      "name":  "Invader\u0027s Mace",
-                                                      "itemLevel":  17,
-                                                      "quality":  "Uncommon"
-                                                  },
-                                                  {
-                                                      "slot":  "Off Hand",
-                                                      "name":  "Lupine Buckler",
-                                                      "itemLevel":  17,
-                                                      "quality":  "Uncommon"
+                                                      "name":  "Ironforge Greathammer",
+                                                      "itemLevel":  18,
+                                                      "quality":  "Rare"
                                                   }
                                               ],
                                      "owned":  [
 
                                                ],
-                                     "playedSeconds":  36280,
+                                     "playedSeconds":  57677,
                                      "statistics":  {
                                                         "Character":  [
                                                                           {
@@ -129,11 +123,11 @@
                                                                           },
                                                                           {
                                                                               "name":  "Quests completed",
-                                                                              "value":  "137"
+                                                                              "value":  "166"
                                                                           },
                                                                           {
                                                                               "name":  "Areas explored",
-                                                                              "value":  "19"
+                                                                              "value":  "28"
                                                                           },
                                                                           {
                                                                               "name":  "Instance lockouts",
@@ -143,11 +137,11 @@
                                                         "Kills":  [
                                                                       {
                                                                           "name":  "Total kills",
-                                                                          "value":  "1453"
+                                                                          "value":  "1501"
                                                                       },
                                                                       {
                                                                           "name":  "Creature types",
-                                                                          "value":  "83"
+                                                                          "value":  "94"
                                                                       },
                                                                       {
                                                                           "name":  "Stonesplinter Trogg",
@@ -246,81 +240,108 @@
                                                    "Barbaric Cloth Boots",
                                                    "Bear Meat",
                                                    "Blacksmith Hammer",
-                                                   "Blood Sausage",
-                                                   "Broken Fang",
+                                                   "Calico Belt",
+                                                   "Calico Cloak",
+                                                   "Calico Gloves",
                                                    "Canvas Latchbag",
-                                                   "Chipped Bear Tooth",
-                                                   "Chipped Claw",
                                                    "Clam Meat",
+                                                   "Conjured Fresh Water",
                                                    "Copper Ore",
-                                                   "Crawler Claw",
-                                                   "Crawler Meat",
+                                                   "Deepgrave Trousers",
                                                    "Dryweed Belt",
+                                                   "Dusty Belt",
                                                    "Earth Totem",
                                                    "Fire Totem",
                                                    "Fishing Pole",
                                                    "Hearthstone",
                                                    "Honorary Picks",
-                                                   "Ice Cold Milk",
+                                                   "Hunting Belt",
                                                    "Invader\u0027s Mace",
-                                                   "Ivy Cuffs",
+                                                   "Ironforge Greathammer",
+                                                   "Lean Wolf Flank",
                                                    "Lesser Healing Potion",
-                                                   "Letter to Delgren",
-                                                   "Light Feather",
-                                                   "Linen Bag",
                                                    "Linen Cloth",
                                                    "Lodestone",
-                                                   "Lupine Buckler of the Wolf",
                                                    "Mining Pick",
                                                    "Minor Arcane Elixir",
                                                    "Minor Healing Potion",
+                                                   "Minor Mana Potion",
                                                    "Murloc Eye",
                                                    "Primitive Mantle",
+                                                   "Relic Hunter Belt",
+                                                   "Ridgeback Bracers",
                                                    "Rough Stone",
+                                                   "Searing Gourd",
+                                                   "Shadowgem",
+                                                   "Sharp Claw",
                                                    "Shucking Gloves",
+                                                   "Simple Gloves",
                                                    "Small Lustrous Pearl",
-                                                   "Spellbinder Cloak",
+                                                   "Smooth Pebble",
+                                                   "Steelcap Shield",
                                                    "Stonesplinter Rags",
+                                                   "Strider Meat",
+                                                   "Stringy Wolf Meat",
                                                    "Thundris\u0027 Letter",
                                                    "Tigerseye",
                                                    "Timberland Cape",
+                                                   "Tomb Robber\u0027s Gloves",
+                                                   "Warped Leather Gloves",
+                                                   "Warped Leather Pants",
                                                    "White Leather Bag",
-                                                   "Wildkeeper Leggings",
-                                                   "Wool Cloth"
+                                                   "Willow Bracers of Intellect",
+                                                   "Wizbang\u0027s Gunnysack",
+                                                   "Wool Cloth",
+                                                   "Worn Hatchet",
+                                                   "Worn Mail Boots"
                                                ],
                                      "itemCounts":  {
                                                         "118":  4,
-                                                        "730":  1,
-                                                        "818":  3,
-                                                        "858":  5,
-                                                        "1179":  8,
-                                                        "2589":  46,
-                                                        "2592":  5,
-                                                        "2674":  2,
-                                                        "2675":  3,
-                                                        "2770":  25,
-                                                        "2835":  18,
+                                                        "730":  5,
+                                                        "818":  4,
+                                                        "858":  9,
+                                                        "1015":  1,
+                                                        "1210":  1,
+                                                        "1497":  1,
+                                                        "1498":  1,
+                                                        "1506":  1,
+                                                        "1507":  1,
+                                                        "1516":  1,
+                                                        "1731":  1,
+                                                        "2288":  20,
+                                                        "2455":  1,
+                                                        "2589":  30,
+                                                        "2592":  7,
+                                                        "2672":  1,
+                                                        "2770":  33,
+                                                        "2835":  29,
                                                         "2901":  1,
-                                                        "3169":  1,
-                                                        "3173":  2,
-                                                        "3220":  5,
-                                                        "4683":  1,
+                                                        "3173":  5,
+                                                        "3374":  1,
+                                                        "4690":  1,
                                                         "5175":  1,
                                                         "5176":  1,
-                                                        "5354":  1,
+                                                        "5469":  1,
                                                         "5498":  1,
-                                                        "5503":  4,
+                                                        "5503":  6,
+                                                        "5568":  4,
+                                                        "5635":  1,
                                                         "5956":  1,
                                                         "6256":  1,
+                                                        "6543":  1,
                                                         "6948":  1,
-                                                        "7073":  1,
-                                                        "7074":  1,
-                                                        "15202":  1,
+                                                        "9746":  1,
+                                                        "11936":  1,
+                                                        "14119":  1,
+                                                        "15207":  1,
+                                                        "15399":  1,
+                                                        "15405":  1,
                                                         "16311":  1,
-                                                        "17056":  1,
-                                                        "247754":  5,
+                                                        "247754":  1,
+                                                        "275893":  1,
                                                         "279045":  1,
-                                                        "279960":  3
+                                                        "279960":  2,
+                                                        "281254":  1
                                                     },
                                      "collections":  {
                                                          "Mounts":  0,
@@ -336,12 +357,12 @@
                                                     "Recipe: Peace Tea"
                                                 ],
                                      "sources":  {
-                                                     "CharacterExport":  "2026-09-26T03:01:08",
-                                                     "Nova Instance Tracker":  "2026-09-26T02:58:31",
+                                                     "CharacterExport":  "2026-09-26T17:27:17",
+                                                     "Nova Instance Tracker":  "2026-09-26T17:26:02",
                                                      "Syndicator":  null,
                                                      "Profession Master":  "2026-09-23T18:50:21",
-                                                     "AllTheThings":  "2026-09-26T02:56:38",
-                                                     "KillDex":  "2026-09-26T02:59:00"
+                                                     "AllTheThings":  "2026-09-26T17:23:10",
+                                                     "KillDex":  "2026-09-26T17:26:11"
                                                  }
                                  },
                        "ullrathor":  {
