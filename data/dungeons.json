@@ -1,10 +1,10 @@
 {
     "source":  "Forever Dungeon Journal",
-    "version":  "1.1",
+    "version":  "1.2.0",
     "dungeons":  [
                      {
                          "name":  "Hall of Thanes",
-                         "level":  "13-18",
+                         "level":  "13-20",
                          "location":  "Beneath Ironforge, Dun Morogh",
                          "description":  "Someone has broken into the royal dwarven burial chamber beneath Ironforge.",
                          "bosses":  [
@@ -272,7 +272,7 @@
                      },
                      {
                          "name":  "Ragefire Chasm",
-                         "level":  "13+",
+                         "level":  "13-18",
                          "location":  "Cleft of Shadow, Orgrimmar",
                          "description":  "Troggs and Burning Blade cultists infest the molten caverns beneath Orgrimmar.",
                          "bosses":  [
@@ -557,7 +557,7 @@
                      },
                      {
                          "name":  "Ruins of Lordaeron",
-                         "level":  "15-20",
+                         "level":  "15-22",
                          "location":  "The ruined city of Lordaeron",
                          "description":  "Scourge forces still haunt the ruined capital while a necromancer gathers power within the city.",
                          "bosses":  [
@@ -1036,7 +1036,7 @@
                      },
                      {
                          "name":  "The Deadmines",
-                         "level":  "16+",
+                         "level":  "17-26",
                          "location":  "Moonbrook, Westfall",
                          "description":  "The Defias Brotherhood is building a warship in the mines beneath Moonbrook.",
                          "bosses":  [
@@ -1390,7 +1390,7 @@
 
                                                             ],
                                             "rewards":  "Stormwind +50",
-                                            "note":  "New Forever quest. The source of the quest-start item is not yet confirmed.",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
@@ -1530,7 +1530,7 @@
                      },
                      {
                          "name":  "Wailing Caverns",
-                         "level":  "17-24",
+                         "level":  "15-24",
                          "location":  "Northern Barrens",
                          "description":  "Deep beneath the Barrens, druids and fanglords guard the sleeping Naralex while twisted beasts prowl the caverns.",
                          "bosses":  [
@@ -1998,7 +1998,7 @@
                      },
                      {
                          "name":  "Shadowfang Keep",
-                         "level":  "18+",
+                         "level":  "20-30",
                          "location":  "Silverpine Forest",
                          "description":  "Archmage Arugal and his worgen followers hold the keep above Pyrewood Village.",
                          "bosses":  [
@@ -2619,11 +2619,14 @@
                                                                 }
                                                             ],
                                             "rewards":  "Ironforge +50",
-                                            "note":  "Forever beta observations show substantially increased XP compared with Classic.",
+                                            "note":  "The Lorgalis Manuscript is inside a Pitted Iron Chest underwater in the Pool of Ask\u0027ar, in the northern alcove just past Ghamoo-ra\u0027s turtle room.",
                                             "noteItems":  [
 
                                                           ],
-                                            "startItem":  null
+                                            "startItem":  {
+                                                              "name":  "Lorgalis Manuscript",
+                                                              "from":  "Found in a Pitted Iron Chest underwater in the Pool of Ask\u0027ar, in the northern alcove just past Ghamoo-ra\u0027s turtle room."
+                                                          }
                                         },
                                         {
                                             "name":  "Researching the Corruption",
@@ -2765,12 +2768,15 @@
                                             "rewardItems":  [
 
                                                             ],
-                                            "rewards":  "11s • Darkspear Trolls +75",
-                                            "note":  "Step 1 of the Allegiance to the Old Gods chain.",
+                                            "rewards":  "11s • Darkspear Trolls +150",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
-                                            "startItem":  null
+                                            "startItem":  {
+                                                              "name":  "Damp Note",
+                                                              "from":  "Drops from Blackfathom Tide Priestess in the entrance tunnels leading to Blackfathom Deeps."
+                                                          }
                                         },
                                         {
                                             "name":  "Trouble in the Deeps",
