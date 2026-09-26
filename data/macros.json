@@ -1,0 +1,9 @@
+[
+  {
+    "id": "ggs",
+    "name": "GGs",
+    "scope": "shared",
+    "icon": "inv_misc_coin_01",
+    "lines": ["/p GGs!", "/cheer"]
+  }
+]
