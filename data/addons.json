@@ -1,5 +1,5 @@
 {
-    "scannedAt":  "2026-09-25T18:51:55",
+    "scannedAt":  "2026-09-26T03:02:02",
     "count":  32,
     "addons":  [
                    {
@@ -27,7 +27,7 @@
                                               "AllTheThingsSettingsPerCharacter"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -46,7 +46,7 @@
                                               "ATTCollectionHistoryDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -93,7 +93,7 @@
                                               "AUCTIONATOR_CHARACTER_CONFIG"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -112,7 +112,7 @@
                                               "APLForeverData"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -131,7 +131,7 @@
                                               "BAGANATOR_CURRENT_PROFILE"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -150,7 +150,7 @@
                                               "BugGrabberDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -170,7 +170,7 @@
                                               "BugSackLDBIconDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -187,7 +187,7 @@
                                               "CanIMogItOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -209,7 +209,7 @@
                                               "CharacterExportForeverDBChar"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -231,7 +231,7 @@
                                               "CHATTYNATOR_COMMAND_HISTORY"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -251,7 +251,7 @@
                                               "DMTABPC"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  null,
                        "loaded":  null
                    },
@@ -271,7 +271,7 @@
                                               "DialogueUI_Saves"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -292,7 +292,7 @@
                                               "farmerCharOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -312,9 +312,9 @@
                                               "ForeverDungeonJournalDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
-                       "enabled":  null,
-                       "loaded":  null
+                       "saveModified":  "2026-09-26T02:59:00",
+                       "enabled":  true,
+                       "loaded":  true
                    },
                    {
                        "folder":  "Gathering",
@@ -332,7 +332,7 @@
                                               "GatheringStats"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -350,7 +350,7 @@
                                               "KillDexCharDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -368,7 +368,7 @@
                                               "Memento_DataBossKill"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -387,7 +387,7 @@
                                               "MiniDruidManaDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -406,7 +406,7 @@
                                               "MinimapButtonButtonOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -435,7 +435,7 @@
                                               "MI2_SummaryDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -455,7 +455,7 @@
                                               "NITdatabase"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -472,7 +472,7 @@
                                               "ParcelDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:48",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -493,7 +493,7 @@
                                               "PLATYNATOR_LAST_INSTANCE"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -515,7 +515,7 @@
                                               "PlumberDB_PC"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -549,7 +549,7 @@
                                               "PM_CharacterSettings"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -566,7 +566,7 @@
                                               "RareScannerDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -585,7 +585,7 @@
                                               "SYNDICATOR_SUMMARIES"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -602,7 +602,7 @@
                                               "TalentsForeverBookDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -621,7 +621,7 @@
                                               "TomTomWaypointsM"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -642,7 +642,7 @@
                                               "TB_CharacterSettings"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T18:46:49",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },

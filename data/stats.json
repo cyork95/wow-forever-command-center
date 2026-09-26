@@ -1,36 +1,36 @@
 {
-    "updated":  "2026-09-25",
+    "updated":  "2026-09-26",
     "characters":  {
                        "flann":  {
                                      "character":  "Flann Anvilhew",
-                                     "exportedAt":  "2026-09-23T17:41:04",
+                                     "exportedAt":  "2026-09-26T03:01:08",
                                      "addon":  "CharacterExport Forever",
                                      "realm":  "Classic Beta PvE 2",
-                                     "level":  11,
-                                     "zone":  "Dun Morogh",
-                                     "subzone":  "Brewnall Village",
-                                     "goldCopper":  2080,
-                                     "health":  "260 max",
-                                     "powerType":  "Mana",
+                                     "level":  18,
+                                     "zone":  "Darkshore",
+                                     "subzone":  "Auberdine",
+                                     "goldCopper":  26737,
+                                     "health":  "519 max",
+                                     "powerType":  null,
                                      "stats":  {
-                                                   "Strength":  30,
-                                                   "Agility":  21,
-                                                   "Stamina":  34,
-                                                   "Intellect":  29,
-                                                   "Armor":  181,
-                                                   "Attack Power":  60,
-                                                   "Melee Crit":  "5.35%",
-                                                   "Spell Crit":  "5.35%"
+                                                   "Strength":  "39",
+                                                   "Agility":  "27",
+                                                   "Stamina":  "54",
+                                                   "Intellect":  "43",
+                                                   "Armor":  "616",
+                                                   "Attack Power":  "198",
+                                                   "Melee Crit":  "5.53%",
+                                                   "Spell Crit":  "5.53%"
                                                },
                                      "professions":  [
                                                          {
-                                                             "name":  "Mining",
-                                                             "current":  35,
+                                                             "name":  "Blacksmithing",
+                                                             "current":  19,
                                                              "max":  75
                                                          },
                                                          {
-                                                             "name":  "Blacksmithing",
-                                                             "current":  16,
+                                                             "name":  "Mining",
+                                                             "current":  45,
                                                              "max":  75
                                                          },
                                                          {
@@ -39,22 +39,28 @@
                                                              "max":  75
                                                          },
                                                          {
-                                                             "name":  "Cooking",
-                                                             "current":  6,
-                                                             "max":  null
-                                                         },
-                                                         {
                                                              "name":  "Fishing",
                                                              "current":  1,
-                                                             "max":  null
+                                                             "max":  75
+                                                         },
+                                                         {
+                                                             "name":  "Cooking",
+                                                             "current":  6,
+                                                             "max":  75
                                                          }
                                                      ],
                                      "gear":  [
                                                   {
                                                       "slot":  "Back",
-                                                      "name":  "Loose Chain Cloak",
-                                                      "itemLevel":  6,
-                                                      "quality":  "Poor"
+                                                      "name":  "Timberland Cape",
+                                                      "itemLevel":  18,
+                                                      "quality":  "Uncommon"
+                                                  },
+                                                  {
+                                                      "slot":  "Chest",
+                                                      "name":  "Stonesplinter Rags",
+                                                      "itemLevel":  17,
+                                                      "quality":  "Common"
                                                   },
                                                   {
                                                       "slot":  "Shirt",
@@ -63,46 +69,58 @@
                                                       "quality":  "Common"
                                                   },
                                                   {
-                                                      "slot":  "Hands",
-                                                      "name":  "Wooly Mittens",
-                                                      "itemLevel":  12,
+                                                      "slot":  "Wrist",
+                                                      "name":  "Ivy Cuffs",
+                                                      "itemLevel":  13,
                                                       "quality":  "Common"
+                                                  },
+                                                  {
+                                                      "slot":  "Hands",
+                                                      "name":  "Shucking Gloves",
+                                                      "itemLevel":  17,
+                                                      "quality":  "Uncommon"
                                                   },
                                                   {
                                                       "slot":  "Waist",
-                                                      "name":  "Frayed Belt",
-                                                      "itemLevel":  3,
-                                                      "quality":  "Poor"
+                                                      "name":  "Dryweed Belt",
+                                                      "itemLevel":  14,
+                                                      "quality":  "Uncommon"
                                                   },
                                                   {
                                                       "slot":  "Legs",
-                                                      "name":  "Dwarven Leather Pants",
-                                                      "itemLevel":  5,
-                                                      "quality":  "Common"
+                                                      "name":  "Aboriginal Loincloth",
+                                                      "itemLevel":  17,
+                                                      "quality":  "Uncommon"
                                                   },
                                                   {
                                                       "slot":  "Feet",
-                                                      "name":  "Frosthowl\u0027s Footwarmers",
-                                                      "itemLevel":  9,
+                                                      "name":  "Barbaric Cloth Boots",
+                                                      "itemLevel":  15,
+                                                      "quality":  "Uncommon"
+                                                  },
+                                                  {
+                                                      "slot":  "Finger 1",
+                                                      "name":  "Avala\u0027s Binding",
+                                                      "itemLevel":  8,
                                                       "quality":  "Common"
                                                   },
                                                   {
                                                       "slot":  "Main Hand",
-                                                      "name":  "Copper Mace",
-                                                      "itemLevel":  9,
-                                                      "quality":  "Common"
+                                                      "name":  "Invader\u0027s Mace",
+                                                      "itemLevel":  17,
+                                                      "quality":  "Uncommon"
                                                   },
                                                   {
                                                       "slot":  "Off Hand",
-                                                      "name":  "Dwarven Kite Shield",
-                                                      "itemLevel":  5,
-                                                      "quality":  "Common"
+                                                      "name":  "Lupine Buckler",
+                                                      "itemLevel":  17,
+                                                      "quality":  "Uncommon"
                                                   }
                                               ],
                                      "owned":  [
 
                                                ],
-                                     "playedSeconds":  25008,
+                                     "playedSeconds":  36280,
                                      "statistics":  {
                                                         "Character":  [
                                                                           {
@@ -111,11 +129,11 @@
                                                                           },
                                                                           {
                                                                               "name":  "Quests completed",
-                                                                              "value":  "76"
+                                                                              "value":  "137"
                                                                           },
                                                                           {
                                                                               "name":  "Areas explored",
-                                                                              "value":  "6"
+                                                                              "value":  "19"
                                                                           },
                                                                           {
                                                                               "name":  "Instance lockouts",
@@ -125,15 +143,31 @@
                                                         "Kills":  [
                                                                       {
                                                                           "name":  "Total kills",
-                                                                          "value":  "175"
+                                                                          "value":  "1453"
                                                                       },
                                                                       {
                                                                           "name":  "Creature types",
-                                                                          "value":  "18"
+                                                                          "value":  "83"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Stonesplinter Trogg",
+                                                                          "value":  "134"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Stonesplinter Scout",
+                                                                          "value":  "128"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Tunnel Rat Vermin",
+                                                                          "value":  "88"
                                                                       },
                                                                       {
                                                                           "name":  "Rockjaw Bonesnapper",
-                                                                          "value":  "41"
+                                                                          "value":  "61"
+                                                                      },
+                                                                      {
+                                                                          "name":  "Stonesplinter Skullthumper",
+                                                                          "value":  "56"
                                                                       },
                                                                       {
                                                                           "name":  "Rockjaw Skullthumper",
@@ -206,82 +240,86 @@
                                                                       ]
                                                 },
                                      "items":  [
+                                                   "Aboriginal Loincloth of the Eagle",
                                                    "Apprentice\u0027s Mining Pack",
                                                    "Avala\u0027s Binding",
-                                                   "Barrel of Shimmer Stout",
-                                                   "Beer Basted Boar Ribs",
+                                                   "Barbaric Cloth Boots",
+                                                   "Bear Meat",
                                                    "Blacksmith Hammer",
+                                                   "Blood Sausage",
+                                                   "Broken Fang",
                                                    "Canvas Latchbag",
-                                                   "Copper Bar",
-                                                   "Copper Mace",
+                                                   "Chipped Bear Tooth",
+                                                   "Chipped Claw",
+                                                   "Clam Meat",
                                                    "Copper Ore",
-                                                   "Crag Boar Rib",
-                                                   "Disciple\u0027s Bracers",
-                                                   "Dwarven Kite Shield",
+                                                   "Crawler Claw",
+                                                   "Crawler Meat",
+                                                   "Dryweed Belt",
                                                    "Earth Totem",
+                                                   "Fire Totem",
                                                    "Fishing Pole",
-                                                   "Frayed Belt",
-                                                   "Frostbit Staff",
-                                                   "Frosthowl\u0027s Footwarmers",
-                                                   "Goat Fur Cloak",
                                                    "Hearthstone",
+                                                   "Honorary Picks",
+                                                   "Ice Cold Milk",
+                                                   "Invader\u0027s Mace",
+                                                   "Ivy Cuffs",
+                                                   "Lesser Healing Potion",
+                                                   "Letter to Delgren",
+                                                   "Light Feather",
                                                    "Linen Bag",
                                                    "Linen Cloth",
                                                    "Lodestone",
-                                                   "Malachite",
+                                                   "Lupine Buckler of the Wolf",
                                                    "Mining Pick",
+                                                   "Minor Arcane Elixir",
                                                    "Minor Healing Potion",
-                                                   "Plans: Copper Chain Vest",
+                                                   "Murloc Eye",
                                                    "Primitive Mantle",
-                                                   "Rancher\u0027s Trousers",
-                                                   "Recipe: Beer Basted Boar Ribs",
-                                                   "Recipe: Minor Mageblood Elixir",
-                                                   "Recipe: Peace Tea",
-                                                   "Recipe: Swiftness Potion",
-                                                   "Refreshing Spring Water",
                                                    "Rough Stone",
-                                                   "Rough Weightstone",
-                                                   "Shadowgem",
-                                                   "Shiny Bauble",
-                                                   "Small Green Pouch",
-                                                   "Stringy Wolf Meat",
+                                                   "Shucking Gloves",
+                                                   "Small Lustrous Pearl",
+                                                   "Spellbinder Cloak",
+                                                   "Stonesplinter Rags",
+                                                   "Thundris\u0027 Letter",
                                                    "Tigerseye",
-                                                   "Tough Hunk of Bread",
-                                                   "Tough Jerky",
-                                                   "Warm Winter Robe",
-                                                   "White Wolf Gloves"
+                                                   "Timberland Cape",
+                                                   "White Leather Bag",
+                                                   "Wildkeeper Leggings",
+                                                   "Wool Cloth"
                                                ],
                                      "itemCounts":  {
-                                                        "117":  17,
-                                                        "118":  3,
-                                                        "159":  12,
-                                                        "774":  3,
-                                                        "818":  5,
-                                                        "1210":  1,
-                                                        "2067":  1,
-                                                        "2555":  1,
-                                                        "2589":  52,
-                                                        "2672":  6,
-                                                        "2770":  1,
-                                                        "2835":  5,
-                                                        "2840":  13,
-                                                        "2886":  1,
-                                                        "2888":  3,
-                                                        "2889":  1,
+                                                        "118":  4,
+                                                        "730":  1,
+                                                        "818":  3,
+                                                        "858":  5,
+                                                        "1179":  8,
+                                                        "2589":  46,
+                                                        "2592":  5,
+                                                        "2674":  2,
+                                                        "2675":  3,
+                                                        "2770":  25,
+                                                        "2835":  18,
                                                         "2901":  1,
-                                                        "3085":  1,
-                                                        "3239":  5,
-                                                        "3609":  1,
-                                                        "4238":  1,
-                                                        "4540":  4,
+                                                        "3169":  1,
+                                                        "3173":  2,
+                                                        "3220":  5,
+                                                        "4683":  1,
                                                         "5175":  1,
-                                                        "5572":  1,
+                                                        "5176":  1,
+                                                        "5354":  1,
+                                                        "5498":  1,
+                                                        "5503":  4,
                                                         "5956":  1,
                                                         "6256":  1,
-                                                        "6529":  1,
                                                         "6948":  1,
-                                                        "249879":  1,
-                                                        "250375":  1,
+                                                        "7073":  1,
+                                                        "7074":  1,
+                                                        "15202":  1,
+                                                        "16311":  1,
+                                                        "17056":  1,
+                                                        "247754":  5,
+                                                        "279045":  1,
                                                         "279960":  3
                                                     },
                                      "collections":  {
@@ -289,7 +327,7 @@
                                                          "Pets":  0,
                                                          "Toys":  0,
                                                          "Titles":  0,
-                                                         "Achievements":  1
+                                                         "Achievements":  2
                                                      },
                                      "huntKills":  {
                                                        "Frostmane Seer":  31
@@ -298,12 +336,12 @@
                                                     "Recipe: Peace Tea"
                                                 ],
                                      "sources":  {
-                                                     "CharacterExport":  "2026-09-23T17:41:04",
-                                                     "Nova Instance Tracker":  "2026-09-25T18:46:26",
+                                                     "CharacterExport":  "2026-09-26T03:01:08",
+                                                     "Nova Instance Tracker":  "2026-09-26T02:58:31",
                                                      "Syndicator":  null,
                                                      "Profession Master":  "2026-09-23T18:50:21",
-                                                     "AllTheThings":  "2026-09-25T18:45:21",
-                                                     "KillDex":  "2026-09-25T18:46:48"
+                                                     "AllTheThings":  "2026-09-26T02:56:38",
+                                                     "KillDex":  "2026-09-26T02:59:00"
                                                  }
                                  },
                        "ullrathor":  {
