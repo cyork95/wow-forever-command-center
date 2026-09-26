@@ -3,7 +3,7 @@
     "id": "ggs",
     "name": "GGs",
     "scope": "shared",
-    "icon": "inv_misc_coin_01",
+    "icon": "racial_dwarf_findtreasure",
     "lines": ["/p GGs!", "/cheer"]
   }
 ]
