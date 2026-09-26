@@ -14,6 +14,8 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
+const TABS = ["roster", "hunts", "professions", "dungeons", "addons", "house"];
+
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
   { id: "mounts", label: "Mounts", types: ["Mount"] },
@@ -31,8 +33,16 @@ const state = {
   checklist: [],
   stats: { updated: null, characters: {} },
   addons: null,
+  dungeons: null,
+  dungeonQuery: "",
+  professions: null,
+  profLoading: false,
+  profView: "known",
+  profQuery: "",
+  openDungeons: new Set(),
   selected: "skyrinis",
   scope: "character",
+  place: "",
   query: "",
   type: "",
   openId: "",
@@ -48,7 +58,9 @@ function loadStore() {
     if (saved.checks) state.checks = saved.checks;
     if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
-    if (["roster", "hunts", "addons", "house"].includes(saved.tab)) state.tab = saved.tab;
+    if (typeof saved.place === "string") state.place = saved.place;
+    if (["known", "make", "learn", "all"].includes(saved.profView)) state.profView = saved.profView;
+    if (TABS.includes(saved.tab)) state.tab = saved.tab;
   } catch {
     state.checks = {};
     state.attempts = {};
@@ -59,6 +71,8 @@ function saveStore() {
   localStorage.setItem(STORE_KEY, JSON.stringify({
     selected: state.selected,
     scope: state.scope,
+    place: state.place,
+    profView: state.profView,
     tab: state.tab,
     checks: state.checks,
     attempts: state.attempts
@@ -148,6 +162,79 @@ function killLog(mobs) {
   return { total, text };
 }
 
+function buildDrops() {
+  const drops = new Map();
+  const dropDungeons = new Map();
+  const put = (name, where, dungeon) => {
+    const key = nameKey(name);
+    if (!key) return;
+    if (!drops.has(key)) drops.set(key, []);
+    drops.get(key).push(where);
+    if (!dropDungeons.has(key)) dropDungeons.set(key, new Set());
+    dropDungeons.get(key).add(dungeon);
+  };
+  const dungeons = asList(state.dungeons && state.dungeons.dungeons);
+  dungeons.forEach((dungeon) => {
+    asList(dungeon.bosses).forEach((boss) => {
+      asList(boss.loot).forEach((item) => put(item.name, `${boss.name} in ${dungeon.name}`, dungeon.name));
+    });
+    asList(dungeon.quests).forEach((quest) => {
+      asList(quest.rewardItems).forEach((item) => put(item.name, `the ${quest.name} quest in ${dungeon.name}`, dungeon.name));
+    });
+  });
+  const hunts = new Set();
+  const places = new Map();
+  state.checklist.forEach((hunt) => {
+    const entries = [hunt, ...asList(hunt.parts)];
+    entries.forEach((entry) => hunts.add(nameKey(entry.name)));
+    const zone = nameKey(hunt.zone);
+    const inDungeons = new Set(dungeons
+      .map((dungeon) => dungeon.name)
+      .filter((name) => zone.includes(nameKey(name).replace(/^the /, ""))));
+    entries.forEach((entry) => (dropDungeons.get(nameKey(entry.name)) || []).forEach((name) => inDungeons.add(name)));
+    const kind = inDungeons.size ? "dungeon"
+      : hunt.type === "Milestone" || hunt.source === "Pack" ? "none"
+      : "world";
+    places.set(hunt.id, { kind, dungeons: [...inDungeons] });
+  });
+  state.drops = drops;
+  state.huntNames = hunts;
+  state.places = places;
+}
+
+function huntPlace(item) {
+  return (state.places && state.places.get(item.id)) || { kind: "world", dungeons: [] };
+}
+
+function matchesPlace(item) {
+  if (!state.place) return true;
+  const place = huntPlace(item);
+  if (state.place.startsWith("dungeon:")) return place.dungeons.includes(state.place.slice(8));
+  return place.kind === state.place;
+}
+
+function fillPlaceOptions() {
+  const select = document.getElementById("place");
+  const used = new Set();
+  state.checklist.forEach((item) => huntPlace(item).dungeons.forEach((name) => used.add(name)));
+  const order = asList(state.dungeons && state.dungeons.dungeons).map((dungeon) => dungeon.name);
+  const options = [
+    ["", "Anywhere"],
+    ["dungeon", "Dungeons"],
+    ...order.filter((name) => used.has(name)).map((name) => [`dungeon:${name}`, `\u00a0\u00a0\u00a0${name}`]),
+    ["world", "Open world"],
+    ["none", "No trip (packs, milestones)"]
+  ];
+  select.replaceChildren(...options.map(([value, label]) => el("option", { value, text: label })));
+  if (!options.some(([value]) => value === state.place)) state.place = "";
+  select.value = state.place;
+}
+
+function dropNote(name) {
+  const where = (state.drops && state.drops.get(nameKey(name))) || [];
+  return where.length ? `Drops from ${where.join(" or ")}.` : "";
+}
+
 function huntMobs(item) {
   return [...asList(item.mobs), ...asList(item.parts).flatMap((part) => asList(part.mobs))];
 }
@@ -175,9 +262,10 @@ function visibleItems() {
   const q = state.query.trim().toLowerCase();
   return state.checklist.filter((item) => {
     if (state.scope === "character" && !matchesCharacter(item, character)) return false;
+    if (!matchesPlace(item)) return false;
     if (!q) return true;
     const parts = (item.parts || []).map((part) => `${part.name} ${part.how || ""}`).join(" ");
-    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type} ${parts}`.toLowerCase();
+    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type} ${parts} ${huntPlace(item).dungeons.join(" ")}`.toLowerCase();
     return hay.includes(q);
   });
 }
@@ -488,9 +576,11 @@ function renderPart(item, part) {
     renderChecklist();
   });
   const partKills = killLog(part.mobs);
+  const partDrop = dropNote(part.name);
   const copy = el("div", { class: "part-copy" }, [
     el("strong", { text: part.name }),
     el("p", { text: found ? `${found}. ${part.how || ""}` : part.how || "" }),
+    partDrop ? el("p", { class: "drop-note", text: partDrop }) : null,
     partKills.total ? el("p", { class: "kill-log", text: `KillDex: ${partKills.text}` }) : null
   ]);
   return el("div", { class: `part${checked ? " done" : ""}` }, [
@@ -562,6 +652,7 @@ function renderHunt(item) {
   const detailKids = [
     el("p", { class: "hunt-notes", text: item.notes }),
     item.how ? el("p", { text: item.how }) : null,
+    dropNote(item.name) ? el("p", { class: "drop-note", text: dropNote(item.name) }) : null,
     el("div", { class: "facts" }, [
       fact("Zone", item.zone),
       fact("From", `level ${item.minLevel}`),
@@ -634,6 +725,7 @@ function selectCharacter(id) {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderProfessions();
 }
 
 function exportChecks() {
@@ -739,9 +831,308 @@ function renderAddons() {
   });
 }
 
+function itemMatches(item, q) {
+  return nameKey(`${item.name} ${item.slot || ""}`).includes(q);
+}
+
+function renderLootItem(item) {
+  const owned = ownedNote(item);
+  const quality = nameKey(item.quality) || "common";
+  const bits = [item.slot, owned].filter(Boolean).join(" · ");
+  return el("li", { class: owned ? "owned" : null }, [
+    el("span", { class: `item q-${quality}`, text: item.name }),
+    state.huntNames && state.huntNames.has(nameKey(item.name)) ? el("span", { class: "badge", text: "Hunt" }) : null,
+    bits ? el("small", { text: bits }) : null
+  ]);
+}
+
+function questFactionShown(quest) {
+  const faction = (state.house && state.house.faction) || "Alliance";
+  return !quest.faction || quest.faction === "Both" || quest.faction === faction;
+}
+
+function renderQuest(quest) {
+  const meta = [
+    quest.level ? `Level ${quest.level}` : "",
+    quest.requires ? `needs ${quest.requires}` : "",
+    quest.faction && quest.faction !== "Both" ? quest.faction : "",
+    quest.classOnly ? `${quest.classOnly} only` : ""
+  ].filter(Boolean).join(" · ");
+  const rewards = asList(quest.rewardItems);
+  const kids = [
+    el("strong", { text: quest.name }),
+    meta ? el("small", { text: meta }) : null,
+    quest.objective ? el("p", { text: quest.objective }) : null,
+    quest.pickup ? el("p", { class: "meta", text: `Start: ${quest.pickup}${quest.turnin && quest.turnin !== quest.pickup ? ` · Turn in: ${quest.turnin}` : ""}` }) : null,
+    quest.startItem ? el("p", { class: "meta", text: `Starts from ${quest.startItem.name}${quest.startItem.from ? `. ${quest.startItem.from}` : ""}` }) : null
+  ];
+  if (rewards.length) {
+    kids.push(el("p", { class: "reward-label", text: quest.rewardChoice && rewards.length > 1 ? "Choose one" : "Reward" }));
+    kids.push(el("ul", { class: "loot" }, rewards.map(renderLootItem)));
+  }
+  if (quest.rewards) kids.push(el("p", { class: "meta", text: quest.rewards }));
+  if (quest.note) kids.push(el("p", { class: "meta", text: quest.note }));
+  if (asList(quest.noteItems).length) kids.push(el("ul", { class: "loot" }, asList(quest.noteItems).map(renderLootItem)));
+  return el("article", { class: "quest" }, kids);
+}
+
+function renderDungeons() {
+  const root = document.getElementById("dungeon-list");
+  const note = document.getElementById("dungeon-source");
+  if (!root || !note) return;
+  root.replaceChildren();
+  const journal = state.dungeons;
+  if (!journal || !asList(journal.dungeons).length) {
+    note.textContent = "No journal yet. Install Forever Dungeon Journal, run scripts/scan-addons.ps1, then commit data/dungeons.json.";
+    return;
+  }
+  const q = nameKey(state.dungeonQuery);
+  const version = versionLabel(journal.version);
+  note.textContent = `From ${journal.source}${version ? ` ${version}` : ""}. Beta loot can change.`;
+  let shown = 0;
+  asList(journal.dungeons).forEach((dungeon) => {
+    const wholeDungeon = !q || nameKey(`${dungeon.name} ${dungeon.location}`).includes(q);
+    const bosses = asList(dungeon.bosses).map((boss) => {
+      const names = [boss.name, ...asList(boss.aliases)];
+      const bossHit = wholeDungeon || names.some((name) => nameKey(name).includes(q));
+      const loot = bossHit ? asList(boss.loot) : asList(boss.loot).filter((item) => itemMatches(item, q));
+      return { boss, names, loot, show: bossHit || loot.length > 0 };
+    }).filter((row) => row.show);
+    const factionQuests = asList(dungeon.quests).filter(questFactionShown);
+    const quests = wholeDungeon ? factionQuests : factionQuests.filter((quest) => {
+      const hay = [quest.name, quest.objective, quest.pickup, quest.startItem && quest.startItem.name,
+        ...asList(quest.rewardItems).map((item) => item.name)].join(" ");
+      return nameKey(hay).includes(q);
+    });
+    if (!bosses.length && !quests.length) return;
+    shown++;
+
+    const allLoot = asList(dungeon.bosses).flatMap((boss) => asList(boss.loot));
+    const ownedCount = allLoot.filter((item) => ownedNote(item)).length;
+    const summaryBits = [
+      dungeon.level ? `Level ${dungeon.level}` : "",
+      dungeon.location,
+      `${asList(dungeon.bosses).length} bosses`,
+      `${allLoot.length} drops`,
+      ownedCount ? `${ownedCount} owned` : ""
+    ].filter(Boolean).join(" · ");
+    const box = el("details", { class: "card dungeon" });
+    box.open = !!q || state.openDungeons.has(dungeon.name);
+    box.addEventListener("toggle", () => {
+      if (q) return;
+      if (box.open) state.openDungeons.add(dungeon.name);
+      else state.openDungeons.delete(dungeon.name);
+    });
+    box.append(el("summary", {}, [
+      el("h3", { text: dungeon.name }),
+      el("span", { class: "meta", text: summaryBits })
+    ]));
+    if (dungeon.description) box.append(el("p", { class: "dungeon-blurb", text: dungeon.description }));
+
+    if (bosses.length) {
+      const grid = el("div", { class: "boss-grid" });
+      bosses.forEach(({ boss, names, loot }) => {
+        const kills = killLog(names);
+        const aliases = asList(boss.aliases);
+        grid.append(el("section", { class: "boss" }, [
+          el("h4", { text: boss.name }),
+          aliases.length || boss.note
+            ? el("small", { text: [aliases.length ? `Also called ${aliases.join(", ")}` : "", boss.note].filter(Boolean).join(" · ") })
+            : null,
+          kills.total ? el("p", { class: "kill-log", text: `KillDex: ${kills.total} ${kills.total === 1 ? "kill" : "kills"}` }) : null,
+          loot.length
+            ? el("ul", { class: "loot" }, loot.map(renderLootItem))
+            : el("p", { class: "meta", text: "No recorded drops." })
+        ]));
+      });
+      box.append(el("h4", { class: "group-label", text: "Bosses and drops" }));
+      box.append(grid);
+    }
+
+    const hidden = asList(dungeon.quests).length - factionQuests.length;
+    if (quests.length || (wholeDungeon && hidden)) {
+      box.append(el("h4", { class: "group-label" }, [
+        el("span", { text: "Quests" }),
+        hidden ? el("em", { text: `${hidden} for the other faction hidden` }) : null
+      ]));
+      if (quests.length) box.append(el("div", { class: "quest-list" }, quests.map(renderQuest)));
+    }
+    root.append(box);
+  });
+  if (!shown) root.append(el("p", { class: "empty-note", text: "Nothing in the journal matches that." }));
+}
+
+async function loadProfessions() {
+  if (state.professions || state.profLoading) return;
+  state.profLoading = true;
+  try {
+    state.professions = await loadJson("data/professions.json");
+  } catch (error) {
+    state.professions = { professions: {}, items: {}, missing: true };
+    console.error(error);
+  }
+  state.profLoading = false;
+  renderProfessions();
+}
+
+function itemName(id) {
+  const items = (state.professions && state.professions.items) || {};
+  return items[String(id)] || "";
+}
+
+function renderItemName(id, fallback) {
+  const name = itemName(id) || fallback;
+  if (name) return el("span", { text: name });
+  return el("a", {
+    href: `https://www.wowhead.com/classic/item=${id}`,
+    target: "_blank",
+    rel: "noreferrer",
+    "data-wowhead": `item=${id}&domain=classic`,
+    text: `Item ${id}`
+  });
+}
+
+function craftDifficulty(craft, skill) {
+  const [orange, yellow, green, grey] = asList(craft.levels);
+  if (orange === undefined) return { id: "unknown", label: "" };
+  if (skill < orange) return { id: "locked", label: `Needs ${orange}` };
+  if (yellow !== undefined && skill < yellow) return { id: "orange", label: "Orange" };
+  if (green !== undefined && skill < green) return { id: "yellow", label: "Yellow" };
+  if (grey !== undefined && skill < grey) return { id: "green", label: "Green" };
+  return { id: "grey", label: "Grey" };
+}
+
+function makeCount(craft, counts) {
+  let most = Infinity;
+  asList(craft.reagents).forEach(([id, need]) => {
+    const have = Number(counts[String(id)]) || 0;
+    most = Math.min(most, Math.floor(have / (Number(need) || 1)));
+  });
+  return Number.isFinite(most) ? most : 0;
+}
+
+function characterProfessions(character, live) {
+  const all = Object.keys((state.professions && state.professions.professions) || {});
+  const names = [...asList(character.professions)];
+  Object.keys(live.crafts || {}).forEach((name) => { if (!names.includes(name)) names.push(name); });
+  asList(live.professions).forEach((p) => { if (p && !names.includes(p.name)) names.push(p.name); });
+  return names.filter((name) => all.includes(name));
+}
+
+function renderCraft(craft, known, skill, counts) {
+  const difficulty = craftDifficulty(craft, skill);
+  const quality = nameKey(craft.quality) || "common";
+  const canMake = known ? makeCount(craft, counts) : 0;
+  const head = el("div", { class: "craft-head" }, [
+    el("span", { class: `diff diff-${difficulty.id}`, title: difficulty.label || null }),
+    el("strong", { class: `item q-${quality}`, text: craft.makes ? `${craft.name} ×${craft.makes}` : craft.name }),
+    difficulty.id === "locked" ? el("small", { text: difficulty.label }) : null,
+    known && canMake ? el("span", { class: "badge medium", text: `Can make ${canMake}` }) : null
+  ]);
+  const reagents = el("ul", { class: "reagents" }, asList(craft.reagents).map(([id, need]) => {
+    const have = Number(counts[String(id)]) || 0;
+    return el("li", { class: have >= need ? "have" : "short" }, [
+      el("span", { text: `${need}× ` }),
+      renderItemName(id),
+      el("small", { text: ` (${have})` })
+    ]);
+  }));
+  const kids = [head, reagents];
+  if (!known) {
+    const learn = craft.learn || {};
+    if (learn.how === "Recipe") {
+      asList(learn.recipes).forEach((recipe) => {
+        const name = itemName(recipe.id);
+        const owned = name ? ownedNote({ name }) : "";
+        kids.push(el("p", { class: "learn" }, [
+          el("span", { text: "Learn from " }),
+          renderItemName(recipe.id),
+          owned ? el("span", { class: "owned-note", text: ` · ${owned}` }) : null,
+          asList(recipe.where).length ? el("span", { class: "meta", text: ` · ${asList(recipe.where).join(" · ")}` }) : null
+        ]));
+      });
+    } else {
+      const where = asList(learn.where).join(", ");
+      kids.push(el("p", { class: "learn", text: where ? `${learn.how}: ${where}` : learn.how || "Unknown" }));
+    }
+  }
+  return el("article", { class: `craft${known ? " known" : ""}` }, kids);
+}
+
+function renderProfessions() {
+  const root = document.getElementById("prof-list");
+  const note = document.getElementById("prof-source");
+  const picker = document.getElementById("prof-character");
+  if (!root || !note || !picker || !state.characters.length) return;
+  if (picker.options.length !== state.characters.length) {
+    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
+  }
+  picker.value = state.selected;
+  document.getElementById("prof-view").value = state.profView;
+  root.replaceChildren();
+  const data = state.professions;
+  if (!data) {
+    note.textContent = "Loading the craft list…";
+    return;
+  }
+  if (data.missing) {
+    note.textContent = "No craft list yet. Install Profession Master, run scripts/scan-addons.ps1, then commit data/professions.json.";
+    return;
+  }
+  const version = versionLabel(data.version);
+  note.textContent = `From ${data.source}${version ? ` ${version}` : ""}. Reagent counts cover bags, bank, and mail.`;
+
+  const character = selectedCharacter();
+  const live = (state.stats.characters || {})[character.id] || {};
+  const counts = live.itemCounts || {};
+  const q = nameKey(state.profQuery);
+  const names = characterProfessions(character, live);
+  if (!names.length) {
+    root.append(el("p", { class: "empty-note", text: `${character.name} has no professions on record yet.` }));
+    return;
+  }
+  names.forEach((name) => {
+    const crafts = asList(data.professions[name]);
+    const knownIds = new Set(asList((live.crafts || {})[name]).map(Number));
+    const skillRow = asList(live.professions).find((p) => p && p.name === name);
+    const skill = skillRow ? Number(skillRow.current) || 0 : 0;
+    const known = crafts.filter((craft) => knownIds.has(craft.id));
+    const makeable = known.filter((craft) => makeCount(craft, counts) > 0);
+    let rows = state.profView === "known" ? known
+      : state.profView === "make" ? makeable
+      : state.profView === "learn" ? crafts.filter((craft) => !knownIds.has(craft.id) && (craft.learn || {}).how !== "Not available")
+      : crafts;
+    if (q) {
+      rows = rows.filter((craft) => {
+        const reagentNames = asList(craft.reagents).map(([id]) => itemName(id)).join(" ");
+        return nameKey(`${craft.name} ${reagentNames}`).includes(q);
+      });
+    }
+    rows = [...rows].sort((a, b) => (asList(a.levels)[0] || 0) - (asList(b.levels)[0] || 0) || a.name.localeCompare(b.name));
+
+    const skillText = skillRow ? (skillRow.max ? `${skill}/${skillRow.max}` : `${skill}`) : "not learned";
+    const box = el("section", { class: "card profession" });
+    box.append(el("div", { class: "who" }, [
+      el("h3", { text: name }),
+      el("span", { class: "meta", text: [skillText, `${known.length} of ${crafts.length} known`, makeable.length ? `${makeable.length} can make now` : ""].filter(Boolean).join(" · ") })
+    ]));
+    if (!rows.length) {
+      const empty = state.profView === "known" ? "None known yet. Opening this profession's window in game updates the list."
+        : state.profView === "make" ? "Nothing to make from what is in the bags."
+        : "Nothing here.";
+      box.append(el("p", { class: "empty-note", text: q ? "Nothing matches that search." : empty }));
+    } else {
+      const shown = rows.slice(0, 200);
+      box.append(el("div", { class: "craft-list" }, shown.map((craft) => renderCraft(craft, knownIds.has(craft.id), skill, counts))));
+      if (rows.length > shown.length) box.append(el("p", { class: "meta", text: `Showing the first ${shown.length} of ${rows.length}. Search to narrow it.` }));
+    }
+    root.append(box);
+  });
+  if (window.$WowheadPower && typeof window.$WowheadPower.refreshLinks === "function") window.$WowheadPower.refreshLinks();
+}
+
 function showTab(id) {
-  const tabs = ["roster", "hunts", "addons", "house"];
-  if (!tabs.includes(id)) id = "roster";
+  if (!TABS.includes(id)) id = "roster";
   state.tab = id;
   saveStore();
   document.querySelectorAll(".tab").forEach((tab) => {
@@ -752,6 +1143,7 @@ function showTab(id) {
   document.querySelectorAll("[data-panel]").forEach((panel) => {
     panel.hidden = panel.dataset.panel !== id;
   });
+  if (id === "professions") loadProfessions();
   const url = new URL(location.href);
   url.hash = id === "roster" ? "" : id;
   history.replaceState(null, "", url);
@@ -778,11 +1170,13 @@ function render() {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderProfessions();
+  renderDungeons();
   renderAddons();
 }
 
 async function loadJson(path) {
-  const response = await fetch(path);
+  const response = await fetch(path, { cache: "no-cache" });
   if (!response.ok) throw new Error(`${path} ${response.status}`);
   return response.json();
 }
@@ -791,18 +1185,19 @@ async function main() {
   loadStore();
   const params = new URLSearchParams(location.search);
   const hash = location.hash.replace("#", "");
-  if (["roster", "hunts", "addons", "house"].includes(hash)) state.tab = hash;
+  if (TABS.includes(hash)) state.tab = hash;
   if (params.get("c")) state.selected = params.get("c");
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, screenshots] = await Promise.all([
+    const [house, characters, checklist, stats, addons, screenshots, dungeons] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
-      loadJson("data/screenshots.json").catch(() => [])
+      loadJson("data/screenshots.json").catch(() => []),
+      loadJson("data/dungeons.json").catch(() => null)
     ]);
     state.house = house;
     state.characters = characters;
@@ -810,7 +1205,9 @@ async function main() {
     state.stats = stats;
     state.addons = addons;
     state.screenshots = screenshots;
+    state.dungeons = dungeons;
     buildOwned();
+    buildDrops();
   } catch (error) {
     document.getElementById("lede").textContent = "The tracker data did not load. Open the GitHub Pages site, or serve this folder over http.";
     console.error(error);
@@ -818,9 +1215,29 @@ async function main() {
   }
   if (!state.characters.some((c) => c.id === state.selected)) state.selected = state.characters[0].id;
   document.getElementById("scope").value = state.scope;
+  fillPlaceOptions();
+  document.getElementById("place").addEventListener("change", (event) => {
+    state.place = event.target.value;
+    saveStore();
+    renderChecklist();
+  });
   document.getElementById("search").addEventListener("input", (event) => {
     state.query = event.target.value;
     renderChecklist();
+  });
+  document.getElementById("prof-character").addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("prof-view").addEventListener("change", (event) => {
+    state.profView = event.target.value;
+    saveStore();
+    renderProfessions();
+  });
+  document.getElementById("prof-search").addEventListener("input", (event) => {
+    state.profQuery = event.target.value;
+    renderProfessions();
+  });
+  document.getElementById("dungeon-search").addEventListener("input", (event) => {
+    state.dungeonQuery = event.target.value;
+    renderDungeons();
   });
   document.getElementById("scope").addEventListener("change", (event) => {
     state.scope = event.target.value;

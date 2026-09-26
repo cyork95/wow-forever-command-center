@@ -73,6 +73,17 @@ function Add-Items($set, $containers) {
   }
 }
 
+function Add-Counts($counts, $containers) {
+  foreach ($container in @($containers)) {
+    foreach ($item in @($container)) {
+      if ($item -isnot [System.Collections.IDictionary]) { continue }
+      $id = LV $item "itemID"
+      if (-not $id) { continue }
+      $counts[[string]$id] = [int]$counts[[string]$id] + [int](LV $item "itemCount")
+    }
+  }
+}
+
 function Get-SaveSnapshots($wtfRoot, $characters) {
   $snapshots = @{}
   $accountRoot = Join-Path $wtfRoot "Account"
@@ -127,6 +138,14 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
           Add-Items $items (LV $row "equipped")
           Add-Items $items (LV $row "containerInfo" "bags")
           $snap.items = @($items | Sort-Object)
+          $counts = @{}
+          Add-Counts $counts (LV $row "bags")
+          Add-Counts $counts (LV $row "bank")
+          Add-Counts $counts (LV $row "bankTabs")
+          Add-Counts $counts (LV $row "mail")
+          $sorted = [ordered]@{}
+          foreach ($id in ($counts.Keys | Sort-Object { [long]$_ })) { $sorted[$id] = $counts[$id] }
+          $snap.itemCounts = $sorted
           $snap.sources["Syndicator"] = $null
         }
       }
@@ -135,6 +154,7 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
       $skills = LV $pm "PM_Skills"
       if ($pmRealms -is [System.Collections.IDictionary]) {
         $recipes = [ordered]@{}
+        $crafts = [ordered]@{}
         $levels = [ordered]@{}
         $pmTime = $null
         foreach ($realm in $pmRealms.Values) {
@@ -144,13 +164,16 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
               $prof = $ProfessionNames[[string]$profId]
               if (-not $prof) { continue }
               $names = @()
+              $ids = @()
               foreach ($entry in @(LV $realm "own" $key $profId)) {
                 $skillId = [long](LV $entry "skillId")
                 if ($skillId -ge 9000000) { continue }
+                $ids += $skillId
                 $skillName = LV $skills ([string]$skillId) "name"
                 if ($skillName) { $names += $skillName }
               }
               if ($names.Count) { $recipes[$prof] = @($names | Sort-Object -Unique) }
+              if ($ids.Count) { $crafts[$prof] = @($ids | Sort-Object -Unique) }
             }
             foreach ($profId in @((LV $realm "ownLevels" $key).Keys)) {
               $prof = $ProfessionNames[[string]$profId]
@@ -164,6 +187,7 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
         }
         if ($recipes.Count -or $levels.Count) {
           $snap.recipes = $recipes
+          $snap.crafts = $crafts
           $snap.skillLevels = $levels
           $snap.sources["Profession Master"] = $pmTime
         }

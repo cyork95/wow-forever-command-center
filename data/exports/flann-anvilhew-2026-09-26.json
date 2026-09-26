@@ -1,0 +1,120 @@
+{
+    "character":  "Flann Anvilhew",
+    "exportedAt":  "2026-09-26T03:01:08",
+    "addon":  "CharacterExport Forever",
+    "realm":  "Classic Beta PvE 2",
+    "level":  18,
+    "zone":  "Darkshore",
+    "subzone":  "Auberdine",
+    "goldCopper":  26737,
+    "health":  "519 max",
+    "powerType":  null,
+    "stats":  {
+                  "Strength":  "39",
+                  "Agility":  "27",
+                  "Stamina":  "54",
+                  "Intellect":  "43",
+                  "Armor":  "616",
+                  "Attack Power":  "198",
+                  "Melee Crit":  "5.53%",
+                  "Spell Crit":  "5.53%"
+              },
+    "professions":  [
+                        {
+                            "name":  "Blacksmithing",
+                            "current":  19,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Mining",
+                            "current":  45,
+                            "max":  75
+                        },
+                        {
+                            "name":  "First Aid",
+                            "current":  1,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Fishing",
+                            "current":  1,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Cooking",
+                            "current":  6,
+                            "max":  75
+                        }
+                    ],
+    "gear":  [
+                 {
+                     "slot":  "Back",
+                     "name":  "Timberland Cape",
+                     "itemLevel":  18,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Chest",
+                     "name":  "Stonesplinter Rags",
+                     "itemLevel":  17,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Shirt",
+                     "name":  "Primitive Mantle",
+                     "itemLevel":  1,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Wrist",
+                     "name":  "Ivy Cuffs",
+                     "itemLevel":  13,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Hands",
+                     "name":  "Shucking Gloves",
+                     "itemLevel":  17,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Waist",
+                     "name":  "Dryweed Belt",
+                     "itemLevel":  14,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Legs",
+                     "name":  "Aboriginal Loincloth",
+                     "itemLevel":  17,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Feet",
+                     "name":  "Barbaric Cloth Boots",
+                     "itemLevel":  15,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Finger 1",
+                     "name":  "Avala\u0027s Binding",
+                     "itemLevel":  8,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Main Hand",
+                     "name":  "Invader\u0027s Mace",
+                     "itemLevel":  17,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Off Hand",
+                     "name":  "Lupine Buckler",
+                     "itemLevel":  17,
+                     "quality":  "Uncommon"
+                 }
+             ],
+    "owned":  [
+
+              ]
+}

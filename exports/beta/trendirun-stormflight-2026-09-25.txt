@@ -1,0 +1,1109 @@
+Location:
+Zone: Westfall
+Subzone: Sentinel Hill
+Map: Westfall
+Map ID: 1436
+Parent Map: Eastern Kingdoms
+Parent Map ID: 1415
+Coordinates: 52.4, 50.5
+Hearthstone Location: Auberdine
+
+Character Stats:
+Character: Trendirun-Classic Beta PvE 2
+Faction: Alliance
+Level: 17
+Race: Night Elf
+Class: Druid
+Primary Stat: Intellect
+Average Item Level: 5.75
+Equipped Item Level: 5.75
+PvP Item Level: 5.75
+Health: n/a/219
+XP: 6465/17700
+XP To Level: 11235
+XP Progress: 36.53%
+Rested XP: 3712
+Armor: 51
+== Primary Attributes ==
+Strength: 8
+Agility: 9
+Stamina: 13
+Intellect: 13
+Attack Power: 0
+== Combat Ratings ==
+Critical Strike: 0 rating / 1.73%
+Haste: 0 rating / 0%
+Mastery: 0 rating / 0%
+Versatility: 0 rating / 0%
+Leech: 0 rating / 0%
+Speed: 0 rating / 0%
+Avoidance: 0 rating / 0%
+[Some character values were restricted by the client and could not be exported.]
+
+Currencies:
+Gold: 2g 6s 15c
+Currency Count: 0
+
+[No currencies found.]
+
+Collections:
+== Mounts ==
+Mount Count: 0/136
+[No mounts found.]
+
+== Battle Pets ==
+Pet Count: 0/0
+[No battle pets found.]
+
+== Toys ==
+Toy Count: 0/20
+[No toys found.]
+
+Bags:
+== Backpack (19/20) ==
+[Hearthstone] x1 [ID: 6948, iLvl: 1, Q: 1]
+[Linen Bandage] x19 [ID: 1251, iLvl: 1, Q: 1]
+[Westfall Stew] x3 [ID: 733, iLvl: 15, Q: 1]
+[Freshly Baked Bread] x10 [ID: 4541, iLvl: 15, Q: 1]
+[Ice Cold Milk] x13 [ID: 1179, iLvl: 15, Q: 1]
+[Lesser Healing Potion] x2 [ID: 858, iLvl: 13, Q: 1]
+[Minor Healing Potion] x5 [ID: 118, iLvl: 5, Q: 1]
+[Minor Healing Potion] x1 [ID: 118, iLvl: 5, Q: 1]
+[Fishing Pole] x1 [ID: 6256, iLvl: 1, Q: 1]
+[Flint and Tinder] x1 [ID: 4471, iLvl: 5, Q: 1]
+[Simple Wood] x5 [ID: 4470, iLvl: 5, Q: 1]
+[Mild Spices] x10 [ID: 2678, iLvl: 5, Q: 1]
+[Empty Vial] x10 [ID: 3371, iLvl: 1, Q: 1]
+[Chunk of Boar Meat] x20 [ID: 769, iLvl: 5, Q: 1]
+[Recipe: Westfall Stew] x1 [ID: 728, iLvl: 15, Q: 1]
+[Small Egg] x1 [ID: 6889, iLvl: 5, Q: 1]
+[Cenarion Moondust] x1 [ID: 15208, iLvl: 1, Q: 1]
+[Parker's Lunch] x1 [ID: 5534, iLvl: 1, Q: 1]
+[The General's Response] x1 [ID: 1294, iLvl: 1, Q: 1]
+
+== Soft Saber Sack (2/6) ==
+[Verner's Note] x1 [ID: 1283, iLvl: 1, Q: 1]
+[Fish Bowl] x1 [ID: 279967, iLvl: 4, Q: 1]
+
+== Old Blanchy's Feed Pouch (0/8) ==
+[Empty]
+
+== Linen Bag (0/6) ==
+[Empty]
+
+== Linen Bag (0/6) ==
+[Empty]
+
+== Apprentice's Herb Pouch (4/4) ==
+[Mageroyal] x2 [ID: 785, iLvl: 10, Q: 1]
+[Earthroot] x14 [ID: 2449, iLvl: 5, Q: 1]
+[Peacebloom] x11 [ID: 2447, iLvl: 5, Q: 1]
+[Silverleaf] x16 [ID: 765, iLvl: 5, Q: 1]
+
+Bank:
+[Bank data unavailable - open your personal bank at least once to build cache.]
+
+Equipment:
+== Head ==
+[Empty]
+
+== Neck ==
+[Empty]
+
+== Shoulder ==
+[Empty]
+
+== Back ==
+[Cloak of the People's Militia] x1 [ID: 3511, iLvl: 15, Q: 2]
+- Rarity: Uncommon
+- Item Level: 15
+- Type: Back
+- Equip Slot: Back
+- Item String: item:3511::::::::17:1484::11:::::::
+- Binding: Bind on Pickup
+- AGI: 2
+- ARMOR: 14
+
+== Chest ==
+[Apprentice Wizard's Gown] x1 [ID: 270000, iLvl: 13, Q: 2]
+- Rarity: Uncommon
+- Item Level: 13
+- Durability: 8/50
+- Type: Armor / Cloth
+- Equip Slot: Chest
+- Item String: item:270000:8481:::::::17:1484::11:::::::
+- Enchant ID: 8481
+- Binding: Bind on Pickup
+- INT: 2
+- ARMOR: 25
+- SP: 2
+
+== Shirt ==
+[Red Linen Shirt] x1 [ID: 2575, iLvl: 10, Q: 1]
+- Rarity: Common
+- Item Level: 10
+- Type: Armor / Miscellaneous
+- Equip Slot: Shirt
+- Item String: item:2575::::::::17:1484::11:::::::
+
+== Tabard ==
+[Empty]
+
+== Wrist ==
+[Feral Bracers] x1 [ID: 5419, iLvl: 7, Q: 1]
+- Rarity: Common
+- Item Level: 7
+- Durability: 7/18
+- Type: Armor / Leather
+- Equip Slot: Wrist
+- Item String: item:5419::::::::17:1484::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 18
+
+== Hands ==
+[Ragged Leather Gloves] x1 [ID: 1368, iLvl: 4, Q: 0]
+- Rarity: Poor
+- Item Level: 4
+- Durability: 5/16
+- Type: Armor / Leather
+- Equip Slot: Hands
+- Item String: item:1368::::::::17:1484:::::::::
+- Binding: Bind on Equip
+- ARMOR: 17
+
+== Waist ==
+[Blackened Leather Belt] x1 [ID: 6058, iLvl: 5, Q: 1]
+- Rarity: Common
+- Item Level: 5
+- Durability: 5/16
+- Type: Armor / Leather
+- Equip Slot: Waist
+- Item String: item:6058::::::::17:1484::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 19
+
+== Legs ==
+[Simple Britches] x1 [ID: 9747, iLvl: 14, Q: 2]
+- Rarity: Uncommon
+- Item Level: 14
+- Durability: 21/40
+- Type: Armor / Cloth
+- Equip Slot: Legs
+- Item String: item:9747:8481:::::::17:1484:::1:12746::::::
+- Enchant ID: 8481
+- Bonus IDs: 12746
+- Binding: Bind on Pickup
+- INT: 2
+- SPI: 1
+- ARMOR: 23
+- SP: 1
+
+== Feet ==
+[Cushioned Boots] x1 [ID: 9601, iLvl: 12, Q: 1]
+- Rarity: Common
+- Item Level: 12
+- Durability: 4/30
+- Type: Armor / Leather
+- Equip Slot: Feet
+- Item String: item:9601::::::::17:1484::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 40
+
+== Finger 1 ==
+[Empty]
+
+== Finger 2 ==
+[Empty]
+
+== Trinket 1 ==
+[Empty]
+
+== Trinket 2 ==
+[Empty]
+
+== Main Hand ==
+[Spiked Club] x1 [ID: 4564, iLvl: 13, Q: 2]
+- Rarity: Uncommon
+- Item Level: 13
+- Durability: 20/50
+- Damage: 22 - 34
+- Speed: 3.1
+- Type: Weapon / Two-Handed Maces
+- Equip Slot: Two-Hand Weapon
+- Item String: item:4564::::::::17:1484:::1:12755::::::
+- Bonus IDs: 12755
+- Binding: Bind Type: 5
+- STR: 1
+- STA: 2
+- SP: 1
+- DPS: 9.03
+
+== Off Hand ==
+[Empty]
+
+Lockouts:
+Instance Lockout Count: 0
+
+== Saved Instances ==
+[No saved instances found.]
+
+== World Bosses ==
+World Boss Lockout Count: 0
+[No world boss lockouts found.]
+
+Progress:
+
+== Mythic+ ==
+[No Mythic+ progress returned by the Forever APIs.]
+
+== PvP ==
+Honor Level: 1
+Honor Progress: 0/5500
+
+Achievements:
+Achievement Points: 0
+Achievements Completed: 2/111
+
+== Recent Achievements ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19 - Earned by me
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18 - Earned by me
+
+== Category Summary ==
+Druid - Completed: 0/3
+Alchemy - Completed: 0/3
+Ranks - Completed: 0/5
+Explorer - Completed: 0/3
+Eastern Kingdoms - Completed: 0/23
+Hunter - Completed: 0/3
+Blacksmithing - Completed: 0/3
+Reputations - Completed: 0/4
+Kalimdor - Completed: 2/20
+Mage - Completed: 0/3
+Enchanting - Completed: 0/3
+Season Journey - Completed: 0/3
+Paladin - Completed: 0/3
+Engineering - Completed: 0/3
+Priest - Completed: 0/3
+Leatherworking - Completed: 0/3
+Dungeons - Completed: 0/3
+Rogue - Completed: 0/3
+Tailoring - Completed: 0/3
+Raids - Completed: 0/3
+Shaman - Completed: 0/3
+Warlock - Completed: 0/3
+Adventure - Completed: 0/2
+Warrior - Completed: 0/3
+
+== Tracked Achievements ==
+[No tracked achievements.]
+
+Achievement (completed):
+Completed Achievement List Count: 2
+
+== Kalimdor ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19 - Earned by me
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18 - Earned by me
+
+Appearance (collected):
+Collected Appearance Source Count: 156
+
+== Head ==
+Hidden Helm (Source ID: 77344, Item ID: 134110, Appearance ID: 29124)
+
+== Shoulder ==
+Hidden Shoulder (Source ID: 77343, Item ID: 134112, Appearance ID: 24531)
+
+== Back ==
+Bear Shawl (Source ID: 158351, Item ID: 6185, Appearance ID: 63521)
+Burnt Cloak (Source ID: 157831, Item ID: 4665, Appearance ID: 64258)
+Cloak of the People's Militia (Source ID: 157351, Item ID: 3511, Appearance ID: 64343)
+Draped Cloak (Source ID: 158159, Item ID: 5405, Appearance ID: 63983)
+Flimsy Chain Cloak (Source ID: 156941, Item ID: 2652, Appearance ID: 64004)
+Forest Oracle's Cloak (Source ID: 311845, Item ID: 281250, Appearance ID: 65253)
+Frayed Cloak (Source ID: 156276, Item ID: 1376, Appearance ID: 63453)
+Goat Fur Cloak (Source ID: 157028, Item ID: 2905, Appearance ID: 63596)
+Hidden Cloak (Source ID: 77345, Item ID: 134111, Appearance ID: 2352)
+Inscribed Cloak (Source ID: 157859, Item ID: 4701, Appearance ID: 64774)
+Loose Chain Cloak (Source ID: 156934, Item ID: 2644, Appearance ID: 64003)
+Oil-stained Cloak (Source ID: 157145, Item ID: 3153, Appearance ID: 64174)
+Old Blanchy's Blanket (Source ID: 156664, Item ID: 2165, Appearance ID: 63443)
+Patchwork Cloak (Source ID: 156308, Item ID: 1429, Appearance ID: 63424)
+Pioneer Cloak (Source ID: 158522, Item ID: 6520, Appearance ID: 63867)
+Ragged Cloak (Source ID: 156274, Item ID: 1372, Appearance ID: 63443)
+Rain-spotted Cape (Source ID: 158203, Item ID: 5591, Appearance ID: 65000)
+Scout's Cloak (Source ID: 158225, Item ID: 5618, Appearance ID: 65018)
+Soldier's Cloak (Source ID: 158543, Item ID: 6549, Appearance ID: 65259)
+Windblown Short Cloak (Source ID: 301114, Item ID: 257277, Appearance ID: 64157)
+Worn Hide Cloak (Source ID: 156303, Item ID: 1421, Appearance ID: 63478)
+
+== Chest ==
+Apprentice Wizard's Gown (Source ID: 304856, Item ID: 270000, Appearance ID: 65147)
+Bandit's Jerkin (Source ID: 302726, Item ID: 263421, Appearance ID: 130370)
+Exterminator's Vest (Source ID: 302717, Item ID: 263408, Appearance ID: 130283)
+Footman Tunic (Source ID: 158306, Item ID: 6085, Appearance ID: 65075)
+Frayed Robe (Source ID: 156279, Item ID: 1380, Appearance ID: 63456)
+Harvester's Robe (Source ID: 156365, Item ID: 1561, Appearance ID: 63539)
+Hidden Chestpiece (Source ID: 104602, Item ID: 168659, Appearance ID: 40282)
+Neophyte's Robe (Source ID: 158315, Item ID: 6098, Appearance ID: 65083)
+Novice's Robe (Source ID: 158323, Item ID: 6123, Appearance ID: 65090)
+Patchwork Armor (Source ID: 156311, Item ID: 1433, Appearance ID: 63485)
+Ragged Leather Vest (Source ID: 156268, Item ID: 1364, Appearance ID: 63446)
+Sleeping Robes (Source ID: 159422, Item ID: 9598, Appearance ID: 64815)
+Violet Robes (Source ID: 158248, Item ID: 5767, Appearance ID: 65035)
+Warm Winter Robe (Source ID: 157182, Item ID: 3216, Appearance ID: 64208)
+Woodland Robes (Source ID: 160224, Item ID: 11189, Appearance ID: 66515)
+Woodland Tunic (Source ID: 157949, Item ID: 4907, Appearance ID: 64844)
+Worn Leather Vest (Source ID: 156306, Item ID: 1425, Appearance ID: 63481)
+
+== Shirt ==
+Hidden Shirt (Source ID: 83202, Item ID: 142503, Appearance ID: 33155)
+Neophyte's Shirt (Source ID: 156054, Item ID: 53, Appearance ID: 63238)
+Primitive Mantle (Source ID: 156074, Item ID: 154, Appearance ID: 63257)
+Red Linen Shirt (Source ID: 156906, Item ID: 2575, Appearance ID: 63978)
+Thendal Survivalist's Shirt (Source ID: 307623, Item ID: 271668, Appearance ID: 130048)
+
+== Tabard ==
+Hidden Tabard (Source ID: 83203, Item ID: 142504, Appearance ID: 33156)
+
+== Wrist ==
+Bracers of the People's Militia (Source ID: 156093, Item ID: 710, Appearance ID: 63276)
+Calico Bracers (Source ID: 157277, Item ID: 3375, Appearance ID: 64280)
+Cord Bracers (Source ID: 158202, Item ID: 5590, Appearance ID: 64999)
+Feral Bracers (Source ID: 158160, Item ID: 5419, Appearance ID: 63887)
+Frayed Bracers (Source ID: 157270, Item ID: 3365, Appearance ID: 64275)
+Hidden Bracers (Source ID: 104604, Item ID: 168665, Appearance ID: 40284)
+Ivy-weave Bracers (Source ID: 156771, Item ID: 2326, Appearance ID: 63875)
+Ragged Leather Bracers (Source ID: 156273, Item ID: 1370, Appearance ID: 63451)
+Stemleaf Bracers (Source ID: 160223, Item ID: 11187, Appearance ID: 66012)
+Vuldren Hide Bracers (Source ID: 301117, Item ID: 257280, Appearance ID: 63412)
+Worn Leather Bracers (Source ID: 156302, Item ID: 1420, Appearance ID: 63477)
+
+== Hands ==
+Archery Training Gloves (Source ID: 158154, Item ID: 5394, Appearance ID: 63479)
+Driving Gloves (Source ID: 157144, Item ID: 3152, Appearance ID: 64173)
+Frayed Gloves (Source ID: 156277, Item ID: 1377, Appearance ID: 63454)
+Gardening Gloves (Source ID: 158214, Item ID: 5606, Appearance ID: 65009)
+Hidden Gloves (Source ID: 94331, Item ID: 158329, Appearance ID: 37207)
+Lion-stamped Gloves (Source ID: 156266, Item ID: 1359, Appearance ID: 63444)
+Patchwork Gloves (Source ID: 156309, Item ID: 1430, Appearance ID: 63483)
+Rabbit Handler Gloves (Source ID: 156097, Item ID: 719, Appearance ID: 63280)
+Ragged Leather Gloves (Source ID: 156271, Item ID: 1368, Appearance ID: 63449)
+Salma's Oven Mitts (Source ID: 156328, Item ID: 1479, Appearance ID: 63502)
+Thendal Ranger's Gloves (Source ID: 301101, Item ID: 257264, Appearance ID: 130331)
+Viny Gloves (Source ID: 160225, Item ID: 11190, Appearance ID: 64110)
+White Wolf Gloves (Source ID: 156539, Item ID: 1965, Appearance ID: 63672)
+Wolf Handler Gloves (Source ID: 158343, Item ID: 6171, Appearance ID: 63449)
+Wooly Mittens (Source ID: 160071, Item ID: 10550, Appearance ID: 66413)
+Worn Leather Gloves (Source ID: 156304, Item ID: 1422, Appearance ID: 63479)
+
+== Waist ==
+Blackened Leather Belt (Source ID: 158296, Item ID: 6058, Appearance ID: 65069)
+Calico Belt (Source ID: 157276, Item ID: 3374, Appearance ID: 64279)
+Dirtwood Belt (Source ID: 158168, Item ID: 5458, Appearance ID: 64986)
+Frayed Belt (Source ID: 157268, Item ID: 3363, Appearance ID: 64273)
+Hidden Belt (Source ID: 84223, Item ID: 143539, Appearance ID: 33252)
+Patchwork Belt (Source ID: 157274, Item ID: 3370, Appearance ID: 64277)
+Red Linen Sash (Source ID: 156196, Item ID: 983, Appearance ID: 63377)
+Thendal Ranger's Belt (Source ID: 301100, Item ID: 257263, Appearance ID: 130359)
+Worn Leather Belt (Source ID: 156300, Item ID: 1418, Appearance ID: 63475)
+
+== Legs ==
+Canopy Leggings (Source ID: 158156, Item ID: 5398, Appearance ID: 64978)
+Dwarven Cloth Britches (Source ID: 156061, Item ID: 79, Appearance ID: 63244)
+Dwarven Leather Pants (Source ID: 156060, Item ID: 61, Appearance ID: 63243)
+Frayed Pants (Source ID: 156278, Item ID: 1378, Appearance ID: 63455)
+Gardening Pants (Source ID: 302718, Item ID: 263409, Appearance ID: 130285)
+Harvester's Pants (Source ID: 157381, Item ID: 3578, Appearance ID: 64370)
+Hidden Pants (Source ID: 198608, Item ID: 216696, Appearance ID: 42568)
+Lace Pants (Source ID: 159424, Item ID: 9600, Appearance ID: 65955)
+Leggings of the People's Militia (Source ID: 160479, Item ID: 12295, Appearance ID: 63750)
+Neophyte's Pants (Source ID: 156053, Item ID: 52, Appearance ID: 63237)
+Novice's Pants (Source ID: 158324, Item ID: 6124, Appearance ID: 65091)
+Patchwork Leggings (Source ID: 302727, Item ID: 263422, Appearance ID: 130279)
+Patchwork Pants (Source ID: 156310, Item ID: 1431, Appearance ID: 63484)
+Primitive Kilt (Source ID: 156073, Item ID: 153, Appearance ID: 63256)
+Ragged Leather Pants (Source ID: 156269, Item ID: 1366, Appearance ID: 63447)
+Sedgeweed Britches (Source ID: 160116, Item ID: 10655, Appearance ID: 66445)
+Simple Britches (Source ID: 159494, Item ID: 9747, Appearance ID: 64443)
+Urchin's Pants (Source ID: 156723, Item ID: 2238, Appearance ID: 63836)
+Warped Leather Pants (Source ID: 156349, Item ID: 1507, Appearance ID: 63523)
+Worn Leather Pants (Source ID: 156305, Item ID: 1423, Appearance ID: 63480)
+
+== Feet ==
+Ancestral Boots (Source ID: 157218, Item ID: 3289, Appearance ID: 64239)
+Cushioned Boots (Source ID: 159425, Item ID: 9601, Appearance ID: 65956)
+Farmer's Boots (Source ID: 160226, Item ID: 11191, Appearance ID: 63975)
+Frayed Shoes (Source ID: 156275, Item ID: 1374, Appearance ID: 63452)
+Frosthowl's Footwarmers (Source ID: 311907, Item ID: 281322, Appearance ID: 67507)
+Fur-Lined Shoes (Source ID: 301118, Item ID: 257281, Appearance ID: 130345)
+Hidden Boots (Source ID: 104603, Item ID: 168664, Appearance ID: 40283)
+Ragged Leather Boots (Source ID: 156270, Item ID: 1367, Appearance ID: 63448)
+Snow Boots (Source ID: 158344, Item ID: 6173, Appearance ID: 65108)
+Viny Wrappings (Source ID: 156904, Item ID: 2571, Appearance ID: 63976)
+Weather-worn Boots (Source ID: 156216, Item ID: 1173, Appearance ID: 63396)
+Worn Leather Boots (Source ID: 156301, Item ID: 1419, Appearance ID: 63476)
+
+== One-Handed Maces ==
+Anvilmar Hammer (Source ID: 156588, Item ID: 2048, Appearance ID: 63716)
+Billy Club (Source ID: 157807, Item ID: 4563, Appearance ID: 64039)
+Copper Mace (Source ID: 156999, Item ID: 2844, Appearance ID: 63366)
+Flanged Mace (Source ID: 156105, Item ID: 766, Appearance ID: 63288)
+Frostmane Club (Source ID: 156735, Item ID: 2259, Appearance ID: 63846)
+Heavy Hammer (Source ID: 156351, Item ID: 1510, Appearance ID: 63525)
+Peacekeeper's Pickhammer (Source ID: 301113, Item ID: 257276, Appearance ID: 67554)
+Solid Metal Club (Source ID: 156207, Item ID: 1158, Appearance ID: 63387)
+Stone Gnoll Hammer (Source ID: 156110, Item ID: 781, Appearance ID: 63293)
+Thistlewood Maul (Source ID: 160067, Item ID: 10544, Appearance ID: 66410)
+Thornroot Club (Source ID: 158200, Item ID: 5587, Appearance ID: 64997)
+Worn Mace (Source ID: 156041, Item ID: 36, Appearance ID: 63225)
+
+== Daggers ==
+Anvilmar Knife (Source ID: 156684, Item ID: 2195, Appearance ID: 63800)
+Camping Knife (Source ID: 160069, Item ID: 10547, Appearance ID: 63310)
+Fisherman Knife (Source ID: 156966, Item ID: 2763, Appearance ID: 63762)
+Long Bayonet (Source ID: 157942, Item ID: 4840, Appearance ID: 64840)
+Pruning Knife (Source ID: 158213, Item ID: 5605, Appearance ID: 64437)
+Scout Ranger's Dagger (Source ID: 301120, Item ID: 257283, Appearance ID: 64948)
+Sharp Kitchen Knife (Source ID: 156712, Item ID: 2225, Appearance ID: 63825)
+Sharpened Cirrusfly Stinger (Source ID: 298431, Item ID: 251932, Appearance ID: 64179)
+Sharpened Letter Opener (Source ID: 156642, Item ID: 2138, Appearance ID: 63763)
+Thistlewood Dagger (Source ID: 158152, Item ID: 5392, Appearance ID: 63800)
+Webwood Slicer (Source ID: 313086, Item ID: 282284, Appearance ID: 63812)
+Worn Dagger (Source ID: 156616, Item ID: 2092, Appearance ID: 63739)
+
+== Held In Off-hand ==
+Disciple's Stein (Source ID: 162653, Item ID: 15932, Appearance ID: 64611)
+
+== Two-Handed Maces ==
+Anvilmar Sledge (Source ID: 158246, Item ID: 5761, Appearance ID: 64877)
+Beatstick (Source ID: 157157, Item ID: 3190, Appearance ID: 63403)
+Cracked Sledge (Source ID: 156296, Item ID: 1414, Appearance ID: 63472)
+Kobold Mining Shovel (Source ID: 156221, Item ID: 1195, Appearance ID: 63401)
+Rusty Warhammer (Source ID: 156355, Item ID: 1514, Appearance ID: 63529)
+Spiked Club (Source ID: 157808, Item ID: 4564, Appearance ID: 64737)
+Thicket Hammer (Source ID: 158206, Item ID: 5595, Appearance ID: 65002)
+
+== Staves ==
+Balanced Fighting Stick (Source ID: 158370, Item ID: 6215, Appearance ID: 63648)
+Frostmane Staff (Source ID: 156733, Item ID: 2257, Appearance ID: 63845)
+Gnarled Short Staff (Source ID: 156199, Item ID: 1010, Appearance ID: 63380)
+Gritroot Staff (Source ID: 159426, Item ID: 9603, Appearance ID: 65957)
+Handcrafted Staff (Source ID: 157420, Item ID: 3661, Appearance ID: 64408)
+Novice's Quarterstaff (Source ID: 301119, Item ID: 257282, Appearance ID: 63388)
+Rough Wooden Staff (Source ID: 156356, Item ID: 1515, Appearance ID: 63530)
+Smooth Walking Staff (Source ID: 158198, Item ID: 5581, Appearance ID: 64996)
+Thistlewood Staff (Source ID: 158153, Item ID: 5393, Appearance ID: 64976)
+Withered Staff (Source ID: 156293, Item ID: 1411, Appearance ID: 63469)
+
+Appearances:
+== Category Summary ==
+Head - Collected: 1/237
+Shoulder - Collected: 1/228
+Back - Collected: 20/160
+Chest - Collected: 17/434
+Shirt - Collected: 5/35
+Tabard - Collected: 1/25
+Wrist - Collected: 11/257
+Hands - Collected: 14/362
+Waist - Collected: 9/321
+Legs - Collected: 20/312
+Feet - Collected: 12/364
+Wand - Collected: 0/47
+One-Handed Axes - Collected: 0/55
+One-Handed Swords - Collected: 0/84
+One-Handed Maces - Collected: 12/87
+Daggers - Collected: 11/86
+Fist Weapons - Collected: 0/16
+Shields - Collected: 0/115
+Held In Off-hand - Collected: 1/115
+Two-Handed Axes - Collected: 0/48
+Two-Handed Swords - Collected: 0/56
+Two-Handed Maces - Collected: 7/58
+Staves - Collected: 10/86
+Polearms - Collected: 0/23
+Bows - Collected: 0/40
+Guns - Collected: 0/36
+Crossbows - Collected: 0/7
+
+== Transmog Sets ==
+Collected Sets: 0/6
+
+== Latest Appearances ==
+[No latest appearances returned by the Forever APIs.]
+
+== Favorites ==
+[No favorite appearances returned by the Forever APIs.]
+
+== Outfits ==
+Outfit Count: 0
+
+Reputations:
+Cenarion Circle (Neutral) - Value: 2100 (0-3000) - Progress: 2100/3000
+Darnassus (Honored) - Value: 9976 (9000-21000) - Progress: 976/12000
+Gnomeregan Exiles (Friendly) - Value: 3605 (3000-9000) - Progress: 605/6000
+Ironforge (Friendly) - Value: 3555 (3000-9000) - Progress: 555/6000
+Stormwind (Friendly) - Value: 6983 (3000-9000) - Progress: 3983/6000
+
+Quests:
+== Redridge Mountains ==
+Messenger to Stormwind (Level 14) [Ready to turn in] (ID: 121)
+  - [x] Take General Marcus Jonathan's letter of response to Magistrate Solomon in Lakeshire.
+A Free Lunch (Level 15) [Ready to turn in] (ID: 129)
+  - [x] Bring Parker's lunch to Guard Parker.  He patrols the road leading to Darkshire.
+Assessing the Threat (Level 17) [In Progress] (ID: 246)
+  - [ ] 0/10 Redridge Mongrel slain
+  - [ ] 0/6 Redridge Poacher slain
+Show of Force (Level 17) [In Progress] (ID: 98407)
+  - [ ] 0/5 Spiked Collar
+Redridge Goulash (Level 18) [In Progress] (ID: 92)
+  - [ ] 0/5 Great Goretusk Snout
+  - [ ] 0/5 Tough Condor Meat
+  - [ ] 0/5 Crisp Spider Meat
+The Price of Shoes (Level 18) [Ready to turn in] (ID: 118)
+  - [x] Take Verner's Note to Smith Argus in Goldshire.
+The Everstill Bridge (Level 20) [In Progress] (ID: 89)
+  - [ ] 0/5 Iron Pike
+  - [ ] 0/5 Iron Rivet
+Selling Fish (Level 21) [In Progress] (ID: 127)
+  - [ ] 0/10 Spotted Sunfish
+Solomon's Law (Level 23) [In Progress] (ID: 91)
+  - [ ] 0/10 Shadowhide Pendant
+
+== Westfall ==
+Moonbrook Espionage (Level 15) [In Progress] (ID: 92747)
+  - [ ] 0/8 Suspicious Industrial Supplies
+The People's Militia (Level 17) [In Progress] (ID: 14)
+  - [ ] 0/15 Defias Highwayman slain
+  - [ ] 0/5 Defias Pathstalker slain
+  - [ ] 0/5 Defias Knuckleduster slain
+The Defias Brotherhood (Level 18) [In Progress] (ID: 142)
+  - [ ] 0/1 A Mysterious Message
+... and that note you found (Level 22) [Ready to turn in] (ID: 79008)
+
+== Camping ==
+Camping 101: Alchemy (Level 6) [Ready to turn in] (ID: 97938)
+  - [x] Raise your alchemy skill to 20
+
+== Druid ==
+Body and Heart (Level 10) [In Progress] (ID: 6001)
+  - [ ] Face Lunaclaw and earn the strength of body and heart it possesses.
+
+Quest (completed):
+Completed Quest Count: 166
+Resolved Quest Titles: 10
+Unresolved Quest Titles: 156
+Tracking Quest Count: 0
+
+== Resolved Quests ==
+Camping 101: First Aid (ID: 96047)
+Camping 101: Herbalism (ID: 96055)
+Poor Old Blanchy (ID: 151)
+Red Leather Bandanas (ID: 153)
+Red Linen Goods (ID: 83)
+Sathrah's Sacrifice (ID: 2520)
+The Balance of Nature (ID: 457)
+Twisted Hatred (ID: 932)
+WANTED: "Hogger" (ID: 176)
+Westfall Stew (ID: 38)
+
+== Unresolved Quest IDs ==
+9, 11, 12, 13, 22, 35, 36, 37, 39, 40, 45, 46, 47, 52, 60, 61, 62, 64, 65, 71
+76, 84, 85, 86, 87, 88, 102, 106, 107, 109, 111, 112, 114, 120, 125, 132, 135, 141, 239, 244
+456, 458, 459, 475, 476, 483, 486, 487, 488, 489, 490, 916, 917, 918, 919, 920, 921, 922, 923, 928
+929, 930, 931, 933, 934, 935, 937, 938, 940, 997, 1097, 2159, 2399, 2438, 2459, 2498, 2499, 2518, 2519, 2541
+2561, 3120, 3519, 3521, 3522, 3741, 4161, 4495, 5545, 5921, 5923, 5924, 5925, 5929, 5931, 6341, 6342, 6343, 6344, 7383
+87288, 91732, 91733, 92742, 92744, 92745, 92909, 95998, 96101, 96604, 96605, 96606, 96607, 96608, 96626, 96627, 96628, 96629, 96630, 96634
+96638, 96646, 96652, 96655, 96656, 96658, 96659, 96661, 97234, 97236, 97237, 97903, 97905, 97919, 97921, 97931, 97933, 97942, 97944, 97955
+97957, 97965, 97968, 97977, 97979, 98046, 98065, 98067, 98391, 98392, 98398, 98403, 99046, 99047, 99050, 99073
+
+Skills:
+== Professions ==
+Alchemy 20/75
+Herbalism 44/75
+
+== Secondary Skills ==
+First Aid 57/75
+Fishing 20/75
+Cooking 58/75
+
+== Weapon Skills ==
+Daggers 1/85
+Feral Combat 1/85
+Maces 1/85
+Staves 60/85
+Two-Handed Maces 76/85
+Unarmed 5/85
+
+Profession Details:
+[Using cached profession details - last updated: 2026-09-25 17:43:51.]
+
+== Alchemy (20/75) - Recipes: 197 ==
+Profession ID: 171
+[OPTIMAL] [UNLEARNED] Alchemist's Stone
+[OPTIMAL] [UNLEARNED] Alchemy Laboratory
+[OPTIMAL] [UNLEARNED] Arcane Elixir
+[OPTIMAL] [UNLEARNED] Blackmouth Oil
+[OPTIMAL] [UNLEARNED] Catseye Draught
+[OPTIMAL] [UNLEARNED] Caustic Smog Potion
+[OPTIMAL] [UNLEARNED] Cerulean Dye
+[OPTIMAL] [UNLEARNED] Cleric's Elixir
+[OPTIMAL] [UNLEARNED] Discolored Healing Potion
+[OPTIMAL] [UNLEARNED] Disorienting Smog Potion
+[OPTIMAL] [UNLEARNED] Distilled Firewater
+[OPTIMAL] [UNLEARNED] Dragonfire Potion
+[OPTIMAL] [UNLEARNED] Draught of Detect Demon
+[OPTIMAL] [UNLEARNED] Draught of Detect Lesser Invisibility
+[OPTIMAL] [UNLEARNED] Draught of Detect Undead
+[OPTIMAL] [UNLEARNED] Draught of Dream Vision
+[OPTIMAL] [UNLEARNED] Draught of Greater Water Breathing
+[OPTIMAL] [UNLEARNED] Draught of Predatory Senses
+[OPTIMAL] [UNLEARNED] Draught of Tongues
+[OPTIMAL] [UNLEARNED] Draught of Water Breathing
+[OPTIMAL] [UNLEARNED] Draught of Water Walking
+[OPTIMAL] [UNLEARNED] Dreamless Sleep Potion
+[OPTIMAL] [UNLEARNED] Elixir of Agility
+[OPTIMAL] [UNLEARNED] Elixir of Alacrity
+[OPTIMAL] [UNLEARNED] Elixir of Brute Force
+[OPTIMAL] [UNLEARNED] Elixir of Coalesced Regret
+[OPTIMAL] [UNLEARNED] Elixir of Cunning
+[OPTIMAL] [UNLEARNED] Elixir of Defense
+[OPTIMAL] [UNLEARNED] Elixir of Ferocity
+[OPTIMAL] [UNLEARNED] Elixir of Fire Power
+[OPTIMAL] [UNLEARNED] Elixir of Fortitude
+[OPTIMAL] [UNLEARNED] Elixir of Frost Power
+[OPTIMAL] [UNLEARNED] Elixir of Giant Growth
+[OPTIMAL] [UNLEARNED] Elixir of Greater Agility
+[OPTIMAL] [UNLEARNED] Elixir of Greater Defense
+[OPTIMAL] [UNLEARNED] Elixir of Greater Fortitude
+[OPTIMAL] [UNLEARNED] Elixir of Greater Intellect
+[OPTIMAL] [UNLEARNED] Elixir of Greater Spirit
+[OPTIMAL] [UNLEARNED] Elixir of Greater Strength
+[OPTIMAL] [UNLEARNED] Elixir of Holy Power
+[OPTIMAL] [UNLEARNED] Elixir of Intellect
+[OPTIMAL] [UNLEARNED] Elixir of Lesser Agility
+[OPTIMAL] [UNLEARNED] Elixir of Lesser Defense
+[OPTIMAL] [UNLEARNED] Elixir of Lesser Fortitude
+[OPTIMAL] [UNLEARNED] Elixir of Lesser Intellect
+[OPTIMAL] [UNLEARNED] Elixir of Lesser Spirit
+[OPTIMAL] [UNLEARNED] Elixir of Minor Agility
+[OPTIMAL] [LEARNED] Elixir of Minor Defense
+[TRIVIAL] [LEARNED] Elixir of Minor Force
+[OPTIMAL] [UNLEARNED] Elixir of Minor Fortitude
+[MEDIUM] [UNLEARNED] Elixir of Minor Spirit
+[OPTIMAL] [UNLEARNED] Elixir of Minor Strength
+[OPTIMAL] [UNLEARNED] Elixir of Nature Power
+[OPTIMAL] [UNLEARNED] Elixir of Ogre Strength
+[OPTIMAL] [UNLEARNED] Elixir of Sages
+[OPTIMAL] [UNLEARNED] Elixir of Shadow Power
+[OPTIMAL] [UNLEARNED] Elixir of Spirit
+[OPTIMAL] [UNLEARNED] Elixir of Strength
+[OPTIMAL] [UNLEARNED] Elixir of the Grizzly
+[OPTIMAL] [UNLEARNED] Elixir of the Honey Badger
+[OPTIMAL] [UNLEARNED] Elixir of the Ironside
+[OPTIMAL] [UNLEARNED] Elixir of the Mage-Lord
+[OPTIMAL] [UNLEARNED] Elixir of the Mongoose
+[OPTIMAL] [UNLEARNED] Elixir of the Owl
+[OPTIMAL] [UNLEARNED] Elixir of the Phalanx
+[OPTIMAL] [UNLEARNED] Elixir of the Sages
+[OPTIMAL] [UNLEARNED] Elixir of the Whale
+[OPTIMAL] [UNLEARNED] Elixir of Wicked Regeneration
+[OPTIMAL] [UNLEARNED] Elixir of Wisdom
+[OPTIMAL] [UNLEARNED] Fermenter
+[OPTIMAL] [UNLEARNED] Fire Oil
+[OPTIMAL] [UNLEARNED] Fire Protection Potion
+[OPTIMAL] [UNLEARNED] Flask of Ancient Knowledge
+[OPTIMAL] [UNLEARNED] Flask of Chromatic Resistance
+[OPTIMAL] [UNLEARNED] Flask of Distilled Wisdom
+[OPTIMAL] [UNLEARNED] Flask of Everlasting Nightmares
+[OPTIMAL] [UNLEARNED] Flask of Madness
+[OPTIMAL] [UNLEARNED] Flask of Natural Accuracy
+[OPTIMAL] [UNLEARNED] Flask of Natural Aggression
+[OPTIMAL] [UNLEARNED] Flask of Natural Precision
+[OPTIMAL] [UNLEARNED] Flask of Natural Swiftness
+[OPTIMAL] [UNLEARNED] Flask of Petrification
+[OPTIMAL] [UNLEARNED] Flask of Restless Dreams
+[OPTIMAL] [UNLEARNED] Flask of Supreme Power
+[OPTIMAL] [UNLEARNED] Flask of the Old Gods
+[OPTIMAL] [UNLEARNED] Flask of the Titans
+[OPTIMAL] [UNLEARNED] Flask of Unyielding Sorrow
+[OPTIMAL] [UNLEARNED] Free Action Potion
+[OPTIMAL] [UNLEARNED] Frenzy Potion
+[OPTIMAL] [UNLEARNED] Frost Oil
+[OPTIMAL] [UNLEARNED] Frost Protection Potion
+[OPTIMAL] [UNLEARNED] Ghost Dye
+[OPTIMAL] [UNLEARNED] Gift of Arthas
+[OPTIMAL] [UNLEARNED] Goblin Rocket Fuel
+[OPTIMAL] [UNLEARNED] Great Rage Potion
+[OPTIMAL] [UNLEARNED] Greater Arcane Elixir
+[OPTIMAL] [UNLEARNED] Greater Arcane Protection Potion
+[OPTIMAL] [UNLEARNED] Greater Cleric's Elixir
+[OPTIMAL] [UNLEARNED] Greater Discolored Healing Potion
+[OPTIMAL] [UNLEARNED] Greater Dreamless Sleep Potion
+[OPTIMAL] [UNLEARNED] Greater Fire Protection Potion
+[OPTIMAL] [UNLEARNED] Greater Frenzy Potion
+[OPTIMAL] [UNLEARNED] Greater Frost Protection Potion
+[OPTIMAL] [UNLEARNED] Greater Holy Protection Potion
+[OPTIMAL] [UNLEARNED] Greater Mageblood Elixir
+[OPTIMAL] [UNLEARNED] Greater Mana Potion
+[OPTIMAL] [UNLEARNED] Greater Mender's Potion
+[OPTIMAL] [UNLEARNED] Greater Nature Protection Potion
+[OPTIMAL] [UNLEARNED] Greater Shadow Protection Potion
+[OPTIMAL] [UNLEARNED] Greater Spellblasting Potion
+[OPTIMAL] [UNLEARNED] Greater Stoneshield Potion
+[OPTIMAL] [UNLEARNED] Gurubashi Mojo Madness
+[OPTIMAL] [UNLEARNED] Holy Protection Potion
+[OPTIMAL] [UNLEARNED] Insulating Gniodine
+[OPTIMAL] [UNLEARNED] Invisibility Potion
+[OPTIMAL] [UNLEARNED] Jar of Nightmarish Mojo
+[OPTIMAL] [UNLEARNED] Lesser Arcane Elixir
+[OPTIMAL] [UNLEARNED] Lesser Arcane Elixir
+[OPTIMAL] [UNLEARNED] Lesser Cleric's Elixir
+[OPTIMAL] [UNLEARNED] Lesser Discolored Healing Potion
+[OPTIMAL] [UNLEARNED] Lesser Frenzy Potion
+[OPTIMAL] [UNLEARNED] Lesser Invisibility Potion
+[OPTIMAL] [UNLEARNED] Lesser Mageblood Elixir
+[OPTIMAL] [UNLEARNED] Lesser Mana Potion
+[OPTIMAL] [UNLEARNED] Lesser Mender's Potion
+[OPTIMAL] [UNLEARNED] Lesser Spellblasting Potion
+[OPTIMAL] [UNLEARNED] Lesser Stoneshield Potion
+[OPTIMAL] [UNLEARNED] Lesser Troll's Blood Elixir
+[OPTIMAL] [UNLEARNED] Limited Invulnerability Potion
+[OPTIMAL] [UNLEARNED] Living Action Potion
+[OPTIMAL] [UNLEARNED] Mageblood Elixir
+[OPTIMAL] [UNLEARNED] Magenta Dye
+[OPTIMAL] [UNLEARNED] Magic Resistance Potion
+[OPTIMAL] [UNLEARNED] Major Discolored Healing Potion
+[OPTIMAL] [UNLEARNED] Major Frenzy Potion
+[OPTIMAL] [UNLEARNED] Major Mana Potion
+[OPTIMAL] [UNLEARNED] Major Mender's Potion
+[OPTIMAL] [UNLEARNED] Major Rejuvenation Potion
+[OPTIMAL] [UNLEARNED] Major Spellblasting Potion
+[OPTIMAL] [UNLEARNED] Major Troll's Blood Elixir
+[OPTIMAL] [UNLEARNED] Mana Potion
+[MEDIUM] [UNLEARNED] Mana Well
+[OPTIMAL] [UNLEARNED] Mender's Potion
+[OPTIMAL] [UNLEARNED] Mighty Rage Potion
+[OPTIMAL] [UNLEARNED] Mildly Irradiated Rejuvenation Potion
+[TRIVIAL] [LEARNED] Minor Arcane Elixir
+[OPTIMAL] [UNLEARNED] Minor Cleric's Elixir
+[OPTIMAL] [UNLEARNED] Minor Discolored Healing Potion
+[OPTIMAL] [UNLEARNED] Minor Frenzy Potion
+[OPTIMAL] [UNLEARNED] Minor Mageblood Elixir
+[OPTIMAL] [UNLEARNED] Minor Magic Resistance Potion
+[OPTIMAL] [UNLEARNED] Minor Mana Potion
+[OPTIMAL] [UNLEARNED] Minor Mender's Potion
+[OPTIMAL] [UNLEARNED] Minor Rejuvenation Potion
+[OPTIMAL] [UNLEARNED] Minor Spellblasting Potion
+[OPTIMAL] [UNLEARNED] Minor Troll's Blood Elixir
+[OPTIMAL] [UNLEARNED] Nature Protection Potion
+[OPTIMAL] [UNLEARNED] Oil of Immolation
+[OPTIMAL] [UNLEARNED] Philosopher's Stone
+[OPTIMAL] [UNLEARNED] Potion of Beast Slaying
+[OPTIMAL] [UNLEARNED] Potion of Demon Slaying
+[OPTIMAL] [UNLEARNED] Potion of Elemental Purging
+[OPTIMAL] [UNLEARNED] Potion of Poison Cleansing
+[OPTIMAL] [UNLEARNED] Potion of Venomous Blood
+[OPTIMAL] [UNLEARNED] Purification Potion
+[OPTIMAL] [UNLEARNED] Rage Potion
+[OPTIMAL] [UNLEARNED] Refined Scale of Onyxia
+[OPTIMAL] [UNLEARNED] Restorative Potion
+[OPTIMAL] [UNLEARNED] Revealing Draught
+[OPTIMAL] [UNLEARNED] Shadow Oil
+[OPTIMAL] [UNLEARNED] Shadow Protection Potion
+[OPTIMAL] [UNLEARNED] Spellblasting Potion
+[OPTIMAL] [UNLEARNED] Stonescale Oil
+[OPTIMAL] [UNLEARNED] Sulfuric Acid
+[OPTIMAL] [UNLEARNED] Superior Discolored Healing Potion
+[OPTIMAL] [UNLEARNED] Superior Frenzy Potion
+[OPTIMAL] [UNLEARNED] Superior Mana Potion
+[OPTIMAL] [UNLEARNED] Superior Mender's Potion
+[OPTIMAL] [UNLEARNED] Superior Spellblasting Potion
+[OPTIMAL] [UNLEARNED] Swiftness Potion
+[OPTIMAL] [UNLEARNED] Swim Speed Potion
+[OPTIMAL] [UNLEARNED] Transmute: Air to Fire
+[OPTIMAL] [UNLEARNED] Transmute: Arcanite
+[OPTIMAL] [UNLEARNED] Transmute: Earth to Life
+[OPTIMAL] [UNLEARNED] Transmute: Earth to Water
+[OPTIMAL] [UNLEARNED] Transmute: Elemental Fire
+[OPTIMAL] [UNLEARNED] Transmute: Fire to Earth
+[OPTIMAL] [UNLEARNED] Transmute: Iron to Gold
+[OPTIMAL] [UNLEARNED] Transmute: Legionite
+[OPTIMAL] [UNLEARNED] Transmute: Life to Earth
+[OPTIMAL] [UNLEARNED] Transmute: Mithril to Truesilver
+[OPTIMAL] [UNLEARNED] Transmute: Undeath to Water
+[OPTIMAL] [UNLEARNED] Transmute: Water to Air
+[OPTIMAL] [UNLEARNED] Transmute: Water to Undeath
+[OPTIMAL] [UNLEARNED] Troll's Blood Elixir
+[OPTIMAL] [UNLEARNED] Viridian Dye
+[OPTIMAL] [UNLEARNED] Wildvine Potion
+
+== Cooking (58/75) - Recipes: 132 ==
+Profession ID: 185
+[OPTIMAL] [UNLEARNED] Baked Salmon
+[OPTIMAL] [UNLEARNED] Barbecued Buzzard Wing
+[TRIVIAL] [LEARNED] Basic Campfire
+[OPTIMAL] [UNLEARNED] Bat Hachee
+[OPTIMAL] [UNLEARNED] Bear Brisket
+[OPTIMAL] [UNLEARNED] Bear Bruscitti
+[OPTIMAL] [UNLEARNED] Beer Basted Boar Ribs
+[OPTIMAL] [UNLEARNED] Big Bear Steak
+[OPTIMAL] [UNLEARNED] Blood Sausage
+[OPTIMAL] [UNLEARNED] Boiled Clams
+[OPTIMAL] [UNLEARNED] Breakfast Omelette
+[MEDIUM] [LEARNED] Brilliant Smallfish
+[OPTIMAL] [UNLEARNED] Briny Seafood Stew
+[OPTIMAL] [UNLEARNED] Bristle Whisker Catfish
+[OPTIMAL] [UNLEARNED] Calcified Smoothie
+[OPTIMAL] [UNLEARNED] Carrion Surprise
+[MEDIUM] [LEARNED] Charred Wolf Meat
+[OPTIMAL] [UNLEARNED] Clam Chowder
+[OPTIMAL] [UNLEARNED] Clam Linguine
+[TRIVIAL] [UNLEARNED] Cleansing Stew
+[OPTIMAL] [UNLEARNED] Cooked Crab Claw
+[OPTIMAL] [UNLEARNED] Cooked Glossy Mightfish
+[OPTIMAL] [UNLEARNED] Cookie's Feast
+[OPTIMAL] [UNLEARNED] Coyote Steak
+[OPTIMAL] [UNLEARNED] Crab Cake
+[MEDIUM] [UNLEARNED] Crispy Bat Wing
+[OPTIMAL] [UNLEARNED] Crispy Lizard Tail
+[OPTIMAL] [UNLEARNED] Critter Cookie
+[OPTIMAL] [UNLEARNED] Crocolisk Gumbo
+[OPTIMAL] [UNLEARNED] Crocolisk Steak
+[OPTIMAL] [UNLEARNED] Curiously Tasty Omelet
+[OPTIMAL] [UNLEARNED] Darkclaw Bisque
+[OPTIMAL] [UNLEARNED] Dig Rat Stew
+[OPTIMAL] [UNLEARNED] Dirge's Kickin' Chimaerok Chops
+[OPTIMAL] [UNLEARNED] Dragonbreath Chili
+[OPTIMAL] [UNLEARNED] Dry Pork Ribs
+[OPTIMAL] [UNLEARNED] Egg Nog
+[OPTIMAL] [UNLEARNED] Expert Campfire
+[OPTIMAL] [UNLEARNED] Filet o' Flank
+[OPTIMAL] [UNLEARNED] Filet of Redgill
+[OPTIMAL] [UNLEARNED] Fillet of Frenzy
+[OPTIMAL] [UNLEARNED] Flank au Poivre
+[OPTIMAL] [UNLEARNED] Giant Clam Scorcho
+[OPTIMAL] [UNLEARNED] Giant Scrambled Eggs
+[MEDIUM] [UNLEARNED] Gingerbread Cookie
+[OPTIMAL] [UNLEARNED] Goblin Deviled Clams
+[OPTIMAL] [UNLEARNED] Goldthorn Tea
+[OPTIMAL] [UNLEARNED] Gooey Spider Cake
+[OPTIMAL] [LEARNED] Goretusk Liver Pie
+[OPTIMAL] [UNLEARNED] Grand Lobster Banquet
+[OPTIMAL] [UNLEARNED] Grilled Squid
+[OPTIMAL] [UNLEARNED] Heavy Crocolisk Stew
+[OPTIMAL] [UNLEARNED] Heavy Kodo Stew
+[MEDIUM] [LEARNED] Herb Baked Egg
+[OPTIMAL] [UNLEARNED] Hot Lion Chops
+[OPTIMAL] [UNLEARNED] Hot Smoked Bass
+[OPTIMAL] [UNLEARNED] Hot Wolf Ribs
+[OPTIMAL] [UNLEARNED] Iron Oven
+[OPTIMAL] [UNLEARNED] Journeyman Campfire
+[OPTIMAL] [UNLEARNED] Jungle Stew
+[MEDIUM] [LEARNED] Kaldorei Spider Kabob
+[OPTIMAL] [UNLEARNED] Lean Venison
+[OPTIMAL] [UNLEARNED] Lean Wolf Steak
+[OPTIMAL] [UNLEARNED] Lobster Stew
+[OPTIMAL] [UNLEARNED] Loch Frenzy Delight
+[OPTIMAL] [UNLEARNED] Longjaw Mud Snapper
+[OPTIMAL] [UNLEARNED] Mightfish Steak
+[OPTIMAL] [UNLEARNED] Mithril Headed Trout
+[OPTIMAL] [UNLEARNED] Monster Omelet
+[OPTIMAL] [UNLEARNED] Mrrggl Smrrthle
+[OPTIMAL] [UNLEARNED] Murloc Fin Soup
+[OPTIMAL] [UNLEARNED] Mystery Stew
+[OPTIMAL] [UNLEARNED] Nightfin Soup
+[EASY] [UNLEARNED] Peace Tea
+[TRIVIAL] [UNLEARNED] Pincer Bites
+[OPTIMAL] [UNLEARNED] Plain Ol' Paletusk
+[OPTIMAL] [UNLEARNED] Plated Armorfish
+[OPTIMAL] [UNLEARNED] Poached Sunscale Salmon
+[OPTIMAL] [UNLEARNED] Prehistoric Pulled Raptor
+[OPTIMAL] [UNLEARNED] Prowler Steak
+[OPTIMAL] [UNLEARNED] Raging Raptor Ribs
+[OPTIMAL] [UNLEARNED] Rainbow Fin Albacore
+[OPTIMAL] [UNLEARNED] Raptor Rouladen
+[OPTIMAL] [UNLEARNED] Redridge Goulash
+[OPTIMAL] [UNLEARNED] Roast Raptor
+[MEDIUM] [LEARNED] Roasted Boar Meat
+[OPTIMAL] [UNLEARNED] Roasted Kodo Meat
+[OPTIMAL] [UNLEARNED] Rockscale Cod
+[OPTIMAL] [UNLEARNED] Root Tea
+[OPTIMAL] [UNLEARNED] Royal Tea
+[OPTIMAL] [UNLEARNED] Runn Tum Tuber Surprise
+[OPTIMAL] [UNLEARNED] Sage's Tea
+[OPTIMAL] [UNLEARNED] Sagefish Delight
+[OPTIMAL] [UNLEARNED] Savory Deviate Delight
+[OPTIMAL] [UNLEARNED] Savory Stag Sliders
+[OPTIMAL] [UNLEARNED] Savory Turtle Stew
+[OPTIMAL] [UNLEARNED] Savory Whimsyfin Delight
+[OPTIMAL] [UNLEARNED] Scorpid Surprise
+[OPTIMAL] [UNLEARNED] Seasoned Wolf Kabob
+[TRIVIAL] [UNLEARNED] Skywall Souffle
+[OPTIMAL] [UNLEARNED] Slimy Smoothie
+[MEDIUM] [UNLEARNED] Slitherskin Mackerel
+[OPTIMAL] [UNLEARNED] Smoked Bear Meat
+[OPTIMAL] [UNLEARNED] Smoked Desert Dumplings
+[OPTIMAL] [UNLEARNED] Smoked Redgill
+[OPTIMAL] [UNLEARNED] Smoked Sagefish
+[OPTIMAL] [UNLEARNED] Soaring Pamplona
+[OPTIMAL] [UNLEARNED] Soothing Turtle Bisque
+[OPTIMAL] [UNLEARNED] Specklefin Feast
+[OPTIMAL] [UNLEARNED] Spiced Chili Crab
+[MEDIUM] [UNLEARNED] Spiced Wolf Meat
+[OPTIMAL] [UNLEARNED] Spicy Smoothie
+[OPTIMAL] [UNLEARNED] Spider Sausage
+[OPTIMAL] [UNLEARNED] Spinefin Halibut
+[OPTIMAL] [UNLEARNED] Spotted Yellowtail
+[OPTIMAL] [UNLEARNED] Steaming Stag Steak
+[OPTIMAL] [UNLEARNED] Strider Stew
+[OPTIMAL] [UNLEARNED] Succulent Pork Ribs
+[OPTIMAL] [UNLEARNED] Sunny Tea
+[OPTIMAL] [UNLEARNED] Sunrise Omelette
+[OPTIMAL] [UNLEARNED] Sweetpaw Jam
+[OPTIMAL] [UNLEARNED] Swiftstrike Steak
+[OPTIMAL] [UNLEARNED] Tasty Lion Steak
+[EASY] [UNLEARNED] Tasty Raptor Bites
+[OPTIMAL] [UNLEARNED] Tender Wolf Steak
+[OPTIMAL] [UNLEARNED] Thistle Tea
+[OPTIMAL] [UNLEARNED] Triage Tea
+[OPTIMAL] [UNLEARNED] Twice-Spiced Raptor Slice
+[OPTIMAL] [UNLEARNED] Undermine Clam Chowder
+[TRIVIAL] [UNLEARNED] Venomous Smoothie
+[OPTIMAL] [UNLEARNED] Westfall Stew
+[OPTIMAL] [UNLEARNED] Wicked Smoothie
+
+== First Aid (57/75) - Recipes: 32 ==
+Profession ID: 129
+[OPTIMAL] [UNLEARNED] Anti-Venom
+[OPTIMAL] [UNLEARNED] Clever Poultice
+[OPTIMAL] [UNLEARNED] Crystal Infused Bandage
+[OPTIMAL] [UNLEARNED] Dense Runecloth Bandage
+[TRIVIAL] [LEARNED] First Aid Kit
+[OPTIMAL] [UNLEARNED] Greater Healing Potion
+[OPTIMAL] [UNLEARNED] Healing Potion
+[MEDIUM] [UNLEARNED] Heavy Linen Bandage
+[OPTIMAL] [UNLEARNED] Heavy Mageweave Bandage
+[OPTIMAL] [UNLEARNED] Heavy Runecloth Bandage
+[OPTIMAL] [UNLEARNED] Heavy Silk Bandage
+[OPTIMAL] [UNLEARNED] Heavy Wool Bandage
+[OPTIMAL] [UNLEARNED] Leather Tourniquet
+[OPTIMAL] [UNLEARNED] Lesser Healing Potion
+[EASY] [LEARNED] Linen Bandage
+[OPTIMAL] [UNLEARNED] Mageweave Bandage
+[OPTIMAL] [UNLEARNED] Major Healing Potion
+[MEDIUM] [LEARNED] Minor Healing Potion
+[OPTIMAL] [UNLEARNED] Plague Doctor's Laboratory
+[OPTIMAL] [UNLEARNED] Potent Anti-Venom
+[OPTIMAL] [UNLEARNED] Powerful Anti-Venom
+[OPTIMAL] [UNLEARNED] Powerful Poultice
+[OPTIMAL] [UNLEARNED] Runecloth Bandage
+[OPTIMAL] [UNLEARNED] Silk Bandage
+[OPTIMAL] [UNLEARNED] Simple Poultice
+[OPTIMAL] [UNLEARNED] Strong Anti-Venom
+[OPTIMAL] [UNLEARNED] Superior Healing Potion
+[OPTIMAL] [UNLEARNED] Superior Poultice
+[OPTIMAL] [UNLEARNED] Surgical Tourniquet
+[OPTIMAL] [UNLEARNED] Toxin Study
+[OPTIMAL] [UNLEARNED] Wool Bandage
+[OPTIMAL] [UNLEARNED] Woolen Tourniquet
+
+== Fishing (20/75) - Recipes: 3 ==
+Profession ID: 356
+[MEDIUM] [LEARNED] Fish Bowl
+[OPTIMAL] [UNLEARNED] Fishing Hut
+[OPTIMAL] [UNLEARNED] Fishing Rack
+
+== Herbalism (44/75) - Recipes: 3 ==
+Profession ID: 182
+[OPTIMAL] [UNLEARNED] Greenhouse
+[TRIVIAL] [LEARNED] Incense Candle
+[OPTIMAL] [UNLEARNED] Seed Hybridizer
+
+Talents:
+Active Specialization: Druid
+Loadout Name: Druid
+Active Config ID: 830278
+
+Talent Import String:
+CwcBge1wt+o5uAlexGcm6qyB1DAg5BADAAAAA
+
+== Talent Tree (Druid / Druid) ==
+Genesis 5/5
+Moonglow 1/3
+Improved Moonfire 2/2
+
+Spellbook:
+== General ==
+Armor Proficiency (Passive, ID: 1293712, Known)
+Attack (ID: 6603, Known, Usable)
+Dodge (Passive, ID: 81, Known)
+Elune's Light (ID: 1259799, Known, Usable)
+Languages (Passive, ID: 1293657, Known)
+Quickness (Passive, ID: 20582, Known)
+Shadowmeld (ID: 20580, Known, Usable)
+Wisp Spirit (Passive, ID: 20585, Known)
+
+== Class ==
+Healing Touch (ID: 5185, Known, Usable)
+Healing Touch (ID: 5186, Known, Usable)
+Healing Touch (ID: 5187, Known, Usable)
+Mark of the Wild (ID: 1126, Known, Usable)
+Mark of the Wild (ID: 5232, Known, Usable)
+Regrowth (ID: 8936, Known, Usable)
+Rejuvenation (ID: 774, Known, Usable)
+Rejuvenation (ID: 1058, Known, Usable)
+Revive (ID: 437138, Known, Usable)
+
+== Spec ==
+Entangling Roots (ID: 339, Known, Usable)
+Moonfire (ID: 8921, Known, Usable)
+Moonfire (ID: 8924, Known, Usable)
+Nature's Grasp (ID: 16689, Known, Usable)
+Teleport: Moonglade (ID: 18960, Known, Usable)
+Thorns (ID: 467, Known, Usable)
+Thorns (ID: 782, Known, Usable)
+Wrath (ID: 5176, Known, Usable)
+Wrath (ID: 5177, Known, Usable)
+Wrath (ID: 5178, Known, Usable)
+
+AddOns:
+AddOns Count: 38
+
+AllTheThings - Enabled: yes - Loadable: yes - Loaded: yes - Version: 5.3.13-141-g8c98ec1
+AllTheThings Collection History - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.3.4
+Arcane Wizard: Library - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.36
+Auctionator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 339
+Azeroth Public Library: Forever (Beta) - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.4.1-forever-beta
+Baganator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 829
+BugGrabber - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.0
+BugSack - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.2
+Can I Mog It? - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1-3
+CharacterExport Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.0-forever-beta
+Chattynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 224
+DarkMode  by D4KiR  - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.8.11
+Dialogue UI - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.5
+Farmer - Enabled: yes - Loadable: yes - Loaded: yes - Version: 3.27.22
+Gathering - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.75
+KillDex - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.1
+Memento - Enabled: yes - Loadable: yes - Loaded: yes - Version: v2.30
+MiniDruidMana - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.4.8
+MinimapButtonButton - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.24.11
+MobInfo2 Retail Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.1.6
+Nova Instance Tracker - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.28
+Parcel - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.0
+Platynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 490
+Plumber - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.9.6
+RareScanner - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1.b4
+Syndicator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 283
+TomTom - Enabled: yes - Loadable: yes - Loaded: yes - Version: v4.3.11-release
+WTFix preparation data - Enabled: yes - Loadable: yes - Loaded: yes
+XLoot - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Frame - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Group - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Master - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Monitor - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+XLoot Options - Enabled: yes - Loadable: no - Loaded: yes - Reason: DEMAND_LOADED - Version: 12.18.1
+XLoot Toast - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.18.1
+Profession Master Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.11
+Trade Board Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.11
+Talents Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.33.0

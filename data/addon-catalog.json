@@ -35,6 +35,12 @@
     "collects": ["Level, zone, and gold", "Primary stats and gear", "Profession skill", "Installed addon list"],
     "match": ["CharacterExport", "CharacterExportForever", "CharacterExport Forever"]
   },
+  "ForeverDungeonJournal": {
+    "purpose": "Boss, loot, and quest journal for Forever dungeons.",
+    "feedsSite": true,
+    "collects": ["Boss drops by dungeon", "Dungeon quests and rewards"],
+    "match": ["ForeverDungeonJournal", "Forever Dungeon Journal"]
+  },
   "Farmer": {
     "purpose": "Gathering routes and node timers.",
     "feedsSite": true,

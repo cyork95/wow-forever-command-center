@@ -5,6 +5,8 @@
 $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "read-saves.ps1")
 . (Join-Path $PSScriptRoot "screenshots.ps1")
+. (Join-Path $PSScriptRoot "dungeon-journal.ps1")
+. (Join-Path $PSScriptRoot "professions.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -185,6 +187,24 @@ Write-JsonFile $addonsOut ([ordered]@{
 })
 Write-Output "Wrote $($addons.Count) addons to data/addons.json"
 
+$journal = Read-DungeonJournal $addonsPath
+if ($journal) {
+  Write-JsonFile (Join-Path $repo "data\dungeons.json") $journal
+  $lootCount = ($journal.dungeons | ForEach-Object { $_.bosses } | ForEach-Object { @($_.loot).Count } | Measure-Object -Sum).Sum
+  Write-Output "Wrote $($journal.dungeons.Count) dungeons and $lootCount drops to data/dungeons.json"
+}
+
+$house = Read-JsonFile (Join-Path $repo "data\house.json")
+$faction = if ($house.faction -match 'Horde') { "Horde" } else { "Alliance" }
+$crafts = Read-ProfessionCrafts $addonsPath $wtfRoot $ProfessionNames $faction
+if ($crafts) {
+  $craftCount = ($crafts.professions.Values | ForEach-Object { @($_).Count } | Measure-Object -Sum).Sum
+  $json = $crafts | ConvertTo-Json -Depth 8 -Compress
+  $utf8 = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText((Join-Path $repo "data\professions.json"), $json + "`n", $utf8)
+  Write-Output "Wrote $craftCount crafts across $($crafts.professions.Count) professions to data/professions.json"
+}
+
 function Unescape-LuaString($value) {
   $text = $value -replace '\\n', "`n" -replace '\\r', '' -replace '\\"', '"' -replace '\\t', "`t"
   return $text
@@ -216,17 +236,18 @@ function Parse-TextExport($text, $when) {
   if ($text -notmatch '(?m)^Character:\s*(.+)$') { return $null }
   $rawName = $Matches[1].Trim()
   $known = $null
+  $baseName = ($rawName -split '-')[0].Trim()
   foreach ($character in ($characters | Sort-Object { $_.name.Length } -Descending)) {
-    if ($rawName.StartsWith($character.name, [System.StringComparison]::OrdinalIgnoreCase)) {
+    $first = ($character.name -split ' ')[0]
+    if ($rawName.StartsWith($character.name, [System.StringComparison]::OrdinalIgnoreCase) -or $baseName -ieq $first) {
       $known = $character
       break
     }
   }
   $name = if ($known) { $known.name } else { ($rawName -split '-')[0].Trim() }
   $realm = $null
-  if ($rawName.Length -gt $name.Length -and $rawName.Substring($name.Length, 1) -eq '-') {
-    $realm = $rawName.Substring($name.Length + 1).Trim()
-  }
+  $dash = $rawName.IndexOf('-')
+  if ($dash -ge 0) { $realm = $rawName.Substring($dash + 1).Trim() }
 
   $level = $null
   if ($text -match '(?m)^Level:\s*(\d+)') { $level = [int]$Matches[1] }
@@ -481,13 +502,15 @@ function Apply-Snapshot($record, $snap, $character) {
       $profs += [ordered]@{ name = $p.name; current = $current; max = $p.max }
       $seen[$p.name] = $true
     }
-    foreach ($name in $snap.skillLevels.Keys) {
+    foreach ($name in ($snap.skillLevels.Keys | Sort-Object)) {
       if (-not $seen.ContainsKey($name)) { $profs += [ordered]@{ name = $name; current = $snap.skillLevels[$name]; max = $null } }
     }
     $rec["professions"] = $profs
   }
   if ($snap.recipes) { $rec["recipes"] = $snap.recipes }
+  if ($snap.crafts) { $rec["crafts"] = $snap.crafts }
   if ($snap.items) { $rec["items"] = $snap.items }
+  if ($snap.itemCounts) { $rec["itemCounts"] = $snap.itemCounts }
 
   if ($snap.att) {
     $rec["collections"] = [ordered]@{

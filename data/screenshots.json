@@ -4,42 +4,42 @@
         "takenAt":  "2026-09-19T13:16:06",
         "who":  "Trendirun Stormflight",
         "caption":  "Fishing dock in Darnassus.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-19-131606.jpg"
     },
     {
         "source":  "WoWScrnShot_091926_131751.jpg",
         "takenAt":  "2026-09-19T13:17:51",
         "who":  "Trendirun Stormflight",
         "caption":  "Running the roots of Darnassus.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-19-131751.jpg"
     },
     {
         "source":  "WoWScrnShot_091926_132237.jpg",
         "takenAt":  "2026-09-19T13:22:37",
         "who":  "Trendirun Stormflight",
         "caption":  "Hippogryph roost with Caylais Moonfeather.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-19-132237.jpg"
     },
     {
         "source":  "WoWScrnShot_091926_133451.jpg",
         "takenAt":  "2026-09-19T13:34:51",
         "who":  "Trendirun Stormflight",
         "caption":  "Loading screen, Kalimdor to the Eastern Kingdoms.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-19-133451.jpg"
     },
     {
         "source":  "WoWScrnShot_091926_134626.jpg",
         "takenAt":  "2026-09-19T13:46:26",
         "who":  "Trendirun Stormflight",
         "caption":  "Visiting Isaac Chan, the pet trainer.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-19-134626.jpg"
     },
     {
         "source":  "WoWScrnShot_091926_152557.jpg",
         "takenAt":  "2026-09-19T15:25:57",
         "who":  "Trendirun Stormflight",
         "caption":  "Sara Timberlain\u0027s house in Elwynn.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-19-152557.jpg"
     },
     {
         "source":  "WoWScrnShot_092426_184911.jpg",
@@ -53,6 +53,69 @@
         "takenAt":  "2026-09-25T11:53:42",
         "who":  "Trendirun Stormflight",
         "caption":  "Fleshrippers on an autumn road.",
-        "file":  null
+        "file":  "assets/shots/trendirun/2026-09-25-115342.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092526_184838.jpg",
+        "takenAt":  "2026-09-25T18:48:38",
+        "who":  "Flann Anvilhew",
+        "caption":  "Over an Elder Snow Leopard in Dun Morogh",
+        "file":  "assets/shots/flann/2026-09-25-184838.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092526_195502.jpg",
+        "takenAt":  "2026-09-25T19:55:02",
+        "who":  "Flann Anvilhew",
+        "caption":  "Crossing snowy Dun Morogh past a gnomish tank, with Ephai Xorr up the road.",
+        "file":  "assets/shots/flann/2026-09-25-195502.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092526_200209.jpg",
+        "takenAt":  "2026-09-25T20:02:09",
+        "who":  "Flann Anvilhew",
+        "caption":  "Arriving in Thelsamar past Mountaineer Kadrell, with Ephai Xorr in the group.",
+        "file":  "assets/shots/flann/2026-09-25-200209.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092526_212951.jpg",
+        "takenAt":  "2026-09-25T21:29:51",
+        "who":  "Flann Anvilhew",
+        "caption":  "Level 14 in Stonesplinter Valley, clearing troggs with Ephai Xorr.",
+        "file":  "assets/shots/flann/2026-09-25-212951.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092526_223306.jpg",
+        "takenAt":  "2026-09-25T22:33:06",
+        "who":  "Flann Anvilhew",
+        "caption":  "Taking the Call of Fire quest to defeat the Minor Manifestation of Fire.",
+        "file":  "assets/shots/flann/2026-09-25-223306.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092626_002841.jpg",
+        "takenAt":  "2026-09-26T00:28:41",
+        "who":  "Flann Anvilhew",
+        "caption":  "Running into Auberdine past Barithras Moonshade.",
+        "file":  "assets/shots/flann/2026-09-26-002841.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092626_013942.jpg",
+        "takenAt":  "2026-09-26T01:39:42",
+        "who":  "Flann Anvilhew",
+        "caption":  "Fighting a Vile Sprite among the elven ruins of Darkshore.",
+        "file":  "assets/shots/flann/2026-09-26-013942.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092626_014218.jpg",
+        "takenAt":  "2026-09-26T01:42:18",
+        "who":  "Flann Anvilhew",
+        "caption":  "Level 17, hunting Rabid Thistle Bears in Darkshore with Ephai Xorr for Cleansing of the Infected.",
+        "file":  "assets/shots/flann/2026-09-26-014218.jpg"
+    },
+    {
+        "source":  "WoWScrnShot_092626_025643.jpg",
+        "takenAt":  "2026-09-26T02:56:43",
+        "who":  "Flann Anvilhew",
+        "caption":  "Wrapping up the night in Auberdine with Ephai Xorr, next to Dalmond\u0027s general goods.",
+        "file":  "assets/shots/flann/2026-09-26-025643.jpg"
     }
 ]

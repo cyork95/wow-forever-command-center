@@ -36,6 +36,7 @@ Read the output:
 - `Merged <name> into data/stats.json (<id>)` means the sheet updated. It also writes `data/exports/<name>-<date>.json`.
 - `Updated <name> from Nova Instance Tracker, Syndicator, ...` means the scan read that character's addon saves under `WTF`. This runs even without a paste. The saves are written when the user logs out or types `/reload`, so a character still logged in shows last session's numbers.
 - `Skipped unmatched character: <name>` means the name is not in `data/characters.json`. Ask whether to add them, with race, class, spec, and professions from the dump. Do not guess a spec. After adding them, run the scan again.
+- Some dumps carry only the first name (`Character: Trendirun-Realm`). The scan matches those on the roster's first name, so keep the full name from the one over the character's head in a screenshot.
 
 The scan pulls these from addon saves, so none of their in-game export buttons are needed:
 
@@ -44,6 +45,7 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - AllTheThings: time played, deaths, quests, areas explored, and collection counts.
 - Nova Instance Tracker: level, gold, and lockouts when its save is newer than the dump.
 - KillDex: total kills, creature types, and the top five mobs. It also logs kills of mobs named in a hunt's `mobs` list, and marks hunt items it saw drop, so a hunt checks itself as looted even after the item is sold.
+- Forever Dungeon Journal: its boss, loot, and quest tables live in the addon's Lua file. The scan rewrites `data/dungeons.json` from them, so commit that file when it changes.
 - Memento: its save holds only settings. Its screenshots are handled in the next section.
 
 ## 3b. Name the new screenshots

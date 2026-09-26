@@ -1,0 +1,3198 @@
+Location:
+Zone: Darkshore
+Subzone: Auberdine
+Map: Darkshore
+Map ID: 1439
+Parent Map: Kalimdor
+Parent Map ID: 1414
+Coordinates: 37.0, 43.9
+Hearthstone Location: Auberdine
+
+Character Stats:
+Character: Flann-Classic Beta PvE 2
+Faction: Alliance
+Level: 18
+Race: Dwarf
+Class: Shaman
+Primary Stat: Intellect
+Average Item Level: 8.5
+Equipped Item Level: 8.5
+PvP Item Level: 8.5
+Health: n/a/519
+XP: 819/19400
+XP To Level: 18581
+XP Progress: 4.22%
+Rested XP: 408
+Armor: 616
+== Primary Attributes ==
+Strength: 39
+Agility: 27
+Stamina: 54
+Intellect: 43
+Attack Power: 198
+== Combat Ratings ==
+Critical Strike: 0 rating / 5.53%
+Haste: 0 rating / 0%
+Mastery: 0 rating / 0%
+Versatility: 0 rating / 0%
+Leech: 0 rating / 0%
+Speed: 0 rating / 0%
+Avoidance: 0 rating / 0%
+[Some character values were restricted by the client and could not be exported.]
+
+Currencies:
+Gold: 2g 67s 37c
+Currency Count: 0
+
+[No currencies found.]
+
+Collections:
+== Mounts ==
+Mount Count: 0/136
+[No mounts found.]
+
+== Battle Pets ==
+Pet Count: 0/0
+[No battle pets found.]
+
+== Toys ==
+Toy Count: 0/20
+[No toys found.]
+
+Bags:
+== Backpack (20/20) ==
+[Hearthstone] x1 [ID: 6948, iLvl: 1, Q: 1]
+[Lesser Healing Potion] x5 [ID: 858, iLvl: 13, Q: 1]
+[Minor Healing Potion] x4 [ID: 118, iLvl: 5, Q: 1]
+[Minor Arcane Elixir] x5 [ID: 247754, iLvl: 5, Q: 1]
+[Blood Sausage] x5 [ID: 3220, iLvl: 15, Q: 1]
+[Ice Cold Milk] x8 [ID: 1179, iLvl: 15, Q: 1]
+[Fishing Pole] x1 [ID: 6256, iLvl: 1, Q: 1]
+- Type: Weapon / Fishing Pole
+- Equip Slot: Two-Hand Weapon
+- DPS: 1
+[Blacksmith Hammer] x1 [ID: 5956, iLvl: 1, Q: 1]
+- Type: Weapon / Miscellaneous
+- Equip Slot: Main Hand
+- DPS: 0.75
+[Rough Stone] x18 [ID: 2835, iLvl: 5, Q: 1]
+[Wool Cloth] x5 [ID: 2592, iLvl: 15, Q: 1]
+[Linen Cloth] x20 [ID: 2589, iLvl: 5, Q: 1]
+[Linen Cloth] x20 [ID: 2589, iLvl: 5, Q: 1]
+[Linen Cloth] x6 [ID: 2589, iLvl: 5, Q: 1]
+[Clam Meat] x4 [ID: 5503, iLvl: 14, Q: 1]
+[Crawler Claw] x3 [ID: 2675, iLvl: 13, Q: 1]
+[Crawler Meat] x2 [ID: 2674, iLvl: 13, Q: 1]
+[Bear Meat] x2 [ID: 3173, iLvl: 11, Q: 1]
+[Murloc Eye] x1 [ID: 730, iLvl: 11, Q: 1]
+[Small Lustrous Pearl] x1 [ID: 5498, iLvl: 15, Q: 2]
+[Tigerseye] x3 [ID: 818, iLvl: 15, Q: 2]
+
+== White Leather Bag (7/8) ==
+[Chipped Bear Tooth] x1 [ID: 3169, iLvl: 1, Q: 0]
+[Wildkeeper Leggings] x1 [ID: 15202, iLvl: 18, Q: 2]
+- Type: Armor / Leather
+- Equip Slot: Legs
+- AGI: 4, STA: 1, SPI: 2, ARMOR: 65
+[Honorary Picks] x1 [ID: 16311, iLvl: 1, Q: 1]
+[Letter to Delgren] x1 [ID: 5354, iLvl: 1, Q: 1]
+[Chipped Claw] x1 [ID: 7074, iLvl: 1, Q: 0]
+[Broken Fang] x1 [ID: 7073, iLvl: 1, Q: 0]
+[Spellbinder Cloak] x1 [ID: 4683, iLvl: 13, Q: 1]
+- Type: Armor / Cloth
+- Equip Slot: Back
+- ARMOR: 12
+
+== Canvas Latchbag (4/6) ==
+[Thundris' Letter] x1 [ID: 279045, iLvl: 1, Q: 1]
+[Fire Totem] x1 [ID: 5176, iLvl: 10, Q: 1]
+[Earth Totem] x1 [ID: 5175, iLvl: 4, Q: 1]
+[Light Feather] x1 [ID: 17056, iLvl: 1, Q: 1]
+
+== Linen Bag (0/6) ==
+[Empty]
+
+== Linen Bag (0/6) ==
+[Empty]
+
+== Apprentice's Mining Pack (4/4) ==
+[Lodestone] x3 [ID: 279960, iLvl: 4, Q: 1]
+[Mining Pick] x1 [ID: 2901, iLvl: 4, Q: 1]
+- Type: Weapon / Miscellaneous
+- Equip Slot: Main Hand
+- DPS: 1.5
+[Copper Ore] x20 [ID: 2770, iLvl: 10, Q: 1]
+[Copper Ore] x5 [ID: 2770, iLvl: 10, Q: 1]
+
+Bank:
+[Using cached bank data - last updated: 2026-09-25 23:18:37.]
+
+== Keyring (0/32) ==
+[Empty]
+
+== Apprentice's Mining Pack (4/4) ==
+[Lodestone] x3 [ID: 279960, iLvl: 4, Q: 1]
+[Mining Pick] x1 [ID: 2901, iLvl: 4, Q: 1]
+- Type: Weapon / Miscellaneous
+- Equip Slot: Main Hand
+- DPS: 1.5
+[Copper Ore] x8 [ID: 2770, iLvl: 10, Q: 1]
+[Rough Stone] x2 [ID: 2835, iLvl: 5, Q: 1]
+
+== Bank (5/48) ==
+[Linen Cloth] x20 [ID: 2589, iLvl: 5, Q: 1]
+[Rumi of Gnomeregan: The Collected Works] x1 [ID: 208860, iLvl: 10, Q: 1]
+[Lesser Healing Potion] x1 [ID: 858, iLvl: 13, Q: 1]
+[Plans: Rough Copper Chain Boots] x1 [ID: 277673, iLvl: 1, Q: 2]
+[Recipe: Peace Tea] x1 [ID: 249879, iLvl: 1, Q: 1]
+
+== Bank (0/0) ==
+[Empty]
+
+== Bank (0/0) ==
+[Empty]
+
+== Bank (0/0) ==
+[Empty]
+
+== Bank (0/0) ==
+[Empty]
+
+== Bank (0/0) ==
+[Empty]
+
+Equipment:
+== Head ==
+[Empty]
+
+== Neck ==
+[Empty]
+
+== Shoulder ==
+[Empty]
+
+== Back ==
+[Timberland Cape] x1 [ID: 7739, iLvl: 18, Q: 2]
+- Rarity: Uncommon
+- Item Level: 18
+- Type: Back
+- Equip Slot: Back
+- Item String: item:7739::::::::18:1489::11:::::::
+- Binding: Bind on Pickup
+- SPI: 3
+- ARMOR: 16
+
+== Chest ==
+[Stonesplinter Rags] x1 [ID: 5109, iLvl: 17, Q: 1]
+- Rarity: Common
+- Item Level: 17
+- Durability: 55/55
+- Type: Armor / Cloth
+- Equip Slot: Chest
+- Item String: item:5109::::::::18:1489:::::::::
+- Binding: Bind on Pickup
+- ARMOR: 29
+
+== Shirt ==
+[Primitive Mantle] x1 [ID: 154, iLvl: 1, Q: 1]
+- Rarity: Common
+- Item Level: 1
+- Type: Armor / Miscellaneous
+- Equip Slot: Shirt
+- Item String: item:154::::::::18:1489::75:::::::
+
+== Tabard ==
+[Empty]
+
+== Wrist ==
+[Ivy Cuffs] x1 [ID: 5612, iLvl: 13, Q: 1]
+- Rarity: Common
+- Item Level: 13
+- Durability: 20/20
+- Type: Armor / Leather
+- Equip Slot: Wrist
+- Item String: item:5612::::::::18:1489::11:::::::
+- Binding: Bind on Equip
+- ARMOR: 27
+
+== Hands ==
+[Shucking Gloves] x1 [ID: 15405, iLvl: 17, Q: 2]
+- Rarity: Uncommon
+- Item Level: 17
+- Durability: 18/20
+- Type: Armor / Leather
+- Equip Slot: Hands
+- Item String: item:15405::::::::18:1489::11:::::::
+- Binding: Bind on Equip
+- STA: 2
+- INT: 2
+- ARMOR: 45
+
+== Waist ==
+[Dryweed Belt] x1 [ID: 15399, iLvl: 14, Q: 2]
+- Rarity: Uncommon
+- Item Level: 14
+- Durability: 19/20
+- Type: Armor / Leather
+- Equip Slot: Waist
+- Item String: item:15399::::::::18:1489::11:::::::
+- Binding: Bind on Equip
+- INT: 2
+- ARMOR: 38
+
+== Legs ==
+[Aboriginal Loincloth] x1 [ID: 14119, iLvl: 17, Q: 2]
+- Rarity: Uncommon
+- Item Level: 17
+- Durability: 39/40
+- Type: Armor / Cloth
+- Equip Slot: Legs
+- Item String: item:14119::::::::18:1489:::1:12718::::::
+- Bonus IDs: 12718
+- Binding: Bind on Pickup
+- STA: 3
+- INT: 3
+- ARMOR: 27
+
+== Feet ==
+[Barbaric Cloth Boots] x1 [ID: 3307, iLvl: 15, Q: 2]
+- Rarity: Uncommon
+- Item Level: 15
+- Durability: 24/25
+- Type: Armor / Cloth
+- Equip Slot: Feet
+- Item String: item:3307::::::::18:1489:::::::::
+- Binding: Bind on Pickup
+- STA: 1
+- INT: 2
+- ARMOR: 19
+
+== Finger 1 ==
+[Avala's Binding] x1 [ID: 286737, iLvl: 8, Q: 1]
+- Rarity: Common
+- Item Level: 8
+- Type: Finger
+- Equip Slot: Finger
+- Item String: item:286737::::::::18:1489::11:::::::
+- ITEM_MOD_FROST_RESISTANCE_SHORT: 1
+- Frost Resistance: 1
+
+== Finger 2 ==
+[Empty]
+
+== Trinket 1 ==
+[Empty]
+
+== Trinket 2 ==
+[Empty]
+
+== Main Hand ==
+[Invader's Mace] x1 [ID: 281254, iLvl: 17, Q: 2]
+- Rarity: Uncommon
+- Item Level: 17
+- Durability: 50/50
+- Damage: 14 - 27
+- Speed: 2.4
+- Type: Weapon / One-Handed Maces
+- Equip Slot: One-Hand Weapon
+- Item String: item:281254::::::::18:1489::11:::::::
+- Binding: Quest Item
+- STR: 2
+- SPI: 1
+- DPS: 8.54
+
+== Off Hand ==
+[Lupine Buckler] x1 [ID: 15014, iLvl: 17, Q: 2]
+- Rarity: Uncommon
+- Item Level: 17
+- Durability: 60/60
+- Type: Armor / Shields
+- Equip Slot: Off Hand
+- Item String: item:15014::::::::18:1489:::1:12726::::::
+- Bonus IDs: 12726
+- Binding: Bind Type: 6
+- AGI: 2
+- SPI: 2
+- ARMOR: 361
+
+Lockouts:
+Instance Lockout Count: 0
+
+== Saved Instances ==
+[No saved instances found.]
+
+== World Bosses ==
+World Boss Lockout Count: 0
+[No world boss lockouts found.]
+
+Progress:
+
+== Mythic+ ==
+[No Mythic+ progress returned by the Forever APIs.]
+
+== PvP ==
+Honor Level: 1
+Honor Progress: 0/5500
+
+Achievements:
+Achievement Points: 0
+Achievements Completed: 3/111
+
+== Recent Achievements ==
+Explore Dun Morogh (ID: 627) - Points: 0 - Completed: 2026-09-25 - Earned by me
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18
+
+== Category Summary ==
+Druid - Completed: 0/3
+Alchemy - Completed: 0/3
+Ranks - Completed: 0/5
+Explorer - Completed: 0/3
+Eastern Kingdoms - Completed: 1/23
+Hunter - Completed: 0/3
+Blacksmithing - Completed: 0/3
+Reputations - Completed: 0/4
+Kalimdor - Completed: 2/20
+Mage - Completed: 0/3
+Enchanting - Completed: 0/3
+Season Journey - Completed: 0/3
+Paladin - Completed: 0/3
+Engineering - Completed: 0/3
+Priest - Completed: 0/3
+Leatherworking - Completed: 0/3
+Dungeons - Completed: 0/3
+Rogue - Completed: 0/3
+Tailoring - Completed: 0/3
+Raids - Completed: 0/3
+Shaman - Completed: 0/3
+Warlock - Completed: 0/3
+Adventure - Completed: 0/2
+Warrior - Completed: 0/3
+
+== Tracked Achievements ==
+[No tracked achievements.]
+
+Achievement (completed):
+Completed Achievement List Count: 3
+
+== Eastern Kingdoms ==
+Explore Dun Morogh (ID: 627) - Points: 0 - Completed: 2026-09-25 - Earned by me
+
+== Kalimdor ==
+Explore Teldrassil (ID: 842) - Points: 0 - Completed: 2026-09-19
+Explore Moonglade (ID: 855) - Points: 0 - Completed: 2026-09-18
+
+Appearance (collected):
+Collected Appearance Source Count: 263
+
+== Head ==
+[Unknown Appearance] (Source ID: 77344, Item ID: 134110, Appearance ID: 29124)
+
+== Shoulder ==
+[Unknown Appearance] (Source ID: 77343, Item ID: 134112, Appearance ID: 24531)
+
+== Back ==
+[Unknown Appearance] (Source ID: 156274, Item ID: 1372, Appearance ID: 63443)
+[Unknown Appearance] (Source ID: 156276, Item ID: 1376, Appearance ID: 63453)
+[Unknown Appearance] (Source ID: 156303, Item ID: 1421, Appearance ID: 63478)
+[Unknown Appearance] (Source ID: 156664, Item ID: 2165, Appearance ID: 63443)
+[Unknown Appearance] (Source ID: 156941, Item ID: 2652, Appearance ID: 64004)
+[Unknown Appearance] (Source ID: 157028, Item ID: 2905, Appearance ID: 63596)
+[Unknown Appearance] (Source ID: 157145, Item ID: 3153, Appearance ID: 64174)
+[Unknown Appearance] (Source ID: 157351, Item ID: 3511, Appearance ID: 64343)
+[Unknown Appearance] (Source ID: 157831, Item ID: 4665, Appearance ID: 64258)
+[Unknown Appearance] (Source ID: 157859, Item ID: 4701, Appearance ID: 64774)
+[Unknown Appearance] (Source ID: 158159, Item ID: 5405, Appearance ID: 63983)
+[Unknown Appearance] (Source ID: 158203, Item ID: 5591, Appearance ID: 65000)
+[Unknown Appearance] (Source ID: 158351, Item ID: 6185, Appearance ID: 63521)
+[Unknown Appearance] (Source ID: 158522, Item ID: 6520, Appearance ID: 63867)
+[Unknown Appearance] (Source ID: 158543, Item ID: 6549, Appearance ID: 65259)
+[Unknown Appearance] (Source ID: 77345, Item ID: 134111, Appearance ID: 2352)
+[Unknown Appearance] (Source ID: 301114, Item ID: 257277, Appearance ID: 64157)
+[Unknown Appearance] (Source ID: 311845, Item ID: 281250, Appearance ID: 65253)
+Gustweald Cloak (Source ID: 158217, Item ID: 5610, Appearance ID: 64311)
+Loose Chain Cloak (Source ID: 156934, Item ID: 2644, Appearance ID: 64003)
+Nomad Cloak (Source ID: 159501, Item ID: 9754, Appearance ID: 66001)
+Patchwork Cloak (Source ID: 156308, Item ID: 1429, Appearance ID: 63424)
+Scout's Cloak (Source ID: 158225, Item ID: 5618, Appearance ID: 65018)
+Spellbinder Cloak (Source ID: 157844, Item ID: 4683, Appearance ID: 63424)
+Swordfeather Cloak (Source ID: 311873, Item ID: 281289, Appearance ID: 67533)
+Timberland Cape (Source ID: 159016, Item ID: 7739, Appearance ID: 65018)
+
+== Chest ==
+[Unknown Appearance] (Source ID: 156057, Item ID: 57, Appearance ID: 63240)
+[Unknown Appearance] (Source ID: 156268, Item ID: 1364, Appearance ID: 63446)
+[Unknown Appearance] (Source ID: 156279, Item ID: 1380, Appearance ID: 63456)
+[Unknown Appearance] (Source ID: 156306, Item ID: 1425, Appearance ID: 63481)
+[Unknown Appearance] (Source ID: 156311, Item ID: 1433, Appearance ID: 63485)
+[Unknown Appearance] (Source ID: 156365, Item ID: 1561, Appearance ID: 63539)
+[Unknown Appearance] (Source ID: 156990, Item ID: 2817, Appearance ID: 64042)
+[Unknown Appearance] (Source ID: 157949, Item ID: 4907, Appearance ID: 64844)
+[Unknown Appearance] (Source ID: 158248, Item ID: 5767, Appearance ID: 65035)
+[Unknown Appearance] (Source ID: 158323, Item ID: 6123, Appearance ID: 65090)
+[Unknown Appearance] (Source ID: 159422, Item ID: 9598, Appearance ID: 64815)
+[Unknown Appearance] (Source ID: 160117, Item ID: 10656, Appearance ID: 64247)
+[Unknown Appearance] (Source ID: 160224, Item ID: 11189, Appearance ID: 66515)
+[Unknown Appearance] (Source ID: 104602, Item ID: 168659, Appearance ID: 40282)
+[Unknown Appearance] (Source ID: 302717, Item ID: 263408, Appearance ID: 130283)
+[Unknown Appearance] (Source ID: 302719, Item ID: 263410, Appearance ID: 130293)
+[Unknown Appearance] (Source ID: 302726, Item ID: 263421, Appearance ID: 130370)
+[Unknown Appearance] (Source ID: 304856, Item ID: 270000, Appearance ID: 65147)
+Calico Tunic (Source ID: 156343, Item ID: 1501, Appearance ID: 63517)
+Explorer's Vest (Source ID: 158802, Item ID: 7229, Appearance ID: 64548)
+Flimsy Chain Vest (Source ID: 156944, Item ID: 2656, Appearance ID: 63570)
+Footman Tunic (Source ID: 158306, Item ID: 6085, Appearance ID: 65075)
+Ironheart Chain (Source ID: 157150, Item ID: 3166, Appearance ID: 64178)
+Laced Mail Vest (Source ID: 156406, Item ID: 1745, Appearance ID: 63570)
+Neophyte's Robe (Source ID: 158315, Item ID: 6098, Appearance ID: 65083)
+Robe of the Keeper (Source ID: 157149, Item ID: 3161, Appearance ID: 64177)
+Siege Brigade Vest (Source ID: 157143, Item ID: 3151, Appearance ID: 64150)
+Stonesplinter Rags (Source ID: 158036, Item ID: 5109, Appearance ID: 64908)
+Warm Winter Robe (Source ID: 157182, Item ID: 3216, Appearance ID: 64208)
+Worn Mail Vest (Source ID: 156398, Item ID: 1737, Appearance ID: 63570)
+
+== Shirt ==
+[Unknown Appearance] (Source ID: 158314, Item ID: 6097, Appearance ID: 65082)
+[Unknown Appearance] (Source ID: 83202, Item ID: 142503, Appearance ID: 33155)
+[Unknown Appearance] (Source ID: 307623, Item ID: 271668, Appearance ID: 130048)
+Neophyte's Shirt (Source ID: 156054, Item ID: 53, Appearance ID: 63238)
+Primitive Mantle (Source ID: 156074, Item ID: 154, Appearance ID: 63257)
+Red Linen Shirt (Source ID: 156906, Item ID: 2575, Appearance ID: 63978)
+
+== Tabard ==
+[Unknown Appearance] (Source ID: 83203, Item ID: 142504, Appearance ID: 33156)
+
+== Wrist ==
+[Unknown Appearance] (Source ID: 156093, Item ID: 710, Appearance ID: 63276)
+[Unknown Appearance] (Source ID: 156217, Item ID: 1182, Appearance ID: 63397)
+[Unknown Appearance] (Source ID: 156273, Item ID: 1370, Appearance ID: 63451)
+[Unknown Appearance] (Source ID: 156302, Item ID: 1420, Appearance ID: 63477)
+[Unknown Appearance] (Source ID: 156771, Item ID: 2326, Appearance ID: 63875)
+[Unknown Appearance] (Source ID: 157270, Item ID: 3365, Appearance ID: 64275)
+[Unknown Appearance] (Source ID: 158160, Item ID: 5419, Appearance ID: 63887)
+[Unknown Appearance] (Source ID: 158202, Item ID: 5590, Appearance ID: 64999)
+[Unknown Appearance] (Source ID: 158299, Item ID: 6061, Appearance ID: 64207)
+[Unknown Appearance] (Source ID: 158347, Item ID: 6177, Appearance ID: 65111)
+[Unknown Appearance] (Source ID: 160223, Item ID: 11187, Appearance ID: 66012)
+[Unknown Appearance] (Source ID: 104604, Item ID: 168665, Appearance ID: 40284)
+[Unknown Appearance] (Source ID: 301117, Item ID: 257280, Appearance ID: 63412)
+Brackwater Bracers (Source ID: 157227, Item ID: 3303, Appearance ID: 64244)
+Burnt Hide Bracers (Source ID: 157147, Item ID: 3158, Appearance ID: 63636)
+Calico Bracers (Source ID: 157277, Item ID: 3375, Appearance ID: 64280)
+Clamshell Bracers (Source ID: 162306, Item ID: 15400, Appearance ID: 67629)
+Disciple's Bracers (Source ID: 158829, Item ID: 7350, Appearance ID: 65483)
+Flimsy Chain Bracers (Source ID: 156940, Item ID: 2651, Appearance ID: 63566)
+Ivy Cuffs (Source ID: 158219, Item ID: 5612, Appearance ID: 65012)
+Patchwork Bracers (Source ID: 157275, Item ID: 3373, Appearance ID: 64278)
+Pioneer Bracers (Source ID: 158521, Item ID: 6519, Appearance ID: 65239)
+Worn Mail Bracers (Source ID: 156394, Item ID: 1732, Appearance ID: 63566)
+
+== Hands ==
+[Unknown Appearance] (Source ID: 156097, Item ID: 719, Appearance ID: 63280)
+[Unknown Appearance] (Source ID: 156266, Item ID: 1359, Appearance ID: 63444)
+[Unknown Appearance] (Source ID: 156271, Item ID: 1368, Appearance ID: 63449)
+[Unknown Appearance] (Source ID: 156277, Item ID: 1377, Appearance ID: 63454)
+[Unknown Appearance] (Source ID: 156304, Item ID: 1422, Appearance ID: 63479)
+[Unknown Appearance] (Source ID: 156309, Item ID: 1430, Appearance ID: 63483)
+[Unknown Appearance] (Source ID: 157144, Item ID: 3152, Appearance ID: 64173)
+[Unknown Appearance] (Source ID: 158154, Item ID: 5394, Appearance ID: 63479)
+[Unknown Appearance] (Source ID: 158201, Item ID: 5589, Appearance ID: 64998)
+[Unknown Appearance] (Source ID: 158214, Item ID: 5606, Appearance ID: 65009)
+[Unknown Appearance] (Source ID: 158343, Item ID: 6171, Appearance ID: 63449)
+[Unknown Appearance] (Source ID: 160225, Item ID: 11190, Appearance ID: 64110)
+[Unknown Appearance] (Source ID: 94331, Item ID: 158329, Appearance ID: 37207)
+[Unknown Appearance] (Source ID: 301101, Item ID: 257264, Appearance ID: 130331)
+Boar Handler Gloves (Source ID: 156888, Item ID: 2547, Appearance ID: 63568)
+Calico Gloves (Source ID: 156341, Item ID: 1498, Appearance ID: 63515)
+Evergreen Gloves (Source ID: 159015, Item ID: 7738, Appearance ID: 65632)
+Flimsy Chain Gloves (Source ID: 156942, Item ID: 2653, Appearance ID: 63568)
+Loose Chain Gloves (Source ID: 156935, Item ID: 2645, Appearance ID: 63568)
+Murloc-hide Gloves (Source ID: 304860, Item ID: 270004, Appearance ID: 65263)
+Native Handwraps (Source ID: 161236, Item ID: 14102, Appearance ID: 64227)
+Noosegrip Gauntlets (Source ID: 162308, Item ID: 15402, Appearance ID: 67630)
+Primal Mitts (Source ID: 161963, Item ID: 15008, Appearance ID: 67476)
+Salma's Oven Mitts (Source ID: 156328, Item ID: 1479, Appearance ID: 63502)
+Shucking Gloves (Source ID: 162311, Item ID: 15405, Appearance ID: 67631)
+Welldrip Gloves (Source ID: 162307, Item ID: 15401, Appearance ID: 63502)
+White Wolf Gloves (Source ID: 156539, Item ID: 1965, Appearance ID: 63672)
+Wooly Mittens (Source ID: 160071, Item ID: 10550, Appearance ID: 66413)
+Worn Mail Gloves (Source ID: 156396, Item ID: 1734, Appearance ID: 63568)
+
+== Waist ==
+[Unknown Appearance] (Source ID: 156196, Item ID: 983, Appearance ID: 63377)
+[Unknown Appearance] (Source ID: 156205, Item ID: 1154, Appearance ID: 63315)
+[Unknown Appearance] (Source ID: 156300, Item ID: 1418, Appearance ID: 63475)
+[Unknown Appearance] (Source ID: 156669, Item ID: 2172, Appearance ID: 63788)
+[Unknown Appearance] (Source ID: 157834, Item ID: 4669, Appearance ID: 64756)
+[Unknown Appearance] (Source ID: 158168, Item ID: 5458, Appearance ID: 64986)
+[Unknown Appearance] (Source ID: 158204, Item ID: 5592, Appearance ID: 64850)
+[Unknown Appearance] (Source ID: 159505, Item ID: 9758, Appearance ID: 66004)
+[Unknown Appearance] (Source ID: 162359, Item ID: 15472, Appearance ID: 67658)
+[Unknown Appearance] (Source ID: 84223, Item ID: 143539, Appearance ID: 33252)
+[Unknown Appearance] (Source ID: 301100, Item ID: 257263, Appearance ID: 130359)
+[Unknown Appearance] (Source ID: 301109, Item ID: 257272, Appearance ID: 130360)
+Blackened Leather Belt (Source ID: 158296, Item ID: 6058, Appearance ID: 65069)
+Calico Belt (Source ID: 157276, Item ID: 3374, Appearance ID: 64279)
+Disciple's Sash (Source ID: 158516, Item ID: 6513, Appearance ID: 65236)
+Dryweed Belt (Source ID: 162305, Item ID: 15399, Appearance ID: 67628)
+Feral Cord (Source ID: 162223, Item ID: 15308, Appearance ID: 63884)
+Frayed Belt (Source ID: 157268, Item ID: 3363, Appearance ID: 64273)
+Loose Chain Belt (Source ID: 156931, Item ID: 2635, Appearance ID: 63564)
+Patchwork Belt (Source ID: 157274, Item ID: 3370, Appearance ID: 64277)
+Simple Cord (Source ID: 159489, Item ID: 9742, Appearance ID: 64391)
+War Torn Girdle (Source ID: 162367, Item ID: 15480, Appearance ID: 67663)
+
+== Legs ==
+[Unknown Appearance] (Source ID: 156060, Item ID: 61, Appearance ID: 63243)
+[Unknown Appearance] (Source ID: 156061, Item ID: 79, Appearance ID: 63244)
+[Unknown Appearance] (Source ID: 156073, Item ID: 153, Appearance ID: 63256)
+[Unknown Appearance] (Source ID: 156269, Item ID: 1366, Appearance ID: 63447)
+[Unknown Appearance] (Source ID: 156278, Item ID: 1378, Appearance ID: 63455)
+[Unknown Appearance] (Source ID: 156290, Item ID: 1396, Appearance ID: 63466)
+[Unknown Appearance] (Source ID: 156305, Item ID: 1423, Appearance ID: 63480)
+[Unknown Appearance] (Source ID: 156723, Item ID: 2238, Appearance ID: 63836)
+[Unknown Appearance] (Source ID: 157381, Item ID: 3578, Appearance ID: 64370)
+[Unknown Appearance] (Source ID: 158156, Item ID: 5398, Appearance ID: 64978)
+[Unknown Appearance] (Source ID: 158305, Item ID: 6084, Appearance ID: 65074)
+[Unknown Appearance] (Source ID: 158324, Item ID: 6124, Appearance ID: 65091)
+[Unknown Appearance] (Source ID: 159423, Item ID: 9599, Appearance ID: 64246)
+[Unknown Appearance] (Source ID: 159424, Item ID: 9600, Appearance ID: 65955)
+[Unknown Appearance] (Source ID: 159494, Item ID: 9747, Appearance ID: 64443)
+[Unknown Appearance] (Source ID: 160116, Item ID: 10655, Appearance ID: 66445)
+[Unknown Appearance] (Source ID: 160479, Item ID: 12295, Appearance ID: 63750)
+[Unknown Appearance] (Source ID: 198608, Item ID: 216696, Appearance ID: 42568)
+[Unknown Appearance] (Source ID: 302718, Item ID: 263409, Appearance ID: 130285)
+[Unknown Appearance] (Source ID: 302727, Item ID: 263422, Appearance ID: 130279)
+[Unknown Appearance] (Source ID: 302728, Item ID: 263423, Appearance ID: 130352)
+Aboriginal Loincloth (Source ID: 161253, Item ID: 14119, Appearance ID: 67093)
+Ancestral Woollies (Source ID: 157220, Item ID: 3291, Appearance ID: 64241)
+Canvas Pants (Source ID: 156426, Item ID: 1768, Appearance ID: 63578)
+Flimsy Chain Pants (Source ID: 156943, Item ID: 2654, Appearance ID: 63569)
+Frontier Britches (Source ID: 156312, Item ID: 1436, Appearance ID: 63486)
+Guststorm Legguards (Source ID: 162124, Item ID: 15203, Appearance ID: 67541)
+Loose Chain Pants (Source ID: 156936, Item ID: 2646, Appearance ID: 63569)
+Lucky Trousers (Source ID: 156486, Item ID: 1832, Appearance ID: 63632)
+Neophyte's Pants (Source ID: 156053, Item ID: 52, Appearance ID: 63237)
+Patchwork Pants (Source ID: 156310, Item ID: 1431, Appearance ID: 63484)
+Rancher's Trousers (Source ID: 160070, Item ID: 10549, Appearance ID: 66412)
+Tribal Pants (Source ID: 157216, Item ID: 3287, Appearance ID: 64237)
+Vagabond Leggings (Source ID: 158224, Item ID: 5617, Appearance ID: 65017)
+Warped Leather Pants (Source ID: 156349, Item ID: 1507, Appearance ID: 63523)
+Wildkeeper Leggings (Source ID: 162123, Item ID: 15202, Appearance ID: 63756)
+
+== Feet ==
+[Unknown Appearance] (Source ID: 156216, Item ID: 1173, Appearance ID: 63396)
+[Unknown Appearance] (Source ID: 156270, Item ID: 1367, Appearance ID: 63448)
+[Unknown Appearance] (Source ID: 156275, Item ID: 1374, Appearance ID: 63452)
+[Unknown Appearance] (Source ID: 156301, Item ID: 1419, Appearance ID: 63476)
+[Unknown Appearance] (Source ID: 156904, Item ID: 2571, Appearance ID: 63976)
+[Unknown Appearance] (Source ID: 157218, Item ID: 3289, Appearance ID: 64239)
+[Unknown Appearance] (Source ID: 158157, Item ID: 5399, Appearance ID: 64979)
+[Unknown Appearance] (Source ID: 158275, Item ID: 5944, Appearance ID: 64542)
+[Unknown Appearance] (Source ID: 158344, Item ID: 6173, Appearance ID: 65108)
+[Unknown Appearance] (Source ID: 159425, Item ID: 9601, Appearance ID: 65956)
+[Unknown Appearance] (Source ID: 160226, Item ID: 11191, Appearance ID: 63975)
+[Unknown Appearance] (Source ID: 104603, Item ID: 168664, Appearance ID: 40283)
+[Unknown Appearance] (Source ID: 301099, Item ID: 257257, Appearance ID: 130344)
+[Unknown Appearance] (Source ID: 301118, Item ID: 257281, Appearance ID: 130345)
+Barbaric Cloth Boots (Source ID: 157231, Item ID: 3307, Appearance ID: 64248)
+Cavalier's Boots (Source ID: 156150, Item ID: 860, Appearance ID: 63333)
+Charger's Boots (Source ID: 162360, Item ID: 15473, Appearance ID: 67659)
+Crustacean Boots (Source ID: 162312, Item ID: 15406, Appearance ID: 66005)
+Frosthowl's Footwarmers (Source ID: 311907, Item ID: 281322, Appearance ID: 67507)
+Grizzly Slippers (Source ID: 162216, Item ID: 15301, Appearance ID: 64527)
+Native Sandals (Source ID: 161244, Item ID: 14110, Appearance ID: 64226)
+Pioneer Boots (Source ID: 158520, Item ID: 6518, Appearance ID: 65238)
+Sandcomber Boots (Source ID: 162304, Item ID: 15398, Appearance ID: 64672)
+
+== One-Handed Maces ==
+[Unknown Appearance] (Source ID: 156105, Item ID: 766, Appearance ID: 63288)
+[Unknown Appearance] (Source ID: 156110, Item ID: 781, Appearance ID: 63293)
+[Unknown Appearance] (Source ID: 156207, Item ID: 1158, Appearance ID: 63387)
+[Unknown Appearance] (Source ID: 156588, Item ID: 2048, Appearance ID: 63716)
+[Unknown Appearance] (Source ID: 156735, Item ID: 2259, Appearance ID: 63846)
+[Unknown Appearance] (Source ID: 157807, Item ID: 4563, Appearance ID: 64039)
+[Unknown Appearance] (Source ID: 158200, Item ID: 5587, Appearance ID: 64997)
+[Unknown Appearance] (Source ID: 160067, Item ID: 10544, Appearance ID: 66410)
+[Unknown Appearance] (Source ID: 301113, Item ID: 257276, Appearance ID: 67554)
+Compact Hammer (Source ID: 156198, Item ID: 1009, Appearance ID: 63379)
+Copper Mace (Source ID: 156999, Item ID: 2844, Appearance ID: 63366)
+Heavy Hammer (Source ID: 156351, Item ID: 1510, Appearance ID: 63525)
+Invader's Mace (Source ID: 311848, Item ID: 281254, Appearance ID: 63645)
+Worn Mace (Source ID: 156041, Item ID: 36, Appearance ID: 63225)
+
+== Daggers ==
+[Unknown Appearance] (Source ID: 156616, Item ID: 2092, Appearance ID: 63739)
+[Unknown Appearance] (Source ID: 156684, Item ID: 2195, Appearance ID: 63800)
+[Unknown Appearance] (Source ID: 156706, Item ID: 2218, Appearance ID: 63821)
+[Unknown Appearance] (Source ID: 157942, Item ID: 4840, Appearance ID: 64840)
+[Unknown Appearance] (Source ID: 158152, Item ID: 5392, Appearance ID: 63800)
+[Unknown Appearance] (Source ID: 158213, Item ID: 5605, Appearance ID: 64437)
+[Unknown Appearance] (Source ID: 160069, Item ID: 10547, Appearance ID: 63310)
+[Unknown Appearance] (Source ID: 298431, Item ID: 251932, Appearance ID: 64179)
+[Unknown Appearance] (Source ID: 301120, Item ID: 257283, Appearance ID: 64948)
+[Unknown Appearance] (Source ID: 313086, Item ID: 282284, Appearance ID: 63812)
+Curved Dagger (Source ID: 156930, Item ID: 2632, Appearance ID: 64002)
+Curvewood Dagger (Source ID: 162302, Item ID: 15396, Appearance ID: 65341)
+Fisherman Knife (Source ID: 156966, Item ID: 2763, Appearance ID: 63762)
+Sharp Kitchen Knife (Source ID: 156712, Item ID: 2225, Appearance ID: 63825)
+Sharpened Letter Opener (Source ID: 156642, Item ID: 2138, Appearance ID: 63763)
+
+== Shields ==
+[Unknown Appearance] (Source ID: 156698, Item ID: 2210, Appearance ID: 63814)
+[Unknown Appearance] (Source ID: 156699, Item ID: 2211, Appearance ID: 63815)
+[Unknown Appearance] (Source ID: 156701, Item ID: 2213, Appearance ID: 63717)
+[Unknown Appearance] (Source ID: 156702, Item ID: 2214, Appearance ID: 63817)
+[Unknown Appearance] (Source ID: 156730, Item ID: 2249, Appearance ID: 63671)
+[Unknown Appearance] (Source ID: 157023, Item ID: 2900, Appearance ID: 64071)
+[Unknown Appearance] (Source ID: 157414, Item ID: 3651, Appearance ID: 64403)
+[Unknown Appearance] (Source ID: 158155, Item ID: 5395, Appearance ID: 64977)
+[Unknown Appearance] (Source ID: 158205, Item ID: 5593, Appearance ID: 65001)
+Cracked Buckler (Source ID: 156700, Item ID: 2212, Appearance ID: 63816)
+Dwarven Defender (Source ID: 158353, Item ID: 6187, Appearance ID: 65114)
+Dwarven Kite Shield (Source ID: 158346, Item ID: 6176, Appearance ID: 65110)
+Ironplate Buckler (Source ID: 157148, Item ID: 3160, Appearance ID: 64176)
+Lupine Buckler (Source ID: 161969, Item ID: 15014, Appearance ID: 67477)
+
+== Held In Off-hand ==
+[Unknown Appearance] (Source ID: 162653, Item ID: 15932, Appearance ID: 64611)
+Tear of Grief (Source ID: 158218, Item ID: 5611, Appearance ID: 65011)
+
+== Two-Handed Maces ==
+[Unknown Appearance] (Source ID: 156221, Item ID: 1195, Appearance ID: 63401)
+[Unknown Appearance] (Source ID: 156296, Item ID: 1414, Appearance ID: 63472)
+[Unknown Appearance] (Source ID: 157132, Item ID: 3103, Appearance ID: 64164)
+[Unknown Appearance] (Source ID: 157157, Item ID: 3190, Appearance ID: 63403)
+[Unknown Appearance] (Source ID: 157808, Item ID: 4564, Appearance ID: 64737)
+[Unknown Appearance] (Source ID: 158206, Item ID: 5595, Appearance ID: 65002)
+[Unknown Appearance] (Source ID: 158246, Item ID: 5761, Appearance ID: 64877)
+Rusty Warhammer (Source ID: 156355, Item ID: 1514, Appearance ID: 63529)
+
+== Staves ==
+[Unknown Appearance] (Source ID: 156199, Item ID: 1010, Appearance ID: 63380)
+[Unknown Appearance] (Source ID: 156293, Item ID: 1411, Appearance ID: 63469)
+[Unknown Appearance] (Source ID: 156733, Item ID: 2257, Appearance ID: 63845)
+[Unknown Appearance] (Source ID: 157420, Item ID: 3661, Appearance ID: 64408)
+[Unknown Appearance] (Source ID: 158153, Item ID: 5393, Appearance ID: 64976)
+[Unknown Appearance] (Source ID: 158198, Item ID: 5581, Appearance ID: 64996)
+[Unknown Appearance] (Source ID: 159426, Item ID: 9603, Appearance ID: 65957)
+[Unknown Appearance] (Source ID: 301119, Item ID: 257282, Appearance ID: 63388)
+Balanced Fighting Stick (Source ID: 158370, Item ID: 6215, Appearance ID: 63648)
+Frostbit Staff (Source ID: 156601, Item ID: 2067, Appearance ID: 63726)
+Oakthrush Staff (Source ID: 162303, Item ID: 15397, Appearance ID: 63648)
+Rough Wooden Staff (Source ID: 156356, Item ID: 1515, Appearance ID: 63530)
+
+Appearances:
+== Category Summary ==
+Head - Collected: 1/237
+Shoulder - Collected: 1/228
+Back - Collected: 23/161
+Chest - Collected: 28/435
+Shirt - Collected: 6/36
+Tabard - Collected: 1/25
+Wrist - Collected: 22/257
+Hands - Collected: 23/362
+Waist - Collected: 22/321
+Legs - Collected: 35/315
+Feet - Collected: 23/366
+Wand - Collected: 0/47
+One-Handed Axes - Collected: 0/55
+One-Handed Swords - Collected: 0/84
+One-Handed Maces - Collected: 14/87
+Daggers - Collected: 14/87
+Fist Weapons - Collected: 0/16
+Shields - Collected: 14/116
+Held In Off-hand - Collected: 2/115
+Two-Handed Axes - Collected: 0/48
+Two-Handed Swords - Collected: 0/56
+Two-Handed Maces - Collected: 8/58
+Staves - Collected: 11/86
+Polearms - Collected: 0/23
+Bows - Collected: 0/41
+Guns - Collected: 0/36
+Crossbows - Collected: 0/7
+
+== Transmog Sets ==
+Collected Sets: 0/6
+
+== Latest Appearances ==
+Appearance (Visual ID: 67542) - Category: Category 12
+
+== Favorites ==
+[No favorite appearances returned by the Forever APIs.]
+
+== Outfits ==
+Outfit Count: 0
+
+Reputations:
+Darnassus (Friendly) - Value: 5910 (3000-9000) - Progress: 2910/6000
+Gnomeregan Exiles (Friendly) - Value: 8358 (3000-9000) - Progress: 5358/6000
+Ironforge (Honored) - Value: 10196 (9000-21000) - Progress: 1196/12000
+Stormwind (Friendly) - Value: 4140 (3000-9000) - Progress: 1140/6000
+
+Quests:
+== Darkshore ==
+Buzzbox 525 (Level 16) [In Progress] (ID: 1003)
+  - [ ] 0/4 Grizzled Scalp
+Onu (Level 17) [Ready to turn in] (ID: 948)
+The Tower of Althalaxx (Level 18) [Ready to turn in] (ID: 967)
+  - [x] Deliver Balthule's letter to Delgren the Purifier in Ashenvale Forest.
+WANTED: Murkdeep! (Level 18) [In Progress] (ID: 4740)
+  - [ ] 0/1 Murkdeep slain
+A Lost Master (Level 20) [In Progress] (ID: 986)
+  - [ ] 0/5 Fine Moonstalker Pelt
+The Absent Minded Prospector (Level 20) [Ready to turn in] (ID: 729)
+
+== Ashenvale ==
+Trek to Ashenvale (Level 19) [Ready to turn in] (ID: 990)
+
+== Loch Modan ==
+Return to Brock (Level 10) [Ready to turn in] (ID: 6392)
+  - [x] Buy a gryphon to Thelsamar from the gryphon master Gryth Thurden, then bring the Honorary Picks to Brock Stoneseeker in Thelsamar.
+Ironband's Excavation (Level 18) [Ready to turn in] (ID: 436)
+
+== Stormwind City ==
+Expanding Horizons (Level 17) [Ready to turn in] (ID: 97914)
+  - [x] Bring Thundris' Letter to Baros Alexston in Stormwind.
+
+Thundris mentioned a boat in Auberdine that can take you there.
+
+== The Hall of Thanes ==
+The Restless Dead (Level 15) [In Progress] (ID: 96394)
+  - [ ] 0/15 Enraged Apparition slain
+  - [ ] 0/10 Tormented Soul slain
+Old Ironforge Incursion (Level 16) [In Progress] (ID: 96393)
+  - [ ] 0/1 Durgen Dirgehammer's Head
+
+== Camping ==
+Camping 101: Blacksmithing (Level 6) [In Progress] (ID: 96044)
+  - [ ] Raise your blacksmithing skill to 20
+Camping 101: First Aid (Level 6) [In Progress] (ID: 96047)
+  - [ ] Raise your first aid skill to 20
+Camping 101: Fishing (Level 6) [In Progress] (ID: 96050)
+  - [ ] Raise your fishing skill to 20
+
+Quest (completed):
+Completed Quest Count: 137
+Resolved Quest Titles: 137
+Unresolved Quest Titles: 0
+Tracking Quest Count: 0
+
+== Resolved Quests ==
+A Favor for Evershine (ID: 319)
+A New Threat (ID: 170)
+A Pilot's Revenge (ID: 417)
+A Refugee's Quandary (ID: 3361)
+A Visitor to Dun Morogh (ID: 96408)
+Ammo for Rumbleshot (ID: 5541)
+Archaic Rune (ID: 98581)
+As Water Cascades (ID: 4812)
+Banner of the Fallen (ID: 86585)
+Bashal'Aran (ID: 954)
+Bashal'Aran (ID: 955)
+Bashal'Aran (ID: 956)
+Bashal'Aran (ID: 957)
+Beached Sea Creature (ID: 4723)
+Beached Sea Turtle (ID: 4725)
+Beached Sea Turtle (ID: 4727)
+Beer Basted Boar Ribs (ID: 384)
+Bitter Rivals (ID: 310)
+Bring Back the Mug (ID: 3365)
+Buzzbox 323 (ID: 1002)
+Buzzbox 411 (ID: 1001)
+Buzzbox 827 (ID: 983)
+Call of Earth (ID: 94373)
+Call of Earth (ID: 94374)
+Call of Earth (ID: 94375)
+Call of Fire (ID: 94449)
+Call of Fire (ID: 94465)
+Call of Fire (ID: 94466)
+Call of Fire (ID: 94467)
+Call of Fire (ID: 94468)
+Camping 101: Cooking (ID: 96626)
+Camping 101: Cooking (ID: 96629)
+Camping 101: Cooking (ID: 96634)
+Camping 101: Cooking (ID: 96646)
+Camping 101: Cooking (ID: 96655)
+Camping 101: Cooking (ID: 96658)
+Camping 101: Cooking (ID: 96661)
+Camping 101: Mining (ID: 96046)
+Camping 101: Mining (ID: 97907)
+Camping 101: Mining (ID: 97923)
+Camping 101: Mining (ID: 97935)
+Camping 101: Mining (ID: 97948)
+Camping 101: Mining (ID: 97959)
+Camping 101: Mining (ID: 97970)
+Cave Mushrooms (ID: 947)
+Cleansing of the Infected (ID: 2138)
+Coldridge Valley Mail Delivery (ID: 233)
+Coldridge Valley Mail Delivery (ID: 234)
+Dawn in the Mountains (ID: 99158)
+Deep Ocean, Vast Sea (ID: 982)
+Dwarven Outfitters (ID: 179)
+Evershine (ID: 318)
+Farsen's Watch (ID: 96392)
+Filthy Paws (ID: 307)
+Finding Warmth (ID: 99159)
+Flintfire's Shipment (ID: 98321)
+For Love Eternal (ID: 963)
+Frosthowl (ID: 98326)
+Frostmane Hold (ID: 287)
+Fruit of the Sea (ID: 1138)
+Grund and Gozwin (ID: 97277)
+Gryth Thurden (ID: 6388)
+Honor Students (ID: 6387)
+How Big a Threat? (ID: 984)
+How Big a Threat? (ID: 985)
+In Defense of the King's Lands (ID: 217)
+In Defense of the King's Lands (ID: 224)
+In Defense of the King's Lands (ID: 237)
+In Defense of the King's Lands (ID: 263)
+Never Saddle on Quality (ID: 95212)
+Nip 'Em in the Bud (ID: 96390)
+Operation Recombobulation (ID: 412)
+Plagued Lands (ID: 2118)
+Protecting the Herd (ID: 314)
+Rat Catching (ID: 416)
+Return to Bellowfiz (ID: 320)
+Return to Marleth (ID: 311)
+Ride to Ironforge (ID: 6391)
+Rime's Wrath (ID: 99160)
+Rime's Wrath (ID: 99161)
+Scalding Mornbrew Delivery (ID: 3364)
+Secure the Mountain (ID: 98319)
+Secure the Mountain (ID: 98322)
+Secure the Mountain (ID: 98323)
+Senir's Observations (ID: 282)
+Senir's Observations (ID: 420)
+Shimmer Stout (ID: 413)
+Snowbound (ID: 86667)
+Stocking Jetsteam (ID: 317)
+Stolen Blasting Powder (ID: 95213)
+Stolen Blasting Powder (ID: 95214)
+Stormpike's Order (ID: 1338)
+Stout to Kadrell (ID: 414)
+Supplies to Tannok (ID: 2160)
+Tharnariun's Hope (ID: 2139)
+The Adventurer (ID: 96627)
+The Adventurer (ID: 96628)
+The Adventurer (ID: 96630)
+The Adventurer (ID: 96638)
+The Adventurer (ID: 96652)
+The Adventurer (ID: 96656)
+The Adventurer (ID: 96659)
+The Blackwood Corrupted (ID: 4763)
+The Boar Hunter (ID: 183)
+The Cliffspring River (ID: 4762)
+The Fall of Ameth'Aran (ID: 953)
+The Fragments Within (ID: 4813)
+The Great Outdoors (ID: 95998)
+The Great Outdoors (ID: 96101)
+The Great Outdoors (ID: 96604)
+The Great Outdoors (ID: 96605)
+The Great Outdoors (ID: 96606)
+The Great Outdoors (ID: 96607)
+The Great Outdoors (ID: 96608)
+The Grizzled Den (ID: 313)
+The Lost Pilot (ID: 419)
+The Perfect Stout (ID: 315)
+The Public Servant (ID: 433)
+The Quarry's Smith (ID: 95217)
+The Red Crystal (ID: 4811)
+The Reports (ID: 291)
+The Stolen Journal (ID: 218)
+The Tower of Althalaxx (ID: 965)
+The Tower of Althalaxx (ID: 966)
+The Trogg Threat (ID: 267)
+The Troll Cave (ID: 182)
+Thelsamar Blood Sausages (ID: 418)
+Those Blasted Troggs! (ID: 432)
+Thundris Windweaver (ID: 4761)
+Tools for Steelgrill (ID: 400)
+Tools of the Highborne (ID: 958)
+Treacherous Cold (ID: 99162)
+Tundra MacGrann's Stolen Stash (ID: 312)
+Underground Map (ID: 96391)
+WANTED: Jai'vhanel (ID: 98025)
+Washed Ashore (ID: 3524)
+Washed Ashore (ID: 4681)
+
+Skills:
+== Professions ==
+Blacksmithing 19/75
+Mining 45/75
+
+== Secondary Skills ==
+First Aid 1/75
+Fishing 1/75
+Cooking 6/75
+
+== Weapon Skills ==
+Daggers 1/90
+Maces 84/90
+Staves 1/90
+Two-Handed Maces 1/90
+Unarmed 1/90
+
+Profession Details:
+[Using cached profession details - last updated: 2026-09-25 20:19:12.]
+
+== Blacksmithing (19/75) - Recipes: 506 ==
+Profession ID: 164
+[OPTIMAL] [UNLEARNED] Acolyte's Boots
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Belt
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Shirt
+[OPTIMAL] [UNLEARNED] Acolyte's Gloves
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Annihilator
+[OPTIMAL] [UNLEARNED] Anvil
+[OPTIMAL] [UNLEARNED] Arcanite Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Arcanite Champion
+[OPTIMAL] [UNLEARNED] Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Arcanite Rod
+[OPTIMAL] [UNLEARNED] Arcanite Skeleton Key
+[OPTIMAL] [UNLEARNED] Azerothium Legplates
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chain
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Azure Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Azure Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Azure Skyforged Helm
+[OPTIMAL] [UNLEARNED] Azure Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Azure Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Azure Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Bagh Nakh
+[OPTIMAL] [UNLEARNED] Baleful Pauldrons
+[OPTIMAL] [UNLEARNED] Barbaric Iron Boots
+[OPTIMAL] [UNLEARNED] Barbaric Iron Breastplate
+[OPTIMAL] [UNLEARNED] Barbaric Iron Gloves
+[OPTIMAL] [UNLEARNED] Barbaric Iron Helm
+[OPTIMAL] [UNLEARNED] Barbaric Iron Shoulders
+[OPTIMAL] [UNLEARNED] Big Black Mace
+[OPTIMAL] [UNLEARNED] Big Bronze Knife
+[OPTIMAL] [UNLEARNED] Black Amnesty
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Blackfathom Sharpening Stone
+[OPTIMAL] [UNLEARNED] Blackfury
+[OPTIMAL] [UNLEARNED] Blackguard
+[OPTIMAL] [UNLEARNED] Blazing Rapier
+[OPTIMAL] [UNLEARNED] Bleakwood Hew
+[OPTIMAL] [UNLEARNED] Blessed Plate Belt
+[OPTIMAL] [UNLEARNED] Blessed Plate Boots
+[OPTIMAL] [UNLEARNED] Blessed Plate Bracers
+[OPTIMAL] [UNLEARNED] Blessed Plate Chest
+[OPTIMAL] [UNLEARNED] Blessed Plate Gauntlet
+[OPTIMAL] [UNLEARNED] Blessed Plate Helm
+[OPTIMAL] [UNLEARNED] Blessed Plate Leggings
+[OPTIMAL] [UNLEARNED] Blessed Plate Pauldrons
+[OPTIMAL] [UNLEARNED] Blight
+[OPTIMAL] [UNLEARNED] Blood Talon
+[OPTIMAL] [UNLEARNED] Bloodsoul Breastplate
+[OPTIMAL] [UNLEARNED] Bloodsoul Gauntlets
+[OPTIMAL] [UNLEARNED] Bloodsoul Shoulders
+[OPTIMAL] [UNLEARNED] Blue Glittering Axe
+[OPTIMAL] [UNLEARNED] Bold Dirk
+[OPTIMAL] [UNLEARNED] Brass Knuckles
+[OPTIMAL] [UNLEARNED] Breastplate of Salvation
+[OPTIMAL] [UNLEARNED] Bronze Axe
+[OPTIMAL] [UNLEARNED] Bronze Battle Axe
+[OPTIMAL] [UNLEARNED] Bronze Dory
+[OPTIMAL] [UNLEARNED] Bronze Greatsword
+[OPTIMAL] [UNLEARNED] Bronze Mace
+[OPTIMAL] [UNLEARNED] Bronze Shortsword
+[OPTIMAL] [UNLEARNED] Bronze Warhammer
+[OPTIMAL] [UNLEARNED] Champion's Legplates
+[OPTIMAL] [UNLEARNED] Charged Mithril Battleaxe
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chain
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Helm
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Clutchlord's Grips
+[OPTIMAL] [UNLEARNED] Clutchlord's Stompers
+[OPTIMAL] [UNLEARNED] Clutchlord's Support
+[OPTIMAL] [UNLEARNED] Coarse Grinding Stone
+[OPTIMAL] [UNLEARNED] Coarse Sharpening Stone
+[OPTIMAL] [UNLEARNED] Coarse Weightstone
+[OPTIMAL] [UNLEARNED] Copper Axe
+[OPTIMAL] [UNLEARNED] Copper Battle Axe
+[OPTIMAL] [LEARNED] Copper Bracers
+[OPTIMAL] [UNLEARNED] Copper Chain Belt
+[OPTIMAL] [UNLEARNED] Copper Chain Boots
+[OPTIMAL] [UNLEARNED] Copper Chain Pants
+[OPTIMAL] [UNLEARNED] Copper Chain Vest
+[OPTIMAL] [UNLEARNED] Copper Claymore
+[OPTIMAL] [UNLEARNED] Copper Dagger
+[OPTIMAL] [LEARNED] Copper Mace
+[TRIVIAL] [LEARNED] Copper Rod
+[OPTIMAL] [UNLEARNED] Copper Shortsword
+[OPTIMAL] [UNLEARNED] Corruption
+[OPTIMAL] [UNLEARNED] Cracked Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Crusader's Boots
+[OPTIMAL] [UNLEARNED] Crusader's Chain Belt
+[OPTIMAL] [UNLEARNED] Crusader's Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Chain Shirt
+[OPTIMAL] [UNLEARNED] Crusader's Gloves
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Dark Iron Boots
+[OPTIMAL] [UNLEARNED] Dark Iron Bracers
+[OPTIMAL] [UNLEARNED] Dark Iron Destroyer
+[OPTIMAL] [UNLEARNED] Dark Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Dark Iron Helm
+[OPTIMAL] [UNLEARNED] Dark Iron Leggings
+[OPTIMAL] [UNLEARNED] Dark Iron Mail
+[OPTIMAL] [UNLEARNED] Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Dark Iron Pulverizer
+[OPTIMAL] [UNLEARNED] Dark Iron Reaver
+[OPTIMAL] [UNLEARNED] Dark Iron Shoulders
+[OPTIMAL] [UNLEARNED] Dark Iron Sunderer
+[OPTIMAL] [UNLEARNED] Darkrune Breastplate
+[OPTIMAL] [UNLEARNED] Darkrune Gauntlets
+[OPTIMAL] [UNLEARNED] Darkrune Helm
+[OPTIMAL] [UNLEARNED] Darksoul Breastplate
+[OPTIMAL] [UNLEARNED] Darksoul Leggings
+[OPTIMAL] [UNLEARNED] Darksoul Shoulders
+[OPTIMAL] [UNLEARNED] Darkspear
+[OPTIMAL] [UNLEARNED] Dawn's Edge
+[OPTIMAL] [UNLEARNED] Dawnbringer Shoulders
+[OPTIMAL] [UNLEARNED] Dazzling Mithril Rapier
+[OPTIMAL] [UNLEARNED] Deadly Bronze Poniard
+[OPTIMAL] [UNLEARNED] Deadly Heartseeker
+[OPTIMAL] [UNLEARNED] Demon Forged Breastplate
+[OPTIMAL] [UNLEARNED] Dense Grinding Stone
+[OPTIMAL] [UNLEARNED] Dense Sharpening Stone
+[OPTIMAL] [UNLEARNED] Dense Weightstone
+[OPTIMAL] [UNLEARNED] Depleted Thorium Sabatons
+[OPTIMAL] [UNLEARNED] Desecration
+[OPTIMAL] [UNLEARNED] Dreamscale Visor
+[OPTIMAL] [UNLEARNED] Ebon Hand
+[OPTIMAL] [UNLEARNED] Ebon Shiv
+[OPTIMAL] [UNLEARNED] Edge of Winter
+[OPTIMAL] [UNLEARNED] Elemental Sharpening Stone
+[OPTIMAL] [UNLEARNED] Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Helm
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Leggings
+[OPTIMAL] [UNLEARNED] Enriched Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enriched Thorium Helm
+[OPTIMAL] [UNLEARNED] Enriched Thorium Leggings
+[OPTIMAL] [UNLEARNED] Evergreen Shield
+[OPTIMAL] [UNLEARNED] Fearmonger's Shoulderguards
+[OPTIMAL] [UNLEARNED] Fiery Chain Girdle
+[OPTIMAL] [UNLEARNED] Fiery Chain Shoulders
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets of the Hidden Technique
+[OPTIMAL] [UNLEARNED] Finely-Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Forest Defender's Axe
+[OPTIMAL] [UNLEARNED] Frost Tiger Blade
+[OPTIMAL] [UNLEARNED] Frostguard
+[OPTIMAL] [UNLEARNED] Gauntlets of Glory
+[OPTIMAL] [UNLEARNED] Gemmed Copper Boots
+[OPTIMAL] [UNLEARNED] Gemmed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Girdle of the Dawn
+[OPTIMAL] [UNLEARNED] Glinting Steel Dagger
+[OPTIMAL] [UNLEARNED] Gloves of the Dawn
+[OPTIMAL] [UNLEARNED] Glowing Copper Boots
+[OPTIMAL] [UNLEARNED] Golden Iron Destroyer
+[OPTIMAL] [UNLEARNED] Golden Rod
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Bracers
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Skeleton Key
+[OPTIMAL] [UNLEARNED] Goregasher Grips
+[OPTIMAL] [UNLEARNED] Goregasher Stompers
+[OPTIMAL] [UNLEARNED] Goregasher Support
+[OPTIMAL] [UNLEARNED] Greaves of Glory
+[OPTIMAL] [UNLEARNED] Green Iron Boots
+[OPTIMAL] [UNLEARNED] Green Iron Bracers
+[OPTIMAL] [UNLEARNED] Green Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Green Iron Hauberk
+[OPTIMAL] [UNLEARNED] Green Iron Helm
+[OPTIMAL] [UNLEARNED] Green Iron Leggings
+[OPTIMAL] [UNLEARNED] Green Iron Shoulders
+[OPTIMAL] [UNLEARNED] Greenhammer
+[OPTIMAL] [UNLEARNED] Guard's Boots
+[OPTIMAL] [UNLEARNED] Guard's Chain Belt
+[OPTIMAL] [UNLEARNED] Guard's Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Chain Shirt
+[OPTIMAL] [UNLEARNED] Guard's Gloves
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Handguards of Glory
+[OPTIMAL] [UNLEARNED] Hard Gold Boots
+[OPTIMAL] [UNLEARNED] Hard Gold Bracers
+[OPTIMAL] [UNLEARNED] Hard Gold Coif
+[OPTIMAL] [UNLEARNED] Hard Gold Cuirass
+[OPTIMAL] [UNLEARNED] Hard Gold Gauntlet
+[OPTIMAL] [UNLEARNED] Hard Gold Leggings
+[OPTIMAL] [UNLEARNED] Hard Gold Pauldrons
+[OPTIMAL] [UNLEARNED] Hardened Frostguard
+[OPTIMAL] [UNLEARNED] Hardened Iron Shortsword
+[OPTIMAL] [UNLEARNED] Heartseeker
+[OPTIMAL] [UNLEARNED] Heavy Bronze Mace
+[OPTIMAL] [UNLEARNED] Heavy Copper Broadsword
+[OPTIMAL] [UNLEARNED] Heavy Copper Maul
+[OPTIMAL] [UNLEARNED] Heavy Grinding Stone
+[OPTIMAL] [UNLEARNED] Heavy Mithril Axe
+[OPTIMAL] [UNLEARNED] Heavy Mithril Boots
+[OPTIMAL] [UNLEARNED] Heavy Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Heavy Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Heavy Mithril Helm
+[OPTIMAL] [UNLEARNED] Heavy Mithril Pants
+[OPTIMAL] [UNLEARNED] Heavy Mithril Shoulder
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Sharpening Stone
+[OPTIMAL] [UNLEARNED] Heavy Thorium Gauntlets
+[OPTIMAL] [UNLEARNED] Heavy Weightstone
+[OPTIMAL] [UNLEARNED] Huge Thorium Battleaxe
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Belt
+[OPTIMAL] [UNLEARNED] Imperial Plate Boots
+[OPTIMAL] [UNLEARNED] Imperial Plate Bracers
+[OPTIMAL] [UNLEARNED] Imperial Plate Chest
+[OPTIMAL] [UNLEARNED] Imperial Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Helm
+[OPTIMAL] [UNLEARNED] Imperial Plate Leggings
+[OPTIMAL] [UNLEARNED] Imperial Plate Shoulders
+[OPTIMAL] [UNLEARNED] Inlaid Mithril Cylinder
+[OPTIMAL] [UNLEARNED] Inlaid Thorium Hammer
+[OPTIMAL] [UNLEARNED] Invincible Mail
+[OPTIMAL] [UNLEARNED] Iridescent Hammer
+[OPTIMAL] [UNLEARNED] Iron Buckle
+[OPTIMAL] [UNLEARNED] Iron Counterweight
+[OPTIMAL] [UNLEARNED] Iron Fists
+[OPTIMAL] [UNLEARNED] Iron Morningstar
+[OPTIMAL] [UNLEARNED] Iron Shield Spike
+[OPTIMAL] [UNLEARNED] Ironforge Breastplate
+[OPTIMAL] [UNLEARNED] Ironforge Chain
+[OPTIMAL] [UNLEARNED] Ironforge Gauntlets
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironwood Blade
+[OPTIMAL] [UNLEARNED] Jade Serpentblade
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Justicar's Belt
+[OPTIMAL] [UNLEARNED] Justicar's Boots
+[OPTIMAL] [UNLEARNED] Justicar's Gauntlet
+[OPTIMAL] [UNLEARNED] Justicar's Gloves
+[OPTIMAL] [UNLEARNED] Justicar's Pauldrons
+[OPTIMAL] [UNLEARNED] Justicar's Sabatons
+[OPTIMAL] [UNLEARNED] Justicar's Waistguard
+[OPTIMAL] [UNLEARNED] Justicar's Wristguards
+[OPTIMAL] [UNLEARNED] Justice Epaulets
+[OPTIMAL] [UNLEARNED] Justice Gauntlets
+[OPTIMAL] [UNLEARNED] Justice Gloves
+[OPTIMAL] [UNLEARNED] Justice Greaves
+[OPTIMAL] [UNLEARNED] Justice Handguards
+[OPTIMAL] [UNLEARNED] Justice Leggings
+[OPTIMAL] [UNLEARNED] Justice Legguards
+[OPTIMAL] [UNLEARNED] Justice Legplates
+[OPTIMAL] [UNLEARNED] Justice Pauldrons
+[OPTIMAL] [UNLEARNED] Justice Sabatons
+[OPTIMAL] [UNLEARNED] Justice Spaulders
+[OPTIMAL] [UNLEARNED] Justice Treads
+[OPTIMAL] [UNLEARNED] Legguards of Glory
+[OPTIMAL] [UNLEARNED] Legionite Glaive
+[OPTIMAL] [UNLEARNED] Legplates of Glory
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Lionheart Helm
+[OPTIMAL] [UNLEARNED] Low-Background Truesilver Plates
+[OPTIMAL] [UNLEARNED] Mantle of the Second War
+[OPTIMAL] [UNLEARNED] Martyr's Legplates
+[OPTIMAL] [UNLEARNED] Massive Iron Axe
+[OPTIMAL] [UNLEARNED] Master Forge
+[OPTIMAL] [UNLEARNED] Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Mighty Iron Hammer
+[OPTIMAL] [UNLEARNED] Mithril Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Mithril Claws
+[OPTIMAL] [UNLEARNED] Mithril Claymore
+[OPTIMAL] [UNLEARNED] Mithril Coif
+[OPTIMAL] [UNLEARNED] Mithril Plate Bracers
+[OPTIMAL] [UNLEARNED] Mithril Plate Gloves
+[OPTIMAL] [UNLEARNED] Mithril Plate Pants
+[OPTIMAL] [UNLEARNED] Mithril Plate Shoulders
+[OPTIMAL] [UNLEARNED] Mithril Shield Spike
+[OPTIMAL] [UNLEARNED] Mithril Shortsword
+[OPTIMAL] [UNLEARNED] Mithril Spurs
+[OPTIMAL] [UNLEARNED] Mithril Stiletto
+[OPTIMAL] [UNLEARNED] Mithril Warhammer
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Nightfall
+[OPTIMAL] [UNLEARNED] Obsidian Champion
+[OPTIMAL] [UNLEARNED] Obsidian Defender
+[OPTIMAL] [UNLEARNED] Obsidian Destroyer
+[OPTIMAL] [UNLEARNED] Obsidian Grinding Stone
+[OPTIMAL] [UNLEARNED] Obsidian Heartseeker
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Reaver
+[OPTIMAL] [UNLEARNED] Obsidian Sageblade
+[OPTIMAL] [UNLEARNED] Obsidian Stormhammer
+[OPTIMAL] [UNLEARNED] Officer's Belt
+[OPTIMAL] [UNLEARNED] Officer's Boots
+[OPTIMAL] [UNLEARNED] Officer's Gauntlet
+[OPTIMAL] [UNLEARNED] Officer's Gloves
+[OPTIMAL] [UNLEARNED] Officer's Pauldrons
+[OPTIMAL] [UNLEARNED] Officer's Sabatons
+[OPTIMAL] [UNLEARNED] Officer's Waistguard
+[OPTIMAL] [UNLEARNED] Officer's Wristguards
+[OPTIMAL] [UNLEARNED] Orcish War Leggings
+[OPTIMAL] [UNLEARNED] Ornate Mithril Boots
+[OPTIMAL] [UNLEARNED] Ornate Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Ornate Mithril Gloves
+[OPTIMAL] [UNLEARNED] Ornate Mithril Helm
+[OPTIMAL] [UNLEARNED] Ornate Mithril Pants
+[OPTIMAL] [UNLEARNED] Ornate Mithril Shoulders
+[OPTIMAL] [UNLEARNED] Ornate Thorium Handaxe
+[OPTIMAL] [UNLEARNED] Patterned Bronze Bracers
+[OPTIMAL] [UNLEARNED] Pauldrons of Glory
+[OPTIMAL] [UNLEARNED] Pearl-handled Dagger
+[OPTIMAL] [UNLEARNED] Persuader
+[OPTIMAL] [UNLEARNED] Phantom Blade
+[OPTIMAL] [UNLEARNED] Polished Steel Boots
+[OPTIMAL] [UNLEARNED] Prefect's Belt
+[OPTIMAL] [UNLEARNED] Prefect's Boots
+[OPTIMAL] [UNLEARNED] Prefect's Gauntlet
+[OPTIMAL] [UNLEARNED] Prefect's Gloves
+[OPTIMAL] [UNLEARNED] Prefect's Pauldrons
+[OPTIMAL] [UNLEARNED] Prefect's Sabatons
+[OPTIMAL] [UNLEARNED] Prefect's Waistguard
+[OPTIMAL] [UNLEARNED] Prefect's Wristguards
+[OPTIMAL] [UNLEARNED] Protector's Boots
+[OPTIMAL] [UNLEARNED] Protector's Chain Belt
+[OPTIMAL] [UNLEARNED] Protector's Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Chain Shirt
+[OPTIMAL] [UNLEARNED] Protector's Gloves
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Radiant Belt
+[OPTIMAL] [UNLEARNED] Radiant Boots
+[OPTIMAL] [UNLEARNED] Radiant Breastplate
+[OPTIMAL] [UNLEARNED] Radiant Circlet
+[OPTIMAL] [UNLEARNED] Radiant Gloves
+[OPTIMAL] [UNLEARNED] Radiant Leggings
+[OPTIMAL] [UNLEARNED] Razorspike Battleplate
+[OPTIMAL] [UNLEARNED] Razorspike Headcage
+[OPTIMAL] [UNLEARNED] Razorspike Shoulderplate
+[OPTIMAL] [UNLEARNED] Refined Arcanite Champion
+[OPTIMAL] [UNLEARNED] Refined Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Refined Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Reflective Truesilver Braincage
+[OPTIMAL] [UNLEARNED] Rough Bronze Boots
+[OPTIMAL] [UNLEARNED] Rough Bronze Bracers
+[OPTIMAL] [UNLEARNED] Rough Bronze Cuirass
+[OPTIMAL] [UNLEARNED] Rough Bronze Leggings
+[OPTIMAL] [UNLEARNED] Rough Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Rough Copper Chain Boots
+[MEDIUM] [LEARNED] Rough Copper Vest
+[OPTIMAL] [UNLEARNED] Rough Grinding Stone
+[MEDIUM] [LEARNED] Rough Sharpening Stone
+[MEDIUM] [LEARNED] Rough Weightstone
+[OPTIMAL] [UNLEARNED] Rune Edge
+[OPTIMAL] [UNLEARNED] Runed Copper Belt
+[OPTIMAL] [UNLEARNED] Runed Copper Bracers
+[OPTIMAL] [UNLEARNED] Runed Copper Breastplate
+[OPTIMAL] [UNLEARNED] Runed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Runed Copper Pants
+[OPTIMAL] [UNLEARNED] Runed Mithril Hammer
+[OPTIMAL] [UNLEARNED] Runic Breastplate
+[OPTIMAL] [UNLEARNED] Runic Plate Boots
+[OPTIMAL] [UNLEARNED] Runic Plate Helm
+[OPTIMAL] [UNLEARNED] Runic Plate Leggings
+[OPTIMAL] [UNLEARNED] Runic Plate Shoulders
+[OPTIMAL] [UNLEARNED] Sabatons of Glory
+[OPTIMAL] [UNLEARNED] Sageblade
+[OPTIMAL] [UNLEARNED] Sageblade of the Archmagus
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Chestplate
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Grips
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Helmet
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Legplates
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Protectors
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Spaulders
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Stompers
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Waistguard
+[OPTIMAL] [UNLEARNED] Searing Golden Blade
+[OPTIMAL] [UNLEARNED] Sentinel's Belt
+[OPTIMAL] [UNLEARNED] Sentinel's Boots
+[OPTIMAL] [UNLEARNED] Sentinel's Gauntlet
+[OPTIMAL] [UNLEARNED] Sentinel's Gloves
+[OPTIMAL] [UNLEARNED] Sentinel's Pauldrons
+[OPTIMAL] [UNLEARNED] Sentinel's Sabatons
+[OPTIMAL] [UNLEARNED] Sentinel's Waistguard
+[OPTIMAL] [UNLEARNED] Sentinel's Wristguards
+[OPTIMAL] [UNLEARNED] Serenity
+[OPTIMAL] [UNLEARNED] Shadow Crescent Axe
+[OPTIMAL] [UNLEARNED] Sharpening Wheel
+[OPTIMAL] [UNLEARNED] Shifting Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Boots
+[OPTIMAL] [UNLEARNED] Shining Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Shining Mithril Helm
+[OPTIMAL] [UNLEARNED] Shining Mithril Pants
+[OPTIMAL] [UNLEARNED] Shining Mithril Pauldrons
+[OPTIMAL] [UNLEARNED] Shining Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shoulderplates of Dread
+[OPTIMAL] [UNLEARNED] Shoulders of Glory
+[OPTIMAL] [UNLEARNED] Silver Rod
+[OPTIMAL] [UNLEARNED] Silver Skeleton Key
+[OPTIMAL] [UNLEARNED] Silvered Bronze Boots
+[OPTIMAL] [UNLEARNED] Silvered Bronze Breastplate
+[OPTIMAL] [UNLEARNED] Silvered Bronze Gauntlets
+[OPTIMAL] [UNLEARNED] Silvered Bronze Leggings
+[OPTIMAL] [UNLEARNED] Silvered Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Skyrider's Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Solid Grinding Stone
+[OPTIMAL] [UNLEARNED] Solid Iron Maul
+[OPTIMAL] [UNLEARNED] Solid Sharpening Stone
+[OPTIMAL] [UNLEARNED] Solid Weightstone
+[OPTIMAL] [UNLEARNED] Stalwart Helm
+[OPTIMAL] [UNLEARNED] Steel Breastplate
+[OPTIMAL] [UNLEARNED] Steel Plate Helm
+[OPTIMAL] [UNLEARNED] Steel Spear
+[OPTIMAL] [UNLEARNED] Steel Weapon Chain
+[OPTIMAL] [UNLEARNED] Sterling Silver Boots
+[OPTIMAL] [UNLEARNED] Sterling Silver Breastplate
+[OPTIMAL] [UNLEARNED] Sterling Silver Gauntlet
+[OPTIMAL] [UNLEARNED] Sterling Silver Leggings
+[OPTIMAL] [UNLEARNED] Sterling Silver Shoulders
+[OPTIMAL] [UNLEARNED] Stormcarver
+[OPTIMAL] [UNLEARNED] Strange Copper Boots
+[OPTIMAL] [UNLEARNED] Stronger-hold Gauntlets
+[OPTIMAL] [UNLEARNED] Stronghold Gauntlets
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Tempered Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Tempered Interference-Negating Helmet
+[OPTIMAL] [UNLEARNED] Tempest Gauntlets
+[OPTIMAL] [UNLEARNED] The Shatterer
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick War Axe
+[OPTIMAL] [UNLEARNED] Thorium Armor
+[OPTIMAL] [UNLEARNED] Thorium Belt
+[OPTIMAL] [UNLEARNED] Thorium Boots
+[OPTIMAL] [UNLEARNED] Thorium Bracers
+[OPTIMAL] [UNLEARNED] Thorium Cestus
+[OPTIMAL] [UNLEARNED] Thorium Greatmace
+[OPTIMAL] [UNLEARNED] Thorium Greatsword
+[OPTIMAL] [UNLEARNED] Thorium Helm
+[OPTIMAL] [UNLEARNED] Thorium Leggings
+[OPTIMAL] [UNLEARNED] Thorium Poleaxe
+[OPTIMAL] [UNLEARNED] Thorium Shield Spike
+[OPTIMAL] [UNLEARNED] Titanic Leggings
+[OPTIMAL] [UNLEARNED] Tranquility
+[OPTIMAL] [UNLEARNED] Truesilver Breastplate
+[OPTIMAL] [UNLEARNED] Truesilver Champion
+[OPTIMAL] [UNLEARNED] Truesilver Gauntlets
+[OPTIMAL] [UNLEARNED] Truesilver Rod
+[OPTIMAL] [UNLEARNED] Truesilver Skeleton Key
+[OPTIMAL] [UNLEARNED] Veteran's Boots
+[OPTIMAL] [UNLEARNED] Veteran's Chain Belt
+[OPTIMAL] [UNLEARNED] Veteran's Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Chain Shirt
+[OPTIMAL] [UNLEARNED] Veteran's Gloves
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Volcanic Hammer
+[OPTIMAL] [UNLEARNED] Warcrest of the Great Chief
+[OPTIMAL] [UNLEARNED] Warder's Belt
+[OPTIMAL] [UNLEARNED] Warder's Boots
+[OPTIMAL] [UNLEARNED] Warder's Gauntlet
+[OPTIMAL] [UNLEARNED] Warder's Gloves
+[OPTIMAL] [UNLEARNED] Warder's Pauldrons
+[OPTIMAL] [UNLEARNED] Warder's Sabatons
+[OPTIMAL] [UNLEARNED] Warder's Waistguard
+[OPTIMAL] [UNLEARNED] Warder's Wristguards
+[OPTIMAL] [UNLEARNED] Whitesoul Helm
+[OPTIMAL] [UNLEARNED] Wicked Mithril Blade
+
+== Cooking (6/75) - Recipes: 132 ==
+Profession ID: 185
+[OPTIMAL] [UNLEARNED] Baked Salmon
+[OPTIMAL] [UNLEARNED] Barbecued Buzzard Wing
+[TRIVIAL] [LEARNED] Basic Campfire
+[OPTIMAL] [UNLEARNED] Bat Hachee
+[OPTIMAL] [UNLEARNED] Bear Brisket
+[OPTIMAL] [UNLEARNED] Bear Bruscitti
+[OPTIMAL] [UNLEARNED] Beer Basted Boar Ribs
+[OPTIMAL] [UNLEARNED] Big Bear Steak
+[OPTIMAL] [UNLEARNED] Blood Sausage
+[OPTIMAL] [UNLEARNED] Boiled Clams
+[OPTIMAL] [UNLEARNED] Breakfast Omelette
+[OPTIMAL] [UNLEARNED] Brilliant Smallfish
+[OPTIMAL] [UNLEARNED] Briny Seafood Stew
+[OPTIMAL] [UNLEARNED] Bristle Whisker Catfish
+[OPTIMAL] [UNLEARNED] Calcified Smoothie
+[OPTIMAL] [UNLEARNED] Carrion Surprise
+[OPTIMAL] [LEARNED] Charred Wolf Meat
+[OPTIMAL] [UNLEARNED] Clam Chowder
+[OPTIMAL] [UNLEARNED] Clam Linguine
+[TRIVIAL] [UNLEARNED] Cleansing Stew
+[OPTIMAL] [UNLEARNED] Cooked Crab Claw
+[OPTIMAL] [UNLEARNED] Cooked Glossy Mightfish
+[OPTIMAL] [UNLEARNED] Cookie's Feast
+[OPTIMAL] [UNLEARNED] Coyote Steak
+[OPTIMAL] [UNLEARNED] Crab Cake
+[OPTIMAL] [UNLEARNED] Crispy Bat Wing
+[OPTIMAL] [UNLEARNED] Crispy Lizard Tail
+[OPTIMAL] [UNLEARNED] Critter Cookie
+[OPTIMAL] [UNLEARNED] Crocolisk Gumbo
+[OPTIMAL] [UNLEARNED] Crocolisk Steak
+[OPTIMAL] [UNLEARNED] Curiously Tasty Omelet
+[OPTIMAL] [UNLEARNED] Darkclaw Bisque
+[OPTIMAL] [UNLEARNED] Dig Rat Stew
+[OPTIMAL] [UNLEARNED] Dirge's Kickin' Chimaerok Chops
+[OPTIMAL] [UNLEARNED] Dragonbreath Chili
+[OPTIMAL] [UNLEARNED] Dry Pork Ribs
+[OPTIMAL] [UNLEARNED] Egg Nog
+[OPTIMAL] [UNLEARNED] Expert Campfire
+[OPTIMAL] [UNLEARNED] Filet o' Flank
+[OPTIMAL] [UNLEARNED] Filet of Redgill
+[OPTIMAL] [UNLEARNED] Fillet of Frenzy
+[OPTIMAL] [UNLEARNED] Flank au Poivre
+[OPTIMAL] [UNLEARNED] Giant Clam Scorcho
+[OPTIMAL] [UNLEARNED] Giant Scrambled Eggs
+[OPTIMAL] [UNLEARNED] Gingerbread Cookie
+[OPTIMAL] [UNLEARNED] Goblin Deviled Clams
+[OPTIMAL] [UNLEARNED] Goldthorn Tea
+[OPTIMAL] [UNLEARNED] Gooey Spider Cake
+[OPTIMAL] [UNLEARNED] Goretusk Liver Pie
+[OPTIMAL] [UNLEARNED] Grand Lobster Banquet
+[OPTIMAL] [UNLEARNED] Grilled Squid
+[OPTIMAL] [UNLEARNED] Heavy Crocolisk Stew
+[OPTIMAL] [UNLEARNED] Heavy Kodo Stew
+[OPTIMAL] [LEARNED] Herb Baked Egg
+[OPTIMAL] [UNLEARNED] Hot Lion Chops
+[OPTIMAL] [UNLEARNED] Hot Smoked Bass
+[OPTIMAL] [UNLEARNED] Hot Wolf Ribs
+[OPTIMAL] [UNLEARNED] Iron Oven
+[OPTIMAL] [UNLEARNED] Journeyman Campfire
+[OPTIMAL] [UNLEARNED] Jungle Stew
+[OPTIMAL] [UNLEARNED] Kaldorei Spider Kabob
+[OPTIMAL] [UNLEARNED] Lean Venison
+[OPTIMAL] [UNLEARNED] Lean Wolf Steak
+[OPTIMAL] [UNLEARNED] Lobster Stew
+[OPTIMAL] [UNLEARNED] Loch Frenzy Delight
+[OPTIMAL] [UNLEARNED] Longjaw Mud Snapper
+[OPTIMAL] [UNLEARNED] Mightfish Steak
+[OPTIMAL] [UNLEARNED] Mithril Headed Trout
+[OPTIMAL] [UNLEARNED] Monster Omelet
+[OPTIMAL] [UNLEARNED] Mrrggl Smrrthle
+[OPTIMAL] [UNLEARNED] Murloc Fin Soup
+[OPTIMAL] [UNLEARNED] Mystery Stew
+[OPTIMAL] [UNLEARNED] Nightfin Soup
+[OPTIMAL] [UNLEARNED] Peace Tea
+[OPTIMAL] [UNLEARNED] Pincer Bites
+[OPTIMAL] [UNLEARNED] Plain Ol' Paletusk
+[OPTIMAL] [UNLEARNED] Plated Armorfish
+[OPTIMAL] [UNLEARNED] Poached Sunscale Salmon
+[OPTIMAL] [UNLEARNED] Prehistoric Pulled Raptor
+[OPTIMAL] [UNLEARNED] Prowler Steak
+[OPTIMAL] [UNLEARNED] Raging Raptor Ribs
+[OPTIMAL] [UNLEARNED] Rainbow Fin Albacore
+[OPTIMAL] [UNLEARNED] Raptor Rouladen
+[OPTIMAL] [UNLEARNED] Redridge Goulash
+[OPTIMAL] [UNLEARNED] Roast Raptor
+[OPTIMAL] [LEARNED] Roasted Boar Meat
+[OPTIMAL] [UNLEARNED] Roasted Kodo Meat
+[OPTIMAL] [UNLEARNED] Rockscale Cod
+[OPTIMAL] [UNLEARNED] Root Tea
+[OPTIMAL] [UNLEARNED] Royal Tea
+[OPTIMAL] [UNLEARNED] Runn Tum Tuber Surprise
+[OPTIMAL] [UNLEARNED] Sage's Tea
+[OPTIMAL] [UNLEARNED] Sagefish Delight
+[OPTIMAL] [UNLEARNED] Savory Deviate Delight
+[OPTIMAL] [UNLEARNED] Savory Stag Sliders
+[OPTIMAL] [UNLEARNED] Savory Turtle Stew
+[OPTIMAL] [UNLEARNED] Savory Whimsyfin Delight
+[OPTIMAL] [UNLEARNED] Scorpid Surprise
+[OPTIMAL] [UNLEARNED] Seasoned Wolf Kabob
+[OPTIMAL] [UNLEARNED] Skywall Souffle
+[OPTIMAL] [UNLEARNED] Slimy Smoothie
+[OPTIMAL] [UNLEARNED] Slitherskin Mackerel
+[OPTIMAL] [UNLEARNED] Smoked Bear Meat
+[OPTIMAL] [UNLEARNED] Smoked Desert Dumplings
+[OPTIMAL] [UNLEARNED] Smoked Redgill
+[OPTIMAL] [UNLEARNED] Smoked Sagefish
+[OPTIMAL] [UNLEARNED] Soaring Pamplona
+[OPTIMAL] [UNLEARNED] Soothing Turtle Bisque
+[OPTIMAL] [UNLEARNED] Specklefin Feast
+[OPTIMAL] [UNLEARNED] Spiced Chili Crab
+[OPTIMAL] [UNLEARNED] Spiced Wolf Meat
+[OPTIMAL] [UNLEARNED] Spicy Smoothie
+[OPTIMAL] [UNLEARNED] Spider Sausage
+[OPTIMAL] [UNLEARNED] Spinefin Halibut
+[OPTIMAL] [UNLEARNED] Spotted Yellowtail
+[OPTIMAL] [UNLEARNED] Steaming Stag Steak
+[OPTIMAL] [UNLEARNED] Strider Stew
+[OPTIMAL] [UNLEARNED] Succulent Pork Ribs
+[OPTIMAL] [UNLEARNED] Sunny Tea
+[OPTIMAL] [UNLEARNED] Sunrise Omelette
+[OPTIMAL] [UNLEARNED] Sweetpaw Jam
+[OPTIMAL] [UNLEARNED] Swiftstrike Steak
+[OPTIMAL] [UNLEARNED] Tasty Lion Steak
+[OPTIMAL] [UNLEARNED] Tasty Raptor Bites
+[OPTIMAL] [UNLEARNED] Tender Wolf Steak
+[OPTIMAL] [UNLEARNED] Thistle Tea
+[OPTIMAL] [UNLEARNED] Triage Tea
+[OPTIMAL] [UNLEARNED] Twice-Spiced Raptor Slice
+[OPTIMAL] [UNLEARNED] Undermine Clam Chowder
+[MEDIUM] [UNLEARNED] Venomous Smoothie
+[OPTIMAL] [UNLEARNED] Westfall Stew
+[OPTIMAL] [UNLEARNED] Wicked Smoothie
+
+== First Aid (1/75) - Recipes: 506 ==
+Profession ID: 129
+[OPTIMAL] [UNLEARNED] Acolyte's Boots
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Belt
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Shirt
+[OPTIMAL] [UNLEARNED] Acolyte's Gloves
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Annihilator
+[OPTIMAL] [UNLEARNED] Anvil
+[OPTIMAL] [UNLEARNED] Arcanite Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Arcanite Champion
+[OPTIMAL] [UNLEARNED] Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Arcanite Rod
+[OPTIMAL] [UNLEARNED] Arcanite Skeleton Key
+[OPTIMAL] [UNLEARNED] Azerothium Legplates
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chain
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Azure Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Azure Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Azure Skyforged Helm
+[OPTIMAL] [UNLEARNED] Azure Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Azure Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Azure Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Bagh Nakh
+[OPTIMAL] [UNLEARNED] Baleful Pauldrons
+[OPTIMAL] [UNLEARNED] Barbaric Iron Boots
+[OPTIMAL] [UNLEARNED] Barbaric Iron Breastplate
+[OPTIMAL] [UNLEARNED] Barbaric Iron Gloves
+[OPTIMAL] [UNLEARNED] Barbaric Iron Helm
+[OPTIMAL] [UNLEARNED] Barbaric Iron Shoulders
+[OPTIMAL] [UNLEARNED] Big Black Mace
+[OPTIMAL] [UNLEARNED] Big Bronze Knife
+[OPTIMAL] [UNLEARNED] Black Amnesty
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Blackfathom Sharpening Stone
+[OPTIMAL] [UNLEARNED] Blackfury
+[OPTIMAL] [UNLEARNED] Blackguard
+[OPTIMAL] [UNLEARNED] Blazing Rapier
+[OPTIMAL] [UNLEARNED] Bleakwood Hew
+[OPTIMAL] [UNLEARNED] Blessed Plate Belt
+[OPTIMAL] [UNLEARNED] Blessed Plate Boots
+[OPTIMAL] [UNLEARNED] Blessed Plate Bracers
+[OPTIMAL] [UNLEARNED] Blessed Plate Chest
+[OPTIMAL] [UNLEARNED] Blessed Plate Gauntlet
+[OPTIMAL] [UNLEARNED] Blessed Plate Helm
+[OPTIMAL] [UNLEARNED] Blessed Plate Leggings
+[OPTIMAL] [UNLEARNED] Blessed Plate Pauldrons
+[OPTIMAL] [UNLEARNED] Blight
+[OPTIMAL] [UNLEARNED] Blood Talon
+[OPTIMAL] [UNLEARNED] Bloodsoul Breastplate
+[OPTIMAL] [UNLEARNED] Bloodsoul Gauntlets
+[OPTIMAL] [UNLEARNED] Bloodsoul Shoulders
+[OPTIMAL] [UNLEARNED] Blue Glittering Axe
+[OPTIMAL] [UNLEARNED] Bold Dirk
+[OPTIMAL] [UNLEARNED] Brass Knuckles
+[OPTIMAL] [UNLEARNED] Breastplate of Salvation
+[OPTIMAL] [UNLEARNED] Bronze Axe
+[OPTIMAL] [UNLEARNED] Bronze Battle Axe
+[OPTIMAL] [UNLEARNED] Bronze Dory
+[OPTIMAL] [UNLEARNED] Bronze Greatsword
+[OPTIMAL] [UNLEARNED] Bronze Mace
+[OPTIMAL] [UNLEARNED] Bronze Shortsword
+[OPTIMAL] [UNLEARNED] Bronze Warhammer
+[OPTIMAL] [UNLEARNED] Champion's Legplates
+[OPTIMAL] [UNLEARNED] Charged Mithril Battleaxe
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chain
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Helm
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Clutchlord's Grips
+[OPTIMAL] [UNLEARNED] Clutchlord's Stompers
+[OPTIMAL] [UNLEARNED] Clutchlord's Support
+[OPTIMAL] [UNLEARNED] Coarse Grinding Stone
+[OPTIMAL] [UNLEARNED] Coarse Sharpening Stone
+[OPTIMAL] [UNLEARNED] Coarse Weightstone
+[OPTIMAL] [UNLEARNED] Copper Axe
+[OPTIMAL] [UNLEARNED] Copper Battle Axe
+[OPTIMAL] [LEARNED] Copper Bracers
+[OPTIMAL] [UNLEARNED] Copper Chain Belt
+[OPTIMAL] [UNLEARNED] Copper Chain Boots
+[OPTIMAL] [UNLEARNED] Copper Chain Pants
+[OPTIMAL] [UNLEARNED] Copper Chain Vest
+[OPTIMAL] [UNLEARNED] Copper Claymore
+[OPTIMAL] [UNLEARNED] Copper Dagger
+[OPTIMAL] [LEARNED] Copper Mace
+[TRIVIAL] [LEARNED] Copper Rod
+[OPTIMAL] [UNLEARNED] Copper Shortsword
+[OPTIMAL] [UNLEARNED] Corruption
+[OPTIMAL] [UNLEARNED] Cracked Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Crusader's Boots
+[OPTIMAL] [UNLEARNED] Crusader's Chain Belt
+[OPTIMAL] [UNLEARNED] Crusader's Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Chain Shirt
+[OPTIMAL] [UNLEARNED] Crusader's Gloves
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Dark Iron Boots
+[OPTIMAL] [UNLEARNED] Dark Iron Bracers
+[OPTIMAL] [UNLEARNED] Dark Iron Destroyer
+[OPTIMAL] [UNLEARNED] Dark Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Dark Iron Helm
+[OPTIMAL] [UNLEARNED] Dark Iron Leggings
+[OPTIMAL] [UNLEARNED] Dark Iron Mail
+[OPTIMAL] [UNLEARNED] Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Dark Iron Pulverizer
+[OPTIMAL] [UNLEARNED] Dark Iron Reaver
+[OPTIMAL] [UNLEARNED] Dark Iron Shoulders
+[OPTIMAL] [UNLEARNED] Dark Iron Sunderer
+[OPTIMAL] [UNLEARNED] Darkrune Breastplate
+[OPTIMAL] [UNLEARNED] Darkrune Gauntlets
+[OPTIMAL] [UNLEARNED] Darkrune Helm
+[OPTIMAL] [UNLEARNED] Darksoul Breastplate
+[OPTIMAL] [UNLEARNED] Darksoul Leggings
+[OPTIMAL] [UNLEARNED] Darksoul Shoulders
+[OPTIMAL] [UNLEARNED] Darkspear
+[OPTIMAL] [UNLEARNED] Dawn's Edge
+[OPTIMAL] [UNLEARNED] Dawnbringer Shoulders
+[OPTIMAL] [UNLEARNED] Dazzling Mithril Rapier
+[OPTIMAL] [UNLEARNED] Deadly Bronze Poniard
+[OPTIMAL] [UNLEARNED] Deadly Heartseeker
+[OPTIMAL] [UNLEARNED] Demon Forged Breastplate
+[OPTIMAL] [UNLEARNED] Dense Grinding Stone
+[OPTIMAL] [UNLEARNED] Dense Sharpening Stone
+[OPTIMAL] [UNLEARNED] Dense Weightstone
+[OPTIMAL] [UNLEARNED] Depleted Thorium Sabatons
+[OPTIMAL] [UNLEARNED] Desecration
+[OPTIMAL] [UNLEARNED] Dreamscale Visor
+[OPTIMAL] [UNLEARNED] Ebon Hand
+[OPTIMAL] [UNLEARNED] Ebon Shiv
+[OPTIMAL] [UNLEARNED] Edge of Winter
+[OPTIMAL] [UNLEARNED] Elemental Sharpening Stone
+[OPTIMAL] [UNLEARNED] Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Helm
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Leggings
+[OPTIMAL] [UNLEARNED] Enriched Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enriched Thorium Helm
+[OPTIMAL] [UNLEARNED] Enriched Thorium Leggings
+[OPTIMAL] [UNLEARNED] Evergreen Shield
+[OPTIMAL] [UNLEARNED] Fearmonger's Shoulderguards
+[OPTIMAL] [UNLEARNED] Fiery Chain Girdle
+[OPTIMAL] [UNLEARNED] Fiery Chain Shoulders
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets of the Hidden Technique
+[OPTIMAL] [UNLEARNED] Finely-Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Forest Defender's Axe
+[OPTIMAL] [UNLEARNED] Frost Tiger Blade
+[OPTIMAL] [UNLEARNED] Frostguard
+[OPTIMAL] [UNLEARNED] Gauntlets of Glory
+[OPTIMAL] [UNLEARNED] Gemmed Copper Boots
+[OPTIMAL] [UNLEARNED] Gemmed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Girdle of the Dawn
+[OPTIMAL] [UNLEARNED] Glinting Steel Dagger
+[OPTIMAL] [UNLEARNED] Gloves of the Dawn
+[OPTIMAL] [UNLEARNED] Glowing Copper Boots
+[OPTIMAL] [UNLEARNED] Golden Iron Destroyer
+[OPTIMAL] [UNLEARNED] Golden Rod
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Bracers
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Skeleton Key
+[OPTIMAL] [UNLEARNED] Goregasher Grips
+[OPTIMAL] [UNLEARNED] Goregasher Stompers
+[OPTIMAL] [UNLEARNED] Goregasher Support
+[OPTIMAL] [UNLEARNED] Greaves of Glory
+[OPTIMAL] [UNLEARNED] Green Iron Boots
+[OPTIMAL] [UNLEARNED] Green Iron Bracers
+[OPTIMAL] [UNLEARNED] Green Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Green Iron Hauberk
+[OPTIMAL] [UNLEARNED] Green Iron Helm
+[OPTIMAL] [UNLEARNED] Green Iron Leggings
+[OPTIMAL] [UNLEARNED] Green Iron Shoulders
+[OPTIMAL] [UNLEARNED] Greenhammer
+[OPTIMAL] [UNLEARNED] Guard's Boots
+[OPTIMAL] [UNLEARNED] Guard's Chain Belt
+[OPTIMAL] [UNLEARNED] Guard's Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Chain Shirt
+[OPTIMAL] [UNLEARNED] Guard's Gloves
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Handguards of Glory
+[OPTIMAL] [UNLEARNED] Hard Gold Boots
+[OPTIMAL] [UNLEARNED] Hard Gold Bracers
+[OPTIMAL] [UNLEARNED] Hard Gold Coif
+[OPTIMAL] [UNLEARNED] Hard Gold Cuirass
+[OPTIMAL] [UNLEARNED] Hard Gold Gauntlet
+[OPTIMAL] [UNLEARNED] Hard Gold Leggings
+[OPTIMAL] [UNLEARNED] Hard Gold Pauldrons
+[OPTIMAL] [UNLEARNED] Hardened Frostguard
+[OPTIMAL] [UNLEARNED] Hardened Iron Shortsword
+[OPTIMAL] [UNLEARNED] Heartseeker
+[OPTIMAL] [UNLEARNED] Heavy Bronze Mace
+[OPTIMAL] [UNLEARNED] Heavy Copper Broadsword
+[OPTIMAL] [UNLEARNED] Heavy Copper Maul
+[OPTIMAL] [UNLEARNED] Heavy Grinding Stone
+[OPTIMAL] [UNLEARNED] Heavy Mithril Axe
+[OPTIMAL] [UNLEARNED] Heavy Mithril Boots
+[OPTIMAL] [UNLEARNED] Heavy Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Heavy Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Heavy Mithril Helm
+[OPTIMAL] [UNLEARNED] Heavy Mithril Pants
+[OPTIMAL] [UNLEARNED] Heavy Mithril Shoulder
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Sharpening Stone
+[OPTIMAL] [UNLEARNED] Heavy Thorium Gauntlets
+[OPTIMAL] [UNLEARNED] Heavy Weightstone
+[OPTIMAL] [UNLEARNED] Huge Thorium Battleaxe
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Belt
+[OPTIMAL] [UNLEARNED] Imperial Plate Boots
+[OPTIMAL] [UNLEARNED] Imperial Plate Bracers
+[OPTIMAL] [UNLEARNED] Imperial Plate Chest
+[OPTIMAL] [UNLEARNED] Imperial Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Helm
+[OPTIMAL] [UNLEARNED] Imperial Plate Leggings
+[OPTIMAL] [UNLEARNED] Imperial Plate Shoulders
+[OPTIMAL] [UNLEARNED] Inlaid Mithril Cylinder
+[OPTIMAL] [UNLEARNED] Inlaid Thorium Hammer
+[OPTIMAL] [UNLEARNED] Invincible Mail
+[OPTIMAL] [UNLEARNED] Iridescent Hammer
+[OPTIMAL] [UNLEARNED] Iron Buckle
+[OPTIMAL] [UNLEARNED] Iron Counterweight
+[OPTIMAL] [UNLEARNED] Iron Fists
+[OPTIMAL] [UNLEARNED] Iron Morningstar
+[OPTIMAL] [UNLEARNED] Iron Shield Spike
+[OPTIMAL] [UNLEARNED] Ironforge Breastplate
+[OPTIMAL] [UNLEARNED] Ironforge Chain
+[OPTIMAL] [UNLEARNED] Ironforge Gauntlets
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironwood Blade
+[OPTIMAL] [UNLEARNED] Jade Serpentblade
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Justicar's Belt
+[OPTIMAL] [UNLEARNED] Justicar's Boots
+[OPTIMAL] [UNLEARNED] Justicar's Gauntlet
+[OPTIMAL] [UNLEARNED] Justicar's Gloves
+[OPTIMAL] [UNLEARNED] Justicar's Pauldrons
+[OPTIMAL] [UNLEARNED] Justicar's Sabatons
+[OPTIMAL] [UNLEARNED] Justicar's Waistguard
+[OPTIMAL] [UNLEARNED] Justicar's Wristguards
+[OPTIMAL] [UNLEARNED] Justice Epaulets
+[OPTIMAL] [UNLEARNED] Justice Gauntlets
+[OPTIMAL] [UNLEARNED] Justice Gloves
+[OPTIMAL] [UNLEARNED] Justice Greaves
+[OPTIMAL] [UNLEARNED] Justice Handguards
+[OPTIMAL] [UNLEARNED] Justice Leggings
+[OPTIMAL] [UNLEARNED] Justice Legguards
+[OPTIMAL] [UNLEARNED] Justice Legplates
+[OPTIMAL] [UNLEARNED] Justice Pauldrons
+[OPTIMAL] [UNLEARNED] Justice Sabatons
+[OPTIMAL] [UNLEARNED] Justice Spaulders
+[OPTIMAL] [UNLEARNED] Justice Treads
+[OPTIMAL] [UNLEARNED] Legguards of Glory
+[OPTIMAL] [UNLEARNED] Legionite Glaive
+[OPTIMAL] [UNLEARNED] Legplates of Glory
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Lionheart Helm
+[OPTIMAL] [UNLEARNED] Low-Background Truesilver Plates
+[OPTIMAL] [UNLEARNED] Mantle of the Second War
+[OPTIMAL] [UNLEARNED] Martyr's Legplates
+[OPTIMAL] [UNLEARNED] Massive Iron Axe
+[OPTIMAL] [UNLEARNED] Master Forge
+[OPTIMAL] [UNLEARNED] Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Mighty Iron Hammer
+[OPTIMAL] [UNLEARNED] Mithril Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Mithril Claws
+[OPTIMAL] [UNLEARNED] Mithril Claymore
+[OPTIMAL] [UNLEARNED] Mithril Coif
+[OPTIMAL] [UNLEARNED] Mithril Plate Bracers
+[OPTIMAL] [UNLEARNED] Mithril Plate Gloves
+[OPTIMAL] [UNLEARNED] Mithril Plate Pants
+[OPTIMAL] [UNLEARNED] Mithril Plate Shoulders
+[OPTIMAL] [UNLEARNED] Mithril Shield Spike
+[OPTIMAL] [UNLEARNED] Mithril Shortsword
+[OPTIMAL] [UNLEARNED] Mithril Spurs
+[OPTIMAL] [UNLEARNED] Mithril Stiletto
+[OPTIMAL] [UNLEARNED] Mithril Warhammer
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Nightfall
+[OPTIMAL] [UNLEARNED] Obsidian Champion
+[OPTIMAL] [UNLEARNED] Obsidian Defender
+[OPTIMAL] [UNLEARNED] Obsidian Destroyer
+[OPTIMAL] [UNLEARNED] Obsidian Grinding Stone
+[OPTIMAL] [UNLEARNED] Obsidian Heartseeker
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Reaver
+[OPTIMAL] [UNLEARNED] Obsidian Sageblade
+[OPTIMAL] [UNLEARNED] Obsidian Stormhammer
+[OPTIMAL] [UNLEARNED] Officer's Belt
+[OPTIMAL] [UNLEARNED] Officer's Boots
+[OPTIMAL] [UNLEARNED] Officer's Gauntlet
+[OPTIMAL] [UNLEARNED] Officer's Gloves
+[OPTIMAL] [UNLEARNED] Officer's Pauldrons
+[OPTIMAL] [UNLEARNED] Officer's Sabatons
+[OPTIMAL] [UNLEARNED] Officer's Waistguard
+[OPTIMAL] [UNLEARNED] Officer's Wristguards
+[OPTIMAL] [UNLEARNED] Orcish War Leggings
+[OPTIMAL] [UNLEARNED] Ornate Mithril Boots
+[OPTIMAL] [UNLEARNED] Ornate Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Ornate Mithril Gloves
+[OPTIMAL] [UNLEARNED] Ornate Mithril Helm
+[OPTIMAL] [UNLEARNED] Ornate Mithril Pants
+[OPTIMAL] [UNLEARNED] Ornate Mithril Shoulders
+[OPTIMAL] [UNLEARNED] Ornate Thorium Handaxe
+[OPTIMAL] [UNLEARNED] Patterned Bronze Bracers
+[OPTIMAL] [UNLEARNED] Pauldrons of Glory
+[OPTIMAL] [UNLEARNED] Pearl-handled Dagger
+[OPTIMAL] [UNLEARNED] Persuader
+[OPTIMAL] [UNLEARNED] Phantom Blade
+[OPTIMAL] [UNLEARNED] Polished Steel Boots
+[OPTIMAL] [UNLEARNED] Prefect's Belt
+[OPTIMAL] [UNLEARNED] Prefect's Boots
+[OPTIMAL] [UNLEARNED] Prefect's Gauntlet
+[OPTIMAL] [UNLEARNED] Prefect's Gloves
+[OPTIMAL] [UNLEARNED] Prefect's Pauldrons
+[OPTIMAL] [UNLEARNED] Prefect's Sabatons
+[OPTIMAL] [UNLEARNED] Prefect's Waistguard
+[OPTIMAL] [UNLEARNED] Prefect's Wristguards
+[OPTIMAL] [UNLEARNED] Protector's Boots
+[OPTIMAL] [UNLEARNED] Protector's Chain Belt
+[OPTIMAL] [UNLEARNED] Protector's Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Chain Shirt
+[OPTIMAL] [UNLEARNED] Protector's Gloves
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Radiant Belt
+[OPTIMAL] [UNLEARNED] Radiant Boots
+[OPTIMAL] [UNLEARNED] Radiant Breastplate
+[OPTIMAL] [UNLEARNED] Radiant Circlet
+[OPTIMAL] [UNLEARNED] Radiant Gloves
+[OPTIMAL] [UNLEARNED] Radiant Leggings
+[OPTIMAL] [UNLEARNED] Razorspike Battleplate
+[OPTIMAL] [UNLEARNED] Razorspike Headcage
+[OPTIMAL] [UNLEARNED] Razorspike Shoulderplate
+[OPTIMAL] [UNLEARNED] Refined Arcanite Champion
+[OPTIMAL] [UNLEARNED] Refined Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Refined Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Reflective Truesilver Braincage
+[OPTIMAL] [UNLEARNED] Rough Bronze Boots
+[OPTIMAL] [UNLEARNED] Rough Bronze Bracers
+[OPTIMAL] [UNLEARNED] Rough Bronze Cuirass
+[OPTIMAL] [UNLEARNED] Rough Bronze Leggings
+[OPTIMAL] [UNLEARNED] Rough Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Rough Copper Chain Boots
+[MEDIUM] [LEARNED] Rough Copper Vest
+[OPTIMAL] [UNLEARNED] Rough Grinding Stone
+[MEDIUM] [LEARNED] Rough Sharpening Stone
+[MEDIUM] [LEARNED] Rough Weightstone
+[OPTIMAL] [UNLEARNED] Rune Edge
+[OPTIMAL] [UNLEARNED] Runed Copper Belt
+[OPTIMAL] [UNLEARNED] Runed Copper Bracers
+[OPTIMAL] [UNLEARNED] Runed Copper Breastplate
+[OPTIMAL] [UNLEARNED] Runed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Runed Copper Pants
+[OPTIMAL] [UNLEARNED] Runed Mithril Hammer
+[OPTIMAL] [UNLEARNED] Runic Breastplate
+[OPTIMAL] [UNLEARNED] Runic Plate Boots
+[OPTIMAL] [UNLEARNED] Runic Plate Helm
+[OPTIMAL] [UNLEARNED] Runic Plate Leggings
+[OPTIMAL] [UNLEARNED] Runic Plate Shoulders
+[OPTIMAL] [UNLEARNED] Sabatons of Glory
+[OPTIMAL] [UNLEARNED] Sageblade
+[OPTIMAL] [UNLEARNED] Sageblade of the Archmagus
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Chestplate
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Grips
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Helmet
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Legplates
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Protectors
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Spaulders
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Stompers
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Waistguard
+[OPTIMAL] [UNLEARNED] Searing Golden Blade
+[OPTIMAL] [UNLEARNED] Sentinel's Belt
+[OPTIMAL] [UNLEARNED] Sentinel's Boots
+[OPTIMAL] [UNLEARNED] Sentinel's Gauntlet
+[OPTIMAL] [UNLEARNED] Sentinel's Gloves
+[OPTIMAL] [UNLEARNED] Sentinel's Pauldrons
+[OPTIMAL] [UNLEARNED] Sentinel's Sabatons
+[OPTIMAL] [UNLEARNED] Sentinel's Waistguard
+[OPTIMAL] [UNLEARNED] Sentinel's Wristguards
+[OPTIMAL] [UNLEARNED] Serenity
+[OPTIMAL] [UNLEARNED] Shadow Crescent Axe
+[OPTIMAL] [UNLEARNED] Sharpening Wheel
+[OPTIMAL] [UNLEARNED] Shifting Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Boots
+[OPTIMAL] [UNLEARNED] Shining Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Shining Mithril Helm
+[OPTIMAL] [UNLEARNED] Shining Mithril Pants
+[OPTIMAL] [UNLEARNED] Shining Mithril Pauldrons
+[OPTIMAL] [UNLEARNED] Shining Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shoulderplates of Dread
+[OPTIMAL] [UNLEARNED] Shoulders of Glory
+[OPTIMAL] [UNLEARNED] Silver Rod
+[OPTIMAL] [UNLEARNED] Silver Skeleton Key
+[OPTIMAL] [UNLEARNED] Silvered Bronze Boots
+[OPTIMAL] [UNLEARNED] Silvered Bronze Breastplate
+[OPTIMAL] [UNLEARNED] Silvered Bronze Gauntlets
+[OPTIMAL] [UNLEARNED] Silvered Bronze Leggings
+[OPTIMAL] [UNLEARNED] Silvered Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Skyrider's Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Solid Grinding Stone
+[OPTIMAL] [UNLEARNED] Solid Iron Maul
+[OPTIMAL] [UNLEARNED] Solid Sharpening Stone
+[OPTIMAL] [UNLEARNED] Solid Weightstone
+[OPTIMAL] [UNLEARNED] Stalwart Helm
+[OPTIMAL] [UNLEARNED] Steel Breastplate
+[OPTIMAL] [UNLEARNED] Steel Plate Helm
+[OPTIMAL] [UNLEARNED] Steel Spear
+[OPTIMAL] [UNLEARNED] Steel Weapon Chain
+[OPTIMAL] [UNLEARNED] Sterling Silver Boots
+[OPTIMAL] [UNLEARNED] Sterling Silver Breastplate
+[OPTIMAL] [UNLEARNED] Sterling Silver Gauntlet
+[OPTIMAL] [UNLEARNED] Sterling Silver Leggings
+[OPTIMAL] [UNLEARNED] Sterling Silver Shoulders
+[OPTIMAL] [UNLEARNED] Stormcarver
+[OPTIMAL] [UNLEARNED] Strange Copper Boots
+[OPTIMAL] [UNLEARNED] Stronger-hold Gauntlets
+[OPTIMAL] [UNLEARNED] Stronghold Gauntlets
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Tempered Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Tempered Interference-Negating Helmet
+[OPTIMAL] [UNLEARNED] Tempest Gauntlets
+[OPTIMAL] [UNLEARNED] The Shatterer
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick War Axe
+[OPTIMAL] [UNLEARNED] Thorium Armor
+[OPTIMAL] [UNLEARNED] Thorium Belt
+[OPTIMAL] [UNLEARNED] Thorium Boots
+[OPTIMAL] [UNLEARNED] Thorium Bracers
+[OPTIMAL] [UNLEARNED] Thorium Cestus
+[OPTIMAL] [UNLEARNED] Thorium Greatmace
+[OPTIMAL] [UNLEARNED] Thorium Greatsword
+[OPTIMAL] [UNLEARNED] Thorium Helm
+[OPTIMAL] [UNLEARNED] Thorium Leggings
+[OPTIMAL] [UNLEARNED] Thorium Poleaxe
+[OPTIMAL] [UNLEARNED] Thorium Shield Spike
+[OPTIMAL] [UNLEARNED] Titanic Leggings
+[OPTIMAL] [UNLEARNED] Tranquility
+[OPTIMAL] [UNLEARNED] Truesilver Breastplate
+[OPTIMAL] [UNLEARNED] Truesilver Champion
+[OPTIMAL] [UNLEARNED] Truesilver Gauntlets
+[OPTIMAL] [UNLEARNED] Truesilver Rod
+[OPTIMAL] [UNLEARNED] Truesilver Skeleton Key
+[OPTIMAL] [UNLEARNED] Veteran's Boots
+[OPTIMAL] [UNLEARNED] Veteran's Chain Belt
+[OPTIMAL] [UNLEARNED] Veteran's Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Chain Shirt
+[OPTIMAL] [UNLEARNED] Veteran's Gloves
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Volcanic Hammer
+[OPTIMAL] [UNLEARNED] Warcrest of the Great Chief
+[OPTIMAL] [UNLEARNED] Warder's Belt
+[OPTIMAL] [UNLEARNED] Warder's Boots
+[OPTIMAL] [UNLEARNED] Warder's Gauntlet
+[OPTIMAL] [UNLEARNED] Warder's Gloves
+[OPTIMAL] [UNLEARNED] Warder's Pauldrons
+[OPTIMAL] [UNLEARNED] Warder's Sabatons
+[OPTIMAL] [UNLEARNED] Warder's Waistguard
+[OPTIMAL] [UNLEARNED] Warder's Wristguards
+[OPTIMAL] [UNLEARNED] Whitesoul Helm
+[OPTIMAL] [UNLEARNED] Wicked Mithril Blade
+
+== Fishing (1/75) - Recipes: 506 ==
+Profession ID: 356
+[OPTIMAL] [UNLEARNED] Acolyte's Boots
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Belt
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Shirt
+[OPTIMAL] [UNLEARNED] Acolyte's Gloves
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Annihilator
+[OPTIMAL] [UNLEARNED] Anvil
+[OPTIMAL] [UNLEARNED] Arcanite Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Arcanite Champion
+[OPTIMAL] [UNLEARNED] Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Arcanite Rod
+[OPTIMAL] [UNLEARNED] Arcanite Skeleton Key
+[OPTIMAL] [UNLEARNED] Azerothium Legplates
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chain
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Azure Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Azure Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Azure Skyforged Helm
+[OPTIMAL] [UNLEARNED] Azure Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Azure Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Azure Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Bagh Nakh
+[OPTIMAL] [UNLEARNED] Baleful Pauldrons
+[OPTIMAL] [UNLEARNED] Barbaric Iron Boots
+[OPTIMAL] [UNLEARNED] Barbaric Iron Breastplate
+[OPTIMAL] [UNLEARNED] Barbaric Iron Gloves
+[OPTIMAL] [UNLEARNED] Barbaric Iron Helm
+[OPTIMAL] [UNLEARNED] Barbaric Iron Shoulders
+[OPTIMAL] [UNLEARNED] Big Black Mace
+[OPTIMAL] [UNLEARNED] Big Bronze Knife
+[OPTIMAL] [UNLEARNED] Black Amnesty
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Blackfathom Sharpening Stone
+[OPTIMAL] [UNLEARNED] Blackfury
+[OPTIMAL] [UNLEARNED] Blackguard
+[OPTIMAL] [UNLEARNED] Blazing Rapier
+[OPTIMAL] [UNLEARNED] Bleakwood Hew
+[OPTIMAL] [UNLEARNED] Blessed Plate Belt
+[OPTIMAL] [UNLEARNED] Blessed Plate Boots
+[OPTIMAL] [UNLEARNED] Blessed Plate Bracers
+[OPTIMAL] [UNLEARNED] Blessed Plate Chest
+[OPTIMAL] [UNLEARNED] Blessed Plate Gauntlet
+[OPTIMAL] [UNLEARNED] Blessed Plate Helm
+[OPTIMAL] [UNLEARNED] Blessed Plate Leggings
+[OPTIMAL] [UNLEARNED] Blessed Plate Pauldrons
+[OPTIMAL] [UNLEARNED] Blight
+[OPTIMAL] [UNLEARNED] Blood Talon
+[OPTIMAL] [UNLEARNED] Bloodsoul Breastplate
+[OPTIMAL] [UNLEARNED] Bloodsoul Gauntlets
+[OPTIMAL] [UNLEARNED] Bloodsoul Shoulders
+[OPTIMAL] [UNLEARNED] Blue Glittering Axe
+[OPTIMAL] [UNLEARNED] Bold Dirk
+[OPTIMAL] [UNLEARNED] Brass Knuckles
+[OPTIMAL] [UNLEARNED] Breastplate of Salvation
+[OPTIMAL] [UNLEARNED] Bronze Axe
+[OPTIMAL] [UNLEARNED] Bronze Battle Axe
+[OPTIMAL] [UNLEARNED] Bronze Dory
+[OPTIMAL] [UNLEARNED] Bronze Greatsword
+[OPTIMAL] [UNLEARNED] Bronze Mace
+[OPTIMAL] [UNLEARNED] Bronze Shortsword
+[OPTIMAL] [UNLEARNED] Bronze Warhammer
+[OPTIMAL] [UNLEARNED] Champion's Legplates
+[OPTIMAL] [UNLEARNED] Charged Mithril Battleaxe
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chain
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Helm
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Clutchlord's Grips
+[OPTIMAL] [UNLEARNED] Clutchlord's Stompers
+[OPTIMAL] [UNLEARNED] Clutchlord's Support
+[OPTIMAL] [UNLEARNED] Coarse Grinding Stone
+[OPTIMAL] [UNLEARNED] Coarse Sharpening Stone
+[OPTIMAL] [UNLEARNED] Coarse Weightstone
+[OPTIMAL] [UNLEARNED] Copper Axe
+[OPTIMAL] [UNLEARNED] Copper Battle Axe
+[OPTIMAL] [LEARNED] Copper Bracers
+[OPTIMAL] [UNLEARNED] Copper Chain Belt
+[OPTIMAL] [UNLEARNED] Copper Chain Boots
+[OPTIMAL] [UNLEARNED] Copper Chain Pants
+[OPTIMAL] [UNLEARNED] Copper Chain Vest
+[OPTIMAL] [UNLEARNED] Copper Claymore
+[OPTIMAL] [UNLEARNED] Copper Dagger
+[OPTIMAL] [LEARNED] Copper Mace
+[TRIVIAL] [LEARNED] Copper Rod
+[OPTIMAL] [UNLEARNED] Copper Shortsword
+[OPTIMAL] [UNLEARNED] Corruption
+[OPTIMAL] [UNLEARNED] Cracked Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Crusader's Boots
+[OPTIMAL] [UNLEARNED] Crusader's Chain Belt
+[OPTIMAL] [UNLEARNED] Crusader's Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Chain Shirt
+[OPTIMAL] [UNLEARNED] Crusader's Gloves
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Dark Iron Boots
+[OPTIMAL] [UNLEARNED] Dark Iron Bracers
+[OPTIMAL] [UNLEARNED] Dark Iron Destroyer
+[OPTIMAL] [UNLEARNED] Dark Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Dark Iron Helm
+[OPTIMAL] [UNLEARNED] Dark Iron Leggings
+[OPTIMAL] [UNLEARNED] Dark Iron Mail
+[OPTIMAL] [UNLEARNED] Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Dark Iron Pulverizer
+[OPTIMAL] [UNLEARNED] Dark Iron Reaver
+[OPTIMAL] [UNLEARNED] Dark Iron Shoulders
+[OPTIMAL] [UNLEARNED] Dark Iron Sunderer
+[OPTIMAL] [UNLEARNED] Darkrune Breastplate
+[OPTIMAL] [UNLEARNED] Darkrune Gauntlets
+[OPTIMAL] [UNLEARNED] Darkrune Helm
+[OPTIMAL] [UNLEARNED] Darksoul Breastplate
+[OPTIMAL] [UNLEARNED] Darksoul Leggings
+[OPTIMAL] [UNLEARNED] Darksoul Shoulders
+[OPTIMAL] [UNLEARNED] Darkspear
+[OPTIMAL] [UNLEARNED] Dawn's Edge
+[OPTIMAL] [UNLEARNED] Dawnbringer Shoulders
+[OPTIMAL] [UNLEARNED] Dazzling Mithril Rapier
+[OPTIMAL] [UNLEARNED] Deadly Bronze Poniard
+[OPTIMAL] [UNLEARNED] Deadly Heartseeker
+[OPTIMAL] [UNLEARNED] Demon Forged Breastplate
+[OPTIMAL] [UNLEARNED] Dense Grinding Stone
+[OPTIMAL] [UNLEARNED] Dense Sharpening Stone
+[OPTIMAL] [UNLEARNED] Dense Weightstone
+[OPTIMAL] [UNLEARNED] Depleted Thorium Sabatons
+[OPTIMAL] [UNLEARNED] Desecration
+[OPTIMAL] [UNLEARNED] Dreamscale Visor
+[OPTIMAL] [UNLEARNED] Ebon Hand
+[OPTIMAL] [UNLEARNED] Ebon Shiv
+[OPTIMAL] [UNLEARNED] Edge of Winter
+[OPTIMAL] [UNLEARNED] Elemental Sharpening Stone
+[OPTIMAL] [UNLEARNED] Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Helm
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Leggings
+[OPTIMAL] [UNLEARNED] Enriched Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enriched Thorium Helm
+[OPTIMAL] [UNLEARNED] Enriched Thorium Leggings
+[OPTIMAL] [UNLEARNED] Evergreen Shield
+[OPTIMAL] [UNLEARNED] Fearmonger's Shoulderguards
+[OPTIMAL] [UNLEARNED] Fiery Chain Girdle
+[OPTIMAL] [UNLEARNED] Fiery Chain Shoulders
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets of the Hidden Technique
+[OPTIMAL] [UNLEARNED] Finely-Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Forest Defender's Axe
+[OPTIMAL] [UNLEARNED] Frost Tiger Blade
+[OPTIMAL] [UNLEARNED] Frostguard
+[OPTIMAL] [UNLEARNED] Gauntlets of Glory
+[OPTIMAL] [UNLEARNED] Gemmed Copper Boots
+[OPTIMAL] [UNLEARNED] Gemmed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Girdle of the Dawn
+[OPTIMAL] [UNLEARNED] Glinting Steel Dagger
+[OPTIMAL] [UNLEARNED] Gloves of the Dawn
+[OPTIMAL] [UNLEARNED] Glowing Copper Boots
+[OPTIMAL] [UNLEARNED] Golden Iron Destroyer
+[OPTIMAL] [UNLEARNED] Golden Rod
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Bracers
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Skeleton Key
+[OPTIMAL] [UNLEARNED] Goregasher Grips
+[OPTIMAL] [UNLEARNED] Goregasher Stompers
+[OPTIMAL] [UNLEARNED] Goregasher Support
+[OPTIMAL] [UNLEARNED] Greaves of Glory
+[OPTIMAL] [UNLEARNED] Green Iron Boots
+[OPTIMAL] [UNLEARNED] Green Iron Bracers
+[OPTIMAL] [UNLEARNED] Green Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Green Iron Hauberk
+[OPTIMAL] [UNLEARNED] Green Iron Helm
+[OPTIMAL] [UNLEARNED] Green Iron Leggings
+[OPTIMAL] [UNLEARNED] Green Iron Shoulders
+[OPTIMAL] [UNLEARNED] Greenhammer
+[OPTIMAL] [UNLEARNED] Guard's Boots
+[OPTIMAL] [UNLEARNED] Guard's Chain Belt
+[OPTIMAL] [UNLEARNED] Guard's Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Chain Shirt
+[OPTIMAL] [UNLEARNED] Guard's Gloves
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Handguards of Glory
+[OPTIMAL] [UNLEARNED] Hard Gold Boots
+[OPTIMAL] [UNLEARNED] Hard Gold Bracers
+[OPTIMAL] [UNLEARNED] Hard Gold Coif
+[OPTIMAL] [UNLEARNED] Hard Gold Cuirass
+[OPTIMAL] [UNLEARNED] Hard Gold Gauntlet
+[OPTIMAL] [UNLEARNED] Hard Gold Leggings
+[OPTIMAL] [UNLEARNED] Hard Gold Pauldrons
+[OPTIMAL] [UNLEARNED] Hardened Frostguard
+[OPTIMAL] [UNLEARNED] Hardened Iron Shortsword
+[OPTIMAL] [UNLEARNED] Heartseeker
+[OPTIMAL] [UNLEARNED] Heavy Bronze Mace
+[OPTIMAL] [UNLEARNED] Heavy Copper Broadsword
+[OPTIMAL] [UNLEARNED] Heavy Copper Maul
+[OPTIMAL] [UNLEARNED] Heavy Grinding Stone
+[OPTIMAL] [UNLEARNED] Heavy Mithril Axe
+[OPTIMAL] [UNLEARNED] Heavy Mithril Boots
+[OPTIMAL] [UNLEARNED] Heavy Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Heavy Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Heavy Mithril Helm
+[OPTIMAL] [UNLEARNED] Heavy Mithril Pants
+[OPTIMAL] [UNLEARNED] Heavy Mithril Shoulder
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Sharpening Stone
+[OPTIMAL] [UNLEARNED] Heavy Thorium Gauntlets
+[OPTIMAL] [UNLEARNED] Heavy Weightstone
+[OPTIMAL] [UNLEARNED] Huge Thorium Battleaxe
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Belt
+[OPTIMAL] [UNLEARNED] Imperial Plate Boots
+[OPTIMAL] [UNLEARNED] Imperial Plate Bracers
+[OPTIMAL] [UNLEARNED] Imperial Plate Chest
+[OPTIMAL] [UNLEARNED] Imperial Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Helm
+[OPTIMAL] [UNLEARNED] Imperial Plate Leggings
+[OPTIMAL] [UNLEARNED] Imperial Plate Shoulders
+[OPTIMAL] [UNLEARNED] Inlaid Mithril Cylinder
+[OPTIMAL] [UNLEARNED] Inlaid Thorium Hammer
+[OPTIMAL] [UNLEARNED] Invincible Mail
+[OPTIMAL] [UNLEARNED] Iridescent Hammer
+[OPTIMAL] [UNLEARNED] Iron Buckle
+[OPTIMAL] [UNLEARNED] Iron Counterweight
+[OPTIMAL] [UNLEARNED] Iron Fists
+[OPTIMAL] [UNLEARNED] Iron Morningstar
+[OPTIMAL] [UNLEARNED] Iron Shield Spike
+[OPTIMAL] [UNLEARNED] Ironforge Breastplate
+[OPTIMAL] [UNLEARNED] Ironforge Chain
+[OPTIMAL] [UNLEARNED] Ironforge Gauntlets
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironwood Blade
+[OPTIMAL] [UNLEARNED] Jade Serpentblade
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Justicar's Belt
+[OPTIMAL] [UNLEARNED] Justicar's Boots
+[OPTIMAL] [UNLEARNED] Justicar's Gauntlet
+[OPTIMAL] [UNLEARNED] Justicar's Gloves
+[OPTIMAL] [UNLEARNED] Justicar's Pauldrons
+[OPTIMAL] [UNLEARNED] Justicar's Sabatons
+[OPTIMAL] [UNLEARNED] Justicar's Waistguard
+[OPTIMAL] [UNLEARNED] Justicar's Wristguards
+[OPTIMAL] [UNLEARNED] Justice Epaulets
+[OPTIMAL] [UNLEARNED] Justice Gauntlets
+[OPTIMAL] [UNLEARNED] Justice Gloves
+[OPTIMAL] [UNLEARNED] Justice Greaves
+[OPTIMAL] [UNLEARNED] Justice Handguards
+[OPTIMAL] [UNLEARNED] Justice Leggings
+[OPTIMAL] [UNLEARNED] Justice Legguards
+[OPTIMAL] [UNLEARNED] Justice Legplates
+[OPTIMAL] [UNLEARNED] Justice Pauldrons
+[OPTIMAL] [UNLEARNED] Justice Sabatons
+[OPTIMAL] [UNLEARNED] Justice Spaulders
+[OPTIMAL] [UNLEARNED] Justice Treads
+[OPTIMAL] [UNLEARNED] Legguards of Glory
+[OPTIMAL] [UNLEARNED] Legionite Glaive
+[OPTIMAL] [UNLEARNED] Legplates of Glory
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Lionheart Helm
+[OPTIMAL] [UNLEARNED] Low-Background Truesilver Plates
+[OPTIMAL] [UNLEARNED] Mantle of the Second War
+[OPTIMAL] [UNLEARNED] Martyr's Legplates
+[OPTIMAL] [UNLEARNED] Massive Iron Axe
+[OPTIMAL] [UNLEARNED] Master Forge
+[OPTIMAL] [UNLEARNED] Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Mighty Iron Hammer
+[OPTIMAL] [UNLEARNED] Mithril Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Mithril Claws
+[OPTIMAL] [UNLEARNED] Mithril Claymore
+[OPTIMAL] [UNLEARNED] Mithril Coif
+[OPTIMAL] [UNLEARNED] Mithril Plate Bracers
+[OPTIMAL] [UNLEARNED] Mithril Plate Gloves
+[OPTIMAL] [UNLEARNED] Mithril Plate Pants
+[OPTIMAL] [UNLEARNED] Mithril Plate Shoulders
+[OPTIMAL] [UNLEARNED] Mithril Shield Spike
+[OPTIMAL] [UNLEARNED] Mithril Shortsword
+[OPTIMAL] [UNLEARNED] Mithril Spurs
+[OPTIMAL] [UNLEARNED] Mithril Stiletto
+[OPTIMAL] [UNLEARNED] Mithril Warhammer
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Nightfall
+[OPTIMAL] [UNLEARNED] Obsidian Champion
+[OPTIMAL] [UNLEARNED] Obsidian Defender
+[OPTIMAL] [UNLEARNED] Obsidian Destroyer
+[OPTIMAL] [UNLEARNED] Obsidian Grinding Stone
+[OPTIMAL] [UNLEARNED] Obsidian Heartseeker
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Reaver
+[OPTIMAL] [UNLEARNED] Obsidian Sageblade
+[OPTIMAL] [UNLEARNED] Obsidian Stormhammer
+[OPTIMAL] [UNLEARNED] Officer's Belt
+[OPTIMAL] [UNLEARNED] Officer's Boots
+[OPTIMAL] [UNLEARNED] Officer's Gauntlet
+[OPTIMAL] [UNLEARNED] Officer's Gloves
+[OPTIMAL] [UNLEARNED] Officer's Pauldrons
+[OPTIMAL] [UNLEARNED] Officer's Sabatons
+[OPTIMAL] [UNLEARNED] Officer's Waistguard
+[OPTIMAL] [UNLEARNED] Officer's Wristguards
+[OPTIMAL] [UNLEARNED] Orcish War Leggings
+[OPTIMAL] [UNLEARNED] Ornate Mithril Boots
+[OPTIMAL] [UNLEARNED] Ornate Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Ornate Mithril Gloves
+[OPTIMAL] [UNLEARNED] Ornate Mithril Helm
+[OPTIMAL] [UNLEARNED] Ornate Mithril Pants
+[OPTIMAL] [UNLEARNED] Ornate Mithril Shoulders
+[OPTIMAL] [UNLEARNED] Ornate Thorium Handaxe
+[OPTIMAL] [UNLEARNED] Patterned Bronze Bracers
+[OPTIMAL] [UNLEARNED] Pauldrons of Glory
+[OPTIMAL] [UNLEARNED] Pearl-handled Dagger
+[OPTIMAL] [UNLEARNED] Persuader
+[OPTIMAL] [UNLEARNED] Phantom Blade
+[OPTIMAL] [UNLEARNED] Polished Steel Boots
+[OPTIMAL] [UNLEARNED] Prefect's Belt
+[OPTIMAL] [UNLEARNED] Prefect's Boots
+[OPTIMAL] [UNLEARNED] Prefect's Gauntlet
+[OPTIMAL] [UNLEARNED] Prefect's Gloves
+[OPTIMAL] [UNLEARNED] Prefect's Pauldrons
+[OPTIMAL] [UNLEARNED] Prefect's Sabatons
+[OPTIMAL] [UNLEARNED] Prefect's Waistguard
+[OPTIMAL] [UNLEARNED] Prefect's Wristguards
+[OPTIMAL] [UNLEARNED] Protector's Boots
+[OPTIMAL] [UNLEARNED] Protector's Chain Belt
+[OPTIMAL] [UNLEARNED] Protector's Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Chain Shirt
+[OPTIMAL] [UNLEARNED] Protector's Gloves
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Radiant Belt
+[OPTIMAL] [UNLEARNED] Radiant Boots
+[OPTIMAL] [UNLEARNED] Radiant Breastplate
+[OPTIMAL] [UNLEARNED] Radiant Circlet
+[OPTIMAL] [UNLEARNED] Radiant Gloves
+[OPTIMAL] [UNLEARNED] Radiant Leggings
+[OPTIMAL] [UNLEARNED] Razorspike Battleplate
+[OPTIMAL] [UNLEARNED] Razorspike Headcage
+[OPTIMAL] [UNLEARNED] Razorspike Shoulderplate
+[OPTIMAL] [UNLEARNED] Refined Arcanite Champion
+[OPTIMAL] [UNLEARNED] Refined Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Refined Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Reflective Truesilver Braincage
+[OPTIMAL] [UNLEARNED] Rough Bronze Boots
+[OPTIMAL] [UNLEARNED] Rough Bronze Bracers
+[OPTIMAL] [UNLEARNED] Rough Bronze Cuirass
+[OPTIMAL] [UNLEARNED] Rough Bronze Leggings
+[OPTIMAL] [UNLEARNED] Rough Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Rough Copper Chain Boots
+[MEDIUM] [LEARNED] Rough Copper Vest
+[OPTIMAL] [UNLEARNED] Rough Grinding Stone
+[MEDIUM] [LEARNED] Rough Sharpening Stone
+[MEDIUM] [LEARNED] Rough Weightstone
+[OPTIMAL] [UNLEARNED] Rune Edge
+[OPTIMAL] [UNLEARNED] Runed Copper Belt
+[OPTIMAL] [UNLEARNED] Runed Copper Bracers
+[OPTIMAL] [UNLEARNED] Runed Copper Breastplate
+[OPTIMAL] [UNLEARNED] Runed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Runed Copper Pants
+[OPTIMAL] [UNLEARNED] Runed Mithril Hammer
+[OPTIMAL] [UNLEARNED] Runic Breastplate
+[OPTIMAL] [UNLEARNED] Runic Plate Boots
+[OPTIMAL] [UNLEARNED] Runic Plate Helm
+[OPTIMAL] [UNLEARNED] Runic Plate Leggings
+[OPTIMAL] [UNLEARNED] Runic Plate Shoulders
+[OPTIMAL] [UNLEARNED] Sabatons of Glory
+[OPTIMAL] [UNLEARNED] Sageblade
+[OPTIMAL] [UNLEARNED] Sageblade of the Archmagus
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Chestplate
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Grips
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Helmet
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Legplates
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Protectors
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Spaulders
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Stompers
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Waistguard
+[OPTIMAL] [UNLEARNED] Searing Golden Blade
+[OPTIMAL] [UNLEARNED] Sentinel's Belt
+[OPTIMAL] [UNLEARNED] Sentinel's Boots
+[OPTIMAL] [UNLEARNED] Sentinel's Gauntlet
+[OPTIMAL] [UNLEARNED] Sentinel's Gloves
+[OPTIMAL] [UNLEARNED] Sentinel's Pauldrons
+[OPTIMAL] [UNLEARNED] Sentinel's Sabatons
+[OPTIMAL] [UNLEARNED] Sentinel's Waistguard
+[OPTIMAL] [UNLEARNED] Sentinel's Wristguards
+[OPTIMAL] [UNLEARNED] Serenity
+[OPTIMAL] [UNLEARNED] Shadow Crescent Axe
+[OPTIMAL] [UNLEARNED] Sharpening Wheel
+[OPTIMAL] [UNLEARNED] Shifting Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Boots
+[OPTIMAL] [UNLEARNED] Shining Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Shining Mithril Helm
+[OPTIMAL] [UNLEARNED] Shining Mithril Pants
+[OPTIMAL] [UNLEARNED] Shining Mithril Pauldrons
+[OPTIMAL] [UNLEARNED] Shining Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shoulderplates of Dread
+[OPTIMAL] [UNLEARNED] Shoulders of Glory
+[OPTIMAL] [UNLEARNED] Silver Rod
+[OPTIMAL] [UNLEARNED] Silver Skeleton Key
+[OPTIMAL] [UNLEARNED] Silvered Bronze Boots
+[OPTIMAL] [UNLEARNED] Silvered Bronze Breastplate
+[OPTIMAL] [UNLEARNED] Silvered Bronze Gauntlets
+[OPTIMAL] [UNLEARNED] Silvered Bronze Leggings
+[OPTIMAL] [UNLEARNED] Silvered Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Skyrider's Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Solid Grinding Stone
+[OPTIMAL] [UNLEARNED] Solid Iron Maul
+[OPTIMAL] [UNLEARNED] Solid Sharpening Stone
+[OPTIMAL] [UNLEARNED] Solid Weightstone
+[OPTIMAL] [UNLEARNED] Stalwart Helm
+[OPTIMAL] [UNLEARNED] Steel Breastplate
+[OPTIMAL] [UNLEARNED] Steel Plate Helm
+[OPTIMAL] [UNLEARNED] Steel Spear
+[OPTIMAL] [UNLEARNED] Steel Weapon Chain
+[OPTIMAL] [UNLEARNED] Sterling Silver Boots
+[OPTIMAL] [UNLEARNED] Sterling Silver Breastplate
+[OPTIMAL] [UNLEARNED] Sterling Silver Gauntlet
+[OPTIMAL] [UNLEARNED] Sterling Silver Leggings
+[OPTIMAL] [UNLEARNED] Sterling Silver Shoulders
+[OPTIMAL] [UNLEARNED] Stormcarver
+[OPTIMAL] [UNLEARNED] Strange Copper Boots
+[OPTIMAL] [UNLEARNED] Stronger-hold Gauntlets
+[OPTIMAL] [UNLEARNED] Stronghold Gauntlets
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Tempered Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Tempered Interference-Negating Helmet
+[OPTIMAL] [UNLEARNED] Tempest Gauntlets
+[OPTIMAL] [UNLEARNED] The Shatterer
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick War Axe
+[OPTIMAL] [UNLEARNED] Thorium Armor
+[OPTIMAL] [UNLEARNED] Thorium Belt
+[OPTIMAL] [UNLEARNED] Thorium Boots
+[OPTIMAL] [UNLEARNED] Thorium Bracers
+[OPTIMAL] [UNLEARNED] Thorium Cestus
+[OPTIMAL] [UNLEARNED] Thorium Greatmace
+[OPTIMAL] [UNLEARNED] Thorium Greatsword
+[OPTIMAL] [UNLEARNED] Thorium Helm
+[OPTIMAL] [UNLEARNED] Thorium Leggings
+[OPTIMAL] [UNLEARNED] Thorium Poleaxe
+[OPTIMAL] [UNLEARNED] Thorium Shield Spike
+[OPTIMAL] [UNLEARNED] Titanic Leggings
+[OPTIMAL] [UNLEARNED] Tranquility
+[OPTIMAL] [UNLEARNED] Truesilver Breastplate
+[OPTIMAL] [UNLEARNED] Truesilver Champion
+[OPTIMAL] [UNLEARNED] Truesilver Gauntlets
+[OPTIMAL] [UNLEARNED] Truesilver Rod
+[OPTIMAL] [UNLEARNED] Truesilver Skeleton Key
+[OPTIMAL] [UNLEARNED] Veteran's Boots
+[OPTIMAL] [UNLEARNED] Veteran's Chain Belt
+[OPTIMAL] [UNLEARNED] Veteran's Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Chain Shirt
+[OPTIMAL] [UNLEARNED] Veteran's Gloves
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Volcanic Hammer
+[OPTIMAL] [UNLEARNED] Warcrest of the Great Chief
+[OPTIMAL] [UNLEARNED] Warder's Belt
+[OPTIMAL] [UNLEARNED] Warder's Boots
+[OPTIMAL] [UNLEARNED] Warder's Gauntlet
+[OPTIMAL] [UNLEARNED] Warder's Gloves
+[OPTIMAL] [UNLEARNED] Warder's Pauldrons
+[OPTIMAL] [UNLEARNED] Warder's Sabatons
+[OPTIMAL] [UNLEARNED] Warder's Waistguard
+[OPTIMAL] [UNLEARNED] Warder's Wristguards
+[OPTIMAL] [UNLEARNED] Whitesoul Helm
+[OPTIMAL] [UNLEARNED] Wicked Mithril Blade
+
+== Mining (38/75) - Recipes: 506 ==
+Profession ID: 186
+[OPTIMAL] [UNLEARNED] Acolyte's Boots
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Belt
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Chain Shirt
+[OPTIMAL] [UNLEARNED] Acolyte's Gloves
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Acolyte's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Annihilator
+[OPTIMAL] [UNLEARNED] Anvil
+[OPTIMAL] [UNLEARNED] Arcanite Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Arcanite Champion
+[OPTIMAL] [UNLEARNED] Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Arcanite Rod
+[OPTIMAL] [UNLEARNED] Arcanite Skeleton Key
+[OPTIMAL] [UNLEARNED] Azerothium Legplates
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chain
+[OPTIMAL] [UNLEARNED] Azure Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Azure Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Azure Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Azure Skyforged Helm
+[OPTIMAL] [UNLEARNED] Azure Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Azure Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Azure Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Bagh Nakh
+[OPTIMAL] [UNLEARNED] Baleful Pauldrons
+[OPTIMAL] [UNLEARNED] Barbaric Iron Boots
+[OPTIMAL] [UNLEARNED] Barbaric Iron Breastplate
+[OPTIMAL] [UNLEARNED] Barbaric Iron Gloves
+[OPTIMAL] [UNLEARNED] Barbaric Iron Helm
+[OPTIMAL] [UNLEARNED] Barbaric Iron Shoulders
+[OPTIMAL] [UNLEARNED] Big Black Mace
+[OPTIMAL] [UNLEARNED] Big Bronze Knife
+[OPTIMAL] [UNLEARNED] Black Amnesty
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Black Grasp of the Destroyer
+[OPTIMAL] [UNLEARNED] Blackfathom Sharpening Stone
+[OPTIMAL] [UNLEARNED] Blackfury
+[OPTIMAL] [UNLEARNED] Blackguard
+[OPTIMAL] [UNLEARNED] Blazing Rapier
+[OPTIMAL] [UNLEARNED] Bleakwood Hew
+[OPTIMAL] [UNLEARNED] Blessed Plate Belt
+[OPTIMAL] [UNLEARNED] Blessed Plate Boots
+[OPTIMAL] [UNLEARNED] Blessed Plate Bracers
+[OPTIMAL] [UNLEARNED] Blessed Plate Chest
+[OPTIMAL] [UNLEARNED] Blessed Plate Gauntlet
+[OPTIMAL] [UNLEARNED] Blessed Plate Helm
+[OPTIMAL] [UNLEARNED] Blessed Plate Leggings
+[OPTIMAL] [UNLEARNED] Blessed Plate Pauldrons
+[OPTIMAL] [UNLEARNED] Blight
+[OPTIMAL] [UNLEARNED] Blood Talon
+[OPTIMAL] [UNLEARNED] Bloodsoul Breastplate
+[OPTIMAL] [UNLEARNED] Bloodsoul Gauntlets
+[OPTIMAL] [UNLEARNED] Bloodsoul Shoulders
+[OPTIMAL] [UNLEARNED] Blue Glittering Axe
+[OPTIMAL] [UNLEARNED] Bold Dirk
+[OPTIMAL] [UNLEARNED] Brass Knuckles
+[OPTIMAL] [UNLEARNED] Breastplate of Salvation
+[OPTIMAL] [UNLEARNED] Bronze Axe
+[OPTIMAL] [UNLEARNED] Bronze Battle Axe
+[OPTIMAL] [UNLEARNED] Bronze Dory
+[OPTIMAL] [UNLEARNED] Bronze Greatsword
+[OPTIMAL] [UNLEARNED] Bronze Mace
+[OPTIMAL] [UNLEARNED] Bronze Shortsword
+[OPTIMAL] [UNLEARNED] Bronze Warhammer
+[OPTIMAL] [UNLEARNED] Champion's Legplates
+[OPTIMAL] [UNLEARNED] Charged Mithril Battleaxe
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chain
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Chainmail
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Gauntlets
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Greaves
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Helm
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Legguards
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Pauldrons
+[OPTIMAL] [UNLEARNED] Cloudy Skyforged Wristguards
+[OPTIMAL] [UNLEARNED] Clutchlord's Grips
+[OPTIMAL] [UNLEARNED] Clutchlord's Stompers
+[OPTIMAL] [UNLEARNED] Clutchlord's Support
+[OPTIMAL] [UNLEARNED] Coarse Grinding Stone
+[OPTIMAL] [UNLEARNED] Coarse Sharpening Stone
+[OPTIMAL] [UNLEARNED] Coarse Weightstone
+[OPTIMAL] [UNLEARNED] Copper Axe
+[OPTIMAL] [UNLEARNED] Copper Battle Axe
+[OPTIMAL] [LEARNED] Copper Bracers
+[OPTIMAL] [UNLEARNED] Copper Chain Belt
+[OPTIMAL] [UNLEARNED] Copper Chain Boots
+[OPTIMAL] [UNLEARNED] Copper Chain Pants
+[OPTIMAL] [UNLEARNED] Copper Chain Vest
+[OPTIMAL] [UNLEARNED] Copper Claymore
+[OPTIMAL] [UNLEARNED] Copper Dagger
+[OPTIMAL] [LEARNED] Copper Mace
+[TRIVIAL] [LEARNED] Copper Rod
+[OPTIMAL] [UNLEARNED] Copper Shortsword
+[OPTIMAL] [UNLEARNED] Corruption
+[OPTIMAL] [UNLEARNED] Cracked Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Crusader's Boots
+[OPTIMAL] [UNLEARNED] Crusader's Chain Belt
+[OPTIMAL] [UNLEARNED] Crusader's Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Chain Shirt
+[OPTIMAL] [UNLEARNED] Crusader's Gloves
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Crusader's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Dark Iron Boots
+[OPTIMAL] [UNLEARNED] Dark Iron Bracers
+[OPTIMAL] [UNLEARNED] Dark Iron Destroyer
+[OPTIMAL] [UNLEARNED] Dark Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Dark Iron Helm
+[OPTIMAL] [UNLEARNED] Dark Iron Leggings
+[OPTIMAL] [UNLEARNED] Dark Iron Mail
+[OPTIMAL] [UNLEARNED] Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Dark Iron Pulverizer
+[OPTIMAL] [UNLEARNED] Dark Iron Reaver
+[OPTIMAL] [UNLEARNED] Dark Iron Shoulders
+[OPTIMAL] [UNLEARNED] Dark Iron Sunderer
+[OPTIMAL] [UNLEARNED] Darkrune Breastplate
+[OPTIMAL] [UNLEARNED] Darkrune Gauntlets
+[OPTIMAL] [UNLEARNED] Darkrune Helm
+[OPTIMAL] [UNLEARNED] Darksoul Breastplate
+[OPTIMAL] [UNLEARNED] Darksoul Leggings
+[OPTIMAL] [UNLEARNED] Darksoul Shoulders
+[OPTIMAL] [UNLEARNED] Darkspear
+[OPTIMAL] [UNLEARNED] Dawn's Edge
+[OPTIMAL] [UNLEARNED] Dawnbringer Shoulders
+[OPTIMAL] [UNLEARNED] Dazzling Mithril Rapier
+[OPTIMAL] [UNLEARNED] Deadly Bronze Poniard
+[OPTIMAL] [UNLEARNED] Deadly Heartseeker
+[OPTIMAL] [UNLEARNED] Demon Forged Breastplate
+[OPTIMAL] [UNLEARNED] Dense Grinding Stone
+[OPTIMAL] [UNLEARNED] Dense Sharpening Stone
+[OPTIMAL] [UNLEARNED] Dense Weightstone
+[OPTIMAL] [UNLEARNED] Depleted Thorium Sabatons
+[OPTIMAL] [UNLEARNED] Desecration
+[OPTIMAL] [UNLEARNED] Dreamscale Visor
+[OPTIMAL] [UNLEARNED] Ebon Hand
+[OPTIMAL] [UNLEARNED] Ebon Shiv
+[OPTIMAL] [UNLEARNED] Edge of Winter
+[OPTIMAL] [UNLEARNED] Elemental Sharpening Stone
+[OPTIMAL] [UNLEARNED] Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Helm
+[OPTIMAL] [UNLEARNED] Enchanted Thorium Leggings
+[OPTIMAL] [UNLEARNED] Enriched Thorium Breastplate
+[OPTIMAL] [UNLEARNED] Enriched Thorium Helm
+[OPTIMAL] [UNLEARNED] Enriched Thorium Leggings
+[OPTIMAL] [UNLEARNED] Evergreen Shield
+[OPTIMAL] [UNLEARNED] Fearmonger's Shoulderguards
+[OPTIMAL] [UNLEARNED] Fiery Chain Girdle
+[OPTIMAL] [UNLEARNED] Fiery Chain Shoulders
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Fiery Plate Gauntlets of the Hidden Technique
+[OPTIMAL] [UNLEARNED] Finely-Enchanted Battlehammer
+[OPTIMAL] [UNLEARNED] Forest Defender's Axe
+[OPTIMAL] [UNLEARNED] Frost Tiger Blade
+[OPTIMAL] [UNLEARNED] Frostguard
+[OPTIMAL] [UNLEARNED] Gauntlets of Glory
+[OPTIMAL] [UNLEARNED] Gemmed Copper Boots
+[OPTIMAL] [UNLEARNED] Gemmed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Girdle of the Dawn
+[OPTIMAL] [UNLEARNED] Glinting Steel Dagger
+[OPTIMAL] [UNLEARNED] Gloves of the Dawn
+[OPTIMAL] [UNLEARNED] Glowing Copper Boots
+[OPTIMAL] [UNLEARNED] Golden Iron Destroyer
+[OPTIMAL] [UNLEARNED] Golden Rod
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Boots
+[OPTIMAL] [UNLEARNED] Golden Scale Bracers
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Coif
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Cuirass
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Gauntlets
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Leggings
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Scale Shoulders
+[OPTIMAL] [UNLEARNED] Golden Skeleton Key
+[OPTIMAL] [UNLEARNED] Goregasher Grips
+[OPTIMAL] [UNLEARNED] Goregasher Stompers
+[OPTIMAL] [UNLEARNED] Goregasher Support
+[OPTIMAL] [UNLEARNED] Greaves of Glory
+[OPTIMAL] [UNLEARNED] Green Iron Boots
+[OPTIMAL] [UNLEARNED] Green Iron Bracers
+[OPTIMAL] [UNLEARNED] Green Iron Gauntlets
+[OPTIMAL] [UNLEARNED] Green Iron Hauberk
+[OPTIMAL] [UNLEARNED] Green Iron Helm
+[OPTIMAL] [UNLEARNED] Green Iron Leggings
+[OPTIMAL] [UNLEARNED] Green Iron Shoulders
+[OPTIMAL] [UNLEARNED] Greenhammer
+[OPTIMAL] [UNLEARNED] Guard's Boots
+[OPTIMAL] [UNLEARNED] Guard's Chain Belt
+[OPTIMAL] [UNLEARNED] Guard's Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Chain Shirt
+[OPTIMAL] [UNLEARNED] Guard's Gloves
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Guard's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Handguards of Glory
+[OPTIMAL] [UNLEARNED] Hard Gold Boots
+[OPTIMAL] [UNLEARNED] Hard Gold Bracers
+[OPTIMAL] [UNLEARNED] Hard Gold Coif
+[OPTIMAL] [UNLEARNED] Hard Gold Cuirass
+[OPTIMAL] [UNLEARNED] Hard Gold Gauntlet
+[OPTIMAL] [UNLEARNED] Hard Gold Leggings
+[OPTIMAL] [UNLEARNED] Hard Gold Pauldrons
+[OPTIMAL] [UNLEARNED] Hardened Frostguard
+[OPTIMAL] [UNLEARNED] Hardened Iron Shortsword
+[OPTIMAL] [UNLEARNED] Heartseeker
+[OPTIMAL] [UNLEARNED] Heavy Bronze Mace
+[OPTIMAL] [UNLEARNED] Heavy Copper Broadsword
+[OPTIMAL] [UNLEARNED] Heavy Copper Maul
+[OPTIMAL] [UNLEARNED] Heavy Grinding Stone
+[OPTIMAL] [UNLEARNED] Heavy Mithril Axe
+[OPTIMAL] [UNLEARNED] Heavy Mithril Boots
+[OPTIMAL] [UNLEARNED] Heavy Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Heavy Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Heavy Mithril Helm
+[OPTIMAL] [UNLEARNED] Heavy Mithril Pants
+[OPTIMAL] [UNLEARNED] Heavy Mithril Shoulder
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Obsidian Belt
+[OPTIMAL] [UNLEARNED] Heavy Sharpening Stone
+[OPTIMAL] [UNLEARNED] Heavy Thorium Gauntlets
+[OPTIMAL] [UNLEARNED] Heavy Weightstone
+[OPTIMAL] [UNLEARNED] Huge Thorium Battleaxe
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Bracers
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Breastplate
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Icebane Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Belt
+[OPTIMAL] [UNLEARNED] Imperial Plate Boots
+[OPTIMAL] [UNLEARNED] Imperial Plate Bracers
+[OPTIMAL] [UNLEARNED] Imperial Plate Chest
+[OPTIMAL] [UNLEARNED] Imperial Plate Gauntlets
+[OPTIMAL] [UNLEARNED] Imperial Plate Helm
+[OPTIMAL] [UNLEARNED] Imperial Plate Leggings
+[OPTIMAL] [UNLEARNED] Imperial Plate Shoulders
+[OPTIMAL] [UNLEARNED] Inlaid Mithril Cylinder
+[OPTIMAL] [UNLEARNED] Inlaid Thorium Hammer
+[OPTIMAL] [UNLEARNED] Invincible Mail
+[OPTIMAL] [UNLEARNED] Iridescent Hammer
+[OPTIMAL] [UNLEARNED] Iron Buckle
+[OPTIMAL] [UNLEARNED] Iron Counterweight
+[OPTIMAL] [UNLEARNED] Iron Fists
+[OPTIMAL] [UNLEARNED] Iron Morningstar
+[OPTIMAL] [UNLEARNED] Iron Shield Spike
+[OPTIMAL] [UNLEARNED] Ironforge Breastplate
+[OPTIMAL] [UNLEARNED] Ironforge Chain
+[OPTIMAL] [UNLEARNED] Ironforge Gauntlets
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Belt
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Breastplate
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironvine Gloves
+[OPTIMAL] [UNLEARNED] Ironwood Blade
+[OPTIMAL] [UNLEARNED] Jade Serpentblade
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Jagged Obsidian Shield
+[OPTIMAL] [UNLEARNED] Justicar's Belt
+[OPTIMAL] [UNLEARNED] Justicar's Boots
+[OPTIMAL] [UNLEARNED] Justicar's Gauntlet
+[OPTIMAL] [UNLEARNED] Justicar's Gloves
+[OPTIMAL] [UNLEARNED] Justicar's Pauldrons
+[OPTIMAL] [UNLEARNED] Justicar's Sabatons
+[OPTIMAL] [UNLEARNED] Justicar's Waistguard
+[OPTIMAL] [UNLEARNED] Justicar's Wristguards
+[OPTIMAL] [UNLEARNED] Justice Epaulets
+[OPTIMAL] [UNLEARNED] Justice Gauntlets
+[OPTIMAL] [UNLEARNED] Justice Gloves
+[OPTIMAL] [UNLEARNED] Justice Greaves
+[OPTIMAL] [UNLEARNED] Justice Handguards
+[OPTIMAL] [UNLEARNED] Justice Leggings
+[OPTIMAL] [UNLEARNED] Justice Legguards
+[OPTIMAL] [UNLEARNED] Justice Legplates
+[OPTIMAL] [UNLEARNED] Justice Pauldrons
+[OPTIMAL] [UNLEARNED] Justice Sabatons
+[OPTIMAL] [UNLEARNED] Justice Spaulders
+[OPTIMAL] [UNLEARNED] Justice Treads
+[OPTIMAL] [UNLEARNED] Legguards of Glory
+[OPTIMAL] [UNLEARNED] Legionite Glaive
+[OPTIMAL] [UNLEARNED] Legplates of Glory
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Light Obsidian Belt
+[OPTIMAL] [UNLEARNED] Lionheart Helm
+[OPTIMAL] [UNLEARNED] Low-Background Truesilver Plates
+[OPTIMAL] [UNLEARNED] Mantle of the Second War
+[OPTIMAL] [UNLEARNED] Martyr's Legplates
+[OPTIMAL] [UNLEARNED] Massive Iron Axe
+[OPTIMAL] [UNLEARNED] Master Forge
+[OPTIMAL] [UNLEARNED] Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Mighty Iron Hammer
+[OPTIMAL] [UNLEARNED] Mithril Blacksmith Hammer
+[OPTIMAL] [UNLEARNED] Mithril Claws
+[OPTIMAL] [UNLEARNED] Mithril Claymore
+[OPTIMAL] [UNLEARNED] Mithril Coif
+[OPTIMAL] [UNLEARNED] Mithril Plate Bracers
+[OPTIMAL] [UNLEARNED] Mithril Plate Gloves
+[OPTIMAL] [UNLEARNED] Mithril Plate Pants
+[OPTIMAL] [UNLEARNED] Mithril Plate Shoulders
+[OPTIMAL] [UNLEARNED] Mithril Shield Spike
+[OPTIMAL] [UNLEARNED] Mithril Shortsword
+[OPTIMAL] [UNLEARNED] Mithril Spurs
+[OPTIMAL] [UNLEARNED] Mithril Stiletto
+[OPTIMAL] [UNLEARNED] Mithril Warhammer
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Moonsteel Broadsword
+[OPTIMAL] [UNLEARNED] Nightfall
+[OPTIMAL] [UNLEARNED] Obsidian Champion
+[OPTIMAL] [UNLEARNED] Obsidian Defender
+[OPTIMAL] [UNLEARNED] Obsidian Destroyer
+[OPTIMAL] [UNLEARNED] Obsidian Grinding Stone
+[OPTIMAL] [UNLEARNED] Obsidian Heartseeker
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Mail Tunic
+[OPTIMAL] [UNLEARNED] Obsidian Reaver
+[OPTIMAL] [UNLEARNED] Obsidian Sageblade
+[OPTIMAL] [UNLEARNED] Obsidian Stormhammer
+[OPTIMAL] [UNLEARNED] Officer's Belt
+[OPTIMAL] [UNLEARNED] Officer's Boots
+[OPTIMAL] [UNLEARNED] Officer's Gauntlet
+[OPTIMAL] [UNLEARNED] Officer's Gloves
+[OPTIMAL] [UNLEARNED] Officer's Pauldrons
+[OPTIMAL] [UNLEARNED] Officer's Sabatons
+[OPTIMAL] [UNLEARNED] Officer's Waistguard
+[OPTIMAL] [UNLEARNED] Officer's Wristguards
+[OPTIMAL] [UNLEARNED] Orcish War Leggings
+[OPTIMAL] [UNLEARNED] Ornate Mithril Boots
+[OPTIMAL] [UNLEARNED] Ornate Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Ornate Mithril Gloves
+[OPTIMAL] [UNLEARNED] Ornate Mithril Helm
+[OPTIMAL] [UNLEARNED] Ornate Mithril Pants
+[OPTIMAL] [UNLEARNED] Ornate Mithril Shoulders
+[OPTIMAL] [UNLEARNED] Ornate Thorium Handaxe
+[OPTIMAL] [UNLEARNED] Patterned Bronze Bracers
+[OPTIMAL] [UNLEARNED] Pauldrons of Glory
+[OPTIMAL] [UNLEARNED] Pearl-handled Dagger
+[OPTIMAL] [UNLEARNED] Persuader
+[OPTIMAL] [UNLEARNED] Phantom Blade
+[OPTIMAL] [UNLEARNED] Polished Steel Boots
+[OPTIMAL] [UNLEARNED] Prefect's Belt
+[OPTIMAL] [UNLEARNED] Prefect's Boots
+[OPTIMAL] [UNLEARNED] Prefect's Gauntlet
+[OPTIMAL] [UNLEARNED] Prefect's Gloves
+[OPTIMAL] [UNLEARNED] Prefect's Pauldrons
+[OPTIMAL] [UNLEARNED] Prefect's Sabatons
+[OPTIMAL] [UNLEARNED] Prefect's Waistguard
+[OPTIMAL] [UNLEARNED] Prefect's Wristguards
+[OPTIMAL] [UNLEARNED] Protector's Boots
+[OPTIMAL] [UNLEARNED] Protector's Chain Belt
+[OPTIMAL] [UNLEARNED] Protector's Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Chain Shirt
+[OPTIMAL] [UNLEARNED] Protector's Gloves
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Protector's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Radiant Belt
+[OPTIMAL] [UNLEARNED] Radiant Boots
+[OPTIMAL] [UNLEARNED] Radiant Breastplate
+[OPTIMAL] [UNLEARNED] Radiant Circlet
+[OPTIMAL] [UNLEARNED] Radiant Gloves
+[OPTIMAL] [UNLEARNED] Radiant Leggings
+[OPTIMAL] [UNLEARNED] Razorspike Battleplate
+[OPTIMAL] [UNLEARNED] Razorspike Headcage
+[OPTIMAL] [UNLEARNED] Razorspike Shoulderplate
+[OPTIMAL] [UNLEARNED] Refined Arcanite Champion
+[OPTIMAL] [UNLEARNED] Refined Arcanite Reaper
+[OPTIMAL] [UNLEARNED] Refined Hammer of the Titans
+[OPTIMAL] [UNLEARNED] Reflective Truesilver Braincage
+[OPTIMAL] [UNLEARNED] Rough Bronze Boots
+[OPTIMAL] [UNLEARNED] Rough Bronze Bracers
+[OPTIMAL] [UNLEARNED] Rough Bronze Cuirass
+[OPTIMAL] [UNLEARNED] Rough Bronze Leggings
+[OPTIMAL] [UNLEARNED] Rough Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Rough Copper Chain Boots
+[MEDIUM] [LEARNED] Rough Copper Vest
+[OPTIMAL] [UNLEARNED] Rough Grinding Stone
+[MEDIUM] [LEARNED] Rough Sharpening Stone
+[MEDIUM] [LEARNED] Rough Weightstone
+[OPTIMAL] [UNLEARNED] Rune Edge
+[OPTIMAL] [UNLEARNED] Runed Copper Belt
+[OPTIMAL] [UNLEARNED] Runed Copper Bracers
+[OPTIMAL] [UNLEARNED] Runed Copper Breastplate
+[OPTIMAL] [UNLEARNED] Runed Copper Gauntlets
+[OPTIMAL] [UNLEARNED] Runed Copper Pants
+[OPTIMAL] [UNLEARNED] Runed Mithril Hammer
+[OPTIMAL] [UNLEARNED] Runic Breastplate
+[OPTIMAL] [UNLEARNED] Runic Plate Boots
+[OPTIMAL] [UNLEARNED] Runic Plate Helm
+[OPTIMAL] [UNLEARNED] Runic Plate Leggings
+[OPTIMAL] [UNLEARNED] Runic Plate Shoulders
+[OPTIMAL] [UNLEARNED] Sabatons of Glory
+[OPTIMAL] [UNLEARNED] Sageblade
+[OPTIMAL] [UNLEARNED] Sageblade of the Archmagus
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Chestplate
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Grips
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Helmet
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Legplates
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Protectors
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Spaulders
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Stompers
+[OPTIMAL] [UNLEARNED] Scarlet Soldier's Waistguard
+[OPTIMAL] [UNLEARNED] Searing Golden Blade
+[OPTIMAL] [UNLEARNED] Sentinel's Belt
+[OPTIMAL] [UNLEARNED] Sentinel's Boots
+[OPTIMAL] [UNLEARNED] Sentinel's Gauntlet
+[OPTIMAL] [UNLEARNED] Sentinel's Gloves
+[OPTIMAL] [UNLEARNED] Sentinel's Pauldrons
+[OPTIMAL] [UNLEARNED] Sentinel's Sabatons
+[OPTIMAL] [UNLEARNED] Sentinel's Waistguard
+[OPTIMAL] [UNLEARNED] Sentinel's Wristguards
+[OPTIMAL] [UNLEARNED] Serenity
+[OPTIMAL] [UNLEARNED] Shadow Crescent Axe
+[OPTIMAL] [UNLEARNED] Sharpening Wheel
+[OPTIMAL] [UNLEARNED] Shifting Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Boots
+[OPTIMAL] [UNLEARNED] Shining Mithril Breastplate
+[OPTIMAL] [UNLEARNED] Shining Mithril Gauntlet
+[OPTIMAL] [UNLEARNED] Shining Mithril Helm
+[OPTIMAL] [UNLEARNED] Shining Mithril Pants
+[OPTIMAL] [UNLEARNED] Shining Mithril Pauldrons
+[OPTIMAL] [UNLEARNED] Shining Silver Breastplate
+[OPTIMAL] [UNLEARNED] Shoulderplates of Dread
+[OPTIMAL] [UNLEARNED] Shoulders of Glory
+[OPTIMAL] [UNLEARNED] Silver Rod
+[OPTIMAL] [UNLEARNED] Silver Skeleton Key
+[OPTIMAL] [UNLEARNED] Silvered Bronze Boots
+[OPTIMAL] [UNLEARNED] Silvered Bronze Breastplate
+[OPTIMAL] [UNLEARNED] Silvered Bronze Gauntlets
+[OPTIMAL] [UNLEARNED] Silvered Bronze Leggings
+[OPTIMAL] [UNLEARNED] Silvered Bronze Shoulders
+[OPTIMAL] [UNLEARNED] Skyrider's Masterwork Stormhammer
+[OPTIMAL] [UNLEARNED] Solid Grinding Stone
+[OPTIMAL] [UNLEARNED] Solid Iron Maul
+[OPTIMAL] [UNLEARNED] Solid Sharpening Stone
+[OPTIMAL] [UNLEARNED] Solid Weightstone
+[OPTIMAL] [UNLEARNED] Stalwart Helm
+[OPTIMAL] [UNLEARNED] Steel Breastplate
+[OPTIMAL] [UNLEARNED] Steel Plate Helm
+[OPTIMAL] [UNLEARNED] Steel Spear
+[OPTIMAL] [UNLEARNED] Steel Weapon Chain
+[OPTIMAL] [UNLEARNED] Sterling Silver Boots
+[OPTIMAL] [UNLEARNED] Sterling Silver Breastplate
+[OPTIMAL] [UNLEARNED] Sterling Silver Gauntlet
+[OPTIMAL] [UNLEARNED] Sterling Silver Leggings
+[OPTIMAL] [UNLEARNED] Sterling Silver Shoulders
+[OPTIMAL] [UNLEARNED] Stormcarver
+[OPTIMAL] [UNLEARNED] Strange Copper Boots
+[OPTIMAL] [UNLEARNED] Stronger-hold Gauntlets
+[OPTIMAL] [UNLEARNED] Stronghold Gauntlets
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Sulfuron Hammer
+[OPTIMAL] [UNLEARNED] Tempered Dark Iron Plate
+[OPTIMAL] [UNLEARNED] Tempered Interference-Negating Helmet
+[OPTIMAL] [UNLEARNED] Tempest Gauntlets
+[OPTIMAL] [UNLEARNED] The Shatterer
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick Obsidian Breastplate
+[OPTIMAL] [UNLEARNED] Thick War Axe
+[OPTIMAL] [UNLEARNED] Thorium Armor
+[OPTIMAL] [UNLEARNED] Thorium Belt
+[OPTIMAL] [UNLEARNED] Thorium Boots
+[OPTIMAL] [UNLEARNED] Thorium Bracers
+[OPTIMAL] [UNLEARNED] Thorium Cestus
+[OPTIMAL] [UNLEARNED] Thorium Greatmace
+[OPTIMAL] [UNLEARNED] Thorium Greatsword
+[OPTIMAL] [UNLEARNED] Thorium Helm
+[OPTIMAL] [UNLEARNED] Thorium Leggings
+[OPTIMAL] [UNLEARNED] Thorium Poleaxe
+[OPTIMAL] [UNLEARNED] Thorium Shield Spike
+[OPTIMAL] [UNLEARNED] Titanic Leggings
+[OPTIMAL] [UNLEARNED] Tranquility
+[OPTIMAL] [UNLEARNED] Truesilver Breastplate
+[OPTIMAL] [UNLEARNED] Truesilver Champion
+[OPTIMAL] [UNLEARNED] Truesilver Gauntlets
+[OPTIMAL] [UNLEARNED] Truesilver Rod
+[OPTIMAL] [UNLEARNED] Truesilver Skeleton Key
+[OPTIMAL] [UNLEARNED] Veteran's Boots
+[OPTIMAL] [UNLEARNED] Veteran's Chain Belt
+[OPTIMAL] [UNLEARNED] Veteran's Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Chain Shirt
+[OPTIMAL] [UNLEARNED] Veteran's Gloves
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Helm
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Leggings
+[OPTIMAL] [UNLEARNED] Veteran's Silvered Chain Shirt
+[OPTIMAL] [UNLEARNED] Volcanic Hammer
+[OPTIMAL] [UNLEARNED] Warcrest of the Great Chief
+[OPTIMAL] [UNLEARNED] Warder's Belt
+[OPTIMAL] [UNLEARNED] Warder's Boots
+[OPTIMAL] [UNLEARNED] Warder's Gauntlet
+[OPTIMAL] [UNLEARNED] Warder's Gloves
+[OPTIMAL] [UNLEARNED] Warder's Pauldrons
+[OPTIMAL] [UNLEARNED] Warder's Sabatons
+[OPTIMAL] [UNLEARNED] Warder's Waistguard
+[OPTIMAL] [UNLEARNED] Warder's Wristguards
+[OPTIMAL] [UNLEARNED] Whitesoul Helm
+[OPTIMAL] [UNLEARNED] Wicked Mithril Blade
+
+Talents:
+Active Specialization: Shaman
+Loadout Name: Shaman
+Active Config ID: 4481329
+
+Talent Import String:
+CEdBzT2eoXLGqEykspPS/k8VfDAuAMAAAAAA
+
+== Talent Tree (Shaman / Shaman) ==
+Tidal Focus 2/5
+Improved Healing Wave 5/5
+
+Spellbook:
+== General ==
+Armor Proficiency (Passive, ID: 1293712, Known)
+Attack (ID: 6603, Known, Usable)
+Big Game Hunter (Passive, ID: 1259721, Known)
+Block (Passive, ID: 107, Known)
+Dodge (Passive, ID: 81, Known)
+Find Treasure (ID: 2481, Known, Usable)
+Languages (Passive, ID: 1293657, Known)
+Mace Specialization (Passive, ID: 1259719, Known)
+Stoneform (ID: 20594, Known, Usable)
+
+== Class ==
+Flametongue Weapon (ID: 8024, Known, Usable)
+Lightning Shield (ID: 324, Known, Usable)
+Rockbiter Weapon (ID: 8017, Known, Usable)
+Rockbiter Weapon (ID: 8018, Known, Usable)
+Stoneskin Totem (ID: 8071, Known, Usable)
+Stoneskin Totem (ID: 8154, Known, Usable)
+Strength of Earth Totem (ID: 8075, Known, Usable)
+
+== Spec ==
+Ancestral Spirit (ID: 2008, Known, Usable)
+Healing Wave (ID: 331, Known, Usable)
+Healing Wave (ID: 332, Known, Usable)
+Healing Wave (ID: 547, Known, Usable)
+
+== Elemental Combat ==
+Earth Shock (ID: 8042, Known, Usable)
+Earth Shock (ID: 8044, Known, Usable)
+Earth Shock (ID: 8045, Known, Usable)
+Earthbind Totem (ID: 2484, Known, Usable)
+Fire Nova (ID: 408341, Known, Usable)
+Flame Shock (ID: 8050, Known, Usable)
+Lightning Bolt (ID: 403, Known, Usable)
+Lightning Bolt (ID: 529, Known, Usable)
+Lightning Bolt (ID: 548, Known, Usable)
+Purge (ID: 370, Known, Usable)
+Searing Totem (ID: 3599, Known, Usable)
+Stoneclaw Totem (ID: 5730, Known, Usable)
+
+AddOns:
+AddOns Count: 32
+
+AllTheThings - Enabled: yes - Loadable: yes - Loaded: yes - Version: 5.3.13-141-g8c98ec1
+AllTheThings Collection History - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.3.4
+Arcane Wizard: Library - Enabled: yes - Loadable: yes - Loaded: yes - Version: v1.36
+Auctionator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 339
+Azeroth Public Library: Forever (Beta) - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.4.1-forever-beta
+Baganator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 829
+BugGrabber - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.0
+BugSack - Enabled: yes - Loadable: yes - Loaded: yes - Version: v12.1.2
+Can I Mog It? - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1-3
+CharacterExport Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.0-forever-beta
+Chattynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 224
+DarkMode  by D4KiR  - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.8.11
+Dialogue UI - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.0.5
+Farmer - Enabled: yes - Loadable: yes - Loaded: yes - Version: 3.27.22
+Forever Dungeon Journal - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.1
+Gathering - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.75
+KillDex - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.1
+Memento - Enabled: yes - Loadable: yes - Loaded: yes - Version: v2.30
+MiniDruidMana - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.4.8
+MinimapButtonButton - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.24.11
+MobInfo2 Retail Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 12.1.6
+Nova Instance Tracker - Enabled: yes - Loadable: yes - Loaded: yes - Version: 2.28
+Parcel - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.8.0
+Platynator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 490
+Plumber - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.9.6
+RareScanner - Enabled: yes - Loadable: yes - Loaded: yes - Version: 1.60.1.b4
+Syndicator - Enabled: yes - Loadable: yes - Loaded: yes - Version: 283
+TomTom - Enabled: yes - Loadable: yes - Loaded: yes - Version: v4.3.11-release
+WTFix preparation data - Enabled: yes - Loadable: yes - Loaded: yes
+Profession Master Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.11
+Trade Board Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 7.0.11
+Talents Forever - Enabled: yes - Loadable: yes - Loaded: yes - Version: 0.33.0 

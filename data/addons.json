@@ -1,6 +1,6 @@
 {
-    "scannedAt":  "2026-09-25T15:55:42",
-    "count":  38,
+    "scannedAt":  "2026-09-26T03:02:02",
+    "count":  32,
     "addons":  [
                    {
                        "folder":  "AllTheThings",
@@ -27,7 +27,7 @@
                                               "AllTheThingsSettingsPerCharacter"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -46,9 +46,9 @@
                                               "ATTCollectionHistoryDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
-                       "enabled":  null,
-                       "loaded":  null
+                       "saveModified":  "2026-09-26T02:59:00",
+                       "enabled":  true,
+                       "loaded":  true
                    },
                    {
                        "folder":  "ArcaneWizardLibrary",
@@ -93,7 +93,7 @@
                                               "AUCTIONATOR_CHARACTER_CONFIG"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -112,7 +112,7 @@
                                               "APLForeverData"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -131,7 +131,7 @@
                                               "BAGANATOR_CURRENT_PROFILE"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -150,7 +150,7 @@
                                               "BugGrabberDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -170,7 +170,7 @@
                                               "BugSackLDBIconDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -187,7 +187,7 @@
                                               "CanIMogItOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -209,7 +209,7 @@
                                               "CharacterExportForeverDBChar"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -231,7 +231,7 @@
                                               "CHATTYNATOR_COMMAND_HISTORY"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -251,7 +251,7 @@
                                               "DMTABPC"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  null,
                        "loaded":  null
                    },
@@ -271,7 +271,7 @@
                                               "DialogueUI_Saves"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -292,7 +292,27 @@
                                               "farmerCharOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
+                       "enabled":  true,
+                       "loaded":  true
+                   },
+                   {
+                       "folder":  "ForeverDungeonJournal",
+                       "title":  "Forever Dungeon Journal",
+                       "version":  "1.1",
+                       "author":  "Exehn",
+                       "purpose":  "Boss, loot, and quest journal for Forever dungeons.",
+                       "feedsSite":  true,
+                       "uncataloged":  false,
+                       "collects":  [
+                                        "Boss drops by dungeon",
+                                        "Dungeon quests and rewards"
+                                    ],
+                       "savedVariables":  [
+                                              "ForeverDungeonJournalDB"
+                                          ],
+                       "saveOnDisk":  true,
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -312,7 +332,7 @@
                                               "GatheringStats"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -330,7 +350,7 @@
                                               "KillDexCharDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -348,7 +368,7 @@
                                               "Memento_DataBossKill"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -367,7 +387,7 @@
                                               "MiniDruidManaDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -386,7 +406,7 @@
                                               "MinimapButtonButtonOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -415,7 +435,7 @@
                                               "MI2_SummaryDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -435,7 +455,7 @@
                                               "NITdatabase"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -452,7 +472,7 @@
                                               "ParcelDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -473,7 +493,7 @@
                                               "PLATYNATOR_LAST_INSTANCE"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -494,10 +514,10 @@
                                               "PlumberStorage",
                                               "PlumberDB_PC"
                                           ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  null,
-                       "loaded":  null
+                       "saveOnDisk":  true,
+                       "saveModified":  "2026-09-26T02:59:00",
+                       "enabled":  true,
+                       "loaded":  true
                    },
                    {
                        "folder":  "ProfessionMaster",
@@ -529,7 +549,7 @@
                                               "PM_CharacterSettings"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -546,7 +566,7 @@
                                               "RareScannerDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -565,7 +585,7 @@
                                               "SYNDICATOR_SUMMARIES"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -582,7 +602,7 @@
                                               "TalentsForeverBookDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -601,7 +621,7 @@
                                               "TomTomWaypointsM"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -622,7 +642,7 @@
                                               "TB_CharacterSettings"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
+                       "saveModified":  "2026-09-26T02:59:00",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -644,139 +664,6 @@
                        "saveModified":  null,
                        "enabled":  null,
                        "loaded":  null
-                   },
-                   {
-                       "folder":  "XLoot",
-                       "title":  "XLoot",
-                       "version":  "12.18.1",
-                       "author":  "Xuerian",
-                       "purpose":  "Loot frame. The modules under it are the same loot UI.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-                                              "XLootADB"
-                                          ],
-                       "saveOnDisk":  true,
-                       "saveModified":  "2026-09-25T12:00:15",
-                       "enabled":  true,
-                       "loaded":  true
-                   },
-                   {
-                       "folder":  "XLoot_Frame",
-                       "title":  "XLoot Frame",
-                       "version":  "12.18.1",
-                       "author":  "Xuerian",
-                       "purpose":  "Loot window used by XLoot.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-
-                                          ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  true,
-                       "loaded":  true
-                   },
-                   {
-                       "folder":  "XLoot_Group",
-                       "title":  "XLoot Group",
-                       "version":  "12.18.1",
-                       "author":  "Xuerian",
-                       "purpose":  "Group loot rolls used by XLoot.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-
-                                          ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  true,
-                       "loaded":  true
-                   },
-                   {
-                       "folder":  "XLoot_Master",
-                       "title":  "XLoot Master",
-                       "version":  "12.18.1",
-                       "author":  "Xuerian, Dridzt",
-                       "purpose":  "Master-looter window used by XLoot.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-
-                                          ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  true,
-                       "loaded":  true
-                   },
-                   {
-                       "folder":  "XLoot_Monitor",
-                       "title":  "XLoot Monitor",
-                       "version":  "12.18.1",
-                       "author":  "Xuerian",
-                       "purpose":  "Loot monitor used by XLoot.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-
-                                          ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  true,
-                       "loaded":  true
-                   },
-                   {
-                       "folder":  "XLoot_Options",
-                       "title":  "XLoot Options",
-                       "version":  "12.18.1",
-                       "author":  "Xuerian",
-                       "purpose":  "Settings window for XLoot.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-
-                                          ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  true,
-                       "loaded":  true
-                   },
-                   {
-                       "folder":  "XLoot_Toast",
-                       "title":  "XLoot Toast",
-                       "version":  "12.18.1",
-                       "author":  "Wheelbarrel00",
-                       "purpose":  "Loot toasts used by XLoot.",
-                       "feedsSite":  false,
-                       "uncataloged":  false,
-                       "collects":  {
-
-                                    },
-                       "savedVariables":  [
-
-                                          ],
-                       "saveOnDisk":  false,
-                       "saveModified":  null,
-                       "enabled":  true,
-                       "loaded":  true
                    }
                ]
 }

@@ -539,6 +539,113 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 
 .file-btn input { display: none; }
 
+.dungeon { margin-bottom: 10px; padding: 0; overflow: hidden; }
+.dungeon > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 14px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+}
+.dungeon > summary::-webkit-details-marker { display: none; }
+.dungeon > summary::before { content: "▸"; color: var(--gold); }
+.dungeon[open] > summary::before { content: "▾"; }
+.dungeon > summary h3 { margin: 0; font-size: 20px; }
+.dungeon > summary .meta { margin: 0; font-size: 14px; }
+.dungeon[open] > summary { border-bottom: 1px solid var(--line); background: var(--panel-2); }
+.dungeon > :not(summary) { margin-left: 18px; margin-right: 18px; }
+.dungeon > :last-child { margin-bottom: 18px; }
+.dungeon .group-label { margin-top: 16px; }
+.dungeon-blurb { margin-top: 12px; color: var(--muted); max-width: 70ch; }
+
+.boss-grid, .quest-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 10px;
+}
+
+.boss, .quest {
+  background: #182014;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.boss h4 { margin: 0; font-size: 16px; color: var(--cream); }
+.boss > small, .quest > small { display: block; color: var(--muted); font-size: 13px; }
+.quest strong { display: block; }
+.quest p { margin: 6px 0 0; font-size: 14px; }
+.quest .meta { margin: 4px 0 0; font-size: 13px; }
+.reward-label { color: var(--gold); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.loot { list-style: none; margin: 8px 0 0; padding: 0; }
+.loot li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  padding: 4px 0;
+  border-top: 1px solid rgba(58, 74, 48, 0.6);
+}
+.loot li:first-child { border-top: 0; }
+.loot small { flex-basis: 100%; color: var(--muted); font-size: 12px; }
+.loot li.owned small { color: var(--teal); }
+.loot .badge { font-size: 10px; padding: 2px 6px; }
+
+.item { font-weight: 600; }
+.q-poor { color: #9d9d9d; }
+.q-common { color: #f3f3f3; }
+.q-uncommon { color: #1eff00; }
+.q-rare { color: #3d9bff; }
+.q-epic { color: #b86bff; }
+.q-legendary { color: #ff8000; }
+
+.drop-note { color: var(--teal); }
+
+.profession { margin-bottom: 12px; }
+.profession > .who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 10px; }
+.profession > .who h3 { margin: 0; }
+.profession > .who .meta { margin: 0; }
+
+.craft-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 8px;
+}
+
+.craft {
+  background: #182014;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.craft.known { border-color: #4b5f3d; }
+.craft-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.craft-head small { color: var(--danger); font-size: 12px; }
+.craft-head .badge { font-size: 10px; padding: 2px 6px; margin-left: auto; }
+
+.diff { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; background: var(--line); }
+.diff-orange { background: #ff8040; }
+.diff-yellow { background: #ffff00; }
+.diff-green { background: #40bf40; }
+.diff-grey { background: #808080; }
+.diff-locked { background: transparent; border: 1px solid var(--danger); }
+
+.reagents { list-style: none; margin: 6px 0 0; padding: 0; font-size: 13px; }
+.reagents li { padding: 1px 0; }
+.reagents li.short { color: var(--muted); }
+.reagents li.have { color: var(--cream); }
+.reagents small { color: var(--muted); }
+.reagents a { color: inherit; text-decoration: underline dotted; }
+
+.learn { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.learn a { color: var(--teal); }
+.learn .meta { margin: 0; }
+.owned-note { color: var(--teal); }
+
 footer.site {
   border-top: 1px solid var(--line);
   padding: 22px 0 40px;
