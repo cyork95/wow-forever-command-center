@@ -5,5 +5,12 @@
     "scope": "shared",
     "icon": "racial_dwarf_findtreasure",
     "lines": ["/p GGs!", "/cheer"]
+  },
+  {
+    "id": "thank",
+    "name": "Thank",
+    "scope": "shared",
+    "icon": "spell_nature_earthbindtotem",
+    "lines": ["/thank"]
   }
 ]
