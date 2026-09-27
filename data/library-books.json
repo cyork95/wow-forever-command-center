@@ -1,0 +1,816 @@
+{
+    "source":  "Zockify",
+    "url":  "https://www.zockify.com/forever/library-books/",
+    "updated":  "2026-09-27",
+    "mapUrl":  "https://www.zockify.com/db/wow/maps/en/preview/{mapId}.webp",
+    "books":  [
+                  {
+                      "id":  "mageek001",
+                      "name":  "Archmage Theocritus\u0027 Research Journal",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Elwynn Forest",
+                      "location":  "Archmage Theocritus\u0027 Research Journal is located at 65.4 70.1 in the Tower of Azora, on a table about halfway up the tower.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1429,
+                      "pins":  [
+                                   {
+                                       "x":  65.4,
+                                       "y":  70.1,
+                                       "label":  "Tower of Azora"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek002",
+                      "name":  "Rumi of Gnomeregan: The Collected Works",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Loch Modan",
+                      "location":  "Rumi of Gnomeregan: The Collected Works is located at 35.6 48.9 in Thelsamar, upstairs in the Inn.",
+                      "notes":  [
+                                    "According to current Beta reports, Horde players may not be able to access this copy and should use the Westfall location instead."
+                                ],
+                      "moved":  false,
+                      "mapId":  1432,
+                      "pins":  [
+                                   {
+                                       "x":  35.6,
+                                       "y":  48.9,
+                                       "label":  "Thelsamar Inn"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek003",
+                      "name":  "Rumi of Gnomeregan: The Collected Works",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Westfall",
+                      "location":  "Rumi of Gnomeregan: The Collected Works is also located at 52.7 53.8 in the Sentinel Hill Inn (table behind innkeeper).",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1436,
+                      "pins":  [
+                                   {
+                                       "x":  52.7,
+                                       "y":  53.8,
+                                       "label":  "Sentinel Hill Inn"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek004",
+                      "name":  "Archmage Antonidas: The Unabridged Autobiography",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Ironforge",
+                      "location":  "Archmage Antonidas: The Unabridged Autobiography is located at 76.3 10.8 in the Hall of Explorers (table at center of hall).",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1455,
+                      "pins":  [
+                                   {
+                                       "x":  76.3,
+                                       "y":  10.8,
+                                       "label":  "Hall of Explorers"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek005",
+                      "name":  "Runes of the Sorcerer-Kings",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Loch Modan",
+                      "location":  "Runes of the Sorcerer-Kings is located at 77.5 14.1 in the Ogre cave at Mo’Grosh Stronghold.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1432,
+                      "pins":  [
+                                   {
+                                       "x":  77.5,
+                                       "y":  14.1,
+                                       "label":  "Mo\u0027Grosh Stronghold"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek006",
+                      "name":  "Bewitchments and Glamours",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Westfall",
+                      "location":  "Bewitchments and Glamours is located at 45.4 70.5 in Moonbrook, on a bookshelf in the first house on the left as you enter.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1436,
+                      "pins":  [
+                                   {
+                                       "x":  45.4,
+                                       "y":  70.5,
+                                       "label":  "Moonbrook"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek007",
+                      "name":  "The Apothecary\u0027s Metaphysical Primer",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Tirisfal",
+                      "location":  "The Apothecary\u0027s Metaphysical Primer is located at 59.5 52.3 in the Alchemy shop in Brill, on the shelf next to Apothecary Johaan.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1420,
+                      "pins":  [
+                                   {
+                                       "x":  59.5,
+                                       "y":  52.3,
+                                       "label":  "Brill Alchemy Shop"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek008",
+                      "name":  "Ataeric: On Arcane Curiosities",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Silverpine Forest",
+                      "location":  "Season of Discovery spot: Ataeric: On Arcane Curiosities is located at 43.4 41.2 in The Sepulcher, inside the tomb on a table near Sebastian Meloche.",
+                      "notes":  [
+
+                                ],
+                      "moved":  true,
+                      "mapId":  1421,
+                      "pins":  [
+                                   {
+                                       "x":  43.4,
+                                       "y":  41.2,
+                                       "label":  "The Sepulcher"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek009",
+                      "name":  "The Dalaran Digest, Vol. 23",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Silverpine Forest",
+                      "location":  "The Dalaran Digest, Vol. 23 is located at 63.5 63.1 in Amber Mill, on a bookshelf in the northeast corner of the main hall.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1421,
+                      "pins":  [
+                                   {
+                                       "x":  63.5,
+                                       "y":  63.1,
+                                       "label":  "Amber Mill"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek010",
+                      "name":  "Crimes Against Anatomy",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Duskwood",
+                      "location":  "Crimes Against Anatomy is located at 16.7 28.5 in the Dawning Wood Catacombs, reached through the Raven Hill Crypt.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1431,
+                      "pins":  [
+                                   {
+                                       "x":  16.7,
+                                       "y":  28.5,
+                                       "label":  "Raven Hill Crypt"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek011",
+                      "name":  "Goaz Scrolls",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Wetlands",
+                      "location":  "Goaz Scrolls is located at 33.6 47.9 at Whelgar’s Excavation Site, inside an urn on the lowest level.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1437,
+                      "pins":  [
+                                   {
+                                       "x":  33.6,
+                                       "y":  47.9,
+                                       "label":  "Whelgar\u0027s Excavation Site"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek012",
+                      "name":  "A Web of Lies: Debunking Myths and Legends",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Arathi Highlands",
+                      "location":  "A Web of Lies: Debunking Myths and Legends is located at 73.0 65.0 in Witherbark Village, outside a tent near the hut.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1417,
+                      "pins":  [
+                                   {
+                                       "x":  73,
+                                       "y":  65,
+                                       "label":  "Witherbark Village"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek013",
+                      "name":  "Defensive Magics 101",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Alterac Mountains",
+                      "location":  "Defensive Magics 101 is located at 48.5 57.6 at Gallows Corner, inside the first tower in the Ogre fortress.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1416,
+                      "pins":  [
+                                   {
+                                       "x":  48.5,
+                                       "y":  57.6,
+                                       "label":  "Gallows Corner"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek014",
+                      "name":  "Basilisks: Should Petrification be Feared?",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Stranglethorn Vale",
+                      "location":  "Basilisks: Should Petrification be Feared? is located at 41.5 50.8 at Crystalvein Mine, on a wooden platform to the right of the cave entrance.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1434,
+                      "pins":  [
+                                   {
+                                       "x":  41.5,
+                                       "y":  50.8,
+                                       "label":  "Crystalvein Mine"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek015",
+                      "name":  "A Luddite\u0027s Guide to Caring for Your Demonic Pet",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Swamp of Sorrows",
+                      "location":  "A Luddite\u0027s Guide to Caring for Your Demonic Pet is located at 61.0 22.0 in a cage at Fallow Sanctuary. You can click the book through the cage without using a key. In case the book isn’t clickable, kill Lost Ones around Fallow Sanctuary to get Rusted Cage Key.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1435,
+                      "pins":  [
+                                   {
+                                       "x":  61,
+                                       "y":  22,
+                                       "label":  "Fallow Sanctuary"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek016",
+                      "name":  "Mummies: A Guide to the Unsavory Undead",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Badlands",
+                      "location":  "Mummies: A Guide to the Unsavory Undead is located at 57.0 39.0 inside a crypt on the mountain. The path up starts at ~56.0 45.0.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1418,
+                      "pins":  [
+                                   {
+                                       "x":  57,
+                                       "y":  39,
+                                       "label":  "Crypt on the mountain"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek017",
+                      "name":  "A Mind of Metal",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Searing Gorge",
+                      "location":  "A Mind of Metal is located at 37.8 49.6, on a table under a tent.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1427,
+                      "pins":  [
+                                   {
+                                       "x":  37.8,
+                                       "y":  49.6,
+                                       "label":  "Under the tent"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek018",
+                      "name":  "Venomous Journeys",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Hinterlands",
+                      "location":  "Venomous Journeys is located at 36.0 72.7 in Shadra’Alor, behind a brown wall near the easternmost temple.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1425,
+                      "pins":  [
+                                   {
+                                       "x":  36,
+                                       "y":  72.7,
+                                       "label":  "Shadra\u0027Alor"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek019",
+                      "name":  "Stonewrought Design",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Blackrock Mountain",
+                      "location":  "Stonewrought Design is located at approximately 48.6 64.2 in the Center Vault, on the large platform in the middle area.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  null,
+                      "pins":  [
+
+                               ]
+                  },
+                  {
+                      "id":  "mageek020",
+                      "name":  "Conjurer\u0027s Codex",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Blasted Lands",
+                      "location":  "Conjurer\u0027s Codex is located at 55.3 32.2.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1419,
+                      "pins":  [
+                                   {
+                                       "x":  55.3,
+                                       "y":  32.2,
+                                       "label":  ""
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek021",
+                      "name":  "Sanguine Sorcery",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Swamp of Sorrows",
+                      "location":  "Sanguine Sorcery is located at 70.0 51.0 on top of the Temple of Atal’Hakkar. Your player coordinates while on the temple are approximately 56.3 76.2.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1435,
+                      "pins":  [
+                                   {
+                                       "x":  70,
+                                       "y":  51,
+                                       "label":  "Temple of Atal\u0027Hakkar"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek024",
+                      "name":  "A Study of the Light",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Eastern Plaguelands",
+                      "location":  "A Study of the Light is located at 71.8 48.2 inside Light’s Hope Chapel (changed from 81.7 57.8 in SoD).",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1423,
+                      "pins":  [
+                                   {
+                                       "x":  71.8,
+                                       "y":  48.2,
+                                       "label":  "Light\u0027s Hope Chapel"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek025",
+                      "name":  "Undead Potatoes",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Western Plaguelands",
+                      "location":  "Undead Potatoes is located at 38.3 54.6 at Felstone Field, upstairs inside Janice Felstone’s farmhouse.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1422,
+                      "pins":  [
+                                   {
+                                       "x":  38.3,
+                                       "y":  54.6,
+                                       "label":  "Felstone Field"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek026",
+                      "name":  "Necromancy 101",
+                      "kind":  "library",
+                      "region":  "Eastern Kingdoms",
+                      "zone":  "Western Plaguelands",
+                      "location":  "Necromancy 101 is located at 69.4 72.8 in Caer Darrow, at the very top of the Scholomance building. The book is on a table and is not inside the Scholomance instance.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1422,
+                      "pins":  [
+                                   {
+                                       "x":  69.4,
+                                       "y":  72.8,
+                                       "label":  "Caer Darrow"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal001",
+                      "name":  "Nar\u0027thalas Almanac, Vol. 74",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Darkshore",
+                      "location":  "Nar\u0027thalas Almanac, Vol. 74 is located at 59.6 22.2 in the Ruins of Mathystra, down the stairs on the third landing.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1439,
+                      "pins":  [
+                                   {
+                                       "x":  59.6,
+                                       "y":  22.2,
+                                       "label":  "Ruins of Mathystra"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal002",
+                      "name":  "The Lessons of Ta\u0027zo",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Orgrimmar",
+                      "location":  "The Lessons of Ta\u0027zo is located at 38.7 78.4 in the Valley of Spirits, at the large tablet near the Darkbriar Lodge sign.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1454,
+                      "pins":  [
+                                   {
+                                       "x":  38.7,
+                                       "y":  78.4,
+                                       "label":  "Valley of Spirits"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal003",
+                      "name":  "Arcanic Systems Manual",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "The Barrens",
+                      "location":  "Arcanic Systems Manual is located at 56.3 8.8 in the Sludge Fen, on a chair in the control room at the top of the Oil Rig.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1413,
+                      "pins":  [
+                                   {
+                                       "x":  56.3,
+                                       "y":  8.8,
+                                       "label":  "Sludge Fen"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal004",
+                      "name":  "Secrets of the Dreamers",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "The Barrens",
+                      "location":  "Secrets of the Dreamers is located at 52.8 54.7 in the Cavern of Mists, in the cave system leading to Wailing Caverns. The book is near the dungeon entrance, but not inside the dungeon instance.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  null,
+                      "pins":  [
+
+                               ]
+                  },
+                  {
+                      "id":  "magekal005",
+                      "name":  "Baxtan: On Destructive Magics",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "The Barrens",
+                      "location":  "Baxtan: On Destructive Magics is located at 62.7 36.3 in Ratchet, next to Gazlowe in the Engineering building.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1413,
+                      "pins":  [
+                                   {
+                                       "x":  62.7,
+                                       "y":  36.3,
+                                       "label":  "Ratchet"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal006",
+                      "name":  "Fury of the Land",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Stonetalon Mountains",
+                      "location":  "Fury of the Land is located at 74.4 85.7 at the Grimtotem Post, on top of a barrel inside one of the tents.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1442,
+                      "pins":  [
+                                   {
+                                       "x":  74.4,
+                                       "y":  85.7,
+                                       "label":  "Grimtotem Post"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal007",
+                      "name":  "RwlRwlRwlRwl!",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Dustwallow Marsh",
+                      "location":  "RwlRwlRwlRwl! is located at 57.0 21.0 at Witch Hill, on the ground at the eastern edge of the Murloc camp.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1445,
+                      "pins":  [
+                                   {
+                                       "x":  57,
+                                       "y":  21,
+                                       "label":  "Witch Hill"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal008",
+                      "name":  "Demons and You",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Desolace",
+                      "location":  "Demons and You is located at 55.0 28.0 in Thunder Axe Fortress, inside the large building on a bench against the wall.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1443,
+                      "pins":  [
+                                   {
+                                       "x":  55,
+                                       "y":  28,
+                                       "label":  "Thunder Axe Fortress"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal009",
+                      "name":  "Geomancy: The Stone-Cold Truth",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Thousand Needles",
+                      "location":  "Geomancy: The Stone-Cold Truth is located at 34.0 40.0 at Darkcloud Pinnacle, inside the largest hut. The path up starts at approximately 31.0 37.0.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1441,
+                      "pins":  [
+                                   {
+                                       "x":  34,
+                                       "y":  40,
+                                       "label":  "Darkcloud Pinnacle"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal010",
+                      "name":  "The Liminal and the Arcane",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Feralas",
+                      "location":  "The Liminal and the Arcane is located at 50.6 15.7 south of Jademir Lake.",
+                      "notes":  [
+
+                                ],
+                      "moved":  true,
+                      "mapId":  1444,
+                      "pins":  [
+                                   {
+                                       "x":  50.6,
+                                       "y":  15.7,
+                                       "label":  "South of Jademir Lake"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal011",
+                      "name":  "Legends of the Tidesages",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Tanaris",
+                      "location":  "Legends of the Tidesages is located at 72.6 47.8 on a bookshelf in the middle building of the pirate camp.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1446,
+                      "pins":  [
+                                   {
+                                       "x":  72.6,
+                                       "y":  47.8,
+                                       "label":  "Pirate camp"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal012",
+                      "name":  "Everyday Etiquette",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Azshara",
+                      "location":  "Everyday Etiquette is located at 20.7 62.0 in the Haldarr Encampment, on top of a crate beside the hut.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1447,
+                      "pins":  [
+                                   {
+                                       "x":  20.7,
+                                       "y":  62,
+                                       "label":  "Haldarr Encampment"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal013",
+                      "name":  "Ka-Boom!",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Winterspring",
+                      "location":  "Ka-Boom! is located at 60.7 37.7 in Everlook, inside the Alchemy building on a shelf behind the Alchemy Supplies vendor.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1452,
+                      "pins":  [
+                                   {
+                                       "x":  60.7,
+                                       "y":  37.7,
+                                       "label":  "Everlook"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "magekal014",
+                      "name":  "Northern Kalimdor - A Comprehensive Guide",
+                      "kind":  "library",
+                      "region":  "Kalimdor",
+                      "zone":  "Felwood",
+                      "location":  "Northern Kalimdor - A Comprehensive Guide is located at 65.2 3.2 inside Timbermaw Hold, next to the bridge above the rep vendor.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1448,
+                      "pins":  [
+                                   {
+                                       "x":  65.2,
+                                       "y":  3.2,
+                                       "label":  "Timbermaw Hold"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek022",
+                      "name":  "The Knight and the Lady",
+                      "kind":  "mage",
+                      "region":  "Mage books",
+                      "zone":  "Eastern Plaguelands",
+                      "location":  "The Knight and the Lady is located at 47.3 42.3 in WoW Forever (changed from 54.5 50.8 in SoD).",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1423,
+                      "pins":  [
+                                   {
+                                       "x":  47.3,
+                                       "y":  42.3,
+                                       "label":  ""
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek023",
+                      "name":  "Scourge: Undead Menace or Misunderstood?",
+                      "kind":  "mage",
+                      "region":  "Mage books",
+                      "zone":  "Eastern Plaguelands",
+                      "location":  "Scourge: Undead Menace or Misunderstood? is located at 26.5 15.0, on a table to the right before crossing the bridge to Stratholme. The book is not inside the instance. (changed from 31.3 21.0 in SoD).",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  1423,
+                      "pins":  [
+                                   {
+                                       "x":  26.5,
+                                       "y":  15,
+                                       "label":  "Before the Stratholme bridge"
+                                   }
+                               ]
+                  },
+                  {
+                      "id":  "mageek027",
+                      "name":  "Magma or Lava?",
+                      "kind":  "mage",
+                      "region":  "Mage books",
+                      "zone":  "Blackrock Mountain",
+                      "location":  "Magma or Lava? is located at 48.4 63.6 inside Blackrock Mountain, before the entrance to Blackrock Depths. The book is on a platform and is not inside the instance.",
+                      "notes":  [
+
+                                ],
+                      "moved":  false,
+                      "mapId":  null,
+                      "pins":  [
+
+                               ]
+                  }
+              ]
+}

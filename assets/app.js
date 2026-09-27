@@ -38,6 +38,9 @@ const state = {
   quests: null,
   questLoading: false,
   questQuery: "",
+  books: null,
+  openBookRegions: new Set(),
+  openBookMaps: new Set(),
   professions: null,
   profLoading: false,
   macros: null,
@@ -762,6 +765,8 @@ function renderChecklist() {
   list.replaceChildren();
   if (!items.length) {
     list.append(el("p", { class: "empty-note", text: "Nothing on this filter." }));
+    const books = renderLibraryBooks();
+    if (books) list.append(books);
     return;
   }
 
@@ -786,6 +791,117 @@ function renderChecklist() {
     rows.forEach((item) => block.append(renderHunt(item)));
     list.append(block);
   });
+  const books = renderLibraryBooks();
+  if (books) list.append(books);
+}
+
+function bookKey(book) {
+  return `book:${state.selected}:${nameKey(book.name)}`;
+}
+
+function bookTurnedIn(book) {
+  return !!state.checks[bookKey(book)];
+}
+
+function renderBookMap(book) {
+  const template = (state.books && state.books.mapUrl) || "";
+  const pins = asList(book.pins).map((pin) => el("span", {
+    class: `book-pin${pin.x > 70 ? " flip" : ""}`,
+    style: `left:${pin.x}%;top:${pin.y}%`,
+    title: `${pin.label || book.zone} ${pin.x}, ${pin.y}`
+  }, [pin.label ? el("span", { text: pin.label }) : null]));
+  return el("figure", { class: "book-map" }, [
+    el("img", { src: template.replace("{mapId}", book.mapId), alt: `${book.zone} map`, loading: "lazy", width: "768", height: "512" }),
+    ...pins
+  ]);
+}
+
+function renderBook(book) {
+  const done = bookTurnedIn(book);
+  const box = el("input", { type: "checkbox", "aria-label": `Turned in ${book.name}` });
+  box.checked = done;
+  box.addEventListener("change", () => {
+    state.checks[bookKey(book)] = box.checked;
+    saveStore();
+    renderChecklist();
+  });
+  const pin = asList(book.pins)[0];
+  const coords = pin ? `${pin.x}, ${pin.y}` : "";
+  const mapOpen = state.openBookMaps.has(book.id);
+  const kids = [
+    el("strong", { text: book.name }),
+    el("p", { class: "meta", text: [book.zone, coords, book.moved ? "moved in Forever, new spot not found yet" : ""].filter(Boolean).join(" · ") }),
+    book.location ? el("p", { text: book.location }) : null,
+    ...asList(book.notes).map((note) => el("p", { class: "meta", text: note }))
+  ];
+  if (book.mapId) {
+    kids.push(el("button", {
+      type: "button",
+      class: "book-map-toggle",
+      "aria-expanded": mapOpen ? "true" : "false",
+      text: mapOpen ? "Hide map" : "Show map",
+      onclick: () => {
+        if (mapOpen) state.openBookMaps.delete(book.id);
+        else state.openBookMaps.add(book.id);
+        renderChecklist();
+      }
+    }));
+    if (mapOpen) kids.push(renderBookMap(book));
+  }
+  return el("article", { class: `book${done ? " done" : ""}${book.moved ? " moved" : ""}` }, [
+    box,
+    el("div", { class: "book-copy" }, kids)
+  ]);
+}
+
+function renderLibraryBooks() {
+  const data = state.books;
+  if (!data || !asList(data.books).length) return null;
+  const character = selectedCharacter();
+  const isMage = character && character.className === "Mage";
+  const q = nameKey(state.query);
+  const all = asList(data.books).filter((book) => book.kind !== "mage" || isMage);
+  const distinct = (books) => [...new Map(books.map((book) => [nameKey(book.name), book])).values()];
+  const library = distinct(all.filter((book) => book.kind === "library"));
+  const turnedIn = library.filter(bookTurnedIn).length;
+  const shown = q ? all.filter((book) => nameKey(`${book.name} ${book.zone} ${book.location}`).includes(q)) : all;
+  if (q && !shown.length) return null;
+
+  const block = el("section", { class: "hunt-group group-library" }, [
+    el("div", { class: "group-label" }, [
+      el("span", { text: "Library books" }),
+      el("em", { text: `${turnedIn} / 20 turned in by ${character.name}` })
+    ])
+  ]);
+  const credit = el("p", { class: "meta book-credit" }, [
+    document.createTextNode("Alliance turns books in to Garion Wendell in the Stormwind Mage Quarter (37.6, 80.8). Each book counts once. 10 pays a neck, 20 pays a ring. Spots and maps from "),
+    el("a", { href: data.url, target: "_blank", rel: "noopener", text: data.source }),
+    document.createTextNode(data.updated ? `, updated ${data.updated}.` : ".")
+  ]);
+  block.append(credit);
+
+  const regions = [];
+  shown.forEach((book) => { if (!regions.includes(book.region)) regions.push(book.region); });
+  regions.forEach((region) => {
+    const books = shown.filter((book) => book.region === region);
+    const unique = distinct(books);
+    const got = unique.filter(bookTurnedIn).length;
+    const box = el("details", { class: "card dungeon book-region" });
+    box.open = !!q || state.openBookRegions.has(region);
+    box.addEventListener("toggle", () => {
+      if (q) return;
+      if (box.open) state.openBookRegions.add(region);
+      else state.openBookRegions.delete(region);
+    });
+    const note = region === "Mage books" ? "turn in to Jennea Cannon for a Comprehension Charm" : "";
+    box.append(el("summary", {}, [
+      el("h3", { text: region }),
+      el("span", { class: "meta", text: [`${got} of ${unique.length} turned in`, note].filter(Boolean).join(" · ") })
+    ]));
+    box.append(el("div", { class: "book-list" }, books.map(renderBook)));
+    block.append(box);
+  });
+  return block;
 }
 
 function selectCharacter(id) {
@@ -1475,15 +1591,17 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, screenshots, dungeons] = await Promise.all([
+    const [house, characters, checklist, stats, addons, screenshots, dungeons, books] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
       loadJson("data/screenshots.json").catch(() => []),
-      loadJson("data/dungeons.json").catch(() => null)
+      loadJson("data/dungeons.json").catch(() => null),
+      loadJson("data/library-books.json").catch(() => null)
     ]);
+    state.books = books;
     state.house = house;
     state.characters = characters;
     state.checklist = checklist;
