@@ -77,6 +77,18 @@
     "collects": ["Lockouts", "Instance runs"],
     "match": ["NovaInstanceTracker", "Nova Instance Tracker"]
   },
+  "Questie": {
+    "purpose": "Quest helper. Finished quests come from its save, and names come from QuestieDB.",
+    "feedsSite": true,
+    "collects": ["Finished quest ids", "Quest names, levels, and zones"],
+    "match": ["Questie"]
+  },
+  "QuestieDB": {
+    "purpose": "Quest name, level, and zone catalog that Questie reads. The scan copies it onto the Quests tab.",
+    "feedsSite": true,
+    "collects": ["Quest names, levels, and zones"],
+    "match": ["QuestieDB"]
+  },
   "Parcel": {
     "purpose": "Mail and auction delivery.",
     "feedsSite": true,

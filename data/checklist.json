@@ -206,7 +206,7 @@
     "status": "Planned",
     "owners": ["loremaster"],
     "notes": "Any class can turn library books in. Ten books pay a neck. Twenty books total pay a ring. The first ten count toward the twenty.",
-    "how": "Alliance turns books in to Garion Wendell in the Stormwind Mage Quarter. Horde uses Owen Thadd in the Undercity Magic Quarter. Carry the book so the turn-in quest appears. Mages who finish this also learn Research, an hourly Study scroll craft. The set box unlocks after both rewards.",
+    "how": "Alliance turns books in to Garion Wendell in the Stormwind Mage Quarter. Horde uses Owen Thadd in the Undercity Magic Quarter. Carry the book so the turn-in quest appears. Mages who finish this also learn Research, an hourly Study scroll craft. The set box unlocks after both rewards. Every book spot, with a map, is in the Library books section at the bottom of Hunts.",
     "source": "Warcraft Tavern",
     "need": 2,
     "parts": [

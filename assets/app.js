@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "professions", "dungeons", "macros", "addons", "house"];
+const TABS = ["roster", "hunts", "professions", "dungeons", "quests", "macros", "addons", "house"];
 
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
@@ -35,6 +35,12 @@ const state = {
   addons: null,
   dungeons: null,
   dungeonQuery: "",
+  quests: null,
+  questLoading: false,
+  questQuery: "",
+  books: null,
+  openBookRegions: new Set(),
+  openBookMaps: new Set(),
   professions: null,
   profLoading: false,
   macros: null,
@@ -185,10 +191,19 @@ function buildDrops() {
     });
   });
   const hunts = new Set();
+  const lootLinks = new Map();
+  const linkLoot = (name, entry, parent) => {
+    const key = nameKey(name);
+    if (!key) return;
+    if (!lootLinks.has(key)) lootLinks.set(key, []);
+    lootLinks.get(key).push({ entry, parent: parent || null });
+  };
   const places = new Map();
   state.checklist.forEach((hunt) => {
     const entries = [hunt, ...asList(hunt.parts)];
     entries.forEach((entry) => hunts.add(nameKey(entry.name)));
+    linkLoot(hunt.name, hunt, null);
+    asList(hunt.parts).forEach((part) => linkLoot(part.name, part, hunt));
     const zone = nameKey(hunt.zone);
     const inDungeons = new Set(dungeons
       .map((dungeon) => dungeon.name)
@@ -201,7 +216,63 @@ function buildDrops() {
   });
   state.drops = drops;
   state.huntNames = hunts;
+  state.lootLinks = lootLinks;
   state.places = places;
+}
+
+function lootLinksFor(item) {
+  const links = (state.lootLinks && state.lootLinks.get(nameKey(item.name))) || [];
+  const pieces = links.filter((link) => link.parent);
+  return pieces.length ? pieces : links;
+}
+
+function lootTrackable(item) {
+  return nameKey(item.slot) !== "quest item";
+}
+
+function dropStoreKey(item) {
+  return `drop:${item.id || nameKey(item.name)}`;
+}
+
+function lootInHand(item) {
+  if (!lootTrackable(item)) return false;
+  if (ownedNote(item)) return true;
+  const links = lootLinksFor(item);
+  if (links.length) return links.some((link) => isChecked(link.entry));
+  return !!state.checks[dropStoreKey(item)];
+}
+
+function setLootCheck(item, checked) {
+  const links = lootLinksFor(item);
+  if (!links.length) {
+    state.checks[dropStoreKey(item)] = checked;
+  } else {
+    links.forEach((link) => {
+      if (!link.parent && link.entry.parts && checked && !piecesReady(link.entry)) return;
+      state.checks[link.entry.id] = checked;
+      if (link.parent && !piecesReady(link.parent)) state.checks[link.parent.id] = false;
+    });
+  }
+  saveStore();
+  renderChecklist();
+  renderDungeons();
+}
+
+function dungeonGear(dungeon) {
+  const seen = new Set();
+  const gear = [];
+  const add = (item) => {
+    if (!item || !lootTrackable(item)) return;
+    const key = String(item.id || nameKey(item.name));
+    if (seen.has(key)) return;
+    seen.add(key);
+    gear.push(item);
+  };
+  asList(dungeon.bosses).forEach((boss) => asList(boss.loot).forEach(add));
+  asList(dungeon.quests).filter(questFactionShown).forEach((quest) => {
+    asList(quest.rewardItems).forEach(add);
+  });
+  return gear;
 }
 
 function huntPlace(item) {
@@ -576,6 +647,7 @@ function renderPart(item, part) {
     if (!piecesReady(item)) state.checks[item.id] = false;
     saveStore();
     renderChecklist();
+    renderDungeons();
   });
   const partKills = killLog(part.mobs);
   const partDrop = dropNote(part.name);
@@ -616,6 +688,7 @@ function renderHunt(item) {
     state.checks[item.id] = box.checked;
     saveStore();
     renderChecklist();
+    renderDungeons();
   });
 
   const summary = el("button", {
@@ -691,7 +764,8 @@ function renderChecklist() {
   const list = document.getElementById("checklist");
   list.replaceChildren();
   if (!items.length) {
-    list.append(el("p", { class: "empty-note", text: "Nothing on this filter." }));
+    const books = renderLibraryBooks();
+    list.append(books || el("p", { class: "empty-note", text: "Nothing on this filter." }));
     return;
   }
 
@@ -716,6 +790,118 @@ function renderChecklist() {
     rows.forEach((item) => block.append(renderHunt(item)));
     list.append(block);
   });
+  const books = renderLibraryBooks();
+  if (books) list.append(books);
+}
+
+function bookKey(book) {
+  return `book:${state.selected}:${nameKey(book.name)}`;
+}
+
+function bookTurnedIn(book) {
+  return !!state.checks[bookKey(book)];
+}
+
+function renderBookMap(book) {
+  const template = (state.books && state.books.mapUrl) || "";
+  const pins = asList(book.pins).map((pin) => el("span", {
+    class: `book-pin${pin.x > 70 ? " flip" : ""}`,
+    style: `left:${pin.x}%;top:${pin.y}%`,
+    title: `${pin.label || book.zone} ${pin.x}, ${pin.y}`
+  }, [pin.label ? el("span", { text: pin.label }) : null]));
+  return el("figure", { class: "book-map" }, [
+    el("img", { src: template.replace("{mapId}", book.mapId), alt: `${book.zone} map`, loading: "lazy", width: "768", height: "512" }),
+    ...pins
+  ]);
+}
+
+function renderBook(book) {
+  const done = bookTurnedIn(book);
+  const box = el("input", { type: "checkbox", "aria-label": `Turned in ${book.name}` });
+  box.checked = done;
+  box.addEventListener("change", () => {
+    state.checks[bookKey(book)] = box.checked;
+    saveStore();
+    renderChecklist();
+  });
+  const pin = asList(book.pins)[0];
+  const coords = pin ? `${pin.x}, ${pin.y}` : "";
+  const mapOpen = state.openBookMaps.has(book.id);
+  const kids = [
+    el("strong", { text: book.name }),
+    el("p", { class: "meta", text: [book.zone, coords, book.moved ? "moved in Forever, new spot not found yet" : ""].filter(Boolean).join(" · ") }),
+    book.location ? el("p", { text: book.location }) : null,
+    ...asList(book.notes).map((note) => el("p", { class: "meta", text: note }))
+  ];
+  if (book.mapId) {
+    kids.push(el("button", {
+      type: "button",
+      class: "book-map-toggle",
+      "aria-expanded": mapOpen ? "true" : "false",
+      text: mapOpen ? "Hide map" : "Show map",
+      onclick: () => {
+        if (mapOpen) state.openBookMaps.delete(book.id);
+        else state.openBookMaps.add(book.id);
+        renderChecklist();
+      }
+    }));
+    if (mapOpen) kids.push(renderBookMap(book));
+  }
+  return el("article", { class: `book${done ? " done" : ""}${book.moved ? " moved" : ""}` }, [
+    box,
+    el("div", { class: "book-copy" }, kids)
+  ]);
+}
+
+function renderLibraryBooks() {
+  const data = state.books;
+  if (!data || !asList(data.books).length) return null;
+  if (state.place && state.place !== "world") return null;
+  const character = selectedCharacter();
+  const isMage = character && character.className === "Mage";
+  const q = nameKey(state.query);
+  const all = asList(data.books).filter((book) => book.kind !== "mage" || isMage);
+  const distinct = (books) => [...new Map(books.map((book) => [nameKey(book.name), book])).values()];
+  const library = distinct(all.filter((book) => book.kind === "library"));
+  const turnedIn = library.filter(bookTurnedIn).length;
+  const shown = q ? all.filter((book) => nameKey(`${book.name} ${book.zone} ${book.location}`).includes(q)) : all;
+  if (q && !shown.length) return null;
+
+  const block = el("section", { class: "hunt-group group-library" }, [
+    el("div", { class: "group-label" }, [
+      el("span", { text: "Library books" }),
+      el("em", { text: `${turnedIn} / 20 turned in by ${character.name}` })
+    ])
+  ]);
+  const credit = el("p", { class: "meta book-credit" }, [
+    document.createTextNode("Alliance turns books in to Garion Wendell in the Stormwind Mage Quarter (37.6, 80.8). Each book counts once. 10 pays a neck, 20 pays a ring. Spots and maps from "),
+    el("a", { href: data.url, target: "_blank", rel: "noopener", text: data.source }),
+    document.createTextNode(data.updated ? `, updated ${data.updated}.` : ".")
+  ]);
+  block.append(credit);
+
+  const regions = [];
+  shown.forEach((book) => { if (!regions.includes(book.region)) regions.push(book.region); });
+  regions.forEach((region) => {
+    const books = shown.filter((book) => book.region === region);
+    const unique = distinct(books);
+    const got = unique.filter(bookTurnedIn).length;
+    const box = el("details", { class: "card dungeon book-region" });
+    box.open = !!q || state.openBookRegions.has(region);
+    box.addEventListener("toggle", () => {
+      if (q) return;
+      if (box.open) state.openBookRegions.add(region);
+      else state.openBookRegions.delete(region);
+    });
+    const note = region === "Mage books" ? "turn in to Jennea Cannon for a Comprehension Charm" : "";
+    box.append(el("summary", {}, [
+      el("h3", { text: region }),
+      el("span", { class: "meta", text: [`${got} of ${unique.length} turned in`, note].filter(Boolean).join(" · ") })
+    ]));
+    box.append(el("div", { class: "book-list" }, books.map(renderBook)));
+    block.append(box);
+  });
+  return block;
 }
 
 function selectCharacter(id) {
@@ -728,6 +914,7 @@ function selectCharacter(id) {
   renderSheet();
   renderChecklist();
   renderProfessions();
+  renderQuests();
   renderMacros();
 }
 
@@ -841,8 +1028,22 @@ function itemMatches(item, q) {
 function renderLootItem(item) {
   const owned = ownedNote(item);
   const quality = nameKey(item.quality) || "common";
+  const trackable = lootTrackable(item);
+  const inHand = trackable && lootInHand(item);
   const bits = [item.slot, owned].filter(Boolean).join(" · ");
-  return el("li", { class: owned ? "owned" : null }, [
+  const box = trackable ? el("input", {
+    type: "checkbox",
+    "data-loot-id": String(item.id || nameKey(item.name)),
+    "aria-label": `Got ${item.name}`,
+    title: owned || null
+  }) : null;
+  if (box) {
+    box.checked = inHand;
+    if (owned) box.disabled = true;
+    box.addEventListener("change", () => setLootCheck(item, box.checked));
+  }
+  return el("li", { class: inHand || owned ? "owned" : null }, [
+    box,
     el("span", { class: `item q-${quality}`, text: item.name }),
     state.huntNames && state.huntNames.has(nameKey(item.name)) ? el("span", { class: "badge", text: "Hunt" }) : null,
     bits ? el("small", { text: bits }) : null
@@ -883,6 +1084,9 @@ function renderDungeons() {
   const root = document.getElementById("dungeon-list");
   const note = document.getElementById("dungeon-source");
   if (!root || !note) return;
+  const scroller = document.scrollingElement;
+  const scrollY = scroller ? scroller.scrollTop : 0;
+  const focusId = document.activeElement && document.activeElement.getAttribute("data-loot-id");
   root.replaceChildren();
   const journal = state.dungeons;
   if (!journal || !asList(journal.dungeons).length) {
@@ -911,13 +1115,14 @@ function renderDungeons() {
     shown++;
 
     const allLoot = asList(dungeon.bosses).flatMap((boss) => asList(boss.loot));
-    const ownedCount = allLoot.filter((item) => ownedNote(item)).length;
+    const gear = dungeonGear(dungeon);
+    const inHand = gear.filter(lootInHand).length;
     const summaryBits = [
       dungeon.level ? `Level ${dungeon.level}` : "",
       dungeon.location,
       `${asList(dungeon.bosses).length} bosses`,
       `${allLoot.length} drops`,
-      ownedCount ? `${ownedCount} owned` : ""
+      gear.length ? `${inHand} of ${gear.length} in hand` : ""
     ].filter(Boolean).join(" · ");
     const box = el("details", { class: "card dungeon" });
     box.open = !!q || state.openDungeons.has(dungeon.name);
@@ -963,6 +1168,11 @@ function renderDungeons() {
     root.append(box);
   });
   if (!shown) root.append(el("p", { class: "empty-note", text: "Nothing in the journal matches that." }));
+  if (scroller) scroller.scrollTop = scrollY;
+  if (focusId) {
+    const next = root.querySelector(`[data-loot-id="${CSS.escape(focusId)}"]`);
+    if (next) next.focus();
+  }
 }
 
 async function loadProfessions() {
@@ -1238,6 +1448,7 @@ function showTab(id) {
     panel.hidden = panel.dataset.panel !== id;
   });
   if (id === "professions") loadProfessions();
+  if (id === "quests") loadQuests();
   if (id === "macros") loadMacros();
   const url = new URL(location.href);
   url.hash = id === "roster" ? "" : id;
@@ -1260,6 +1471,99 @@ function bindTabs() {
   });
 }
 
+function questCatalog() {
+  const rows = asList(state.quests && state.quests.quests);
+  const byId = new Map();
+  rows.forEach((quest) => {
+    if (quest && quest.id != null) byId.set(Number(quest.id), quest);
+  });
+  return byId;
+}
+
+async function loadQuests() {
+  if (state.quests || state.questLoading) return;
+  state.questLoading = true;
+  try {
+    state.quests = await loadJson("data/quests.json");
+  } catch {
+    state.quests = { quests: [], missing: true };
+  }
+  state.questLoading = false;
+  renderQuests();
+}
+
+function renderFinishedQuest(quest) {
+  const meta = quest.level ? `Level ${quest.level}` : "";
+  return el("article", { class: "quest" }, [
+    el("strong", { text: quest.name }),
+    meta ? el("small", { text: meta }) : null
+  ]);
+}
+
+function renderQuests() {
+  const root = document.getElementById("quest-list");
+  const note = document.getElementById("quest-source");
+  const picker = document.getElementById("quest-character");
+  if (!root || !note || !picker || !state.characters.length) return;
+  if (picker.options.length !== state.characters.length) {
+    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
+  }
+  picker.value = state.selected;
+  root.replaceChildren();
+  const data = state.quests;
+  if (!data) {
+    note.textContent = "Loading finished quests…";
+    return;
+  }
+  const character = selectedCharacter();
+  const live = (state.stats.characters || {})[character.id] || {};
+  const done = asList(live.completedQuests).map(Number).filter((id) => id);
+  if (!Object.prototype.hasOwnProperty.call(live, "completedQuests")) {
+    note.textContent = "No quest scan yet. Log out or /reload, then run the addon scan.";
+    return;
+  }
+  const version = versionLabel(data.version);
+  note.textContent = `From ${data.source || "Questie"}${version ? ` ${version}` : ""}. ${character.name} has ${done.length} finished ${done.length === 1 ? "quest" : "quests"}.`;
+  if (!done.length) {
+    root.append(el("p", { class: "empty-note", text: "No finished quests on this scan." }));
+    return;
+  }
+  const catalog = questCatalog();
+  const q = nameKey(state.questQuery);
+  const rows = done.map((id) => {
+    const known = catalog.get(id);
+    return {
+      id,
+      name: known && known.name ? known.name : `Quest ${id}`,
+      level: known && known.level ? known.level : null,
+      zone: known && known.zone ? known.zone : "Other"
+    };
+  }).filter((quest) => !q || nameKey(`${quest.name} ${quest.zone}`).includes(q));
+  if (!rows.length) {
+    root.append(el("p", { class: "empty-note", text: "Nothing matches that search." }));
+    return;
+  }
+  const zones = new Map();
+  rows.forEach((quest) => {
+    if (!zones.has(quest.zone)) zones.set(quest.zone, []);
+    zones.get(quest.zone).push(quest);
+  });
+  [...zones.keys()].sort((a, b) => {
+    if (a === "Other") return 1;
+    if (b === "Other") return -1;
+    return a.localeCompare(b);
+  }).forEach((zone) => {
+    const quests = zones.get(zone).sort((a, b) => (a.level || 0) - (b.level || 0) || a.name.localeCompare(b.name));
+    const box = el("section", { class: "card quest-zone" });
+    box.append(el("div", { class: "who" }, [
+      el("h3", { text: zone }),
+      el("span", { class: "meta", text: `${quests.length} finished` })
+    ]));
+    box.append(el("div", { class: "quest-list" }, quests.map(renderFinishedQuest)));
+    root.append(box);
+  });
+}
+
 function render() {
   renderHouse();
   renderRoster();
@@ -1267,6 +1571,7 @@ function render() {
   renderChecklist();
   renderProfessions();
   renderDungeons();
+  renderQuests();
   renderMacros();
   renderAddons();
 }
@@ -1286,15 +1591,17 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, screenshots, dungeons] = await Promise.all([
+    const [house, characters, checklist, stats, addons, screenshots, dungeons, books] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
       loadJson("data/screenshots.json").catch(() => []),
-      loadJson("data/dungeons.json").catch(() => null)
+      loadJson("data/dungeons.json").catch(() => null),
+      loadJson("data/library-books.json").catch(() => null)
     ]);
+    state.books = books;
     state.house = house;
     state.characters = characters;
     state.checklist = checklist;
@@ -1335,6 +1642,11 @@ async function main() {
   document.getElementById("dungeon-search").addEventListener("input", (event) => {
     state.dungeonQuery = event.target.value;
     renderDungeons();
+  });
+  document.getElementById("quest-character")?.addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("quest-search")?.addEventListener("input", (event) => {
+    state.questQuery = event.target.value;
+    renderQuests();
   });
   document.getElementById("scope").addEventListener("change", (event) => {
     state.scope = event.target.value;

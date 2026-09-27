@@ -45,6 +45,7 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - AllTheThings: time played, deaths, quests, areas explored, and collection counts.
 - Nova Instance Tracker: level, gold, and lockouts when its save is newer than the dump.
 - KillDex: total kills, creature types, and the top five mobs. It also logs kills of mobs named in a hunt's `mobs` list, and marks hunt items it saw drop, so a hunt checks itself as looted even after the item is sold.
+- Questie: finished quest ids. Names, levels, and zones come from QuestieDB and are rewritten into `data/quests.json`, so commit that file when it changes. A `Resolved Quests` list in the dump fills names the database does not have. The quests still in the log are not in the save.
 - Forever Dungeon Journal: its boss, loot, and quest tables live in the addon's Lua file. The scan rewrites `data/dungeons.json` from them, so commit that file when it changes.
 - Memento: its save holds only settings. Its screenshots are handled in the next section.
 
@@ -73,7 +74,7 @@ Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in 
 Follow `.cursor/rules/commit-and-pr.mdc`.
 
 - Start from an up-to-date `main` on a branch named `export-YYYY-MM-DD`. If that branch already has an open PR tonight, push to it instead.
-- Stage only the new raw file under `exports/`, `data/addons.json`, `data/stats.json`, the new `data/exports/*.json`, `data/screenshots.json`, new files under `assets/shots/`, and `data/characters.json` if a character was added.
+- Stage only the new raw file under `exports/`, `data/addons.json`, `data/stats.json`, the new `data/exports/*.json`, `data/screenshots.json`, new files under `assets/shots/`, `data/quests.json` when the quest catalog changes, and `data/characters.json` if a character was added.
 - Never stage `scripts/addons.local.json`.
 - Commit message example: `Log Flann's Sep 25 beta session so the sheet shows level 12 and the new Mining skill.`
 - Push, run `gh pr create`, and return the PR URL.

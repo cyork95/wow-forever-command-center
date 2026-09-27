@@ -7,6 +7,7 @@ $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "screenshots.ps1")
 . (Join-Path $PSScriptRoot "dungeon-journal.ps1")
 . (Join-Path $PSScriptRoot "professions.ps1")
+. (Join-Path $PSScriptRoot "quests.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -88,8 +89,17 @@ function Read-Toc($folderPath) {
   $folderName = Split-Path $folderPath -Leaf
   $candidates = @(Get-ChildItem -Path $folderPath -Filter "*.toc" -File -ErrorAction SilentlyContinue)
   if (-not $candidates) { return $null }
+  $usable = @($candidates | Where-Object {
+    $head = @(Get-Content -Path $_.FullName -TotalCount 20)
+    -not ((@($head) -join "`n") -match 'not supported')
+  })
+  if ($usable.Count) { $candidates = $usable }
   $preferred = $candidates | Where-Object { $_.BaseName -eq $folderName } | Select-Object -First 1
-  $toc = if ($preferred) { $preferred } else { $candidates | Select-Object -First 1 }
+  if (-not $preferred) {
+    $vanilla = $candidates | Where-Object { $_.BaseName -match 'Vanilla' } | Select-Object -First 1
+    $preferred = if ($vanilla) { $vanilla } else { $candidates | Select-Object -First 1 }
+  }
+  $toc = $preferred
   $fields = @{}
   foreach ($line in Get-Content -Path $toc.FullName) {
     if ($line -match '^\s*##\s*([^:]+):\s*(.*)$') {
@@ -203,6 +213,13 @@ if ($crafts) {
   $utf8 = New-Object System.Text.UTF8Encoding $false
   [System.IO.File]::WriteAllText((Join-Path $repo "data\professions.json"), $json + "`n", $utf8)
   Write-Output "Wrote $craftCount crafts across $($crafts.professions.Count) professions to data/professions.json"
+}
+
+$questCatalog = Read-QuestCatalog $addonsPath
+if ($questCatalog) {
+  $questCatalog = Add-ResolvedQuestNames $questCatalog $repo
+  Write-JsonFile (Join-Path $repo "data\quests.json") $questCatalog
+  Write-Output "Wrote $(@($questCatalog.quests).Count) quests to data/quests.json"
 }
 
 function Unescape-LuaString($value) {
@@ -511,6 +528,9 @@ function Apply-Snapshot($record, $snap, $character) {
   if ($snap.crafts) { $rec["crafts"] = $snap.crafts }
   if ($snap.items) { $rec["items"] = $snap.items }
   if ($snap.itemCounts) { $rec["itemCounts"] = $snap.itemCounts }
+  if ($snap -is [System.Collections.IDictionary] -and $snap.Contains("quests")) {
+    $rec["completedQuests"] = @($snap["quests"])
+  }
 
   if ($snap.att) {
     $rec["collections"] = [ordered]@{
@@ -535,7 +555,9 @@ function Apply-Snapshot($record, $snap, $character) {
     }
     $rec["huntKills"] = $huntKills
     $rec["looted"] = @($snap.kills.looted | Where-Object {
-      $huntNames.ContainsKey($_.ToLowerInvariant()) -or $huntNames.ContainsKey(($_ -replace $recipePrefix, '').ToLowerInvariant())
+      $key = $_.ToLowerInvariant()
+      $base = ($_ -replace $recipePrefix, '').ToLowerInvariant()
+      $huntNames.ContainsKey($key) -or $huntNames.ContainsKey($base) -or $dungeonNames.ContainsKey($key) -or $dungeonNames.ContainsKey($base)
     })
     $rows = @(
       [ordered]@{ name = "Total kills"; value = [string]$snap.kills.total },
@@ -561,8 +583,34 @@ foreach ($hunt in @(Read-JsonFile (Join-Path $repo "data\checklist.json") | ForE
     foreach ($mob in @($entry.mobs | Where-Object { $_ })) { $huntMobs[([string]$mob).ToLowerInvariant()] = $true }
   }
 }
+$dungeonNames = @{}
+$journalFile = Join-Path $repo "data\dungeons.json"
+if (Test-Path $journalFile) {
+  $savedJournal = Read-JsonFile $journalFile
+  foreach ($dungeon in @($savedJournal.dungeons)) {
+    foreach ($boss in @($dungeon.bosses)) {
+      foreach ($item in @($boss.loot)) {
+        if ($item.name) { $dungeonNames[([string]$item.name).ToLowerInvariant()] = $true }
+      }
+    }
+    foreach ($quest in @($dungeon.quests)) {
+      foreach ($item in @($quest.rewardItems) + @($quest.noteItems)) {
+        if ($item.name) { $dungeonNames[([string]$item.name).ToLowerInvariant()] = $true }
+      }
+    }
+  }
+}
 
 $snapshots = Get-SaveSnapshots $wtfRoot $characters
+$questProgress = Get-QuestProgress $wtfRoot $characters
+foreach ($character in $characters) {
+  if (-not $questProgress.ContainsKey($character.id)) { continue }
+  $snap = $snapshots[$character.id]
+  if (-not $snap) { continue }
+  $row = $questProgress[$character.id]
+  $snap.quests = @($row.completed)
+  $snap.sources["Questie"] = $row.at
+}
 $applied = 0
 foreach ($character in $characters) {
   $snap = $snapshots[$character.id]

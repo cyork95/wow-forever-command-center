@@ -468,6 +468,72 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 }
 
 .part.done { opacity: 0.72; }
+
+.book-credit { margin: 0 0 10px; font-size: 14px; }
+.book-region { margin-bottom: 8px; }
+.book-list { margin-bottom: 14px; }
+.book {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.book:first-child { border-top: 0; }
+.book > input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--gold); }
+.book.done .book-copy > :not(.book-map) { opacity: 0.6; }
+.book.moved strong { color: var(--muted); }
+.book-copy strong { display: block; }
+.book-copy p { margin: 4px 0 0; font-size: 14px; }
+.book-copy .meta { margin: 2px 0 0; font-size: 13px; }
+.book-map-toggle {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--teal);
+  font: inherit;
+  font-size: 13px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.book-map-toggle:hover { border-color: var(--teal); }
+.book-map {
+  position: relative;
+  margin: 10px 0 0;
+  max-width: 768px;
+  aspect-ratio: 2004 / 1336;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #10160d;
+}
+.book-map img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.book-pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid #1a1206;
+  box-shadow: 0 0 0 3px rgba(224, 184, 90, 0.35);
+}
+.book-pin span {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: rgba(10, 14, 8, 0.85);
+  color: var(--cream);
+  border: 1px solid var(--gold-2);
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+.book-pin.flip span { left: auto; right: 16px; }
 .part-copy p { margin: 4px 0 0; color: var(--muted); }
 .hunt-row input:disabled { cursor: not-allowed; opacity: 0.45; }
 
@@ -584,11 +650,18 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 .loot li {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 2px 8px;
   padding: 4px 0;
   border-top: 1px solid rgba(58, 74, 48, 0.6);
 }
+.loot li input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+  flex: none;
+}
+.loot li input:disabled { cursor: not-allowed; opacity: 0.45; }
 .loot li:first-child { border-top: 0; }
 .loot small { flex-basis: 100%; color: var(--muted); font-size: 12px; }
 .loot li.owned small { color: var(--teal); }
@@ -604,10 +677,10 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 
 .drop-note { color: var(--teal); }
 
-.profession { margin-bottom: 12px; }
-.profession > .who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 10px; }
-.profession > .who h3 { margin: 0; }
-.profession > .who .meta { margin: 0; }
+.profession, .quest-zone { margin-bottom: 12px; }
+.profession > .who, .quest-zone > .who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 10px; }
+.profession > .who h3, .quest-zone > .who h3 { margin: 0; }
+.profession > .who .meta, .quest-zone > .who .meta { margin: 0; }
 
 .craft-list {
   display: grid;
