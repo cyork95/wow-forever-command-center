@@ -1,5 +1,5 @@
 {
-    "updated":  "2026-09-26",
+    "updated":  "2026-09-27",
     "characters":  {
                        "flann":  {
                                      "character":  "Flann Anvilhew",
@@ -9,7 +9,7 @@
                                      "level":  20,
                                      "zone":  "Ironforge",
                                      "subzone":  "The Great Forge",
-                                     "goldCopper":  4383,
+                                     "goldCopper":  8802,
                                      "health":  "530 max",
                                      "powerType":  null,
                                      "stats":  {
@@ -114,7 +114,7 @@
                                      "owned":  [
 
                                                ],
-                                     "playedSeconds":  71127,
+                                     "playedSeconds":  77116,
                                      "statistics":  {
                                                         "Character":  [
                                                                           {
@@ -123,11 +123,11 @@
                                                                           },
                                                                           {
                                                                               "name":  "Quests completed",
-                                                                              "value":  "166"
+                                                                              "value":  "168"
                                                                           },
                                                                           {
                                                                               "name":  "Areas explored",
-                                                                              "value":  "28"
+                                                                              "value":  "29"
                                                                           },
                                                                           {
                                                                               "name":  "Instance lockouts",
@@ -137,11 +137,11 @@
                                                         "Kills":  [
                                                                       {
                                                                           "name":  "Total kills",
-                                                                          "value":  "1501"
+                                                                          "value":  "1506"
                                                                       },
                                                                       {
                                                                           "name":  "Creature types",
-                                                                          "value":  "94"
+                                                                          "value":  "98"
                                                                       },
                                                                       {
                                                                           "name":  "Stonesplinter Trogg",
@@ -153,7 +153,7 @@
                                                                       },
                                                                       {
                                                                           "name":  "Tunnel Rat Vermin",
-                                                                          "value":  "88"
+                                                                          "value":  "89"
                                                                       },
                                                                       {
                                                                           "name":  "Rockjaw Bonesnapper",
@@ -234,28 +234,23 @@
                                                                       ]
                                                 },
                                      "items":  [
-                                                   "Aboriginal Loincloth of the Eagle",
                                                    "Apprentice\u0027s Mining Pack",
                                                    "Avala\u0027s Binding",
                                                    "Barbaric Cloth Boots",
                                                    "Bear Meat",
                                                    "Blacksmith Hammer",
-                                                   "Calico Belt",
-                                                   "Calico Cloak",
-                                                   "Calico Gloves",
                                                    "Canvas Latchbag",
+                                                   "Chok\u0027sul\u0027s Head",
+                                                   "Chunk of Boar Meat",
                                                    "Clam Meat",
                                                    "Copper Ore",
                                                    "Deepgrave Trousers",
-                                                   "Dryweed Belt",
                                                    "Dusty Belt",
                                                    "Earth Totem",
                                                    "Fire Totem",
                                                    "Fishing Pole",
                                                    "Hearthstone",
                                                    "Honorary Picks",
-                                                   "Hunting Belt",
-                                                   "Invader\u0027s Mace",
                                                    "Ironforge Greathammer",
                                                    "Lean Wolf Flank",
                                                    "Lesser Healing Potion",
@@ -266,80 +261,55 @@
                                                    "Minor Healing Potion",
                                                    "Minor Mana Potion",
                                                    "Murloc Eye",
+                                                   "Patched Leather Jerkin",
                                                    "Primitive Mantle",
-                                                   "Relic Hunter Belt",
                                                    "Ridgeback Bracers",
                                                    "Rough Stone",
-                                                   "Searing Gourd",
                                                    "Shadowgem",
-                                                   "Sharp Claw",
-                                                   "Shucking Gloves",
-                                                   "Simple Gloves",
                                                    "Small Lustrous Pearl",
-                                                   "Smooth Pebble",
-                                                   "Steelcap Shield",
                                                    "Stonesplinter Rags",
+                                                   "Strange Smelling Powder",
                                                    "Strider Meat",
                                                    "Stringy Wolf Meat",
                                                    "Thundris\u0027 Letter",
                                                    "Tigerseye",
                                                    "Timberland Cape",
                                                    "Tomb Robber\u0027s Gloves",
-                                                   "Warped Leather Gloves",
-                                                   "Warped Leather Pants",
                                                    "White Leather Bag",
-                                                   "Willow Bracers of Intellect",
                                                    "Wizbang\u0027s Gunnysack",
-                                                   "Wool Cloth",
-                                                   "Worn Hatchet",
-                                                   "Worn Mail Boots"
+                                                   "Wool Cloth"
                                                ],
                                      "itemCounts":  {
                                                         "118":  4,
                                                         "730":  5,
+                                                        "769":  1,
                                                         "818":  4,
                                                         "858":  9,
                                                         "1015":  1,
                                                         "1210":  1,
-                                                        "1497":  1,
-                                                        "1498":  1,
-                                                        "1506":  1,
-                                                        "1507":  1,
-                                                        "1516":  1,
-                                                        "1731":  1,
+                                                        "1794":  1,
                                                         "2455":  1,
-                                                        "2589":  30,
+                                                        "2561":  1,
+                                                        "2563":  1,
+                                                        "2589":  20,
                                                         "2592":  7,
                                                         "2672":  1,
                                                         "2770":  33,
                                                         "2835":  29,
                                                         "2901":  1,
                                                         "3173":  5,
-                                                        "3374":  1,
-                                                        "4690":  1,
                                                         "5175":  1,
                                                         "5176":  1,
                                                         "5469":  1,
                                                         "5498":  1,
                                                         "5503":  6,
-                                                        "5568":  4,
-                                                        "5635":  1,
                                                         "5956":  1,
                                                         "6256":  1,
-                                                        "6543":  1,
                                                         "6948":  1,
-                                                        "9746":  1,
-                                                        "11936":  1,
-                                                        "14119":  1,
-                                                        "15207":  1,
-                                                        "15399":  1,
-                                                        "15405":  1,
                                                         "16311":  1,
                                                         "247754":  1,
-                                                        "275893":  1,
                                                         "279045":  1,
-                                                        "279960":  2,
-                                                        "281254":  1
+                                                        "279960":  2
                                                     },
                                      "completedQuests":  [
                                                              170,
@@ -352,6 +322,7 @@
                                                              233,
                                                              234,
                                                              237,
+                                                             250,
                                                              263,
                                                              267,
                                                              282,
@@ -452,6 +423,7 @@
                                                              94466,
                                                              94467,
                                                              94468,
+                                                             94494,
                                                              95212,
                                                              95213,
                                                              95214,
@@ -524,39 +496,65 @@
                                                 ],
                                      "sources":  {
                                                      "CharacterExport":  "2026-09-26T17:27:17",
-                                                     "Nova Instance Tracker":  "2026-09-26T18:09:22",
+                                                     "Nova Instance Tracker":  "2026-09-26T19:32:34",
                                                      "Syndicator":  null,
                                                      "Profession Master":  "2026-09-23T18:50:21",
-                                                     "AllTheThings":  "2026-09-26T18:03:24",
-                                                     "KillDex":  "2026-09-26T18:09:43",
-                                                     "Questie":  "2026-09-26T18:09:43"
+                                                     "AllTheThings":  "2026-09-26T19:32:29",
+                                                     "KillDex":  "2026-09-26T19:32:45",
+                                                     "Questie":  "2026-09-27T00:06:48"
                                                  }
                                  },
                        "ullrathor":  {
-                                         "character":  "Ullrathor",
-                                         "exportedAt":  "2026-09-25T17:43:30",
+                                         "character":  "Ullrathor Highgale",
+                                         "exportedAt":  "2026-09-27T13:13:29",
                                          "addon":  "CharacterExport Forever",
                                          "realm":  "Classic Beta PvE 2",
-                                         "level":  2,
+                                         "level":  11,
                                          "zone":  "Zephras Isle",
-                                         "subzone":  "Thendal Standing Stones",
-                                         "goldCopper":  88,
-                                         "health":  "61 max",
+                                         "subzone":  "Valanaar",
+                                         "goldCopper":  6160,
+                                         "health":  "254 max",
                                          "powerType":  null,
                                          "stats":  {
-                                                       "Strength":  "21",
-                                                       "Agility":  "21",
-                                                       "Stamina":  "20",
-                                                       "Intellect":  "26",
-                                                       "Armor":  "107",
-                                                       "Attack Power":  "22",
-                                                       "Melee Crit":  "5.04%",
-                                                       "Spell Crit":  "5.04%"
+                                                       "Strength":  "29",
+                                                       "Agility":  "29",
+                                                       "Stamina":  "29",
+                                                       "Intellect":  "36",
+                                                       "Armor":  "301",
+                                                       "Attack Power":  "38",
+                                                       "Melee Crit":  "4.79%",
+                                                       "Spell Crit":  "4.79%"
                                                    },
                                          "professions":  [
-
+                                                             {
+                                                                 "name":  "Herbalism",
+                                                                 "current":  3,
+                                                                 "max":  75
+                                                             },
+                                                             {
+                                                                 "name":  "Mining",
+                                                                 "current":  1,
+                                                                 "max":  75
+                                                             },
+                                                             {
+                                                                 "name":  "Cooking",
+                                                                 "current":  1,
+                                                                 "max":  75
+                                                             }
                                                          ],
                                          "gear":  [
+                                                      {
+                                                          "slot":  "Back",
+                                                          "name":  "Hunter\u0027s Simple Cloak",
+                                                          "itemLevel":  8,
+                                                          "quality":  "Uncommon"
+                                                      },
+                                                      {
+                                                          "slot":  "Chest",
+                                                          "name":  "Bandit\u0027s Jerkin",
+                                                          "itemLevel":  7,
+                                                          "quality":  "Common"
+                                                      },
                                                       {
                                                           "slot":  "Shirt",
                                                           "name":  "Thendal Survivalist\u0027s Shirt",
@@ -565,53 +563,224 @@
                                                       },
                                                       {
                                                           "slot":  "Wrist",
-                                                          "name":  "Vuldren Hide Bracers",
+                                                          "name":  "Windsong Bangles",
+                                                          "itemLevel":  13,
+                                                          "quality":  "Uncommon"
+                                                      },
+                                                      {
+                                                          "slot":  "Hands",
+                                                          "name":  "Skyseer\u0027s Gloves",
+                                                          "itemLevel":  11,
+                                                          "quality":  "Uncommon"
+                                                      },
+                                                      {
+                                                          "slot":  "Waist",
+                                                          "name":  "Thendal Ranger\u0027s Belt",
                                                           "itemLevel":  5,
                                                           "quality":  "Common"
                                                       },
                                                       {
                                                           "slot":  "Legs",
-                                                          "name":  "Thendal Survivalist\u0027s Pants",
-                                                          "itemLevel":  1,
+                                                          "name":  "Well-Worn Pants",
+                                                          "itemLevel":  10,
                                                           "quality":  "Common"
                                                       },
                                                       {
                                                           "slot":  "Feet",
-                                                          "name":  "Ragged Leather Boots",
-                                                          "itemLevel":  3,
-                                                          "quality":  "Poor"
+                                                          "name":  "Windswept Slippers",
+                                                          "itemLevel":  13,
+                                                          "quality":  "Uncommon"
                                                       },
                                                       {
                                                           "slot":  "Main Hand",
-                                                          "name":  "Handcrafted Staff",
-                                                          "itemLevel":  2,
-                                                          "quality":  "Common"
+                                                          "name":  "Planting Shovel",
+                                                          "itemLevel":  10,
+                                                          "quality":  "Uncommon"
                                                       }
                                                   ],
                                          "owned":  [
-
+                                                       "Musical Gustjumper",
+                                                       "Tallstrider Hatchling"
                                                    ],
-                                         "playedSeconds":  2625,
+                                         "playedSeconds":  8274,
                                          "statistics":  {
                                                             "Character":  [
                                                                               {
                                                                                   "name":  "Deaths",
-                                                                                  "value":  "0"
+                                                                                  "value":  "2"
                                                                               },
                                                                               {
                                                                                   "name":  "Quests completed",
-                                                                                  "value":  "7"
+                                                                                  "value":  "81"
                                                                               },
                                                                               {
                                                                                   "name":  "Areas explored",
-                                                                                  "value":  "2"
+                                                                                  "value":  "13"
                                                                               },
                                                                               {
                                                                                   "name":  "Instance lockouts",
                                                                                   "value":  "0"
                                                                               }
-                                                                          ]
+                                                                          ],
+                                                            "Kills":  [
+                                                                          {
+                                                                              "name":  "Total kills",
+                                                                              "value":  "146"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Creature types",
+                                                                              "value":  "30"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Galestrider",
+                                                                              "value":  "16"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Scrawny Ursera",
+                                                                              "value":  "12"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Ursera Scavenger",
+                                                                              "value":  "12"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Al\u0027Aketh Convert",
+                                                                              "value":  "12"
+                                                                          },
+                                                                          {
+                                                                              "name":  "Highlands Bandit",
+                                                                              "value":  "9"
+                                                                          }
+                                                                      ]
                                                         },
+                                         "recipes":  {
+
+                                                     },
+                                         "crafts":  {
+
+                                                    },
+                                         "items":  [
+                                                       "Al\u0027Aketh Windstone Charm",
+                                                       "Ancient Heirloom",
+                                                       "Bandit\u0027s Jerkin",
+                                                       "Battle Chain Cloak",
+                                                       "Bow of Hours",
+                                                       "Cracked Bill",
+                                                       "Crisp Spring Water",
+                                                       "Feeble Sword",
+                                                       "Fractured Canine",
+                                                       "Frayed Gloves",
+                                                       "Fresh Gustberry Bread",
+                                                       "Galeswept Forestshroom",
+                                                       "Hearthstone",
+                                                       "Hunter\u0027s Simple Cloak",
+                                                       "Linen Bag",
+                                                       "Linen Cloth",
+                                                       "Loose Chain Vest",
+                                                       "Mining Pick",
+                                                       "Minor Healing Potion",
+                                                       "Minor Mana Potion",
+                                                       "Minor Troll\u0027s Blood Elixir",
+                                                       "Novice\u0027s Quarterstaff",
+                                                       "Pincer Bites",
+                                                       "Planting Shovel",
+                                                       "Pungent Skycheddar",
+                                                       "Rabbit\u0027s Foot",
+                                                       "Ragged Leather Boots",
+                                                       "Recipe: Pincer Bites",
+                                                       "Recipe: Skywall Souffle",
+                                                       "Red Delicious Stormapple",
+                                                       "Simple Leather Satchel",
+                                                       "Skywall Souffle",
+                                                       "Small Green Pouch",
+                                                       "Thendal Ranger\u0027s Belt",
+                                                       "Thendal Survivalist\u0027s Shirt",
+                                                       "Tough Hunk of Bread",
+                                                       "Vuldren Hide Bracers",
+                                                       "Well-Worn Pants",
+                                                       "Windstone",
+                                                       "Worn Hide Cloak"
+                                                   ],
+                                         "itemCounts":  {
+                                                            "118":  2,
+                                                            "1413":  1,
+                                                            "1421":  1,
+                                                            "2455":  5,
+                                                            "2589":  3,
+                                                            "2648":  1,
+                                                            "2901":  1,
+                                                            "3299":  3,
+                                                            "3300":  2,
+                                                            "3382":  5,
+                                                            "4540":  1,
+                                                            "4668":  1,
+                                                            "4775":  1,
+                                                            "6948":  1,
+                                                            "252028":  2,
+                                                            "252030":  5,
+                                                            "252031":  15,
+                                                            "252032":  21,
+                                                            "255658":  4,
+                                                            "255663":  6,
+                                                            "257282":  1,
+                                                            "263404":  1,
+                                                            "263509":  3,
+                                                            "263511":  1,
+                                                            "263512":  5,
+                                                            "263513":  1,
+                                                            "264908":  1,
+                                                            "267474":  6
+                                                        },
+                                         "completedQuests":  [
+                                                                 92460,
+                                                                 92461,
+                                                                 92462,
+                                                                 92463,
+                                                                 92464,
+                                                                 92465,
+                                                                 92469,
+                                                                 92470,
+                                                                 92471,
+                                                                 92472,
+                                                                 92473,
+                                                                 92474,
+                                                                 92485,
+                                                                 92515,
+                                                                 92516,
+                                                                 92544,
+                                                                 92553,
+                                                                 92596,
+                                                                 92597,
+                                                                 93318,
+                                                                 93461,
+                                                                 93463,
+                                                                 93552,
+                                                                 93951,
+                                                                 94413,
+                                                                 94414,
+                                                                 95998,
+                                                                 96101,
+                                                                 96604,
+                                                                 96605,
+                                                                 96606,
+                                                                 96607,
+                                                                 96608,
+                                                                 96626,
+                                                                 96627,
+                                                                 96628,
+                                                                 96629,
+                                                                 96630,
+                                                                 96634,
+                                                                 96638,
+                                                                 96646,
+                                                                 96652,
+                                                                 96655,
+                                                                 96656,
+                                                                 96658,
+                                                                 96659,
+                                                                 96661,
+                                                                 98289
+                                                             ],
                                          "collections":  {
                                                              "Mounts":  0,
                                                              "Pets":  0,
@@ -619,10 +788,20 @@
                                                              "Titles":  0,
                                                              "Achievements":  1
                                                          },
+                                         "huntKills":  {
+
+                                                       },
+                                         "looted":  [
+
+                                                    ],
                                          "sources":  {
-                                                         "CharacterExport":  "2026-09-25T17:43:30",
-                                                         "Nova Instance Tracker":  "2026-09-25T17:42:08",
-                                                         "AllTheThings":  "2026-09-25T17:40:08"
+                                                         "CharacterExport":  "2026-09-27T13:13:29",
+                                                         "Nova Instance Tracker":  "2026-09-27T00:06:29",
+                                                         "Syndicator":  null,
+                                                         "Profession Master":  null,
+                                                         "AllTheThings":  "2026-09-27T00:00:23",
+                                                         "KillDex":  "2026-09-27T00:06:47",
+                                                         "Questie":  "2026-09-27T00:06:48"
                                                      }
                                      },
                        "trendirun":  {

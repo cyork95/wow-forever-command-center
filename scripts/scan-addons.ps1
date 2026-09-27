@@ -339,6 +339,14 @@ function Parse-TextExport($text, $when) {
     }
   }
 
+  $owned = @()
+  $pets = [regex]::Match($text, '(?s)== Battle Pets ==\s*(.*?)(?:\r?\n== |\z)')
+  if ($pets.Success) {
+    foreach ($line in ($pets.Groups[1].Value -split "`r?`n")) {
+      if ($line -match '^(.+?) \(Species ID:') { $owned += $Matches[1].Trim() }
+    }
+  }
+
   [ordered]@{
     character = $name
     exportedAt = $when
@@ -353,7 +361,7 @@ function Parse-TextExport($text, $when) {
     stats = $stats
     professions = $professions
     gear = $gear
-    owned = @()
+    owned = $owned
     matchedId = $(if ($known) { $known.id } else { $null })
   }
 }

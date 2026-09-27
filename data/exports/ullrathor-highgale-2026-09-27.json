@@ -1,0 +1,99 @@
+{
+    "character":  "Ullrathor Highgale",
+    "exportedAt":  "2026-09-27T13:13:29",
+    "addon":  "CharacterExport Forever",
+    "realm":  "Classic Beta PvE 2",
+    "level":  11,
+    "zone":  "Zephras Isle",
+    "subzone":  "Valanaar",
+    "goldCopper":  6160,
+    "health":  "254 max",
+    "powerType":  null,
+    "stats":  {
+                  "Strength":  "29",
+                  "Agility":  "29",
+                  "Stamina":  "29",
+                  "Intellect":  "36",
+                  "Armor":  "301",
+                  "Attack Power":  "38",
+                  "Melee Crit":  "4.79%",
+                  "Spell Crit":  "4.79%"
+              },
+    "professions":  [
+                        {
+                            "name":  "Herbalism",
+                            "current":  3,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Mining",
+                            "current":  1,
+                            "max":  75
+                        },
+                        {
+                            "name":  "Cooking",
+                            "current":  1,
+                            "max":  75
+                        }
+                    ],
+    "gear":  [
+                 {
+                     "slot":  "Back",
+                     "name":  "Hunter\u0027s Simple Cloak",
+                     "itemLevel":  8,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Chest",
+                     "name":  "Bandit\u0027s Jerkin",
+                     "itemLevel":  7,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Shirt",
+                     "name":  "Thendal Survivalist\u0027s Shirt",
+                     "itemLevel":  1,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Wrist",
+                     "name":  "Windsong Bangles",
+                     "itemLevel":  13,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Hands",
+                     "name":  "Skyseer\u0027s Gloves",
+                     "itemLevel":  11,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Waist",
+                     "name":  "Thendal Ranger\u0027s Belt",
+                     "itemLevel":  5,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Legs",
+                     "name":  "Well-Worn Pants",
+                     "itemLevel":  10,
+                     "quality":  "Common"
+                 },
+                 {
+                     "slot":  "Feet",
+                     "name":  "Windswept Slippers",
+                     "itemLevel":  13,
+                     "quality":  "Uncommon"
+                 },
+                 {
+                     "slot":  "Main Hand",
+                     "name":  "Planting Shovel",
+                     "itemLevel":  10,
+                     "quality":  "Uncommon"
+                 }
+             ],
+    "owned":  [
+                  "Musical Gustjumper",
+                  "Tallstrider Hatchling"
+              ]
+}

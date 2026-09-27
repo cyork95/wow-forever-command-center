@@ -1,6 +1,6 @@
 {
-    "scannedAt":  "2026-09-26T18:32:38",
-    "count":  34,
+    "scannedAt":  "2026-09-27T13:16:31",
+    "count":  38,
     "addons":  [
                    {
                        "folder":  "AllTheThings",
@@ -27,7 +27,7 @@
                                               "AllTheThingsSettingsPerCharacter"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -46,7 +46,7 @@
                                               "ATTCollectionHistoryDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -93,7 +93,7 @@
                                               "AUCTIONATOR_CHARACTER_CONFIG"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -112,14 +112,14 @@
                                               "APLForeverData"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
                    {
                        "folder":  "Baganator",
                        "title":  "Baganator",
-                       "version":  "830",
+                       "version":  "831",
                        "author":  "plusmouse",
                        "purpose":  "Bag, bank, and reagent inventory view. Inventory data lives in Syndicator.",
                        "feedsSite":  true,
@@ -131,7 +131,7 @@
                                               "BAGANATOR_CURRENT_PROFILE"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -150,7 +150,7 @@
                                               "BugGrabberDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -170,7 +170,7 @@
                                               "BugSackLDBIconDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -187,7 +187,7 @@
                                               "CanIMogItOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -209,7 +209,7 @@
                                               "CharacterExportForeverDBChar"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -231,7 +231,27 @@
                                               "CHATTYNATOR_COMMAND_HISTORY"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
+                       "enabled":  true,
+                       "loaded":  true
+                   },
+                   {
+                       "folder":  "Consumable-Connoisseur",
+                       "title":  "Connoisseur \u0026 Restocker",
+                       "version":  "2026.09.24.A",
+                       "author":  "Gogo1951",
+                       "purpose":  "Macros that automatically use your best food, water, potions, healthstones, bandages, poisons, and pet food, plus a Restock List that auto-buys and banks your consumables and upgrades them as you level. Quality-of-life automation for peak performance.",
+                       "feedsSite":  false,
+                       "uncataloged":  true,
+                       "collects":  {
+
+                                    },
+                       "savedVariables":  [
+                                              "ConnoisseurDB",
+                                              "ConnoisseurRestockerDB"
+                                          ],
+                       "saveOnDisk":  true,
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -251,7 +271,7 @@
                                               "DMTABPC"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  null,
                        "loaded":  null
                    },
@@ -271,7 +291,7 @@
                                               "DialogueUI_Saves"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -292,7 +312,7 @@
                                               "farmerCharOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -312,7 +332,7 @@
                                               "ForeverDungeonJournalDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -332,7 +352,7 @@
                                               "GatheringStats"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -350,7 +370,26 @@
                                               "KillDexCharDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
+                       "enabled":  true,
+                       "loaded":  true
+                   },
+                   {
+                       "folder":  "MagicEraser",
+                       "title":  "Magic Eraser",
+                       "version":  "2026.09.18.A",
+                       "author":  "Gogo1951",
+                       "purpose":  "Erase junk and free up bag space instantly. Clear completed quest items, outgrown consumables, vendor trash, and grays with a click of the mini-map button. A curated junk list keeps what you need safe, while Auto-Vend sells the rest at your next merchant.",
+                       "feedsSite":  false,
+                       "uncataloged":  true,
+                       "collects":  {
+
+                                    },
+                       "savedVariables":  [
+                                              "MagicEraserDB"
+                                          ],
+                       "saveOnDisk":  true,
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -368,7 +407,7 @@
                                               "Memento_DataBossKill"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -387,14 +426,14 @@
                                               "MiniDruidManaDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
                    {
                        "folder":  "MinimapButtonButton",
                        "title":  "MinimapButtonButton",
-                       "version":  "1.24.11",
+                       "version":  "1.24.12",
                        "author":  "syndenbock",
                        "purpose":  "Collects minimap buttons into one menu.",
                        "feedsSite":  false,
@@ -406,7 +445,7 @@
                                               "MinimapButtonButtonOptions"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:47",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -435,7 +474,7 @@
                                               "MI2_SummaryDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -455,7 +494,26 @@
                                               "NITdatabase"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
+                       "enabled":  true,
+                       "loaded":  true
+                   },
+                   {
+                       "folder":  "Open-Sesame",
+                       "title":  "Open Sesame",
+                       "version":  "2026.09.18.A",
+                       "author":  "Gogo1951",
+                       "purpose":  "Automatically open clams, containers, and unlocked lockboxes in your bags, no clicking required. Speedy Loot hides the loot window for faster auto loot, and Loot Toasts show every pickup so your eyes stay on the fight. Fast, efficient looting.",
+                       "feedsSite":  false,
+                       "uncataloged":  true,
+                       "collects":  {
+
+                                    },
+                       "savedVariables":  [
+                                              "OpenSesameDB"
+                                          ],
+                       "saveOnDisk":  true,
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -472,14 +530,14 @@
                                               "ParcelDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
                    {
                        "folder":  "Platynator",
                        "title":  "Platynator",
-                       "version":  "491",
+                       "version":  "492",
                        "author":  "plusmouse",
                        "purpose":  "Nameplates.",
                        "feedsSite":  false,
@@ -493,7 +551,7 @@
                                               "PLATYNATOR_LAST_INSTANCE"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -515,14 +573,14 @@
                                               "PlumberDB_PC"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
                    {
                        "folder":  "ProfessionMaster",
                        "title":  "Profession Master Vanilla",
-                       "version":  "7.0.13",
+                       "version":  "7.0.14",
                        "author":  "Kurki",
                        "purpose":  "Profession window for the Forever client.",
                        "feedsSite":  true,
@@ -549,7 +607,7 @@
                                               "PM_CharacterSettings"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  null,
                        "loaded":  null
                    },
@@ -571,9 +629,9 @@
                                               "QuestieConfigCharacter"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
-                       "enabled":  null,
-                       "loaded":  null
+                       "saveModified":  "2026-09-27T00:06:48",
+                       "enabled":  true,
+                       "loaded":  true
                    },
                    {
                        "folder":  "QuestieDB",
@@ -589,13 +647,13 @@
                                           ],
                        "saveOnDisk":  false,
                        "saveModified":  null,
-                       "enabled":  null,
-                       "loaded":  null
+                       "enabled":  true,
+                       "loaded":  true
                    },
                    {
                        "folder":  "RareScanner",
                        "title":  "RareScanner",
-                       "version":  "1.60.1.b4",
+                       "version":  "1.60.1.b5",
                        "author":  "maqjav, Maciza-Tyrande",
                        "purpose":  "Alerts for rare mobs and treasures.",
                        "feedsSite":  true,
@@ -605,7 +663,7 @@
                                               "RareScannerDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -624,7 +682,7 @@
                                               "SYNDICATOR_SUMMARIES"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -641,7 +699,7 @@
                                               "TalentsForeverBookDB"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
@@ -660,14 +718,33 @@
                                               "TomTomWaypointsM"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
+                       "enabled":  true,
+                       "loaded":  true
+                   },
+                   {
+                       "folder":  "TrackingEye",
+                       "title":  "Tracking Eye",
+                       "version":  "2026.09.26.A",
+                       "author":  "Gogo1951",
+                       "purpose":  "Improved Tracking Menu and automatic switcher that cycles Find Herbs and Find Minerals while farming, restores tracking after death, and tracks targeted creatures while questing. Supports every tracking ability. Never lose track of what you\u0027re hunting.",
+                       "feedsSite":  false,
+                       "uncataloged":  true,
+                       "collects":  {
+
+                                    },
+                       "savedVariables":  [
+                                              "TrackingEyeDB"
+                                          ],
+                       "saveOnDisk":  true,
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  true,
                        "loaded":  true
                    },
                    {
                        "folder":  "TradeBoard",
                        "title":  "Trade Board Vanilla",
-                       "version":  "7.0.12",
+                       "version":  "7.0.13",
                        "author":  "Kurki",
                        "purpose":  "Trade-skill board for the Forever client.",
                        "feedsSite":  true,
@@ -681,7 +758,7 @@
                                               "TB_CharacterSettings"
                                           ],
                        "saveOnDisk":  true,
-                       "saveModified":  "2026-09-26T18:09:43",
+                       "saveModified":  "2026-09-27T00:06:48",
                        "enabled":  null,
                        "loaded":  null
                    },

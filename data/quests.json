@@ -29827,8 +29827,43 @@
                        "zone":  "Other"
                    },
                    {
+                       "id":  92463,
+                       "name":  "The Cirrusfly Queen",
+                       "zone":  "Other"
+                   },
+                   {
                        "id":  92464,
                        "name":  "Elemental Unrest",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92465,
+                       "name":  "Agitators",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92469,
+                       "name":  "Return to Rorian",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92470,
+                       "name":  "Foul Matriarch",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92471,
+                       "name":  "Aetheen of the Gales",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92472,
+                       "name":  "The Next Step",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92473,
+                       "name":  "Aggressive Encroachment",
                        "zone":  "Other"
                    },
                    {
@@ -29839,6 +29874,216 @@
                    {
                        "id":  92485,
                        "name":  "A Student of Nature",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92515,
+                       "name":  "The Problem With Prideclaws",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92516,
+                       "name":  "Hippogryph Harrassment",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92517,
+                       "name":  "The Criminal Element",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92528,
+                       "name":  "Among the Faithful",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92529,
+                       "name":  "Falaath Village",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92544,
+                       "name":  "Al\u0027Aketh Thugs",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92550,
+                       "name":  "Havoc in the Highlands",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92551,
+                       "name":  "Stolen Supplies",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92553,
+                       "name":  "Restocking the Larders",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92596,
+                       "name":  "The High Order",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92597,
+                       "name":  "Reading the Ley Lines",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92642,
+                       "name":  "Disrupting Logistics",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92645,
+                       "name":  "Breaking the Breaker",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92679,
+                       "name":  "Blood Tithe",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92682,
+                       "name":  "Make Yourself Useful",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92683,
+                       "name":  "Flutterfly Dust",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92684,
+                       "name":  "Ornery Ornery Galestriders",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92685,
+                       "name":  "The Hills Have Eyes",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92693,
+                       "name":  "Standing Our Ground",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92698,
+                       "name":  "What Is My Purpose?",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92699,
+                       "name":  "The Supreme Magister",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92701,
+                       "name":  "To Valanaar",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92703,
+                       "name":  "Deliver the News",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92709,
+                       "name":  "A Grand Adventure",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92727,
+                       "name":  "The Missing Scholar",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92840,
+                       "name":  "Catching Wind",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92849,
+                       "name":  "The Missing Scholar",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92850,
+                       "name":  "The Missing Scholar",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  92860,
+                       "name":  "In Service of Zephras",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93036,
+                       "name":  "Infiltrating the Cult",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93317,
+                       "name":  "Crab Season",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93318,
+                       "name":  "WANTED: Vulgara the Insatiable",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93319,
+                       "name":  "Pilfered Windstones",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93320,
+                       "name":  "Tower Defense",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93461,
+                       "name":  "Welcome to Shen\u0027dar Village",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93552,
+                       "name":  "Harvesting Windstones",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93926,
+                       "name":  "The Western Watch",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93927,
+                       "name":  "A Last Request",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93948,
+                       "name":  "Deliver the Signet",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93949,
+                       "name":  "Bugged",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  93951,
+                       "name":  "A Little Beauty",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  94006,
+                       "name":  "The Great Ursera Spirit",
                        "zone":  "Other"
                    },
                    {
@@ -29854,6 +30099,11 @@
                    {
                        "id":  94375,
                        "name":  "Call of Earth",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  94413,
+                       "name":  "A Magical Affront",
                        "zone":  "Other"
                    },
                    {
@@ -29884,6 +30134,11 @@
                    {
                        "id":  94468,
                        "name":  "Call of Fire",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  94638,
+                       "name":  "Strength and Mercy",
                        "zone":  "Other"
                    },
                    {
@@ -30174,6 +30429,11 @@
                    {
                        "id":  99162,
                        "name":  "Treacherous Cold",
+                       "zone":  "Other"
+                   },
+                   {
+                       "id":  99260,
+                       "name":  "Fillion\u0027s Mission",
                        "zone":  "Other"
                    }
                ]

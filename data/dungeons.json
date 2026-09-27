@@ -414,13 +414,13 @@
                                             "classOnly":  null,
                                             "pickup":  "Rahauro, Elder Rise, Thunder Bluff",
                                             "objective":  "Find Maur Grimtotem\u0027s corpse inside Ragefire Chasm and search it for anything of interest.",
-                                            "turnin":  "Maur Grimtotem\u0027s corpse, inside Ragefire Chasm",
+                                            "turnin":  "Maur Grimtotem\u0027s corpse inside Ragefire Chasm. From the first major three-way junction, take the right-hand tunnel, follow it uphill toward the dead end, then enter the small side room on the left. Interact with Maur\u0027s corpse there.",
                                             "rewardChoice":  false,
                                             "rewardItems":  [
 
                                                             ],
                                             "rewards":  "880 XP",
-                                            "note":  "Step 1 of 2. Completing this at Maur\u0027s corpse starts Returning the Lost Satchel.",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
@@ -432,7 +432,7 @@
                                             "requires":  9,
                                             "faction":  "Horde",
                                             "classOnly":  null,
-                                            "pickup":  "Grimtotem Satchel, from Maur Grimtotem\u0027s corpse inside Ragefire Chasm",
+                                            "pickup":  "Grimtotem Satchel, taken from Maur Grimtotem\u0027s corpse inside Ragefire Chasm",
                                             "objective":  "Take the Grimtotem Satchel to Rahauro in Thunder Bluff.",
                                             "turnin":  "Rahauro, Elder Rise, Thunder Bluff",
                                             "rewardChoice":  true,
@@ -454,7 +454,7 @@
                                                                 }
                                                             ],
                                             "rewards":  "4,422 XP • Thunder Bluff +150",
-                                            "note":  "Step 2 of 2. Starts from the Grimtotem Satchel inside the dungeon.",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
@@ -789,12 +789,26 @@
                                             "pickup":  "Item start: Abominable Head, inside Ruins of Lordaeron",
                                             "objective":  "Deliver the Abominable Head to the Undercity.",
                                             "turnin":  "Master Apothecary Faranell, Undercity",
-                                            "rewardChoice":  false,
+                                            "rewardChoice":  true,
                                             "rewardItems":  [
-
+                                                                {
+                                                                    "id":  279864,
+                                                                    "name":  "Monstrous Cleaver",
+                                                                    "quality":  "Rare"
+                                                                },
+                                                                {
+                                                                    "id":  279865,
+                                                                    "name":  "Grave Shroud",
+                                                                    "quality":  "Rare"
+                                                                },
+                                                                {
+                                                                    "id":  279867,
+                                                                    "name":  "Slain Baron\u0027s Signet",
+                                                                    "quality":  "Rare"
+                                                                }
                                                             ],
-                                            "rewards":  "5,280 XP • Step 1 of 5",
-                                            "note":  "Step 1 of a 5-part chain. The final chain step lets you choose Monstrous Cleaver, Grave Shroud or Slain Baron\u0027s Signet.",
+                                            "rewards":  "5,300 XP",
+                                            "note":  "The item choice is awarded on the follow-up Unending Torment step in Undercity.",
                                             "noteItems":  [
 
                                                           ],
@@ -1834,7 +1848,7 @@
 
                                                             ],
                                             "rewards":  "3,915 XP • 10s",
-                                            "note":  "Follows Raptor Horns.",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
@@ -2676,7 +2690,7 @@
 
                                                             ],
                                             "rewards":  "Argent Dawn +150 • Darnassus +150",
-                                            "note":  "Leads to Blackfathom Villainy. The quest is technically shareable cross-faction in Classic, but its pickup is deep inside Darnassus.",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
@@ -2749,7 +2763,7 @@
                                                                 }
                                                             ],
                                             "rewards":  "65s • Argent Dawn +200 • Darnassus +200",
-                                            "note":  "Follows In Search of Thaelrid.",
+                                            "note":  null,
                                             "noteItems":  [
 
                                                           ],
