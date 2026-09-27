@@ -764,9 +764,8 @@ function renderChecklist() {
   const list = document.getElementById("checklist");
   list.replaceChildren();
   if (!items.length) {
-    list.append(el("p", { class: "empty-note", text: "Nothing on this filter." }));
     const books = renderLibraryBooks();
-    if (books) list.append(books);
+    list.append(books || el("p", { class: "empty-note", text: "Nothing on this filter." }));
     return;
   }
 
@@ -857,6 +856,7 @@ function renderBook(book) {
 function renderLibraryBooks() {
   const data = state.books;
   if (!data || !asList(data.books).length) return null;
+  if (state.place && state.place !== "world") return null;
   const character = selectedCharacter();
   const isMage = character && character.className === "Mage";
   const q = nameKey(state.query);
@@ -1643,8 +1643,8 @@ async function main() {
     state.dungeonQuery = event.target.value;
     renderDungeons();
   });
-  document.getElementById("quest-character").addEventListener("change", (event) => selectCharacter(event.target.value));
-  document.getElementById("quest-search").addEventListener("input", (event) => {
+  document.getElementById("quest-character")?.addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("quest-search")?.addEventListener("input", (event) => {
     state.questQuery = event.target.value;
     renderQuests();
   });
