@@ -152,6 +152,8 @@ tracks:
 
 Press Pause to stop the clock and Start to go on. Press Reset to end the
 session: it is saved in your last 20 sessions and a new one begins.
+Previous sessions on the Session tab lists them by date and time, with
+how long each lasted, the zone, and what you got.
 Money from the mailbox or guild bank is not counted as earned. A /reload
 keeps the session going. If you log out for more than 10 minutes, the old
 session is saved and a new one starts next time.

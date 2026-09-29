@@ -105,7 +105,7 @@ The **Session** tab times one stretch of play, so Gathering is no longer needed.
 - Items gathered: herbs, ore and stone, leather, cloth, cooking and fish, elemental, enchanting, and jewelcrafting materials, reagents, holiday items, and consumables. Untick a type under **Count as gathered** to stop counting it. Quest items are off at first.
 - Gold gained or spent, and XP, each with an hourly rate, plus the time to your next level at this pace
 
-**Pause** stops the clock and **Start** goes on. **Reset** ends the session, saves it in your last 20 sessions, and starts a new one. Money from the mailbox or guild bank is not counted as earned. A `/reload` keeps the session going; after more than 10 minutes logged out, the old session is saved and a new one starts.
+**Pause** stops the clock and **Start** goes on. **Reset** ends the session, saves it in your last 20 sessions, and starts a new one. **Previous sessions** on the tab lists them by date and time, with how long each lasted, the zone, kills, gathering, gold, and XP. Money from the mailbox or guild bank is not counted as earned. A `/reload` keeps the session going; after more than 10 minutes logged out, the old session is saved and a new one starts.
 
 **Show the session panel**, `/dossier panel`, or right-clicking the minimap button opens a small window with the timer, kills, gathering, gold, XP, and your last creatures. Pick which lines it shows, drag it where you want it, and press **Lock**. The **Panel background** slider sets its background from fully clear (0%) to solid (100%). Left-click the panel title to pause or start, right-click it to reset, and point at it to see every item gathered with its hourly rate.
 

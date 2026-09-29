@@ -147,8 +147,6 @@ function KillPanel.TitleText(summary)
 
     if summary.status == "paused" then
         return string.format("%s  %s  %s", label, clock, C.TEXT.SESSION_PAUSED)
-    elseif summary.status == "idle" then
-        return string.format("%s  %s", label, C.TEXT.SESSION_IDLE)
     end
 
     return string.format("%s  %s", label, clock)
@@ -287,9 +285,26 @@ local function EnsureFrame()
         frame:SetPoint("RIGHT", UIParent, "RIGHT", -40, 80)
     end
 
+    local close = Theme.CreateCloseButton(frame, function()
+        KillPanel:SetShown(false)
+    end)
+    close:SetSize(18, 18)
+    close:SetPoint("TOPRIGHT", -6, -5)
+
+    local lock = Theme.CreateButton(frame, C.TEXT.KILLS_PANEL_LOCK, 52, 18, "default", function()
+        local current = GetSettings()
+
+        if current then
+            current.locked = not KillPanel:IsLocked()
+            KillPanel:Refresh()
+        end
+    end)
+    lock:SetPoint("RIGHT", close, "LEFT", -4, 0)
+
     local header = CreateFrame("Button", nil, frame)
     header:SetPoint("TOPLEFT", 4, -4)
-    header:SetSize(WIDTH - 90, 20)
+    header:SetPoint("RIGHT", lock, "LEFT", -4, 0)
+    header:SetHeight(20)
     header:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     header:SetScript("OnClick", function(_, button)
         if button == "RightButton" then
@@ -308,23 +323,10 @@ local function EnsureFrame()
 
     local title = Theme.CreateText(header, "GameFontNormalSmall", "accent")
     title:SetPoint("LEFT", 6, 0)
+    title:SetPoint("RIGHT", 0, 0)
+    title:SetJustifyH("LEFT")
     title:SetJustifyV("MIDDLE")
-
-    local close = Theme.CreateCloseButton(frame, function()
-        KillPanel:SetShown(false)
-    end)
-    close:SetSize(18, 18)
-    close:SetPoint("TOPRIGHT", -6, -5)
-
-    local lock = Theme.CreateButton(frame, C.TEXT.KILLS_PANEL_LOCK, 56, 18, "default", function()
-        local current = GetSettings()
-
-        if current then
-            current.locked = not KillPanel:IsLocked()
-            KillPanel:Refresh()
-        end
-    end)
-    lock:SetPoint("RIGHT", close, "LEFT", -4, 0)
+    title:SetWordWrap(false)
 
     local statsText = Theme.CreateText(frame, "GameFontHighlightSmall", "text")
     statsText:SetPoint("TOPLEFT", 10, -TOP_OFFSET)

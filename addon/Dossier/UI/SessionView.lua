@@ -69,6 +69,64 @@ function SessionView.ItemsText(summary)
     return table.concat(lines, "\n")
 end
 
+-- Sep 29, 18:00  1h 23m, Westfall
+--   45 kills, 120 gathered, gold +1g 20s 0c, 12,345 XP
+function SessionView.HistoryText(history)
+    local session = GetSession()
+
+    if not session or #history == 0 then
+        return C.TEXT.SESSION_HISTORY_EMPTY
+    end
+
+    local accent = ns.Theme.ColorCode("accent")
+    local lines = {}
+
+    for _, entry in ipairs(history) do
+        local when = type(date) == "function" and date("%b %d, %H:%M", tonumber(entry.start) or 0) or tostring(entry.start)
+        local header = when .. "  " .. session.FormatDuration(entry.seconds)
+
+        if entry.zone then
+            header = header .. ", " .. entry.zone
+        end
+
+        local counts = {}
+
+        if (entry.kills or 0) > 0 then
+            table.insert(counts, session.FormatCount(entry.kills) .. " kills")
+        end
+
+        if (entry.gathered or 0) > 0 then
+            table.insert(counts, session.FormatCount(entry.gathered) .. " gathered")
+        end
+
+        if (entry.gold or 0) ~= 0 then
+            table.insert(counts, "gold " .. session.FormatGold(entry.gold))
+        end
+
+        if (entry.xp or 0) > 0 then
+            table.insert(counts, session.FormatCount(entry.xp) .. " XP")
+        end
+
+        if (entry.levels or 0) > 0 then
+            table.insert(counts, entry.levels == 1 and "1 level" or (entry.levels .. " levels"))
+        end
+
+        table.insert(lines, accent .. header .. "|r")
+        table.insert(lines, "  " .. (#counts > 0 and table.concat(counts, ", ") or C.TEXT.SESSION_HISTORY_NOTHING))
+    end
+
+    return table.concat(lines, "\n")
+end
+
+-- Setting a scroll box's text scrolls it back to the top, so skip the once-a-second
+-- refresh when nothing changed.
+local function SetBoxText(box, text)
+    if box.shownText ~= text then
+        box.shownText = text
+        box:SetText(text)
+    end
+end
+
 local function AddCheckboxGrid(card, keys, labels, columns, width, top, boxes, onClick)
     for index, key in ipairs(keys) do
         local column = (index - 1) % columns
@@ -130,8 +188,16 @@ function SessionView:Build(parent)
 
     local items = Theme.CreateScrollText(container, "DossierSessionItemsScrollFrame", "GameFontHighlightSmall")
     items:SetPoint("TOPLEFT", itemsTitle, "BOTTOMLEFT", 0, -6)
-    items:SetPoint("BOTTOMLEFT", 0, 0)
-    items:SetWidth(COLUMN_WIDTH)
+    items:SetSize(COLUMN_WIDTH, 100)
+
+    local historyTitle = Theme.CreateText(container, "GameFontNormalSmall", "accent")
+    historyTitle:SetPoint("TOPLEFT", items, "BOTTOMLEFT", 0, -10)
+    historyTitle:SetText(string.upper(C.TEXT.SESSION_HISTORY_TITLE))
+
+    local history = Theme.CreateScrollText(container, "DossierSessionHistoryScrollFrame", "GameFontHighlightSmall")
+    history:SetPoint("TOPLEFT", historyTitle, "BOTTOMLEFT", 0, -6)
+    history:SetPoint("BOTTOMLEFT", 0, 0)
+    history:SetWidth(COLUMN_WIDTH)
 
     local panelCard = Theme.CreateCard(container, C.TEXT.SESSION_PANEL_CARD)
     panelCard:SetPoint("TOPLEFT", RIGHT_X, -34)
@@ -214,6 +280,7 @@ function SessionView:Build(parent)
     self.resetButton = reset
     self.summaryText = summaryText
     self.itemsBox = items
+    self.historyBox = history
     self.panelToggle = panelToggle
     self.opacitySlider = opacitySlider
     self.opacityValue = opacityValue
@@ -247,14 +314,15 @@ function SessionView:Refresh()
     if summary.status == "paused" then
         self.statusText:SetText(C.TEXT.SESSION_PAUSED)
     elseif summary.status == "idle" then
-        self.statusText:SetText(C.TEXT.SESSION_IDLE)
+        self.statusText:SetText("")
     else
         self.statusText:SetText(summary.zone or "")
     end
 
     self.toggleButton:SetLabel(summary.status == "running" and C.TEXT.SESSION_PAUSE or C.TEXT.SESSION_RESUME)
     self.summaryText:SetText(SessionView.SummaryText(summary))
-    self.itemsBox:SetText(SessionView.ItemsText(summary))
+    SetBoxText(self.itemsBox, SessionView.ItemsText(summary))
+    SetBoxText(self.historyBox, SessionView.HistoryText(session:GetHistory()))
 
     local panel = GetPanel()
 
