@@ -150,12 +150,29 @@ foreach ($root in $exportRoots) {
 
 if ($dump) {
   $dumpText = Get-Content -Raw -Path $dump.FullName
+  $addonBlock = $null
   foreach ($line in ($dumpText -split "`r?`n")) {
     if ($line -match '^(.+?) - Enabled: (yes|no) - Loadable: \S+ - Loaded: (yes|no)(?: - Reason: .+?)? - Version: (.+)$') {
       $runtime[(Normalize-Name $Matches[1])] = @{
         enabled = ($Matches[2] -eq "yes")
         loaded = ($Matches[3] -eq "yes")
         version = $Matches[4].Trim()
+      }
+      continue
+    }
+    if ($line -match '^AddOns Count:') { $addonBlock = "counted"; continue }
+    if ($line -eq '== Loaded ==' -and $addonBlock) { $addonBlock = "loaded"; continue }
+    if ($line -eq '== Not loaded ==' -and $addonBlock) { $addonBlock = "notloaded"; continue }
+    if ($line -eq '' -or $line -match '^[A-Za-z ()]+:$') { $addonBlock = $null; continue }
+    $pattern = $(if ($addonBlock -eq "loaded") { '^(.+?)(?: \[([^\]]+)\])?$' } else { '^(.+?)(?: \[([^\]]+)\])? - ([^-]+)$' })
+    if ($addonBlock -in @("loaded", "notloaded") -and $line -match $pattern) {
+      $addonKey = Normalize-Name $Matches[1]
+      $addonVersion = $(if ($Matches[2]) { $Matches[2].Trim() } else { $null })
+      $reason = [string]$Matches[3]
+      $runtime[$addonKey] = @{
+        enabled = ($addonBlock -eq "loaded" -or $reason -notmatch 'disabled')
+        loaded = ($addonBlock -eq "loaded")
+        version = $addonVersion
       }
     }
   }
@@ -336,6 +353,27 @@ function Parse-TextExport($text, $when) {
         name = $item
         itemLevel = $ilvl
         quality = $quality
+      }
+    }
+    if ($chunks.Count -eq 0) {
+      $block = ($equip.Groups[1].Value -split "\r?\n\r?\n")[0]
+      foreach ($line in ($block -split "\r?\n")) {
+        if ($line -notmatch '^([A-Za-z][A-Za-z ]*\d?): \[([^\]]+)\](.*)$') { continue }
+        $slot = $Matches[1].Trim()
+        $item = $Matches[2].Trim()
+        $rest = $Matches[3]
+        $ilvl = $null
+        $quality = $null
+        if ($rest -match 'iLvl (\d+)(?:, ([A-Za-z]+))?') {
+          $ilvl = [int]$Matches[1]
+          if ($Matches[2]) { $quality = $Matches[2] }
+        }
+        $gear += [ordered]@{
+          slot = $slot
+          name = $item
+          itemLevel = $ilvl
+          quality = $quality
+        }
       }
     }
   }

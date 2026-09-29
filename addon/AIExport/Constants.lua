@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.2.0"
+C.VERSION = "1.3.0"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -204,10 +204,21 @@ C.TEXT = {
     STATUS_LOADED = "Loaded",
     STATUS_INSTALLED = "Installed, not loaded",
     STATUS_MISSING = "Not installed",
-    COMPANIONS_NONE = "[No companion addons are loaded and switched on.]",
+    COMPANIONS_NONE = "No companion addons are loaded and switched on.",
     LABEL_SHOW_MINIMAP_ICON = "Show minimap icon",
-    LABEL_VERBOSE_ITEM_TYPES = "Verbose item types",
+    LABEL_VERBOSE_ITEM_TYPES = "Item stats in bags and bank",
+    LABEL_DETAILED_EXPORT = "Detailed export (IDs and full item details, much larger)",
+    LABEL_TOKEN_ESTIMATE = "About %s tokens (%s characters)",
+    LABEL_TOKEN_LARGEST = "Largest: %s",
+    LABEL_TOKEN_SMALL = "Fits in any AI chat.",
+    LABEL_TOKEN_MEDIUM = "Fits in most AI chats.",
+    LABEL_TOKEN_LARGE = "Large. Untick the biggest sections if your AI chat cuts it off.",
+    LABEL_LAST_EXPORT = "Last export: about %s tokens",
 }
+
+C.CHARACTERS_PER_TOKEN = 4
+C.TOKENS_SMALL = 8000
+C.TOKENS_MEDIUM = 32000
 
 C.EQUIPMENT_SLOTS = {
     { slotId = INVSLOT_HEAD, slotToken = "HeadSlot", label = "Head" },

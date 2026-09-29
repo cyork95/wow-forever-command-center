@@ -1,8 +1,9 @@
 ## Interface: 16001
 ## Title: AIExport
 ## Notes: Type /aixport and press Create Export to copy a text report of your character, including a Biography timeline of level-ups, deaths, zones, quests, and screenshots, then paste it into an AI chat. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /aixport help shows the guide and an example AI skill.
+## Category: Data Export
 ## Author: AIExport
-## Version: 1.2.0
+## Version: 1.3.0
 ## IconTexture: Interface\AddOns\AIExport\Media\MinimapIcon
 ## X-License: MIT
 ## SavedVariablesPerCharacter: AIExportDBChar

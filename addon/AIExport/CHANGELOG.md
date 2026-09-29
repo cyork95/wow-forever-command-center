@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.0
+
+- Exports are much smaller. Item, spell, quest, and appearance IDs are gone. Equipment is one line per slot. Bag and bank stacks are merged. Lists such as completed quests, spells, and collected appearances are joined per line. Profession details list learned recipes by difficulty color, name recipes you can learn now, and count the rest. Lines that only say nothing was returned are dropped.
+- The export window shows an approximate token count, colored by size, and the three largest sections. The Export tab shows the size of the last export.
+- New option under Help: **Detailed export** brings back the full format with IDs.
+- "Verbose item types" is now called "Item stats in bags and bank".
+- The Biography records boss kills. Memento boss kills use those names from then on.
+- The Profession Master, Syndicator, and Talents Forever blocks now find the character when the game reports only the first name.
+- AIExport is listed under **Data Export** in the AddOn list.
+- The Create Export button text is sharper.
+
 ## 1.2.0
 
 - New look: one dark window with the AIExport logo in the header and Export, Companions, Biography, and Help tabs. Export sections are grouped into cards.

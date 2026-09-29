@@ -9,11 +9,15 @@ ExportFrame.header = nil
 ExportFrame.editBox = nil
 ExportFrame.scrollFrame = nil
 ExportFrame.updateLayout = nil
+ExportFrame.sizeBar = nil
+ExportFrame.lastTokens = nil
 ExportFrame.reopenMainOnClose = false
 
 local FRAME_WIDTH = 760
 local FRAME_HEIGHT = 540
 local MIN_TEXT_WIDTH = 100
+local SIZE_BAR_HEIGHT = 40
+local LARGEST_SECTION_COUNT = 3
 
 local function CreateWindow()
     local Theme = ns.Theme
@@ -23,11 +27,86 @@ local function CreateWindow()
     return frame, header
 end
 
+local function CreateSizeBar(parent)
+    local Theme = ns.Theme
+
+    local bar = Theme.CreatePanel(parent, "card", "border")
+    bar:SetPoint("TOPLEFT", 14, -(Theme.HEADER_HEIGHT + 10))
+    bar:SetPoint("TOPRIGHT", -14, -(Theme.HEADER_HEIGHT + 10))
+    bar:SetHeight(SIZE_BAR_HEIGHT)
+
+    local estimate = Theme.CreateText(bar, "GameFontNormal", "accent")
+    estimate:SetPoint("TOPLEFT", 10, -7)
+
+    local note = Theme.CreateText(bar, "GameFontHighlightSmall", "muted")
+    note:SetPoint("TOPLEFT", estimate, "BOTTOMLEFT", 0, -3)
+
+    local largest = Theme.CreateText(bar, "GameFontHighlightSmall", "muted")
+    largest:SetPoint("RIGHT", -10, 0)
+    largest:SetJustifyH("RIGHT")
+
+    bar.estimate = estimate
+    bar.note = note
+    bar.largest = largest
+
+    return bar
+end
+
+local function FormatThousands(value)
+    local text = tostring(math.floor(value or 0))
+    local formatted = text:reverse():gsub("(%d%d%d)", "%1,"):reverse()
+    return (formatted:gsub("^,", ""))
+end
+
+local function UpdateSizeBar(bar, text)
+    local Theme = ns.Theme
+    local formatter = ns.Formatters and ns.Formatters.TextFormatter
+    local characters = #(text or "")
+    local tokens = math.ceil(characters / (C.CHARACTERS_PER_TOKEN or 4))
+
+    if formatter and type(formatter.EstimateTokens) == "function" then
+        tokens = formatter.EstimateTokens(characters)
+    end
+
+    local color, note = "accent", C.TEXT.LABEL_TOKEN_SMALL
+
+    if tokens > C.TOKENS_MEDIUM then
+        color, note = "danger", C.TEXT.LABEL_TOKEN_LARGE
+    elseif tokens > C.TOKENS_SMALL then
+        color, note = "warning", C.TEXT.LABEL_TOKEN_MEDIUM
+    end
+
+    bar.estimate:SetText(string.format(
+        C.TEXT.LABEL_TOKEN_ESTIMATE,
+        FormatThousands(tokens),
+        FormatThousands(characters)
+    ))
+    bar.estimate:SetTextColor(Theme.Color(color))
+    bar.note:SetText(note)
+
+    local stats = formatter and type(formatter.GetLastStats) == "function" and formatter:GetLastStats()
+    local parts = {}
+
+    for index, size in ipairs(stats and stats.sections or {}) do
+        if index > LARGEST_SECTION_COUNT then
+            break
+        end
+
+        table.insert(parts, string.format("%s %s", size.title, FormatThousands(size.tokens)))
+    end
+
+    bar.largest:SetText(#parts > 0 and string.format(C.TEXT.LABEL_TOKEN_LARGEST, table.concat(parts, ", ")) or "")
+
+    ExportFrame.lastTokens = tokens
+
+    return tokens
+end
+
 local function CreateScrollArea(parent)
     local Theme = ns.Theme
 
     local box = Theme.CreatePanel(parent, "dark", "border")
-    box:SetPoint("TOPLEFT", 14, -(Theme.HEADER_HEIGHT + 12))
+    box:SetPoint("TOPLEFT", 14, -(Theme.HEADER_HEIGHT + SIZE_BAR_HEIGHT + 18))
     box:SetPoint("BOTTOMRIGHT", -14, 14)
 
     local scrollFrame = CreateFrame(
@@ -118,7 +197,10 @@ local function EnsureFrame()
     end
 
     local frame, header = CreateWindow()
+    local sizeBar = CreateSizeBar(frame)
     local scrollFrame, editBox, updateLayout = CreateScrollArea(frame)
+
+    ExportFrame.sizeBar = sizeBar
 
     frame:SetScript("OnHide", function()
         editBox:ClearFocus()
@@ -145,6 +227,13 @@ function ExportFrame:ShowText(text, title)
 
     frame:Show()
     editBox:SetText(text or "")
+    UpdateSizeBar(self.sizeBar, text)
+
+    local mainFrame = ns.UI and ns.UI.MainFrame
+
+    if mainFrame and type(mainFrame.SetLastExportTokens) == "function" then
+        mainFrame:SetLastExportTokens(self.lastTokens)
+    end
 
     if type(self.updateLayout) == "function" then
         self.updateLayout()

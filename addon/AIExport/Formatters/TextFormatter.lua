@@ -592,6 +592,18 @@ local function IsVerboseItemTypesEnabled()
     return false
 end
 
+local function IsDetailedExport()
+    if type(ns.IsDetailedExport) == "function" then
+        local success, enabled = pcall(ns.IsDetailedExport, ns)
+
+        if success then
+            return enabled == true
+        end
+    end
+
+    return false
+end
+
 local function IsInvalidItemName(name, link)
     if name == ""
         or name == "[]"
@@ -2789,9 +2801,10 @@ local function FormatPetLine(entry)
         )
     end
 
-    if U.IsNonEmptyString(
-        entry.petID
-    )
+    if IsDetailedExport()
+        and U.IsNonEmptyString(
+            entry.petID
+        )
     then
         U.SafeInsert(
             metadata,
@@ -3482,7 +3495,7 @@ local function FormatBankHeader(section)
     )
 end
 
-function TextFormatter:AddBags(
+function TextFormatter:AddBagsDetailed(
     lines,
     data
 )
@@ -3553,7 +3566,7 @@ function TextFormatter:AddBags(
     end
 end
 
-function TextFormatter:AddBank(
+function TextFormatter:AddBankDetailed(
     lines,
     data
 )
@@ -3671,7 +3684,7 @@ function TextFormatter:AddBank(
     end
 end
 
-function TextFormatter:AddEquipment(
+function TextFormatter:AddEquipmentDetailed(
     lines,
     data
 )
@@ -4241,7 +4254,14 @@ function TextFormatter:AddCharacterStats(
                 ratingKey
             ]
 
-        if rating then
+        local isEmptyRating =
+            rating
+            and ratingKey ~= "crit"
+            and not IsDetailedExport()
+            and (U.ToSafeNumber(rating.rating) or 0) == 0
+            and (U.ToSafeNumber(rating.bonus) or 0) == 0
+
+        if rating and not isEmptyRating then
             AddLine(
                 lines,
                 string.format(
@@ -4466,7 +4486,7 @@ function TextFormatter:AddQuests(
     end
 end
 
-function TextFormatter:AddCompletedQuests(
+function TextFormatter:AddCompletedQuestsDetailed(
     lines,
     data
 )
@@ -4701,7 +4721,7 @@ function TextFormatter:AddSkills(
     end
 end
 
-function TextFormatter:AddProfessionDetails(
+function TextFormatter:AddProfessionDetailsDetailed(
     lines,
     data
 )
@@ -5085,7 +5105,7 @@ function TextFormatter:AddTalents(
     end
 end
 
-function TextFormatter:AddSpellbook(
+function TextFormatter:AddSpellbookDetailed(
     lines,
     data
 )
@@ -7483,7 +7503,7 @@ local function CollectedAppearanceCategoryKey(
     return nil
 end
 
-function TextFormatter:AddCollectedAppearances(
+function TextFormatter:AddCollectedAppearancesDetailed(
     lines,
     data
 )
@@ -8010,7 +8030,7 @@ function TextFormatter:AddAppearances(
     )
 end
 
-function TextFormatter:AddAddons(
+function TextFormatter:AddAddonsDetailed(
     lines,
     data
 )
@@ -8229,6 +8249,699 @@ function TextFormatter:AddCompanions(
     )
 end
 
+local COMPACT_LINE_LIMIT = 240
+
+local RECIPE_DIFFICULTY_GROUPS = {
+    { key = "optimal", label = "Orange" },
+    { key = "medium", label = "Yellow" },
+    { key = "easy", label = "Green" },
+    { key = "trivial", label = "Grey" },
+    { key = "other", label = "Other" },
+}
+
+local RECIPE_DIFFICULTY_KEYS = {
+    ["0"] = "optimal",
+    ["1"] = "medium",
+    ["2"] = "easy",
+    ["3"] = "trivial",
+    optimal = "optimal",
+    difficult = "optimal",
+    medium = "medium",
+    easy = "easy",
+    trivial = "trivial",
+}
+
+local function CountedList(values, showCounts)
+    local order = {}
+    local counts = {}
+
+    for _, value in ipairs(values or {}) do
+        if U.IsNonEmptyString(value) then
+            if counts[value] == nil then
+                counts[value] = 0
+                table.insert(order, value)
+            end
+
+            counts[value] = counts[value] + 1
+        end
+    end
+
+    local result = {}
+
+    for _, value in ipairs(order) do
+        if showCounts ~= false and counts[value] > 1 then
+            table.insert(result, string.format("%s x%d", value, counts[value]))
+        else
+            table.insert(result, value)
+        end
+    end
+
+    return result
+end
+
+local function AddJoinedList(lines, label, values)
+    if type(values) ~= "table" or #values == 0 then
+        return
+    end
+
+    local current = U.IsNonEmptyString(label) and (label .. ": ") or ""
+    local hasValue = false
+
+    for _, value in ipairs(values) do
+        local text = tostring(value)
+
+        if hasValue and #current + #text + 2 > COMPACT_LINE_LIMIT then
+            AddLine(lines, current)
+            current = "  " .. text
+        elseif hasValue then
+            current = current .. ", " .. text
+        else
+            current = current .. text
+        end
+
+        hasValue = true
+    end
+
+    AddLine(lines, current)
+end
+
+local function PlainItemName(item)
+    return (FormatItemDisplayName(item):gsub("^%[(.*)%]$", "%1"))
+end
+
+local function CompactStatText(item)
+    if type(item) ~= "table" or type(item.stats) ~= "table" or #item.stats == 0 then
+        return nil
+    end
+
+    local stats = U.ShallowCopy(item.stats)
+    SortStats(stats)
+
+    local parts = {}
+
+    for _, stat in ipairs(stats) do
+        local value = stat and U.ToSafeNumber(stat.value)
+
+        if value ~= nil and value ~= 0 then
+            table.insert(
+                parts,
+                ResolveStatLabel(stat.key or "UNKNOWN_STAT") .. " " .. ShortDecimalText(value)
+            )
+        end
+    end
+
+    if #parts == 0 then
+        return nil
+    end
+
+    return table.concat(parts, ", ")
+end
+
+local function IsGearItem(item)
+    return type(item) == "table"
+        and (VALID_EQUIP_LOCS[item.equipLoc] == true or IsProfessionEquipment(item))
+end
+
+local function CompactItemEntries(items)
+    local order = {}
+    local byKey = {}
+    local withStats = IsVerboseItemTypesEnabled()
+
+    for _, item in ipairs(items or {}) do
+        if type(item) == "table" then
+            local name = PlainItemName(item)
+            local suffix = nil
+
+            if IsGearItem(item) then
+                local parts = {}
+
+                if U.IsValidItemLevel(item.itemLevel) then
+                    table.insert(parts, "iLvl " .. SafeNumberText(item.itemLevel))
+                end
+
+                local rarity = FormatRarity(item)
+
+                if rarity then
+                    table.insert(parts, rarity)
+                end
+
+                local stats = withStats and CompactStatText(item) or nil
+
+                if stats then
+                    table.insert(parts, stats)
+                end
+
+                if #parts > 0 then
+                    suffix = table.concat(parts, " ")
+                end
+            end
+
+            local key = name .. "|" .. (suffix or "")
+            local entry = byKey[key]
+
+            if not entry then
+                entry = { name = name, suffix = suffix, count = 0 }
+                byKey[key] = entry
+                table.insert(order, entry)
+            end
+
+            entry.count = entry.count + (U.ToSafeNumber(item.count) or 1)
+        end
+    end
+
+    local result = {}
+
+    for _, entry in ipairs(order) do
+        local text = entry.name
+
+        if entry.count > 1 then
+            text = text .. " x" .. SafeNumberText(entry.count)
+        end
+
+        if entry.suffix then
+            text = text .. " (" .. entry.suffix .. ")"
+        end
+
+        table.insert(result, text)
+    end
+
+    return result
+end
+
+local function AddCachedNote(lines, lastUpdated)
+    local updatedAt = FormatTimestamp(lastUpdated)
+
+    if updatedAt then
+        AddLine(lines, "(Saved copy from " .. updatedAt .. ")")
+    else
+        AddLine(lines, "(Saved copy)")
+    end
+end
+
+local function AddItemContainers(lines, sections, formatHeader)
+    for _, section in ipairs(sections or {}) do
+        local entries = CompactItemEntries(section.items)
+
+        if #entries == 0 then
+            AddLine(lines, formatHeader(section) .. ": empty")
+        else
+            AddJoinedList(lines, formatHeader(section), entries)
+        end
+    end
+end
+
+function TextFormatter:AddBags(lines, data)
+    if IsDetailedExport() then
+        return self:AddBagsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.BAGS])
+    AddItemContainers(lines, data.sections, FormatBagHeader)
+    AddBlankLine(lines)
+end
+
+function TextFormatter:AddBank(lines, data)
+    if IsDetailedExport() then
+        return self:AddBankDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.BANK])
+
+    if not data.available then
+        AddLine(
+            lines,
+            data.unavailableMessage
+            or C.TEXT.BANK_UNAVAILABLE_NO_CACHE
+            or C.TEXT.BANK_UNAVAILABLE
+        )
+        AddBlankLine(lines)
+        return
+    end
+
+    if data.cached then
+        AddCachedNote(lines, data.lastUpdated)
+    end
+
+    AddItemContainers(lines, data.sections, FormatBankHeader)
+    AddBlankLine(lines)
+end
+
+local function CompactEquipmentDetails(item)
+    local parts = {}
+
+    if U.IsValidItemLevel(item.itemLevel) then
+        table.insert(parts, "iLvl " .. SafeNumberText(item.itemLevel))
+    end
+
+    local rarity = FormatRarity(item)
+
+    if rarity then
+        table.insert(parts, rarity)
+    end
+
+    local subType = U.ToSafeString(item.itemSubType)
+
+    if U.IsNonEmptyString(subType) and subType ~= "Miscellaneous" then
+        table.insert(parts, subType)
+    end
+
+    local damageMin = U.ToSafeNumber(item.weaponDamageMin)
+    local damageMax = U.ToSafeNumber(item.weaponDamageMax)
+
+    if damageMin ~= nil and damageMax ~= nil then
+        local damage = SafeNumberText(damageMin) .. "-" .. SafeNumberText(damageMax) .. " damage"
+
+        if U.ToSafeNumber(item.weaponSpeed) ~= nil then
+            damage = damage .. " at " .. ShortDecimalText(item.weaponSpeed) .. " speed"
+        end
+
+        table.insert(parts, damage)
+    end
+
+    local durabilityCurrent = U.ToSafeNumber(item.durabilityCurrent)
+    local durabilityMax = U.ToSafeNumber(item.durabilityMax)
+
+    if durabilityCurrent ~= nil
+        and durabilityMax ~= nil
+        and durabilityCurrent < durabilityMax
+    then
+        table.insert(
+            parts,
+            "durability " .. SafeNumberText(durabilityCurrent) .. "/" .. SafeNumberText(durabilityMax)
+        )
+    end
+
+    local enhancements = type(item.enhancements) == "table" and item.enhancements or {}
+
+    if type(enhancements.enchant) == "table" and U.ToSafeNumber(enhancements.enchant.id) ~= nil then
+        table.insert(parts, "enchanted")
+    end
+
+    local gems = {}
+
+    for _, gem in ipairs(type(enhancements.gems) == "table" and enhancements.gems or {}) do
+        if type(gem) == "table" and U.IsNonEmptyString(gem.name) then
+            table.insert(gems, gem.name)
+        end
+    end
+
+    if #gems > 0 then
+        table.insert(parts, "gems " .. table.concat(gems, " and "))
+    end
+
+    local text = ""
+
+    if #parts > 0 then
+        text = " " .. table.concat(parts, ", ")
+    end
+
+    local stats = CompactStatText(item)
+
+    if stats then
+        text = text .. " - " .. stats
+    end
+
+    return text
+end
+
+function TextFormatter:AddEquipment(lines, data)
+    if IsDetailedExport() then
+        return self:AddEquipmentDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.EQUIPMENT])
+
+    local emptySlots = {}
+
+    for _, slotInfo in ipairs(data.slots or {}) do
+        local slot = slotInfo.slot or "Slot"
+
+        if slotInfo.item then
+            AddLine(
+                lines,
+                slot .. ": " .. FormatItemDisplayName(slotInfo.item) .. CompactEquipmentDetails(slotInfo.item)
+            )
+        else
+            table.insert(emptySlots, slot)
+        end
+    end
+
+    AddJoinedList(lines, "Empty", emptySlots)
+    AddBlankLine(lines)
+end
+
+function TextFormatter:AddCompletedQuests(lines, data)
+    if IsDetailedExport() then
+        return self:AddCompletedQuestsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.COMPLETED_QUESTS])
+
+    local resolvedQuests = data.resolvedQuests or {}
+    local unresolvedQuestIDs = data.unresolvedQuestIDs or {}
+    local count = U.ToSafeNumber(data.count) or #(data.entries or {})
+    local trackingCount = U.ToSafeNumber(data.trackingCount) or #(data.trackingQuests or {})
+
+    local summary = "Completed Quest Count: " .. SafeNumberText(count)
+
+    if trackingCount > 0 then
+        summary = summary .. " (" .. SafeNumberText(trackingCount) .. " hidden tracking flags)"
+    end
+
+    AddLine(lines, summary)
+
+    local titles = {}
+
+    for _, quest in ipairs(resolvedQuests) do
+        if type(quest) == "table" and U.IsNonEmptyString(quest.title) then
+            table.insert(titles, quest.title)
+        end
+    end
+
+    AddJoinedList(lines, "Quests", CountedList(titles))
+
+    local ids = {}
+
+    for _, questID in ipairs(unresolvedQuestIDs) do
+        table.insert(ids, SafeNumberText(questID))
+    end
+
+    AddJoinedList(lines, "Unnamed quest IDs", ids)
+    AddBlankLine(lines)
+end
+
+local function RecipeDifficultyKey(recipe)
+    local key = RECIPE_DIFFICULTY_KEYS[string.lower(U.SafeString(recipe.difficulty, ""))]
+    return key or "other"
+end
+
+function TextFormatter:AddProfessionDetails(lines, data)
+    if IsDetailedExport() then
+        return self:AddProfessionDetailsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.PROFESSION_DETAILS])
+
+    local professions = data.professions or {}
+
+    if data.available == false or #professions == 0 then
+        AddLine(lines, data.unavailableMessage or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE)
+        AddBlankLine(lines)
+        return
+    end
+
+    if data.cached then
+        AddCachedNote(lines, data.lastUpdated)
+    end
+
+    for _, profession in ipairs(professions) do
+        local rank = U.ToSafeNumber(profession.rank)
+        local maxRank = U.ToSafeNumber(profession.maxRank)
+        local header = profession.name or "Unknown Profession"
+
+        if rank ~= nil and maxRank ~= nil then
+            header = string.format("%s %s/%s", header, SafeNumberText(rank), SafeNumberText(maxRank))
+        end
+
+        AddSubHeader(lines, header)
+
+        local learned = {}
+        local learnableNow = {}
+        local unlearnedCount = 0
+
+        for _, group in ipairs(RECIPE_DIFFICULTY_GROUPS) do
+            learned[group.key] = {}
+        end
+
+        for _, recipe in ipairs(profession.recipes or {}) do
+            if type(recipe) == "table" and U.IsNonEmptyString(recipe.name) then
+                if recipe.learned == false then
+                    local required = U.ToSafeNumber(recipe.requiredSkill)
+
+                    if required ~= nil and rank ~= nil and required <= rank then
+                        table.insert(learnableNow, recipe.name)
+                    else
+                        unlearnedCount = unlearnedCount + 1
+                    end
+                else
+                    table.insert(learned[RecipeDifficultyKey(recipe)], recipe.name)
+                end
+            end
+        end
+
+        local anyLearned = false
+
+        for _, group in ipairs(RECIPE_DIFFICULTY_GROUPS) do
+            local names = CountedList(learned[group.key], false)
+
+            if #names > 0 then
+                anyLearned = true
+                AddJoinedList(lines, group.label, names)
+            end
+        end
+
+        if not anyLearned then
+            AddLine(lines, "No learned recipes recorded.")
+        end
+
+        AddJoinedList(lines, "Can learn now", CountedList(learnableNow, false))
+
+        if unlearnedCount > 0 then
+            AddLine(lines, "Not learned yet: " .. SafeNumberText(unlearnedCount) .. " more recipes")
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
+function TextFormatter:AddSpellbook(lines, data)
+    if IsDetailedExport() then
+        return self:AddSpellbookDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.SPELLBOOK])
+
+    local sectionOrder = data.sectionOrder or {
+        { key = "general", title = "General" },
+        { key = "class", title = "Class" },
+        { key = "spec", title = "Spec" },
+    }
+
+    local sections = data.sections or {}
+
+    for _, sectionMeta in ipairs(sectionOrder) do
+        local section = sections[sectionMeta.key] or {}
+        local names = {}
+        local unknown = {}
+
+        for _, entry in ipairs(section.spells or {}) do
+            if type(entry) == "table" and U.IsNonEmptyString(entry.name) then
+                local name = entry.name
+
+                if entry.isPassive == true then
+                    name = name .. " (passive)"
+                end
+
+                if entry.isKnown == false then
+                    table.insert(unknown, name)
+                else
+                    table.insert(names, name)
+                end
+            end
+        end
+
+        local title = section.title or sectionMeta.title
+        AddJoinedList(lines, title, CountedList(names, false))
+        AddJoinedList(lines, title .. " (not learned yet)", CountedList(unknown, false))
+    end
+
+    AddBlankLine(lines)
+end
+
+function TextFormatter:AddCollectedAppearances(lines, data)
+    if IsDetailedExport() then
+        return self:AddCollectedAppearancesDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.COLLECTED_APPEARANCES])
+
+    local entries = data.entries or {}
+
+    AddLine(
+        lines,
+        "Collected Appearance Source Count: " .. SafeNumberText(data.total, tostring(#entries))
+    )
+
+    if data.truncated == true then
+        AddLine(lines, "(List stops at " .. SafeNumberText(data.maxEntries, tostring(#entries)) .. " entries.)")
+    end
+
+    local order = {}
+    local groups = {}
+
+    for _, entry in ipairs(entries) do
+        if type(entry) == "table" then
+            local category = CleanWoWText(entry.categoryName) or "Other"
+            local name = ResolveCollectedAppearanceDisplayName(entry)
+
+            if not groups[category] then
+                groups[category] = {}
+                table.insert(order, category)
+            end
+
+            if name and not name:match("^Hidden ") then
+                table.insert(groups[category], name)
+            end
+        end
+    end
+
+    for _, category in ipairs(order) do
+        local names = CountedList(groups[category], false)
+
+        if #names > 0 then
+            AddJoinedList(lines, category .. " (" .. #names .. ")", names)
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
+function TextFormatter:AddAddons(lines, data)
+    if IsDetailedExport() then
+        return self:AddAddonsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.ADDONS])
+
+    local entries = data.entries or {}
+    local loaded = {}
+    local notLoaded = {}
+
+    for _, entry in ipairs(entries) do
+        if type(entry) == "table" then
+            local text = entry.name or entry.internalName or "Unknown Addon"
+
+            if U.IsNonEmptyString(entry.version) then
+                text = text .. " [" .. entry.version .. "]"
+            end
+
+            if entry.loaded == true then
+                table.insert(loaded, text)
+            else
+                local reason = U.IsNonEmptyString(entry.reason) and string.lower(entry.reason)
+                    or (entry.enabled == false and "disabled")
+                    or "not loaded"
+
+                table.insert(notLoaded, text .. " - " .. reason)
+            end
+        end
+    end
+
+    AddLine(
+        lines,
+        string.format(
+            "AddOns Count: %s (%d loaded)",
+            SafeNumberText(data.count, tostring(#entries)),
+            #loaded
+        )
+    )
+
+    if #loaded > 0 then
+        AddSubHeader(lines, "Loaded")
+
+        for _, text in ipairs(loaded) do
+            AddLine(lines, text)
+        end
+    end
+
+    if #notLoaded > 0 then
+        AddSubHeader(lines, "Not loaded")
+
+        for _, text in ipairs(notLoaded) do
+            AddLine(lines, text)
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
+local function IsPlaceholderLine(line)
+    return type(line) == "string" and line:match("^%[No .*%]$") ~= nil
+end
+
+local function IsSubHeaderLine(line)
+    return type(line) == "string" and line:match("^== .+ ==$") ~= nil
+end
+
+local function CompactSectionLines(lines, first)
+    local last = #lines
+    local kept = {}
+
+    for index = first, last do
+        if not IsPlaceholderLine(lines[index]) then
+            table.insert(kept, lines[index])
+        end
+    end
+
+    for index = last, first, -1 do
+        lines[index] = nil
+    end
+
+    local withHeaders = {}
+
+    for index, line in ipairs(kept) do
+        local nextLine = kept[index + 1]
+        local isEmptySubHeader = IsSubHeaderLine(line)
+            and (nextLine == nil or nextLine == "" or IsSubHeaderLine(nextLine))
+
+        if not isEmptySubHeader then
+            table.insert(withHeaders, line)
+        end
+    end
+
+    local contentLines = 0
+
+    for index, line in ipairs(withHeaders) do
+        local previous = lines[#lines]
+        local isExtraBlank = line == "" and (#lines < first or previous == "")
+
+        if not isExtraBlank then
+            table.insert(lines, line)
+
+            if index > 1 and line ~= "" then
+                contentLines = contentLines + 1
+            end
+        end
+    end
+
+    if contentLines == 0 and #lines >= first then
+        table.insert(lines, first + 1, "None recorded.")
+    end
+
+    if lines[#lines] ~= "" then
+        table.insert(lines, "")
+    end
+end
+
+local function CountCharacters(lines, first, last)
+    local total = 0
+
+    for index = first, last do
+        total = total + #(lines[index] or "") + 1
+    end
+
+    return total
+end
+
+function TextFormatter:GetLastStats()
+    return self.lastStats
+end
+
+function TextFormatter.EstimateTokens(characters)
+    local count = U.ToSafeNumber(characters) or 0
+    return math.ceil(count / (C.CHARACTERS_PER_TOKEN or 4))
+end
+
 function TextFormatter:Build(
     selectedSections,
     exportData
@@ -8236,6 +8949,10 @@ function TextFormatter:Build(
     local lines = {}
     local addedAny =
         false
+    local sectionSizes = {}
+    local compact = not IsDetailedExport()
+
+    self.lastStats = nil
 
     exportData =
         exportData
@@ -8463,9 +9180,21 @@ function TextFormatter:Build(
                 sectionKey
             ]
         then
+            local first = #lines + 1
+
             handlers[
                 sectionKey
             ]()
+
+            if compact and #lines >= first then
+                CompactSectionLines(lines, first)
+            end
+
+            table.insert(sectionSizes, {
+                key = sectionKey,
+                title = C.SECTION_LABELS[sectionKey] or sectionKey,
+                characters = CountCharacters(lines, first, #lines),
+            })
 
             addedAny =
                 true
@@ -8511,6 +9240,21 @@ function TextFormatter:Build(
         return
             C.TEXT.NOTHING_TO_EXPORT
     end
+
+    for _, size in ipairs(sectionSizes) do
+        size.tokens = TextFormatter.EstimateTokens(size.characters)
+    end
+
+    table.sort(sectionSizes, function(left, right)
+        return left.characters > right.characters
+    end)
+
+    self.lastStats = {
+        characters = #output,
+        tokens = TextFormatter.EstimateTokens(#output),
+        detailed = not compact,
+        sections = sectionSizes,
+    }
 
     return output
 end

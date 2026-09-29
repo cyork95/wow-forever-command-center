@@ -19,6 +19,7 @@ Theme.COLORS = {
     muted = { 0.58, 0.63, 0.67, 1 },
     disabled = { 0.36, 0.39, 0.42, 1 },
     warning = { 0.95, 0.74, 0.30, 1 },
+    danger = { 0.95, 0.42, 0.36, 1 },
     dark = { 0.04, 0.05, 0.06, 1 },
 }
 
@@ -244,10 +245,19 @@ function Theme.CreateButton(parent, label, width, height, style, onClick)
         style == "primary" and "GameFontNormal" or "GameFontHighlightSmall",
         palette.text
     )
-    text:SetPoint("CENTER")
+    text:SetPoint("LEFT", 4, 0)
+    text:SetPoint("RIGHT", -4, 0)
     text:SetJustifyH("CENTER")
+    text:SetJustifyV("MIDDLE")
+    text:SetWordWrap(false)
     text:SetText(label or "")
     button.label = text
+
+    if style == "primary" then
+        -- The default drop shadow smears dark text on the bright fill.
+        text:SetShadowOffset(0, 0)
+        text:SetShadowColor(0, 0, 0, 0)
+    end
 
     local function Paint(self, hovered)
         if self:IsEnabled() then

@@ -98,6 +98,7 @@ ns.Companions:Register({
         end
 
         local names = BuildEncounterNames(H)
+        local biography = ns.Data and ns.Data.Biography
         local rows = {}
 
         for difficultyKey, encounters in pairs(kills) do
@@ -106,7 +107,10 @@ ns.Companions:Register({
             if type(encounters) == "table" then
                 for encounterID in pairs(encounters) do
                     local known = names[encounterID]
-                    local text = known and known.name or ("Encounter " .. tostring(encounterID))
+                    local seenName = biography and biography:GetEncounterName(encounterID)
+                    local text = (known and known.name)
+                        or seenName
+                        or ("Boss " .. tostring(encounterID) .. ", name not seen yet")
 
                     local details = {}
 

@@ -60,12 +60,16 @@ end
 
 -- Returns the first key in `tbl` whose name part matches the player, trying the
 -- full name before the first word so "Flann Anvilhew" wins over "Flann".
+-- UnitName can return only the first word, so a key whose first word matches is
+-- accepted when it is the only one.
 function Helpers.FindCharacterKey(tbl)
     if type(tbl) ~= "table" then
         return nil
     end
 
-    for _, name in ipairs(Helpers.PlayerNames()) do
+    local names = Helpers.PlayerNames()
+
+    for _, name in ipairs(names) do
         local lowered = string.lower(name)
 
         for key in pairs(tbl) do
@@ -74,6 +78,26 @@ function Helpers.FindCharacterKey(tbl)
             if keyName and string.lower(keyName) == lowered then
                 return key
             end
+        end
+    end
+
+    for _, name in ipairs(names) do
+        local lowered = string.lower(name)
+        local match = nil
+        local matches = 0
+
+        for key in pairs(tbl) do
+            local keyName = Helpers.KeyName(key)
+            local first = keyName and string.match(keyName, "^(%S+)")
+
+            if first and string.lower(first) == lowered then
+                match = key
+                matches = matches + 1
+            end
+        end
+
+        if matches == 1 then
+            return match
         end
     end
 

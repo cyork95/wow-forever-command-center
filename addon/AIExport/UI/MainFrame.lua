@@ -99,6 +99,11 @@ local function UpdateSettingsCheckboxes()
 
         MainFrame.verboseItemTypesCheckbox:SetChecked(enabled == true)
     end
+
+    if MainFrame.detailedExportCheckbox then
+        local enabled = type(ns.IsDetailedExport) == "function" and ns:IsDetailedExport()
+        MainFrame.detailedExportCheckbox:SetChecked(enabled == true)
+    end
 end
 
 local function BuildExportPage(page)
@@ -182,7 +187,28 @@ local function BuildExportPage(page)
     end)
     createExport:SetPoint("BOTTOMRIGHT", 0, 0)
 
+    local lastExport = Theme.CreateText(page, "GameFontHighlightSmall", "muted")
+    lastExport:SetPoint("RIGHT", createExport, "LEFT", -12, 0)
+    lastExport:SetJustifyH("RIGHT")
+
     MainFrame.createExportButton = createExport
+    MainFrame.lastExportText = lastExport
+end
+
+function MainFrame:SetLastExportTokens(tokens)
+    if not self.lastExportText then
+        return
+    end
+
+    local count = tonumber(tokens)
+
+    if not count then
+        self.lastExportText:SetText("")
+        return
+    end
+
+    local text = tostring(math.floor(count)):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
+    self.lastExportText:SetText(string.format(C.TEXT.LABEL_LAST_EXPORT, text))
 end
 
 local function StatusColor(status)
@@ -305,13 +331,13 @@ local function BuildHelpPage(page)
 
     local guideBox = Theme.CreateScrollText(page, "AIExportGuideScrollFrame", "GameFontHighlightSmall")
     guideBox:SetPoint("TOPLEFT", 0, 0)
-    guideBox:SetPoint("BOTTOMRIGHT", 0, 96)
+    guideBox:SetPoint("BOTTOMRIGHT", 0, 120)
     MainFrame.guideBox = guideBox
 
     local options = Theme.CreateCard(page, C.TEXT.LABEL_OPTIONS)
     options:SetPoint("BOTTOMLEFT", 0, 0)
     options:SetPoint("BOTTOMRIGHT", 0, 0)
-    options:SetHeight(86)
+    options:SetHeight(110)
 
     local minimapCheckbox = Theme.CreateCheckbox(options, C.TEXT.LABEL_SHOW_MINIMAP_ICON, function(self)
         local visible = self:GetChecked() == true
@@ -333,6 +359,14 @@ local function BuildHelpPage(page)
     end)
     verboseCheckbox:SetPoint("TOPLEFT", 10, -54)
     MainFrame.verboseItemTypesCheckbox = verboseCheckbox
+
+    local detailedCheckbox = Theme.CreateCheckbox(options, C.TEXT.LABEL_DETAILED_EXPORT, function(self)
+        if type(ns.SetDetailedExport) == "function" then
+            ns:SetDetailedExport(self:GetChecked() == true)
+        end
+    end)
+    detailedCheckbox:SetPoint("TOPLEFT", 10, -78)
+    MainFrame.detailedExportCheckbox = detailedCheckbox
 
     local copyGuide = Theme.CreateButton(options, C.TEXT.BUTTON_COPY_GUIDE, 110, 22, "default", function()
         local commands = GetCommands()

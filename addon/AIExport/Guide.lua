@@ -46,15 +46,21 @@ The report starts with "Exported By: AIExport" and then one block per section:
 - Location: zone, subzone, map, coordinates, hearthstone
 - Character Stats: name-realm, level, race, class, XP, health, stats, ratings
 - Currencies, Collections, Reputations
-- Bags, Bank (cached), Equipment with item level and stats
+- Bags, Bank (saved copy), Equipment with item level and stats
 - Lockouts, Progress, Achievements, Appearances
 - Quests in your log and completed quests
-- Skills, Profession Details (cached), Talents, Spellbook
+- Skills, Profession Details (saved copy), Talents, Spellbook
 - Biography: the timeline described below
 - Companions: data from the optional addons described below
 - AddOns: every installed addon and whether it loaded
 
 Sections you leave unticked are not in the report.
+
+The report is kept short so it costs fewer tokens in your AI chat. The
+export window shows about how many tokens it uses and which sections are
+largest. Untick sections you do not need if your AI chat cuts the text off.
+Tick Detailed export under Help to get item, spell, and quest IDs back; the
+report is then several times larger.
 
 
 4. Biography
@@ -68,6 +74,7 @@ character it is loaded on:
 - The first time you enter each zone in a session
 - Every quest you turn in, by name
 - Every achievement you earn
+- Every boss you defeat, with the difficulty
 - Learning a profession, and each rise in profession skill
 - Every screenshot the game saves, with the place it was taken. This works
   for screenshots you take yourself and ones Memento takes for you.
@@ -142,8 +149,8 @@ The user pastes a text report made in game with /aixport.
   user to run /aixport, press Create Export, and paste the whole text.
 - One report is one character. If there are two "Exported By: AIExport"
   lines, treat each block as its own character.
-- Do not invent data. If a section is missing or says "unavailable" or
-  "cached", say so instead of guessing.
+- Do not invent data. If a section is missing or says "unavailable",
+  "cached", or "Saved copy from", say so instead of guessing.
 
 ## Save it
 
@@ -154,8 +161,11 @@ file exists. Keep older files; they are the history.
 ## Read it
 
 - Level, zone, gold, and XP come from "Character Stats:" and "Location:".
-- Gear is under "Equipment:" with item level per slot.
-- Professions are under "Skills:" and "Profession Details:".
+- Gear is under "Equipment:", one line per slot with item level, quality,
+  and stats.
+- Professions are under "Skills:" and "Profession Details:". Learned
+  recipes are grouped by difficulty color: Orange and Yellow still give
+  skill-ups, Green rarely, Grey never.
 - The "Biography:" section is a dated timeline. Each line is
   "HH:MM event". Use it to see what happened since the last report:
   levels gained, deaths, new zones, quests turned in, profession gains.

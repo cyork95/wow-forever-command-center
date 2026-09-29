@@ -341,6 +341,27 @@ function ns:IsVerboseItemTypesEnabled()
     return self.state.verboseItemTypes == true
 end
 
+function ns:SetDetailedExport(isEnabled)
+    local enabled = isEnabled == true
+
+    self.state.detailedExport = enabled
+
+    if self.state.db then
+        self.state.db.detailedExport = enabled
+    end
+end
+
+function ns:IsDetailedExport()
+    if self.state.detailedExport == nil
+        and self.state.db
+    then
+        self.state.detailedExport =
+            self.state.db.detailedExport == true
+    end
+
+    return self.state.detailedExport == true
+end
+
 function ns:SetSelectedSections(selectedSections)
     if type(selectedSections) ~= "table" then
         return

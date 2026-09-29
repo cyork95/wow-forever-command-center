@@ -30,7 +30,9 @@ The window has four tabs down the left side:
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
 - **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
 - **Biography**: your timeline, 40 lines per page.
-- **Help**: the guide, a **Copy guide** button, and the options (minimap icon, verbose item types, Reload UI).
+- **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
+
+The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** to get item, spell, and quest IDs back.
 
 ## Make an export
 

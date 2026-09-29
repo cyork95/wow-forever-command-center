@@ -17,6 +17,7 @@ Biography.KIND = {
     ACHIEVEMENT = "achievement",
     PROFESSION = "profession",
     SCREENSHOT = "screenshot",
+    BOSS = "boss",
 }
 
 local sessionZones = {}
@@ -72,7 +73,34 @@ local function GetStore()
         db.biographyState.professions = {}
     end
 
+    if type(db.biographyState.encounters) ~= "table" then
+        db.biographyState.encounters = {}
+    end
+
     return db.biography, db.biographyState
+end
+
+local function GetMapZone()
+    if not C_Map
+        or type(C_Map.GetBestMapForUnit) ~= "function"
+        or type(C_Map.GetMapInfo) ~= "function"
+    then
+        return nil
+    end
+
+    local success, mapID = SafeCall(C_Map.GetBestMapForUnit, "player")
+
+    if not success or not mapID then
+        return nil
+    end
+
+    local infoSuccess, info = SafeCall(C_Map.GetMapInfo, mapID)
+
+    if infoSuccess and type(info) == "table" then
+        return SafeText(info.name)
+    end
+
+    return nil
 end
 
 local function GetZone()
@@ -84,11 +112,11 @@ local function GetZone()
 
     success, zone = SafeCall(GetZoneText)
 
-    if success then
+    if success and SafeText(zone) then
         return SafeText(zone)
     end
 
-    return nil
+    return GetMapZone()
 end
 
 local function GetSubZone()
@@ -502,6 +530,62 @@ local function RecordScreenshot()
     )
 end
 
+local function DifficultyName(difficultyID)
+    if type(GetDifficultyInfo) ~= "function" or not difficultyID then
+        return nil
+    end
+
+    local success, name = SafeCall(GetDifficultyInfo, difficultyID)
+
+    if success then
+        return SafeText(name)
+    end
+
+    return nil
+end
+
+local function RecordEncounterEnd(encounterID, encounterName, difficultyID, _, killed)
+    encounterID = U.ToSafeNumber(encounterID)
+    encounterName = SafeText(encounterName)
+
+    if not encounterID or not encounterName then
+        return
+    end
+
+    local _, state = GetStore()
+
+    if state then
+        state.encounters[encounterID] = encounterName
+    end
+
+    if U.ToSafeNumber(killed) ~= 1 then
+        return
+    end
+
+    local text = "Defeated " .. encounterName
+    local difficulty = DifficultyName(U.ToSafeNumber(difficultyID))
+
+    if difficulty then
+        text = string.format("%s (%s)", text, difficulty)
+    end
+
+    Biography:Record(Biography.KIND.BOSS, text, {
+        encounterID = encounterID,
+        difficultyID = U.ToSafeNumber(difficultyID),
+    })
+end
+
+function Biography:GetEncounterName(encounterID)
+    local _, state = GetStore()
+    local id = U.ToSafeNumber(encounterID)
+
+    if not state or not id then
+        return nil
+    end
+
+    return state.encounters[id]
+end
+
 local function After(seconds, callback)
     if C_Timer and type(C_Timer.After) == "function" then
         C_Timer.After(seconds, function()
@@ -512,7 +596,12 @@ local function After(seconds, callback)
     end
 end
 
-local function OnEvent(_, event, arg1, arg2)
+local function OnEvent(_, event, arg1, arg2, ...)
+    if event == "ENCOUNTER_END" then
+        RecordEncounterEnd(arg1, arg2, ...)
+        return
+    end
+
     if event == "PLAYER_ENTERING_WORLD" then
         if arg1 == true or arg2 == true then
             After(LOGIN_READ_DELAY_SECONDS, function()
@@ -588,6 +677,7 @@ RegisterEventIfAvailable("ACHIEVEMENT_EARNED")
 RegisterEventIfAvailable("SCREENSHOT_SUCCEEDED")
 RegisterEventIfAvailable("SKILL_LINES_CHANGED")
 RegisterEventIfAvailable("TRADE_SKILL_LIST_UPDATE")
+RegisterEventIfAvailable("ENCOUNTER_END")
 
 eventFrame:SetScript("OnEvent", OnEvent)
 
