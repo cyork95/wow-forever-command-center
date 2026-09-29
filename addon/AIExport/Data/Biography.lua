@@ -7,6 +7,8 @@ local Biography = {}
 
 local DUPLICATE_WINDOW_SECONDS = 5
 local LOGIN_READ_DELAY_SECONDS = 3
+local LOGIN_ZONE_RETRIES = 7
+local ZONE_MAP_TYPE = Enum and Enum.UIMapType and Enum.UIMapType.Zone or 3
 
 Biography.KIND = {
     LOGIN = "login",
@@ -21,6 +23,7 @@ Biography.KIND = {
 }
 
 local sessionZones = {}
+local loginPending = false
 local pendingQuestTitles = {}
 local listeners = {}
 
@@ -94,16 +97,33 @@ local function GetMapZone()
         return nil
     end
 
-    local infoSuccess, info = SafeCall(C_Map.GetMapInfo, mapID)
+    -- Dungeon and micro maps sit below the zone; continents and the world sit above it.
+    for _ = 1, 8 do
+        local infoSuccess, info = SafeCall(C_Map.GetMapInfo, mapID)
 
-    if infoSuccess and type(info) == "table" then
-        return SafeText(info.name)
+        if not infoSuccess or type(info) ~= "table" then
+            return nil
+        end
+
+        local mapType = U.ToSafeNumber(info.mapType)
+
+        if mapType == nil or mapType == ZONE_MAP_TYPE then
+            return SafeText(info.name)
+        elseif mapType < ZONE_MAP_TYPE then
+            return nil
+        end
+
+        mapID = U.ToSafeNumber(info.parentMapID)
+
+        if not mapID or mapID == 0 then
+            return nil
+        end
     end
 
     return nil
 end
 
-local function GetZone()
+local function ReadZoneText()
     local success, zone = SafeCall(GetRealZoneText)
 
     if success and SafeText(zone) then
@@ -116,7 +136,11 @@ local function GetZone()
         return SafeText(zone)
     end
 
-    return GetMapZone()
+    return nil
+end
+
+local function GetZone()
+    return ReadZoneText() or GetMapZone()
 end
 
 local function GetSubZone()
@@ -306,7 +330,7 @@ local function RecordZone()
     local _, state = GetStore()
     local zone = GetZone()
 
-    if not zone then
+    if not zone or loginPending then
         return
     end
 
@@ -604,10 +628,24 @@ local function OnEvent(_, event, arg1, arg2, ...)
 
     if event == "PLAYER_ENTERING_WORLD" then
         if arg1 == true or arg2 == true then
-            After(LOGIN_READ_DELAY_SECONDS, function()
+            loginPending = true
+
+            local attempts = 0
+
+            local function TryLogin()
+                attempts = attempts + 1
+
+                if not ReadZoneText() and attempts <= LOGIN_ZONE_RETRIES then
+                    After(1, TryLogin)
+                    return
+                end
+
+                loginPending = false
                 RecordLogin()
                 RecordProfessionChanges()
-            end)
+            end
+
+            After(LOGIN_READ_DELAY_SECONDS, TryLogin)
         else
             After(1, RecordZone)
         end

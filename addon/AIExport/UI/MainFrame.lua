@@ -13,6 +13,8 @@ MainFrame.pages = {}
 MainFrame.companionRows = {}
 MainFrame.companionsWarning = nil
 MainFrame.guideBox = nil
+MainFrame.readinessText = nil
+MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
 MainFrame.TAB_ORDER = { "export", "companions", "biography", "help" }
@@ -27,6 +29,12 @@ local CARD_HEADER = 28
 local CARD_ROW = 20
 local COMPANION_ROW_HEIGHT = 42
 local COMPANION_ROW_GAP = 4
+local READINESS_MAX_LINES = 4
+
+local READINESS_SECTIONS = {
+    C.SECTIONS.BANK,
+    C.SECTIONS.PROFESSION_DETAILS,
+}
 
 local TAB_LABELS = {
     export = C.TEXT.TAB_EXPORT,
@@ -57,6 +65,8 @@ local function SaveSelectionState()
     if type(ns.SetSelectedSections) == "function" then
         ns:SetSelectedSections(GetSelectionState())
     end
+
+    MainFrame:RefreshReadiness()
 end
 
 local function ResolveInitialSelection(sectionKey)
@@ -164,7 +174,25 @@ local function BuildExportPage(page)
     local hint = Theme.CreateText(page, "GameFontHighlightSmall", "muted")
     hint:SetPoint("TOPLEFT", 0, y - 4)
     hint:SetWidth(contentWidth)
+    hint:SetJustifyH("LEFT")
     hint:SetText(C.TEXT.LABEL_BANK_HINT)
+    MainFrame.readinessText = hint
+
+    for _, sectionKey in ipairs(READINESS_SECTIONS) do
+        local checkbox = MainFrame.checkboxes[sectionKey]
+
+        if checkbox and checkbox.label then
+            local marker = Theme.CreateText(checkbox, "GameFontNormal", "warning")
+            marker:SetPoint("LEFT", checkbox.label, "RIGHT", 4, 0)
+            marker:SetText("!")
+            marker:Hide()
+            MainFrame.readinessMarkers[sectionKey] = marker
+        end
+    end
+
+    page:SetScript("OnShow", function()
+        MainFrame:RefreshReadiness()
+    end)
 
     local selectAll = Theme.CreateButton(page, C.TEXT.BUTTON_SELECT_ALL, 90, 22, "default", function()
         ApplySelectionState(true)
@@ -209,6 +237,66 @@ function MainFrame:SetLastExportTokens(tokens)
 
     local text = tostring(math.floor(count)):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
     self.lastExportText:SetText(string.format(C.TEXT.LABEL_LAST_EXPORT, text))
+end
+
+local function GetReadiness()
+    return ns.Data and ns.Data.Readiness
+end
+
+function MainFrame:GetReadinessResult()
+    local readiness = GetReadiness()
+
+    if not readiness then
+        return nil
+    end
+
+    local selections = next(self.checkboxes) and GetSelectionState() or nil
+    local ok, result = pcall(readiness.GetMissingData, readiness, selections)
+
+    return ok and result or nil
+end
+
+function MainFrame:RefreshReadiness()
+    if not self.readinessText then
+        return
+    end
+
+    local readiness = GetReadiness()
+    local result = self:GetReadinessResult()
+
+    if not readiness or not result then
+        self.readinessText:SetText(C.TEXT.LABEL_BANK_HINT)
+        self.readinessText:SetTextColor(ns.Theme.Color("muted"))
+        return
+    end
+
+    for sectionKey, marker in pairs(self.readinessMarkers) do
+        marker:SetShown(readiness:IsSectionMissing(result, sectionKey))
+    end
+
+    if #result.missing > READINESS_MAX_LINES then
+        local lines = {}
+
+        for index = 1, READINESS_MAX_LINES - 1 do
+            table.insert(lines, result.missing[index].text)
+        end
+
+        local rest = {}
+
+        for index = READINESS_MAX_LINES, #result.missing do
+            table.insert(rest, result.missing[index].label)
+        end
+
+        table.insert(lines, string.format(C.TEXT.LABEL_MISSING, table.concat(rest, ", ")))
+        self.readinessText:SetText(table.concat(lines, "\n"))
+        self.readinessText:SetTextColor(ns.Theme.Color("warning"))
+        return
+    end
+
+    local text, warning = readiness:SummaryText(result)
+
+    self.readinessText:SetText(text)
+    self.readinessText:SetTextColor(ns.Theme.Color(warning and "warning" or "muted"))
 end
 
 local function StatusColor(status)
@@ -529,6 +617,15 @@ function MainFrame:Refresh()
 
     UpdateSettingsCheckboxes()
     RefreshCompanionRows()
+    self:RefreshReadiness()
+end
+
+if ns.Data and ns.Data.Readiness then
+    ns.Data.Readiness:OnChanged(function()
+        if MainFrame:IsShown() then
+            MainFrame:RefreshReadiness()
+        end
+    end)
 end
 
 ns:RegisterModule("UI.MainFrame", MainFrame)

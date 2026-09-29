@@ -1083,6 +1083,38 @@ function ProfessionDetails:Collect()
         end
     end
 
+    local fallback = nil
+
+    if ns.Companions then
+        local known = {}
+
+        for _, snapshot in ipairs(professions) do
+            for _, field in ipairs({ "name", "parentProfessionName", "baseProfessionName" }) do
+                if U.IsNonEmptyString(snapshot[field]) then
+                    known[string.lower(snapshot[field])] = true
+                end
+            end
+        end
+
+        local missing = {}
+
+        for _, profession in ipairs(ns.Companions:Read("professionmaster", "ReadProfessions") or {}) do
+            if #(profession.recipes or {}) > 0
+                and not known[string.lower(profession.name)]
+            then
+                table.insert(missing, profession)
+            end
+        end
+
+        if #missing > 0 then
+            fallback = {
+                source = "Profession Master",
+                note = C.TEXT.PROFESSION_MASTER_FALLBACK_NOTE,
+                professions = missing,
+            }
+        end
+    end
+
     U.SafeInsert(
         diagnostics,
         string.format(
@@ -1122,6 +1154,9 @@ function ProfessionDetails:Collect()
 
         professions =
             professions,
+
+        fallback =
+            fallback,
 
         diagnostics =
             diagnostics,

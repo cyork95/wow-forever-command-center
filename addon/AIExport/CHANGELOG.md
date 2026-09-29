@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.1
+
+- The Export tab lists saved data that is missing or more than a week old, such as "Bank not saved yet. Open your bank once." or "Blacksmithing not saved yet. Open its window once." The Bank and Profession Details boxes get a "!" until it is fixed, and the list updates as soon as you close the bank or a profession window. The export window repeats it as "Missing: ...".
+- When AIExport has no saved copy, Bank uses Syndicator's copy and Profession Details uses Profession Master's recipes, each labeled with where it came from.
+- Smaller Location, Currencies, Reputations, Achievements, Appearances, Quests, and Talents sections. Quests are one line each and keep their IDs. **Detailed export** still shows the full format.
+- The Biography login line waits for the real zone instead of writing "an unknown zone" or a continent name, which also stops the extra "Entered ..." line after every login.
+- The game needs a full restart after updating, because a new file was added.
+
 ## 1.3.0
 
 - Exports are much smaller. Item, spell, quest, and appearance IDs are gone. Equipment is one line per slot. Bag and bank stacks are merged. Lists such as completed quests, spells, and collected appearances are joined per line. Profession details list learned recipes by difficulty color, name recipes you can learn now, and count the rest. Lines that only say nothing was returned are dropped.

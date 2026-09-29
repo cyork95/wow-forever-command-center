@@ -41,7 +41,7 @@ The export window shows an approximate token count (about 4 characters per token
 3. Press **Create Export**. The text is already selected.
 4. Press Ctrl+C and paste it into your AI chat.
 
-Open your bank and each profession window once per session. The game only lets addons read those while they are open, so AIExport keeps the last copy it saw.
+Open your bank and each profession window once per session. The game only lets addons read those while they are open, so AIExport keeps the last copy it saw. The Export tab lists anything not saved yet, or saved more than a week ago, and marks those sections with "!". Until then, AIExport uses Syndicator's bank copy and Profession Master's recipes if those addons are loaded.
 
 ## Biography
 

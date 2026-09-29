@@ -82,9 +82,20 @@ local function UpdateSizeBar(bar, text)
         FormatThousands(characters)
     ))
     bar.estimate:SetTextColor(Theme.Color(color))
-    bar.note:SetText(note)
 
     local stats = formatter and type(formatter.GetLastStats) == "function" and formatter:GetLastStats()
+    local readiness = ns.Data and ns.Data.Readiness
+
+    if readiness and type(stats) == "table" and type(stats.selections) == "table" then
+        local ok, result = pcall(readiness.GetMissingData, readiness, stats.selections)
+        local labels = ok and readiness:MissingLabels(result) or {}
+
+        if #labels > 0 then
+            note = note .. "  " .. string.format(C.TEXT.LABEL_MISSING, table.concat(labels, ", "))
+        end
+    end
+
+    bar.note:SetText(note)
     local parts = {}
 
     for index, size in ipairs(stats and stats.sections or {}) do

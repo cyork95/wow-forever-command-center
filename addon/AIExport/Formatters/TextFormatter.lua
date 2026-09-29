@@ -3579,12 +3579,14 @@ function TextFormatter:AddBankDetailed(
     )
 
     if not data.available then
-        AddLine(
-            lines,
-            data.unavailableMessage
-            or C.TEXT.BANK_UNAVAILABLE_NO_CACHE
-            or C.TEXT.BANK_UNAVAILABLE
-        )
+        if not TextFormatter.AddBankFallback(lines, data.fallback) then
+            AddLine(
+                lines,
+                data.unavailableMessage
+                or C.TEXT.BANK_UNAVAILABLE_NO_CACHE
+                or C.TEXT.BANK_UNAVAILABLE
+            )
+        end
 
         AddBlankLine(
             lines
@@ -3734,7 +3736,7 @@ function TextFormatter:AddEquipmentDetailed(
     end
 end
 
-function TextFormatter:AddLocation(
+function TextFormatter:AddLocationDetailed(
     lines,
     data
 )
@@ -4295,7 +4297,7 @@ function TextFormatter:AddCharacterStats(
     )
 end
 
-function TextFormatter:AddCurrencies(
+function TextFormatter:AddCurrenciesDetailed(
     lines,
     data
 )
@@ -4403,7 +4405,7 @@ function TextFormatter:AddCurrencies(
     end
 end
 
-function TextFormatter:AddQuests(
+function TextFormatter:AddQuestsDetailed(
     lines,
     data
 )
@@ -4734,11 +4736,13 @@ function TextFormatter:AddProfessionDetailsDetailed(
     )
 
     if data.available == false then
-        AddLine(
-            lines,
-            data.unavailableMessage
-            or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE
-        )
+        if not TextFormatter.AddProfessionFallback(lines, data.fallback) then
+            AddLine(
+                lines,
+                data.unavailableMessage
+                or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE
+            )
+        end
 
         AddBlankLine(
             lines
@@ -4784,11 +4788,13 @@ function TextFormatter:AddProfessionDetailsDetailed(
         or {}
 
     if #professions == 0 then
-        AddLine(
-            lines,
-            data.unavailableMessage
-            or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE
-        )
+        if not TextFormatter.AddProfessionFallback(lines, data.fallback) then
+            AddLine(
+                lines,
+                data.unavailableMessage
+                or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE
+            )
+        end
 
         AddBlankLine(
             lines
@@ -4910,6 +4916,12 @@ function TextFormatter:AddProfessionDetailsDetailed(
             lines
         )
     end
+
+    if TextFormatter.AddProfessionFallback(lines, data.fallback) then
+        AddBlankLine(
+            lines
+        )
+    end
 end
 
 function TextFormatter:AddTalents(
@@ -4963,7 +4975,7 @@ function TextFormatter:AddTalents(
             true
     end
 
-    if data.configID ~= nil then
+    if data.configID ~= nil and IsDetailedExport() then
         AddLine(
             lines,
             string.format(
@@ -5457,7 +5469,7 @@ local function FormatWorldBossLine(entry)
     return line
 end
 
-function TextFormatter:AddReputations(
+function TextFormatter:AddReputationsDetailed(
     lines,
     data
 )
@@ -6649,7 +6661,7 @@ local function CompletedAchievementCategoryName(
     return "Uncategorized"
 end
 
-function TextFormatter:AddAchievements(
+function TextFormatter:AddAchievementsDetailed(
     lines,
     data
 )
@@ -6855,7 +6867,7 @@ function TextFormatter:AddAchievements(
     )
 end
 
-function TextFormatter:AddCompletedAchievements(
+function TextFormatter:AddCompletedAchievementsDetailed(
     lines,
     data
 )
@@ -7773,6 +7785,18 @@ function TextFormatter:AddAppearances(
             lines,
             "[No appearance categories returned by the Forever transmog APIs.]"
         )
+    elseif not IsDetailedExport() then
+        local parts = {}
+
+        for _, entry in ipairs(categoryEntries) do
+            local line = FormatAppearanceCategoryLine(entry)
+
+            if line then
+                table.insert(parts, (line:gsub(" %- Collected: ", " "):gsub(" %- Total: ", " of ")))
+            end
+        end
+
+        AddLine(lines, table.concat(parts, ", "))
     else
         for _, entry
             in ipairs(
@@ -8450,6 +8474,37 @@ local function AddItemContainers(lines, sections, formatHeader)
     end
 end
 
+function TextFormatter.AddBankFallback(lines, fallback)
+    if type(fallback) ~= "table" or #(fallback.sections or {}) == 0 then
+        return false
+    end
+
+    AddLine(lines, fallback.note)
+    AddItemContainers(lines, fallback.sections, FormatBankHeader)
+
+    return true
+end
+
+function TextFormatter.AddProfessionFallback(lines, fallback)
+    if type(fallback) ~= "table" or #(fallback.professions or {}) == 0 then
+        return false
+    end
+
+    for _, profession in ipairs(fallback.professions) do
+        local header = profession.name
+
+        if U.ToSafeNumber(profession.level) then
+            header = string.format("%s (skill %s)", header, SafeNumberText(profession.level))
+        end
+
+        AddSubHeader(lines, header)
+        AddLine(lines, fallback.note)
+        AddJoinedList(lines, "Known recipes", profession.recipes)
+    end
+
+    return true
+end
+
 function TextFormatter:AddBags(lines, data)
     if IsDetailedExport() then
         return self:AddBagsDetailed(lines, data)
@@ -8468,12 +8523,15 @@ function TextFormatter:AddBank(lines, data)
     AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.BANK])
 
     if not data.available then
-        AddLine(
-            lines,
-            data.unavailableMessage
-            or C.TEXT.BANK_UNAVAILABLE_NO_CACHE
-            or C.TEXT.BANK_UNAVAILABLE
-        )
+        if not TextFormatter.AddBankFallback(lines, data.fallback) then
+            AddLine(
+                lines,
+                data.unavailableMessage
+                or C.TEXT.BANK_UNAVAILABLE_NO_CACHE
+                or C.TEXT.BANK_UNAVAILABLE
+            )
+        end
+
         AddBlankLine(lines)
         return
     end
@@ -8645,7 +8703,10 @@ function TextFormatter:AddProfessionDetails(lines, data)
     local professions = data.professions or {}
 
     if data.available == false or #professions == 0 then
-        AddLine(lines, data.unavailableMessage or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE)
+        if not TextFormatter.AddProfessionFallback(lines, data.fallback) then
+            AddLine(lines, data.unavailableMessage or C.TEXT.PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE)
+        end
+
         AddBlankLine(lines)
         return
     end
@@ -8711,6 +8772,7 @@ function TextFormatter:AddProfessionDetails(lines, data)
         end
     end
 
+    TextFormatter.AddProfessionFallback(lines, data.fallback)
     AddBlankLine(lines)
 end
 
@@ -8860,6 +8922,407 @@ function TextFormatter:AddAddons(lines, data)
         for _, text in ipairs(notLoaded) do
             AddLine(lines, text)
         end
+    end
+
+    AddBlankLine(lines)
+end
+
+local function IsKnownText(value)
+    return U.IsNonEmptyString(value) and value ~= "unknown"
+end
+
+function TextFormatter:AddLocation(lines, data)
+    if IsDetailedExport() then
+        return self:AddLocationDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.LOCATION])
+
+    local zone = U.SafeString(data.zone, "unknown")
+    AddLine(lines, "Zone: " .. zone)
+
+    if IsKnownText(data.subzone) and data.subzone ~= zone then
+        AddLine(lines, "Subzone: " .. data.subzone)
+    end
+
+    local maps = {}
+
+    if IsKnownText(data.map) and data.map ~= zone then
+        table.insert(maps, data.map)
+    end
+
+    if IsKnownText(data.parentMap) and data.parentMap ~= data.map then
+        table.insert(maps, data.parentMap)
+    end
+
+    if #maps > 0 then
+        AddLine(lines, "Map: " .. table.concat(maps, ", "))
+    end
+
+    if IsKnownText(data.coordinates) then
+        AddLine(lines, "Coordinates: " .. data.coordinates)
+    end
+
+    if IsKnownText(data.hearthstoneLocation) then
+        AddLine(lines, "Hearthstone Location: " .. data.hearthstoneLocation)
+    end
+
+    AddBlankLine(lines)
+end
+
+local function CompactCurrencyText(entry)
+    if type(entry) ~= "table" then
+        return nil
+    end
+
+    local text = U.SafeString(entry.name, "Unknown Currency")
+    local quantity = U.ToSafeNumber(entry.quantity)
+    local maxQuantity = U.ToSafeNumber(entry.maxQuantity)
+
+    if quantity ~= nil and maxQuantity ~= nil and maxQuantity > 0 then
+        text = string.format("%s %s/%s", text, SafeNumberText(quantity), SafeNumberText(maxQuantity))
+    elseif quantity ~= nil then
+        text = text .. " " .. SafeNumberText(quantity)
+    end
+
+    local maxWeekly = U.ToSafeNumber(entry.maxWeeklyQuantity)
+
+    if maxWeekly ~= nil and maxWeekly > 0 then
+        text = string.format(
+            "%s (week %s/%s)",
+            text,
+            SafeNumberText(U.ToSafeNumber(entry.quantityEarnedThisWeek) or 0),
+            SafeNumberText(maxWeekly)
+        )
+    end
+
+    return text
+end
+
+local function CompactCurrencyList(entries)
+    local values = {}
+
+    for _, entry in ipairs(entries or {}) do
+        local text = CompactCurrencyText(entry)
+
+        if text then
+            table.insert(values, text)
+        end
+    end
+
+    return values
+end
+
+function TextFormatter:AddCurrencies(lines, data)
+    if IsDetailedExport() then
+        return self:AddCurrenciesDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.CURRENCIES])
+    AddLine(lines, "Gold: " .. FormatMoneyCopper(data.money))
+
+    local categories = data.categories or {}
+
+    if #categories > 0 then
+        for _, category in ipairs(categories) do
+            AddJoinedList(lines, category.name or "Other", CompactCurrencyList(category.entries))
+        end
+    else
+        AddJoinedList(lines, "Currencies", CompactCurrencyList(data.entries))
+    end
+
+    AddBlankLine(lines)
+end
+
+local function CompactReputationLine(entry)
+    if type(entry) ~= "table" then
+        return nil
+    end
+
+    local text = string.format(
+        "%s %s",
+        entry.name or "Unknown Faction",
+        entry.standing or ("Standing #" .. SafeNumberText(entry.standingID))
+    )
+
+    if entry.isMajorFaction == true then
+        text = text .. " (major faction)"
+    end
+
+    local progress = U.ToSafeNumber(entry.progress)
+    local nextStanding = U.ToSafeNumber(entry.nextStanding)
+    local value = U.ToSafeNumber(entry.value)
+
+    if progress ~= nil and nextStanding ~= nil then
+        text = string.format("%s %s/%s", text, SafeNumberText(progress), SafeNumberText(nextStanding))
+    elseif value ~= nil then
+        text = text .. " " .. SafeNumberText(value)
+    end
+
+    if entry.isParagon == true and type(entry.paragon) == "table" then
+        local current = U.ToSafeNumber(entry.paragon.currentValue)
+        local threshold = U.ToSafeNumber(entry.paragon.threshold)
+
+        if current ~= nil and threshold ~= nil then
+            text = string.format("%s, paragon %s/%s", text, SafeNumberText(current), SafeNumberText(threshold))
+        else
+            text = text .. ", paragon"
+        end
+
+        if entry.paragon.hasRewardPending == true then
+            text = text .. ", reward waiting"
+        end
+    end
+
+    return text
+end
+
+function TextFormatter:AddReputations(lines, data)
+    if IsDetailedExport() then
+        return self:AddReputationsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.REPUTATIONS])
+
+    for _, entry in ipairs(data.entries or {}) do
+        AddLine(lines, CompactReputationLine(entry))
+    end
+
+    AddBlankLine(lines)
+end
+
+local QUEST_STATUS_TEXT = {
+    ready_to_turn_in = "ready to turn in",
+    complete = "complete",
+}
+
+local function CompactQuestLine(quest)
+    if type(quest) ~= "table" then
+        return nil
+    end
+
+    local details = {}
+    local level = U.ToSafeNumber(quest.level)
+    local group = U.ToSafeNumber(quest.suggestedGroup)
+    local questID = U.ToSafeNumber(quest.questID)
+    local status = QUEST_STATUS_TEXT[quest.status] or "in progress"
+
+    if level ~= nil then
+        table.insert(details, SafeNumberText(level))
+    end
+
+    table.insert(details, status)
+
+    if group ~= nil and group > 1 then
+        table.insert(details, "group " .. SafeNumberText(group))
+    end
+
+    if questID ~= nil then
+        table.insert(details, "ID " .. SafeNumberText(questID))
+    end
+
+    local text = string.format("%s (%s)", quest.title or "Unknown Quest", table.concat(details, ", "))
+
+    if quest.status == "ready_to_turn_in" or quest.status == "complete" then
+        return text
+    end
+
+    local objectives = {}
+
+    for _, objective in ipairs(quest.objectives or {}) do
+        if type(objective) == "table" and U.IsNonEmptyString(objective.text) then
+            local objectiveText = U.Trim((objective.text:gsub("%s+", " ")))
+
+            if objective.finished then
+                objectiveText = objectiveText .. " (done)"
+            end
+
+            table.insert(objectives, objectiveText)
+        end
+    end
+
+    if #objectives > 0 then
+        text = text .. ": " .. table.concat(objectives, "; ")
+    end
+
+    return text
+end
+
+function TextFormatter:AddQuests(lines, data)
+    if IsDetailedExport() then
+        return self:AddQuestsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.QUESTS])
+
+    for _, group in ipairs(data.groups or {}) do
+        if #(group.quests or {}) > 0 then
+            AddSubHeader(lines, group.name or "General")
+
+            for _, quest in ipairs(group.quests) do
+                AddLine(lines, CompactQuestLine(quest))
+            end
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
+local function CompactAchievementText(entry, extra)
+    local name = U.ToSafeString(entry and entry.name)
+
+    if name == nil or name == "" then
+        name = "Unknown Achievement"
+    end
+
+    local details = {}
+    local dateText = FormatAchievementEntryDate(entry)
+
+    if dateText then
+        table.insert(details, dateText)
+    end
+
+    if extra then
+        table.insert(details, extra)
+    end
+
+    AppendAchievementReward(details, entry and entry.rewardText)
+
+    if #details == 0 then
+        return name
+    end
+
+    return string.format("%s (%s)", name, table.concat(details, ", "))
+end
+
+local function CompactAchievementCategories(entries)
+    local started = {}
+    local notStarted = 0
+    local seen = {}
+    local topLevelOnly = HasCategoryParentMetadata(entries)
+
+    for _, entry in ipairs(entries or {}) do
+        if IsValidAchievementCategory(entry)
+            and (not topLevelOnly or IsTopLevelAchievementCategory(entry))
+        then
+            local key = string.lower(U.ToSafeString(entry.name))
+
+            if not seen[key] then
+                seen[key] = true
+
+                local completed = U.ToSafeNumber(entry.completed) or 0
+
+                if completed > 0 then
+                    table.insert(started, string.format(
+                        "%s %s/%s",
+                        entry.name,
+                        SafeNumberText(completed),
+                        SafeNumberText(entry.total)
+                    ))
+                else
+                    notStarted = notStarted + 1
+                end
+            end
+        end
+    end
+
+    return started, notStarted
+end
+
+function TextFormatter:AddAchievements(lines, data)
+    if IsDetailedExport() then
+        return self:AddAchievementsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.ACHIEVEMENTS])
+
+    local points = U.ToSafeNumber(data.points)
+    local completed = U.ToSafeNumber(data.completed)
+    local total = U.ToSafeNumber(data.total)
+
+    if points ~= nil and points > 0 then
+        AddLine(lines, "Achievement Points: " .. SafeNumberText(points))
+    end
+
+    if completed ~= nil and total ~= nil then
+        AddLine(lines, string.format("Achievements Completed: %s/%s", SafeNumberText(completed), SafeNumberText(total)))
+    elseif completed ~= nil then
+        AddLine(lines, "Achievements Completed: " .. SafeNumberText(completed))
+    end
+
+    local recent = {}
+
+    for index, entry in ipairs(data.recent and data.recent.entries or {}) do
+        if index > 10 then
+            break
+        end
+
+        table.insert(recent, CompactAchievementText(entry))
+    end
+
+    AddJoinedList(lines, "Recent", recent)
+
+    local started, notStarted = CompactAchievementCategories(data.categories and data.categories.entries)
+
+    if #started > 0 or notStarted > 0 then
+        local text = "Started: " .. (#started > 0 and table.concat(started, ", ") or "none")
+
+        if notStarted > 0 then
+            text = string.format("%s; %d categor%s not started", text, notStarted, notStarted == 1 and "y" or "ies")
+        end
+
+        AddLine(lines, text)
+    end
+
+    local tracked = {}
+
+    for _, entry in ipairs(data.tracked and data.tracked.entries or {}) do
+        table.insert(tracked, CompactAchievementText(entry, entry.completed == true and "done" or "in progress"))
+    end
+
+    AddJoinedList(lines, "Tracked", tracked)
+    AddBlankLine(lines)
+end
+
+function TextFormatter:AddCompletedAchievements(lines, data)
+    if IsDetailedExport() then
+        return self:AddCompletedAchievementsDetailed(lines, data)
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.COMPLETED_ACHIEVEMENTS])
+
+    local entries = data.entries or {}
+    local count = U.ToSafeNumber(data.count) or #entries
+    local reported = U.ToSafeNumber(data.reportedCompletedTotal)
+
+    if reported ~= nil and count < reported then
+        AddLine(lines, string.format("Completed: %s listed of %s", SafeNumberText(count), SafeNumberText(reported)))
+    else
+        AddLine(lines, "Completed: " .. SafeNumberText(count))
+    end
+
+    local order = {}
+    local byCategory = {}
+
+    for _, entry in ipairs(entries) do
+        if type(entry) == "table" and entry.completed == true then
+            local category = CompletedAchievementCategoryName(entry)
+
+            if not byCategory[category] then
+                byCategory[category] = {}
+                table.insert(order, category)
+            end
+
+            table.insert(byCategory[category], CompactAchievementText(entry))
+        end
+    end
+
+    for _, category in ipairs(order) do
+        AddJoinedList(lines, category, byCategory[category])
+    end
+
+    if data.truncated == true then
+        AddLine(lines, string.format("(List stops at %s entries.)", SafeNumberText(data.maxEntries)))
     end
 
     AddBlankLine(lines)
@@ -9254,6 +9717,7 @@ function TextFormatter:Build(
         tokens = TextFormatter.EstimateTokens(#output),
         detailed = not compact,
         sections = sectionSizes,
+        selections = selectedSections,
     }
 
     return output

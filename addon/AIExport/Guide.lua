@@ -22,7 +22,10 @@ copy it.
 
 Open your bank and each profession window at least once per session. The game
 only lets addons read those while they are open, so AIExport keeps the last
-copy it saw and marks it as cached.
+copy it saw and marks it as cached. The Export tab lists anything not saved
+yet, or saved more than a week ago, and marks those sections with "!". Until
+then, AIExport uses Syndicator's bank copy and Profession Master's recipes if
+those addons are loaded.
 
 The window has four tabs:
 - Export: the sections, grouped into cards, and the Create Export button

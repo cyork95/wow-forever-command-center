@@ -39,11 +39,55 @@ local function AddItems(lines, H, label, container)
     end
 end
 
+local function ContainerItems(H, container)
+    local items = {}
+    local byName = {}
+
+    H.EachItem(container, function(item)
+        local name = H.LinkName(item.itemLink)
+
+        if name then
+            local entry = byName[name]
+
+            if not entry then
+                entry = { name = name, link = item.itemLink, count = 0 }
+                byName[name] = entry
+                table.insert(items, entry)
+            end
+
+            entry.count = entry.count + (tonumber(item.itemCount) or 1)
+        end
+    end)
+
+    return items
+end
+
 ns.Companions:Register({
     id = "syndicator",
     title = "Syndicator",
     addons = { "Syndicator" },
     adds = "Your mail, and your bank contents even while the bank is closed.",
+    ReadBank = function(_, H)
+        local row = FindCharacter(H)
+
+        if not row then
+            return nil
+        end
+
+        local sections = {}
+        local bankItems = ContainerItems(H, row.bank)
+        local tabItems = ContainerItems(H, row.bankTabs)
+
+        if #bankItems > 0 then
+            table.insert(sections, { name = "Bank", items = bankItems })
+        end
+
+        if #tabItems > 0 then
+            table.insert(sections, { name = "Bank tabs", items = tabItems })
+        end
+
+        return { sections = sections }
+    end,
     Collect = function(_, H)
         local row = FindCharacter(H)
 

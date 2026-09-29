@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.3.0"
+C.VERSION = "1.3.1"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -214,6 +214,14 @@ C.TEXT = {
     LABEL_TOKEN_MEDIUM = "Fits in most AI chats.",
     LABEL_TOKEN_LARGE = "Large. Untick the biggest sections if your AI chat cuts it off.",
     LABEL_LAST_EXPORT = "Last export: about %s tokens",
+    LABEL_MISSING = "Missing: %s",
+    READINESS_BANK_MISSING = "Bank not saved yet. Open your bank once.",
+    READINESS_BANK_STALE = "Bank saved %s ago. Open it to refresh.",
+    READINESS_PROFESSION_MISSING = "%s not saved yet. Open its window once.",
+    READINESS_PROFESSION_STALE = "%s saved %s ago. Open its window to refresh.",
+    READINESS_USING_FALLBACK = "Using %s's copy for now.",
+    PROFESSION_MASTER_FALLBACK_NOTE = "(From Profession Master; open the profession window to refresh.)",
+    SYNDICATOR_BANK_FALLBACK_NOTE = "(From Syndicator; open your bank to refresh.)",
 }
 
 C.CHARACTERS_PER_TOKEN = 4

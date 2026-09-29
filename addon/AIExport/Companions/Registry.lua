@@ -342,11 +342,43 @@ function Companions:CollectOne(definition)
     return lines
 end
 
+-- Runs `definition[reader]` for a loaded companion and returns its structured
+-- data, or nil when the addon is not loaded or its layout could not be read.
+-- Used by sections that fall back to a companion's copy of data AIExport has
+-- not saved itself, so it ignores the Companions switches.
+function Companions:Read(id, reader)
+    local definition = self.byId[id]
+
+    if not definition
+        or type(definition[reader]) ~= "function"
+        or not self:IsAvailable(definition)
+    then
+        return nil
+    end
+
+    local ok, data = pcall(definition[reader], definition, Helpers)
+
+    if ok then
+        return data
+    end
+
+    return nil
+end
+
+function Companions:IsBuiltIn(definition)
+    return type(definition) == "table"
+        and type(definition.IsBuiltIn) == "function"
+        and definition:IsBuiltIn() == true
+end
+
 function Companions:Collect()
     local entries = {}
 
     for _, definition in ipairs(self.list) do
-        if self:IsEnabled(definition.id) and self:IsAvailable(definition) then
+        if self:IsEnabled(definition.id)
+            and self:IsAvailable(definition)
+            and not self:IsBuiltIn(definition)
+        then
             table.insert(entries, {
                 id = definition.id,
                 title = definition.title,

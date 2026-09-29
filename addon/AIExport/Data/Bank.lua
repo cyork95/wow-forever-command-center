@@ -658,7 +658,24 @@ function Bank:Collect()
         end
     end
 
+    local fallback = nil
+
+    if not available and ns.Companions then
+        local data = ns.Companions:Read("syndicator", "ReadBank")
+
+        if type(data) == "table" and #(data.sections or {}) > 0 then
+            fallback = {
+                source = "Syndicator",
+                note = C.TEXT.SYNDICATOR_BANK_FALLBACK_NOTE,
+                sections = data.sections,
+            }
+        end
+    end
+
     return {
+        fallback =
+            fallback,
+
         key =
             C.SECTIONS.BANK,
 
