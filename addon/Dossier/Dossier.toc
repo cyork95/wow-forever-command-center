@@ -1,12 +1,12 @@
 ## Interface: 16001
-## Title: AIExport
-## Notes: Type /aixport and press Create Export to copy a text report of your character, including a Biography timeline of level-ups, deaths, zones, quests, and screenshots and a built-in kill tracker, then paste it into an AI chat. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /aixport help shows the guide and an example AI skill.
+## Title: Dossier
+## Notes: Dossier, formerly AIExport. Type /dossier and press Create Export to copy a text report of your character into an AI chat. It keeps a Biography timeline, tracks kills, times play sessions with kills, gathering, gold, and XP per hour, and takes screenshots at big moments. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /dossier help shows the guide and an example AI skill.
 ## Category: Data Export
-## Author: AIExport
-## Version: 1.7.0
-## IconTexture: Interface\AddOns\AIExport\Media\MinimapIcon
+## Author: Dossier
+## Version: 2.0.0
+## IconTexture: Interface\AddOns\Dossier\Media\MinimapIcon
 ## X-License: MIT
-## SavedVariablesPerCharacter: AIExportDBChar
+## SavedVariablesPerCharacter: DossierDBChar
 
 ## OptionalDeps: WTFix
 ## X-WTFix-Managed: 1

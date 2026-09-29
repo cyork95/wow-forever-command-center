@@ -128,7 +128,7 @@ function SessionView:Build(parent)
     itemsTitle:SetPoint("TOPLEFT", summaryCard, "BOTTOMLEFT", 0, -12)
     itemsTitle:SetText(string.upper(C.TEXT.SESSION_TOOLTIP_TITLE))
 
-    local items = Theme.CreateScrollText(container, "AIExportSessionItemsScrollFrame", "GameFontHighlightSmall")
+    local items = Theme.CreateScrollText(container, "DossierSessionItemsScrollFrame", "GameFontHighlightSmall")
     items:SetPoint("TOPLEFT", itemsTitle, "BOTTOMLEFT", 0, -6)
     items:SetPoint("BOTTOMLEFT", 0, 0)
     items:SetWidth(COLUMN_WIDTH)

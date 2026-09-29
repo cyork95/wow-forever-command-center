@@ -344,7 +344,7 @@ end
 
 -- Runs `definition[reader]` for a loaded companion and returns its structured
 -- data, or nil when the addon is not loaded or its layout could not be read.
--- Used by sections that fall back to a companion's copy of data AIExport has
+-- Used by sections that fall back to a companion's copy of data Dossier has
 -- not saved itself, so it ignores the Companions switches.
 function Companions:Read(id, reader)
     local definition = self.byId[id]

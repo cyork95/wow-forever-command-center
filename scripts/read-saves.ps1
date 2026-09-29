@@ -1,6 +1,6 @@
 # Read addon SavedVariables into one snapshot per roster character.
 # Sources: Syndicator (items), Profession Master (recipes, skill), AllTheThings (collections, played, deaths),
-# Nova Instance Tracker (level, gold, lockouts), AIExport (kills), with KillDex as the kills fallback.
+# Nova Instance Tracker (level, gold, lockouts), Dossier (kills), with KillDex as the kills fallback.
 
 . (Join-Path $PSScriptRoot "lua-saved.ps1")
 
@@ -61,6 +61,24 @@ function Get-SavedFile($accountDir, $name) {
   $path = Join-Path $accountDir "SavedVariables\$name.lua"
   if (Test-Path $path) { return Read-LuaSaved $path }
   return $null
+}
+
+# Dossier was called AIExport before 2.0.0. A character that has both saves uses Dossier.lua.
+function Get-DossierSaves($root) {
+  return @(Get-ChildItem -Path $root -Recurse -Include "Dossier.lua", "AIExport.lua" -ErrorAction SilentlyContinue |
+    Where-Object { $_.Directory.Name -eq "SavedVariables" })
+}
+
+function Find-DossierSave($saves, $folder) {
+  $mine = @($saves | Where-Object { $_.Directory.Parent.Name -ieq $folder })
+  $pick = $mine | Where-Object { $_.BaseName -eq "Dossier" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+  if (-not $pick) { $pick = $mine | Sort-Object LastWriteTime -Descending | Select-Object -First 1 }
+  return $pick
+}
+
+function Read-DossierSave($save) {
+  $name = if ($save.BaseName -eq "Dossier") { "DossierDBChar" } else { "AIExportDBChar" }
+  return LV (Read-LuaSaved $save.FullName) $name
 }
 
 function Add-Items($set, $containers) {
@@ -124,8 +142,7 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
     $pm = Get-SavedFile $accountDir.FullName "ProfessionMaster"
     $att = Get-SavedFile $accountDir.FullName "AllTheThings"
     $accountKillFiles = @(Get-ChildItem -Path $accountDir.FullName -Recurse -Filter "KillDex.lua" -ErrorAction SilentlyContinue)
-    $accountAIExportFiles = @(Get-ChildItem -Path $accountDir.FullName -Recurse -Filter "AIExport.lua" -ErrorAction SilentlyContinue |
-      Where-Object { $_.Directory.Name -eq "SavedVariables" })
+    $accountDossierFiles = Get-DossierSaves $accountDir.FullName
 
     foreach ($character in $characters) {
       $snap = $snapshots[$character.id]
@@ -251,16 +268,16 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
         $snap.sources["AllTheThings"] = $snap.att.at
       }
 
-      # AIExport tracks kills itself since 1.4.0 and keeps KillDex's history; KillDex is the fallback.
+      # Dossier (AIExport 1.4.0 and later) tracks kills itself and keeps KillDex's history; KillDex is the fallback.
       $first = ($character.name -split ' ')[0]
       $last = ($character.name -split ' ', 2)[1]
       $aiFolder = if ($last) { "$first-$last" } else { $first }
-      $aiFile = $accountAIExportFiles | Where-Object { $_.Directory.Parent.Name -ieq $aiFolder } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+      $aiFile = Find-DossierSave $accountDossierFiles $aiFolder
       if ($aiFile) {
-        $kills = Convert-KillMobs (LV (Read-LuaSaved $aiFile.FullName) "AIExportDBChar" "kills" "mobs")
+        $kills = Convert-KillMobs (LV (Read-DossierSave $aiFile) "kills" "mobs")
         if ($kills) {
           $snap.kills = $kills
-          $snap.sources["AIExport"] = $aiFile.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
+          $snap.sources[$aiFile.BaseName] = $aiFile.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
         }
       }
 

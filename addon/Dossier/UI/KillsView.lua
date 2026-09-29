@@ -285,7 +285,7 @@ function KillsView:Build(parent)
     position:SetPoint("TOPRIGHT", list, "BOTTOMRIGHT", 0, -4)
     position:SetJustifyH("RIGHT")
 
-    local detail = Theme.CreateScrollText(container, "AIExportKillsDetailScrollFrame", "GameFontHighlightSmall")
+    local detail = Theme.CreateScrollText(container, "DossierKillsDetailScrollFrame", "GameFontHighlightSmall")
     detail:SetPoint("TOPLEFT", list, "BOTTOMLEFT", 0, -20)
     detail:SetPoint("BOTTOMRIGHT", 0, 28)
 

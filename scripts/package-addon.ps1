@@ -1,7 +1,8 @@
-# Build the AIExport CurseForge zip and install it into the local WoW Forever client.
+# Build the Dossier CurseForge zip and install it into the local WoW Forever client.
 # Usage: powershell -File scripts/package-addon.ps1 [-SkipInstall]
-# Source: addon/AIExport. Zip: dist/AIExport-<version>.zip with AIExport/ as its only top folder.
-# Install path: Interface\AddOns\AIExport under addonsPath in scripts/addons.local.json.
+# Source: addon/Dossier. Zip: dist/Dossier-<version>.zip with Dossier/ as its only top folder.
+# Install path: Interface\AddOns\Dossier under addonsPath in scripts/addons.local.json.
+# The old AddOns\AIExport folder (the name before 2.0.0) is moved to dist/AIExport-backup.
 
 param(
   [switch]$SkipInstall
@@ -12,7 +13,7 @@ Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $repo = Split-Path -Parent $PSScriptRoot
-$addonName = "AIExport"
+$addonName = "Dossier"
 $source = Join-Path $repo "addon\$addonName"
 $dist = Join-Path $repo "dist"
 $toc = Join-Path $source "$addonName.toc"
@@ -79,24 +80,34 @@ if (-not $addonsPath -or -not (Test-Path $addonsPath)) {
   return
 }
 
+# Dossier must never start before the old saves are copied, or it writes an empty Dossier.lua the migration then skips.
+$wtfPath = Join-Path (Split-Path -Parent (Split-Path -Parent $addonsPath)) "WTF"
+$unmigrated = @(Get-ChildItem -Path $wtfPath -Recurse -Filter "AIExport.lua" -File -ErrorAction SilentlyContinue |
+  Where-Object { $_.Directory.Name -eq "SavedVariables" -and -not (Test-Path (Join-Path $_.DirectoryName "Dossier.lua")) })
+if ($unmigrated.Count) {
+  Write-Output "Copying $($unmigrated.Count) AIExport save(s) to Dossier first."
+  & (Join-Path $PSScriptRoot "migrate-to-dossier.ps1") -WtfPath $wtfPath
+}
+
 $target = Join-Path $addonsPath $addonName
 $isNew = -not (Test-Path $target)
 if (-not $isNew) { Remove-Item -Recurse -Force $target }
 Copy-Item -Recurse -Path $source -Destination $target
 Write-Output "Installed $addonName $version to $target"
 
-$oldFolder = Join-Path $addonsPath "CharacterExport-Forever"
 if (Test-Path (Join-Path $target "$addonName.toc")) {
-  if (Test-Path $oldFolder) {
-    $backup = Join-Path $dist "CharacterExport-Forever-backup"
+  foreach ($oldName in @("CharacterExport-Forever", "AIExport")) {
+    $oldFolder = Join-Path $addonsPath $oldName
+    if (-not (Test-Path $oldFolder)) { continue }
+    $backup = Join-Path $dist "$oldName-backup"
     if (Test-Path $backup) { Remove-Item -Recurse -Force $backup }
     Move-Item -Path $oldFolder -Destination $backup
-    Write-Output "Moved the old CharacterExport-Forever folder out of AddOns to dist/CharacterExport-Forever-backup"
+    Write-Output "Moved the old $oldName folder out of AddOns to dist/$oldName-backup"
   }
 }
 
 if ($isNew) {
-  Write-Output "Restart the game so it finds the new AIExport folder. After that, /reload picks up changes."
+  Write-Output "Restart the game so it finds the new Dossier folder. After that, /reload picks up changes."
 } else {
   Write-Output "Type /reload in game to load the new build. If files were added to the toc, restart the game instead."
 }

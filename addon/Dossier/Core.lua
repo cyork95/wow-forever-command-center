@@ -1,8 +1,8 @@
 local addonName, ns = ...
 
-_G.AIExport = ns
+_G.Dossier = ns
 
-ns.name = addonName or "AIExport"
+ns.name = addonName or "Dossier"
 ns.state = ns.state or {}
 ns.modules = ns.modules or {}
 
@@ -27,10 +27,10 @@ local function GetCurrentTimestamp()
 end
 
 local function InitializeDatabase()
-    AIExportDBChar =
-        AIExportDBChar or {}
+    DossierDBChar =
+        DossierDBChar or {}
 
-    ns.state.db = AIExportDBChar
+    ns.state.db = DossierDBChar
     ns.db = ns.state.db
 
     ns.state.db.bankCache =
@@ -124,6 +124,27 @@ local function UpdateLockoutsCache()
     end
 end
 
+-- Both copies would write the same kills, sessions, and screenshots twice.
+local function WarnIfOldAddonLoaded()
+    local C = ns.constants
+
+    if not C
+        or not C_AddOns
+        or type(C_AddOns.IsAddOnLoaded) ~= "function"
+    then
+        return
+    end
+
+    local success, loaded = pcall(C_AddOns.IsAddOnLoaded, C.OLD_ADDON_NAME)
+
+    if success
+        and loaded == true
+        and DEFAULT_CHAT_FRAME
+    then
+        DEFAULT_CHAT_FRAME:AddMessage(C.TEXT.OLD_ADDON_LOADED)
+    end
+end
+
 local function OnEvent(_, event, arg1)
     if event == "ADDON_LOADED" then
         if arg1 ~= addonName then
@@ -141,6 +162,7 @@ local function OnEvent(_, event, arg1)
         ns.state.tradeSkillOpen = false
 
         InitializeCommands()
+        WarnIfOldAddonLoaded()
 
         return
     end

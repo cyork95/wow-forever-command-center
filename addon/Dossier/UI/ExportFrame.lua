@@ -21,7 +21,7 @@ local LARGEST_SECTION_COUNT = 3
 
 local function CreateWindow()
     local Theme = ns.Theme
-    local frame = Theme.CreateWindow("AIExportExportFrame", FRAME_WIDTH, FRAME_HEIGHT)
+    local frame = Theme.CreateWindow("DossierExportFrame", FRAME_WIDTH, FRAME_HEIGHT)
     local header = Theme.CreateHeader(frame, C.TEXT.EXPORT_WINDOW_TITLE, C.TEXT.LABEL_EXPORT_HINT)
 
     return frame, header
@@ -122,14 +122,14 @@ local function CreateScrollArea(parent)
 
     local scrollFrame = CreateFrame(
         "ScrollFrame",
-        "AIExportExportScrollFrame",
+        "DossierExportScrollFrame",
         box,
         "UIPanelScrollFrameTemplate"
     )
     scrollFrame:SetPoint("TOPLEFT", 8, -8)
     scrollFrame:SetPoint("BOTTOMRIGHT", -28, 8)
 
-    local editBox = CreateFrame("EditBox", "AIExportExportEditBox", scrollFrame)
+    local editBox = CreateFrame("EditBox", "DossierExportEditBox", scrollFrame)
     local textMeasure = scrollFrame:CreateFontString(nil, "ARTWORK", "ChatFontNormal")
 
     editBox:SetMultiLine(true)

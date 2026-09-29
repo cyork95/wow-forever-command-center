@@ -28,7 +28,7 @@ Theme.COLORS = {
 Theme.HEADER_HEIGHT = 56
 
 function Theme.LogoPath()
-    return "Interface\\AddOns\\" .. (ns.name or "AIExport") .. "\\Media\\Logo"
+    return "Interface\\AddOns\\" .. (ns.name or "Dossier") .. "\\Media\\Logo"
 end
 
 local function Unpack(color)
@@ -66,14 +66,14 @@ function Theme.ApplyBackdrop(frame, background, border)
         return
     end
 
-    if not frame.aiexportBackground then
+    if not frame.dossierBackground then
         local texture = frame:CreateTexture(nil, "BACKGROUND")
         texture:SetAllPoints()
         texture:SetTexture(FLAT)
-        frame.aiexportBackground = texture
+        frame.dossierBackground = texture
     end
 
-    frame.aiexportBackground:SetVertexColor(
+    frame.dossierBackground:SetVertexColor(
         Unpack(Theme.COLORS[background or "panel"])
     )
 end
@@ -91,8 +91,8 @@ function Theme.SetBackgroundColor(frame, background)
 
     if type(frame.SetBackdropColor) == "function" then
         frame:SetBackdropColor(Unpack(Theme.COLORS[background or "panel"]))
-    elseif frame.aiexportBackground then
-        frame.aiexportBackground:SetVertexColor(
+    elseif frame.dossierBackground then
+        frame.dossierBackground:SetVertexColor(
             Unpack(Theme.COLORS[background or "panel"])
         )
     end
@@ -110,8 +110,8 @@ function Theme.SetBackdropAlpha(frame, background, border, alpha)
 
         local br, bg, bb = Theme.Color(border or "border")
         frame:SetBackdropBorderColor(br, bg, bb, alpha)
-    elseif frame.aiexportBackground then
-        frame.aiexportBackground:SetVertexColor(r, g, b, alpha)
+    elseif frame.dossierBackground then
+        frame.dossierBackground:SetVertexColor(r, g, b, alpha)
     end
 end
 

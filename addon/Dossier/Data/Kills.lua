@@ -551,7 +551,7 @@ local function LinkName(link)
 end
 
 -- Copies KillDex's history for this character once, so it is not lost when
--- KillDex is removed. Skipped as soon as AIExport has any kills of its own.
+-- KillDex is removed. Skipped as soon as Dossier has any kills of its own.
 function Kills:ImportKillDex()
     local store = GetStore()
 

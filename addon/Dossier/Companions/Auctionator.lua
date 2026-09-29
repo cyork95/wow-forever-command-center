@@ -2,7 +2,7 @@ local _, ns = ...
 
 local U = ns.utils
 
-local CALLER_ID = "AIExport"
+local CALLER_ID = "Dossier"
 local BAG_COUNT = NUM_BAG_SLOTS or 4
 local LINE_LIMIT = 40
 

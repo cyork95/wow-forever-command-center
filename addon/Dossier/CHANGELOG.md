@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0
+
+- AIExport is now **Dossier**. The addon folder, the window, the minimap button, and the export header ("Exported By: Dossier") use the new name. Type `/dossier`; `/aixport` still works.
+- Saved data moves from `AIExport.lua` to `Dossier.lua` in each character's SavedVariables folder. Copy it over once before Dossier runs, or your Biography, kills, and settings start empty. The README's "Coming from AIExport" section shows how.
+- If AIExport is still loaded, Dossier prints a reminder in chat to turn it off, so kills and screenshots are not recorded twice.
+- Remove the old `AIExport` folder from `Interface\AddOns` and restart the game after updating.
+
 ## 1.7.0
 
 - New **Session** tab, which replaces Gathering. A timer starts by itself with your first kill, loot, gold, or XP and tracks kills, items gathered by type, gold, and XP, each per hour, plus the time to your next level. **Pause**, **Start**, and **Reset** control it, and Reset saves the session in your last 20. Open it with `/aixport session`.

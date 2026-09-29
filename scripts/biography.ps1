@@ -1,5 +1,6 @@
-# AIExport biography: every event the addon recorded, one file per roster character.
-# The addon keeps the full log in AIExportDBChar.biography inside each character's SavedVariables\AIExport.lua.
+# Dossier biography: every event the addon recorded, one file per roster character.
+# The addon keeps the full log in DossierDBChar.biography inside each character's SavedVariables\Dossier.lua
+# (AIExportDBChar in AIExport.lua before the 2.0.0 rename).
 # data/biography/<id>.json keeps every event already copied, so a later scan only adds to it.
 
 function Get-BiographyKey($event) {
@@ -30,8 +31,7 @@ function Convert-BiographyEvent($entry) {
 function Update-Biography($wtfRoot, $repo, $characters) {
   $accountRoot = Join-Path $wtfRoot "Account"
   if (-not (Test-Path $accountRoot)) { return }
-  $saves = @(Get-ChildItem -Path $accountRoot -Recurse -Filter "AIExport.lua" -ErrorAction SilentlyContinue |
-    Where-Object { $_.Directory.Name -eq "SavedVariables" })
+  $saves = Get-DossierSaves $accountRoot
   if (-not $saves.Count) { return }
   $outDir = Join-Path $repo "data\biography"
 
@@ -39,10 +39,10 @@ function Update-Biography($wtfRoot, $repo, $characters) {
     $first = ($character.name -split ' ')[0]
     $last = ($character.name -split ' ', 2)[1]
     $folder = if ($last) { "$first-$last" } else { $first }
-    $save = $saves | Where-Object { $_.Directory.Parent.Name -ieq $folder } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    $save = Find-DossierSave $saves $folder
     if (-not $save) { continue }
 
-    $log = LV (Read-LuaSaved $save.FullName) "AIExportDBChar" "biography"
+    $log = LV (Read-DossierSave $save) "biography"
     if ($log -isnot [System.Collections.IList] -or -not $log.Count) { continue }
 
     $path = Join-Path $outDir "$($character.id).json"

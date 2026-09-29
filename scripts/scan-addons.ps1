@@ -386,7 +386,7 @@ function Parse-TextExport($text, $when) {
     }
   }
 
-  $addonName = if ($text -match '(?m)^Exported By:\s*AIExport\b') { "AIExport" } else { "CharacterExport Forever" }
+  $addonName = if ($text -match '(?m)^Exported By:\s*(Dossier|AIExport)\b') { $Matches[1] } else { "CharacterExport Forever" }
 
   [ordered]@{
     character = $name
@@ -434,7 +434,7 @@ function Add-CarriedField($payload, $row, $existing, $name) {
 }
 
 $sources = @()
-$sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport|AIExport' })
+$sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport|AIExport|Dossier' })
 if (Test-Path $gameRoot) {
   $sources += @(Get-ChildItem -Path $gameRoot -File -Recurse -Depth 2 -Include *.txt,*.json -ErrorAction SilentlyContinue |
     Where-Object { $_.FullName -notmatch '\\Interface\\' -and $_.Length -lt 5MB })
@@ -473,7 +473,7 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
 }
 
 if (-not $parsed.Count) {
-  Write-Output "No AIExport or CharacterExport dump found. Addon saves still update the sheet."
+  Write-Output "No Dossier, AIExport, or CharacterExport dump found. Addon saves still update the sheet."
 }
 
 $stats = Read-JsonFile $statsPath
@@ -618,7 +618,7 @@ function Apply-Snapshot($record, $snap, $character) {
 
   $sources = [ordered]@{}
   if ($exportedAt) {
-    $exportLabel = if ($rec["addon"] -eq "AIExport") { "AIExport" } else { "CharacterExport" }
+    $exportLabel = if ($rec["addon"] -in @("Dossier", "AIExport")) { $rec["addon"] } else { "CharacterExport" }
     $sources[$exportLabel] = $exportedAt
   }
   foreach ($k in $snap.sources.Keys) { $sources[$k] = $snap.sources[$k] }

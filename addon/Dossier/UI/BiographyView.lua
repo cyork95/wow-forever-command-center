@@ -100,7 +100,7 @@ function BiographyView:Build(parent)
 
     local scrollBox = Theme.CreateScrollText(
         container,
-        "AIExportBiographyScrollFrame",
+        "DossierBiographyScrollFrame",
         "GameFontHighlight"
     )
     scrollBox:SetPoint("TOPLEFT", 0, -24)

@@ -12,7 +12,7 @@ local WIDTH = 240
 local LINE_HEIGHT = 14
 local TOP_OFFSET = 32
 local REFRESH_SECONDS = 1
-local RESET_POPUP = "AIEXPORT_SESSION_RESET"
+local RESET_POPUP = "DOSSIER_SESSION_RESET"
 
 local function GetSettings()
     local db = ns.state and ns.state.db
@@ -254,7 +254,7 @@ local function EnsureFrame()
     end
 
     local Theme = ns.Theme
-    local frame = Theme.CreatePanel(UIParent, "panel", "border", "AIExportSessionPanel")
+    local frame = Theme.CreatePanel(UIParent, "panel", "border", "DossierSessionPanel")
     frame:SetSize(WIDTH, 120)
     frame:SetFrameStrata("MEDIUM")
     frame:SetMovable(true)

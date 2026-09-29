@@ -201,7 +201,7 @@ local function EmitDiagnostic(
     end
 
     local text =
-        "[AIExport] "
+        "[Dossier] "
         .. SafeErrorString(
             message
         )
@@ -362,7 +362,7 @@ local function AppendErrorSummary(
 
     table.insert(
         lines,
-        "AIExport Errors:"
+        "Dossier Errors:"
     )
 
     for _, entry
@@ -927,7 +927,7 @@ local function BuildFormattedOutput(
     )
 
     local fallback =
-        "AIExport\n"
+        "Dossier\n"
         .. "\n"
         .. "[Export formatting failed.]"
 
@@ -943,7 +943,7 @@ local function GetMinimapIconTexturePath()
         "Interface\\AddOns\\"
         .. (
             ns.name
-            or "AIExport"
+            or "Dossier"
         )
         .. "\\Media\\MinimapIcon.tga"
 end
@@ -964,7 +964,7 @@ local function EnsureMinimapButton()
     local button =
         CreateFrame(
             "Button",
-            "AIExportMinimapButton",
+            "DossierMinimapButton",
             Minimap
         )
 
@@ -1106,7 +1106,7 @@ local function EnsureMinimapButton()
 
             GameTooltip:SetText(
                 C.ADDON_TITLE
-                or "AIExport"
+                or "Dossier"
             )
 
             GameTooltip:AddLine(
@@ -2020,11 +2020,14 @@ function Commands:ToggleKillPanel()
     end
 end
 
-SLASH_AIEXPORT1 =
+SLASH_DOSSIER1 =
     C.SLASH_COMMAND
 
+SLASH_DOSSIER2 =
+    C.SLASH_ALIAS
+
 SlashCmdList[
-    "AIEXPORT"
+    "DOSSIER"
 ] =
     function(message)
         local argument =

@@ -449,7 +449,7 @@ end
 local function BuildHelpPage(page)
     local Theme = ns.Theme
 
-    local guideBox = Theme.CreateScrollText(page, "AIExportGuideScrollFrame", "GameFontHighlightSmall")
+    local guideBox = Theme.CreateScrollText(page, "DossierGuideScrollFrame", "GameFontHighlightSmall")
     guideBox:SetPoint("TOPLEFT", 0, 0)
     guideBox:SetPoint("BOTTOMRIGHT", 0, 120)
     MainFrame.guideBox = guideBox
@@ -529,7 +529,7 @@ local function EnsureFrame()
     end
 
     local Theme = ns.Theme
-    local frame = Theme.CreateWindow("AIExportMainFrame", FRAME_WIDTH, FRAME_HEIGHT)
+    local frame = Theme.CreateWindow("DossierMainFrame", FRAME_WIDTH, FRAME_HEIGHT)
 
     Theme.CreateHeader(frame, C.TEXT.MAIN_WINDOW_TITLE, C.TEXT.LABEL_SUBTITLE)
 

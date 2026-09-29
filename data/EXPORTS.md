@@ -58,7 +58,7 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 - `looted`: hunt items, and dungeon-journal drops, that KillDex saw drop for this character. A matching hunt checks itself, and the dungeon row shows the drop in hand, even after the item is sold or used.
 - `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`.
 
-AIExport's Biography lives in `biography/<id>.json`, one file per roster character. The scan copies every event from the character's `AIExport.lua` save and keeps the ones already in the file, so nothing drops out:
+Dossier's Biography lives in `biography/<id>.json`, one file per roster character. The scan copies every event from the character's `Dossier.lua` save (`AIExport.lua` before the 2.0.0 rename) and keeps the ones already in the file, so nothing drops out:
 
 ```json
 {
@@ -72,7 +72,7 @@ AIExport's Biography lives in `biography/<id>.json`, one file per roster charact
 }
 ```
 
-`kind` is one of `login`, `level`, `death`, `zone`, `quest`, `achievement`, `boss`, `profession`, or `screenshot`. Screenshots taken by AIExport's Screenshotter also carry `reason`, such as `"Reached level 12"`.
+`kind` is one of `login`, `level`, `death`, `zone`, `quest`, `achievement`, `boss`, `profession`, or `screenshot`. Screenshots taken by Dossier's Screenshotter also carry `reason`, such as `"Reached level 12"`.
 
 Screenshots live in `screenshots.json`, one entry per file in the game's `Screenshots` folder:
 
@@ -83,7 +83,7 @@ Screenshots live in `screenshots.json`, one entry per file in the game's `Screen
   "who": "Flann Anvilhew",
   "caption": "Father Gavin offers Rime's Wrath.",
   "file": "assets/shots/flann/2026-09-24_1849_Flann-Anvilhew_father-gavin-offers-rime-s-wrath.jpg",
-  "archive": "AIExport/2026-09-24_1849_Flann-Anvilhew_father-gavin-offers-rime-s-wrath.jpg"
+  "archive": "Dossier/2026-09-24_1849_Flann-Anvilhew_father-gavin-offers-rime-s-wrath.jpg"
 }
 ```
 

@@ -5,9 +5,11 @@ local C = ns.constants
 local Guide = {}
 
 local GUIDE_TEXT = [[
-AIExport turns your character into a text report you can paste into an AI chat
+Dossier turns your character into a text report you can paste into an AI chat
 (Cursor, ChatGPT, Claude, Gemini, or any other assistant). Everything in the
-report comes from the game and from AIExport itself. No other addon is needed.
+report comes from the game and from Dossier itself. No other addon is needed.
+
+Dossier was called AIExport before version 2.0. /aixport still works.
 
 Press Copy guide below to open this text in a window where Ctrl+A and Ctrl+C
 copy it.
@@ -15,16 +17,16 @@ copy it.
 
 1. Make an export
 -----------------
-1. Type /aixport, or left-click the AIExport minimap button.
+1. Type /dossier, or left-click the Dossier minimap button.
 2. On the Export tab, tick the sections you want. Select All is a good start.
 3. Press Create Export. The text is already selected.
 4. Press Ctrl+C, then paste it into your AI chat with Ctrl+V.
 
 Open your bank and each profession window at least once per session. The game
-only lets addons read those while they are open, so AIExport keeps the last
+only lets addons read those while they are open, so Dossier keeps the last
 copy it saw and marks it as cached. The Export tab lists anything not saved
 yet, or saved more than a week ago, and marks those sections with "!". Until
-then, AIExport uses Syndicator's bank copy and Profession Master's recipes if
+then, Dossier uses Syndicator's bank copy and Profession Master's recipes if
 those addons are loaded.
 
 The window has seven tabs:
@@ -33,28 +35,28 @@ The window has seven tabs:
 - Kills: every creature you have killed, with drops and gold
 - Session: a timer with this session's kills, gathering, gold, and XP
 - Screenshotter: automatic screenshots at big moments, like Memento
-- Companions: the optional addons AIExport can read, each with its own switch
+- Companions: the optional addons Dossier can read, each with its own switch
 - Help: this guide and the options
 
 
 2. Commands
 -----------
-/aixport             Open the AIExport window
-/aixport bio         Open the Biography tab
-/aixport kills       Open the Kills tab
-/aixport session     Open the Session tab
-/aixport panel       Show or hide the live session panel
-/aixport shots       Open the Screenshotter tab
-/aixport shot        Take a screenshot now
-/aixport companions  Open the Companions tab
-/aixport help        Open this guide
+/dossier             Open the Dossier window
+/dossier bio         Open the Biography tab
+/dossier kills       Open the Kills tab
+/dossier session     Open the Session tab
+/dossier panel       Show or hide the live session panel
+/dossier shots       Open the Screenshotter tab
+/dossier shot        Take a screenshot now
+/dossier companions  Open the Companions tab
+/dossier help        Open this guide
 
 Right-click the minimap button to show or hide the live session panel.
 
 
 3. What the report contains
 ---------------------------
-The report starts with "Exported By: AIExport" and then one block per section:
+The report starts with "Exported By: Dossier" and then one block per section:
 
 - Location: zone, subzone, map, coordinates, hearthstone
 - Character Stats: name-realm, level, race, class, XP, health, stats, ratings
@@ -86,7 +88,7 @@ report is then several times larger.
 
 4. Biography
 ------------
-From the moment AIExport is installed it writes down what happens to the
+From the moment Dossier is installed it writes down what happens to the
 character it is loaded on:
 
 - Logging in, when your level or zone changed since the last session
@@ -107,15 +109,15 @@ and Newer to move through the rest. The Biography section of an export
 always contains every event, not just the page on screen.
 
 The game saves the full log when you log out or type /reload, in:
-World of Warcraft\_classic_beta_\WTF\Account\<account>\<realm>\<character>\SavedVariables\AIExport.lua
+World of Warcraft\_classic_beta_\WTF\Account\<account>\<realm>\<character>\SavedVariables\Dossier.lua
 
-AIExport only knows what happened after it was installed. Earlier play is
+Dossier only knows what happened after it was installed. Earlier play is
 not in the timeline.
 
 
 5. Kills
 --------
-AIExport counts every creature you or your pet finish off. A creature
+Dossier counts every creature you or your pet finish off. A creature
 another player tagged first is not counted. Inside dungeons and raids the
 game hides which creature died, so only bosses are recorded there, in the
 Biography.
@@ -129,7 +131,7 @@ recent, and click a creature to see its drops and gold. Tick "Kill count
 on creature tooltips" to add "Killed 12 times" when you point at a
 creature you have killed before. The live panel is on the Session tab.
 
-If KillDex was installed, AIExport copies its kill history once, the
+If KillDex was installed, Dossier copies its kill history once, the
 first time it loads, so your earlier kills carry over. After that KillDex
 is no longer needed.
 
@@ -188,12 +190,12 @@ earns an achievement, share one screenshot. The options are:
   shows your name, realm, level, and the date.
 - Camera sound, and a chat message for each screenshot.
 
-Press Take test screenshot, or type /aixport shot, to take one right away.
+Press Take test screenshot, or type /dossier shot, to take one right away.
 This works even when the automatic screenshots are off.
 
 While Memento is loaded, the Screenshotter pauses so you do not get two
 screenshots of everything. The tab says so. Disable Memento in the AddOns
-list to let AIExport take over.
+list to let Dossier take over.
 
 Screenshots are saved in World of Warcraft\_classic_beta_\Screenshots with
 the game's usual names. Each one is noted in the Biography with the reason,
@@ -202,14 +204,14 @@ so a website or tool that reads the Biography can name and caption them.
 
 8. Companions
 -------------
-AIExport never needs another addon. When one of these is loaded, AIExport can
+Dossier never needs another addon. When one of these is loaded, Dossier can
 read what it has saved for this character and add it to the Companions
 section of the export:
 
 - Syndicator: your mail, and your bank contents even while the bank is closed
 - KillDex: total kills, creature types, your top 15 creatures, and items seen
-  dropping. Once AIExport has kills of its own, the Companions tab shows
-  KillDex as "Built into AIExport" and leaves its block out.
+  dropping. Once Dossier has kills of its own, the Companions tab shows
+  KillDex as "Built into Dossier" and leaves its block out.
 - AllTheThings: deaths, quests, areas explored, time played, and mount, pet,
   toy, and title counts
 - Nova Instance Tracker: your saved lockouts and recent instance runs
@@ -217,7 +219,7 @@ section of the export:
 - Auctionator: the auction price of each stack in your bags, plus a total
 - Memento: the boss kills it recorded. While the Screenshotter is on and
   Memento is not loaded, the Companions tab shows Memento as "Built into
-  AIExport". Boss kills are in the Biography either way.
+  Dossier". Boss kills are in the Biography either way.
 - Talents Forever: your planned talent build and saved builds for your class
 
 Each one is optional. The Companions tab shows whether each addon is loaded,
@@ -243,25 +245,25 @@ be read instead of breaking the export.
 --------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named
-aiexport, for example .cursor/skills/aiexport/SKILL.md in your project, or
+dossier, for example .cursor/skills/dossier/SKILL.md in your project, or
 paste it at the start of a chat in any other assistant.
 
 -------------------------------- SKILL.md --------------------------------
 ---
-name: aiexport
-description: Reads a pasted AIExport character report from World of Warcraft Forever. Use when the user pastes text that starts with "Exported By: AIExport" or contains "Character:" and "Biography:" lines.
+name: dossier
+description: Reads a pasted Dossier character report from World of Warcraft Forever. Use when the user pastes text that starts with "Exported By: Dossier" or "Exported By: AIExport" (its old name), or contains "Character:" and "Biography:" lines.
 ---
 
-# AIExport report
+# Dossier report
 
-The user pastes a text report made in game with /aixport.
+The user pastes a text report made in game with /dossier.
 
 ## Check the paste
 
 - It must contain a "Character: Name-Realm" line. If it does not, ask the
-  user to run /aixport, press Create Export, and paste the whole text.
-- One report is one character. If there are two "Exported By: AIExport"
-  lines, treat each block as its own character.
+  user to run /dossier, press Create Export, and paste the whole text.
+- One report is one character. If there are two "Exported By:" lines,
+  treat each block as its own character.
 - Do not invent data. If a section is missing or says "unavailable",
   "cached", or "Saved copy from", say so instead of guessing.
 

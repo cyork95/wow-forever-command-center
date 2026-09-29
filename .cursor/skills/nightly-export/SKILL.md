@@ -1,18 +1,18 @@
 ---
 name: nightly-export
-description: Saves a pasted AIExport dump into exports/, runs the local addon scan, and merges the character into data/stats.json, data/exports/, and data/biography/. Use when the user pastes game details (text with "Exported By: AIExport", "Location:", "Character Stats:", "Character:", or "AddOns Count:"), says "nightly export", "here's my export", or asks to log tonight's session.
+description: Saves a pasted Dossier (formerly AIExport) dump into exports/, runs the local addon scan, and merges the character into data/stats.json, data/exports/, and data/biography/. Use when the user pastes game details (text with "Exported By: Dossier" or "Exported By: AIExport", "Location:", "Character Stats:", "Character:", or "AddOns Count:"), says "nightly export", "here's my export", or asks to log tonight's session.
 ---
 
 # Nightly export
 
-The user pastes the text from `/aixport` in game. Save it, scan, merge, then commit and open a PR. Do not ask before running the scan.
+The user pastes the text from `/dossier` (or the old `/aixport`) in game. Save it, scan, merge, then commit and open a PR. Do not ask before running the scan.
 
-The player-facing guide and the public example skill live in `addon/AIExport/Guide.lua` (`/aixport help` in game). That guide stays generic. The steps below are for this house sheet only.
+The player-facing guide and the public example skill live in `addon/Dossier/Guide.lua` (`/dossier help` in game). That guide stays generic. The steps below are for this house sheet only.
 
 ## 1. Check the paste
 
-- It must contain a `Character: Name-Realm` line. If it does not, ask for the `/aixport` text and stop.
-- One file per character. If the paste has more than one `Character:` line, split it at each `Exported By: AIExport` line, or at each `Location:` line for older CharacterExport dumps that have no header.
+- It must contain a `Character: Name-Realm` line. If it does not, ask for the `/dossier` text and stop.
+- One file per character. If the paste has more than one `Character:` line, split it at each `Exported By:` line, or at each `Location:` line for older CharacterExport dumps that have no header.
 - Beta guard: if the realm contains `Beta` and the name is Skyrinis, Sorinis, or Malavus, stop and tell the user. Those names are reserved and never go in beta.
 
 ## 2. Save the raw dump
@@ -50,17 +50,17 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - Questie: finished quest ids. Names, levels, and zones come from QuestieDB and are rewritten into `data/quests.json`, so commit that file when it changes. A `Resolved Quests` list in the dump fills names the database does not have. The quests still in the log are not in the save.
 - Forever Dungeon Journal: its boss, loot, and quest tables live in the addon's Lua file. The scan rewrites `data/dungeons.json` from them, so commit that file when it changes.
 - Memento: its save holds settings and boss kills. Its screenshots are handled in the next section.
-- AIExport: the Biography timeline in each character's `AIExport.lua`. The scan prints `Wrote N biography events for <name> to data/biography/<id>.json` and keeps events already in that file.
+- Dossier: the Biography timeline in each character's `Dossier.lua` (or `AIExport.lua` before the 2.0.0 rename). The scan prints `Wrote N biography events for <name> to data/biography/<id>.json` and keeps events already in that file.
 
 ## 3b. Name the new screenshots
 
-AIExport's Screenshotter (1.6.0 and later) takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, boss kills, and similar moments. Older shots came from Memento. The scan adds each new file to `data/screenshots.json` with `who: null`.
+Dossier's Screenshotter (AIExport 1.6.0 and later) takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, boss kills, and similar moments. Older shots came from Memento. The scan adds each new file to `data/screenshots.json` with `who: null`.
 
-AIExport 1.2.0 and later records a `screenshot` event in the Biography each time the game saves one. When a roster character's `data/biography/<id>.json` has a screenshot event within 10 seconds of a file's `takenAt`, the scan sets `who` to that character and prints `Named N screenshots from AIExport biography events`.
+AIExport 1.2.0 and later records a `screenshot` event in the Biography each time the game saves one. When a roster character's `data/biography/<id>.json` has a screenshot event within 10 seconds of a file's `takenAt`, the scan sets `who` to that character and prints `Named N screenshots from Dossier biography events`.
 
 Screenshotter events also carry a `reason`, such as `Reached level 12`. The scan copies it into an empty `caption` and prints `Captioned N screenshots from Screenshotter reasons`. Those captions are fine as they are. Shots whose event has no reason (the player pressed Print Screen, or Memento took it) still need a `caption`.
 
-Once `who` is known, the scan names the files `YYYY-MM-DD_HHMM_Character-Name_reason.jpg`, using the caption for the reason (`screenshot` when there is none). The website copy under `assets/shots/<id>/` gets that name, and a full-size copy goes to `<game>\Screenshots\AIExport\` (recorded as `archive`). It prints `Named N files`. Setting or changing a caption renames both copies on the next run. The game's original files are never moved, so `source` keeps matching.
+Once `who` is known, the scan names the files `YYYY-MM-DD_HHMM_Character-Name_reason.jpg`, using the caption for the reason (`screenshot` when there is none). The website copy under `assets/shots/<id>/` gets that name, and a full-size copy goes to `<game>\Screenshots\Dossier\` (recorded as `archive`). It prints `Named N files`. Setting or changing a caption renames both copies on the next run. The game's original files are never moved, so `source` keeps matching.
 
 Whatever is left is printed as `Screenshots with no character yet (N): ...`. This happens for shots taken before AIExport 1.2.0, or on a character without it. For each of those entries:
 
@@ -72,7 +72,7 @@ Then run the scan again. Shots whose `who` is on the roster get a 1280px copy un
 
 ## 4. Add statistics the dump cannot carry
 
-AIExport does not copy the Statistics tab. The scan fills the `Character` and `Kills` groups from the saves above. If the user gave other counters, add them to that character in `data/stats.json` under `statistics`, using the shape in `data/EXPORTS.md`. The scanner keeps them on later runs.
+The scan does not read the export's Statistics section. It fills the `Character` and `Kills` groups from the saves above. If the user gave other counters, add them to that character in `data/stats.json` under `statistics`, using the shape in `data/EXPORTS.md`. The scanner keeps them on later runs.
 
 ## 5. Report what changed
 

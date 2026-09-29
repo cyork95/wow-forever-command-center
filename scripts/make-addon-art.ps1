@@ -1,4 +1,4 @@
-# Builds AIExport's in-game textures and the CurseForge avatar from addon/art/logo-master.png.
+# Builds Dossier's in-game textures and the CurseForge avatar from addon/art/logo-master.png.
 # WoW loads 32-bit uncompressed TGA at power-of-two sizes.
 param(
     [string]$Master = "",
@@ -12,7 +12,7 @@ $repo = Split-Path -Parent $PSScriptRoot
 if (-not $Master) { $Master = Join-Path $repo "addon\art\logo-master.png" }
 if (-not (Test-Path $Master)) { throw "Logo master not found: $Master" }
 
-$media = Join-Path $repo "addon\AIExport\Media"
+$media = Join-Path $repo "addon\Dossier\Media"
 $dist = Join-Path $repo "dist"
 New-Item -ItemType Directory -Force -Path $media, $dist | Out-Null
 

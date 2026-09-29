@@ -1,30 +1,43 @@
-# AIExport
+# Dossier
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Screenshotter** takes screenshots at big moments, like Memento.
+Type `/dossier`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed Dossier. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Screenshotter** takes screenshots at big moments, like Memento.
 
-AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself. If you use some popular addons, AIExport can also add what they know; see [Companions](#companions).
+Dossier needs no other addon. Everything in the report comes from the game and from Dossier itself. If you use some popular addons, Dossier can also add what they know; see [Companions](#companions).
+
+Dossier was called **AIExport** before version 2.0.0. `/aixport` still works. See [Coming from AIExport](#coming-from-aiexport) to keep your Biography, kills, and settings.
 
 ## Install
 
 1. Download the zip and open it.
-2. Copy the `AIExport` folder into `World of Warcraft\_classic_beta_\Interface\AddOns\`. The file `AIExport.toc` must sit directly inside `AddOns\AIExport\`, not in a nested folder.
-3. Start the game, open **AddOns** on the character select screen, and make sure AIExport is ticked.
+2. Copy the `Dossier` folder into `World of Warcraft\_classic_beta_\Interface\AddOns\`. The file `Dossier.toc` must sit directly inside `AddOns\Dossier\`, not in a nested folder.
+3. Start the game, open **AddOns** on the character select screen, and make sure Dossier is ticked.
+
+## Coming from AIExport
+
+The game keeps each addon's saved data in a file named after the addon, so Dossier cannot read what AIExport saved on its own. Copy it over once, before Dossier runs for the first time:
+
+1. Close the game.
+2. In each character folder, `World of Warcraft\_classic_beta_\WTF\Account\<account>\<realm>\<character>\SavedVariables\`, copy `AIExport.lua` to `Dossier.lua`.
+3. Open `Dossier.lua` in a text editor and change `AIExportDBChar` on the first line to `DossierDBChar`.
+4. Delete the `AIExport` folder from `Interface\AddOns\`, install Dossier, and start the game.
+
+If AIExport is still loaded, Dossier prints a reminder in chat to turn it off.
 
 ## Commands
 
 | Command | What it does |
 | --- | --- |
-| `/aixport` | Open the AIExport window |
-| `/aixport bio` | Open the Biography tab |
-| `/aixport kills` | Open the Kills tab |
-| `/aixport session` | Open the Session tab |
-| `/aixport panel` | Show or hide the live session panel |
-| `/aixport shots` | Open the Screenshotter tab |
-| `/aixport shot` | Take a screenshot now |
-| `/aixport companions` | Open the Companions tab |
-| `/aixport help` | Open the guide and the example AI skill |
+| `/dossier` | Open the Dossier window |
+| `/dossier bio` | Open the Biography tab |
+| `/dossier kills` | Open the Kills tab |
+| `/dossier session` | Open the Session tab |
+| `/dossier panel` | Show or hide the live session panel |
+| `/dossier shots` | Open the Screenshotter tab |
+| `/dossier shot` | Take a screenshot now |
+| `/dossier companions` | Open the Companions tab |
+| `/dossier help` | Open the guide and the example AI skill |
 
 Left-click the minimap button to open the window. Right-click it to show or hide the live session panel.
 
@@ -37,23 +50,23 @@ The window has seven tabs down the left side:
 - **Kills**: every creature you have killed, with search, sorting, and each creature's drops and gold.
 - **Session**: the session timer, this session's kills, gathering, gold, and XP, and the live session panel options.
 - **Screenshotter**: automatic screenshots at big moments, with a switch for each moment.
-- **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
+- **Companions**: the optional addons Dossier can read, each with its status and an on/off switch.
 - **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
 
 The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** to get item, spell, and quest IDs back.
 
 ## Make an export
 
-1. Type `/aixport`.
+1. Type `/dossier`.
 2. On the **Export** tab, tick the sections you want, or press **Select All**.
 3. Press **Create Export**. The text is already selected.
 4. Press Ctrl+C and paste it into your AI chat.
 
-Open your bank and each profession window once per session. The game only lets addons read those while they are open, so AIExport keeps the last copy it saw. The Export tab lists anything not saved yet, or saved more than a week ago, and marks those sections with "!". Until then, AIExport uses Syndicator's bank copy and Profession Master's recipes if those addons are loaded.
+Open your bank and each profession window once per session. The game only lets addons read those while they are open, so Dossier keeps the last copy it saw. The Export tab lists anything not saved yet, or saved more than a week ago, and marks those sections with "!". Until then, Dossier uses Syndicator's bank copy and Profession Master's recipes if those addons are loaded.
 
 ## Biography
 
-From the moment it is installed, AIExport writes down what happens to each character it is loaded on:
+From the moment it is installed, Dossier writes down what happens to each character it is loaded on:
 
 - Logging in, when level or zone changed since the last session
 - Level-ups, with the zone
@@ -68,13 +81,13 @@ Nothing is deleted. The Biography tab shows 40 lines per page, with **Older** an
 
 The game saves the full log when you log out or type `/reload`, in:
 
-`World of Warcraft\_classic_beta_\WTF\Account\<account>\<realm>\<character>\SavedVariables\AIExport.lua`
+`World of Warcraft\_classic_beta_\WTF\Account\<account>\<realm>\<character>\SavedVariables\Dossier.lua`
 
-The Biography starts when AIExport is installed. It does not reconstruct earlier play.
+The Biography starts when Dossier is installed. It does not reconstruct earlier play.
 
 ## Kills
 
-AIExport counts every creature you or your pet finish off. Creatures another player tagged first are not counted. Inside dungeons and raids the game hides which creature died, so only bosses are recorded there, in the Biography. Loot and gold you take from a corpse are added to that creature.
+Dossier counts every creature you or your pet finish off. Creatures another player tagged first are not counted. Inside dungeons and raids the game hides which creature died, so only bosses are recorded there, in the Biography. Loot and gold you take from a corpse are added to that creature.
 
 - The **Kills** tab lists each creature with its kills, level, zone, and when you last killed one. Search by name, sort by most kills, name, or most recent, and click a creature to see its drops and gold.
 - Creature tooltips show "Killed 12 times". Untick **Kill count on creature tooltips** on the Kills tab to turn that off.
@@ -82,7 +95,7 @@ AIExport counts every creature you or your pet finish off. Creatures another pla
 
 The **Statistics** export section, also in the Progress card and on by default, copies the Statistics tab of the Achievements window: every statistic that has a value, such as deaths, gold acquired, and quests completed, grouped by category. Statistics with no value yet are left out.
 
-If KillDex was installed, AIExport copies its kill history once, the first time it loads, so earlier kills carry over. After that KillDex is no longer needed.
+If KillDex was installed, Dossier copies its kill history once, the first time it loads, so earlier kills carry over. After that KillDex is no longer needed.
 
 ## Session
 
@@ -94,11 +107,11 @@ The **Session** tab times one stretch of play, so Gathering is no longer needed.
 
 **Pause** stops the clock and **Start** goes on. **Reset** ends the session, saves it in your last 20 sessions, and starts a new one. Money from the mailbox or guild bank is not counted as earned. A `/reload` keeps the session going; after more than 10 minutes logged out, the old session is saved and a new one starts.
 
-**Show the session panel**, `/aixport panel`, or right-clicking the minimap button opens a small window with the timer, kills, gathering, gold, XP, and your last creatures. Pick which lines it shows, drag it where you want it, and press **Lock**. The **Panel background** slider sets its background from fully clear (0%) to solid (100%). Left-click the panel title to pause or start, right-click it to reset, and point at it to see every item gathered with its hourly rate.
+**Show the session panel**, `/dossier panel`, or right-clicking the minimap button opens a small window with the timer, kills, gathering, gold, XP, and your last creatures. Pick which lines it shows, drag it where you want it, and press **Lock**. The **Panel background** slider sets its background from fully clear (0%) to solid (100%). Left-click the panel title to pause or start, right-click it to reset, and point at it to see every item gathered with its hourly rate.
 
 The **Sessions** export section, in the Story card and on by default, has the current session with hourly rates, everything you have ever gathered grouped by type, and your last 10 sessions. **Detailed export** adds item IDs and lists every item and saved session.
 
-Gathering's own totals are account-wide, so they are not copied in. AIExport counts gathering per character from the day you update.
+Gathering's own totals are account-wide, so they are not copied in. Dossier counts gathering per character from the day you update.
 
 ## Screenshotter
 
@@ -110,25 +123,25 @@ The **Screenshotter** tab takes screenshots for you at big moments, so Memento i
 - New mount, pet, toy, or recipe
 - Login, and every 5 to 60 minutes (both off at first)
 
-Two moments within 3 seconds, such as a level-up that also earns an achievement, share one screenshot. The options hide the interface for the shot (skipped in combat), add a name, level, and date stamp while it is hidden, play a camera sound, and print a chat line. **Take test screenshot** or `/aixport shot` takes one right away, even when automatic screenshots are off.
+Two moments within 3 seconds, such as a level-up that also earns an achievement, share one screenshot. The options hide the interface for the shot (skipped in combat), add a name, level, and date stamp while it is hidden, play a camera sound, and print a chat line. **Take test screenshot** or `/dossier shot` takes one right away, even when automatic screenshots are off.
 
-While Memento is loaded, the Screenshotter pauses and says so on the tab. Disable Memento in the AddOns list to let AIExport take over.
+While Memento is loaded, the Screenshotter pauses and says so on the tab. Disable Memento in the AddOns list to let Dossier take over.
 
 Screenshots are saved in `World of Warcraft\_classic_beta_\Screenshots` with the game's usual names, because addons cannot rename files. Each one is noted in the Biography with the reason, so a tool that reads the Biography can name and caption them.
 
 ## Companions
 
-AIExport never requires another addon. When one of these is loaded, AIExport reads what it saved for the current character and adds a block to the **Companions** section of the export:
+Dossier never requires another addon. When one of these is loaded, Dossier reads what it saved for the current character and adds a block to the **Companions** section of the export:
 
 | Addon | What it adds |
 | --- | --- |
 | Syndicator | Your mail, and your bank contents even while the bank is closed |
-| KillDex | Total kills, creature types, your top 15 creatures, and items seen dropping. Shown as "Built into AIExport" and left out once AIExport has kills of its own |
+| KillDex | Total kills, creature types, your top 15 creatures, and items seen dropping. Shown as "Built into Dossier" and left out once Dossier has kills of its own |
 | AllTheThings | Deaths, quests, areas explored, time played, and mount, pet, toy, and title counts |
 | Nova Instance Tracker | Your saved lockouts and recent instance runs |
 | Profession Master | Every recipe you know, grouped by profession |
 | Auctionator | The auction price of each stack in your bags, plus a total |
-| Memento | The boss kills it recorded. Shown as "Built into AIExport" while the Screenshotter is on and Memento is not loaded |
+| Memento | The boss kills it recorded. Shown as "Built into Dossier" while the Screenshotter is on and Memento is not loaded |
 | Talents Forever | Your planned talent build and saved builds for your class |
 
 Each one is optional. The **Companions** tab shows whether each addon is loaded, installed but not loaded, or not installed, and has a switch to leave it out. Switches are on by default and only work while that addon is loaded. Untick **Companions** on the Export tab to leave them all out.
@@ -139,7 +152,7 @@ If one of these addons changes how it saves data, its block says it could not be
 
 Paste one character per message and say what you want: a leveling plan, a gear check, a profession route, a session recap, or a story about your character. Paste a new export each session; the Biography shows what changed.
 
-`/aixport help` includes an example skill you can save as `SKILL.md` for assistants that load skill files, such as Cursor. It tells the assistant how to check the paste, save it with the date, read each section, and recap the session from the Biography.
+`/dossier help` includes an example skill you can save as `SKILL.md` for assistants that load skill files, such as Cursor. It tells the assistant how to check the paste, save it with the date, read each section, and recap the session from the Biography.
 
 The report contains your character name, realm, and gold. Only paste it where you are comfortable sharing that.
 

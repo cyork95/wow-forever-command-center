@@ -1,4 +1,4 @@
-# Screenshots from the game's Screenshots folder, taken by AIExport's Screenshotter or Memento.
+# Screenshots from the game's Screenshots folder, taken by Dossier's Screenshotter or Memento.
 # The files carry no character name, so data/screenshots.json records who took each one.
 # Shots whose "who" is a roster character get a 1280px copy under assets/shots/<id>/ for the site.
 
@@ -25,7 +25,7 @@ function Save-SmallJpeg($source, $target, $width) {
   }
 }
 
-# AIExport's Biography records a "screenshot" event each time the game saves one.
+# Dossier's Biography records a "screenshot" event each time the game saves one.
 # An unnamed shot whose takenAt is within 10 seconds of such an event belongs to that character.
 # Screenshotter events also carry a reason ("Reached level 12"), which becomes an empty caption.
 function Set-ScreenshotOwners($repo, $characters, $log) {
@@ -135,7 +135,7 @@ function Update-Screenshots($gameRoot, $repo, $characters) {
 
   $published = 0
   $renamed = 0
-  $archiveDir = Join-Path $shotDir "AIExport"
+  # Archives made before the Dossier rename sit in Screenshots\AIExport; Set-ShotCopy moves them over.
   foreach ($entry in @($log | Sort-Object takenAt)) {
     if (-not $entry.who -or -not $entry.takenAt) { continue }
     $source = Join-Path $shotDir $entry.source
@@ -162,7 +162,7 @@ function Update-Screenshots($gameRoot, $repo, $characters) {
       }
     }
 
-    $archiveName = "AIExport/$name$([System.IO.Path]::GetExtension($entry.source).ToLowerInvariant())"
+    $archiveName = "Dossier/$name$([System.IO.Path]::GetExtension($entry.source).ToLowerInvariant())"
     $archiveTarget = Join-Path $shotDir $archiveName
     if ($entry.archive -eq $archiveName -and (Test-Path $archiveTarget)) { continue }
     $old = if ($entry.archive) { Join-Path $shotDir $entry.archive } else { $null }
@@ -183,10 +183,10 @@ function Update-Screenshots($gameRoot, $repo, $characters) {
     [System.IO.File]::WriteAllText($logPath, $json + "`n", (New-Object System.Text.UTF8Encoding $false))
   }
   if ($added) { Write-Output "Found $added new screenshots" }
-  if ($named) { Write-Output "Named $named screenshots from AIExport biography events" }
+  if ($named) { Write-Output "Named $named screenshots from Dossier biography events" }
   if ($captioned) { Write-Output "Captioned $captioned screenshots from Screenshotter reasons" }
   if ($published) { Write-Output "Published $published screenshots to assets/shots" }
-  if ($renamed) { Write-Output "Named $renamed files (assets/shots and Screenshots\AIExport)" }
+  if ($renamed) { Write-Output "Named $renamed files (assets/shots and Screenshots\Dossier)" }
   $unknown = @($log | Where-Object { -not $_.who })
   if ($unknown.Count) {
     Write-Output "Screenshots with no character yet ($($unknown.Count)): $(($unknown | ForEach-Object { $_.source }) -join ', ')"
