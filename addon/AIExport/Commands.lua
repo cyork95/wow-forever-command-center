@@ -780,6 +780,9 @@ local function GetCollector(
 
         [C.SECTIONS.BIOGRAPHY] =
             data.Biography,
+
+        [C.SECTIONS.COMPANIONS] =
+            ns.Companions,
     }
 
     return
@@ -1825,6 +1828,10 @@ function Commands:OpenGuide()
         ns.UI
         and ns.UI.ExportFrame
 
+    local mainFrame =
+        ns.UI
+        and ns.UI.MainFrame
+
     local guide =
         ns.Guide
 
@@ -1849,6 +1856,19 @@ function Commands:OpenGuide()
         errorMessage =
         xpcall(
             function()
+                if mainFrame
+                    and type(
+                        mainFrame.IsShown
+                    ) == "function"
+                    and mainFrame:IsShown()
+                then
+                    exportFrame:SetReopenMainOnClose(
+                        true
+                    )
+
+                    mainFrame:Hide()
+                end
+
                 exportFrame:ShowText(
                     guide:GetText(),
                     C.TEXT.GUIDE_WINDOW_TITLE
@@ -1868,18 +1888,20 @@ function Commands:OpenGuide()
     end
 end
 
-function Commands:OpenBiography()
-    local biographyFrame =
+function Commands:OpenTab(
+    tabId
+)
+    local mainFrame =
         ns.UI
-        and ns.UI.BiographyFrame
+        and ns.UI.MainFrame
 
-    if not biographyFrame
+    if not mainFrame
         or type(
-            biographyFrame.Toggle
+            mainFrame.ShowTab
         ) ~= "function"
     then
         EmitDiagnostic(
-            "ERROR: Biography unavailable.",
+            "ERROR: Main window unavailable.",
             true
         )
 
@@ -1890,20 +1912,44 @@ function Commands:OpenBiography()
         errorMessage =
         xpcall(
             function()
-                biographyFrame:Toggle()
+                mainFrame:ShowTab(
+                    tabId
+                )
             end,
             ErrorHandler
         )
 
     if not success then
         EmitDiagnostic(
-            "ERROR: Open biography - "
+            "ERROR: Open "
+            .. SafeErrorString(
+                tabId
+            )
+            .. " tab - "
             .. FirstLine(
                 errorMessage
             ),
             true
         )
     end
+end
+
+function Commands:OpenBiography()
+    self:OpenTab(
+        "biography"
+    )
+end
+
+function Commands:OpenHelp()
+    self:OpenTab(
+        "help"
+    )
+end
+
+function Commands:OpenCompanions()
+    self:OpenTab(
+        "companions"
+    )
 end
 
 SLASH_AIEXPORT1 =
@@ -1926,11 +1972,14 @@ SlashCmdList[
         if argument == "help"
             or argument == "guide"
         then
-            Commands:OpenGuide()
+            Commands:OpenHelp()
         elseif argument == "bio"
             or argument == "biography"
         then
             Commands:OpenBiography()
+        elseif argument == "companions"
+        then
+            Commands:OpenCompanions()
         else
             Commands:OpenMainUI()
         end

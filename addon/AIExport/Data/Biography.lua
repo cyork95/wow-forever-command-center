@@ -16,6 +16,7 @@ Biography.KIND = {
     QUEST = "quest",
     ACHIEVEMENT = "achievement",
     PROFESSION = "profession",
+    SCREENSHOT = "screenshot",
 }
 
 local sessionZones = {}
@@ -117,6 +118,11 @@ local function Notify()
 end
 
 local function IsDuplicate(last, kind, text, zone, timestamp)
+    -- The scan matches each screenshot file to its own event, so none are merged.
+    if kind == Biography.KIND.SCREENSHOT then
+        return false
+    end
+
     return type(last) == "table"
         and last.kind == kind
         and last.text == text
@@ -481,6 +487,21 @@ local function RecordProfessionChanges()
     state.professionsSeeded = true
 end
 
+local function RecordScreenshot()
+    local zone = GetZone()
+    local subzone = GetSubZone()
+    local place = zone or "an unknown zone"
+
+    if subzone and zone and subzone ~= zone then
+        place = string.format("%s, %s", subzone, zone)
+    end
+
+    Biography:Record(
+        Biography.KIND.SCREENSHOT,
+        string.format("Screenshot saved in %s", place)
+    )
+end
+
 local function After(seconds, callback)
     if C_Timer and type(C_Timer.After) == "function" then
         C_Timer.After(seconds, function()
@@ -535,6 +556,11 @@ local function OnEvent(_, event, arg1, arg2)
         return
     end
 
+    if event == "SCREENSHOT_SUCCEEDED" then
+        RecordScreenshot()
+        return
+    end
+
     if event == "SKILL_LINES_CHANGED"
         or event == "TRADE_SKILL_LIST_UPDATE"
     then
@@ -559,6 +585,7 @@ RegisterEventIfAvailable("ZONE_CHANGED_NEW_AREA")
 RegisterEventIfAvailable("QUEST_TURNED_IN")
 RegisterEventIfAvailable("QUEST_DATA_LOAD_RESULT")
 RegisterEventIfAvailable("ACHIEVEMENT_EARNED")
+RegisterEventIfAvailable("SCREENSHOT_SUCCEEDED")
 RegisterEventIfAvailable("SKILL_LINES_CHANGED")
 RegisterEventIfAvailable("TRADE_SKILL_LIST_UPDATE")
 

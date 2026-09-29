@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.1.0"
+C.VERSION = "1.2.0"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -32,6 +32,7 @@ C.SECTIONS = {
     TALENTS = "talents",
     SPELLBOOK = "spellbook",
     BIOGRAPHY = "biography",
+    COMPANIONS = "companions",
     ADDONS = "addons",
 }
 
@@ -57,6 +58,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.TALENTS,
     C.SECTIONS.SPELLBOOK,
     C.SECTIONS.BIOGRAPHY,
+    C.SECTIONS.COMPANIONS,
     C.SECTIONS.ADDONS,
 }
 
@@ -82,7 +84,64 @@ C.SECTION_LABELS = {
     [C.SECTIONS.TALENTS] = "Talents",
     [C.SECTIONS.SPELLBOOK] = "Spellbook",
     [C.SECTIONS.BIOGRAPHY] = "Biography",
+    [C.SECTIONS.COMPANIONS] = "Companions",
     [C.SECTIONS.ADDONS] = "AddOns",
+}
+
+C.SECTION_GROUPS = {
+    {
+        title = "Character",
+        sections = {
+            C.SECTIONS.LOCATION,
+            C.SECTIONS.CHARACTER_STATS,
+            C.SECTIONS.EQUIPMENT,
+            C.SECTIONS.REPUTATIONS,
+            C.SECTIONS.CURRENCIES,
+        },
+    },
+    {
+        title = "Inventory",
+        sections = {
+            C.SECTIONS.BAGS,
+            C.SECTIONS.BANK,
+            C.SECTIONS.COLLECTIONS,
+            C.SECTIONS.APPEARANCES,
+            C.SECTIONS.COLLECTED_APPEARANCES,
+        },
+    },
+    {
+        title = "Progress",
+        sections = {
+            C.SECTIONS.PROGRESS,
+            C.SECTIONS.QUESTS,
+            C.SECTIONS.COMPLETED_QUESTS,
+            C.SECTIONS.ACHIEVEMENTS,
+            C.SECTIONS.COMPLETED_ACHIEVEMENTS,
+            C.SECTIONS.LOCKOUTS,
+        },
+    },
+    {
+        title = "Abilities",
+        sections = {
+            C.SECTIONS.SKILLS,
+            C.SECTIONS.PROFESSION_DETAILS,
+            C.SECTIONS.TALENTS,
+            C.SECTIONS.SPELLBOOK,
+        },
+    },
+    {
+        title = "Story",
+        sections = {
+            C.SECTIONS.BIOGRAPHY,
+        },
+    },
+    {
+        title = "System",
+        sections = {
+            C.SECTIONS.ADDONS,
+            C.SECTIONS.COMPANIONS,
+        },
+    },
 }
 
 C.DEFAULT_SELECTIONS = {
@@ -107,6 +166,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.TALENTS] = true,
     [C.SECTIONS.SPELLBOOK] = true,
     [C.SECTIONS.BIOGRAPHY] = true,
+    [C.SECTIONS.COMPANIONS] = true,
     [C.SECTIONS.ADDONS] = true,
 }
 
@@ -121,20 +181,30 @@ C.TEXT = {
     EXPORT_WINDOW_TITLE = "AIExport - Export Text",
     GUIDE_WINDOW_TITLE = "AIExport - How to use",
     MAIN_WINDOW_TITLE = "AIExport",
-    BIOGRAPHY_WINDOW_TITLE = "AIExport - Biography",
     BUTTON_EXPORT = "Create Export",
     BUTTON_SELECT_ALL = "Select All",
     BUTTON_CLEAR_ALL = "Clear All",
     BUTTON_RELOAD_UI = "Reload UI",
-    BUTTON_HOW_TO_USE = "How to use",
-    BUTTON_BIOGRAPHY = "Biography",
     BUTTON_OLDER = "Older",
     BUTTON_NEWER = "Newer",
-    BIOGRAPHY_EMPTY = "No events yet. AIExport records level-ups, deaths, new zones, quest turn-ins, achievements, and profession skill-ups from now on.",
-    LABEL_MAIN_DESCRIPTION = "Choose which character data to include. AIExport creates a text report you can paste into an AI chat, save, or share. Type /aixport help for the guide.",
-    LABEL_BANK_HINT = "Tip: Bank data uses your latest cached snapshot when the personal bank is closed.",
-    LABEL_EXPORT_DATA = "Export Data",
-    LABEL_ADDON_SETTINGS = "Addon Settings",
+    BUTTON_COPY_GUIDE = "Copy guide",
+    BIOGRAPHY_EMPTY = "No events yet. AIExport records level-ups, deaths, new zones, quest turn-ins, achievements, profession skill-ups, and screenshots from now on.",
+    LABEL_SUBTITLE = "Character reports for AI chats",
+    LABEL_EXPORT_HINT = "Ctrl+C to copy, then paste into your AI chat",
+    LABEL_MAIN_DESCRIPTION = "Choose what goes into the report, then press Create Export and paste the text into an AI chat.",
+    LABEL_BANK_HINT = "Bank and profession details use the last copy saved while those windows were open.",
+    LABEL_COMPANIONS_DESCRIPTION = "AIExport works on its own. When one of these addons is loaded, AIExport can add its data to the Companions section of the export. Switch any of them off here.",
+    LABEL_COMPANIONS_SECTION_OFF = "The Companions section is off in the Export tab, so none of these are exported.",
+    LABEL_BIOGRAPHY_DESCRIPTION = "Everything AIExport has seen happen to this character. The export always includes the full timeline.",
+    LABEL_OPTIONS = "Options",
+    TAB_EXPORT = "Export",
+    TAB_COMPANIONS = "Companions",
+    TAB_BIOGRAPHY = "Biography",
+    TAB_HELP = "Help",
+    STATUS_LOADED = "Loaded",
+    STATUS_INSTALLED = "Installed, not loaded",
+    STATUS_MISSING = "Not installed",
+    COMPANIONS_NONE = "[No companion addons are loaded and switched on.]",
     LABEL_SHOW_MINIMAP_ICON = "Show minimap icon",
     LABEL_VERBOSE_ITEM_TYPES = "Verbose item types",
 }

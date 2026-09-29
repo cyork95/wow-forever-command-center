@@ -1,8 +1,8 @@
 ## Interface: 16001
 ## Title: AIExport
-## Notes: Type /aixport and press Create Export to copy a text report of your character, including a Biography timeline of level-ups, deaths, zones, and quests, then paste it into an AI chat. /aixport bio opens the timeline. /aixport help shows the guide and an example AI skill.
+## Notes: Type /aixport and press Create Export to copy a text report of your character, including a Biography timeline of level-ups, deaths, zones, quests, and screenshots, then paste it into an AI chat. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /aixport help shows the guide and an example AI skill.
 ## Author: AIExport
-## Version: 1.1.0
+## Version: 1.2.0
 ## IconTexture: Interface\AddOns\AIExport\Media\MinimapIcon
 ## X-License: MIT
 ## SavedVariablesPerCharacter: AIExportDBChar
@@ -34,9 +34,19 @@ Data/ProfessionDetails.lua
 Data/Talents.lua
 Data/Spellbook.lua
 Data/Biography.lua
+Companions/Registry.lua
+Companions/Syndicator.lua
+Companions/KillDex.lua
+Companions/AllTheThings.lua
+Companions/NovaInstanceTracker.lua
+Companions/ProfessionMaster.lua
+Companions/Auctionator.lua
+Companions/Memento.lua
+Companions/TalentsForever.lua
 Formatters/TextFormatter.lua
+UI/Theme.lua
+UI/BiographyView.lua
 UI/MainFrame.lua
 UI/ExportFrame.lua
-UI/BiographyFrame.lua
 Guide.lua
 Commands.lua

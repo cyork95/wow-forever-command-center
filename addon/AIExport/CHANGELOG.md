@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0
+
+- New look: one dark window with the AIExport logo in the header and Export, Companions, Biography, and Help tabs. Export sections are grouped into cards.
+- New logo and minimap icon.
+- Added Companions: optional export blocks for Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever. Each shows whether it is loaded and can be switched off. AIExport still works with none of them.
+- Added a Companions section to the export, on by default.
+- The Biography now records every screenshot the game saves.
+- `/aixport help` opens the Help tab. Added `/aixport companions`.
+- The export window uses the new look and shows a "Ctrl+C to copy" hint.
+- The game needs a full restart after updating, because new files were added.
+
 ## 1.1.0
 
 - Renamed the addon to AIExport. The only slash command is `/aixport`.

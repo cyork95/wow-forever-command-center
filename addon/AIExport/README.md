@@ -4,7 +4,7 @@ Copy your World of Warcraft Forever character into an AI chat.
 
 Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport.
 
-AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself.
+AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself. If you use some popular addons, AIExport can also add what they know; see [Companions](#companions).
 
 ## Install
 
@@ -16,16 +16,26 @@ AIExport needs no other addon. Everything in the report comes from the game and 
 
 | Command | What it does |
 | --- | --- |
-| `/aixport` | Open the export window |
-| `/aixport bio` | Open the Biography timeline |
-| `/aixport help` | Show the guide and the example AI skill |
+| `/aixport` | Open the AIExport window |
+| `/aixport bio` | Open the Biography tab |
+| `/aixport companions` | Open the Companions tab |
+| `/aixport help` | Open the guide and the example AI skill |
 
-Left-click the minimap button to open the export window.
+Left-click the minimap button to open the window.
+
+## The window
+
+The window has four tabs down the left side:
+
+- **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
+- **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
+- **Biography**: your timeline, 40 lines per page.
+- **Help**: the guide, a **Copy guide** button, and the options (minimap icon, verbose item types, Reload UI).
 
 ## Make an export
 
 1. Type `/aixport`.
-2. Tick the sections you want, or press **Select All**.
+2. On the **Export** tab, tick the sections you want, or press **Select All**.
 3. Press **Create Export**. The text is already selected.
 4. Press Ctrl+C and paste it into your AI chat.
 
@@ -42,14 +52,34 @@ From the moment it is installed, AIExport writes down what happens to each chara
 - Quests you turn in, by name
 - Achievements you earn
 - Learning a profession, and each rise in profession skill
+- Every screenshot the game saves, with where it was taken, whether you pressed the key or Memento took it
 
-Nothing is deleted. The Biography window shows 40 lines per page, with **Older** and **Newer** to move through the rest. Every export includes the whole timeline.
+Nothing is deleted. The Biography tab shows 40 lines per page, with **Older** and **Newer** to move through the rest. Every export includes the whole timeline.
 
 The game saves the full log when you log out or type `/reload`, in:
 
 `World of Warcraft\_classic_beta_\WTF\Account\<account>\<realm>\<character>\SavedVariables\AIExport.lua`
 
 The Biography starts when AIExport is installed. It does not reconstruct earlier play.
+
+## Companions
+
+AIExport never requires another addon. When one of these is loaded, AIExport reads what it saved for the current character and adds a block to the **Companions** section of the export:
+
+| Addon | What it adds |
+| --- | --- |
+| Syndicator | Your mail, and your bank contents even while the bank is closed |
+| KillDex | Total kills, creature types, your top 15 creatures, and items seen dropping |
+| AllTheThings | Deaths, quests, areas explored, time played, and mount, pet, toy, and title counts |
+| Nova Instance Tracker | Your saved lockouts and recent instance runs |
+| Profession Master | Every recipe you know, grouped by profession |
+| Auctionator | The auction price of each stack in your bags, plus a total |
+| Memento | The boss kills it recorded |
+| Talents Forever | Your planned talent build and saved builds for your class |
+
+Each one is optional. The **Companions** tab shows whether each addon is loaded, installed but not loaded, or not installed, and has a switch to leave it out. Switches are on by default and only work while that addon is loaded. Untick **Companions** on the Export tab to leave them all out.
+
+If one of these addons changes how it saves data, its block says it could not be read instead of breaking the export.
 
 ## Use it with an AI
 

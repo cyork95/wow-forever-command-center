@@ -9,13 +9,14 @@ AIExport turns your character into a text report you can paste into an AI chat
 (Cursor, ChatGPT, Claude, Gemini, or any other assistant). Everything in the
 report comes from the game and from AIExport itself. No other addon is needed.
 
-Select all of this text with Ctrl+A and copy it with Ctrl+C to keep it.
+Press Copy guide below to open this text in a window where Ctrl+A and Ctrl+C
+copy it.
 
 
 1. Make an export
 -----------------
 1. Type /aixport, or left-click the AIExport minimap button.
-2. Tick the sections you want. Select All is a good start.
+2. On the Export tab, tick the sections you want. Select All is a good start.
 3. Press Create Export. The text is already selected.
 4. Press Ctrl+C, then paste it into your AI chat with Ctrl+V.
 
@@ -23,12 +24,19 @@ Open your bank and each profession window at least once per session. The game
 only lets addons read those while they are open, so AIExport keeps the last
 copy it saw and marks it as cached.
 
+The window has four tabs:
+- Export: the sections, grouped into cards, and the Create Export button
+- Companions: the optional addons AIExport can read, each with its own switch
+- Biography: your timeline, 40 lines per page
+- Help: this guide and the options
+
 
 2. Commands
 -----------
-/aixport         Open the export window
-/aixport bio     Open the Biography timeline
-/aixport help    Show this guide
+/aixport             Open the AIExport window
+/aixport bio         Open the Biography tab
+/aixport companions  Open the Companions tab
+/aixport help        Open this guide
 
 
 3. What the report contains
@@ -43,6 +51,7 @@ The report starts with "Exported By: AIExport" and then one block per section:
 - Quests in your log and completed quests
 - Skills, Profession Details (cached), Talents, Spellbook
 - Biography: the timeline described below
+- Companions: data from the optional addons described below
 - AddOns: every installed addon and whether it loaded
 
 Sections you leave unticked are not in the report.
@@ -60,8 +69,10 @@ character it is loaded on:
 - Every quest you turn in, by name
 - Every achievement you earn
 - Learning a profession, and each rise in profession skill
+- Every screenshot the game saves, with the place it was taken. This works
+  for screenshots you take yourself and ones Memento takes for you.
 
-Nothing is deleted. The Biography window shows 40 lines per page. Use Older
+Nothing is deleted. The Biography tab shows 40 lines per page. Use Older
 and Newer to move through the rest. The Biography section of an export
 always contains every event, not just the page on screen.
 
@@ -72,7 +83,33 @@ AIExport only knows what happened after it was installed. Earlier play is
 not in the timeline.
 
 
-5. Tips for the AI chat
+5. Companions
+-------------
+AIExport never needs another addon. When one of these is loaded, AIExport can
+read what it has saved for this character and add it to the Companions
+section of the export:
+
+- Syndicator: your mail, and your bank contents even while the bank is closed
+- KillDex: total kills, creature types, your top 15 creatures, and items seen
+  dropping
+- AllTheThings: deaths, quests, areas explored, time played, and mount, pet,
+  toy, and title counts
+- Nova Instance Tracker: your saved lockouts and recent instance runs
+- Profession Master: every recipe you know, grouped by profession
+- Auctionator: the auction price of each stack in your bags, plus a total
+- Memento: the boss kills it recorded
+- Talents Forever: your planned talent build and saved builds for your class
+
+Each one is optional. The Companions tab shows whether each addon is loaded,
+installed but not loaded, or not installed, with a switch to leave it out.
+Switches are on by default and only work while that addon is loaded. Untick
+Companions on the Export tab to leave out all of them at once.
+
+If a companion addon changes how it saves data, its block says it could not
+be read instead of breaking the export.
+
+
+6. Tips for the AI chat
 -----------------------
 - Paste one character per message. Each report has one "Character:" line.
 - Tell the assistant what you want first: a leveling plan, a gear check,
@@ -82,7 +119,7 @@ not in the timeline.
   where you are comfortable sharing that.
 
 
-6. Example AI skill
+7. Example AI skill
 -------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named
@@ -122,6 +159,8 @@ file exists. Keep older files; they are the history.
 - The "Biography:" section is a dated timeline. Each line is
   "HH:MM event". Use it to see what happened since the last report:
   levels gained, deaths, new zones, quests turned in, profession gains.
+- "Companions:" holds optional blocks such as "== KillDex ==" or
+  "== Syndicator ==". They only appear when the player has those addons.
 
 ## Answer
 

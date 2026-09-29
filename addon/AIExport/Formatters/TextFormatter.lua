@@ -8168,6 +8168,67 @@ function TextFormatter:AddBiography(
     )
 end
 
+function TextFormatter:AddCompanions(
+    lines,
+    data
+)
+    AddSectionHeader(
+        lines,
+        data.title
+        or C.SECTION_LABELS[
+            C.SECTIONS.COMPANIONS
+        ]
+    )
+
+    local entries =
+        data.entries
+        or {}
+
+    if #entries == 0 then
+        AddLine(
+            lines,
+            C.TEXT.COMPANIONS_NONE
+        )
+
+        AddBlankLine(
+            lines
+        )
+
+        return
+    end
+
+    for _, entry
+        in ipairs(entries)
+    do
+        AddSubHeader(
+            lines,
+            U.SafeString(
+                entry.title,
+                "Companion"
+            )
+        )
+
+        for _, text
+            in ipairs(
+                entry.lines
+                or {}
+            )
+        do
+            AddLine(
+                lines,
+                U.SafeString(
+                    text,
+                    ""
+                )
+            )
+        end
+    end
+
+    AddBlankLine(
+        lines
+    )
+end
+
 function TextFormatter:Build(
     selectedSections,
     exportData
@@ -8366,6 +8427,15 @@ function TextFormatter:Build(
                 self:AddBiography(
                     lines,
                     exportData.biography
+                    or {}
+                )
+            end,
+
+        [C.SECTIONS.COMPANIONS] =
+            function()
+                self:AddCompanions(
+                    lines,
+                    exportData.companions
                     or {}
                 )
             end,

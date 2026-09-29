@@ -49,14 +49,16 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 - KillDex: total kills, creature types, and the top five mobs. It also logs kills of mobs named in a hunt's `mobs` list, and marks hunt items it saw drop, so a hunt checks itself as looted even after the item is sold.
 - Questie: finished quest ids. Names, levels, and zones come from QuestieDB and are rewritten into `data/quests.json`, so commit that file when it changes. A `Resolved Quests` list in the dump fills names the database does not have. The quests still in the log are not in the save.
 - Forever Dungeon Journal: its boss, loot, and quest tables live in the addon's Lua file. The scan rewrites `data/dungeons.json` from them, so commit that file when it changes.
-- Memento: its save holds only settings. Its screenshots are handled in the next section.
+- Memento: its save holds settings and boss kills. Its screenshots are handled in the next section.
 - AIExport: the Biography timeline in each character's `AIExport.lua`. The scan prints `Wrote N biography events for <name> to data/biography/<id>.json` and keeps events already in that file.
 
 ## 3b. Name the new screenshots
 
-Memento takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, and similar moments. The scan adds each new file to `data/screenshots.json` with `who: null` and prints `Screenshots with no character yet (N): ...`.
+Memento takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, and similar moments. The scan adds each new file to `data/screenshots.json` with `who: null`.
 
-For each of those entries:
+AIExport 1.2.0 and later records a `screenshot` event in the Biography each time the game saves one. When a roster character's `data/biography/<id>.json` has a screenshot event within 10 seconds of a file's `takenAt`, the scan sets `who` to that character and prints `Named N screenshots from AIExport biography events`. Those entries still need a `caption`.
+
+Whatever is left is printed as `Screenshots with no character yet (N): ...`. This happens for shots taken before AIExport 1.2.0, or on a character without it. For each of those entries:
 
 1. Open the image from `C:\Program Files (x86)\World of Warcraft\_classic_beta_\Screenshots\<source>` with the Read tool.
 2. Memento hides the UI, but the player's own name stays over their head. Set `who` to that full name, for example `Flann Anvilhew`. If the name is not visible (a loading screen, say), use the character from the nearest shot in the same session. If you still cannot tell, ask the user.

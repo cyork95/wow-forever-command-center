@@ -25,6 +25,40 @@ function Save-SmallJpeg($source, $target, $width) {
   }
 }
 
+# AIExport's Biography records a "screenshot" event each time the game saves one.
+# An unnamed shot whose takenAt is within 10 seconds of such an event belongs to that character.
+function Set-ScreenshotOwners($repo, $characters, $log) {
+  $events = @()
+  foreach ($character in $characters) {
+    $path = Join-Path $repo "data\biography\$($character.id).json"
+    if (-not (Test-Path $path)) { continue }
+    $bio = Get-Content -Raw -Path $path | ConvertFrom-Json
+    foreach ($event in @($bio.events)) {
+      if (-not $event -or $event.kind -ne "screenshot" -or -not $event.t) { continue }
+      $events += [pscustomobject]@{
+        at = [DateTimeOffset]::FromUnixTimeSeconds([long]$event.t).LocalDateTime
+        who = $character.name
+      }
+    }
+  }
+  if (-not $events.Count) { return 0 }
+
+  $named = 0
+  foreach ($entry in $log) {
+    if ($entry.who -or -not $entry.takenAt) { continue }
+    $taken = [datetime]::ParseExact($entry.takenAt, "yyyy-MM-ddTHH:mm:ss", [System.Globalization.CultureInfo]::InvariantCulture)
+    $match = $events |
+      Where-Object { [Math]::Abs(($_.at - $taken).TotalSeconds) -le 10 } |
+      Sort-Object { [Math]::Abs(($_.at - $taken).TotalSeconds) } |
+      Select-Object -First 1
+    if ($match) {
+      $entry.who = $match.who
+      $named++
+    }
+  }
+  return $named
+}
+
 function Update-Screenshots($gameRoot, $repo, $characters) {
   $logPath = Join-Path $repo "data\screenshots.json"
   $shotDir = Join-Path $gameRoot "Screenshots"
@@ -48,6 +82,8 @@ function Update-Screenshots($gameRoot, $repo, $characters) {
     }
   }
 
+  $named = Set-ScreenshotOwners $repo $characters $log
+
   $published = 0
   foreach ($entry in $log) {
     if (-not $entry.who) { continue }
@@ -64,11 +100,12 @@ function Update-Screenshots($gameRoot, $repo, $characters) {
   }
 
   $log = @($log | Sort-Object takenAt)
-  if ($added -or $published) {
+  if ($added -or $named -or $published) {
     $json = ConvertTo-Json -InputObject $log -Depth 4
     [System.IO.File]::WriteAllText($logPath, $json + "`n", (New-Object System.Text.UTF8Encoding $false))
   }
   if ($added) { Write-Output "Found $added new screenshots" }
+  if ($named) { Write-Output "Named $named screenshots from AIExport biography events" }
   if ($published) { Write-Output "Published $published screenshots to assets/shots" }
   $unknown = @($log | Where-Object { -not $_.who })
   if ($unknown.Count) {

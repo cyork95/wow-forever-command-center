@@ -5,263 +5,97 @@ local C = ns.constants
 local ExportFrame = {}
 
 ExportFrame.frame = nil
+ExportFrame.header = nil
 ExportFrame.editBox = nil
 ExportFrame.scrollFrame = nil
 ExportFrame.updateLayout = nil
 ExportFrame.reopenMainOnClose = false
 
 local FRAME_WIDTH = 760
-local FRAME_HEIGHT = 520
+local FRAME_HEIGHT = 540
 local MIN_TEXT_WIDTH = 100
 
-local function CreateBackdropFrame()
-    local frame =
-        CreateFrame(
-            "Frame",
-            "AIExportExportFrame",
-            UIParent,
-            "BasicFrameTemplateWithInset"
-        )
+local function CreateWindow()
+    local Theme = ns.Theme
+    local frame = Theme.CreateWindow("AIExportExportFrame", FRAME_WIDTH, FRAME_HEIGHT)
+    local header = Theme.CreateHeader(frame, C.TEXT.EXPORT_WINDOW_TITLE, C.TEXT.LABEL_EXPORT_HINT)
 
-    frame:SetSize(
-        FRAME_WIDTH,
-        FRAME_HEIGHT
-    )
-
-    frame:SetPoint(
-        "CENTER"
-    )
-
-    frame:SetFrameStrata(
-        "MEDIUM"
-    )
-
-    if type(
-        frame.SetToplevel
-    ) == "function"
-    then
-        frame:SetToplevel(
-            false
-        )
-    end
-
-    frame:SetMovable(
-        true
-    )
-
-    frame:EnableMouse(
-        true
-    )
-
-    frame:RegisterForDrag(
-        "LeftButton"
-    )
-
-    frame:SetScript(
-        "OnDragStart",
-        function(self)
-            if type(
-                self.StartMoving
-            ) == "function"
-            then
-                self:StartMoving()
-            end
-        end
-    )
-
-    frame:SetScript(
-        "OnDragStop",
-        function(self)
-            if type(
-                self.StopMovingOrSizing
-            ) == "function"
-            then
-                self:StopMovingOrSizing()
-            end
-        end
-    )
-
-    frame:Hide()
-
-    if frame.TitleText
-        and type(
-            frame.TitleText.SetText
-        ) == "function"
-    then
-        frame.TitleText:SetText(
-            C.TEXT.EXPORT_WINDOW_TITLE
-        )
-    end
-
-    return frame
+    return frame, header
 end
 
 local function CreateScrollArea(parent)
-    local scrollFrame =
-        CreateFrame(
-            "ScrollFrame",
-            "AIExportExportScrollFrame",
-            parent,
-            "UIPanelScrollFrameTemplate"
-        )
+    local Theme = ns.Theme
 
-    scrollFrame:SetPoint(
-        "TOPLEFT",
-        16,
-        -32
+    local box = Theme.CreatePanel(parent, "dark", "border")
+    box:SetPoint("TOPLEFT", 14, -(Theme.HEADER_HEIGHT + 12))
+    box:SetPoint("BOTTOMRIGHT", -14, 14)
+
+    local scrollFrame = CreateFrame(
+        "ScrollFrame",
+        "AIExportExportScrollFrame",
+        box,
+        "UIPanelScrollFrameTemplate"
     )
+    scrollFrame:SetPoint("TOPLEFT", 8, -8)
+    scrollFrame:SetPoint("BOTTOMRIGHT", -28, 8)
 
-    scrollFrame:SetPoint(
-        "BOTTOMRIGHT",
-        -30,
-        16
-    )
+    local editBox = CreateFrame("EditBox", "AIExportExportEditBox", scrollFrame)
+    local textMeasure = scrollFrame:CreateFontString(nil, "ARTWORK", "ChatFontNormal")
 
-    local editBox =
-        CreateFrame(
-            "EditBox",
-            "AIExportExportEditBox",
-            scrollFrame
-        )
+    editBox:SetMultiLine(true)
+    editBox:SetAutoFocus(false)
+    editBox:SetFontObject(ChatFontNormal)
+    editBox:SetJustifyH("LEFT")
+    editBox:SetJustifyV("TOP")
+    editBox:SetTextInsets(4, 4, 4, 4)
+    editBox:SetTextColor(Theme.Color("text"))
+    editBox:SetPoint("TOPLEFT")
+    editBox:SetPoint("TOPRIGHT")
+    editBox:SetWidth(680)
+    editBox:SetHeight(1)
 
-    local textMeasure =
-        scrollFrame:CreateFontString(
-            nil,
-            "ARTWORK",
-            "ChatFontNormal"
-        )
-
-    editBox:SetMultiLine(
-        true
-    )
-
-    editBox:SetAutoFocus(
-        false
-    )
-
-    editBox:SetFontObject(
-        ChatFontNormal
-    )
-
-    editBox:SetJustifyH(
-        "LEFT"
-    )
-
-    editBox:SetJustifyV(
-        "TOP"
-    )
-
-    editBox:SetTextInsets(
-        4,
-        4,
-        4,
-        4
-    )
-
-    editBox:SetPoint(
-        "TOPLEFT"
-    )
-
-    editBox:SetPoint(
-        "TOPRIGHT"
-    )
-
-    editBox:SetWidth(
-        680
-    )
-
-    editBox:SetHeight(
-        1
-    )
-
-    textMeasure:SetJustifyH(
-        "LEFT"
-    )
-
-    textMeasure:SetJustifyV(
-        "TOP"
-    )
+    textMeasure:SetJustifyH("LEFT")
+    textMeasure:SetJustifyV("TOP")
 
     local function UpdateEditBoxLayout()
-        local width =
-            scrollFrame:GetWidth()
-            - 24
+        local width = scrollFrame:GetWidth() - 8
 
         if width < MIN_TEXT_WIDTH then
-            width =
-                MIN_TEXT_WIDTH
+            width = MIN_TEXT_WIDTH
         end
 
-        editBox:SetWidth(
-            width
-        )
+        editBox:SetWidth(width)
+        textMeasure:SetWidth(math.max(width - 8, 1))
+        textMeasure:SetText(editBox:GetText() or "")
 
-        textMeasure:SetWidth(
-            math.max(
-                width - 8,
-                1
-            )
-        )
+        local textHeight = textMeasure:GetStringHeight() or 0
+        local minimumHeight = scrollFrame:GetHeight()
 
-        textMeasure:SetText(
-            editBox:GetText()
-            or ""
-        )
+        editBox:SetHeight(math.max(textHeight + 8, minimumHeight))
 
-        local textHeight =
-            textMeasure:GetStringHeight()
-            or 0
-
-        local minimumHeight =
-            scrollFrame:GetHeight()
-
-        editBox:SetHeight(
-            math.max(
-                textHeight + 8,
-                minimumHeight
-            )
-        )
-
-        if type(
-            scrollFrame.UpdateScrollChildRect
-        ) == "function"
-        then
+        if type(scrollFrame.UpdateScrollChildRect) == "function" then
             scrollFrame:UpdateScrollChildRect()
         end
     end
 
-    editBox:SetScript(
-        "OnEscapePressed",
-        function(self)
-            self:ClearFocus()
-            parent:Hide()
-        end
-    )
+    editBox:SetScript("OnEscapePressed", function(self)
+        self:ClearFocus()
+        parent:Hide()
+    end)
 
-    editBox:SetScript(
-        "OnTextChanged",
-        function()
-            UpdateEditBoxLayout()
-        end
-    )
+    editBox:SetScript("OnTextChanged", function()
+        UpdateEditBoxLayout()
+    end)
 
-    scrollFrame:SetScript(
-        "OnSizeChanged",
-        function()
-            UpdateEditBoxLayout()
-        end
-    )
+    scrollFrame:SetScript("OnSizeChanged", function()
+        UpdateEditBoxLayout()
+    end)
 
-    scrollFrame:SetScrollChild(
-        editBox
-    )
+    scrollFrame:SetScrollChild(editBox)
 
     UpdateEditBoxLayout()
 
-    return
-        scrollFrame,
-        editBox,
-        UpdateEditBoxLayout
+    return scrollFrame, editBox, UpdateEditBoxLayout
 end
 
 local function ReopenMainFrameIfNeeded()
@@ -269,158 +103,69 @@ local function ReopenMainFrameIfNeeded()
         return
     end
 
-    ExportFrame.reopenMainOnClose =
-        false
+    ExportFrame.reopenMainOnClose = false
 
-    local mainFrame =
-        ns.UI
-        and ns.UI.MainFrame
+    local mainFrame = ns.UI and ns.UI.MainFrame
 
-    if mainFrame
-        and type(
-            mainFrame.Show
-        ) == "function"
-    then
+    if mainFrame and type(mainFrame.Show) == "function" then
         mainFrame:Show()
     end
 end
 
 local function EnsureFrame()
-    if ExportFrame.frame
-        and ExportFrame.editBox
-    then
-        return
-            ExportFrame.frame,
-            ExportFrame.editBox
+    if ExportFrame.frame and ExportFrame.editBox then
+        return ExportFrame.frame, ExportFrame.editBox
     end
 
-    local frame =
-        CreateBackdropFrame()
+    local frame, header = CreateWindow()
+    local scrollFrame, editBox, updateLayout = CreateScrollArea(frame)
 
-    local scrollFrame,
-        editBox,
-        updateLayout =
-        CreateScrollArea(
-            frame
-        )
+    frame:SetScript("OnHide", function()
+        editBox:ClearFocus()
+        ReopenMainFrameIfNeeded()
+    end)
 
-    frame:SetScript(
-        "OnHide",
-        function()
-            if editBox
-                and type(
-                    editBox.ClearFocus
-                ) == "function"
-            then
-                editBox:ClearFocus()
-            end
+    ExportFrame.frame = frame
+    ExportFrame.header = header
+    ExportFrame.scrollFrame = scrollFrame
+    ExportFrame.editBox = editBox
+    ExportFrame.updateLayout = updateLayout
 
-            ReopenMainFrameIfNeeded()
-        end
-    )
-
-    ExportFrame.frame =
-        frame
-
-    ExportFrame.scrollFrame =
-        scrollFrame
-
-    ExportFrame.editBox =
-        editBox
-
-    ExportFrame.updateLayout =
-        updateLayout
-
-    return
-        frame,
-        editBox
+    return frame, editBox
 end
 
-function ExportFrame:SetReopenMainOnClose(
-    enabled
-)
-    self.reopenMainOnClose =
-        enabled == true
+function ExportFrame:SetReopenMainOnClose(enabled)
+    self.reopenMainOnClose = enabled == true
 end
 
-function ExportFrame:ShowText(
-    text,
-    title
-)
-    local frame,
-        editBox =
-        EnsureFrame()
+function ExportFrame:ShowText(text, title)
+    local frame, editBox = EnsureFrame()
 
-    if frame.TitleText
-        and type(
-            frame.TitleText.SetText
-        ) == "function"
-    then
-        frame.TitleText:SetText(
-            title
-            or C.TEXT.EXPORT_WINDOW_TITLE
-        )
-    end
+    self.header.title:SetText(title or C.TEXT.EXPORT_WINDOW_TITLE)
 
     frame:Show()
+    editBox:SetText(text or "")
 
-    editBox:SetText(
-        text
-        or ""
-    )
-
-    if type(
-        self.updateLayout
-    ) == "function"
-    then
+    if type(self.updateLayout) == "function" then
         self.updateLayout()
     end
 
     editBox:HighlightText()
     editBox:SetFocus()
+    self.scrollFrame:SetVerticalScroll(0)
 
-    if self.scrollFrame
-        and type(
-            self.scrollFrame.SetVerticalScroll
-        ) == "function"
-    then
-        self.scrollFrame:SetVerticalScroll(
-            0
-        )
-    end
-
-    if C_Timer
-        and type(
-            C_Timer.After
-        ) == "function"
-    then
-        C_Timer.After(
-            0,
-            function()
-                if not self.frame
-                    or not self.frame:IsShown()
-                then
-                    return
-                end
-
-                if type(
-                    self.updateLayout
-                ) == "function"
-                then
-                    self.updateLayout()
-                end
-
-                if self.scrollFrame
-                    and type(
-                        self.scrollFrame.SetVerticalScroll
-                    ) == "function"
-                then
-                    self.scrollFrame:SetVerticalScroll(
-                        0
-                    )
-                end
+    if C_Timer and type(C_Timer.After) == "function" then
+        C_Timer.After(0, function()
+            if not self.frame or not self.frame:IsShown() then
+                return
             end
-        )
+
+            if type(self.updateLayout) == "function" then
+                self.updateLayout()
+            end
+
+            self.scrollFrame:SetVerticalScroll(0)
+        end)
     end
 end
 
@@ -429,11 +174,7 @@ function ExportFrame:Hide()
         return
     end
 
-    if self.editBox
-        and type(
-            self.editBox.ClearFocus
-        ) == "function"
-    then
+    if self.editBox then
         self.editBox:ClearFocus()
     end
 
@@ -441,35 +182,18 @@ function ExportFrame:Hide()
 end
 
 function ExportFrame:IsShown()
-    return
-        self.frame ~= nil
-        and type(
-            self.frame.IsShown
-        ) == "function"
-        and self.frame:IsShown()
+    return self.frame ~= nil and self.frame:IsShown()
 end
 
 function ExportFrame:GetText()
-    if not self.editBox
-        or type(
-            self.editBox.GetText
-        ) ~= "function"
-    then
+    if not self.editBox then
         return nil
     end
 
-    return
-        self.editBox:GetText()
+    return self.editBox:GetText()
 end
 
-ns:RegisterModule(
-    "UI.ExportFrame",
-    ExportFrame
-)
+ns:RegisterModule("UI.ExportFrame", ExportFrame)
 
-ns.UI =
-    ns.UI
-    or {}
-
-ns.UI.ExportFrame =
-    ExportFrame
+ns.UI = ns.UI or {}
+ns.UI.ExportFrame = ExportFrame
