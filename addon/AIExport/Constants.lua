@@ -1,0 +1,168 @@
+local _, ns = ...
+
+ns.constants = ns.constants or {}
+local C = ns.constants
+
+C.VERSION = "1.1.0"
+C.SLASH_COMMAND = "/aixport"
+C.ADDON_TITLE = "AIExport"
+
+C.FOREVER_INTERFACE = 16001
+C.FOREVER_VERSION = "1.60.1"
+
+C.SECTIONS = {
+    LOCATION = "location",
+    CHARACTER_STATS = "character_stats",
+    CURRENCIES = "currencies",
+    COLLECTIONS = "collections",
+    BAGS = "bags",
+    BANK = "bank",
+    EQUIPMENT = "equipment",
+    LOCKOUTS = "lockouts",
+    PROGRESS = "progress",
+    ACHIEVEMENTS = "achievements",
+    COMPLETED_ACHIEVEMENTS = "completed_achievements",
+    COLLECTED_APPEARANCES = "collected_appearances",
+    APPEARANCES = "appearances",
+    REPUTATIONS = "reputations",
+    QUESTS = "quests",
+    COMPLETED_QUESTS = "completed_quests",
+    SKILLS = "skills",
+    PROFESSION_DETAILS = "profession_details",
+    TALENTS = "talents",
+    SPELLBOOK = "spellbook",
+    BIOGRAPHY = "biography",
+    ADDONS = "addons",
+}
+
+C.SECTION_ORDER = {
+    C.SECTIONS.LOCATION,
+    C.SECTIONS.CHARACTER_STATS,
+    C.SECTIONS.CURRENCIES,
+    C.SECTIONS.COLLECTIONS,
+    C.SECTIONS.BAGS,
+    C.SECTIONS.BANK,
+    C.SECTIONS.EQUIPMENT,
+    C.SECTIONS.LOCKOUTS,
+    C.SECTIONS.PROGRESS,
+    C.SECTIONS.ACHIEVEMENTS,
+    C.SECTIONS.COMPLETED_ACHIEVEMENTS,
+    C.SECTIONS.COLLECTED_APPEARANCES,
+    C.SECTIONS.APPEARANCES,
+    C.SECTIONS.REPUTATIONS,
+    C.SECTIONS.QUESTS,
+    C.SECTIONS.COMPLETED_QUESTS,
+    C.SECTIONS.SKILLS,
+    C.SECTIONS.PROFESSION_DETAILS,
+    C.SECTIONS.TALENTS,
+    C.SECTIONS.SPELLBOOK,
+    C.SECTIONS.BIOGRAPHY,
+    C.SECTIONS.ADDONS,
+}
+
+C.SECTION_LABELS = {
+    [C.SECTIONS.LOCATION] = "Location",
+    [C.SECTIONS.CHARACTER_STATS] = "Character Stats",
+    [C.SECTIONS.CURRENCIES] = "Currencies",
+    [C.SECTIONS.COLLECTIONS] = "Collections",
+    [C.SECTIONS.BAGS] = "Bags",
+    [C.SECTIONS.BANK] = "Bank",
+    [C.SECTIONS.EQUIPMENT] = "Equipment",
+    [C.SECTIONS.LOCKOUTS] = "Lockouts",
+    [C.SECTIONS.PROGRESS] = "Progress",
+    [C.SECTIONS.ACHIEVEMENTS] = "Achievements",
+    [C.SECTIONS.COMPLETED_ACHIEVEMENTS] = "Achievement (completed)",
+    [C.SECTIONS.COLLECTED_APPEARANCES] = "Appearance (collected)",
+    [C.SECTIONS.APPEARANCES] = "Appearances",
+    [C.SECTIONS.REPUTATIONS] = "Reputations",
+    [C.SECTIONS.QUESTS] = "Quests",
+    [C.SECTIONS.COMPLETED_QUESTS] = "Quest (completed)",
+    [C.SECTIONS.SKILLS] = "Skills",
+    [C.SECTIONS.PROFESSION_DETAILS] = "Profession Details",
+    [C.SECTIONS.TALENTS] = "Talents",
+    [C.SECTIONS.SPELLBOOK] = "Spellbook",
+    [C.SECTIONS.BIOGRAPHY] = "Biography",
+    [C.SECTIONS.ADDONS] = "AddOns",
+}
+
+C.DEFAULT_SELECTIONS = {
+    [C.SECTIONS.LOCATION] = true,
+    [C.SECTIONS.CHARACTER_STATS] = true,
+    [C.SECTIONS.CURRENCIES] = true,
+    [C.SECTIONS.COLLECTIONS] = true,
+    [C.SECTIONS.BAGS] = true,
+    [C.SECTIONS.BANK] = true,
+    [C.SECTIONS.EQUIPMENT] = true,
+    [C.SECTIONS.LOCKOUTS] = true,
+    [C.SECTIONS.PROGRESS] = true,
+    [C.SECTIONS.ACHIEVEMENTS] = true,
+    [C.SECTIONS.COMPLETED_ACHIEVEMENTS] = false,
+    [C.SECTIONS.COLLECTED_APPEARANCES] = false,
+    [C.SECTIONS.APPEARANCES] = true,
+    [C.SECTIONS.REPUTATIONS] = true,
+    [C.SECTIONS.QUESTS] = true,
+    [C.SECTIONS.COMPLETED_QUESTS] = true,
+    [C.SECTIONS.SKILLS] = true,
+    [C.SECTIONS.PROFESSION_DETAILS] = true,
+    [C.SECTIONS.TALENTS] = true,
+    [C.SECTIONS.SPELLBOOK] = true,
+    [C.SECTIONS.BIOGRAPHY] = true,
+    [C.SECTIONS.ADDONS] = true,
+}
+
+C.TEXT = {
+    BANK_UNAVAILABLE = "[Bank data unavailable.]",
+    BANK_UNAVAILABLE_NO_CACHE = "[Bank data unavailable - open your personal bank at least once to build cache.]",
+    BANK_CACHED_PREFIX = "[Using cached bank data",
+    PROFESSION_DETAILS_UNAVAILABLE_NO_CACHE = "[Profession details unavailable - open each profession window at least once to build cache.]",
+    PROFESSION_DETAILS_CACHED_PREFIX = "[Using cached profession details",
+    NOTHING_SELECTED = "[No export sections selected.]",
+    NOTHING_TO_EXPORT = "[No data available to export.]",
+    EXPORT_WINDOW_TITLE = "AIExport - Export Text",
+    GUIDE_WINDOW_TITLE = "AIExport - How to use",
+    MAIN_WINDOW_TITLE = "AIExport",
+    BIOGRAPHY_WINDOW_TITLE = "AIExport - Biography",
+    BUTTON_EXPORT = "Create Export",
+    BUTTON_SELECT_ALL = "Select All",
+    BUTTON_CLEAR_ALL = "Clear All",
+    BUTTON_RELOAD_UI = "Reload UI",
+    BUTTON_HOW_TO_USE = "How to use",
+    BUTTON_BIOGRAPHY = "Biography",
+    BUTTON_OLDER = "Older",
+    BUTTON_NEWER = "Newer",
+    BIOGRAPHY_EMPTY = "No events yet. AIExport records level-ups, deaths, new zones, quest turn-ins, achievements, and profession skill-ups from now on.",
+    LABEL_MAIN_DESCRIPTION = "Choose which character data to include. AIExport creates a text report you can paste into an AI chat, save, or share. Type /aixport help for the guide.",
+    LABEL_BANK_HINT = "Tip: Bank data uses your latest cached snapshot when the personal bank is closed.",
+    LABEL_EXPORT_DATA = "Export Data",
+    LABEL_ADDON_SETTINGS = "Addon Settings",
+    LABEL_SHOW_MINIMAP_ICON = "Show minimap icon",
+    LABEL_VERBOSE_ITEM_TYPES = "Verbose item types",
+}
+
+C.EQUIPMENT_SLOTS = {
+    { slotId = INVSLOT_HEAD, slotToken = "HeadSlot", label = "Head" },
+    { slotId = INVSLOT_NECK, slotToken = "NeckSlot", label = "Neck" },
+    { slotId = INVSLOT_SHOULDER, slotToken = "ShoulderSlot", label = "Shoulder" },
+    { slotId = INVSLOT_BACK, slotToken = "BackSlot", label = "Back" },
+    { slotId = INVSLOT_CHEST, slotToken = "ChestSlot", label = "Chest" },
+    { slotId = INVSLOT_BODY or INVSLOT_SHIRT, slotToken = "ShirtSlot", label = "Shirt" },
+    { slotId = INVSLOT_TABARD, slotToken = "TabardSlot", label = "Tabard" },
+    { slotId = INVSLOT_WRIST, slotToken = "WristSlot", label = "Wrist" },
+    { slotId = INVSLOT_HAND, slotToken = "HandsSlot", label = "Hands" },
+    { slotId = INVSLOT_WAIST, slotToken = "WaistSlot", label = "Waist" },
+    { slotId = INVSLOT_LEGS, slotToken = "LegsSlot", label = "Legs" },
+    { slotId = INVSLOT_FEET, slotToken = "FeetSlot", label = "Feet" },
+    { slotId = INVSLOT_FINGER1, slotToken = "Finger0Slot", label = "Finger 1" },
+    { slotId = INVSLOT_FINGER2, slotToken = "Finger1Slot", label = "Finger 2" },
+    { slotId = INVSLOT_TRINKET1, slotToken = "Trinket0Slot", label = "Trinket 1" },
+    { slotId = INVSLOT_TRINKET2, slotToken = "Trinket1Slot", label = "Trinket 2" },
+    { slotId = INVSLOT_MAINHAND, slotToken = "MainHandSlot", label = "Main Hand" },
+    { slotId = INVSLOT_OFFHAND, slotToken = "SecondaryHandSlot", label = "Off Hand" },
+}
+
+C.SKILL_CATEGORY_LABELS = {
+    PROFESSIONS = "Professions",
+    SECONDARY = "Secondary Skills",
+    WEAPON = "Weapon Skills",
+    OTHER = "Other Skills",
+}

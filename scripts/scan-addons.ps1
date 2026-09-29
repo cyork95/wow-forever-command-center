@@ -8,6 +8,7 @@ $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "dungeon-journal.ps1")
 . (Join-Path $PSScriptRoot "professions.ps1")
 . (Join-Path $PSScriptRoot "quests.ps1")
+. (Join-Path $PSScriptRoot "biography.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -347,10 +348,12 @@ function Parse-TextExport($text, $when) {
     }
   }
 
+  $addonName = if ($text -match '(?m)^Exported By:\s*AIExport\b') { "AIExport" } else { "CharacterExport Forever" }
+
   [ordered]@{
     character = $name
     exportedAt = $when
-    addon = "CharacterExport Forever"
+    addon = $addonName
     realm = $realm
     level = $level
     zone = $zone
@@ -393,7 +396,7 @@ function Add-CarriedField($payload, $row, $existing, $name) {
 }
 
 $sources = @()
-$sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport' })
+$sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport|AIExport' })
 if (Test-Path $gameRoot) {
   $sources += @(Get-ChildItem -Path $gameRoot -File -Recurse -Depth 2 -Include *.txt,*.json -ErrorAction SilentlyContinue |
     Where-Object { $_.FullName -notmatch '\\Interface\\' -and $_.Length -lt 5MB })
@@ -432,7 +435,7 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
 }
 
 if (-not $parsed.Count) {
-  Write-Output "No CharacterExport dump found. Addon saves still update the sheet."
+  Write-Output "No AIExport or CharacterExport dump found. Addon saves still update the sheet."
 }
 
 $stats = Read-JsonFile $statsPath
@@ -459,7 +462,7 @@ foreach ($row in $kept.Values) {
   $payload = [ordered]@{
     character = $row.character
     exportedAt = $row.exportedAt
-    addon = "CharacterExport Forever"
+    addon = $(if ($row.addon) { $row.addon } else { "CharacterExport Forever" })
     realm = $row.realm
     level = $row.level
     zone = $row.zone
@@ -576,7 +579,10 @@ function Apply-Snapshot($record, $snap, $character) {
   }
 
   $sources = [ordered]@{}
-  if ($exportedAt) { $sources["CharacterExport"] = $exportedAt }
+  if ($exportedAt) {
+    $exportLabel = if ($rec["addon"] -eq "AIExport") { "AIExport" } else { "CharacterExport" }
+    $sources[$exportLabel] = $exportedAt
+  }
   foreach ($k in $snap.sources.Keys) { $sources[$k] = $snap.sources[$k] }
   $rec["sources"] = $sources
   return [pscustomobject]$rec
@@ -640,5 +646,7 @@ if ($merged -gt 0 -or $applied -gt 0) {
 $unmatched | Select-Object -Unique | ForEach-Object {
   Write-Output "Skipped unmatched character: $_"
 }
+
+Update-Biography $wtfRoot $repo $characters
 
 Update-Screenshots $gameRoot $repo $characters

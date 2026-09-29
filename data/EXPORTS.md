@@ -58,6 +58,22 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 - `looted`: hunt items, and dungeon-journal drops, that KillDex saw drop for this character. A matching hunt checks itself, and the dungeon row shows the drop in hand, even after the item is sold or used.
 - `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`.
 
+AIExport's Biography lives in `biography/<id>.json`, one file per roster character. The scan copies every event from the character's `AIExport.lua` save and keeps the ones already in the file, so nothing drops out:
+
+```json
+{
+  "character": "Flann Anvilhew",
+  "updated": "2026-09-29T21:40:00",
+  "count": 2,
+  "events": [
+    { "t": 1790000000, "at": "2026-09-21T10:13:20", "kind": "level", "text": "Reached level 12 in Westfall", "zone": "Westfall", "level": 12 },
+    { "t": 1790000100, "at": "2026-09-21T10:15:00", "kind": "quest", "text": "Turned in The Defias Brotherhood", "zone": "Westfall", "questID": 155 }
+  ]
+}
+```
+
+`kind` is one of `login`, `level`, `death`, `zone`, `quest`, `achievement`, or `profession`.
+
 Screenshots live in `screenshots.json`, one entry per file in the game's `Screenshots` folder:
 
 ```json

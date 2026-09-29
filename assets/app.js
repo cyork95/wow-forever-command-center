@@ -514,7 +514,7 @@ function renderSheet() {
   lifetime.append(el("h3", { text: "Statistics" }));
   const groups = statisticGroups(live.statistics);
   if (!groups.length) {
-    lifetime.append(el("p", { class: "empty-note", text: "Open the character window and use the bottom tab on the right. CharacterExport does not copy that pane yet, so paste the counters you care about into the export under statistics." }));
+    lifetime.append(el("p", { class: "empty-note", text: "Open the character window and use the bottom tab on the right. AIExport does not copy that pane yet, so paste the counters you care about into the export under statistics." }));
   } else {
     const wrap = el("div", { class: "stat-groups" });
     groups.forEach((group) => {

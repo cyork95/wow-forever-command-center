@@ -29,6 +29,12 @@
     "collects": ["Uncollected appearances on dropped gear"],
     "match": ["CanIMogIt", "Can I Mog It?"]
   },
+  "AIExport": {
+    "purpose": "Writes the character report the command center merges, plus a Biography timeline of level-ups, deaths, zones, quests, and profession gains.",
+    "feedsSite": true,
+    "collects": ["Level, zone, and gold", "Primary stats and gear", "Profession skill", "Installed addon list", "Biography timeline"],
+    "match": ["AIExport"]
+  },
   "CharacterExportForever": {
     "purpose": "Writes the character dump the command center already merges: level, zone, gold, stats, professions, and gear.",
     "feedsSite": true,

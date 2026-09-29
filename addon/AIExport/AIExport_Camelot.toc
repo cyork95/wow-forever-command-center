@@ -1,0 +1,42 @@
+## Interface: 16001
+## Title: AIExport
+## Notes: Type /aixport and press Create Export to copy a text report of your character, including a Biography timeline of level-ups, deaths, zones, and quests, then paste it into an AI chat. /aixport bio opens the timeline. /aixport help shows the guide and an example AI skill.
+## Author: AIExport
+## Version: 1.1.0
+## IconTexture: Interface\AddOns\AIExport\Media\MinimapIcon
+## X-License: MIT
+## SavedVariablesPerCharacter: AIExportDBChar
+
+## OptionalDeps: WTFix
+## X-WTFix-Managed: 1
+Constants.lua
+Utils.lua
+Core.lua
+Data/Addons.lua
+Data/Location.lua
+Data/CharacterStats.lua
+Data/Currencies.lua
+Data/Collections.lua
+Data/Bags.lua
+Data/Bank.lua
+Data/Equipment.lua
+Data/Lockouts.lua
+Data/Progress.lua
+Data/Achievements.lua
+Data/CompletedAchievements.lua
+Data/CollectedAppearances.lua
+Data/Appearances.lua
+Data/Reputations.lua
+Data/Quests.lua
+Data/CompletedQuests.lua
+Data/Skills.lua
+Data/ProfessionDetails.lua
+Data/Talents.lua
+Data/Spellbook.lua
+Data/Biography.lua
+Formatters/TextFormatter.lua
+UI/MainFrame.lua
+UI/ExportFrame.lua
+UI/BiographyFrame.lua
+Guide.lua
+Commands.lua
