@@ -379,12 +379,12 @@
     "zone": "Zephras Isle",
     "minLevel": 1,
     "priority": "Low",
-    "status": "Planned",
+    "status": "Owned",
     "owners": ["taloninis"],
-    "notes": "Frog pet on Zephras Isle.",
-    "how": "Go to the waterfall rock on Zephras Isle and serenade the frogs. Taloninis keeps this one.",
-    "source": "lofibanshee",
-    "defaultDone": false
+    "notes": "Singing-frog pet on Zephras Isle. Ullrathor Highgale got it on beta, Sep 27, at Valanaar. Tradeable, so Taloninis still keeps the launch copy.",
+    "how": "Find the singing frog on Zephras Isle and type /sing. It gives you the Musical Gustjumper.",
+    "source": "Beta",
+    "defaultDone": true
   },
   {
     "id": "minimule",
