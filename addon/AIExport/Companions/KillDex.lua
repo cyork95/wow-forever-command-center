@@ -23,6 +23,10 @@ ns.Companions:Register({
     title = "KillDex",
     addons = { "KillDex" },
     adds = "Total kills, creature types, your top 15 creatures, and items seen dropping.",
+    IsBuiltIn = function()
+        local kills = ns.Data and ns.Data.Kills
+        return kills ~= nil and kills:HasData()
+    end,
     Collect = function(_, H)
         local mobs = H.Get(KillDexCharDB, "mobs")
 

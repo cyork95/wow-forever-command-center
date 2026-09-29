@@ -27,10 +27,11 @@ yet, or saved more than a week ago, and marks those sections with "!". Until
 then, AIExport uses Syndicator's bank copy and Profession Master's recipes if
 those addons are loaded.
 
-The window has four tabs:
+The window has five tabs:
 - Export: the sections, grouped into cards, and the Create Export button
 - Companions: the optional addons AIExport can read, each with its own switch
 - Biography: your timeline, 40 lines per page
+- Kills: every creature you have killed, with drops and gold
 - Help: this guide and the options
 
 
@@ -38,8 +39,12 @@ The window has four tabs:
 -----------
 /aixport             Open the AIExport window
 /aixport bio         Open the Biography tab
+/aixport kills       Open the Kills tab
+/aixport panel       Show or hide the live kill panel
 /aixport companions  Open the Companions tab
 /aixport help        Open this guide
+
+Right-click the minimap button to show or hide the live kill panel.
 
 
 3. What the report contains
@@ -51,6 +56,8 @@ The report starts with "Exported By: AIExport" and then one block per section:
 - Currencies, Collections, Reputations
 - Bags, Bank (saved copy), Equipment with item level and stats
 - Lockouts, Progress, Achievements, Appearances
+- Kills: total kills, kills by creature type, your top 25 creatures, items
+  seen dropping, and gold looted
 - Quests in your log and completed quests
 - Skills, Profession Details (saved copy), Talents, Spellbook
 - Biography: the timeline described below
@@ -93,7 +100,32 @@ AIExport only knows what happened after it was installed. Earlier play is
 not in the timeline.
 
 
-5. Companions
+5. Kills
+--------
+AIExport counts every creature you or your pet finish off. A creature
+another player tagged first is not counted. Inside dungeons and raids the
+game hides which creature died, so only bosses are recorded there, in the
+Biography.
+
+Loot you pick up and gold you loot are added to the creature you took them
+from.
+
+The Kills tab lists every creature with its kills, level, zone, and when
+you last killed one. Search by name, sort by most kills, name, or most
+recent, and click a creature to see its drops and gold. The tab also has
+two options:
+- Show live kill panel: a small window with this session's kills, kills
+  per hour, and the last 10 creatures you killed. Drag it anywhere, then
+  press Lock to keep it in place. It remembers where you left it.
+- Kill count on creature tooltips: adds "Killed 12 times" when you point
+  at a creature you have killed before.
+
+If KillDex was installed, AIExport copies its kill history once, the
+first time it loads, so your earlier kills carry over. After that KillDex
+is no longer needed.
+
+
+6. Companions
 -------------
 AIExport never needs another addon. When one of these is loaded, AIExport can
 read what it has saved for this character and add it to the Companions
@@ -101,7 +133,8 @@ section of the export:
 
 - Syndicator: your mail, and your bank contents even while the bank is closed
 - KillDex: total kills, creature types, your top 15 creatures, and items seen
-  dropping
+  dropping. Once AIExport has kills of its own, the Companions tab shows
+  KillDex as "Built into AIExport" and leaves its block out.
 - AllTheThings: deaths, quests, areas explored, time played, and mount, pet,
   toy, and title counts
 - Nova Instance Tracker: your saved lockouts and recent instance runs
@@ -119,7 +152,7 @@ If a companion addon changes how it saves data, its block says it could not
 be read instead of breaking the export.
 
 
-6. Tips for the AI chat
+7. Tips for the AI chat
 -----------------------
 - Paste one character per message. Each report has one "Character:" line.
 - Tell the assistant what you want first: a leveling plan, a gear check,
@@ -129,7 +162,7 @@ be read instead of breaking the export.
   where you are comfortable sharing that.
 
 
-7. Example AI skill
+8. Example AI skill
 -------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named
@@ -172,8 +205,10 @@ file exists. Keep older files; they are the history.
 - The "Biography:" section is a dated timeline. Each line is
   "HH:MM event". Use it to see what happened since the last report:
   levels gained, deaths, new zones, quests turned in, profession gains.
-- "Companions:" holds optional blocks such as "== KillDex ==" or
-  "== Syndicator ==". They only appear when the player has those addons.
+- "Kills:" lists total kills, kills by creature type, the most-killed
+  creatures, and items seen dropping.
+- "Companions:" holds optional blocks such as "== Syndicator ==". They
+  only appear when the player has those addons.
 
 ## Answer
 

@@ -17,7 +17,7 @@ MainFrame.readinessText = nil
 MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
-MainFrame.TAB_ORDER = { "export", "companions", "biography", "help" }
+MainFrame.TAB_ORDER = { "export", "companions", "biography", "kills", "help" }
 
 local FRAME_WIDTH = 720
 local FRAME_HEIGHT = 540
@@ -40,6 +40,7 @@ local TAB_LABELS = {
     export = C.TEXT.TAB_EXPORT,
     companions = C.TEXT.TAB_COMPANIONS,
     biography = C.TEXT.TAB_BIOGRAPHY,
+    kills = C.TEXT.TAB_KILLS,
     help = C.TEXT.TAB_HELP,
 }
 
@@ -330,8 +331,13 @@ local function RefreshCompanionRows()
         local status = companions:GetStatus(row.definition)
         local loaded = status == "loaded"
 
-        row.status:SetText(StatusText(status))
-        row.status:SetTextColor(ns.Theme.Color(StatusColor(status)))
+        if companions:IsBuiltIn(row.definition) then
+            row.status:SetText(C.TEXT.KILLDEX_BUILT_IN)
+            row.status:SetTextColor(ns.Theme.Color("accent"))
+        else
+            row.status:SetText(StatusText(status))
+            row.status:SetTextColor(ns.Theme.Color(StatusColor(status)))
+        end
         row.checkbox:SetChecked(companions:IsEnabled(row.definition.id))
 
         if loaded then
@@ -414,6 +420,14 @@ local function BuildBiographyPage(page)
     end
 end
 
+local function BuildKillsPage(page)
+    local view = ns.UI and ns.UI.KillsView
+
+    if view and type(view.Build) == "function" then
+        view:Build(page)
+    end
+end
+
 local function BuildHelpPage(page)
     local Theme = ns.Theme
 
@@ -485,6 +499,7 @@ local PAGE_BUILDERS = {
     export = BuildExportPage,
     companions = BuildCompanionsPage,
     biography = BuildBiographyPage,
+    kills = BuildKillsPage,
     help = BuildHelpPage,
 }
 
@@ -562,6 +577,12 @@ function MainFrame:SelectTab(tabId)
 
         if view and type(view.ShowNewest) == "function" then
             view:ShowNewest()
+        end
+    elseif tabId == "kills" then
+        local view = ns.UI and ns.UI.KillsView
+
+        if view and type(view.Refresh) == "function" then
+            view:Refresh()
         end
     end
 end

@@ -45,6 +45,9 @@ local function InitializeDatabase()
     ns.state.db.collectedAppearanceItemNameCache =
         ns.state.db.collectedAppearanceItemNameCache or {}
 
+    ns.state.db.kills =
+        ns.state.db.kills or {}
+
     ns.state.bankOpen = false
     ns.state.tradeSkillOpen = false
 

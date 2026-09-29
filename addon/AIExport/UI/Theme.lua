@@ -7,6 +7,8 @@ local Theme = {}
 local FLAT = "Interface\\Buttons\\WHITE8x8"
 local BACKDROP_TEMPLATE = BackdropTemplateMixin and "BackdropTemplate" or nil
 
+Theme.BACKDROP_TEMPLATE = BACKDROP_TEMPLATE
+
 Theme.COLORS = {
     panel = { 0.06, 0.08, 0.10, 0.96 },
     header = { 0.08, 0.11, 0.13, 1 },

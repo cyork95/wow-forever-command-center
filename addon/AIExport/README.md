@@ -2,7 +2,7 @@
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport.
+Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport.
 
 AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself. If you use some popular addons, AIExport can also add what they know; see [Companions](#companions).
 
@@ -18,18 +18,21 @@ AIExport needs no other addon. Everything in the report comes from the game and 
 | --- | --- |
 | `/aixport` | Open the AIExport window |
 | `/aixport bio` | Open the Biography tab |
+| `/aixport kills` | Open the Kills tab |
+| `/aixport panel` | Show or hide the live kill panel |
 | `/aixport companions` | Open the Companions tab |
 | `/aixport help` | Open the guide and the example AI skill |
 
-Left-click the minimap button to open the window.
+Left-click the minimap button to open the window. Right-click it to show or hide the live kill panel.
 
 ## The window
 
-The window has four tabs down the left side:
+The window has five tabs down the left side:
 
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
 - **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
 - **Biography**: your timeline, 40 lines per page.
+- **Kills**: every creature you have killed, with search, sorting, and each creature's drops and gold.
 - **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
 
 The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** to get item, spell, and quest IDs back.
@@ -64,6 +67,17 @@ The game saves the full log when you log out or type `/reload`, in:
 
 The Biography starts when AIExport is installed. It does not reconstruct earlier play.
 
+## Kills
+
+AIExport counts every creature you or your pet finish off. Creatures another player tagged first are not counted. Inside dungeons and raids the game hides which creature died, so only bosses are recorded there, in the Biography. Loot and gold you take from a corpse are added to that creature.
+
+- The **Kills** tab lists each creature with its kills, level, zone, and when you last killed one. Search by name, sort by most kills, name, or most recent, and click a creature to see its drops and gold.
+- **Show live kill panel** on the Kills tab, `/aixport panel`, or right-clicking the minimap button opens a small window with this session's kills, kills per hour, and the last 10 creatures you killed. Drag it where you want it and press **Lock**. It remembers its place.
+- Creature tooltips show "Killed 12 times". Untick **Kill count on creature tooltips** on the Kills tab to turn that off.
+- The **Kills** export section lists total kills, kills by creature type, your top 25 creatures, items seen dropping, and gold looted.
+
+If KillDex was installed, AIExport copies its kill history once, the first time it loads, so earlier kills carry over. After that KillDex is no longer needed.
+
 ## Companions
 
 AIExport never requires another addon. When one of these is loaded, AIExport reads what it saved for the current character and adds a block to the **Companions** section of the export:
@@ -71,7 +85,7 @@ AIExport never requires another addon. When one of these is loaded, AIExport rea
 | Addon | What it adds |
 | --- | --- |
 | Syndicator | Your mail, and your bank contents even while the bank is closed |
-| KillDex | Total kills, creature types, your top 15 creatures, and items seen dropping |
+| KillDex | Total kills, creature types, your top 15 creatures, and items seen dropping. Shown as "Built into AIExport" and left out once AIExport has kills of its own |
 | AllTheThings | Deaths, quests, areas explored, time played, and mount, pet, toy, and title counts |
 | Nova Instance Tracker | Your saved lockouts and recent instance runs |
 | Profession Master | Every recipe you know, grouped by profession |

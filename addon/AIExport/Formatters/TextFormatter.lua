@@ -8212,6 +8212,113 @@ function TextFormatter:AddBiography(
     )
 end
 
+local function KillMobText(mob, detailed)
+    local name = U.SafeString(mob.name, "Unknown")
+    local kills = tostring(tonumber(mob.kills) or 0)
+
+    if not detailed then
+        return name .. " " .. kills
+    end
+
+    local facts = { kills .. " kills" }
+
+    if (tonumber(mob.level) or 0) > 0 then
+        table.insert(facts, "level " .. mob.level)
+    end
+
+    if mob.creatureType then
+        table.insert(facts, mob.creatureType)
+    end
+
+    if mob.zone then
+        table.insert(facts, mob.zone)
+    end
+
+    if (tonumber(mob.gold) or 0) > 0 then
+        table.insert(facts, "gold " .. FormatMoneyCopper(mob.gold))
+    end
+
+    return name .. ": " .. table.concat(facts, ", ")
+end
+
+function TextFormatter:AddKills(lines, data)
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.KILLS])
+
+    local totals = data.totals or {}
+
+    if (tonumber(totals.kills) or 0) == 0 then
+        AddLine(lines, C.TEXT.KILLS_EMPTY)
+        AddBlankLine(lines)
+        return
+    end
+
+    local detailed = IsDetailedExport()
+
+    AddLine(lines, string.format("Total kills: %d across %d creatures", totals.kills, totals.creatures or 0))
+    AddLine(lines, "Gold looted: " .. FormatMoneyCopper(totals.gold))
+
+    if data.imported then
+        AddLine(lines, string.format(C.TEXT.KILLS_IMPORTED, tostring(data.imported.kills or 0)))
+    end
+
+    local session = data.session
+
+    if session and (session.kills or 0) > 0 then
+        AddLine(lines, string.format("This session: %d kills, %d per hour", session.kills, session.killsPerHour or 0))
+    end
+
+    local types = {}
+
+    for _, entry in ipairs(totals.byType or {}) do
+        table.insert(types, entry.name .. " " .. entry.kills)
+    end
+
+    if #types > 0 then
+        AddLine(lines, "By type: " .. table.concat(types, ", "))
+    end
+
+    local top = data.top or {}
+
+    if #top > 0 then
+        AddSubHeader(lines, string.format("Top %d creatures", #top))
+
+        if detailed then
+            for _, mob in ipairs(top) do
+                AddLine(lines, KillMobText(mob, true))
+            end
+        else
+            local parts = {}
+
+            for _, mob in ipairs(top) do
+                table.insert(parts, KillMobText(mob, false))
+            end
+
+            AddLine(lines, table.concat(parts, ", "))
+        end
+    end
+
+    local drops = data.drops or {}
+
+    if #drops > 0 then
+        local shown = drops
+        local limit = C.KILLS_EXPORT_DROPS
+
+        if not detailed and #drops > limit then
+            shown = {}
+
+            for index = 1, limit do
+                shown[index] = drops[index]
+            end
+
+            table.insert(shown, string.format("and %d more", #drops - limit))
+        end
+
+        AddLine(lines, "Drops seen: " .. table.concat(shown, ", "))
+    end
+
+    AddBlankLine(lines)
+end
+
 function TextFormatter:AddCompanions(
     lines,
     data
@@ -9499,6 +9606,15 @@ function TextFormatter:Build(
                 self:AddProgress(
                     lines,
                     exportData.progress
+                    or {}
+                )
+            end,
+
+        [C.SECTIONS.KILLS] =
+            function()
+                self:AddKills(
+                    lines,
+                    exportData.kills
                     or {}
                 )
             end,

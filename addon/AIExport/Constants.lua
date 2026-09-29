@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.3.1"
+C.VERSION = "1.4.0"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -32,6 +32,7 @@ C.SECTIONS = {
     TALENTS = "talents",
     SPELLBOOK = "spellbook",
     BIOGRAPHY = "biography",
+    KILLS = "kills",
     COMPANIONS = "companions",
     ADDONS = "addons",
 }
@@ -46,6 +47,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.EQUIPMENT,
     C.SECTIONS.LOCKOUTS,
     C.SECTIONS.PROGRESS,
+    C.SECTIONS.KILLS,
     C.SECTIONS.ACHIEVEMENTS,
     C.SECTIONS.COMPLETED_ACHIEVEMENTS,
     C.SECTIONS.COLLECTED_APPEARANCES,
@@ -84,6 +86,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.TALENTS] = "Talents",
     [C.SECTIONS.SPELLBOOK] = "Spellbook",
     [C.SECTIONS.BIOGRAPHY] = "Biography",
+    [C.SECTIONS.KILLS] = "Kills",
     [C.SECTIONS.COMPANIONS] = "Companions",
     [C.SECTIONS.ADDONS] = "AddOns",
 }
@@ -118,6 +121,7 @@ C.SECTION_GROUPS = {
             C.SECTIONS.ACHIEVEMENTS,
             C.SECTIONS.COMPLETED_ACHIEVEMENTS,
             C.SECTIONS.LOCKOUTS,
+            C.SECTIONS.KILLS,
         },
     },
     {
@@ -166,9 +170,13 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.TALENTS] = true,
     [C.SECTIONS.SPELLBOOK] = true,
     [C.SECTIONS.BIOGRAPHY] = true,
+    [C.SECTIONS.KILLS] = true,
     [C.SECTIONS.COMPANIONS] = true,
     [C.SECTIONS.ADDONS] = true,
 }
+
+C.KILLS_EXPORT_TOP = 25
+C.KILLS_EXPORT_DROPS = 60
 
 C.TEXT = {
     BANK_UNAVAILABLE = "[Bank data unavailable.]",
@@ -222,6 +230,28 @@ C.TEXT = {
     READINESS_USING_FALLBACK = "Using %s's copy for now.",
     PROFESSION_MASTER_FALLBACK_NOTE = "(From Profession Master; open the profession window to refresh.)",
     SYNDICATOR_BANK_FALLBACK_NOTE = "(From Syndicator; open your bank to refresh.)",
+    TAB_KILLS = "Kills",
+    KILLS_TOOLTIP = "Killed %d time%s",
+    KILLS_EMPTY = "No kills yet. AIExport counts every creature you or your pet finish off, outside dungeons and raids.",
+    KILLS_NO_MATCH = "No creature matches that search.",
+    KILLS_HEADER = "Lifetime %s kills of %s creatures   Session %s (%s per hour)   Gold looted %s",
+    KILLS_IMPORTED = "Includes %s kills copied from KillDex.",
+    KILLS_SEARCH = "Search",
+    KILLS_SORT_KILLS = "Most kills",
+    KILLS_SORT_NAME = "Name",
+    KILLS_SORT_RECENT = "Recent",
+    KILLS_DETAIL_EMPTY = "Click a creature to see its drops.",
+    KILLS_NO_DROPS = "No drops recorded.",
+    KILLS_SHOW_PANEL = "Show live kill panel",
+    KILLS_SHOW_TOOLTIP = "Kill count on creature tooltips",
+    KILLS_PANEL_TITLE = "Kills",
+    KILLS_PANEL_SESSION = "Session: %s kills, %s per hour",
+    KILLS_PANEL_EMPTY = "Nothing killed this session yet.",
+    KILLS_PANEL_LOCK = "Lock",
+    KILLS_PANEL_UNLOCK = "Unlock",
+    KILLDEX_BUILT_IN = "Built into AIExport",
+    MINIMAP_LEFT_CLICK = "Left-click to open the export window.",
+    MINIMAP_RIGHT_CLICK = "Right-click to show or hide the kill panel.",
 }
 
 C.CHARACTERS_PER_TOKEN = 4

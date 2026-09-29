@@ -781,6 +781,9 @@ local function GetCollector(
         [C.SECTIONS.BIOGRAPHY] =
             data.Biography,
 
+        [C.SECTIONS.KILLS] =
+            data.Kills,
+
         [C.SECTIONS.COMPANIONS] =
             ns.Companions,
     }
@@ -1022,16 +1025,22 @@ local function EnsureMinimapButton()
     )
 
     button:RegisterForClicks(
-        "LeftButtonUp"
+        "LeftButtonUp",
+        "RightButtonUp"
     )
 
     button:SetScript(
         "OnClick",
-        function(self)
+        function(self, mouseButton)
             if self.isDragging then
                 self.isDragging =
                     false
 
+                return
+            end
+
+            if mouseButton == "RightButton" then
+                Commands:ToggleKillPanel()
                 return
             end
 
@@ -1095,7 +1104,14 @@ local function EnsureMinimapButton()
             )
 
             GameTooltip:AddLine(
-                "Left-click to open the export window.",
+                C.TEXT.MINIMAP_LEFT_CLICK,
+                1,
+                1,
+                1
+            )
+
+            GameTooltip:AddLine(
+                C.TEXT.MINIMAP_RIGHT_CLICK,
                 1,
                 1,
                 1
@@ -1952,6 +1968,27 @@ function Commands:OpenCompanions()
     )
 end
 
+function Commands:OpenKills()
+    self:OpenTab("kills")
+end
+
+function Commands:ToggleKillPanel()
+    local panel = ns.UI and ns.UI.KillPanel
+
+    if not panel then
+        EmitDiagnostic("ERROR: Kill panel unavailable.", true)
+        return
+    end
+
+    local success, errorMessage = xpcall(function()
+        panel:Toggle()
+    end, ErrorHandler)
+
+    if not success then
+        EmitDiagnostic("ERROR: Kill panel - " .. FirstLine(errorMessage), true)
+    end
+end
+
 SLASH_AIEXPORT1 =
     C.SLASH_COMMAND
 
@@ -1980,6 +2017,12 @@ SlashCmdList[
         elseif argument == "companions"
         then
             Commands:OpenCompanions()
+        elseif argument == "kills"
+        then
+            Commands:OpenKills()
+        elseif argument == "panel"
+        then
+            Commands:ToggleKillPanel()
         else
             Commands:OpenMainUI()
         end
