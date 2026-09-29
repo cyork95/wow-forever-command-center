@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.6.0
+
+- New **Screenshotter** tab, which replaces Memento. It takes a screenshot on level-ups, deaths, achievements, dungeon and raid boss kills, the end of battlegrounds and arenas, finished duels, and new mounts, pets, toys, and recipes. Login and timed screenshots (every 5 to 60 minutes) are there too, off at first. Each moment has its own switch, and **Take screenshots automatically** turns it all off or on.
+- Options to hide the interface for the shot (skipped in combat), add a name, level, and date stamp, play a camera sound, and print a chat line. Two moments within 3 seconds share one screenshot.
+- **Take test screenshot** and `/aixport shot` take one right away. `/aixport shots` opens the tab.
+- While Memento is loaded, the Screenshotter pauses and the tab says so, so you never get two screenshots of the same moment. When the Screenshotter is on and Memento is not loaded, the Companions tab shows Memento as "Built into AIExport".
+- Biography screenshot lines now say why the shot was taken, for example "Screenshot: Reached level 12, in Westfall".
+- The tabs are in a new order: Export, Biography, Kills, Screenshotter, Companions, Help.
+- The game needs a full restart after updating, because new files were added.
+
 ## 1.5.0
 
 - New **Statistics** export section in the Progress card, on by default. It copies the Statistics tab of the Achievements window, such as deaths, gold acquired, and quests completed, grouped by category. Statistics with no value yet are left out. **Detailed export** lists one statistic per line with its ID.

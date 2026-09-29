@@ -1975,6 +1975,27 @@ function Commands:OpenKills()
     self:OpenTab("kills")
 end
 
+function Commands:OpenScreenshotter()
+    self:OpenTab("screenshots")
+end
+
+function Commands:TakeScreenshot()
+    local shots = ns.Data and ns.Data.Screenshotter
+
+    if not shots then
+        EmitDiagnostic("ERROR: Screenshotter unavailable.", true)
+        return
+    end
+
+    local success, errorMessage = xpcall(function()
+        shots:TakeNow(C.TEXT.SHOTS_REASON_MANUAL)
+    end, ErrorHandler)
+
+    if not success then
+        EmitDiagnostic("ERROR: Screenshotter - " .. FirstLine(errorMessage), true)
+    end
+end
+
 function Commands:ToggleKillPanel()
     local panel = ns.UI and ns.UI.KillPanel
 
@@ -2026,6 +2047,13 @@ SlashCmdList[
         elseif argument == "panel"
         then
             Commands:ToggleKillPanel()
+        elseif argument == "shots"
+            or argument == "screenshotter"
+        then
+            Commands:OpenScreenshotter()
+        elseif argument == "shot"
+        then
+            Commands:TakeScreenshot()
         else
             Commands:OpenMainUI()
         end

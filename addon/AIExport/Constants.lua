@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.5.0"
+C.VERSION = "1.6.0"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -184,6 +184,48 @@ C.KILLS_EXPORT_TOP = 25
 C.KILLS_EXPORT_DROPS = 60
 C.KILLS_PANEL_DEFAULT_OPACITY = 96
 
+C.SHOTS_INTERVAL_MIN = 5
+C.SHOTS_INTERVAL_MAX = 60
+C.SHOTS_INTERVAL_DEFAULT = 5
+
+C.SHOTS_TRIGGER_LABELS = {
+    levelUp = "Level up",
+    death = "Death",
+    achievement = "Achievement earned",
+    boss = "Dungeon or raid boss killed",
+    pvp = "Battleground or arena ends",
+    duel = "Duel finished",
+    collection = "New mount, pet, toy, or recipe",
+    login = "Login",
+    interval = "Every few minutes",
+}
+
+C.SHOTS_TRIGGER_REASONS = {
+    levelUp = "Level up",
+    death = "Died",
+    achievement = "Achievement earned",
+    boss = "Boss defeated",
+    pvp = "PvP match ended",
+    duel = "Duel finished",
+    collection = "New collectible",
+    login = "Logged in",
+    interval = "Timed screenshot",
+}
+
+C.SHOTS_COLLECTION_LABELS = {
+    NEW_MOUNT_ADDED = "New mount",
+    NEW_PET_ADDED = "New pet",
+    NEW_TOY_ADDED = "New toy",
+    NEW_RECIPE_LEARNED = "New recipe",
+}
+
+C.SHOTS_OPTION_LABELS = {
+    hideUI = "Hide the interface",
+    stamp = "Add a name and date stamp",
+    sound = "Camera sound",
+    chat = "Chat message for each screenshot",
+}
+
 C.TEXT = {
     BANK_UNAVAILABLE = "[Bank data unavailable.]",
     BANK_UNAVAILABLE_NO_CACHE = "[Bank data unavailable - open your personal bank at least once to build cache.]",
@@ -258,6 +300,22 @@ C.TEXT = {
     KILLS_PANEL_OPACITY = "Panel background",
     KILLS_PANEL_OPACITY_VALUE = "%d%%",
     KILLDEX_BUILT_IN = "Built into AIExport",
+    TAB_SCREENSHOTS = "Screenshotter",
+    SHOTS_DESCRIPTION = "Takes a screenshot at big moments, like Memento. Screenshots go to the game's Screenshots folder, and each one is noted in the Biography with the reason.",
+    SHOTS_ENABLED = "Take screenshots automatically",
+    SHOTS_STATUS_ON = "On. Screenshots are taken for the moments ticked below.",
+    SHOTS_STATUS_OFF = "Off. No screenshots are taken automatically.",
+    SHOTS_STATUS_PAUSED = "Paused while Memento is loaded. Disable Memento to let AIExport take screenshots.",
+    SHOTS_TEST = "Take test screenshot",
+    SHOTS_TRIGGERS_TITLE = "Take a screenshot when",
+    SHOTS_OPTIONS_TITLE = "Options",
+    SHOTS_INTERVAL = "Every %d minutes",
+    SHOTS_CHAT = "%sAIExport|r screenshot: %s",
+    SHOTS_REASON_MANUAL = "Test screenshot",
+    SHOTS_REASON_LEVEL = "Reached level %d",
+    SHOTS_REASON_ACHIEVEMENT = "Earned %s",
+    SHOTS_REASON_BOSS = "Defeated %s",
+    SHOTS_REASON_INTERVAL = "Timed screenshot (every %d minutes)",
     STATISTICS_UNAVAILABLE = "Statistics are not available on this client.",
     STATISTICS_EMPTY = "No statistics recorded yet.",
     MINIMAP_LEFT_CLICK = "Left-click to open the export window.",

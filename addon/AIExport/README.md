@@ -2,7 +2,7 @@
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport.
+Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport. The **Screenshotter** takes screenshots at big moments, like Memento.
 
 AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself. If you use some popular addons, AIExport can also add what they know; see [Companions](#companions).
 
@@ -20,6 +20,8 @@ AIExport needs no other addon. Everything in the report comes from the game and 
 | `/aixport bio` | Open the Biography tab |
 | `/aixport kills` | Open the Kills tab |
 | `/aixport panel` | Show or hide the live kill panel |
+| `/aixport shots` | Open the Screenshotter tab |
+| `/aixport shot` | Take a screenshot now |
 | `/aixport companions` | Open the Companions tab |
 | `/aixport help` | Open the guide and the example AI skill |
 
@@ -27,12 +29,13 @@ Left-click the minimap button to open the window. Right-click it to show or hide
 
 ## The window
 
-The window has five tabs down the left side:
+The window has six tabs down the left side:
 
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
-- **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
 - **Biography**: your timeline, 40 lines per page.
 - **Kills**: every creature you have killed, with search, sorting, and each creature's drops and gold.
+- **Screenshotter**: automatic screenshots at big moments, with a switch for each moment.
+- **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
 - **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
 
 The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** to get item, spell, and quest IDs back.
@@ -57,7 +60,7 @@ From the moment it is installed, AIExport writes down what happens to each chara
 - Quests you turn in, by name
 - Achievements you earn
 - Learning a profession, and each rise in profession skill
-- Every screenshot the game saves, with where it was taken, whether you pressed the key or Memento took it
+- Every screenshot the game saves, with where it was taken, whether you pressed the key or the Screenshotter or Memento took it. Screenshotter shots also say why, for example "Screenshot: Reached level 12, in Westfall".
 
 Nothing is deleted. The Biography tab shows 40 lines per page, with **Older** and **Newer** to move through the rest. Every export includes the whole timeline.
 
@@ -80,6 +83,22 @@ The **Statistics** export section, also in the Progress card and on by default, 
 
 If KillDex was installed, AIExport copies its kill history once, the first time it loads, so earlier kills carry over. After that KillDex is no longer needed.
 
+## Screenshotter
+
+The **Screenshotter** tab takes screenshots for you at big moments, so Memento is no longer needed. **Take screenshots automatically** turns it all on or off, and each moment has its own switch:
+
+- Level up, death, and achievement earned
+- Dungeon or raid boss killed
+- Battleground or arena ends, and duel finished
+- New mount, pet, toy, or recipe
+- Login, and every 5 to 60 minutes (both off at first)
+
+Two moments within 3 seconds, such as a level-up that also earns an achievement, share one screenshot. The options hide the interface for the shot (skipped in combat), add a name, level, and date stamp while it is hidden, play a camera sound, and print a chat line. **Take test screenshot** or `/aixport shot` takes one right away, even when automatic screenshots are off.
+
+While Memento is loaded, the Screenshotter pauses and says so on the tab. Disable Memento in the AddOns list to let AIExport take over.
+
+Screenshots are saved in `World of Warcraft\_classic_beta_\Screenshots` with the game's usual names, because addons cannot rename files. Each one is noted in the Biography with the reason, so a tool that reads the Biography can name and caption them.
+
 ## Companions
 
 AIExport never requires another addon. When one of these is loaded, AIExport reads what it saved for the current character and adds a block to the **Companions** section of the export:
@@ -92,7 +111,7 @@ AIExport never requires another addon. When one of these is loaded, AIExport rea
 | Nova Instance Tracker | Your saved lockouts and recent instance runs |
 | Profession Master | Every recipe you know, grouped by profession |
 | Auctionator | The auction price of each stack in your bags, plus a total |
-| Memento | The boss kills it recorded |
+| Memento | The boss kills it recorded. Shown as "Built into AIExport" while the Screenshotter is on and Memento is not loaded |
 | Talents Forever | Your planned talent build and saved builds for your class |
 
 Each one is optional. The **Companions** tab shows whether each addon is loaded, installed but not loaded, or not installed, and has a switch to leave it out. Switches are on by default and only work while that addon is loaded. Untick **Companions** on the Export tab to leave them all out.

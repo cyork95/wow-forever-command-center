@@ -27,11 +27,12 @@ yet, or saved more than a week ago, and marks those sections with "!". Until
 then, AIExport uses Syndicator's bank copy and Profession Master's recipes if
 those addons are loaded.
 
-The window has five tabs:
+The window has six tabs:
 - Export: the sections, grouped into cards, and the Create Export button
-- Companions: the optional addons AIExport can read, each with its own switch
 - Biography: your timeline, 40 lines per page
 - Kills: every creature you have killed, with drops and gold
+- Screenshotter: automatic screenshots at big moments, like Memento
+- Companions: the optional addons AIExport can read, each with its own switch
 - Help: this guide and the options
 
 
@@ -41,6 +42,8 @@ The window has five tabs:
 /aixport bio         Open the Biography tab
 /aixport kills       Open the Kills tab
 /aixport panel       Show or hide the live kill panel
+/aixport shots       Open the Screenshotter tab
+/aixport shot        Take a screenshot now
 /aixport companions  Open the Companions tab
 /aixport help        Open this guide
 
@@ -90,7 +93,9 @@ character it is loaded on:
 - Every boss you defeat, with the difficulty
 - Learning a profession, and each rise in profession skill
 - Every screenshot the game saves, with the place it was taken. This works
-  for screenshots you take yourself and ones Memento takes for you.
+  for screenshots you take yourself and ones the Screenshotter or Memento
+  takes for you. Screenshotter shots also say why they were taken, for
+  example "Screenshot: Reached level 12, in Westfall".
 
 Nothing is deleted. The Biography tab shows 40 lines per page. Use Older
 and Newer to move through the rest. The Biography section of an export
@@ -130,7 +135,42 @@ first time it loads, so your earlier kills carry over. After that KillDex
 is no longer needed.
 
 
-6. Companions
+6. Screenshotter
+----------------
+The Screenshotter takes a screenshot for you at big moments, so Memento is
+no longer needed. Tick "Take screenshots automatically" to turn it on or
+off. Then tick the moments you want:
+
+- Level up, death, achievement earned
+- Dungeon or raid boss killed
+- Battleground or arena ends, duel finished
+- New mount, pet, toy, or recipe
+- Login (off at first)
+- Every few minutes (off at first). Drag the slider to pick 5 to 60
+  minutes.
+
+Two moments that happen within 3 seconds, such as a level-up that also
+earns an achievement, share one screenshot. The options are:
+
+- Hide the interface: hides your action bars and windows for the shot.
+  This is skipped in combat, when the game does not allow it.
+- Add a name and date stamp: while the interface is hidden, a small label
+  shows your name, realm, level, and the date.
+- Camera sound, and a chat message for each screenshot.
+
+Press Take test screenshot, or type /aixport shot, to take one right away.
+This works even when the automatic screenshots are off.
+
+While Memento is loaded, the Screenshotter pauses so you do not get two
+screenshots of everything. The tab says so. Disable Memento in the AddOns
+list to let AIExport take over.
+
+Screenshots are saved in World of Warcraft\_classic_beta_\Screenshots with
+the game's usual names. Each one is noted in the Biography with the reason,
+so a website or tool that reads the Biography can name and caption them.
+
+
+7. Companions
 -------------
 AIExport never needs another addon. When one of these is loaded, AIExport can
 read what it has saved for this character and add it to the Companions
@@ -145,7 +185,9 @@ section of the export:
 - Nova Instance Tracker: your saved lockouts and recent instance runs
 - Profession Master: every recipe you know, grouped by profession
 - Auctionator: the auction price of each stack in your bags, plus a total
-- Memento: the boss kills it recorded
+- Memento: the boss kills it recorded. While the Screenshotter is on and
+  Memento is not loaded, the Companions tab shows Memento as "Built into
+  AIExport". Boss kills are in the Biography either way.
 - Talents Forever: your planned talent build and saved builds for your class
 
 Each one is optional. The Companions tab shows whether each addon is loaded,
@@ -157,7 +199,7 @@ If a companion addon changes how it saves data, its block says it could not
 be read instead of breaking the export.
 
 
-7. Tips for the AI chat
+8. Tips for the AI chat
 -----------------------
 - Paste one character per message. Each report has one "Character:" line.
 - Tell the assistant what you want first: a leveling plan, a gear check,
@@ -167,7 +209,7 @@ be read instead of breaking the export.
   where you are comfortable sharing that.
 
 
-8. Example AI skill
+9. Example AI skill
 -------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named

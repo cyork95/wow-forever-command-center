@@ -54,14 +54,18 @@ The scan pulls these from addon saves, so none of their in-game export buttons a
 
 ## 3b. Name the new screenshots
 
-Memento takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, and similar moments. The scan adds each new file to `data/screenshots.json` with `who: null`.
+AIExport's Screenshotter (1.6.0 and later) takes screenshots into `<game>\Screenshots` on level-ups, deaths, achievements, boss kills, and similar moments. Older shots came from Memento. The scan adds each new file to `data/screenshots.json` with `who: null`.
 
-AIExport 1.2.0 and later records a `screenshot` event in the Biography each time the game saves one. When a roster character's `data/biography/<id>.json` has a screenshot event within 10 seconds of a file's `takenAt`, the scan sets `who` to that character and prints `Named N screenshots from AIExport biography events`. Those entries still need a `caption`.
+AIExport 1.2.0 and later records a `screenshot` event in the Biography each time the game saves one. When a roster character's `data/biography/<id>.json` has a screenshot event within 10 seconds of a file's `takenAt`, the scan sets `who` to that character and prints `Named N screenshots from AIExport biography events`.
+
+Screenshotter events also carry a `reason`, such as `Reached level 12`. The scan copies it into an empty `caption` and prints `Captioned N screenshots from Screenshotter reasons`. Those captions are fine as they are. Shots whose event has no reason (the player pressed Print Screen, or Memento took it) still need a `caption`.
+
+Once `who` is known, the scan names the files `YYYY-MM-DD_HHMM_Character-Name_reason.jpg`, using the caption for the reason (`screenshot` when there is none). The website copy under `assets/shots/<id>/` gets that name, and a full-size copy goes to `<game>\Screenshots\AIExport\` (recorded as `archive`). It prints `Named N files`. Setting or changing a caption renames both copies on the next run. The game's original files are never moved, so `source` keeps matching.
 
 Whatever is left is printed as `Screenshots with no character yet (N): ...`. This happens for shots taken before AIExport 1.2.0, or on a character without it. For each of those entries:
 
 1. Open the image from `C:\Program Files (x86)\World of Warcraft\_classic_beta_\Screenshots\<source>` with the Read tool.
-2. Memento hides the UI, but the player's own name stays over their head. Set `who` to that full name, for example `Flann Anvilhew`. If the name is not visible (a loading screen, say), use the character from the nearest shot in the same session. If you still cannot tell, ask the user.
+2. The Screenshotter and Memento hide the UI, but the player's own name stays over their head. Set `who` to that full name, for example `Flann Anvilhew`. If the name is not visible (a loading screen, say), use the character from the nearest shot in the same session. If you still cannot tell, ask the user.
 3. Set `caption` to one short sentence about what the shot shows: the quest, the boss, the level, or the place. Only name places and NPCs you can read or are sure of.
 
 Then run the scan again. Shots whose `who` is on the roster get a 1280px copy under `assets/shots/<id>/`, and the site shows them in that character's card. Shots of characters not on the roster stay in the log with `file: null` and are not published.

@@ -48,6 +48,15 @@ local function InitializeDatabase()
     ns.state.db.kills =
         ns.state.db.kills or {}
 
+    ns.state.db.screenshotter =
+        ns.state.db.screenshotter or {}
+
+    local screenshotter = ns.Data and ns.Data.Screenshotter
+
+    if screenshotter then
+        screenshotter.FillDefaults(ns.state.db.screenshotter)
+    end
+
     ns.state.bankOpen = false
     ns.state.tradeSkillOpen = false
 

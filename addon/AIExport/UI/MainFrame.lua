@@ -17,7 +17,7 @@ MainFrame.readinessText = nil
 MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
-MainFrame.TAB_ORDER = { "export", "companions", "biography", "kills", "help" }
+MainFrame.TAB_ORDER = { "export", "biography", "kills", "screenshots", "companions", "help" }
 
 local FRAME_WIDTH = 720
 local FRAME_HEIGHT = 540
@@ -41,6 +41,7 @@ local TAB_LABELS = {
     companions = C.TEXT.TAB_COMPANIONS,
     biography = C.TEXT.TAB_BIOGRAPHY,
     kills = C.TEXT.TAB_KILLS,
+    screenshots = C.TEXT.TAB_SCREENSHOTS,
     help = C.TEXT.TAB_HELP,
 }
 
@@ -428,6 +429,14 @@ local function BuildKillsPage(page)
     end
 end
 
+local function BuildScreenshotsPage(page)
+    local view = ns.UI and ns.UI.ScreenshotterView
+
+    if view and type(view.Build) == "function" then
+        view:Build(page)
+    end
+end
+
 local function BuildHelpPage(page)
     local Theme = ns.Theme
 
@@ -500,6 +509,7 @@ local PAGE_BUILDERS = {
     companions = BuildCompanionsPage,
     biography = BuildBiographyPage,
     kills = BuildKillsPage,
+    screenshots = BuildScreenshotsPage,
     help = BuildHelpPage,
 }
 
@@ -580,6 +590,12 @@ function MainFrame:SelectTab(tabId)
         end
     elseif tabId == "kills" then
         local view = ns.UI and ns.UI.KillsView
+
+        if view and type(view.Refresh) == "function" then
+            view:Refresh()
+        end
+    elseif tabId == "screenshots" then
+        local view = ns.UI and ns.UI.ScreenshotterView
 
         if view and type(view.Refresh) == "function" then
             view:Refresh()

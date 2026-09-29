@@ -1,4 +1,4 @@
-# Screenshots from the game's Screenshots folder, mostly taken by Memento.
+# Screenshots from the game's Screenshots folder, taken by AIExport's Screenshotter or Memento.
 # The files carry no character name, so data/screenshots.json records who took each one.
 # Shots whose "who" is a roster character get a 1280px copy under assets/shots/<id>/ for the site.
 
@@ -27,7 +27,9 @@ function Save-SmallJpeg($source, $target, $width) {
 
 # AIExport's Biography records a "screenshot" event each time the game saves one.
 # An unnamed shot whose takenAt is within 10 seconds of such an event belongs to that character.
+# Screenshotter events also carry a reason ("Reached level 12"), which becomes an empty caption.
 function Set-ScreenshotOwners($repo, $characters, $log) {
+  $result = [pscustomobject]@{ named = 0; captioned = 0 }
   $events = @()
   foreach ($character in $characters) {
     $path = Join-Path $repo "data\biography\$($character.id).json"
@@ -38,25 +40,58 @@ function Set-ScreenshotOwners($repo, $characters, $log) {
       $events += [pscustomobject]@{
         at = [DateTimeOffset]::FromUnixTimeSeconds([long]$event.t).LocalDateTime
         who = $character.name
+        reason = $event.reason
       }
     }
   }
-  if (-not $events.Count) { return 0 }
+  if (-not $events.Count) { return $result }
 
-  $named = 0
   foreach ($entry in $log) {
-    if ($entry.who -or -not $entry.takenAt) { continue }
+    if (($entry.who -and $entry.caption) -or -not $entry.takenAt) { continue }
     $taken = [datetime]::ParseExact($entry.takenAt, "yyyy-MM-ddTHH:mm:ss", [System.Globalization.CultureInfo]::InvariantCulture)
     $match = $events |
       Where-Object { [Math]::Abs(($_.at - $taken).TotalSeconds) -le 10 } |
       Sort-Object { [Math]::Abs(($_.at - $taken).TotalSeconds) } |
       Select-Object -First 1
-    if ($match) {
+    if (-not $match) { continue }
+    if (-not $entry.who) {
       $entry.who = $match.who
-      $named++
+      $result.named++
+    }
+    if (-not $entry.caption -and $match.reason -and $entry.who -eq $match.who) {
+      $entry.caption = [string]$match.reason
+      $result.captioned++
     }
   }
-  return $named
+  return $result
+}
+
+# "Reached level 12" -> "reached-level-12"
+function Get-ShotSlug($caption) {
+  $slug = ([string]$caption).ToLowerInvariant() -replace '[^a-z0-9]+', '-'
+  $slug = $slug.Trim('-')
+  if ($slug.Length -gt 60) { $slug = $slug.Substring(0, 60).TrimEnd('-') }
+  if (-not $slug) { $slug = "screenshot" }
+  return $slug
+}
+
+# YYYY-MM-DD_HHMM_Character-Name_reason
+function Get-ShotBaseName($entry) {
+  $taken = [datetime]::ParseExact($entry.takenAt, "yyyy-MM-ddTHH:mm:ss", [System.Globalization.CultureInfo]::InvariantCulture)
+  $who = (([string]$entry.who).Trim() -replace '[\\/:*?"<>|]', '') -replace '\s+', '-'
+  return "$($taken.ToString('yyyy-MM-dd_HHmm'))_$($who)_$(Get-ShotSlug $entry.caption)"
+}
+
+# Moves an earlier copy to its new name, or makes one from the game's original.
+function Set-ShotCopy($oldPath, $target, $source, [scriptblock]$make) {
+  if ($oldPath -and (Test-Path $oldPath) -and $oldPath -ne $target) {
+    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
+    Move-Item -LiteralPath $oldPath -Destination $target -Force
+    return $true
+  }
+  if (-not (Test-Path $source)) { return $false }
+  & $make $source $target
+  return $true
 }
 
 function Update-Screenshots($gameRoot, $repo, $characters) {
@@ -82,31 +117,76 @@ function Update-Screenshots($gameRoot, $repo, $characters) {
     }
   }
 
-  $named = Set-ScreenshotOwners $repo $characters $log
+  $owners = Set-ScreenshotOwners $repo $characters $log
+  $named = $owners.named
+  $captioned = $owners.captioned
+
+  foreach ($entry in $log) {
+    if (-not $entry.PSObject.Properties["archive"]) { $entry | Add-Member -NotePropertyName archive -NotePropertyValue $null }
+  }
+
+  # Base names already in use, so a clash gets -2, -3. Sorting by takenAt keeps the suffixes stable between runs.
+  $taken = @{}
+  foreach ($entry in $log) {
+    foreach ($path in @($entry.file, $entry.archive)) {
+      if ($path) { $taken[[System.IO.Path]::GetFileNameWithoutExtension($path)] = $entry }
+    }
+  }
 
   $published = 0
-  foreach ($entry in $log) {
-    if (-not $entry.who) { continue }
-    $character = $characters | Where-Object { Test-SaveName $entry.who $_ } | Select-Object -First 1
-    if (-not $character) { continue }
-    $relative = "assets/shots/$($character.id)/$($entry.takenAt.Replace(':', '').Replace('T', '-')).jpg"
-    $target = Join-Path $repo $relative
-    if ($entry.file -eq $relative -and (Test-Path $target)) { continue }
+  $renamed = 0
+  $archiveDir = Join-Path $shotDir "AIExport"
+  foreach ($entry in @($log | Sort-Object takenAt)) {
+    if (-not $entry.who -or -not $entry.takenAt) { continue }
     $source = Join-Path $shotDir $entry.source
-    if (-not (Test-Path $source)) { continue }
-    Save-SmallJpeg $source $target 1280
-    $entry.file = $relative
-    $published++
+    $base = Get-ShotBaseName $entry
+    $name = $base
+    $n = 2
+    while ($taken.ContainsKey($name) -and -not [object]::ReferenceEquals($taken[$name], $entry)) {
+      $name = "$base-$n"
+      $n++
+    }
+    $taken[$name] = $entry
+
+    $character = $characters | Where-Object { Test-SaveName $entry.who $_ } | Select-Object -First 1
+    if ($character) {
+      $relative = "assets/shots/$($character.id)/$name.jpg"
+      $target = Join-Path $repo $relative
+      if (-not ($entry.file -eq $relative -and (Test-Path $target))) {
+        $old = if ($entry.file) { Join-Path $repo $entry.file } else { $null }
+        $moved = $old -and (Test-Path $old)
+        if (Set-ShotCopy $old $target $source { param($s, $t) Save-SmallJpeg $s $t 1280 }) {
+          $entry.file = $relative
+          if ($moved) { $renamed++ } else { $published++ }
+        }
+      }
+    }
+
+    $archiveName = "AIExport/$name$([System.IO.Path]::GetExtension($entry.source).ToLowerInvariant())"
+    $archiveTarget = Join-Path $shotDir $archiveName
+    if ($entry.archive -eq $archiveName -and (Test-Path $archiveTarget)) { continue }
+    $old = if ($entry.archive) { Join-Path $shotDir $entry.archive } else { $null }
+    $copied = Set-ShotCopy $old $archiveTarget $source {
+      param($s, $t)
+      New-Item -ItemType Directory -Force -Path (Split-Path -Parent $t) | Out-Null
+      Copy-Item -LiteralPath $s -Destination $t -Force
+    }
+    if ($copied) {
+      $entry.archive = $archiveName
+      $renamed++
+    }
   }
 
   $log = @($log | Sort-Object takenAt)
-  if ($added -or $named -or $published) {
+  if ($added -or $named -or $captioned -or $published -or $renamed) {
     $json = ConvertTo-Json -InputObject $log -Depth 4
     [System.IO.File]::WriteAllText($logPath, $json + "`n", (New-Object System.Text.UTF8Encoding $false))
   }
   if ($added) { Write-Output "Found $added new screenshots" }
   if ($named) { Write-Output "Named $named screenshots from AIExport biography events" }
+  if ($captioned) { Write-Output "Captioned $captioned screenshots from Screenshotter reasons" }
   if ($published) { Write-Output "Published $published screenshots to assets/shots" }
+  if ($renamed) { Write-Output "Named $renamed files (assets/shots and Screenshots\AIExport)" }
   $unknown = @($log | Where-Object { -not $_.who })
   if ($unknown.Count) {
     Write-Output "Screenshots with no character yet ($($unknown.Count)): $(($unknown | ForEach-Object { $_.source }) -join ', ')"

@@ -72,7 +72,7 @@ AIExport's Biography lives in `biography/<id>.json`, one file per roster charact
 }
 ```
 
-`kind` is one of `login`, `level`, `death`, `zone`, `quest`, `achievement`, or `profession`.
+`kind` is one of `login`, `level`, `death`, `zone`, `quest`, `achievement`, `boss`, `profession`, or `screenshot`. Screenshots taken by AIExport's Screenshotter also carry `reason`, such as `"Reached level 12"`.
 
 Screenshots live in `screenshots.json`, one entry per file in the game's `Screenshots` folder:
 
@@ -82,8 +82,9 @@ Screenshots live in `screenshots.json`, one entry per file in the game's `Screen
   "takenAt": "2026-09-24T18:49:11",
   "who": "Flann Anvilhew",
   "caption": "Father Gavin offers Rime's Wrath.",
-  "file": "assets/shots/flann/2026-09-24-184911.jpg"
+  "file": "assets/shots/flann/2026-09-24_1849_Flann-Anvilhew_father-gavin-offers-rime-s-wrath.jpg",
+  "archive": "AIExport/2026-09-24_1849_Flann-Anvilhew_father-gavin-offers-rime-s-wrath.jpg"
 }
 ```
 
-The scan fills `source` and `takenAt`. Set `who` and `caption` by hand or through the nightly skill. The scan fills `file` once `who` matches a roster character.
+The scan fills `source` and `takenAt`. It fills `who` from a matching Biography screenshot event, and `caption` from that event's `reason`. Set anything still empty by hand or through the nightly skill. Once `who` is known, the scan names the copies `YYYY-MM-DD_HHMM_Character-Name_reason`, with the reason taken from `caption`. `file` is the 1280px site copy, written when `who` matches a roster character. `archive` is a full-size copy under the game's `Screenshots` folder. The game's original `source` file is never renamed.

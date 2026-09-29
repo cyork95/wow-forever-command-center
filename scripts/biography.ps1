@@ -20,7 +20,7 @@ function Convert-BiographyEvent($entry) {
     kind = LV $entry "kind"
     text = [string]$text
   }
-  foreach ($key in @("zone", "level", "questID", "achievementID", "profession", "fromRank", "rank")) {
+  foreach ($key in @("zone", "level", "questID", "achievementID", "profession", "fromRank", "rank", "reason")) {
     $value = LV $entry $key
     if ($null -ne $value) { $row[$key] = $value }
   }

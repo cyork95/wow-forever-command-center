@@ -548,6 +548,18 @@ local function RecordScreenshot()
         place = string.format("%s, %s", subzone, zone)
     end
 
+    local screenshotter = ns.Data and ns.Data.Screenshotter
+    local reason = screenshotter and screenshotter:ConsumeReason()
+
+    if reason then
+        Biography:Record(
+            Biography.KIND.SCREENSHOT,
+            string.format("Screenshot: %s, in %s", reason, place),
+            { reason = reason }
+        )
+        return
+    end
+
     Biography:Record(
         Biography.KIND.SCREENSHOT,
         string.format("Screenshot saved in %s", place)

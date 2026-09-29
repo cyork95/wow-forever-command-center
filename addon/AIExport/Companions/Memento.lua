@@ -90,6 +90,10 @@ ns.Companions:Register({
     title = "Memento",
     addons = { "Memento" },
     adds = "Boss kills Memento recorded. Its screenshots also appear in your Biography.",
+    IsBuiltIn = function()
+        local shots = ns.Data and ns.Data.Screenshotter
+        return shots ~= nil and shots:IsActive()
+    end,
     Collect = function(_, H)
         local kills = Memento_DataBossKill
 
