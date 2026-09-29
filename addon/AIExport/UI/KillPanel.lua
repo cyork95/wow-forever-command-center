@@ -39,6 +39,33 @@ function KillPanel:IsLocked()
     return settings ~= nil and settings.locked == true
 end
 
+function KillPanel:GetOpacity()
+    local settings = GetSettings()
+    local value = settings and tonumber(settings.opacity)
+
+    if not value then
+        return C.KILLS_PANEL_DEFAULT_OPACITY
+    end
+
+    return math.max(0, math.min(100, value))
+end
+
+function KillPanel:SetOpacity(percent)
+    local settings = GetSettings()
+
+    if settings then
+        settings.opacity = math.max(0, math.min(100, math.floor((tonumber(percent) or 0) + 0.5)))
+    end
+
+    self:ApplyOpacity()
+end
+
+function KillPanel:ApplyOpacity()
+    if self.frame then
+        ns.Theme.SetBackdropAlpha(self.frame, "panel", "border", self:GetOpacity() / 100)
+    end
+end
+
 local function SavePosition(frame)
     local settings = GetSettings()
 
@@ -138,6 +165,7 @@ local function EnsureFrame()
     KillPanel.lockButton = lock
     KillPanel.sessionText = sessionText
     KillPanel.listText = listText
+    KillPanel:ApplyOpacity()
 
     return frame
 end

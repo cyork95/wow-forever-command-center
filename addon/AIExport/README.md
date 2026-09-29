@@ -72,7 +72,7 @@ The Biography starts when AIExport is installed. It does not reconstruct earlier
 AIExport counts every creature you or your pet finish off. Creatures another player tagged first are not counted. Inside dungeons and raids the game hides which creature died, so only bosses are recorded there, in the Biography. Loot and gold you take from a corpse are added to that creature.
 
 - The **Kills** tab lists each creature with its kills, level, zone, and when you last killed one. Search by name, sort by most kills, name, or most recent, and click a creature to see its drops and gold.
-- **Show live kill panel** on the Kills tab, `/aixport panel`, or right-clicking the minimap button opens a small window with this session's kills, kills per hour, and the last 10 creatures you killed. Drag it where you want it and press **Lock**. It remembers its place.
+- **Show live kill panel** on the Kills tab, `/aixport panel`, or right-clicking the minimap button opens a small window with this session's kills, kills per hour, and the last 10 creatures you killed. Drag it where you want it and press **Lock**. It remembers its place. The **Panel background** slider on the Kills tab sets its background from fully clear (0%) to solid (100%).
 - Creature tooltips show "Killed 12 times". Untick **Kill count on creature tooltips** on the Kills tab to turn that off.
 - The **Kills** export section lists total kills, kills by creature type, your top 25 creatures, items seen dropping, and gold looted.
 

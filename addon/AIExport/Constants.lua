@@ -177,6 +177,7 @@ C.DEFAULT_SELECTIONS = {
 
 C.KILLS_EXPORT_TOP = 25
 C.KILLS_EXPORT_DROPS = 60
+C.KILLS_PANEL_DEFAULT_OPACITY = 96
 
 C.TEXT = {
     BANK_UNAVAILABLE = "[Bank data unavailable.]",
@@ -249,6 +250,8 @@ C.TEXT = {
     KILLS_PANEL_EMPTY = "Nothing killed this session yet.",
     KILLS_PANEL_LOCK = "Lock",
     KILLS_PANEL_UNLOCK = "Unlock",
+    KILLS_PANEL_OPACITY = "Panel background",
+    KILLS_PANEL_OPACITY_VALUE = "%d%%",
     KILLDEX_BUILT_IN = "Built into AIExport",
     MINIMAP_LEFT_CLICK = "Left-click to open the export window.",
     MINIMAP_RIGHT_CLICK = "Right-click to show or hide the kill panel.",

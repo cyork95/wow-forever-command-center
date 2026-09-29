@@ -98,6 +98,23 @@ function Theme.SetBackgroundColor(frame, background)
     end
 end
 
+function Theme.SetBackdropAlpha(frame, background, border, alpha)
+    if not frame then
+        return
+    end
+
+    local r, g, b = Theme.Color(background or "panel")
+
+    if type(frame.SetBackdropColor) == "function" then
+        frame:SetBackdropColor(r, g, b, alpha)
+
+        local br, bg, bb = Theme.Color(border or "border")
+        frame:SetBackdropBorderColor(br, bg, bb, alpha)
+    elseif frame.aiexportBackground then
+        frame.aiexportBackground:SetVertexColor(r, g, b, alpha)
+    end
+end
+
 function Theme.CreatePanel(parent, background, border, name)
     local frame = CreateFrame("Frame", name, parent, BACKDROP_TEMPLATE)
     Theme.ApplyBackdrop(frame, background, border)
@@ -343,6 +360,37 @@ function Theme.CreateCheckbox(parent, label, onClick)
     end
 
     return checkbox
+end
+
+function Theme.CreateSlider(parent, width, minValue, maxValue, step, onChange)
+    local slider = CreateFrame("Slider", nil, parent, BACKDROP_TEMPLATE)
+    slider:SetSize(width or 120, 10)
+    slider:SetOrientation("HORIZONTAL")
+    slider:SetMinMaxValues(minValue, maxValue)
+    slider:SetValueStep(step or 1)
+    slider:EnableMouse(true)
+    Theme.ApplyBackdrop(slider, "dark", "border")
+
+    if type(slider.SetObeyStepOnDrag) == "function" then
+        slider:SetObeyStepOnDrag(true)
+    end
+
+    local thumb = slider:CreateTexture(nil, "ARTWORK")
+    thumb:SetTexture(FLAT)
+    thumb:SetSize(8, 14)
+    thumb:SetVertexColor(Theme.Color("accent"))
+    slider:SetThumbTexture(thumb)
+
+    slider:SetScript("OnEnter", function(self) Theme.SetBorderColor(self, "accent") end)
+    slider:SetScript("OnLeave", function(self) Theme.SetBorderColor(self, "border") end)
+
+    if onChange then
+        slider:SetScript("OnValueChanged", function(self, value)
+            onChange(self, math.floor((tonumber(value) or 0) + 0.5))
+        end)
+    end
+
+    return slider
 end
 
 function Theme.CreateTab(parent, label, onClick)

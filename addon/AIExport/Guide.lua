@@ -116,7 +116,9 @@ recent, and click a creature to see its drops and gold. The tab also has
 two options:
 - Show live kill panel: a small window with this session's kills, kills
   per hour, and the last 10 creatures you killed. Drag it anywhere, then
-  press Lock to keep it in place. It remembers where you left it.
+  press Lock to keep it in place. It remembers where you left it. Drag
+  the Panel background slider below to make its background anywhere from
+  fully clear (0%) to solid (100%).
 - Kill count on creature tooltips: adds "Killed 12 times" when you point
   at a creature you have killed before.
 

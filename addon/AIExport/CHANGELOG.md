@@ -4,7 +4,7 @@
 
 - AIExport now tracks kills itself. It counts every creature you or your pet finish off, skips creatures another player tagged first, and adds the loot and gold you take to that creature. Dungeon and raid trash is not counted, because the game hides it there.
 - New **Kills** tab with search, sorting by most kills, name, or most recent, and each creature's drops and gold. Open it with `/aixport kills`.
-- New live kill panel with this session's kills, kills per hour, and the last 10 creatures killed. Turn it on from the Kills tab, with `/aixport panel`, or by right-clicking the minimap button. It can be moved and locked, and remembers where it was.
+- New live kill panel with this session's kills, kills per hour, and the last 10 creatures killed. Turn it on from the Kills tab, with `/aixport panel`, or by right-clicking the minimap button. It can be moved and locked, and remembers where it was. A **Panel background** slider on the Kills tab sets how see-through its background is, from clear to solid.
 - Creature tooltips show "Killed 12 times". The Kills tab has a switch to turn that off.
 - New **Kills** export section in the Progress card: total kills, kills by creature type, your top 25 creatures, items seen dropping, and gold looted.
 - Your KillDex history is copied in once, so earlier kills carry over. Once AIExport has kills of its own, the Companions tab shows KillDex as "Built into AIExport" and leaves its block out of the export.
