@@ -2,7 +2,7 @@
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport. The **Screenshotter** takes screenshots at big moments, like Memento.
+Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Screenshotter** takes screenshots at big moments, like Memento.
 
 AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself. If you use some popular addons, AIExport can also add what they know; see [Companions](#companions).
 
@@ -19,21 +19,23 @@ AIExport needs no other addon. Everything in the report comes from the game and 
 | `/aixport` | Open the AIExport window |
 | `/aixport bio` | Open the Biography tab |
 | `/aixport kills` | Open the Kills tab |
-| `/aixport panel` | Show or hide the live kill panel |
+| `/aixport session` | Open the Session tab |
+| `/aixport panel` | Show or hide the live session panel |
 | `/aixport shots` | Open the Screenshotter tab |
 | `/aixport shot` | Take a screenshot now |
 | `/aixport companions` | Open the Companions tab |
 | `/aixport help` | Open the guide and the example AI skill |
 
-Left-click the minimap button to open the window. Right-click it to show or hide the live kill panel.
+Left-click the minimap button to open the window. Right-click it to show or hide the live session panel.
 
 ## The window
 
-The window has six tabs down the left side:
+The window has seven tabs down the left side:
 
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
 - **Biography**: your timeline, 40 lines per page.
 - **Kills**: every creature you have killed, with search, sorting, and each creature's drops and gold.
+- **Session**: the session timer, this session's kills, gathering, gold, and XP, and the live session panel options.
 - **Screenshotter**: automatic screenshots at big moments, with a switch for each moment.
 - **Companions**: the optional addons AIExport can read, each with its status and an on/off switch.
 - **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
@@ -75,13 +77,28 @@ The Biography starts when AIExport is installed. It does not reconstruct earlier
 AIExport counts every creature you or your pet finish off. Creatures another player tagged first are not counted. Inside dungeons and raids the game hides which creature died, so only bosses are recorded there, in the Biography. Loot and gold you take from a corpse are added to that creature.
 
 - The **Kills** tab lists each creature with its kills, level, zone, and when you last killed one. Search by name, sort by most kills, name, or most recent, and click a creature to see its drops and gold.
-- **Show live kill panel** on the Kills tab, `/aixport panel`, or right-clicking the minimap button opens a small window with this session's kills, kills per hour, and the last 10 creatures you killed. Drag it where you want it and press **Lock**. It remembers its place. The **Panel background** slider on the Kills tab sets its background from fully clear (0%) to solid (100%).
 - Creature tooltips show "Killed 12 times". Untick **Kill count on creature tooltips** on the Kills tab to turn that off.
 - The **Kills** export section lists total kills, kills by creature type, your top 25 creatures, items seen dropping, and gold looted.
 
 The **Statistics** export section, also in the Progress card and on by default, copies the Statistics tab of the Achievements window: every statistic that has a value, such as deaths, gold acquired, and quests completed, grouped by category. Statistics with no value yet are left out.
 
 If KillDex was installed, AIExport copies its kill history once, the first time it loads, so earlier kills carry over. After that KillDex is no longer needed.
+
+## Session
+
+The **Session** tab times one stretch of play, so Gathering is no longer needed. The timer starts by itself with your first kill, loot, gold, or XP, and tracks:
+
+- Kills, and kills per hour
+- Items gathered: herbs, ore and stone, leather, cloth, cooking and fish, elemental, enchanting, and jewelcrafting materials, reagents, holiday items, and consumables. Untick a type under **Count as gathered** to stop counting it. Quest items are off at first.
+- Gold gained or spent, and XP, each with an hourly rate, plus the time to your next level at this pace
+
+**Pause** stops the clock and **Start** goes on. **Reset** ends the session, saves it in your last 20 sessions, and starts a new one. Money from the mailbox or guild bank is not counted as earned. A `/reload` keeps the session going; after more than 10 minutes logged out, the old session is saved and a new one starts.
+
+**Show the session panel**, `/aixport panel`, or right-clicking the minimap button opens a small window with the timer, kills, gathering, gold, XP, and your last creatures. Pick which lines it shows, drag it where you want it, and press **Lock**. The **Panel background** slider sets its background from fully clear (0%) to solid (100%). Left-click the panel title to pause or start, right-click it to reset, and point at it to see every item gathered with its hourly rate.
+
+The **Sessions** export section, in the Story card and on by default, has the current session with hourly rates, everything you have ever gathered grouped by type, and your last 10 sessions. **Detailed export** adds item IDs and lists every item and saved session.
+
+Gathering's own totals are account-wide, so they are not copied in. AIExport counts gathering per character from the day you update.
 
 ## Screenshotter
 

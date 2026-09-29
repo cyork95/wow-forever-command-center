@@ -57,6 +57,15 @@ local function InitializeDatabase()
         screenshotter.FillDefaults(ns.state.db.screenshotter)
     end
 
+    ns.state.db.session =
+        ns.state.db.session or {}
+
+    local session = ns.Data and ns.Data.Session
+
+    if session then
+        session.FillDefaults(ns.state.db.session)
+    end
+
     ns.state.bankOpen = false
     ns.state.tradeSkillOpen = false
 

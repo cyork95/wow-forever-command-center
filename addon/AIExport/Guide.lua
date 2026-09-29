@@ -27,10 +27,11 @@ yet, or saved more than a week ago, and marks those sections with "!". Until
 then, AIExport uses Syndicator's bank copy and Profession Master's recipes if
 those addons are loaded.
 
-The window has six tabs:
+The window has seven tabs:
 - Export: the sections, grouped into cards, and the Create Export button
 - Biography: your timeline, 40 lines per page
 - Kills: every creature you have killed, with drops and gold
+- Session: a timer with this session's kills, gathering, gold, and XP
 - Screenshotter: automatic screenshots at big moments, like Memento
 - Companions: the optional addons AIExport can read, each with its own switch
 - Help: this guide and the options
@@ -41,13 +42,14 @@ The window has six tabs:
 /aixport             Open the AIExport window
 /aixport bio         Open the Biography tab
 /aixport kills       Open the Kills tab
-/aixport panel       Show or hide the live kill panel
+/aixport session     Open the Session tab
+/aixport panel       Show or hide the live session panel
 /aixport shots       Open the Screenshotter tab
 /aixport shot        Take a screenshot now
 /aixport companions  Open the Companions tab
 /aixport help        Open this guide
 
-Right-click the minimap button to show or hide the live kill panel.
+Right-click the minimap button to show or hide the live session panel.
 
 
 3. What the report contains
@@ -61,6 +63,9 @@ The report starts with "Exported By: AIExport" and then one block per section:
 - Lockouts, Progress, Achievements, Appearances
 - Kills: total kills, kills by creature type, your top 25 creatures, items
   seen dropping, and gold looted
+- Sessions: this session's time, kills, gathering, gold, and XP with
+  hourly rates, everything you have ever gathered by type, and your last
+  10 sessions
 - Statistics: the numbers from the Statistics tab of the Achievements
   window, such as deaths, gold acquired, and quests completed. Only
   statistics with a value are listed, grouped by category.
@@ -120,22 +125,47 @@ from.
 
 The Kills tab lists every creature with its kills, level, zone, and when
 you last killed one. Search by name, sort by most kills, name, or most
-recent, and click a creature to see its drops and gold. The tab also has
-two options:
-- Show live kill panel: a small window with this session's kills, kills
-  per hour, and the last 10 creatures you killed. Drag it anywhere, then
-  press Lock to keep it in place. It remembers where you left it. Drag
-  the Panel background slider below to make its background anywhere from
-  fully clear (0%) to solid (100%).
-- Kill count on creature tooltips: adds "Killed 12 times" when you point
-  at a creature you have killed before.
+recent, and click a creature to see its drops and gold. Tick "Kill count
+on creature tooltips" to add "Killed 12 times" when you point at a
+creature you have killed before. The live panel is on the Session tab.
 
 If KillDex was installed, AIExport copies its kill history once, the
 first time it loads, so your earlier kills carry over. After that KillDex
 is no longer needed.
 
 
-6. Screenshotter
+6. Session
+----------
+A session is one stretch of play. Its timer starts by itself with your
+first kill, loot, gold, or XP, so Gathering is no longer needed. It
+tracks:
+
+- Kills, and kills per hour
+- Items gathered: herbs, ore and stone, leather, cloth, cooking and fish,
+  elemental, enchanting, and jewelcrafting materials, reagents, holiday
+  items, and consumables. Untick a type under "Count as gathered" to stop
+  counting it. Quest items are off at first.
+- Gold gained or spent, and XP, each with an hourly rate
+- How long until your next level at this pace
+
+Press Pause to stop the clock and Start to go on. Press Reset to end the
+session: it is saved in your last 20 sessions and a new one begins.
+Money from the mailbox or guild bank is not counted as earned. A /reload
+keeps the session going. If you log out for more than 10 minutes, the old
+session is saved and a new one starts next time.
+
+Tick "Show the session panel" for a small window with the timer, kills,
+gathering, gold, XP, and your last creatures. Choose which lines it shows,
+drag it anywhere, and press Lock to keep it in place. The Panel background
+slider sets its background from fully clear (0%) to solid (100%).
+Left-click the panel title to pause or start, and right-click it to reset.
+Point at the title to see every item gathered with its hourly rate.
+
+Everything you gather is also kept for good, by item. The Sessions section
+of an export lists those totals and your last 10 sessions.
+
+
+7. Screenshotter
 ----------------
 The Screenshotter takes a screenshot for you at big moments, so Memento is
 no longer needed. Tick "Take screenshots automatically" to turn it on or
@@ -170,7 +200,7 @@ the game's usual names. Each one is noted in the Biography with the reason,
 so a website or tool that reads the Biography can name and caption them.
 
 
-7. Companions
+8. Companions
 -------------
 AIExport never needs another addon. When one of these is loaded, AIExport can
 read what it has saved for this character and add it to the Companions
@@ -199,7 +229,7 @@ If a companion addon changes how it saves data, its block says it could not
 be read instead of breaking the export.
 
 
-8. Tips for the AI chat
+9. Tips for the AI chat
 -----------------------
 - Paste one character per message. Each report has one "Character:" line.
 - Tell the assistant what you want first: a leveling plan, a gear check,
@@ -209,8 +239,8 @@ be read instead of breaking the export.
   where you are comfortable sharing that.
 
 
-9. Example AI skill
--------------------
+10. Example AI skill
+--------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named
 aiexport, for example .cursor/skills/aiexport/SKILL.md in your project, or
@@ -254,6 +284,9 @@ file exists. Keep older files; they are the history.
   levels gained, deaths, new zones, quests turned in, profession gains.
 - "Kills:" lists total kills, kills by creature type, the most-killed
   creatures, and items seen dropping.
+- "Sessions:" starts with "This session:", the current play session with
+  hourly rates. "== Gathered ==" lists lifetime gathering by type, and
+  "== Recent sessions ==" has one dated line per past session.
 - "Statistics:" holds the game's own lifetime counters, one "== Category =="
   block each. A statistic that is not listed has no value yet.
 - "Companions:" holds optional blocks such as "== Syndicator ==". They

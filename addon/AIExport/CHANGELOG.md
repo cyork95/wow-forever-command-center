@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.7.0
+
+- New **Session** tab, which replaces Gathering. A timer starts by itself with your first kill, loot, gold, or XP and tracks kills, items gathered by type, gold, and XP, each per hour, plus the time to your next level. **Pause**, **Start**, and **Reset** control it, and Reset saves the session in your last 20. Open it with `/aixport session`.
+- Gathering counts herbs, ore and stone, leather, cloth, cooking and fish, elemental, enchanting, and jewelcrafting materials, reagents, holiday items, and consumables. Each type has a switch under **Count as gathered**; quest items are off at first. Mailbox and guild bank items and money are not counted.
+- The live kill panel is now the session panel. It shows the timer, kills, gathering, gold, XP, and your last creatures, with a switch for each line. Left-click its title to pause or start, right-click to reset, and point at it for every item gathered with its hourly rate. Its options moved from the Kills tab to the Session tab.
+- A `/reload` keeps the session going. After more than 10 minutes logged out, the old session is saved and a new one starts.
+- New **Sessions** export section in the Story card, on by default: the current session with hourly rates, lifetime gathering by type, and your last 10 sessions.
+- The tabs are in a new order: Export, Biography, Kills, Session, Screenshotter, Companions, Help.
+- The game needs a full restart after updating, because new files were added.
+
 ## 1.6.0
 
 - New **Screenshotter** tab, which replaces Memento. It takes a screenshot on level-ups, deaths, achievements, dungeon and raid boss kills, the end of battlegrounds and arenas, finished duels, and new mounts, pets, toys, and recipes. Login and timed screenshots (every 5 to 60 minutes) are there too, off at first. Each moment has its own switch, and **Take screenshots automatically** turns it all off or on.

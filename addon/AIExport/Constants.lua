@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.6.0"
+C.VERSION = "1.7.0"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -33,6 +33,7 @@ C.SECTIONS = {
     SPELLBOOK = "spellbook",
     BIOGRAPHY = "biography",
     KILLS = "kills",
+    SESSIONS = "sessions",
     STATISTICS = "statistics",
     COMPANIONS = "companions",
     ADDONS = "addons",
@@ -49,6 +50,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.LOCKOUTS,
     C.SECTIONS.PROGRESS,
     C.SECTIONS.KILLS,
+    C.SECTIONS.SESSIONS,
     C.SECTIONS.STATISTICS,
     C.SECTIONS.ACHIEVEMENTS,
     C.SECTIONS.COMPLETED_ACHIEVEMENTS,
@@ -89,6 +91,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.SPELLBOOK] = "Spellbook",
     [C.SECTIONS.BIOGRAPHY] = "Biography",
     [C.SECTIONS.KILLS] = "Kills",
+    [C.SECTIONS.SESSIONS] = "Sessions",
     [C.SECTIONS.STATISTICS] = "Statistics",
     [C.SECTIONS.COMPANIONS] = "Companions",
     [C.SECTIONS.ADDONS] = "AddOns",
@@ -141,6 +144,7 @@ C.SECTION_GROUPS = {
         title = "Story",
         sections = {
             C.SECTIONS.BIOGRAPHY,
+            C.SECTIONS.SESSIONS,
         },
     },
     {
@@ -175,6 +179,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.SPELLBOOK] = true,
     [C.SECTIONS.BIOGRAPHY] = true,
     [C.SECTIONS.KILLS] = true,
+    [C.SECTIONS.SESSIONS] = true,
     [C.SECTIONS.STATISTICS] = true,
     [C.SECTIONS.COMPANIONS] = true,
     [C.SECTIONS.ADDONS] = true,
@@ -183,6 +188,34 @@ C.DEFAULT_SELECTIONS = {
 C.KILLS_EXPORT_TOP = 25
 C.KILLS_EXPORT_DROPS = 60
 C.KILLS_PANEL_DEFAULT_OPACITY = 96
+
+C.SESSION_CATEGORY_LABELS = {
+    herb = "Herb",
+    ore = "Ore and stone",
+    leather = "Leather",
+    cloth = "Cloth",
+    cooking = "Cooking and fish",
+    elemental = "Elemental",
+    enchanting = "Enchanting",
+    jewelcrafting = "Jewelcrafting",
+    reagent = "Reagent",
+    holiday = "Holiday",
+    consumable = "Consumable",
+    quest = "Quest item",
+}
+
+C.SESSION_PANEL_LINES = { "kills", "gathered", "gold", "xp", "recent" }
+
+C.SESSION_PANEL_LINE_LABELS = {
+    kills = "Kills",
+    gathered = "Gathered",
+    gold = "Gold",
+    xp = "XP and time to level",
+    recent = "Recent creatures",
+}
+
+C.SESSION_EXPORT_ITEMS = 10
+C.SESSION_EXPORT_HISTORY = 10
 
 C.SHOTS_INTERVAL_MIN = 5
 C.SHOTS_INTERVAL_MAX = 60
@@ -290,8 +323,31 @@ C.TEXT = {
     KILLS_SORT_RECENT = "Recent",
     KILLS_DETAIL_EMPTY = "Click a creature to see its drops.",
     KILLS_NO_DROPS = "No drops recorded.",
-    KILLS_SHOW_PANEL = "Show live kill panel",
+    KILLS_SHOW_PANEL = "Show the session panel",
+    KILLS_PANEL_MOVED = "Session panel options are on the Session tab.",
     KILLS_SHOW_TOOLTIP = "Kill count on creature tooltips",
+    SESSION_PANEL_TITLE = "Session",
+    SESSION_PAUSED = "Paused",
+    SESSION_IDLE = "starts with your first kill or loot",
+    SESSION_LINE_KILLS = "Kills %s (%s/hr)",
+    SESSION_LINE_GATHERED = "Gathered %s (%s/hr)",
+    SESSION_LINE_GOLD = "Gold %s (%s/hr)",
+    SESSION_LINE_XP = "XP %s (%s/hr)",
+    SESSION_LINE_LEVEL = ", level in %s",
+    SESSION_TOOLTIP_TITLE = "Gathered this session",
+    SESSION_TOOLTIP_EMPTY = "Nothing gathered yet.",
+    SESSION_TOOLTIP_ITEM = "%s (%s/hr)",
+    SESSION_TOOLTIP_HELP = "Click the title to pause or resume the timer. Right-click it to reset the session.",
+    TAB_SESSION = "Session",
+    SESSION_PAUSE = "Pause",
+    SESSION_RESUME = "Start",
+    SESSION_RESET = "Reset",
+    SESSION_THIS_SESSION = "This session",
+    SESSION_PANEL_CARD = "Session panel",
+    SESSION_CATEGORIES = "Count as gathered",
+    SESSION_TIME_TO_LEVEL = "Next level in %s",
+    SESSION_LEVELS = "Levels gained: %d",
+    SESSION_RESET_CONFIRM = "Reset this session? It is saved to your session history first.",
     KILLS_PANEL_TITLE = "Kills",
     KILLS_PANEL_SESSION = "Session: %s kills, %s per hour",
     KILLS_PANEL_EMPTY = "Nothing killed this session yet.",
@@ -316,10 +372,12 @@ C.TEXT = {
     SHOTS_REASON_ACHIEVEMENT = "Earned %s",
     SHOTS_REASON_BOSS = "Defeated %s",
     SHOTS_REASON_INTERVAL = "Timed screenshot (every %d minutes)",
+    SESSIONS_EMPTY = "No sessions recorded yet.",
+    SESSIONS_IDLE = "This session: nothing yet.",
     STATISTICS_UNAVAILABLE = "Statistics are not available on this client.",
     STATISTICS_EMPTY = "No statistics recorded yet.",
     MINIMAP_LEFT_CLICK = "Left-click to open the export window.",
-    MINIMAP_RIGHT_CLICK = "Right-click to show or hide the kill panel.",
+    MINIMAP_RIGHT_CLICK = "Right-click to show or hide the session panel.",
 }
 
 C.CHARACTERS_PER_TOKEN = 4

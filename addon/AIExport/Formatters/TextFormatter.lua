@@ -8319,6 +8319,143 @@ function TextFormatter:AddKills(lines, data)
     AddBlankLine(lines)
 end
 
+-- 1h 23m, 45 kills (32/hr), 120 gathered (85/hr), gold +1g 20s 0c, 12,345 XP (9,000/hr)
+local function SessionLine(S, entry, rates)
+    local parts = { S.FormatDuration(entry.seconds) }
+
+    if entry.zone then
+        table.insert(parts, entry.zone)
+    end
+
+    local counts = {}
+
+    local function Add(value, word, rate, format)
+        if (value or 0) ~= 0 then
+            local text = (format or S.FormatCount)(value) .. " " .. word
+
+            if rates and rate then
+                text = text .. " (" .. (format or S.FormatCount)(rate) .. "/hr)"
+            end
+
+            table.insert(counts, text)
+        end
+    end
+
+    Add(entry.kills, "kills", entry.killsPerHour)
+    Add(entry.gathered, "gathered", entry.gatheredPerHour)
+
+    if (entry.gold or 0) ~= 0 then
+        local text = "gold " .. S.FormatGold(entry.gold)
+
+        if rates and entry.goldPerHour then
+            text = text .. " (" .. S.FormatGold(entry.goldPerHour) .. "/hr)"
+        end
+
+        table.insert(counts, text)
+    end
+
+    Add(entry.xp, "XP", entry.xpPerHour)
+
+    if (entry.levels or 0) > 0 then
+        table.insert(counts, entry.levels == 1 and "1 level" or (entry.levels .. " levels"))
+    end
+
+    return table.concat(parts, ", ") .. (#counts > 0 and (": " .. table.concat(counts, ", ")) or "")
+end
+
+-- Session lines start with "This session", a category, or a date, never with
+-- the "Character:", "Level:", or "Gold:" labels the nightly scan reads.
+function TextFormatter:AddSessions(lines, data)
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.SESSIONS])
+
+    local S = ns.Data and ns.Data.Session
+    local lifetime = data.lifetime or { total = 0, items = {}, byType = {} }
+    local history = data.history or {}
+
+    if not S or (not data.active and (lifetime.total or 0) == 0 and #history == 0) then
+        AddLine(lines, C.TEXT.SESSIONS_EMPTY)
+        AddBlankLine(lines)
+        return
+    end
+
+    local detailed = IsDetailedExport()
+    local summary = data.summary
+
+    if data.active and summary then
+        local text = "This session: " .. SessionLine(S, summary, true)
+
+        if summary.timeToLevel then
+            text = text .. ", next level in " .. S.FormatDuration(summary.timeToLevel)
+        end
+
+        AddLine(lines, text)
+    else
+        AddLine(lines, C.TEXT.SESSIONS_IDLE)
+    end
+
+    if (lifetime.total or 0) > 0 then
+        AddSubHeader(lines, "Gathered")
+
+        local byType = {}
+
+        for _, item in ipairs(lifetime.items) do
+            local key = item.type or "other"
+            byType[key] = byType[key] or {}
+            table.insert(byType[key], item)
+        end
+
+        local order = {}
+
+        for key, count in pairs(lifetime.byType) do
+            table.insert(order, { key = key, count = count })
+        end
+
+        table.sort(order, function(a, b)
+            if a.count ~= b.count then
+                return a.count > b.count
+            end
+
+            return a.key < b.key
+        end)
+
+        for _, group in ipairs(order) do
+            local label = C.SESSION_CATEGORY_LABELS[group.key] or group.key
+            local parts = {}
+
+            for index, item in ipairs(byType[group.key] or {}) do
+                if detailed then
+                    table.insert(parts, string.format("%s %s (ID %d)", item.name or "Unknown item", S.FormatCount(item.count), item.id))
+                elseif index <= C.SESSION_EXPORT_ITEMS then
+                    table.insert(parts, (item.name or "Unknown item") .. " " .. S.FormatCount(item.count))
+                end
+            end
+
+            local hidden = #(byType[group.key] or {}) - #parts
+
+            if hidden > 0 then
+                table.insert(parts, string.format("and %d more", hidden))
+            end
+
+            AddLine(lines, string.format("%s %s: %s", label, S.FormatCount(group.count), table.concat(parts, ", ")))
+        end
+    end
+
+    if #history > 0 then
+        AddSubHeader(lines, "Recent sessions")
+
+        for index, entry in ipairs(history) do
+            if not detailed and index > C.SESSION_EXPORT_HISTORY then
+                break
+            end
+
+            local when = type(date) == "function" and date("%Y-%m-%d %H:%M", tonumber(entry.start) or 0) or tostring(entry.start)
+            AddLine(lines, when .. ", " .. SessionLine(S, entry, false))
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
 -- Category names such as "Character" go in "== ... ==" subheaders and stat
 -- lines are indented, so no line can pass for the "Character:", "Level:", or
 -- "Gold:" lines the nightly scan reads.
@@ -9658,6 +9795,15 @@ function TextFormatter:Build(
                 self:AddKills(
                     lines,
                     exportData.kills
+                    or {}
+                )
+            end,
+
+        [C.SECTIONS.SESSIONS] =
+            function()
+                self:AddSessions(
+                    lines,
+                    exportData.sessions
                     or {}
                 )
             end,

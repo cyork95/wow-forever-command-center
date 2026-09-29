@@ -784,6 +784,9 @@ local function GetCollector(
         [C.SECTIONS.KILLS] =
             data.Kills,
 
+        [C.SECTIONS.SESSIONS] =
+            data.Session,
+
         [C.SECTIONS.STATISTICS] =
             data.Statistics,
 
@@ -1975,6 +1978,10 @@ function Commands:OpenKills()
     self:OpenTab("kills")
 end
 
+function Commands:OpenSession()
+    self:OpenTab("session")
+end
+
 function Commands:OpenScreenshotter()
     self:OpenTab("screenshots")
 end
@@ -2000,7 +2007,7 @@ function Commands:ToggleKillPanel()
     local panel = ns.UI and ns.UI.KillPanel
 
     if not panel then
-        EmitDiagnostic("ERROR: Kill panel unavailable.", true)
+        EmitDiagnostic("ERROR: Session panel unavailable.", true)
         return
     end
 
@@ -2009,7 +2016,7 @@ function Commands:ToggleKillPanel()
     end, ErrorHandler)
 
     if not success then
-        EmitDiagnostic("ERROR: Kill panel - " .. FirstLine(errorMessage), true)
+        EmitDiagnostic("ERROR: Session panel - " .. FirstLine(errorMessage), true)
     end
 end
 
@@ -2044,6 +2051,10 @@ SlashCmdList[
         elseif argument == "kills"
         then
             Commands:OpenKills()
+        elseif argument == "session"
+            or argument == "sessions"
+        then
+            Commands:OpenSession()
         elseif argument == "panel"
         then
             Commands:ToggleKillPanel()

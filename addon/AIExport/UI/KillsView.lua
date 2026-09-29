@@ -287,16 +287,7 @@ function KillsView:Build(parent)
 
     local detail = Theme.CreateScrollText(container, "AIExportKillsDetailScrollFrame", "GameFontHighlightSmall")
     detail:SetPoint("TOPLEFT", list, "BOTTOMLEFT", 0, -20)
-    detail:SetPoint("BOTTOMRIGHT", 0, 50)
-
-    local panelToggle = Theme.CreateCheckbox(container, C.TEXT.KILLS_SHOW_PANEL, function(self)
-        local panel = ns.UI and ns.UI.KillPanel
-
-        if panel then
-            panel:SetShown(self:GetChecked() == true)
-        end
-    end)
-    panelToggle:SetPoint("BOTTOMLEFT", 0, 28)
+    detail:SetPoint("BOTTOMRIGHT", 0, 28)
 
     local tooltipToggle = Theme.CreateCheckbox(container, C.TEXT.KILLS_SHOW_TOOLTIP, function(self)
         local kills = GetKills()
@@ -305,25 +296,12 @@ function KillsView:Build(parent)
             kills:SetTooltipEnabled(self:GetChecked() == true)
         end
     end)
-    tooltipToggle:SetPoint("BOTTOMLEFT", 220, 28)
+    tooltipToggle:SetPoint("BOTTOMLEFT", 0, 6)
 
-    local opacityLabel = Theme.CreateText(container, "GameFontHighlightSmall", "text")
-    opacityLabel:SetPoint("BOTTOMLEFT", 0, 6)
-    opacityLabel:SetText(C.TEXT.KILLS_PANEL_OPACITY)
-
-    local opacityValue = Theme.CreateText(container, "GameFontHighlightSmall", "muted")
-
-    local opacitySlider = Theme.CreateSlider(container, 160, 0, 100, 5, function(_, value)
-        opacityValue:SetText(string.format(C.TEXT.KILLS_PANEL_OPACITY_VALUE, value))
-
-        local panel = ns.UI and ns.UI.KillPanel
-
-        if panel and panel:GetOpacity() ~= value then
-            panel:SetOpacity(value)
-        end
-    end)
-    opacitySlider:SetPoint("BOTTOMLEFT", 120, 7)
-    opacityValue:SetPoint("LEFT", opacitySlider, "RIGHT", 10, 0)
+    local panelNote = Theme.CreateText(container, "GameFontHighlightSmall", "muted")
+    panelNote:SetPoint("BOTTOMRIGHT", 0, 6)
+    panelNote:SetJustifyH("RIGHT")
+    panelNote:SetText(C.TEXT.KILLS_PANEL_MOVED)
 
     container:SetScript("OnShow", function()
         KillsView:Refresh()
@@ -337,10 +315,8 @@ function KillsView:Build(parent)
     self.emptyText = empty
     self.positionText = position
     self.detail = detail
-    self.panelToggle = panelToggle
     self.tooltipToggle = tooltipToggle
-    self.opacitySlider = opacitySlider
-    self.opacityValue = opacityValue
+    self.panelNote = panelNote
 
     local kills = GetKills()
 
@@ -423,15 +399,7 @@ function KillsView:Refresh()
     local selected = self.selected and kills:GetMob(self.selected)
     self.detail:SetText(KillsView.DetailText(self.selected, selected))
 
-    local panel = ns.UI and ns.UI.KillPanel
-    self.panelToggle:SetChecked(panel ~= nil and panel:IsEnabled())
     self.tooltipToggle:SetChecked(kills:IsTooltipEnabled())
-
-    if panel then
-        local opacity = panel:GetOpacity()
-        self.opacitySlider:SetValue(opacity)
-        self.opacityValue:SetText(string.format(C.TEXT.KILLS_PANEL_OPACITY_VALUE, opacity))
-    end
 end
 
 ns:RegisterModule("UI.KillsView", KillsView)

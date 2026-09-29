@@ -1,0 +1,26 @@
+---
+description: Keep the in-game addon (Dossier, formerly AIExport) limited to data about the player's own character
+alwaysApply: true
+---
+
+# Addon scope: character data only
+
+The in-game addon (Dossier, formerly AIExport) records and exports data about the player's own character. New features must fit that.
+
+In scope:
+
+- Stats, gear, bags, bank, gold, currencies, reputations, professions, recipes, talents, spells
+- Quests the character has done, achievements, statistics
+- Kills, loot, gathering, play sessions (time, gold, XP, and items per hour)
+- The Biography timeline and screenshots of the character's moments
+
+Out of scope, even when another addon does it well:
+
+- Game lore, such as the Azeroth Library lore addon
+- World or collection completion tracking, such as AllTheThings area completion
+- Market or inventory tools that are not a record of the character, such as auction scans or bag-space bars
+- Anything not about this character
+
+Companions may read another addon only for the character data it holds. The AllTheThings companion stays because deaths, quests, and time played are character data.
+
+When asked to replace an addon, keep the parts that record the character and say which parts are left out and why.
