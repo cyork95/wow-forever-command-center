@@ -784,6 +784,9 @@ local function GetCollector(
         [C.SECTIONS.KILLS] =
             data.Kills,
 
+        [C.SECTIONS.STATISTICS] =
+            data.Statistics,
+
         [C.SECTIONS.COMPANIONS] =
             ns.Companions,
     }

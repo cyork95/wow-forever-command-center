@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "1.4.0"
+C.VERSION = "1.5.0"
 C.SLASH_COMMAND = "/aixport"
 C.ADDON_TITLE = "AIExport"
 
@@ -33,6 +33,7 @@ C.SECTIONS = {
     SPELLBOOK = "spellbook",
     BIOGRAPHY = "biography",
     KILLS = "kills",
+    STATISTICS = "statistics",
     COMPANIONS = "companions",
     ADDONS = "addons",
 }
@@ -48,6 +49,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.LOCKOUTS,
     C.SECTIONS.PROGRESS,
     C.SECTIONS.KILLS,
+    C.SECTIONS.STATISTICS,
     C.SECTIONS.ACHIEVEMENTS,
     C.SECTIONS.COMPLETED_ACHIEVEMENTS,
     C.SECTIONS.COLLECTED_APPEARANCES,
@@ -87,6 +89,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.SPELLBOOK] = "Spellbook",
     [C.SECTIONS.BIOGRAPHY] = "Biography",
     [C.SECTIONS.KILLS] = "Kills",
+    [C.SECTIONS.STATISTICS] = "Statistics",
     [C.SECTIONS.COMPANIONS] = "Companions",
     [C.SECTIONS.ADDONS] = "AddOns",
 }
@@ -122,6 +125,7 @@ C.SECTION_GROUPS = {
             C.SECTIONS.COMPLETED_ACHIEVEMENTS,
             C.SECTIONS.LOCKOUTS,
             C.SECTIONS.KILLS,
+            C.SECTIONS.STATISTICS,
         },
     },
     {
@@ -171,6 +175,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.SPELLBOOK] = true,
     [C.SECTIONS.BIOGRAPHY] = true,
     [C.SECTIONS.KILLS] = true,
+    [C.SECTIONS.STATISTICS] = true,
     [C.SECTIONS.COMPANIONS] = true,
     [C.SECTIONS.ADDONS] = true,
 }
@@ -253,6 +258,8 @@ C.TEXT = {
     KILLS_PANEL_OPACITY = "Panel background",
     KILLS_PANEL_OPACITY_VALUE = "%d%%",
     KILLDEX_BUILT_IN = "Built into AIExport",
+    STATISTICS_UNAVAILABLE = "Statistics are not available on this client.",
+    STATISTICS_EMPTY = "No statistics recorded yet.",
     MINIMAP_LEFT_CLICK = "Left-click to open the export window.",
     MINIMAP_RIGHT_CLICK = "Right-click to show or hide the kill panel.",
 }

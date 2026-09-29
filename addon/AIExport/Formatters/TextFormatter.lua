@@ -8319,6 +8319,49 @@ function TextFormatter:AddKills(lines, data)
     AddBlankLine(lines)
 end
 
+-- Category names such as "Character" go in "== ... ==" subheaders and stat
+-- lines are indented, so no line can pass for the "Character:", "Level:", or
+-- "Gold:" lines the nightly scan reads.
+function TextFormatter:AddStatistics(lines, data)
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.STATISTICS])
+
+    if not data.available then
+        AddLine(lines, C.TEXT.STATISTICS_UNAVAILABLE)
+        AddBlankLine(lines)
+        return
+    end
+
+    local categories = data.categories or {}
+
+    if #categories == 0 then
+        AddLine(lines, C.TEXT.STATISTICS_EMPTY)
+        AddBlankLine(lines)
+        return
+    end
+
+    local detailed = IsDetailedExport()
+
+    for _, category in ipairs(categories) do
+        AddSubHeader(lines, category.name)
+
+        if detailed then
+            for _, stat in ipairs(category.stats) do
+                AddLine(lines, string.format("  %s: %s (ID %d)", stat.name, stat.value, stat.id))
+            end
+        else
+            local parts = {}
+
+            for _, stat in ipairs(category.stats) do
+                table.insert(parts, stat.name .. " " .. stat.value)
+            end
+
+            AddLine(lines, table.concat(parts, ", "))
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
 function TextFormatter:AddCompanions(
     lines,
     data
@@ -9615,6 +9658,15 @@ function TextFormatter:Build(
                 self:AddKills(
                     lines,
                     exportData.kills
+                    or {}
+                )
+            end,
+
+        [C.SECTIONS.STATISTICS] =
+            function()
+                self:AddStatistics(
+                    lines,
+                    exportData.statistics
                     or {}
                 )
             end,

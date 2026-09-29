@@ -58,6 +58,9 @@ The report starts with "Exported By: AIExport" and then one block per section:
 - Lockouts, Progress, Achievements, Appearances
 - Kills: total kills, kills by creature type, your top 25 creatures, items
   seen dropping, and gold looted
+- Statistics: the numbers from the Statistics tab of the Achievements
+  window, such as deaths, gold acquired, and quests completed. Only
+  statistics with a value are listed, grouped by category.
 - Quests in your log and completed quests
 - Skills, Profession Details (saved copy), Talents, Spellbook
 - Biography: the timeline described below
@@ -209,6 +212,8 @@ file exists. Keep older files; they are the history.
   levels gained, deaths, new zones, quests turned in, profession gains.
 - "Kills:" lists total kills, kills by creature type, the most-killed
   creatures, and items seen dropping.
+- "Statistics:" holds the game's own lifetime counters, one "== Category =="
+  block each. A statistic that is not listed has no value yet.
 - "Companions:" holds optional blocks such as "== Syndicator ==". They
   only appear when the player has those addons.
 

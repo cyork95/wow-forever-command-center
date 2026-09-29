@@ -2,7 +2,7 @@
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport.
+Type `/aixport`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed AIExport.
 
 AIExport needs no other addon. Everything in the report comes from the game and from AIExport itself. If you use some popular addons, AIExport can also add what they know; see [Companions](#companions).
 
@@ -75,6 +75,8 @@ AIExport counts every creature you or your pet finish off. Creatures another pla
 - **Show live kill panel** on the Kills tab, `/aixport panel`, or right-clicking the minimap button opens a small window with this session's kills, kills per hour, and the last 10 creatures you killed. Drag it where you want it and press **Lock**. It remembers its place. The **Panel background** slider on the Kills tab sets its background from fully clear (0%) to solid (100%).
 - Creature tooltips show "Killed 12 times". Untick **Kill count on creature tooltips** on the Kills tab to turn that off.
 - The **Kills** export section lists total kills, kills by creature type, your top 25 creatures, items seen dropping, and gold looted.
+
+The **Statistics** export section, also in the Progress card and on by default, copies the Statistics tab of the Achievements window: every statistic that has a value, such as deaths, gold acquired, and quests completed, grouped by category. Statistics with no value yet are left out.
 
 If KillDex was installed, AIExport copies its kill history once, the first time it loads, so earlier kills carry over. After that KillDex is no longer needed.
 

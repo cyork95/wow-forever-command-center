@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.0
+
+- New **Statistics** export section in the Progress card, on by default. It copies the Statistics tab of the Achievements window, such as deaths, gold acquired, and quests completed, grouped by category. Statistics with no value yet are left out. **Detailed export** lists one statistic per line with its ID.
+- The game needs a full restart after updating, because a new file was added.
+
 ## 1.4.0
 
 - AIExport now tracks kills itself. It counts every creature you or your pet finish off, skips creatures another player tagged first, and adds the loot and gold you take to that creature. Dungeon and raid trash is not counted, because the game hides it there.
