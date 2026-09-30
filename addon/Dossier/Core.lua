@@ -33,6 +33,14 @@ local function InitializeDatabase()
     ns.state.db = DossierDBChar
     ns.db = ns.state.db
 
+    DossierDB =
+        DossierDB or {}
+
+    DossierDB.features =
+        type(DossierDB.features) == "table" and DossierDB.features or {}
+
+    ns.state.accountDb = DossierDB
+
     ns.state.db.bankCache =
         ns.state.db.bankCache or {}
 
@@ -64,6 +72,15 @@ local function InitializeDatabase()
 
     if session then
         session.FillDefaults(ns.state.db.session)
+    end
+
+    ns.state.db.shopping =
+        ns.state.db.shopping or {}
+
+    local shopping = ns.Data and ns.Data.ShoppingList
+
+    if shopping then
+        shopping.FillDefaults(ns.state.db.shopping)
     end
 
     ns.state.bankOpen = false
@@ -153,6 +170,10 @@ local function OnEvent(_, event, arg1)
 
         InitializeDatabase()
         InitializeCommands()
+
+        if ns.Features then
+            ns.Features.ApplySaved()
+        end
 
         return
     end

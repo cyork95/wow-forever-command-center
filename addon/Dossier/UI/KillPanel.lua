@@ -157,7 +157,7 @@ function KillPanel.StatLines(summary)
     local session = GetSession()
     local lines = {}
 
-    if KillPanel:IsLineOn("kills") then
+    if KillPanel:IsLineOn("kills") and ns:IsFeatureOn("kills") then
         table.insert(lines, string.format(C.TEXT.SESSION_LINE_KILLS, FormatCount(summary.kills), FormatCount(summary.killsPerHour)))
     end
 
@@ -388,7 +388,7 @@ function KillPanel:Refresh()
 
     self.listText:ClearAllPoints()
 
-    if self:IsLineOn("recent") then
+    if self:IsLineOn("recent") and ns:IsFeatureOn("kills") then
         local list = KillPanel.ListText(summary)
         local offset = TOP_OFFSET + #stats * LINE_HEIGHT + (#stats > 0 and 8 or 0)
 
@@ -405,6 +405,11 @@ function KillPanel:Refresh()
 end
 
 function KillPanel:SetShown(shown)
+    if shown and not ns:IsFeatureOn("session") then
+        ns.Features.PrintOff("session")
+        return
+    end
+
     local settings = GetSettings()
 
     if settings then
@@ -426,6 +431,11 @@ function KillPanel:SetShown(shown)
 end
 
 function KillPanel:Toggle()
+    if not ns:IsFeatureOn("session") then
+        ns.Features.PrintOff("session")
+        return
+    end
+
     self:SetShown(not self:IsEnabled())
 end
 
@@ -433,10 +443,23 @@ function KillPanel:IsShown()
     return self.frame ~= nil and self.frame:IsShown()
 end
 
+-- Hiding for the Session switch keeps the saved "shown" choice, so the panel
+-- comes back when Session is turned on again.
+function KillPanel:SetFeatureActive(on)
+    if not on then
+        if self.frame then
+            self.frame:Hide()
+        end
+    elseif self:IsEnabled() then
+        EnsureFrame():Show()
+        self:Refresh()
+    end
+end
+
 local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:SetScript("OnEvent", function()
-    if KillPanel:IsEnabled() then
+    if KillPanel:IsEnabled() and ns:IsFeatureOn("session") then
         KillPanel:SetShown(true)
     end
 end)

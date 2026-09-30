@@ -312,7 +312,17 @@ local function GetChoices()
     return db.companions
 end
 
+-- With the Companions feature off, every companion counts as off and no other
+-- addon is read. The per-addon choices stay saved for when it is turned on.
+function Companions:IsFeatureOn()
+    return ns:IsFeatureOn("companions")
+end
+
 function Companions:IsEnabled(id)
+    if not self:IsFeatureOn() then
+        return false
+    end
+
     local choices = GetChoices()
 
     return not choices or choices[id] ~= false
@@ -345,11 +355,13 @@ end
 -- Runs `definition[reader]` for a loaded companion and returns its structured
 -- data, or nil when the addon is not loaded or its layout could not be read.
 -- Used by sections that fall back to a companion's copy of data Dossier has
--- not saved itself, so it ignores the Companions switches.
+-- not saved itself, so it ignores the per-addon switches, but not the
+-- Companions feature switch.
 function Companions:Read(id, reader)
     local definition = self.byId[id]
 
-    if not definition
+    if not self:IsFeatureOn()
+        or not definition
         or type(definition[reader]) ~= "function"
         or not self:IsAvailable(definition)
     then

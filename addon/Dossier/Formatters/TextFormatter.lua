@@ -8456,6 +8456,84 @@ function TextFormatter:AddSessions(lines, data)
     AddBlankLine(lines)
 end
 
+-- Shopping lines start with an item name, "Short on", "Crafting", or "Ready",
+-- never with the "Character:", "Level:", or "Gold:" labels the nightly scan reads.
+function TextFormatter:AddShopping(lines, data)
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.SHOPPING])
+
+    local rows = data.rows or {}
+    local recipes = data.recipes or {}
+    local list = ns.Data and ns.Data.ShoppingList
+    local count = list and list.FormatCount or tostring
+
+    if #rows == 0 and #recipes == 0 then
+        AddLine(lines, C.TEXT.SHOPPING_EXPORT_EMPTY)
+        AddBlankLine(lines)
+        return
+    end
+
+    local detailed = IsDetailedExport()
+    local short = {}
+    local ready = {}
+
+    for _, row in ipairs(rows) do
+        table.insert((row.short or 0) > 0 and short or ready, row)
+    end
+
+    local function Name(row)
+        local name = row.name or ("Item " .. tostring(row.itemID))
+        return detailed and string.format("%s (ID %d)", name, row.itemID) or name
+    end
+
+    if #rows > 0 then
+        AddLine(lines, string.format("Short on %d of %d items.", #short, #rows))
+    end
+
+    for _, row in ipairs(short) do
+        local text = string.format("%s: have %s of %s", Name(row), count(row.have or 0), count(row.need or 0))
+
+        if (row.bank or 0) > 0 then
+            text = text .. string.format(" (bags %s, bank %s)", count(row.bags or 0), count(row.bank))
+        end
+
+        if #(row.forRecipes or {}) > 0 then
+            text = text .. ", for " .. table.concat(row.forRecipes, ", ")
+        end
+
+        AddLine(lines, text)
+    end
+
+    for _, recipe in ipairs(recipes) do
+        local text = string.format("Crafting: %s x%s", recipe.name or "Recipe", count(recipe.count or 1))
+
+        if recipe.profession then
+            text = text .. " (" .. recipe.profession .. ")"
+        end
+
+        if detailed then
+            text = text .. string.format(" (recipe ID %d)", recipe.recipeID)
+        end
+
+        if recipe.pending then
+            text = text .. ", reagents not read yet"
+        end
+
+        AddLine(lines, text)
+    end
+
+    if #ready > 0 then
+        local parts = {}
+
+        for _, row in ipairs(ready) do
+            table.insert(parts, string.format("%s %s/%s", Name(row), count(row.have or 0), count(row.need or 0)))
+        end
+
+        AddLine(lines, "Ready: " .. table.concat(parts, ", "))
+    end
+
+    AddBlankLine(lines)
+end
+
 -- Category names such as "Character" go in "== ... ==" subheaders and stat
 -- lines are indented, so no line can pass for the "Character:", "Level:", or
 -- "Gold:" lines the nightly scan reads.
@@ -9804,6 +9882,15 @@ function TextFormatter:Build(
                 self:AddSessions(
                     lines,
                     exportData.sessions
+                    or {}
+                )
+            end,
+
+        [C.SECTIONS.SHOPPING] =
+            function()
+                self:AddShopping(
+                    lines,
+                    exportData.shopping
                     or {}
                 )
             end,

@@ -759,7 +759,7 @@ local function SetupTooltip()
     tooltipHooked = true
 
     TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, function(tooltip, data)
-        if not Kills:IsTooltipEnabled() or type(data) ~= "table" or IsSecret(data.guid) then
+        if not ns:IsFeatureOn("kills") or not Kills:IsTooltipEnabled() or type(data) ~= "table" or IsSecret(data.guid) then
             return
         end
 
@@ -809,19 +809,51 @@ function Kills:Collect()
 end
 
 local eventFrame = CreateFrame("Frame")
+local registeredEvents = {}
 
 local function Register(event)
     local ok, result = pcall(eventFrame.RegisterEvent, eventFrame, event)
     ok = ok and result ~= false
 
-    if not ok then
+    if ok then
+        table.insert(registeredEvents, event)
+    else
         table.insert(Kills.refusedEvents, event)
     end
 
     return ok
 end
 
+local function IsLoggedInNow()
+    return type(IsLoggedIn) ~= "function" or IsLoggedIn() == true
+end
+
+local function OnLogin()
+    if ns:IsFeatureOn("companions") then
+        Kills:ImportKillDex()
+    end
+
+    SetupTooltip()
+end
+
+function Kills:SetFeatureActive(on, loading)
+    ns.Features.SetEvents(eventFrame, registeredEvents, on)
+    lootWindowSeen = false
+
+    if on and not loading and IsLoggedInNow() then
+        OnLogin()
+    end
+
+    if not loading then
+        Notify()
+    end
+end
+
 eventFrame:SetScript("OnEvent", function(_, event, ...)
+    if not ns:IsFeatureOn("kills") then
+        return
+    end
+
     if event == "NAME_PLATE_UNIT_ADDED" then
         OnNameplateAdded(...)
     elseif event == "NAME_PLATE_UNIT_REMOVED" then
@@ -840,8 +872,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     elseif event == "CHAT_MSG_MONEY" then
         OnMoney(...)
     elseif event == "PLAYER_LOGIN" then
-        Kills:ImportKillDex()
-        SetupTooltip()
+        OnLogin()
     end
 end)
 

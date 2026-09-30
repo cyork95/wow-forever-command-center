@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "2.0.0"
+C.VERSION = "2.1.0"
 C.SLASH_COMMAND = "/dossier"
 C.SLASH_ALIAS = "/aixport"
 C.ADDON_TITLE = "Dossier"
@@ -39,6 +39,7 @@ C.SECTIONS = {
     STATISTICS = "statistics",
     COMPANIONS = "companions",
     ADDONS = "addons",
+    SHOPPING = "shopping",
 }
 
 C.SECTION_ORDER = {
@@ -48,6 +49,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.COLLECTIONS,
     C.SECTIONS.BAGS,
     C.SECTIONS.BANK,
+    C.SECTIONS.SHOPPING,
     C.SECTIONS.EQUIPMENT,
     C.SECTIONS.LOCKOUTS,
     C.SECTIONS.PROGRESS,
@@ -97,6 +99,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.STATISTICS] = "Statistics",
     [C.SECTIONS.COMPANIONS] = "Companions",
     [C.SECTIONS.ADDONS] = "AddOns",
+    [C.SECTIONS.SHOPPING] = "Shopping list",
 }
 
 C.SECTION_GROUPS = {
@@ -115,6 +118,7 @@ C.SECTION_GROUPS = {
         sections = {
             C.SECTIONS.BAGS,
             C.SECTIONS.BANK,
+            C.SECTIONS.SHOPPING,
             C.SECTIONS.COLLECTIONS,
             C.SECTIONS.APPEARANCES,
             C.SECTIONS.COLLECTED_APPEARANCES,
@@ -165,6 +169,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.COLLECTIONS] = true,
     [C.SECTIONS.BAGS] = true,
     [C.SECTIONS.BANK] = true,
+    [C.SECTIONS.SHOPPING] = true,
     [C.SECTIONS.EQUIPMENT] = true,
     [C.SECTIONS.LOCKOUTS] = true,
     [C.SECTIONS.PROGRESS] = true,
@@ -383,6 +388,36 @@ C.TEXT = {
     STATISTICS_EMPTY = "No statistics recorded yet.",
     MINIMAP_LEFT_CLICK = "Left-click to open the export window.",
     MINIMAP_RIGHT_CLICK = "Right-click to show or hide the session panel.",
+    TAB_FEATURES = "Features",
+    FEATURES_DESCRIPTION = "Turning a feature off stops it recording and hides its tab and export section. What it already saved stays and comes back when you turn it on. These switches apply to every character on this account.",
+    FEATURES_ALWAYS_ON = "Always on: the Export tab and its other sections, the saved bank and profession copies, Help, and this tab.",
+    FEATURE_OFF = "|cffff8040Dossier:|r %s is turned off. Turn it on in the Features tab (/dossier features).",
+    FEATURE_TURNED_ON = "|cff5cc8a8Dossier:|r %s is on.",
+    FEATURE_TURNED_OFF = "|cff5cc8a8Dossier:|r %s is off. What it saved is kept.",
+    FEATURE_UNKNOWN = "|cffff8040Dossier:|r There is no feature called \"%s\". Try bio, kills, session, shop, shots, or companions.",
+    SECTION_OFF_SUFFIX = " (off)",
+    TAB_SHOPPING = "Shopping",
+    SHOPPING_PLACEHOLDER = "Shift-click or drag an item or recipe, or type a name",
+    SHOPPING_ADD = "Add",
+    SHOPPING_REMIND = "Remind me at vendors and on login",
+    SHOPPING_CLEAR = "Clear finished",
+    SHOPPING_EMPTY = "Your shopping list is empty. Shift-click an item or a recipe into the box above, drag an item onto it, or type a name.",
+    SHOPPING_SUMMARY = "%d of %d items ready",
+    SHOPPING_IMPORTED = "Copied from %s",
+    SHOPPING_PENDING = "Open your %s window once to read its reagents.",
+    SHOPPING_PENDING_UNKNOWN = "Open its profession window once to read its reagents.",
+    SHOPPING_READY = "ready",
+    SHOPPING_PENDING_SHORT = "no reagents yet",
+    SHOPPING_NEED = "need %s",
+    SHOPPING_NOT_FOUND = "Dossier could not find \"%s\". Shift-click it from your bags or a profession window instead.",
+    SHOPPING_DUPLICATE = "That item is already on the list. Use + to raise its amount.",
+    SHOPPING_SET_BY_YOU = "%s set by you",
+    SHOPPING_FOR_RECIPE = "%s for %s x%s",
+    SHOPPING_TOOLTIP_HAVE = "Bags %s, bank %s",
+    SHOPPING_TOOLTIP_HINT = "+ and - change your own amount. Shift-click for 5.",
+    SHOPPING_LOGIN = "|cff5cc8a8Dossier:|r Shopping list: %s.",
+    SHOPPING_VENDOR = "|cff5cc8a8Dossier:|r This vendor sells %d thing%s on your shopping list: %s.",
+    SHOPPING_EXPORT_EMPTY = "Nothing on the shopping list.",
 }
 
 C.CHARACTERS_PER_TOKEN = 4

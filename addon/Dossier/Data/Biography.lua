@@ -185,7 +185,7 @@ end
 function Biography:Record(kind, text, extra)
     local events = GetStore()
 
-    if not events or not SafeText(text) then
+    if not events or not SafeText(text) or not ns:IsFeatureOn("biography") then
         return nil
     end
 
@@ -633,6 +633,10 @@ local function After(seconds, callback)
 end
 
 local function OnEvent(_, event, arg1, arg2, ...)
+    if not ns:IsFeatureOn("biography") then
+        return
+    end
+
     if event == "ENCOUNTER_END" then
         RecordEncounterEnd(arg1, arg2, ...)
         return
@@ -707,6 +711,8 @@ local function OnEvent(_, event, arg1, arg2, ...)
     end
 end
 
+local registeredEvents = {}
+
 local function RegisterEventIfAvailable(eventName)
     local success = pcall(
         eventFrame.RegisterEvent,
@@ -714,7 +720,20 @@ local function RegisterEventIfAvailable(eventName)
         eventName
     )
 
+    if success then
+        table.insert(registeredEvents, eventName)
+    end
+
     return success == true
+end
+
+function Biography:SetFeatureActive(on, loading)
+    ns.Features.SetEvents(eventFrame, registeredEvents, on)
+    loginPending = false
+
+    if not loading then
+        Notify()
+    end
 end
 
 RegisterEventIfAvailable("PLAYER_ENTERING_WORLD")

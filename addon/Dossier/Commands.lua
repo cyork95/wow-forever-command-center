@@ -787,6 +787,9 @@ local function GetCollector(
         [C.SECTIONS.SESSIONS] =
             data.Session,
 
+        [C.SECTIONS.SHOPPING] =
+            data.ShoppingList,
+
         [C.SECTIONS.STATISTICS] =
             data.Statistics,
 
@@ -1338,6 +1341,13 @@ function Commands:RunExportFromSelection(
     EmitDiagnostic(
         "Export started."
     )
+
+    if type(ns.FilterSelectionsByFeature) == "function" then
+        sections =
+            ns:FilterSelectionsByFeature(
+                sections
+            )
+    end
 
     local exportData,
         errors =
@@ -1956,6 +1966,41 @@ function Commands:OpenTab(
     end
 end
 
+local function PrintLine(text)
+    if DEFAULT_CHAT_FRAME
+        and type(DEFAULT_CHAT_FRAME.AddMessage) == "function"
+    then
+        pcall(DEFAULT_CHAT_FRAME.AddMessage, DEFAULT_CHAT_FRAME, text)
+    end
+end
+
+-- Runs `action` when the feature is on, otherwise says how to turn it on.
+local function IfFeatureOn(id, action)
+    if ns:IsFeatureOn(id) then
+        action()
+    else
+        ns.Features.PrintOff(id)
+    end
+end
+
+function Commands:OpenFeatures()
+    self:OpenTab("features")
+end
+
+function Commands:SetFeature(name, on)
+    local feature = ns.Features.Find(name)
+
+    if not feature then
+        PrintLine(string.format(C.TEXT.FEATURE_UNKNOWN, SafeErrorString(name)))
+        return false
+    end
+
+    ns:SetFeatureOn(feature.id, on)
+    PrintLine(string.format(on and C.TEXT.FEATURE_TURNED_ON or C.TEXT.FEATURE_TURNED_OFF, feature.label))
+
+    return true
+end
+
 function Commands:OpenBiography()
     self:OpenTab(
         "biography"
@@ -1984,6 +2029,10 @@ end
 
 function Commands:OpenScreenshotter()
     self:OpenTab("screenshots")
+end
+
+function Commands:OpenShopping()
+    self:OpenTab("shopping")
 end
 
 function Commands:TakeScreenshot()
@@ -2040,34 +2089,48 @@ SlashCmdList[
                 )
             )
 
-        if argument == "help"
+        local verb, featureName =
+            string.match(argument, "^(%S+)%s+(%S+)$")
+
+        if verb == "on" or verb == "off" then
+            Commands:SetFeature(featureName, verb == "on")
+        elseif argument == "features"
+            or argument == "on"
+            or argument == "off"
+        then
+            Commands:OpenFeatures()
+        elseif argument == "help"
             or argument == "guide"
         then
             Commands:OpenHelp()
         elseif argument == "bio"
             or argument == "biography"
         then
-            Commands:OpenBiography()
+            IfFeatureOn("biography", function() Commands:OpenBiography() end)
         elseif argument == "companions"
         then
-            Commands:OpenCompanions()
+            IfFeatureOn("companions", function() Commands:OpenCompanions() end)
         elseif argument == "kills"
         then
-            Commands:OpenKills()
+            IfFeatureOn("kills", function() Commands:OpenKills() end)
         elseif argument == "session"
             or argument == "sessions"
         then
-            Commands:OpenSession()
+            IfFeatureOn("session", function() Commands:OpenSession() end)
         elseif argument == "panel"
         then
             Commands:ToggleKillPanel()
+        elseif argument == "shop"
+            or argument == "shopping"
+        then
+            IfFeatureOn("shopping", function() Commands:OpenShopping() end)
         elseif argument == "shots"
             or argument == "screenshotter"
         then
-            Commands:OpenScreenshotter()
+            IfFeatureOn("screenshots", function() Commands:OpenScreenshotter() end)
         elseif argument == "shot"
         then
-            Commands:TakeScreenshot()
+            IfFeatureOn("screenshots", function() Commands:TakeScreenshot() end)
         else
             Commands:OpenMainUI()
         end

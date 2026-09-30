@@ -165,7 +165,7 @@ function Screenshotter:IsPaused()
 end
 
 function Screenshotter:IsActive()
-    return self:IsEnabled() and not self:IsPaused()
+    return ns:IsFeatureOn("screenshots") and self:IsEnabled() and not self:IsPaused()
 end
 
 function Screenshotter:IsTriggerOn(key)
@@ -448,19 +448,40 @@ local function CollectionReason(event, id)
 end
 
 local eventFrame = CreateFrame("Frame")
+local registeredEvents = {}
 
 local function Register(event)
     local ok, result = pcall(eventFrame.RegisterEvent, eventFrame, event)
     ok = ok and result ~= false
 
-    if not ok then
+    if ok then
+        table.insert(registeredEvents, event)
+    else
         table.insert(Screenshotter.refusedEvents, event)
     end
 
     return ok
 end
 
+-- The whole feature. SetEnabled is the "take screenshots automatically" setting inside it.
+function Screenshotter:SetFeatureActive(on, loading)
+    ns.Features.SetEvents(eventFrame, registeredEvents, on)
+
+    if not on then
+        pending = nil
+    end
+
+    if not loading then
+        self:RefreshInterval()
+        Notify()
+    end
+end
+
 eventFrame:SetScript("OnEvent", function(_, event, ...)
+    if not ns:IsFeatureOn("screenshots") then
+        return
+    end
+
     if event == "PLAYER_LEVEL_UP" then
         local level = ...
         Screenshotter:Trigger("levelUp", not IsSecret(level) and tonumber(level) and string.format(C.TEXT.SHOTS_REASON_LEVEL, level) or nil)

@@ -29,12 +29,15 @@ function SessionView.SummaryText(summary)
     end
 
     local count = session.FormatCount
-    local lines = {
-        string.format(C.TEXT.SESSION_LINE_KILLS, count(summary.kills), count(summary.killsPerHour)),
-        string.format(C.TEXT.SESSION_LINE_GATHERED, count(summary.gathered), count(summary.gatheredPerHour)),
-        string.format(C.TEXT.SESSION_LINE_GOLD, session.FormatGold(summary.gold), session.FormatGold(summary.goldPerHour)),
-        string.format(C.TEXT.SESSION_LINE_XP, count(summary.xp), count(summary.xpPerHour)),
-    }
+    local lines = {}
+
+    if ns:IsFeatureOn("kills") then
+        table.insert(lines, string.format(C.TEXT.SESSION_LINE_KILLS, count(summary.kills), count(summary.killsPerHour)))
+    end
+
+    table.insert(lines, string.format(C.TEXT.SESSION_LINE_GATHERED, count(summary.gathered), count(summary.gatheredPerHour)))
+    table.insert(lines, string.format(C.TEXT.SESSION_LINE_GOLD, session.FormatGold(summary.gold), session.FormatGold(summary.goldPerHour)))
+    table.insert(lines, string.format(C.TEXT.SESSION_LINE_XP, count(summary.xp), count(summary.xpPerHour)))
 
     if summary.timeToLevel then
         table.insert(lines, string.format(C.TEXT.SESSION_TIME_TO_LEVEL, session.FormatDuration(summary.timeToLevel)))

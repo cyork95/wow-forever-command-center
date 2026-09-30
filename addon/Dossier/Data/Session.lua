@@ -587,6 +587,10 @@ local function OnXP()
 end
 
 local function OnKillsChanged()
+    if not ns:IsFeatureOn("session") then
+        return
+    end
+
     local kills = KillsSession()
     local count = kills and kills.kills or 0
 
@@ -720,19 +724,48 @@ function Session.FormatGold(copper)
 end
 
 local eventFrame = CreateFrame("Frame")
+local registeredEvents = {}
 
 local function Register(event)
     local ok, result = pcall(eventFrame.RegisterEvent, eventFrame, event)
     ok = ok and result ~= false
 
-    if not ok then
+    if ok then
+        table.insert(registeredEvents, event)
+    else
         table.insert(Session.refusedEvents, event)
     end
 
     return ok
 end
 
+-- Off ends the session into history. On starts from the current gold and XP,
+-- so nothing earned while it was off is counted.
+function Session:SetFeatureActive(on, loading)
+    ns.Features.SetEvents(eventFrame, registeredEvents, on)
+
+    if loading then
+        return
+    end
+
+    if on then
+        state.startMoney = Read(GetMoney)
+        lastMoney = state.startMoney
+        lastXP, lastMaxXP = ReadXP()
+
+        local kills = KillsSession()
+        lastKillCount = kills and kills.kills or 0
+        Notify()
+    else
+        self:Reset()
+    end
+end
+
 eventFrame:SetScript("OnEvent", function(_, event, ...)
+    if not ns:IsFeatureOn("session") then
+        return
+    end
+
     if event == "CHAT_MSG_LOOT" then
         OnLoot(...)
     elseif event == "PLAYER_MONEY" then

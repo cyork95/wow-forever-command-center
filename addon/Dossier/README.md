@@ -2,7 +2,7 @@
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/dossier`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed Dossier. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Screenshotter** takes screenshots at big moments, like Memento.
+Type `/dossier`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed Dossier. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Shopping list** tracks what you plan to gather or buy. The **Screenshotter** takes screenshots at big moments, like Memento. Every one of these can be switched off on the **Features** tab.
 
 Dossier needs no other addon. Everything in the report comes from the game and from Dossier itself. If you use some popular addons, Dossier can also add what they know; see [Companions](#companions).
 
@@ -34,23 +34,29 @@ If AIExport is still loaded, Dossier prints a reminder in chat to turn it off.
 | `/dossier kills` | Open the Kills tab |
 | `/dossier session` | Open the Session tab |
 | `/dossier panel` | Show or hide the live session panel |
+| `/dossier shop` | Open the Shopping tab |
 | `/dossier shots` | Open the Screenshotter tab |
 | `/dossier shot` | Take a screenshot now |
 | `/dossier companions` | Open the Companions tab |
+| `/dossier features` | Open the Features tab |
+| `/dossier off <feature>` | Turn a feature off: `bio`, `kills`, `session`, `shop`, `shots`, or `companions` |
+| `/dossier on <feature>` | Turn it back on |
 | `/dossier help` | Open the guide and the example AI skill |
 
 Left-click the minimap button to open the window. Right-click it to show or hide the live session panel.
 
 ## The window
 
-The window has seven tabs down the left side:
+The window has nine tabs down the left side. A feature you turn off on the Features tab also hides its tab.
 
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
 - **Biography**: your timeline, 40 lines per page.
 - **Kills**: every creature you have killed, with search, sorting, and each creature's drops and gold.
 - **Session**: the session timer, this session's kills, gathering, gold, and XP, and the live session panel options.
+- **Shopping**: the items and recipes you plan to gather or buy, with what you have and what you still need.
 - **Screenshotter**: automatic screenshots at big moments, with a switch for each moment.
 - **Companions**: the optional addons Dossier can read, each with its status and an on/off switch.
+- **Features**: a switch for each part of Dossier.
 - **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
 
 The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** to get item, spell, and quest IDs back.
@@ -112,6 +118,30 @@ The **Session** tab times one stretch of play, so Gathering is no longer needed.
 The **Sessions** export section, in the Story card and on by default, has the current session with hourly rates, everything you have ever gathered grouped by type, and your last 10 sessions. **Detailed export** adds item IDs and lists every item and saved session.
 
 Gathering's own totals are account-wide, so they are not copied in. Dossier counts gathering per character from the day you update.
+
+## Shopping list
+
+The **Shopping** tab keeps a list of what you plan to gather or buy and counts what you already have in your bags and bank. It only keeps track: Dossier never buys anything or moves items for you.
+
+Click the box at the top, shift-click an item from your bags, a vendor, or a profession window, and press Enter or **Add**. You can also drag an item onto the box, or type its name or item ID.
+
+- A new item starts at one stack. **+** and **-** change how many you want (hold Shift for 5), and **x** removes it.
+- Shift-click a recipe from a profession window to add its reagents, times how many you want to craft. If the game has not shown Dossier the reagents yet, the tab asks you to open that profession window once. Each craft lowers the count by one.
+- Each line shows what you have against what you need, and **ready** or **need 8**. Point at a line to see bags and bank counts and why you need it.
+- **Clear finished** removes the items you now have enough of.
+- **Remind me at vendors and on login** prints a chat line at login when you are short of anything, and at a vendor that sells something on the list.
+
+The bank count uses the copy Dossier saved the last time your bank was open. The **Shopping list** export section, in the Inventory card and on by default, lists what you are short of, the recipes you plan to craft, and what is ready.
+
+If Consumable-Connoisseur is loaded, Dossier copies this character's restock list once, into an empty shopping list. Connoisseur's auto-buying, bank stashing and withdrawing, reputation purchases, consumable upgrades, and starter lists are left out, because Dossier records the character instead of acting for it.
+
+## Features
+
+Every part of Dossier can be turned off on the **Features** tab, or with `/dossier off <feature>` and `/dossier on <feature>`: Biography, Kills, Session, Shopping list, Screenshotter, and Companions.
+
+A feature that is off stops completely: its game events are no longer watched, its tab is hidden, its section on the Export tab is greyed out with "(off)" and left out of the report, and its commands say how to turn it back on. Turning Session off also hides the session panel and saves the current session to Previous sessions. Turning Companions off stops Dossier reading any other addon.
+
+Nothing a feature saved is deleted, so its history comes back when you turn it on. The switches apply to every character on the account and are saved in `WTF\Account\<account>\SavedVariables\Dossier.lua`. The Export tab, its other sections, and Help are always on.
 
 ## Screenshotter
 

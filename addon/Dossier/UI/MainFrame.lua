@@ -17,12 +17,13 @@ MainFrame.readinessText = nil
 MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
-MainFrame.TAB_ORDER = { "export", "biography", "kills", "session", "screenshots", "companions", "help" }
+MainFrame.TAB_ORDER = { "export", "biography", "kills", "session", "shopping", "screenshots", "companions", "features", "help" }
 
 local FRAME_WIDTH = 720
 local FRAME_HEIGHT = 540
 local NAV_WIDTH = 140
 local CONTENT_PADDING = 16
+local TAB_SPACING = 34
 local CARD_GAP = 8
 local CARD_COLUMNS = 3
 local CARD_HEADER = 28
@@ -42,7 +43,9 @@ local TAB_LABELS = {
     biography = C.TEXT.TAB_BIOGRAPHY,
     kills = C.TEXT.TAB_KILLS,
     session = C.TEXT.TAB_SESSION,
+    shopping = C.TEXT.TAB_SHOPPING,
     screenshots = C.TEXT.TAB_SCREENSHOTS,
+    features = C.TEXT.TAB_FEATURES,
     help = C.TEXT.TAB_HELP,
 }
 
@@ -86,10 +89,28 @@ end
 
 local function ApplySelectionState(value)
     for _, checkbox in pairs(MainFrame.checkboxes) do
-        checkbox:SetChecked(value == true)
+        if checkbox:IsEnabled() then
+            checkbox:SetChecked(value == true)
+        end
     end
 
     SaveSelectionState()
+end
+
+-- A section whose feature is off keeps its saved tick but can't be changed
+-- and is left out of the export.
+local function RefreshSectionFeatures()
+    for sectionKey, checkbox in pairs(MainFrame.checkboxes) do
+        local label = C.SECTION_LABELS[sectionKey] or sectionKey
+
+        if ns:IsSectionFeatureOn(sectionKey) then
+            checkbox:Enable()
+            checkbox.label:SetText(label)
+        else
+            checkbox:Disable()
+            checkbox.label:SetText(label .. C.TEXT.SECTION_OFF_SUFFIX)
+        end
+    end
 end
 
 local function UpdateSettingsCheckboxes()
@@ -438,8 +459,24 @@ local function BuildSessionPage(page)
     end
 end
 
+local function BuildShoppingPage(page)
+    local view = ns.UI and ns.UI.ShoppingView
+
+    if view and type(view.Build) == "function" then
+        view:Build(page)
+    end
+end
+
 local function BuildScreenshotsPage(page)
     local view = ns.UI and ns.UI.ScreenshotterView
+
+    if view and type(view.Build) == "function" then
+        view:Build(page)
+    end
+end
+
+local function BuildFeaturesPage(page)
+    local view = ns.UI and ns.UI.FeaturesView
 
     if view and type(view.Build) == "function" then
         view:Build(page)
@@ -519,9 +556,32 @@ local PAGE_BUILDERS = {
     biography = BuildBiographyPage,
     kills = BuildKillsPage,
     session = BuildSessionPage,
+    shopping = BuildShoppingPage,
     screenshots = BuildScreenshotsPage,
+    features = BuildFeaturesPage,
     help = BuildHelpPage,
 }
+
+-- Stacks the tabs of features that are on, with no gaps for the ones that are off.
+function MainFrame:LayoutTabs()
+    local index = 0
+
+    for _, tabId in ipairs(self.TAB_ORDER) do
+        local tab = self.tabs[tabId]
+
+        if tab then
+            if ns:IsTabFeatureOn(tabId) then
+                tab:ClearAllPoints()
+                tab:SetPoint("TOPLEFT", 1, -10 - (index * TAB_SPACING))
+                tab:SetPoint("TOPRIGHT", -1, -10 - (index * TAB_SPACING))
+                tab:Show()
+                index = index + 1
+            else
+                tab:Hide()
+            end
+        end
+    end
+end
 
 local function EnsureFrame()
     if MainFrame.frame then
@@ -542,12 +602,10 @@ local function EnsureFrame()
     content:SetPoint("TOPLEFT", NAV_WIDTH + CONTENT_PADDING, -(Theme.HEADER_HEIGHT + 14))
     content:SetPoint("BOTTOMRIGHT", -CONTENT_PADDING, 14)
 
-    for index, tabId in ipairs(MainFrame.TAB_ORDER) do
+    for _, tabId in ipairs(MainFrame.TAB_ORDER) do
         local tab = Theme.CreateTab(nav, TAB_LABELS[tabId], function()
             MainFrame:SelectTab(tabId)
         end)
-        tab:SetPoint("TOPLEFT", 1, -10 - ((index - 1) * 34))
-        tab:SetPoint("TOPRIGHT", -1, -10 - ((index - 1) * 34))
         MainFrame.tabs[tabId] = tab
 
         local page = CreateFrame("Frame", nil, content)
@@ -566,6 +624,8 @@ local function EnsureFrame()
         PAGE_BUILDERS[tabId](MainFrame.pages[tabId])
     end
 
+    MainFrame:LayoutTabs()
+    RefreshSectionFeatures()
     UpdateSettingsCheckboxes()
 
     return frame
@@ -576,6 +636,10 @@ function MainFrame:SelectTab(tabId)
 
     if not self.pages[tabId] then
         tabId = "export"
+    end
+
+    if not ns:IsTabFeatureOn(tabId) then
+        tabId = "features"
     end
 
     self.activeTab = tabId
@@ -606,6 +670,12 @@ function MainFrame:SelectTab(tabId)
         end
     elseif tabId == "session" then
         local view = ns.UI and ns.UI.SessionView
+
+        if view and type(view.Refresh) == "function" then
+            view:Refresh()
+        end
+    elseif tabId == "shopping" then
+        local view = ns.UI and ns.UI.ShoppingView
 
         if view and type(view.Refresh) == "function" then
             view:Refresh()
@@ -668,10 +738,25 @@ function MainFrame:Refresh()
         checkbox:SetChecked(ResolveInitialSelection(sectionKey))
     end
 
+    self:LayoutTabs()
+    RefreshSectionFeatures()
     UpdateSettingsCheckboxes()
     RefreshCompanionRows()
     self:RefreshReadiness()
 end
+
+ns:OnFeatureChanged(function()
+    if not MainFrame.frame then
+        return
+    end
+
+    MainFrame:LayoutTabs()
+    RefreshSectionFeatures()
+
+    if not ns:IsTabFeatureOn(MainFrame.activeTab) then
+        MainFrame:SelectTab("features")
+    end
+end)
 
 if ns.Data and ns.Data.Readiness then
     ns.Data.Readiness:OnChanged(function()
