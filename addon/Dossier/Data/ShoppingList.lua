@@ -12,6 +12,8 @@ ShoppingList.refusedEvents = {}
 local IMPORT_SOURCE = "Consumable-Connoisseur"
 local LOGIN_NAMES = 5
 local BAG_SLOTS = NUM_BAG_SLOTS or 4
+local CONSUMABLE_CLASS = 0
+local FOOD_AND_DRINK_SUBCLASS = 5
 
 local listeners = {}
 
@@ -372,6 +374,57 @@ function ShoppingList:Add(text)
     end
 
     return ok, result, extra
+end
+
+local function IsFoodOrDrink(itemID)
+    local getInstant = C_Item and C_Item.GetItemInfoInstant or GetItemInfoInstant
+
+    if type(getInstant) ~= "function" then
+        return false
+    end
+
+    local ok, _, _, _, _, _, classID, subclassID = pcall(getInstant, itemID)
+
+    return ok and classID == CONSUMABLE_CLASS and subclassID == FOOD_AND_DRINK_SUBCLASS
+end
+
+-- Adds the food and drink you carry that isn't listed yet, one stack each.
+-- Bound items are skipped because no vendor sells them. Returns the added names.
+function ShoppingList:SuggestFromBags()
+    local store = GetStore()
+    local added = {}
+
+    if not store or not C_Container or type(C_Container.GetContainerNumSlots) ~= "function" then
+        return added
+    end
+
+    for bag = 0, BAG_SLOTS do
+        for slot = 1, Read(C_Container.GetContainerNumSlots, bag) or 0 do
+            local info = Read(C_Container.GetContainerItemInfo, bag, slot)
+
+            if type(info) == "table" and not info.isBound then
+                local linkID, linkName = ShoppingList.ParseItemLink(info.hyperlink)
+                local id = tonumber(info.itemID) or linkID
+
+                if id and not store.items[id] and IsFoodOrDrink(id) then
+                    local name, _, stack = ItemInfo(id)
+
+                    store.items[id] = {
+                        name = name or linkName or ("Item " .. id),
+                        target = math.max(1, math.floor(stack or 1)),
+                        added = Now(),
+                    }
+                    table.insert(added, store.items[id].name)
+                end
+            end
+        end
+    end
+
+    if #added > 0 then
+        Notify()
+    end
+
+    return added
 end
 
 function ShoppingList:ChangeTarget(itemID, delta)

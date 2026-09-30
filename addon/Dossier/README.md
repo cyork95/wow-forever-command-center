@@ -128,6 +128,7 @@ Click the box at the top, shift-click an item from your bags, a vendor, or a pro
 - A new item starts at one stack. **+** and **-** change how many you want (hold Shift for 5), and **x** removes it.
 - Shift-click a recipe from a profession window to add its reagents, times how many you want to craft. If the game has not shown Dossier the reagents yet, the tab asks you to open that profession window once. Each craft lowers the count by one.
 - Each line shows what you have against what you need, and **ready** or **need 8**. Point at a line to see bags and bank counts and why you need it.
+- **Suggest from bags** adds the food and drink you are carrying that is not on the list yet, one stack each, so the list follows what your character actually eats and drinks. Bound items are skipped.
 - **Clear finished** removes the items you now have enough of.
 - **Remind me at vendors and on login** prints a chat line at login when you are short of anything, and at a vendor that sells something on the list.
 

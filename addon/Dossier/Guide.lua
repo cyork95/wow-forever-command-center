@@ -199,6 +199,7 @@ can also drag an item onto the box, or type its name or item ID.
 - Each line shows what you have against what you need, and "ready" or
   "need 8". Point at a line to see your bags and bank counts and why you
   need it.
+- Suggest from bags adds the food and drink you are carrying that is not on the list yet, one stack each.
 - Clear finished removes the items you now have enough of.
 
 Tick "Remind me at vendors and on login" for a chat line at login when

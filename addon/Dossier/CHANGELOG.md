@@ -5,7 +5,7 @@
 - New **Features** tab. Biography, Kills, Session, Shopping list, Screenshotter, and Companions each have a switch, and `/dossier off <feature>` and `/dossier on <feature>` do the same. A feature that is off stops watching game events, hides its tab, greys out its Export section with "(off)" and leaves it out of the report, and its commands say how to turn it back on. Its saved data is kept.
 - The switches apply to every character on the account. They are saved in a new account-wide file, `WTF\Account\<account>\SavedVariables\Dossier.lua`.
 - Turning Session off hides the session panel and saves the current session to Previous sessions. Turning Companions off stops Dossier reading any other addon.
-- New **Shopping** tab. Shift-click, drag, or type an item to track how many you want against what is in your bags and bank. Shift-click a recipe to add its reagents; each craft lowers its count. **Clear finished** removes what you have enough of. Open it with `/dossier shop`.
+- New **Shopping** tab. Shift-click, drag, or type an item to track how many you want against what is in your bags and bank. Shift-click a recipe to add its reagents; each craft lowers its count. **Suggest from bags** adds the food and drink you carry, one stack each. **Clear finished** removes what you have enough of. Open it with `/dossier shop`.
 - **Remind me at vendors and on login** prints a chat line when you are short of something, and at a vendor that sells it. Dossier never buys or moves anything.
 - If Consumable-Connoisseur is loaded, its restock list for the character is copied once into an empty shopping list.
 - New **Shopping list** export section in the Inventory card, on by default.

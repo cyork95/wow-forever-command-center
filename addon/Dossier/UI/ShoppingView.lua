@@ -234,7 +234,8 @@ function ShoppingView:Submit()
     end
 
     local ok, reason = list:Add(text)
-    self.errorShown = not ok
+    self.messageShown = not ok
+    self.messageText:SetTextColor(ns.Theme.Color("warning"))
 
     if ok then
         self.input:SetText("")
@@ -248,6 +249,29 @@ function ShoppingView:Submit()
     self:Refresh()
 
     return ok
+end
+
+function ShoppingView:Suggest()
+    local list = GetList()
+
+    if not list then
+        return {}
+    end
+
+    local added = list:SuggestFromBags()
+    self.messageShown = true
+
+    if #added > 0 then
+        self.messageText:SetTextColor(ns.Theme.Color("accent"))
+        self.messageText:SetText(string.format(C.TEXT.SHOPPING_SUGGESTED, #added, #added == 1 and "" or "s"))
+    else
+        self.messageText:SetTextColor(ns.Theme.Color("warning"))
+        self.messageText:SetText(C.TEXT.SHOPPING_SUGGEST_NONE)
+    end
+
+    self:Refresh()
+
+    return added
 end
 
 -- A dragged item goes straight onto the list.
@@ -320,7 +344,7 @@ function ShoppingView:Build(parent)
         placeholder:SetShown((self:GetText() or "") == "")
 
         if userInput then
-            ShoppingView.errorShown = false
+            ShoppingView.messageShown = false
         end
     end)
     input:SetScript("OnEnterPressed", function()
@@ -377,6 +401,11 @@ function ShoppingView:Build(parent)
     end)
     clear:SetPoint("BOTTOMRIGHT", 0, 0)
 
+    local suggest = Theme.CreateButton(container, C.TEXT.SHOPPING_SUGGEST, 130, 22, "default", function()
+        ShoppingView:Suggest()
+    end)
+    suggest:SetPoint("RIGHT", clear, "LEFT", -6, 0)
+
     container:SetScript("OnShow", function()
         ShoppingView:Refresh()
     end)
@@ -390,6 +419,7 @@ function ShoppingView:Build(parent)
     self.emptyText = empty
     self.remindToggle = remind
     self.clearButton = clear
+    self.suggestButton = suggest
 
     local data = GetList()
 
@@ -458,7 +488,8 @@ function ShoppingView:Refresh()
     self.emptyText:SetShown(#entries == 0)
     self.summaryText:SetText(ShoppingView.SummaryText())
 
-    if not self.errorShown then
+    if not self.messageShown then
+        self.messageText:SetTextColor(ns.Theme.Color("warning"))
         self.messageText:SetText(pendingNote or "")
     end
 
