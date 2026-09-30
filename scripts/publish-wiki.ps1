@@ -6,7 +6,14 @@ $ErrorActionPreference = "Stop"
 $repo = Split-Path -Parent $PSScriptRoot
 $source = Join-Path $repo "docs\wiki"
 $wikiUrl = "https://github.com/cyork95/wow-forever-command-center.wiki.git"
+$wikiHome = "https://github.com/cyork95/wow-forever-command-center/wiki/_new"
 $work = Join-Path ([System.IO.Path]::GetTempPath()) "dossier-wiki"
+
+# The wiki git repo does not exist until someone saves the first page on GitHub.
+gh api -X PATCH repos/cyork95/wow-forever-command-center -F has_wiki=true --jq ".has_wiki" | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    throw "Could not turn on Wikis. Check that gh is signed in to cyork95/wow-forever-command-center."
+}
 
 if (-not (Test-Path $source)) {
     throw "Wiki source not found: $source"
@@ -56,7 +63,7 @@ try {
 
     git push -u origin HEAD
     if ($LASTEXITCODE -ne 0) {
-        throw "git push failed. Turn on Wikis in the GitHub repo settings, then run this script again."
+        throw "git push failed. GitHub creates the wiki repo only after the first page is saved in the browser. Open $wikiHome while signed in, save a page titled Home, then run this script again."
     }
 }
 finally {
