@@ -12,6 +12,7 @@ local WIDTH = 240
 local LINE_HEIGHT = 14
 local TOP_OFFSET = 32
 local REFRESH_SECONDS = 1
+local TOOLTIP_ITEMS = 15
 local RESET_POPUP = "DOSSIER_SESSION_RESET"
 
 local function GetSettings()
@@ -227,7 +228,12 @@ local function ShowTooltip(frame)
         GameTooltip:AddLine(C.TEXT.SESSION_TOOLTIP_EMPTY, 0.7, 0.7, 0.7)
     end
 
-    for _, item in ipairs(summary.items) do
+    for index, item in ipairs(summary.items) do
+        if index > TOOLTIP_ITEMS then
+            GameTooltip:AddLine(string.format(C.TEXT.SESSION_TOOLTIP_MORE, #summary.items - TOOLTIP_ITEMS), 0.7, 0.7, 0.7)
+            break
+        end
+
         GameTooltip:AddDoubleLine(
             item.name or "Unknown item",
             string.format(C.TEXT.SESSION_TOOLTIP_ITEM, FormatCount(item.count), FormatCount(item.perHour)),

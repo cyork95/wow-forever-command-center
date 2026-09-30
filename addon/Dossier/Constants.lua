@@ -343,6 +343,7 @@ C.TEXT = {
     SESSION_TOOLTIP_TITLE = "Gathered this session",
     SESSION_TOOLTIP_EMPTY = "Nothing gathered yet.",
     SESSION_TOOLTIP_ITEM = "%s (%s/hr)",
+    SESSION_TOOLTIP_MORE = "and %d more: see the Session tab",
     SESSION_TOOLTIP_HELP = "Click the title to pause or resume the timer. Right-click it to reset the session.",
     TAB_SESSION = "Session",
     SESSION_PAUSE = "Pause",

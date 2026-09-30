@@ -174,7 +174,7 @@ gathering, gold, XP, and your last creatures. Choose which lines it shows,
 drag it anywhere, and press Lock to keep it in place. The Panel background
 slider sets its background from fully clear (0%) to solid (100%).
 Left-click the panel title to pause or start, and right-click it to reset.
-Point at the title to see every item gathered with its hourly rate.
+Point at the title to see your top 15 items gathered with their hourly rates. The Session tab lists them all.
 
 Everything you gather is also kept for good, by item. The Sessions section
 of an export lists those totals and your last 10 sessions.

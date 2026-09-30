@@ -9,6 +9,7 @@
 - **Remind me at vendors and on login** prints a chat line when you are short of something, and at a vendor that sells it. Dossier never buys or moves anything.
 - If Consumable-Connoisseur is loaded, its restock list for the character is copied once into an empty shopping list.
 - New **Shopping list** export section in the Inventory card, on by default.
+- The session panel's tooltip lists your top 15 items gathered, then how many more there are, so a long farming session doesn't fill the screen. The Session tab still lists them all.
 - The tabs are in a new order: Export, Biography, Kills, Session, Shopping, Screenshotter, Companions, Features, Help.
 - The game needs a full restart after updating, because new files were added.
 
