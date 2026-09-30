@@ -1,6 +1,6 @@
 # Read addon SavedVariables into one snapshot per roster character.
 # Sources: Syndicator (items), Profession Master (recipes, skill), AllTheThings (collections, played, deaths),
-# Nova Instance Tracker (level, gold, lockouts), KillDex (kills).
+# Nova Instance Tracker (level, gold, lockouts), Dossier (kills), with KillDex as the kills fallback.
 
 . (Join-Path $PSScriptRoot "lua-saved.ps1")
 
@@ -63,6 +63,24 @@ function Get-SavedFile($accountDir, $name) {
   return $null
 }
 
+# Dossier was called AIExport before 2.0.0. A character that has both saves uses Dossier.lua.
+function Get-DossierSaves($root) {
+  return @(Get-ChildItem -Path $root -Recurse -Include "Dossier.lua", "AIExport.lua" -ErrorAction SilentlyContinue |
+    Where-Object { $_.Directory.Name -eq "SavedVariables" })
+}
+
+function Find-DossierSave($saves, $folder) {
+  $mine = @($saves | Where-Object { $_.Directory.Parent.Name -ieq $folder })
+  $pick = $mine | Where-Object { $_.BaseName -eq "Dossier" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+  if (-not $pick) { $pick = $mine | Sort-Object LastWriteTime -Descending | Select-Object -First 1 }
+  return $pick
+}
+
+function Read-DossierSave($save) {
+  $name = if ($save.BaseName -eq "Dossier") { "DossierDBChar" } else { "AIExportDBChar" }
+  return LV (Read-LuaSaved $save.FullName) $name
+}
+
 function Add-Items($set, $containers) {
   foreach ($container in @($containers)) {
     foreach ($item in @($container)) {
@@ -84,6 +102,32 @@ function Add-Counts($counts, $containers) {
   }
 }
 
+# AIExportDBChar.kills.mobs and KillDexCharDB.mobs share this shape: name, kills, gold, loot[].name.
+function Convert-KillMobs($mobs) {
+  if ($mobs -isnot [System.Collections.IDictionary] -or -not $mobs.Count) { return $null }
+  $rows = @($mobs.Values | ForEach-Object {
+    [pscustomobject]@{ name = LV $_ "name"; kills = [int](LV $_ "kills"); gold = [long](LV $_ "gold") }
+  })
+  $looted = @{}
+  foreach ($mob in $mobs.Values) {
+    $loot = LV $mob "loot"
+    if ($loot -is [System.Collections.IDictionary]) {
+      foreach ($drop in $loot.Values) {
+        $dropName = LV $drop "name"
+        if ($dropName) { $looted[[string]$dropName] = $true }
+      }
+    }
+  }
+  return [ordered]@{
+    total = ($rows | Measure-Object kills -Sum).Sum
+    creatures = $rows.Count
+    goldCopper = ($rows | Measure-Object gold -Sum).Sum
+    top = @($rows | Where-Object { $_.name } | Sort-Object kills -Descending | Select-Object -First 5)
+    byMob = $rows
+    looted = @($looted.Keys | Sort-Object)
+  }
+}
+
 function Get-SaveSnapshots($wtfRoot, $characters) {
   $snapshots = @{}
   $accountRoot = Join-Path $wtfRoot "Account"
@@ -98,6 +142,7 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
     $pm = Get-SavedFile $accountDir.FullName "ProfessionMaster"
     $att = Get-SavedFile $accountDir.FullName "AllTheThings"
     $accountKillFiles = @(Get-ChildItem -Path $accountDir.FullName -Recurse -Filter "KillDex.lua" -ErrorAction SilentlyContinue)
+    $accountDossierFiles = Get-DossierSaves $accountDir.FullName
 
     foreach ($character in $characters) {
       $snap = $snapshots[$character.id]
@@ -223,34 +268,25 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
         $snap.sources["AllTheThings"] = $snap.att.at
       }
 
+      # Dossier (AIExport 1.4.0 and later) tracks kills itself and keeps KillDex's history; KillDex is the fallback.
       $first = ($character.name -split ' ')[0]
       $last = ($character.name -split ' ', 2)[1]
+      $aiFolder = if ($last) { "$first-$last" } else { $first }
+      $aiFile = Find-DossierSave $accountDossierFiles $aiFolder
+      if ($aiFile) {
+        $kills = Convert-KillMobs (LV (Read-DossierSave $aiFile) "kills" "mobs")
+        if ($kills) {
+          $snap.kills = $kills
+          $snap.sources[$aiFile.BaseName] = $aiFile.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
+        }
+      }
+
       $killFiles = @($accountKillFiles | Where-Object { $_.Directory.Parent.Name -ieq "$first-$last" })
       $killFile = $killFiles | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-      if ($killFile) {
-        $mobs = LV (Read-LuaSaved $killFile.FullName) "KillDexCharDB" "mobs"
-        if ($mobs -is [System.Collections.IDictionary] -and $mobs.Count) {
-          $rows = @($mobs.Values | ForEach-Object {
-            [pscustomobject]@{ name = LV $_ "name"; kills = [int](LV $_ "kills"); gold = [long](LV $_ "gold") }
-          })
-          $looted = @{}
-          foreach ($mob in $mobs.Values) {
-            $loot = LV $mob "loot"
-            if ($loot -is [System.Collections.IDictionary]) {
-              foreach ($drop in $loot.Values) {
-                $dropName = LV $drop "name"
-                if ($dropName) { $looted[[string]$dropName] = $true }
-              }
-            }
-          }
-          $snap.kills = [ordered]@{
-            total = ($rows | Measure-Object kills -Sum).Sum
-            creatures = $rows.Count
-            goldCopper = ($rows | Measure-Object gold -Sum).Sum
-            top = @($rows | Where-Object { $_.name } | Sort-Object kills -Descending | Select-Object -First 5)
-            byMob = $rows
-            looted = @($looted.Keys | Sort-Object)
-          }
+      if (-not $snap.kills -and $killFile) {
+        $kills = Convert-KillMobs (LV (Read-LuaSaved $killFile.FullName) "KillDexCharDB" "mobs")
+        if ($kills) {
+          $snap.kills = $kills
           $snap.sources["KillDex"] = $killFile.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
         }
       }

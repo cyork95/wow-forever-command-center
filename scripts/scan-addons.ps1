@@ -8,6 +8,7 @@ $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "dungeon-journal.ps1")
 . (Join-Path $PSScriptRoot "professions.ps1")
 . (Join-Path $PSScriptRoot "quests.ps1")
+. (Join-Path $PSScriptRoot "biography.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -149,12 +150,29 @@ foreach ($root in $exportRoots) {
 
 if ($dump) {
   $dumpText = Get-Content -Raw -Path $dump.FullName
+  $addonBlock = $null
   foreach ($line in ($dumpText -split "`r?`n")) {
     if ($line -match '^(.+?) - Enabled: (yes|no) - Loadable: \S+ - Loaded: (yes|no)(?: - Reason: .+?)? - Version: (.+)$') {
       $runtime[(Normalize-Name $Matches[1])] = @{
         enabled = ($Matches[2] -eq "yes")
         loaded = ($Matches[3] -eq "yes")
         version = $Matches[4].Trim()
+      }
+      continue
+    }
+    if ($line -match '^AddOns Count:') { $addonBlock = "counted"; continue }
+    if ($line -eq '== Loaded ==' -and $addonBlock) { $addonBlock = "loaded"; continue }
+    if ($line -eq '== Not loaded ==' -and $addonBlock) { $addonBlock = "notloaded"; continue }
+    if ($line -eq '' -or $line -match '^[A-Za-z ()]+:$') { $addonBlock = $null; continue }
+    $pattern = $(if ($addonBlock -eq "loaded") { '^(.+?)(?: \[([^\]]+)\])?$' } else { '^(.+?)(?: \[([^\]]+)\])? - ([^-]+)$' })
+    if ($addonBlock -in @("loaded", "notloaded") -and $line -match $pattern) {
+      $addonKey = Normalize-Name $Matches[1]
+      $addonVersion = $(if ($Matches[2]) { $Matches[2].Trim() } else { $null })
+      $reason = [string]$Matches[3]
+      $runtime[$addonKey] = @{
+        enabled = ($addonBlock -eq "loaded" -or $reason -notmatch 'disabled')
+        loaded = ($addonBlock -eq "loaded")
+        version = $addonVersion
       }
     }
   }
@@ -337,6 +355,27 @@ function Parse-TextExport($text, $when) {
         quality = $quality
       }
     }
+    if ($chunks.Count -eq 0) {
+      $block = ($equip.Groups[1].Value -split "\r?\n\r?\n")[0]
+      foreach ($line in ($block -split "\r?\n")) {
+        if ($line -notmatch '^([A-Za-z][A-Za-z ]*\d?): \[([^\]]+)\](.*)$') { continue }
+        $slot = $Matches[1].Trim()
+        $item = $Matches[2].Trim()
+        $rest = $Matches[3]
+        $ilvl = $null
+        $quality = $null
+        if ($rest -match 'iLvl (\d+)(?:, ([A-Za-z]+))?') {
+          $ilvl = [int]$Matches[1]
+          if ($Matches[2]) { $quality = $Matches[2] }
+        }
+        $gear += [ordered]@{
+          slot = $slot
+          name = $item
+          itemLevel = $ilvl
+          quality = $quality
+        }
+      }
+    }
   }
 
   $owned = @()
@@ -347,10 +386,12 @@ function Parse-TextExport($text, $when) {
     }
   }
 
+  $addonName = if ($text -match '(?m)^Exported By:\s*(Dossier|AIExport)\b') { $Matches[1] } else { "CharacterExport Forever" }
+
   [ordered]@{
     character = $name
     exportedAt = $when
-    addon = "CharacterExport Forever"
+    addon = $addonName
     realm = $realm
     level = $level
     zone = $zone
@@ -393,7 +434,7 @@ function Add-CarriedField($payload, $row, $existing, $name) {
 }
 
 $sources = @()
-$sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport' })
+$sources += @($saveFiles | Where-Object { $_.BaseName -match 'CharacterExport|CharExport|AIExport|Dossier' })
 if (Test-Path $gameRoot) {
   $sources += @(Get-ChildItem -Path $gameRoot -File -Recurse -Depth 2 -Include *.txt,*.json -ErrorAction SilentlyContinue |
     Where-Object { $_.FullName -notmatch '\\Interface\\' -and $_.Length -lt 5MB })
@@ -432,7 +473,7 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
 }
 
 if (-not $parsed.Count) {
-  Write-Output "No CharacterExport dump found. Addon saves still update the sheet."
+  Write-Output "No Dossier, AIExport, or CharacterExport dump found. Addon saves still update the sheet."
 }
 
 $stats = Read-JsonFile $statsPath
@@ -459,7 +500,7 @@ foreach ($row in $kept.Values) {
   $payload = [ordered]@{
     character = $row.character
     exportedAt = $row.exportedAt
-    addon = "CharacterExport Forever"
+    addon = $(if ($row.addon) { $row.addon } else { "CharacterExport Forever" })
     realm = $row.realm
     level = $row.level
     zone = $row.zone
@@ -576,7 +617,10 @@ function Apply-Snapshot($record, $snap, $character) {
   }
 
   $sources = [ordered]@{}
-  if ($exportedAt) { $sources["CharacterExport"] = $exportedAt }
+  if ($exportedAt) {
+    $exportLabel = if ($rec["addon"] -in @("Dossier", "AIExport")) { $rec["addon"] } else { "CharacterExport" }
+    $sources[$exportLabel] = $exportedAt
+  }
   foreach ($k in $snap.sources.Keys) { $sources[$k] = $snap.sources[$k] }
   $rec["sources"] = $sources
   return [pscustomobject]$rec
@@ -640,5 +684,7 @@ if ($merged -gt 0 -or $applied -gt 0) {
 $unmatched | Select-Object -Unique | ForEach-Object {
   Write-Output "Skipped unmatched character: $_"
 }
+
+Update-Biography $wtfRoot $repo $characters
 
 Update-Screenshots $gameRoot $repo $characters

@@ -1,0 +1,68 @@
+## Interface: 16001
+## Title: Dossier
+## Notes: Dossier, formerly AIExport. Type /dossier and press Create Export to copy a text report of your character into an AI chat. It keeps a Biography timeline, tracks kills, times play sessions with kills, gathering, gold, and XP per hour, keeps a shopping list with have and need counts, and takes screenshots at big moments. Every feature can be switched off on the Options tab or in the game's Settings > AddOns page. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /dossier help shows the guide and an example AI skill.
+## Category: Data Export
+## Author: Dossier
+## Version: 2.1.0
+## IconTexture: Interface\AddOns\Dossier\Media\MinimapIcon
+## X-License: MIT
+## SavedVariables: DossierDB
+## SavedVariablesPerCharacter: DossierDBChar
+
+## OptionalDeps: WTFix
+## X-WTFix-Managed: 1
+Constants.lua
+Features.lua
+Utils.lua
+Core.lua
+Data/Addons.lua
+Data/Location.lua
+Data/CharacterStats.lua
+Data/Currencies.lua
+Data/Collections.lua
+Data/Bags.lua
+Data/Bank.lua
+Data/Equipment.lua
+Data/Lockouts.lua
+Data/Progress.lua
+Data/Achievements.lua
+Data/CompletedAchievements.lua
+Data/CollectedAppearances.lua
+Data/Appearances.lua
+Data/Reputations.lua
+Data/Quests.lua
+Data/CompletedQuests.lua
+Data/Skills.lua
+Data/ProfessionDetails.lua
+Data/Talents.lua
+Data/Spellbook.lua
+Data/Biography.lua
+Data/Kills.lua
+Data/Statistics.lua
+Data/Screenshotter.lua
+Data/Session.lua
+Data/ShoppingList.lua
+Companions/Registry.lua
+Companions/Syndicator.lua
+Companions/KillDex.lua
+Companions/AllTheThings.lua
+Companions/NovaInstanceTracker.lua
+Companions/ProfessionMaster.lua
+Companions/Auctionator.lua
+Companions/Memento.lua
+Companions/TalentsForever.lua
+Data/Readiness.lua
+Formatters/TextFormatter.lua
+UI/Theme.lua
+UI/BiographyView.lua
+UI/KillsView.lua
+UI/KillPanel.lua
+UI/ScreenshotterView.lua
+UI/SessionView.lua
+UI/ShoppingView.lua
+UI/OptionsView.lua
+UI/SettingsPanel.lua
+UI/MainFrame.lua
+UI/ExportFrame.lua
+Guide.lua
+Commands.lua
