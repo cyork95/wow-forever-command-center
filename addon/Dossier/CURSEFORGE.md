@@ -1,5 +1,7 @@
 # CurseForge page
 
+Project: https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
+
 Paste the summary into the project summary field. Paste the description into the project description. Screenshots are uploaded by hand. This file is left out of the addon zip.
 
 ## Name
@@ -80,9 +82,9 @@ No image files are stored in this repo for the carousel. Use the retake for the 
 
 ## Short posts
 
-**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://yorkdevelops.com/links/
+**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
-**Linktree line:** Dossier — paste your WoW character into an AI. Buy Me a Coffee stays https://buymeacoffee.com/coyofroyo
+**Links page entry:** Dossier — Your Character, Ready for AI. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
 ## Page settings
 
