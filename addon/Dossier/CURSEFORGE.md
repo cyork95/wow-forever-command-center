@@ -1,0 +1,84 @@
+# CurseForge page
+
+Paste the summary into the project summary field. Paste the description into the project description. Screenshots are uploaded by hand. This file is left out of the addon zip.
+
+## Summary
+
+Paste your World of Warcraft Forever character into any AI chat. Gear, quests, professions, kills, sessions, and a biography that writes itself.
+
+## Description
+
+# Dossier
+
+Your character, as text you can hand to an AI.
+
+Type `/dossier`, press **Create Export**, and paste. Cursor, ChatGPT, Claude, Gemini, or any other assistant can then see your level, zone, gold, gear, bags, bank, professions, quests, talents, spells, kills, and how the last few sessions went. Ask for a leveling plan, a gear check, a profession route, or a recap of the night.
+
+Dossier is for World of Warcraft Forever. It needs no other addon.
+
+## What it keeps
+
+- **Export.** Sections grouped into cards. The window shows an approximate token count and the three largest sections, so you can leave out what you do not need. **Detailed export** puts item, spell, and quest IDs back.
+- **Biography.** From the day you install it, Dossier writes logins, level-ups, deaths, new zones, quest turn-ins, achievements, boss kills, profession gains, and every screenshot. Nothing is deleted.
+- **Kills.** Every creature you or your pet finish. Tooltips can say how many times. Loot and gold stay with that creature. An old KillDex history is copied in once.
+- **Session.** A timer that starts on your first kill, loot, gold, or XP. Kills, gathering, gold, and XP per hour, plus time to the next level. A small panel you can park on screen. The last 20 sessions are kept.
+- **Shopping list.** What you mean to gather or buy, against what is already in your bags and bank. Shift-click a recipe to add its reagents. Dossier reminds you at vendors. It never buys or moves anything.
+- **Screenshotter.** A shot on level-ups, deaths, achievements, boss kills, and similar moments, with the reason written into the Biography.
+- **Switches.** Biography, Kills, Session, Shopping list, Screenshotter, and Companions each turn off from the Options tab, or with `/dossier off`. Off means that part stops watching the game and leaves the export. Saved history stays.
+
+## A report in four steps
+
+1. Type `/dossier`.
+2. Tick the sections you want, or press **Select All**.
+3. Press **Create Export**. The text is already selected.
+4. Ctrl+C, then paste it into the chat with what you want.
+
+Open your bank and each profession window once. The game only lets an addon read those while they are open, so Dossier keeps the last copy and marks anything missing on the Export tab.
+
+Paste one character per message, and paste a new export when you want the assistant caught up. The Biography is what changed.
+
+## Optional companions
+
+If you already use them, Dossier can add their character data to the report: Syndicator (mail and bank), AllTheThings (deaths, quests, time played, collection counts), Nova Instance Tracker (lockouts), Profession Master (recipes), Auctionator (bag prices), and Talents Forever (planned builds). Each has its own switch. The export still works with none of them.
+
+## Coming from AIExport
+
+Dossier was called AIExport before 2.0.0. `/aixport` still works. Saved data does not move by itself: with the game closed, copy each character’s `AIExport.lua` to `Dossier.lua` and rename `AIExportDBChar` to `DossierDBChar` on the first line. The full steps are in the addon README.
+
+The report includes your character name, realm, and gold. Paste it only where you are comfortable sharing that.
+
+## Links
+
+- [York](https://yorkdevelops.com/links/) — site, writing, and other projects
+- [Buy Me a Coffee](https://buymeacoffee.com/coyofroyo) — if Dossier is useful to you
+
+## Screenshots
+
+Upload these in order. Crop each one to the window. The dusk background can stay as a thin edge. Do not upload a second Screenshotter frame. The project avatar is `dist/curseforge-logo.png`, not a carousel image.
+
+1. Export text window, retaken after the health line shows current and max (for example `486/486`) instead of `n/a`. Keep the token line and the report header in frame.
+2. Export tab. Cards, Create Export, and the last-export token count.
+3. Shopping list, with a have / need line and one item marked ready.
+4. Screenshotter, one frame. The tighter of the two Sep 29 shots.
+
+Optional, after clicking a creature so its drops show: the Kills tab. The KillDex copy line is useful. An empty drops box is not.
+
+Still to take before the page goes live:
+
+- Biography with real events (a level, a zone, a quest).
+- Session panel on the open world, timer and rates visible.
+- Options tab only if there is room after those.
+
+No image files are stored in this repo for the carousel. The Sep 29 shots of Trendirun stay on disk until the export-text retake replaces that one.
+
+## Short posts
+
+**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://yorkdevelops.com/links/
+
+**Linktree line:** Dossier — paste your WoW character into an AI. Buy Me a Coffee stays https://buymeacoffee.com/coyofroyo
+
+## Page settings
+
+- Category: Data Export. Add Achievements or Miscellaneous only if CurseForge asks for a second.
+- Game version: the Forever / classic beta client this build targets. The first paragraph already says Forever so a retail player does not install it by mistake.
+- York and Buy Me a Coffee stay in the Links section at the bottom of the description, after what the addon does.

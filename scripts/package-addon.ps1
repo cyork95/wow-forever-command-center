@@ -57,6 +57,7 @@ if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
 $zip = [System.IO.Compression.ZipFile]::Open($zipPath, [System.IO.Compression.ZipArchiveMode]::Create)
 try {
   foreach ($file in Get-ChildItem -Path $source -Recurse -File) {
+    if ($file.Name -eq "CURSEFORGE.md") { continue }
     $relative = $file.FullName.Substring($source.Length + 1).Replace('\', '/')
     $entry = "$addonName/$relative"
     [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $file.FullName, $entry, [System.IO.Compression.CompressionLevel]::Optimal) | Out-Null
@@ -93,6 +94,8 @@ $target = Join-Path $addonsPath $addonName
 $isNew = -not (Test-Path $target)
 if (-not $isNew) { Remove-Item -Recurse -Force $target }
 Copy-Item -Recurse -Path $source -Destination $target
+$pageCopy = Join-Path $target "CURSEFORGE.md"
+if (Test-Path $pageCopy) { Remove-Item -Force $pageCopy }
 Write-Output "Installed $addonName $version to $target"
 
 if (Test-Path (Join-Path $target "$addonName.toc")) {

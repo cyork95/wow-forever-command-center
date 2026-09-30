@@ -80,6 +80,140 @@ local function ToSafeNumber(value)
     return U.ToSafeNumber(value)
 end
 
+local lastHealthCurrent = nil
+
+local function ParseLooseNumber(value)
+    local numberValue = ToSafeNumber(value)
+
+    if numberValue ~= nil then
+        return numberValue
+    end
+
+    if IsRestrictedValue(value) then
+        return nil
+    end
+
+    local ok, valueType = pcall(type, value)
+
+    if not ok or valueType ~= "string" then
+        return nil
+    end
+
+    local cleaned = string.gsub(value, ",", "")
+
+    return tonumber(cleaned)
+end
+
+local function ClampResource(current, max)
+    if current == nil or current < 0 then
+        return nil
+    end
+
+    if max ~= nil and current > max then
+        return nil
+    end
+
+    return current
+end
+
+local function FirstNumberInHealthText(text)
+    if IsRestrictedValue(text) or type(text) ~= "string" then
+        return nil
+    end
+
+    if string.find(text, "%", 1, true) then
+        return nil
+    end
+
+    local cleaned = string.gsub(text, ",", "")
+    local current = string.match(cleaned, "(%d+)%s*/%s*%d+")
+
+    if current == nil then
+        current = string.match(cleaned, "^%s*(%d+)%s*$")
+    end
+
+    return tonumber(current)
+end
+
+local function FontStringText(fontString)
+    if type(fontString) ~= "table" or type(fontString.GetText) ~= "function" then
+        return nil
+    end
+
+    local success, value = SafeCall(fontString.GetText, fontString)
+
+    if not success then
+        return nil
+    end
+
+    return value
+end
+
+local function ReadStatusBarNumber(bar)
+    if type(bar) ~= "table" or IsRestrictedValue(bar) then
+        return nil
+    end
+
+    if type(bar.GetValue) == "function" then
+        local success, value = SafeCall(bar.GetValue, bar)
+
+        if success then
+            local numberValue = ParseLooseNumber(value)
+
+            if numberValue ~= nil then
+                return numberValue
+            end
+        end
+    end
+
+    local text = FontStringText(bar.TextString)
+        or FontStringText(bar.HealthBarText)
+        or FontStringText(_G.PlayerFrameHealthBarText)
+
+    return FirstNumberInHealthText(text)
+end
+
+local function ReadPlayerHealthBar()
+    local bar = _G.PlayerFrameHealthBar
+
+    if type(bar) ~= "table" and type(PlayerFrame) == "table" then
+        bar = PlayerFrame.healthbar
+            or PlayerFrame.HealthBar
+            or PlayerFrame.PlayerFrameHealthBar
+    end
+
+    return ReadStatusBarNumber(bar)
+end
+
+local function RememberHealth(current)
+    local numberValue = ParseLooseNumber(current)
+
+    if numberValue ~= nil and numberValue >= 0 then
+        lastHealthCurrent = numberValue
+    end
+end
+
+local healthWatch = CreateFrame("Frame")
+
+healthWatch:RegisterEvent("UNIT_HEALTH")
+healthWatch:RegisterEvent("UNIT_MAXHEALTH")
+healthWatch:RegisterEvent("PLAYER_ENTERING_WORLD")
+healthWatch:SetScript("OnEvent", function(_, event, unit)
+    if event ~= "PLAYER_ENTERING_WORLD" and unit ~= "player" then
+        return
+    end
+
+    if type(UnitHealth) ~= "function" then
+        return
+    end
+
+    local success, value = SafeCall(UnitHealth, "player")
+
+    if success then
+        RememberHealth(value)
+    end
+end)
+
 local function SafeText(value, fallback)
     if IsRestrictedValue(value) then
         return fallback or "Unknown"
@@ -367,7 +501,7 @@ local function CollectResourceStats()
 
         if success then
             primaryCurrent =
-                ToSafeNumber(value)
+                ParseLooseNumber(value)
         end
     end
 
@@ -381,7 +515,7 @@ local function CollectResourceStats()
 
         if success then
             primaryMax =
-                ToSafeNumber(value)
+                ParseLooseNumber(value)
         end
     end
 
@@ -397,8 +531,26 @@ local function CollectResourceStats()
 
         if success then
             healthCurrent =
-                ToSafeNumber(value)
+                ParseLooseNumber(value)
         end
+    end
+
+    if healthCurrent == nil then
+        local fromBar = ReadPlayerHealthBar()
+        local dead = false
+
+        if type(UnitIsDeadOrGhost) == "function" then
+            local success, value = SafeCall(UnitIsDeadOrGhost, "player")
+            dead = success and value == true
+        end
+
+        if fromBar ~= nil and (fromBar > 0 or dead) then
+            healthCurrent = fromBar
+        end
+    end
+
+    if healthCurrent == nil then
+        healthCurrent = lastHealthCurrent
     end
 
     if type(UnitHealthMax) == "function" then
@@ -410,8 +562,14 @@ local function CollectResourceStats()
 
         if success then
             healthMax =
-                ToSafeNumber(value)
+                ParseLooseNumber(value)
         end
+    end
+
+    healthCurrent = ClampResource(healthCurrent, healthMax)
+
+    if healthCurrent ~= nil then
+        lastHealthCurrent = healthCurrent
     end
 
     local manaPowerType = 0
@@ -437,7 +595,7 @@ local function CollectResourceStats()
 
         if success then
             manaCurrent =
-                ToSafeNumber(value)
+                ParseLooseNumber(value)
         end
     end
 
@@ -451,9 +609,12 @@ local function CollectResourceStats()
 
         if success then
             manaMax =
-                ToSafeNumber(value)
+                ParseLooseNumber(value)
         end
     end
+
+    manaCurrent = ClampResource(manaCurrent, manaMax)
+    primaryCurrent = ClampResource(primaryCurrent, primaryMax)
 
     local manaAvailable =
         manaMax ~= nil
