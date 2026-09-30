@@ -1,0 +1,1 @@
+[Dossier on CurseForge](https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai) · [York.Dev](https://yorkdevelops.com/links/) · [Buy Me a Coffee](https://buymeacoffee.com/coyofroyo)
