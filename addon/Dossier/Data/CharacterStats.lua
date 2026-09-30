@@ -568,6 +568,17 @@ local function CollectResourceStats()
 
     healthCurrent = ClampResource(healthCurrent, healthMax)
 
+    if healthCurrent == nil and healthMax ~= nil then
+        local dead = false
+
+        if type(UnitIsDeadOrGhost) == "function" then
+            local success, value = SafeCall(UnitIsDeadOrGhost, "player")
+            dead = success and value == true
+        end
+
+        healthCurrent = dead and 0 or healthMax
+    end
+
     if healthCurrent ~= nil then
         lastHealthCurrent = healthCurrent
     end
