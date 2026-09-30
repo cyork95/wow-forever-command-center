@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.1.1
+
+- The export shows your health as current and max, such as `Health: 486/486`, instead of `n/a/486`. When the game hides your current health, Dossier uses your max health, or 0 if you are dead.
+- Each switch on the Options tab now turns on and off the feature it names.
+- If Session was off when you logged in, turning it on picks up your saved session instead of starting over.
+- The shopping reminder on login and the Consumable-Connoisseur import each run once, even if you turn Shopping on after logging in.
+- Profession skill-ups are no longer logged as new after a login where your ranks were not ready yet.
+- Opening one profession window keeps the saved recipes of your other professions.
+- Recipes are listed as learned only when the game says you know them.
+- The Biography login line names your zone instead of the continent.
+- Timed screenshots keep going after `/reload`.
+- The Help guide scrolls, so the end is no longer cut off. **Copy guide** no longer changes the last-export size on the Export tab.
+
 ## 2.1.0
 
 - New **Options** tab, which brings together the options that were on the Help tab (minimap icon, item stats in bags and bank, detailed export, Reload UI) and a switch for each feature. Open it with `/dossier options`. Help now holds just the guide.

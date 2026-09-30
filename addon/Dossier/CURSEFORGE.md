@@ -56,7 +56,7 @@ The report includes your character name, realm, and gold. Paste it only where yo
 
 Upload these in order. Crop each one to the window. The dusk background can stay as a thin edge. Do not upload a second Screenshotter frame. The project avatar is `dist/curseforge-logo.png`, not a carousel image.
 
-1. Export text window, retaken after the health line shows current and max (for example `486/486`) instead of `n/a`. Keep the token line and the report header in frame.
+1. Export text window, the retake showing `Health: 486/486`. Keep the token line and the report header in frame.
 2. Export tab. Cards, Create Export, and the last-export token count.
 3. Shopping list, with a have / need line and one item marked ready.
 4. Screenshotter, one frame. The tighter of the two Sep 29 shots.
@@ -69,7 +69,7 @@ Still to take before the page goes live:
 - Session panel on the open world, timer and rates visible.
 - Options tab only if there is room after those.
 
-No image files are stored in this repo for the carousel. The Sep 29 shots of Trendirun stay on disk until the export-text retake replaces that one.
+No image files are stored in this repo for the carousel. Use the retake for the export text, not the Sep 29 shot that shows `n/a`.
 
 ## Short posts
 
