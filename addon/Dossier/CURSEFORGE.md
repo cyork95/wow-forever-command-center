@@ -1,6 +1,12 @@
 # CurseForge page
 
+Project: https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
+
 Paste the summary into the project summary field. Paste the description into the project description. Screenshots are uploaded by hand. This file is left out of the addon zip.
+
+## Name
+
+Dossier — Your Character, Ready for AI
 
 ## Summary
 
@@ -8,11 +14,9 @@ Paste your World of Warcraft Forever character into any AI chat. Gear, quests, p
 
 ## Description
 
-# Dossier
+# Dossier — Your Character, Ready for AI
 
-Your character, as text you can hand to an AI.
-
-Type `/dossier`, press **Create Export**, and paste. Cursor, ChatGPT, Claude, Gemini, or any other assistant can then see your level, zone, gold, gear, bags, bank, professions, quests, talents, spells, kills, and how the last few sessions went. Ask for a leveling plan, a gear check, a profession route, or a recap of the night.
+Type `/dossier`, press **Create Export**, and paste. ChatGPT, Claude, Gemini, Cursor, or any other assistant can then see your level, zone, gold, gear, bags, bank, professions, quests, talents, spells, kills, and how the last few sessions went. Ask for a leveling plan, a gear check, a profession route, or a recap of the night.
 
 Dossier is for World of Warcraft Forever. It needs no other addon.
 
@@ -37,19 +41,24 @@ Open your bank and each profession window once. The game only lets an addon read
 
 Paste one character per message, and paste a new export when you want the assistant caught up. The Biography is what changed.
 
+The report includes your character name, realm, and gold. Paste it only where you are comfortable sharing that.
+
 ## Optional companions
 
-If you already use them, Dossier can add their character data to the report: Syndicator (mail and bank), AllTheThings (deaths, quests, time played, collection counts), Nova Instance Tracker (lockouts), Profession Master (recipes), Auctionator (bag prices), and Talents Forever (planned builds). Each has its own switch. The export still works with none of them.
+If you already use them, Dossier can add their character data to the report:
 
-## Coming from AIExport
+- Syndicator (mail and bank)
+- AllTheThings (deaths, quests, time played, collection counts)
+- Nova Instance Tracker (lockouts)
+- Profession Master (recipes)
+- Auctionator (bag prices)
+- Talents Forever (planned builds)
 
-Dossier was called AIExport before 2.0.0. `/aixport` still works. Saved data does not move by itself: with the game closed, copy each character’s `AIExport.lua` to `Dossier.lua` and rename `AIExportDBChar` to `DossierDBChar` on the first line. The full steps are in the addon README.
-
-The report includes your character name, realm, and gold. Paste it only where you are comfortable sharing that.
+Each has its own switch, and the export works with none of them. Want another addon covered? Ask in the comments.
 
 ## Links
 
-- [York](https://yorkdevelops.com/links/) — site, writing, and other projects
+- [York.Dev](https://yorkdevelops.com/links/) — site, writing, and other projects
 - [Buy Me a Coffee](https://buymeacoffee.com/coyofroyo) — if Dossier is useful to you
 
 ## Screenshots
@@ -73,9 +82,9 @@ No image files are stored in this repo for the carousel. Use the retake for the 
 
 ## Short posts
 
-**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://yorkdevelops.com/links/
+**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
-**Linktree line:** Dossier — paste your WoW character into an AI. Buy Me a Coffee stays https://buymeacoffee.com/coyofroyo
+**Links page entry:** Dossier — Your Character, Ready for AI. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
 ## Page settings
 
