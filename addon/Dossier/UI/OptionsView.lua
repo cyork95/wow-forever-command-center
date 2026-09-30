@@ -117,8 +117,10 @@ function OptionsView.New(parent, width, extras)
         row:SetSize(width, ROW_HEIGHT)
         row:SetPoint("TOPLEFT", 0, y)
 
+        -- Lua 5.1 reuses the loop variable, so the handler must close over its own id.
+        local featureID = feature.id
         local checkbox = Theme.CreateCheckbox(row, feature.label, function(self)
-            ns:SetFeatureOn(feature.id, self:GetChecked() == true)
+            ns:SetFeatureOn(featureID, self:GetChecked() == true)
         end)
         checkbox:SetPoint("TOPLEFT", 10, -6)
         checkbox.label:SetFontObject("GameFontHighlight")

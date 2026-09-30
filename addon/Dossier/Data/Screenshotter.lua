@@ -506,10 +506,16 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local id = ...
         Screenshotter:Trigger("collection", CollectionReason(event, not IsSecret(id) and id or nil))
     elseif event == "PLAYER_ENTERING_WORLD" then
-        local isLogin = ...
+        local isLogin, isReload = ...
 
         if isLogin == true then
             Screenshotter:Trigger("login")
+        end
+
+        -- /reload does not fire PLAYER_LOGIN, so the interval timer has to start here too.
+        if isLogin == true or isReload == true then
+            GetSettings()
+            Screenshotter:RefreshInterval()
         end
     elseif event == "PLAYER_LOGIN" then
         GetSettings()

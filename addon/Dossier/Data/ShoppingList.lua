@@ -903,8 +903,30 @@ local function Register(event)
     return ok
 end
 
+-- PLAYER_LOGIN is not registered while Shopping is off, and it does not fire again
+-- when the feature is turned on later. Catch up once, then leave later toggles alone.
+local loginHandled = false
+
+local function OnLogin()
+    if loginHandled then
+        return
+    end
+
+    loginHandled = true
+
+    if ns:IsFeatureOn("companions") then
+        ShoppingList:ImportConnoisseur()
+    end
+
+    ShoppingList:RemindAtLogin()
+end
+
 function ShoppingList:SetFeatureActive(on, loading)
     ns.Features.SetEvents(eventFrame, registeredEvents, on)
+
+    if on and not loading then
+        OnLogin()
+    end
 
     if not loading then
         Notify()
@@ -925,11 +947,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     elseif event == "BAG_UPDATE_DELAYED" then
         Notify()
     elseif event == "PLAYER_LOGIN" then
-        if ns:IsFeatureOn("companions") then
-            ShoppingList:ImportConnoisseur()
-        end
-
-        ShoppingList:RemindAtLogin()
+        OnLogin()
     end
 end)
 

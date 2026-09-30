@@ -1903,7 +1903,8 @@ function Commands:OpenGuide()
 
                 exportFrame:ShowText(
                     guide:GetText(),
-                    C.TEXT.GUIDE_WINDOW_TITLE
+                    C.TEXT.GUIDE_WINDOW_TITLE,
+                    false
                 )
             end,
             ErrorHandler

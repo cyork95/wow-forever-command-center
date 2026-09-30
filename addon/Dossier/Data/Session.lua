@@ -630,6 +630,37 @@ local function SaveCurrent()
     }
 end
 
+local function SavedHistoryEntry(saved)
+    return {
+        start = saved.startedAt or saved.savedAt,
+        seconds = math.floor(tonumber(saved.seconds) or 0),
+        zone = saved.zone,
+        kills = tonumber(saved.kills) or 0,
+        gathered = tonumber(saved.gathered) or 0,
+        gold = tonumber(saved.gold) or 0,
+        xp = tonumber(saved.xp) or 0,
+        levels = tonumber(saved.levels) or 0,
+    }
+end
+
+local function SavedIsStale(saved)
+    return Now() - (tonumber(saved.savedAt) or 0) > RESUME_SECONDS
+end
+
+-- A session left behind while this feature was off still belongs in Previous sessions
+-- once it is too old to resume. A recent one stays in store.current until the feature is on.
+local function ArchiveStaleCurrent()
+    local store = GetStore()
+    local saved = store and store.current
+
+    if type(saved) ~= "table" or not SavedIsStale(saved) then
+        return
+    end
+
+    store.current = nil
+    PushHistory(store, SavedHistoryEntry(saved))
+end
+
 -- After a /reload the session carries on. After a real logout it goes into history.
 local function RestoreCurrent()
     local store = GetStore()
@@ -641,17 +672,8 @@ local function RestoreCurrent()
 
     store.current = nil
 
-    if Now() - (tonumber(saved.savedAt) or 0) > RESUME_SECONDS then
-        PushHistory(store, {
-            start = saved.startedAt or saved.savedAt,
-            seconds = math.floor(tonumber(saved.seconds) or 0),
-            zone = saved.zone,
-            kills = tonumber(saved.kills) or 0,
-            gathered = tonumber(saved.gathered) or 0,
-            gold = tonumber(saved.gold) or 0,
-            xp = tonumber(saved.xp) or 0,
-            levels = tonumber(saved.levels) or 0,
-        })
+    if SavedIsStale(saved) then
+        PushHistory(store, SavedHistoryEntry(saved))
         return
     end
 
@@ -739,12 +761,16 @@ local function Register(event)
     return ok
 end
 
--- Off ends the session into history. On starts from the current gold and XP,
--- so nothing earned while it was off is counted.
+-- Off ends the session into history. On resumes a saved session when one is
+-- waiting, and new gold and XP count from now so time spent off is not added.
 function Session:SetFeatureActive(on, loading)
     ns.Features.SetEvents(eventFrame, registeredEvents, on)
 
     if loading then
+        if not on then
+            ArchiveStaleCurrent()
+        end
+
         return
     end
 
@@ -755,6 +781,7 @@ function Session:SetFeatureActive(on, loading)
 
         local kills = KillsSession()
         lastKillCount = kills and kills.kills or 0
+        RestoreCurrent()
         Notify()
     else
         self:Reset()

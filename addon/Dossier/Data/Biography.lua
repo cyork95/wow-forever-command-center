@@ -139,8 +139,53 @@ local function ReadZoneText()
     return nil
 end
 
+-- GetRealZoneText often returns the continent while the real zone is still loading.
+local function IsAboveZoneName(name)
+    if not name
+        or not C_Map
+        or type(C_Map.GetBestMapForUnit) ~= "function"
+        or type(C_Map.GetMapInfo) ~= "function"
+    then
+        return false
+    end
+
+    local success, mapID = SafeCall(C_Map.GetBestMapForUnit, "player")
+
+    if not success or not mapID then
+        return false
+    end
+
+    for _ = 1, 8 do
+        local infoSuccess, info = SafeCall(C_Map.GetMapInfo, mapID)
+
+        if not infoSuccess or type(info) ~= "table" then
+            return false
+        end
+
+        local mapType = U.ToSafeNumber(info.mapType)
+
+        if mapType and mapType < ZONE_MAP_TYPE and SafeText(info.name) == name then
+            return true
+        end
+
+        mapID = U.ToSafeNumber(info.parentMapID)
+
+        if not mapID or mapID == 0 then
+            return false
+        end
+    end
+
+    return false
+end
+
 local function GetZone()
-    return ReadZoneText() or GetMapZone()
+    local text = ReadZoneText()
+
+    if text and not IsAboveZoneName(text) then
+        return text
+    end
+
+    return GetMapZone()
 end
 
 local function GetSubZone()
@@ -496,7 +541,11 @@ local function RecordProfessionChanges()
     local known = state.professions
     local seeded = state.professionsSeeded == true
 
-    for name, rank in pairs(ReadProfessionRanks()) do
+    local ranks = ReadProfessionRanks()
+    local sawRank = false
+
+    for name, rank in pairs(ranks) do
+        sawRank = true
         local previous = known[name]
 
         if previous == nil then
@@ -536,7 +585,11 @@ local function RecordProfessionChanges()
         known[name] = rank
     end
 
-    state.professionsSeeded = true
+    -- An early skill event can run before the client has ranks. Seeding then
+    -- makes the real professions look newly learned a few seconds later.
+    if sawRank then
+        state.professionsSeeded = true
+    end
 end
 
 local function RecordScreenshot()
@@ -651,7 +704,7 @@ local function OnEvent(_, event, arg1, arg2, ...)
             local function TryLogin()
                 attempts = attempts + 1
 
-                if not ReadZoneText() and attempts <= LOGIN_ZONE_RETRIES then
+                if not GetZone() and attempts <= LOGIN_ZONE_RETRIES then
                     After(1, TryLogin)
                     return
                 end

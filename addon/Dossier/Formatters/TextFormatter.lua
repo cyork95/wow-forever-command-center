@@ -9101,7 +9101,9 @@ function TextFormatter:AddProfessionDetails(lines, data)
 
         for _, recipe in ipairs(profession.recipes or {}) do
             if type(recipe) == "table" and U.IsNonEmptyString(recipe.name) then
-                if recipe.learned == false then
+                if recipe.learned == true then
+                    table.insert(learned[RecipeDifficultyKey(recipe)], recipe.name)
+                else
                     local required = U.ToSafeNumber(recipe.requiredSkill)
 
                     if required ~= nil and rank ~= nil and required <= rank then
@@ -9109,8 +9111,6 @@ function TextFormatter:AddProfessionDetails(lines, data)
                     else
                         unlearnedCount = unlearnedCount + 1
                     end
-                else
-                    table.insert(learned[RecipeDifficultyKey(recipe)], recipe.name)
                 end
             end
         end

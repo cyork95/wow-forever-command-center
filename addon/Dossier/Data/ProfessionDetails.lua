@@ -1002,6 +1002,33 @@ function ProfessionDetails:GetCachedSnapshots()
     return snapshots
 end
 
+local PROFESSION_IDENTITY_FIELDS = {
+    "cacheKey",
+    "name",
+    "parentProfessionName",
+    "baseProfessionName",
+}
+
+local function RememberProfession(known, snapshot)
+    for _, field in ipairs(PROFESSION_IDENTITY_FIELDS) do
+        if U.IsNonEmptyString(snapshot[field]) then
+            known[string.lower(snapshot[field])] = true
+        end
+    end
+end
+
+local function ProfessionAlreadyListed(known, snapshot)
+    for _, field in ipairs(PROFESSION_IDENTITY_FIELDS) do
+        if U.IsNonEmptyString(snapshot[field])
+            and known[string.lower(snapshot[field])]
+        then
+            return true
+        end
+    end
+
+    return false
+end
+
 function ProfessionDetails:Collect()
     local professions = {}
 
@@ -1039,6 +1066,24 @@ function ProfessionDetails:Collect()
                 U.ToSafeNumber(
                     liveSnapshot.lastUpdated
                 )
+
+            -- The open window is only one craft. Keep saved snapshots for the others
+            -- instead of filling those gaps from Profession Master.
+            local listed = {}
+            RememberProfession(listed, liveSnapshot)
+
+            for _, snapshot in ipairs(self:GetCachedSnapshots()) do
+                if not ProfessionAlreadyListed(listed, snapshot) then
+                    U.SafeInsert(professions, snapshot)
+                    RememberProfession(listed, snapshot)
+
+                    local updated = U.ToSafeNumber(snapshot.lastUpdated)
+
+                    if updated ~= nil and (newestTimestamp == nil or updated > newestTimestamp) then
+                        newestTimestamp = updated
+                    end
+                end
+            end
         end
     end
 

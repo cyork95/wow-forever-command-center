@@ -458,7 +458,7 @@ end
 local function BuildHelpPage(page)
     local Theme = ns.Theme
 
-    local guideBox = Theme.CreateScrollText(page, "DossierGuideScrollFrame", "GameFontHighlightSmall")
+    local guideBox = Theme.CreateScrollEdit(page, "DossierGuideScrollFrame", "GameFontHighlightSmall")
     guideBox:SetPoint("TOPLEFT", 0, 0)
     guideBox:SetPoint("BOTTOMRIGHT", 0, 30)
     MainFrame.guideBox = guideBox

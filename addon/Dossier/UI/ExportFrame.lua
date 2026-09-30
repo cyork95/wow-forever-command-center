@@ -231,19 +231,29 @@ function ExportFrame:SetReopenMainOnClose(enabled)
     self.reopenMainOnClose = enabled == true
 end
 
-function ExportFrame:ShowText(text, title)
+function ExportFrame:ShowText(text, title, recordSize)
     local frame, editBox = EnsureFrame()
 
     self.header.title:SetText(title or C.TEXT.EXPORT_WINDOW_TITLE)
 
     frame:Show()
     editBox:SetText(text or "")
-    UpdateSizeBar(self.sizeBar, text)
 
-    local mainFrame = ns.UI and ns.UI.MainFrame
+    -- The guide reuses this window. Its length must not replace the last export's size.
+    if recordSize ~= false then
+        if self.sizeBar then
+            self.sizeBar:Show()
+        end
 
-    if mainFrame and type(mainFrame.SetLastExportTokens) == "function" then
-        mainFrame:SetLastExportTokens(self.lastTokens)
+        UpdateSizeBar(self.sizeBar, text)
+
+        local mainFrame = ns.UI and ns.UI.MainFrame
+
+        if mainFrame and type(mainFrame.SetLastExportTokens) == "function" then
+            mainFrame:SetLastExportTokens(self.lastTokens)
+        end
+    elseif self.sizeBar then
+        self.sizeBar:Hide()
     end
 
     if type(self.updateLayout) == "function" then

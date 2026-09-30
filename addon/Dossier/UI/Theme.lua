@@ -513,6 +513,89 @@ function Theme.CreateScrollText(parent, name, template)
     return box
 end
 
+-- FontStrings on classic-like clients stop around 4KB. An EditBox can hold the guide.
+function Theme.CreateScrollEdit(parent, name, template)
+    local box = Theme.CreatePanel(parent, "dark", "border")
+
+    local scrollFrame = CreateFrame("ScrollFrame", name, box, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", 8, -8)
+    scrollFrame:SetPoint("BOTTOMRIGHT", -28, 8)
+
+    local editBox = CreateFrame("EditBox", nil, scrollFrame)
+    editBox:SetMultiLine(true)
+    editBox:SetAutoFocus(false)
+    editBox:SetFontObject(template or "GameFontHighlightSmall")
+    editBox:SetJustifyH("LEFT")
+    editBox:SetJustifyV("TOP")
+    editBox:SetTextInsets(4, 4, 4, 4)
+    editBox:SetTextColor(Theme.Color("text"))
+    editBox:SetPoint("TOPLEFT")
+    editBox:EnableMouse(true)
+    editBox:SetScript("OnEscapePressed", function(self)
+        self:ClearFocus()
+    end)
+    editBox:SetScript("OnTextChanged", function(self, userInput)
+        if userInput then
+            self:SetText(self.dossierText or "")
+        end
+    end)
+
+    scrollFrame:SetScrollChild(editBox)
+
+    local layingOut = false
+
+    function box:SetText(value)
+        if layingOut then
+            return
+        end
+
+        layingOut = true
+
+        local width = scrollFrame:GetWidth() or 0
+
+        if width < 50 then
+            width = 50
+        end
+
+        editBox.dossierText = value or ""
+        editBox:SetWidth(math.max(width - 8, 1))
+        editBox:SetText(editBox.dossierText)
+        editBox:SetTextColor(Theme.Color("text"))
+
+        local fontHeight = select(2, editBox:GetFont()) or 12
+        local charsPerLine = math.max(math.floor((width - 16) / math.max(fontHeight * 0.5, 1)), 20)
+        local lines = 0
+
+        for line in string.gmatch(editBox.dossierText .. "\n", "(.-)\n") do
+            lines = lines + math.max(math.ceil(math.max(#line, 1) / charsPerLine), 1)
+        end
+
+        if lines < 1 then
+            lines = 1
+        end
+
+        editBox:SetHeight(math.max(lines * (fontHeight + 3) + 12, scrollFrame:GetHeight() or 1))
+
+        if type(scrollFrame.UpdateScrollChildRect) == "function" then
+            scrollFrame:UpdateScrollChildRect()
+        end
+
+        scrollFrame:SetVerticalScroll(0)
+        layingOut = false
+    end
+
+    scrollFrame:SetScript("OnSizeChanged", function()
+        if editBox.dossierText then
+            box:SetText(editBox.dossierText)
+        end
+    end)
+
+    box.scrollFrame = scrollFrame
+    box.editBox = editBox
+
+    return box
+end
+
 ns:RegisterModule("UI.Theme", Theme)
 
 ns.UI = ns.UI or {}
