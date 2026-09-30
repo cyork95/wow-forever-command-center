@@ -6,8 +6,7 @@ local MainFrame = {}
 
 MainFrame.frame = nil
 MainFrame.checkboxes = {}
-MainFrame.minimapCheckbox = nil
-MainFrame.verboseItemTypesCheckbox = nil
+MainFrame.options = nil
 MainFrame.tabs = {}
 MainFrame.pages = {}
 MainFrame.companionRows = {}
@@ -17,7 +16,7 @@ MainFrame.readinessText = nil
 MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
-MainFrame.TAB_ORDER = { "export", "biography", "kills", "session", "shopping", "screenshots", "companions", "features", "help" }
+MainFrame.TAB_ORDER = { "export", "biography", "kills", "session", "shopping", "screenshots", "companions", "options", "help" }
 
 local FRAME_WIDTH = 720
 local FRAME_HEIGHT = 540
@@ -45,7 +44,7 @@ local TAB_LABELS = {
     session = C.TEXT.TAB_SESSION,
     shopping = C.TEXT.TAB_SHOPPING,
     screenshots = C.TEXT.TAB_SCREENSHOTS,
-    features = C.TEXT.TAB_FEATURES,
+    options = C.TEXT.TAB_OPTIONS,
     help = C.TEXT.TAB_HELP,
 }
 
@@ -110,33 +109,6 @@ local function RefreshSectionFeatures()
             checkbox:Disable()
             checkbox.label:SetText(label .. C.TEXT.SECTION_OFF_SUFFIX)
         end
-    end
-end
-
-local function UpdateSettingsCheckboxes()
-    if MainFrame.minimapCheckbox then
-        local visible = true
-
-        if type(ns.IsMinimapIconVisible) == "function" then
-            visible = ns:IsMinimapIconVisible()
-        end
-
-        MainFrame.minimapCheckbox:SetChecked(visible == true)
-    end
-
-    if MainFrame.verboseItemTypesCheckbox then
-        local enabled = false
-
-        if type(ns.IsVerboseItemTypesEnabled) == "function" then
-            enabled = ns:IsVerboseItemTypesEnabled()
-        end
-
-        MainFrame.verboseItemTypesCheckbox:SetChecked(enabled == true)
-    end
-
-    if MainFrame.detailedExportCheckbox then
-        local enabled = type(ns.IsDetailedExport) == "function" and ns:IsDetailedExport()
-        MainFrame.detailedExportCheckbox:SetChecked(enabled == true)
     end
 end
 
@@ -475,11 +447,11 @@ local function BuildScreenshotsPage(page)
     end
 end
 
-local function BuildFeaturesPage(page)
-    local view = ns.UI and ns.UI.FeaturesView
+local function BuildOptionsPage(page)
+    local view = ns.UI and ns.UI.OptionsView
 
-    if view and type(view.Build) == "function" then
-        view:Build(page)
+    if view and type(view.New) == "function" then
+        MainFrame.options = view.New(page, FRAME_WIDTH - NAV_WIDTH - (CONTENT_PADDING * 2))
     end
 end
 
@@ -488,58 +460,18 @@ local function BuildHelpPage(page)
 
     local guideBox = Theme.CreateScrollText(page, "DossierGuideScrollFrame", "GameFontHighlightSmall")
     guideBox:SetPoint("TOPLEFT", 0, 0)
-    guideBox:SetPoint("BOTTOMRIGHT", 0, 120)
+    guideBox:SetPoint("BOTTOMRIGHT", 0, 30)
     MainFrame.guideBox = guideBox
 
-    local options = Theme.CreateCard(page, C.TEXT.LABEL_OPTIONS)
-    options:SetPoint("BOTTOMLEFT", 0, 0)
-    options:SetPoint("BOTTOMRIGHT", 0, 0)
-    options:SetHeight(110)
-
-    local minimapCheckbox = Theme.CreateCheckbox(options, C.TEXT.LABEL_SHOW_MINIMAP_ICON, function(self)
-        local visible = self:GetChecked() == true
-        local commands = GetCommands()
-
-        if commands and type(commands.SetMinimapButtonVisible) == "function" then
-            commands:SetMinimapButtonVisible(visible)
-        elseif type(ns.SetMinimapIconVisible) == "function" then
-            ns:SetMinimapIconVisible(visible)
-        end
-    end)
-    minimapCheckbox:SetPoint("TOPLEFT", 10, -30)
-    MainFrame.minimapCheckbox = minimapCheckbox
-
-    local verboseCheckbox = Theme.CreateCheckbox(options, C.TEXT.LABEL_VERBOSE_ITEM_TYPES, function(self)
-        if type(ns.SetVerboseItemTypesEnabled) == "function" then
-            ns:SetVerboseItemTypesEnabled(self:GetChecked() == true)
-        end
-    end)
-    verboseCheckbox:SetPoint("TOPLEFT", 10, -54)
-    MainFrame.verboseItemTypesCheckbox = verboseCheckbox
-
-    local detailedCheckbox = Theme.CreateCheckbox(options, C.TEXT.LABEL_DETAILED_EXPORT, function(self)
-        if type(ns.SetDetailedExport) == "function" then
-            ns:SetDetailedExport(self:GetChecked() == true)
-        end
-    end)
-    detailedCheckbox:SetPoint("TOPLEFT", 10, -78)
-    MainFrame.detailedExportCheckbox = detailedCheckbox
-
-    local copyGuide = Theme.CreateButton(options, C.TEXT.BUTTON_COPY_GUIDE, 110, 22, "default", function()
+    local copyGuide = Theme.CreateButton(page, C.TEXT.BUTTON_COPY_GUIDE, 110, 22, "default", function()
         local commands = GetCommands()
 
         if commands and type(commands.OpenGuide) == "function" then
             commands:OpenGuide()
         end
     end)
-    copyGuide:SetPoint("TOPRIGHT", -10, -26)
-
-    local reload = Theme.CreateButton(options, C.TEXT.BUTTON_RELOAD_UI, 110, 22, "default", function()
-        if type(ReloadUI) == "function" then
-            ReloadUI()
-        end
-    end)
-    reload:SetPoint("TOPRIGHT", copyGuide, "BOTTOMRIGHT", 0, -6)
+    copyGuide:SetPoint("BOTTOMRIGHT", 0, 0)
+    MainFrame.copyGuideButton = copyGuide
 
     page:SetScript("OnShow", function()
         local guide = ns.Guide
@@ -558,7 +490,7 @@ local PAGE_BUILDERS = {
     session = BuildSessionPage,
     shopping = BuildShoppingPage,
     screenshots = BuildScreenshotsPage,
-    features = BuildFeaturesPage,
+    options = BuildOptionsPage,
     help = BuildHelpPage,
 }
 
@@ -626,7 +558,6 @@ local function EnsureFrame()
 
     MainFrame:LayoutTabs()
     RefreshSectionFeatures()
-    UpdateSettingsCheckboxes()
 
     return frame
 end
@@ -639,7 +570,7 @@ function MainFrame:SelectTab(tabId)
     end
 
     if not ns:IsTabFeatureOn(tabId) then
-        tabId = "features"
+        tabId = "options"
     end
 
     self.activeTab = tabId
@@ -740,7 +671,11 @@ function MainFrame:Refresh()
 
     self:LayoutTabs()
     RefreshSectionFeatures()
-    UpdateSettingsCheckboxes()
+
+    if self.options then
+        self.options:Refresh()
+    end
+
     RefreshCompanionRows()
     self:RefreshReadiness()
 end
@@ -754,7 +689,7 @@ ns:OnFeatureChanged(function()
     RefreshSectionFeatures()
 
     if not ns:IsTabFeatureOn(MainFrame.activeTab) then
-        MainFrame:SelectTab("features")
+        MainFrame:SelectTab("options")
     end
 end)
 

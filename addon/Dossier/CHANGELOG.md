@@ -2,15 +2,17 @@
 
 ## 2.1.0
 
-- New **Features** tab. Biography, Kills, Session, Shopping list, Screenshotter, and Companions each have a switch, and `/dossier off <feature>` and `/dossier on <feature>` do the same. A feature that is off stops watching game events, hides its tab, greys out its Export section with "(off)" and leaves it out of the report, and its commands say how to turn it back on. Its saved data is kept.
-- The switches apply to every character on the account. They are saved in a new account-wide file, `WTF\Account\<account>\SavedVariables\Dossier.lua`.
+- New **Options** tab, which brings together the options that were on the Help tab (minimap icon, item stats in bags and bank, detailed export, Reload UI) and a switch for each feature. Open it with `/dossier options`. Help now holds just the guide.
+- Dossier has its own page in the game's Settings under **AddOns > Dossier**, with the same options and an **Open Dossier** button. `/dossier settings` opens it.
+- Biography, Kills, Session, Shopping list, Screenshotter, and Companions each have a switch on the Options tab, and `/dossier off <feature>` and `/dossier on <feature>` do the same. A feature that is off stops watching game events, hides its tab, greys out its Export section with "(off)" and leaves it out of the report, and its commands say how to turn it back on. Its saved data is kept.
+- The feature switches apply to every character on the account; the general options are still saved for each character. The switches go in a new account-wide file, `WTF\Account\<account>\SavedVariables\Dossier.lua`.
 - Turning Session off hides the session panel and saves the current session to Previous sessions. Turning Companions off stops Dossier reading any other addon.
 - New **Shopping** tab. Shift-click, drag, or type an item to track how many you want against what is in your bags and bank. Shift-click a recipe to add its reagents; each craft lowers its count. **Suggest from bags** adds the food and drink you carry, one stack each. **Clear finished** removes what you have enough of. Open it with `/dossier shop`.
 - **Remind me at vendors and on login** prints a chat line when you are short of something, and at a vendor that sells it. Dossier never buys or moves anything.
 - If Consumable-Connoisseur is loaded, its restock list for the character is copied once into an empty shopping list.
 - New **Shopping list** export section in the Inventory card, on by default.
 - The session panel's tooltip lists your top 15 items gathered, then how many more there are, so a long farming session doesn't fill the screen. The Session tab still lists them all.
-- The tabs are in a new order: Export, Biography, Kills, Session, Shopping, Screenshotter, Companions, Features, Help.
+- The tabs are in a new order: Export, Biography, Kills, Session, Shopping, Screenshotter, Companions, Options, Help.
 - The game needs a full restart after updating, because new files were added.
 
 ## 2.0.0

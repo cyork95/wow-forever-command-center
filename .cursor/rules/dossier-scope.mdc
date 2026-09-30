@@ -23,7 +23,7 @@ Out of scope, even when another addon does it well:
 - Market data and inventory tools that are not a record of the character, such as auction scans or bag-space bars
 - Anything not about this character
 
-Every feature must be switchable off from the Features tab. Off means its events are unregistered and its tab, panel, and export section are hidden, while its saved data is kept.
+Every feature must be switchable off from the Options tab. Off means its events are unregistered and its tab, panel, and export section are hidden, while its saved data is kept.
 
 Companions may read another addon only for the character data it holds. The AllTheThings companion stays because deaths, quests, and time played are character data.
 

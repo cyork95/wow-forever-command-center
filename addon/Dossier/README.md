@@ -2,7 +2,7 @@
 
 Copy your World of Warcraft Forever character into an AI chat.
 
-Type `/dossier`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed Dossier. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Shopping list** tracks what you plan to gather or buy. The **Screenshotter** takes screenshots at big moments, like Memento. Every one of these can be switched off on the **Features** tab.
+Type `/dossier`, press **Create Export**, and paste the text into Cursor, ChatGPT, Claude, Gemini, or any other assistant. The report covers your level, zone, gold, stats, gear, bags, bank, professions, quests, talents, spells, kills, play sessions, in-game statistics, and addons, plus a **Biography** timeline of what your character has done since you installed Dossier. The **Session** timer tracks kills, gathering, gold, and XP per hour, like Gathering. The **Shopping list** tracks what you plan to gather or buy. The **Screenshotter** takes screenshots at big moments, like Memento. Every one of these can be switched off on the **Options** tab.
 
 Dossier needs no other addon. Everything in the report comes from the game and from Dossier itself. If you use some popular addons, Dossier can also add what they know; see [Companions](#companions).
 
@@ -38,7 +38,8 @@ If AIExport is still loaded, Dossier prints a reminder in chat to turn it off.
 | `/dossier shots` | Open the Screenshotter tab |
 | `/dossier shot` | Take a screenshot now |
 | `/dossier companions` | Open the Companions tab |
-| `/dossier features` | Open the Features tab |
+| `/dossier options` | Open the Options tab |
+| `/dossier settings` | Open Dossier's page in the game's Settings |
 | `/dossier off <feature>` | Turn a feature off: `bio`, `kills`, `session`, `shop`, `shots`, or `companions` |
 | `/dossier on <feature>` | Turn it back on |
 | `/dossier help` | Open the guide and the example AI skill |
@@ -47,7 +48,7 @@ Left-click the minimap button to open the window. Right-click it to show or hide
 
 ## The window
 
-The window has nine tabs down the left side. A feature you turn off on the Features tab also hides its tab.
+The window has nine tabs down the left side. A feature you turn off on the Options tab also hides its tab.
 
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
 - **Biography**: your timeline, 40 lines per page.
@@ -56,10 +57,10 @@ The window has nine tabs down the left side. A feature you turn off on the Featu
 - **Shopping**: the items and recipes you plan to gather or buy, with what you have and what you still need.
 - **Screenshotter**: automatic screenshots at big moments, with a switch for each moment.
 - **Companions**: the optional addons Dossier can read, each with its status and an on/off switch.
-- **Features**: a switch for each part of Dossier.
-- **Help**: the guide, a **Copy guide** button, and the options (minimap icon, item stats in bags and bank, detailed export, Reload UI).
+- **Options**: the minimap icon, item stats in bags and bank, detailed export, Reload UI, and a switch for each part of Dossier. See [Options](#options).
+- **Help**: the guide and a **Copy guide** button.
 
-The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** to get item, spell, and quest IDs back.
+The export window shows an approximate token count (about 4 characters per token) and the three largest sections, so you can untick what you do not need. Turn on **Detailed export** on the Options tab to get item, spell, and quest IDs back.
 
 ## Make an export
 
@@ -136,13 +137,18 @@ The bank count uses the copy Dossier saved the last time your bank was open. The
 
 If Consumable-Connoisseur is loaded, Dossier copies this character's restock list once, into an empty shopping list. Connoisseur's auto-buying, bank stashing and withdrawing, reputation purchases, consumable upgrades, and starter lists are left out, because Dossier records the character instead of acting for it.
 
-## Features
+## Options
 
-Every part of Dossier can be turned off on the **Features** tab, or with `/dossier off <feature>` and `/dossier on <feature>`: Biography, Kills, Session, Shopping list, Screenshotter, and Companions.
+The **Options** tab has two parts. The same options are in the game's Settings under **AddOns > Dossier** (`/dossier settings`), with an **Open Dossier** button. A change in one place shows in the other.
+
+- **General**, saved for each character: show the minimap icon, item stats in bags and bank, detailed export, and **Reload UI**.
+- **Features**, for every character on the account: a switch for each part of Dossier.
+
+Every part of Dossier can be turned off here, or with `/dossier off <feature>` and `/dossier on <feature>`: Biography, Kills, Session, Shopping list, Screenshotter, and Companions.
 
 A feature that is off stops completely: its game events are no longer watched, its tab is hidden, its section on the Export tab is greyed out with "(off)" and left out of the report, and its commands say how to turn it back on. Turning Session off also hides the session panel and saves the current session to Previous sessions. Turning Companions off stops Dossier reading any other addon.
 
-Nothing a feature saved is deleted, so its history comes back when you turn it on. The switches apply to every character on the account and are saved in `WTF\Account\<account>\SavedVariables\Dossier.lua`. The Export tab, its other sections, and Help are always on.
+Nothing a feature saved is deleted, so its history comes back when you turn it on. The switches apply to every character on the account and are saved in `WTF\Account\<account>\SavedVariables\Dossier.lua`. The Export tab, its other sections, Help, and Options are always on.
 
 ## Screenshotter
 

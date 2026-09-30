@@ -37,10 +37,12 @@ The window has nine tabs:
 - Shopping: the items and recipes you plan to gather or buy
 - Screenshotter: automatic screenshots at big moments, like Memento
 - Companions: the optional addons Dossier can read, each with its own switch
-- Features: a switch for each part of Dossier
-- Help: this guide and the options
+- Options: the minimap icon, item stats, detailed export, and a switch for
+  each part of Dossier
+- Help: this guide
 
-A feature you turn off on the Features tab also hides its tab.
+A feature you turn off on the Options tab also hides its tab. The same
+options are in the game's Settings, under AddOns > Dossier.
 
 
 2. Commands
@@ -54,7 +56,8 @@ A feature you turn off on the Features tab also hides its tab.
 /dossier shots       Open the Screenshotter tab
 /dossier shot        Take a screenshot now
 /dossier companions  Open the Companions tab
-/dossier features    Open the Features tab
+/dossier options     Open the Options tab
+/dossier settings    Open Dossier's page in the game's Settings
 /dossier off kills   Turn a feature off (bio, kills, session, shop, shots,
                      companions)
 /dossier on kills    Turn it back on
@@ -93,8 +96,8 @@ Sections you leave unticked are not in the report.
 The report is kept short so it costs fewer tokens in your AI chat. The
 export window shows about how many tokens it uses and which sections are
 largest. Untick sections you do not need if your AI chat cuts the text off.
-Tick Detailed export under Help to get item, spell, and quest IDs back; the
-report is then several times larger.
+Tick Detailed export on the Options tab to get item, spell, and quest IDs
+back; the report is then several times larger.
 
 
 4. Biography
@@ -276,11 +279,18 @@ If a companion addon changes how it saves data, its block says it could not
 be read instead of breaking the export.
 
 
-10. Features
-------------
-Every part of Dossier can be turned off on the Features tab, or with
-/dossier off and /dossier on. The switches are Biography, Kills, Session,
-Shopping list, Screenshotter, and Companions.
+10. Options
+-----------
+The Options tab has two parts. The same options are in the game's Settings,
+under AddOns > Dossier (/dossier settings), with an Open Dossier button.
+
+General, saved for each character: show the minimap icon, item stats in
+bags and bank, detailed export (item, spell, and quest IDs, much larger),
+and a Reload UI button.
+
+Features, for every character on your account: every part of Dossier can be
+turned off here, or with /dossier off and /dossier on. The switches are
+Biography, Kills, Session, Shopping list, Screenshotter, and Companions.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left
@@ -292,7 +302,7 @@ addon.
 Nothing a feature saved is deleted. Turn it back on and its history is
 still there. The switches apply to every character on your account.
 
-The Export tab, its other sections, and Help are always on.
+The Export tab, its other sections, Help, and Options are always on.
 
 
 11. Tips for the AI chat

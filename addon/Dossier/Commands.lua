@@ -1983,8 +1983,16 @@ local function IfFeatureOn(id, action)
     end
 end
 
-function Commands:OpenFeatures()
-    self:OpenTab("features")
+function Commands:OpenOptions()
+    self:OpenTab("options")
+end
+
+function Commands:OpenSettings()
+    local page = ns.UI and ns.UI.SettingsPanel
+
+    if not page or not page:Open() then
+        self:OpenOptions()
+    end
 end
 
 function Commands:SetFeature(name, on)
@@ -2094,11 +2102,16 @@ SlashCmdList[
 
         if verb == "on" or verb == "off" then
             Commands:SetFeature(featureName, verb == "on")
-        elseif argument == "features"
+        elseif argument == "options"
+            or argument == "features"
             or argument == "on"
             or argument == "off"
         then
-            Commands:OpenFeatures()
+            Commands:OpenOptions()
+        elseif argument == "settings"
+            or argument == "config"
+        then
+            Commands:OpenSettings()
         elseif argument == "help"
             or argument == "guide"
         then

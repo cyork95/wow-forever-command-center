@@ -14,7 +14,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.BIOGRAPHY },
         modules = { "Data.Biography" },
         aliases = { "bio", "biography" },
-        description = "Records level-ups, deaths, new zones, quest turn-ins, achievements, skill-ups, and boss kills.",
+        description = "Records level-ups, deaths, new zones, quests, achievements, skill-ups, and boss kills.",
     },
     {
         id = "kills",
@@ -23,7 +23,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.KILLS },
         modules = { "Data.Kills" },
         aliases = { "kills", "kill" },
-        description = "Counts the creatures you kill with their drops and gold, and adds the count to creature tooltips.",
+        description = "Counts the creatures you kill with their drops and gold, and shows counts on tooltips.",
     },
     {
         id = "session",
@@ -32,7 +32,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.SESSIONS },
         modules = { "Data.Session", "UI.KillPanel" },
         aliases = { "session", "sessions", "panel" },
-        description = "Times play sessions with gathering, gold, and XP per hour, shows the session panel, and keeps Previous sessions.",
+        description = "Times play sessions with gathering, gold, and XP per hour, and runs the session panel.",
     },
     {
         id = "shopping",
@@ -59,7 +59,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.COMPANIONS },
         modules = {},
         aliases = { "companions", "companion" },
-        description = "Reads other addons, such as Syndicator, KillDex, and AllTheThings, for what they know about this character.",
+        description = "Reads Syndicator, KillDex, AllTheThings, and others for what they know about you.",
     },
 }
 
