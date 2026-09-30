@@ -58,6 +58,7 @@ Each has its own switch, and the export works with none of them. Want another ad
 
 ## Links
 
+- [Player wiki](https://github.com/cyork95/wow-forever-command-center/wiki) — install, export, each tab, and how to use the report with an AI
 - [York.Dev](https://yorkdevelops.com/links/) — site, writing, and other projects
 - [Buy Me a Coffee](https://buymeacoffee.com/coyofroyo) — if Dossier is useful to you
 
@@ -90,4 +91,5 @@ No image files are stored in this repo for the carousel. Use the retake for the 
 
 - Category: Data Export. Add Achievements or Miscellaneous only if CurseForge asks for a second.
 - Game version: the Forever / classic beta client this build targets. The first paragraph already says Forever so a retail player does not install it by mistake.
-- York and Buy Me a Coffee stay in the Links section at the bottom of the description, after what the addon does.
+- York and Buy Me a Coffee stay in the Links section at the bottom of the description, after what the addon does. The player wiki link stays with them.
+- Wiki URL field (the project's external user wiki, separate from the description): `https://github.com/cyork95/wow-forever-command-center/wiki`

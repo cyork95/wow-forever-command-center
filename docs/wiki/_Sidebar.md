@@ -1,0 +1,15 @@
+**Dossier**
+
+- [[Home]]
+- [[Install]]
+- [[Window and commands]]
+- [[Making an export]]
+- [[Biography]]
+- [[Kills]]
+- [[Session]]
+- [[Shopping list]]
+- [[Screenshotter]]
+- [[Companions]]
+- [[Options]]
+- [[Using it with an AI]]
+- [[Troubleshooting]]
