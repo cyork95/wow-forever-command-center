@@ -568,6 +568,9 @@ function Ledger:ReputationLines(key, period)
                     id = id,
                     name = entry.name or tostring(id),
                     standing = (standing or "Unknown") .. bar,
+                    standingName = standing or "Unknown",
+                    progress = tonumber(entry.progress),
+                    maximum = tonumber(entry.nextStanding) or tonumber(value),
                     delta = delta,
                 })
             end

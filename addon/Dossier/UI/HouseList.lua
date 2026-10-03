@@ -2,9 +2,9 @@ local _, ns = ...
 
 local HouseList = {}
 
-local function Menu(parent, width, onPick)
+local function Menu(parent, width, initialLabel, onPick)
     local Theme = ns.Theme
-    local button = Theme.CreateButton(parent, "All characters", width, 22, "default", function(self)
+    local button = Theme.CreateButton(parent, initialLabel or "Choose", width, 22, "default", function(self)
         if self.list:IsShown() then
             self.list:Hide()
         else
@@ -17,6 +17,10 @@ local function Menu(parent, width, onPick)
     list:SetWidth(width)
     list:Hide()
     list:SetFrameStrata("DIALOG")
+
+    if type(list.SetFrameLevel) == "function" then
+        list:SetFrameLevel(40)
+    end
 
     if list.SetBackdrop then
         list:SetBackdrop({
@@ -31,11 +35,12 @@ local function Menu(parent, width, onPick)
     button.list = list
     button.choices = {}
     button.selected = nil
+    button.rows = {}
 
     function button:SetChoices(choices, selected)
         self.choices = choices or {}
         self.selected = selected
-        local label = selected or "Choose"
+        local label = "Choose"
 
         for _, choice in ipairs(self.choices) do
             if choice.id == selected then
@@ -43,36 +48,152 @@ local function Menu(parent, width, onPick)
             end
         end
 
-        self:SetText(label)
+        self:SetLabel(label)
 
-        if self.rows then
-            for _, row in ipairs(self.rows) do
-                row:Hide()
-            end
-        end
-
-        self.rows = {}
         local height = 4
 
         for index, choice in ipairs(self.choices) do
-            local row = self.rows[index] or Theme.CreateButton(list, choice.label, width - 8, 20, "default", function()
-                self.selected = choice.id
-                self:SetText(choice.label)
+            local pickedId = choice.id
+            local pickedLabel = choice.label
+            local row = self.rows[index]
+
+            if not row then
+                row = Theme.CreateButton(list, pickedLabel, width - 8, 20, "default", function() end)
+                self.rows[index] = row
+            end
+
+            row:SetLabel(pickedLabel)
+            row:SetScript("OnClick", function()
+                self.selected = pickedId
+                self:SetLabel(pickedLabel)
                 list:Hide()
-                onPick(choice.id)
+                onPick(pickedId)
             end)
-            row:SetText(choice.label)
+            Theme.SetBorderColor(row, pickedId == selected and "accent" or "border")
             row:ClearAllPoints()
             row:SetPoint("TOPLEFT", 4, -height)
             row:Show()
-            self.rows[index] = row
             height = height + 22
+        end
+
+        for index = #self.choices + 1, #self.rows do
+            self.rows[index]:Hide()
         end
 
         list:SetHeight(math.max(height + 4, 8))
     end
 
     return button
+end
+
+local STANDING_COLORS = {
+    Hated = { 0.78, 0.16, 0.16 },
+    Hostile = { 0.86, 0.28, 0.14 },
+    Unfriendly = { 0.90, 0.48, 0.16 },
+    Neutral = { 0.90, 0.78, 0.28 },
+    Friendly = { 0.28, 0.72, 0.32 },
+    Honored = { 0.22, 0.62, 0.78 },
+    Revered = { 0.36, 0.46, 0.90 },
+    Exalted = { 0.64, 0.40, 0.92 },
+}
+
+local function AttachBlocks(box)
+    local Theme = ns.Theme
+    local pool = {}
+    local used = {}
+
+    local function Take(kind, factory)
+        for index, frame in ipairs(pool) do
+            if frame.kind == kind then
+                table.remove(pool, index)
+                frame:Show()
+                table.insert(used, frame)
+                return frame
+            end
+        end
+
+        local frame = factory()
+        frame.kind = kind
+        frame:Show()
+        table.insert(used, frame)
+        return frame
+    end
+
+    function box:SetBlocks(blocks)
+        for _, frame in ipairs(used) do
+            frame:Hide()
+            table.insert(pool, frame)
+        end
+
+        used = {}
+        self.text:SetText("")
+        self.text:Hide()
+
+        local width = (self.scrollFrame:GetWidth() or 280) - 8
+        local y = 0
+
+        for _, block in ipairs(blocks or {}) do
+            if block.kind == "bar" then
+                local row = Take("bar", function()
+                    local frame = CreateFrame("Frame", nil, self.content)
+                    frame:SetHeight(28)
+                    local name = Theme.CreateText(frame, "GameFontHighlightSmall", "text")
+                    name:SetPoint("TOPLEFT", 0, 0)
+                    local right = Theme.CreateText(frame, "GameFontHighlightSmall", "muted")
+                    right:SetPoint("TOPRIGHT", 0, 0)
+                    local bar = CreateFrame("StatusBar", nil, frame)
+                    bar:SetPoint("BOTTOMLEFT", 0, 2)
+                    bar:SetPoint("BOTTOMRIGHT", 0, 2)
+                    bar:SetHeight(8)
+                    bar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
+                    bar:SetMinMaxValues(0, 1)
+                    local back = bar:CreateTexture(nil, "BACKGROUND")
+                    back:SetAllPoints()
+                    back:SetTexture("Interface\\Buttons\\WHITE8x8")
+                    back:SetVertexColor(0.08, 0.09, 0.1, 0.9)
+                    frame.name = name
+                    frame.right = right
+                    frame.bar = bar
+                    return frame
+                end)
+                row:SetWidth(width)
+                row.name:SetText(block.label or "")
+                row.right:SetText(block.right or "")
+                local maxValue = tonumber(block.max) or 0
+                local value = tonumber(block.value) or 0
+                row.bar:SetMinMaxValues(0, maxValue > 0 and maxValue or 1)
+                row.bar:SetValue(maxValue > 0 and math.min(value, maxValue) or 0)
+                local color = STANDING_COLORS[block.color] or { 0.25, 0.78, 0.82 }
+                row.bar:SetStatusBarColor(color[1], color[2], color[3])
+                row:ClearAllPoints()
+                row:SetPoint("TOPLEFT", 4, -y)
+                y = y + 32
+            else
+                local line = Take("line", function()
+                    local text = Theme.CreateText(self.content, "GameFontHighlightSmall", "text")
+                    text:SetJustifyH("LEFT")
+                    text:SetJustifyV("TOP")
+                    text:SetWordWrap(true)
+                    return text
+                end)
+                local font = block.kind == "heading" and "GameFontNormal" or "GameFontHighlightSmall"
+                line:SetFontObject(font)
+                line:SetTextColor(Theme.Color(block.kind == "heading" and "accent" or "text"))
+                line:SetWidth(width)
+                line:SetText(block.text or "")
+                line:ClearAllPoints()
+                line:SetPoint("TOPLEFT", 4, -y)
+                y = y + (line:GetStringHeight() or 14) + (block.kind == "heading" and 8 or 3)
+            end
+        end
+
+        self.content:SetWidth(width)
+        self.content:SetHeight(math.max(y + 8, self.scrollFrame:GetHeight() or 1))
+
+        if type(self.scrollFrame.UpdateScrollChildRect) == "function" then
+            self.scrollFrame:UpdateScrollChildRect()
+        end
+    end
 end
 
 function HouseList.Build(page, options)
@@ -84,7 +205,17 @@ function HouseList.Build(page, options)
         query = "",
     }
 
-    local characters = Menu(page, 180, function(id)
+    local function ChoiceLabel(choices, id, fallback)
+        for _, choice in ipairs(choices or {}) do
+            if choice.id == id then
+                return choice.label
+            end
+        end
+
+        return fallback
+    end
+
+    local characters = Menu(page, 180, "All characters", function(id)
         state.character = id
         state.refresh()
     end)
@@ -93,7 +224,7 @@ function HouseList.Build(page, options)
     local periods = nil
 
     if options.periods then
-        periods = Menu(page, 120, function(id)
+        periods = Menu(page, 120, ChoiceLabel(options.periods, state.period, "All"), function(id)
             state.period = id
             state.refresh()
         end)
@@ -103,7 +234,7 @@ function HouseList.Build(page, options)
     local sources = nil
 
     if options.sources then
-        sources = Menu(page, 150, function(id)
+        sources = Menu(page, 150, ChoiceLabel(options.sources, state.source, "Summary"), function(id)
             state.source = id
             state.refresh()
         end)
@@ -124,6 +255,7 @@ function HouseList.Build(page, options)
     local box = Theme.CreateScrollText(page, nil, "GameFontHighlightSmall")
     box:SetPoint("TOPLEFT", 0, options.search and -56 or -32)
     box:SetPoint("BOTTOMRIGHT", 0, options.footer and 28 or 0)
+    AttachBlocks(box)
 
     function state.refresh()
         local account = ns.Account
@@ -158,12 +290,19 @@ function HouseList.Build(page, options)
             sources:SetChoices(options.sources, state.source)
         end
 
-        box:SetText(options.text(state) or "")
+        if options.blocks then
+            box:SetBlocks(options.blocks(state) or {})
+        else
+            box.text:Show()
+            box:SetText(options.text and options.text(state) or "")
+        end
     end
 
     page:SetScript("OnShow", function()
         state.refresh()
     end)
+
+    state.refresh()
 
     return state
 end

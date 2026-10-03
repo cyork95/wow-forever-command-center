@@ -490,7 +490,9 @@ local function BuildHelpPage(page)
     page:SetScript("OnShow", function()
         local guide = ns.Guide
 
-        if guide and type(guide.GetText) == "function" then
+        if guide and type(guide.GetDisplayText) == "function" then
+            guideBox:SetText(guide:GetDisplayText())
+        elseif guide and type(guide.GetText) == "function" then
             guideBox:SetText(guide:GetText())
         end
     end)

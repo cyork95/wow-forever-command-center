@@ -124,6 +124,28 @@ function Account.FormatGold(copper)
     return tostring(math.floor(tonumber(copper) or 0))
 end
 
+-- Gold, silver, and copper icons, with green for a gain and red for a spend.
+function Account.Coins(copper)
+    copper = math.floor(tonumber(copper) or 0)
+    local sign = ""
+
+    if copper < 0 then
+        sign = "|cffff6b61-|r"
+    elseif copper > 0 then
+        sign = "|cff7dffb3+|r"
+    end
+
+    if type(GetCoinTextureString) == "function" then
+        local ok, text = pcall(GetCoinTextureString, math.abs(copper))
+
+        if ok and type(text) == "string" and text ~= "" then
+            return sign .. text
+        end
+    end
+
+    return Account.FormatGold(copper)
+end
+
 ns.Account = Account
 ns.Data = ns.Data or {}
 ns.Data.Account = Account

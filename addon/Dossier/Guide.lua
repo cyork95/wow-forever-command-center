@@ -29,14 +29,20 @@ yet, or saved more than a week ago, and marks those sections with "!". Until
 then, Dossier uses Syndicator's bank copy and Profession Master's recipes if
 those addons are loaded.
 
-The window has nine tabs:
+The window lists a tab for each part that is switched on:
+
 - Export: the sections, grouped into cards, and the Create Export button
 - Biography: your timeline, 40 lines per page
-- Kills: every creature you have killed, with drops and gold
-- Session: a timer with this session's kills, gathering, gold, and XP
+- Kills and Rares: creatures you have killed, and rares with a place and drops
+- Session and Sessions: the live timer, then finished sessions for the account
+- Ledger, Currencies, and Reputation: gold, currency icons, and reputation bars
+- Mail: letters you sent and received. Dossier does not send or take mail
+- Professions: each character's skill and rank
+- Lockouts: saved instances and a diary of runs
 - Shopping: the items and recipes you plan to gather or buy
-- Screenshotter: automatic screenshots at big moments, like Memento
-- Other addons: one switch for reading character data another addon saved
+- Tasks: daily, weekly, and one-time notes, plus a window for this zone
+- Quests: every quest the game says this character has completed
+- Screenshotter: automatic screenshots at big moments
 - Options: the minimap icon, item stats, detailed export, and a switch for
   each part of Dossier
 - Help: this guide
@@ -384,6 +390,26 @@ what the user asked. Name real quests, zones, and items from the report.
 Keep advice to things the character can do at its current level.
 ------------------------------ end SKILL.md ------------------------------
 ]]
+
+function Guide:GetDisplayText()
+    local gold = "|cffd4b15a"
+    local muted = "|cff8d9aa3"
+    local lines = {}
+
+    for line in (self:GetText() .. "\n"):gmatch("(.-)\n") do
+        if line:match("^%d+%. ") or line:match("^%d%d%. ") then
+            table.insert(lines, gold .. line .. "|r")
+        elseif line:match("^-+$") or line:match("^=+$") then
+            table.insert(lines, muted .. line .. "|r")
+        elseif line:match("^/") then
+            table.insert(lines, "|cff7ee0e6" .. line .. "|r")
+        else
+            table.insert(lines, line)
+        end
+    end
+
+    return table.concat(lines, "\n")
+end
 
 function Guide:GetText()
     local title =

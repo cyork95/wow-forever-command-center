@@ -5,7 +5,47 @@ local function Account()
 end
 
 local function Gold(copper)
-    return Account().FormatGold(copper)
+    return Account().Coins(copper)
+end
+
+local function CurrencyIcon(id)
+    local texture = nil
+
+    if C_CurrencyInfo and type(C_CurrencyInfo.GetCurrencyInfo) == "function" then
+        local ok, info = pcall(C_CurrencyInfo.GetCurrencyInfo, tonumber(id))
+
+        if ok and type(info) == "table" then
+            texture = info.iconFileID
+        end
+    end
+
+    if not texture and type(GetCurrencyInfo) == "function" then
+        local ok, _, _, icon = pcall(GetCurrencyInfo, tonumber(id))
+
+        if ok then
+            texture = icon
+        end
+    end
+
+    if not texture or texture == "" then
+        return ""
+    end
+
+    return string.format("|T%s:14:14:0:0|t ", texture)
+end
+
+local function DeltaColor(delta)
+    delta = tonumber(delta) or 0
+
+    if delta > 0 then
+        return "|cff7dffb3+" .. tostring(delta) .. "|r"
+    end
+
+    if delta < 0 then
+        return "|cffff6b61" .. tostring(delta) .. "|r"
+    end
+
+    return "|cff8d9aa30|r"
 end
 
 local function When(timestamp)
@@ -44,16 +84,19 @@ local function LedgerText(state)
         local rows = ledger:Summary(key, state.period)
 
         if #rows == 0 then
-            return "No entries for this character in this period."
+            return nil
         end
 
-        table.insert(lines, "Source          In            Out           Net")
+        local blocks = { { kind = "heading", text = "Where the gold went" } }
 
         for _, row in ipairs(rows) do
-            table.insert(lines, string.format("%-16s %-13s %-13s %s", row.label, Gold(row.inn), Gold(row.out), Gold(row.net)))
+            table.insert(blocks, {
+                kind = "line",
+                text = string.format("%s|cffffd36b%s|r    in %s    out %s    net %s", ns.Theme.ColorCode("accent"), row.label, Gold(row.inn), Gold(row.out), Gold(row.net)),
+            })
         end
 
-        return table.concat(lines, "\n")
+        return blocks
     end
 
     if state.source == "auction" then
@@ -77,11 +120,31 @@ local function LedgerText(state)
         end
     end
 
-    if count == 0 then
-        return "No entries for this character in this period."
+    if count == 0 and #lines == 0 then
+        return nil
     end
 
     return table.concat(lines, "\n")
+end
+
+local function LedgerBlocks(state)
+    if state.source == "summary" then
+        local summary = LedgerText(state)
+
+        if type(summary) == "table" then
+            return summary
+        end
+
+        return { { kind = "line", text = "|cff8d9aa3" .. (summary or "No entries for this character in this period.") .. "|r" } }
+    end
+
+    local text = LedgerText(state)
+
+    if not text or text == "" then
+        return { { kind = "line", text = "|cff8d9aa3No entries for this character in this period.|r" } }
+    end
+
+    return { { kind = "line", text = text } }
 end
 
 local function Grouped(lines, groupKey, lineText)
@@ -115,7 +178,7 @@ function LedgerView:Build(page)
         keys = function()
             return ns.Data.Ledger:CharacterKeys()
         end,
-        text = LedgerText,
+        blocks = LedgerBlocks,
     })
 end
 
@@ -133,13 +196,28 @@ function CurrenciesView:Build(page)
         keys = function()
             return ns.Data.Ledger:CharacterKeys()
         end,
-        text = function(state)
+        blocks = function(state)
             local rows = ns.Data.Ledger:CurrencyLines(state.character, state.period)
+            local blocks = {}
+            local current = nil
 
-            return Grouped(rows, "name", function(row)
-                local delta = row.delta ~= 0 and string.format(" %+d", row.delta) or ""
-                return string.format("%s%s    now %d", row.character, delta, row.quantity)
-            end)
+            if #rows == 0 then
+                return { { kind = "line", text = "|cff8d9aa3No currencies saved for this period.|r" } }
+            end
+
+            for _, row in ipairs(rows) do
+                if row.name ~= current then
+                    current = row.name
+                    table.insert(blocks, { kind = "heading", text = CurrencyIcon(row.id) .. row.name })
+                end
+
+                table.insert(blocks, {
+                    kind = "line",
+                    text = string.format("%s    %s    |cffffd36b%d|r", row.character, DeltaColor(row.delta), row.quantity),
+                })
+            end
+
+            return blocks
         end,
     })
 end
@@ -158,13 +236,43 @@ function ReputationView:Build(page)
         keys = function()
             return ns.Data.Ledger:CharacterKeys()
         end,
-        text = function(state)
+        blocks = function(state)
             local rows = ns.Data.Ledger:ReputationLines(state.character, state.period)
+            local blocks = {}
+            local current = nil
 
-            return Grouped(rows, "name", function(row)
-                local delta = row.delta ~= 0 and string.format("%+d  ", row.delta) or ""
-                return string.format("%s%s%s", row.character, delta ~= "" and ("  " .. delta) or "  ", row.standing)
-            end)
+            if #rows == 0 then
+                return { { kind = "line", text = "|cff8d9aa3No reputation saved for this period.|r" } }
+            end
+
+            for _, row in ipairs(rows) do
+                if row.name ~= current then
+                    current = row.name
+                    table.insert(blocks, { kind = "heading", text = row.name })
+                end
+
+                local standing = row.standingName or row.standing or "Unknown"
+                local right = standing
+
+                if row.progress and row.maximum then
+                    right = string.format("%s  %d/%d", standing, row.progress, row.maximum)
+                end
+
+                if row.delta ~= 0 then
+                    right = DeltaColor(row.delta) .. "   " .. right
+                end
+
+                table.insert(blocks, {
+                    kind = "bar",
+                    label = row.character,
+                    value = row.progress or 0,
+                    max = row.maximum or 1,
+                    color = standing,
+                    right = right,
+                })
+            end
+
+            return blocks
         end,
     })
 end
@@ -461,42 +569,42 @@ function SessionsView:Build(page)
         keys = function()
             return ns.Account.Keys(ns.Account.Bucket("sessions"))
         end,
-        text = function(state)
+        blocks = function(state)
             local bucket = ns.Account.Bucket("sessions") or {}
-            local lines = {}
-            local keys = state.character == "all" and ns.Data.Runs and ns.Account.Keys(bucket) or { state.character }
-
-            if state.character ~= "all" then
-                keys = { state.character }
-            end
+            local keys = state.character == "all" and ns.Account.Keys(bucket) or { state.character }
+            local blocks = {}
 
             for _, key in ipairs(keys) do
                 local history = bucket[key] or {}
                 local show = state.character == "all" and { history[1] } or history
 
                 if history[1] then
-                    table.insert(lines, key)
+                    table.insert(blocks, { kind = "heading", text = key })
                 end
 
                 for _, entry in ipairs(show) do
                     if type(entry) == "table" then
-                        table.insert(lines, string.format(
-                            "  %s  %s  %s  %s  %s XP",
-                            When(entry.start),
-                            entry.zone or "",
-                            ns.Data.Session and ns.Data.Session.FormatDuration and ns.Data.Session.FormatDuration(entry.seconds) or "",
-                            Gold(entry.gold or 0),
-                            tostring(entry.xp or 0)
-                        ))
+                        local duration = ns.Data.Session and ns.Data.Session.FormatDuration and ns.Data.Session.FormatDuration(entry.seconds) or ""
+                        table.insert(blocks, {
+                            kind = "line",
+                            text = string.format(
+                                "|cffd4b15a%s|r   |cff7ee0e6%s|r   |cffffd36b%s|r   %s   |cff9ec5ff%s XP|r",
+                                When(entry.start),
+                                entry.zone or "",
+                                duration,
+                                Gold(entry.gold or 0),
+                                tostring(entry.xp or 0)
+                            ),
+                        })
                     end
                 end
             end
 
-            if #lines == 0 then
-                return "No finished sessions yet."
+            if #blocks == 0 then
+                return { { kind = "line", text = "|cff8d9aa3No finished sessions yet.|r" } }
             end
 
-            return table.concat(lines, "\n")
+            return blocks
         end,
     })
 end

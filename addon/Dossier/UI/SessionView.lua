@@ -36,7 +36,8 @@ function SessionView.SummaryText(summary)
     end
 
     table.insert(lines, string.format(C.TEXT.SESSION_LINE_GATHERED, count(summary.gathered), count(summary.gatheredPerHour)))
-    table.insert(lines, string.format(C.TEXT.SESSION_LINE_GOLD, session.FormatGold(summary.gold), session.FormatGold(summary.goldPerHour)))
+    local coins = ns.Account and ns.Account.Coins or session.FormatGold
+    table.insert(lines, string.format(C.TEXT.SESSION_LINE_GOLD, coins(summary.gold), coins(summary.goldPerHour)))
 
     local ledger = ns.Data and ns.Data.Ledger
 
@@ -91,42 +92,42 @@ function SessionView.HistoryText(history)
         return C.TEXT.SESSION_HISTORY_EMPTY
     end
 
-    local accent = ns.Theme.ColorCode("accent")
-    local lines = {}
+        local lines = {}
+        local coins = ns.Account and ns.Account.Coins or session.FormatGold
 
-    for _, entry in ipairs(history) do
-        local when = type(date) == "function" and date("%b %d, %H:%M", tonumber(entry.start) or 0) or tostring(entry.start)
-        local header = when .. "  " .. session.FormatDuration(entry.seconds)
+        for _, entry in ipairs(history) do
+            local when = type(date) == "function" and date("%b %d, %H:%M", tonumber(entry.start) or 0) or tostring(entry.start)
+            local header = "|cffd4b15a" .. when .. "|r  |cffffd36b" .. session.FormatDuration(entry.seconds) .. "|r"
 
-        if entry.zone then
-            header = header .. ", " .. entry.zone
+            if entry.zone then
+                header = header .. "  |cff7ee0e6" .. entry.zone .. "|r"
+            end
+
+            local counts = {}
+
+            if (entry.kills or 0) > 0 then
+                table.insert(counts, "|cffffb4a2" .. session.FormatCount(entry.kills) .. " kills|r")
+            end
+
+            if (entry.gathered or 0) > 0 then
+                table.insert(counts, "|cffb7e3a1" .. session.FormatCount(entry.gathered) .. " gathered|r")
+            end
+
+            if (entry.gold or 0) ~= 0 then
+                table.insert(counts, coins(entry.gold))
+            end
+
+            if (entry.xp or 0) > 0 then
+                table.insert(counts, "|cff9ec5ff" .. session.FormatCount(entry.xp) .. " XP|r")
+            end
+
+            if (entry.levels or 0) > 0 then
+                table.insert(counts, "|cffffd36b" .. (entry.levels == 1 and "1 level" or (entry.levels .. " levels")) .. "|r")
+            end
+
+            table.insert(lines, header)
+            table.insert(lines, "  " .. (#counts > 0 and table.concat(counts, "   ") or C.TEXT.SESSION_HISTORY_NOTHING))
         end
-
-        local counts = {}
-
-        if (entry.kills or 0) > 0 then
-            table.insert(counts, session.FormatCount(entry.kills) .. " kills")
-        end
-
-        if (entry.gathered or 0) > 0 then
-            table.insert(counts, session.FormatCount(entry.gathered) .. " gathered")
-        end
-
-        if (entry.gold or 0) ~= 0 then
-            table.insert(counts, "gold " .. session.FormatGold(entry.gold))
-        end
-
-        if (entry.xp or 0) > 0 then
-            table.insert(counts, session.FormatCount(entry.xp) .. " XP")
-        end
-
-        if (entry.levels or 0) > 0 then
-            table.insert(counts, entry.levels == 1 and "1 level" or (entry.levels .. " levels"))
-        end
-
-        table.insert(lines, accent .. header .. "|r")
-        table.insert(lines, "  " .. (#counts > 0 and table.concat(counts, ", ") or C.TEXT.SESSION_HISTORY_NOTHING))
-    end
 
     return table.concat(lines, "\n")
 end
