@@ -33,7 +33,7 @@ The window lists a tab for each part that is switched on:
 
 - Export: the sections, grouped into cards, and the Create Export button
 - Biography: your timeline, 40 lines per page
-- Kills and Rares: creatures you have killed, and rares with a place and drops
+- Kills: creatures you have killed. Rare names are gold, with their drops when you select one
 - Session and Sessions: the live timer, then finished sessions for the account
 - Ledger, Currencies, and Reputation: gold, currency icons, and reputation bars
 - Mail: letters you sent and received. Dossier does not send or take mail
@@ -61,7 +61,7 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier panel       Show or hide the live session panel
 /dossier ledger      Open the Ledger tab
 /dossier mail        Open the Mail tab
-/dossier rares       Open the Rares tab
+/dossier rares       Open the Kills tab, where rare names are gold
 /dossier lockouts    Open the Lockouts tab
 /dossier tasks       Open the Tasks tab and the zone window
 /dossier quests      Open completed quests
@@ -264,7 +264,7 @@ the game's usual names. Each one is noted in the Biography with the reason,
 so a website or tool that reads the Biography can name and caption them.
 
 
-9. Ledger, mail, rares, lockouts, tasks, and quests
+9. Ledger, mail, lockouts, tasks, and quests
 ---------------------------------------------------
 Ledger records gold in and out, currency changes, and reputation for the
 character you are playing. Currencies and Reputation are part of the same
@@ -273,8 +273,8 @@ switch. The lists include your other characters from this account.
 Mail stores letters you send and receive. It does not send, take, return,
 or open mail for you.
 
-Rares records a rare or rare elite you kill, with the zone, coordinates,
-and drops you actually looted. It uses the Kills switch.
+A rare or rare elite stays on the Kills tab. Its name is gold, and selecting
+it shows the kill count and the drops you looted.
 
 Lockouts stores the instances you are saved to and a short diary of runs
 you enter and leave. Sessions stores finished play sessions. The live

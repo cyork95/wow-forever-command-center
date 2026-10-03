@@ -2128,7 +2128,7 @@ SlashCmdList[
             IfFeatureOn("kills", function() Commands:OpenKills() end)
         elseif argument == "rares"
         then
-            IfFeatureOn("kills", function() Commands:OpenTab("rares") end)
+            IfFeatureOn("kills", function() Commands:OpenTab("kills") end)
         elseif argument == "session"
         then
             IfFeatureOn("session", function() Commands:OpenSession() end)

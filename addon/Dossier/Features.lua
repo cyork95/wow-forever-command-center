@@ -23,7 +23,6 @@ C.FEATURES = {
         sections = { C.SECTIONS.KILLS },
         modules = { "Data.Kills" },
         aliases = { "kills", "kill" },
-        extraTabs = { "rares" },
         description = "Counts the creatures you kill with their drops and gold, and shows counts on tooltips.",
     },
     {

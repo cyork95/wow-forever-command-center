@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.3
+
+- The Rares tab is gone. Rare names stay gold in the kill list, and selecting one still shows its kill count and drops.
+
 ## 2.2.2
 
 - A gold change no longer errors. Recording loot or a vendor sale was calling the currency sync before that function existed.
