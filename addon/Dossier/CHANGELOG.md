@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.5
+
+- Ulrathor gets an example rare, Hogger, so the gold name and star can be checked on the Kills list. Other characters are unchanged.
+
 ## 2.2.4
 
 - A rare on the Kills list has a star beside its name. The name stays gold.

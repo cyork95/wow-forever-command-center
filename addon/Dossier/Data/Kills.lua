@@ -897,11 +897,45 @@ local function IsLoggedInNow()
     return type(IsLoggedIn) ~= "function" or IsLoggedIn() == true
 end
 
+local function EnsureExampleRare()
+    local name = type(UnitName) == "function" and UnitName("player") or nil
+
+    if type(name) ~= "string" or string.lower(name) ~= "ulrathor" then
+        return
+    end
+
+    local store = GetStore()
+
+    if not store or store.mobs["example-hogger"] then
+        return
+    end
+
+    local now = type(time) == "function" and time() or 0
+
+    store.mobs["example-hogger"] = {
+        name = "Hogger",
+        kills = 2,
+        gold = 4700,
+        loot = {
+            ["117"] = { name = "Tough Jerky", quantity = 2, drops = 2 },
+        },
+        classification = "rare",
+        creatureType = "Humanoid",
+        level = 11,
+        zone = "Elwynn Forest",
+        firstKill = now,
+        lastKill = now,
+        example = true,
+    }
+    Notify()
+end
+
 local function OnLogin()
     if ns:IsFeatureOn("companions") then
         Kills:ImportKillDex()
     end
 
+    EnsureExampleRare()
     SetupTooltip()
 end
 
