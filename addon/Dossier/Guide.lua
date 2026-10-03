@@ -122,6 +122,8 @@ character it is loaded on:
 - Every death, with the subzone and zone
 - The first time you enter each zone in a session
 - Every quest you turn in, by name
+- Every book, scroll, or plaque you open, by title, with the zone and time.
+  The pages themselves are not saved
 - Every achievement you earn
 - Every boss you defeat, with the difficulty
 - Learning a profession, and each rise in profession skill

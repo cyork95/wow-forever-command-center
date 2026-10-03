@@ -20,11 +20,13 @@ Biography.KIND = {
     PROFESSION = "profession",
     SCREENSHOT = "screenshot",
     BOSS = "boss",
+    READ = "read",
 }
 
 local sessionZones = {}
 local loginPending = false
 local pendingQuestTitles = {}
+local openReadTitle = nil
 local listeners = {}
 
 local eventFrame = CreateFrame("Frame")
@@ -418,6 +420,33 @@ local function QuestPlaceholder(questID)
     return string.format("Turned in quest %s", tostring(questID))
 end
 
+local function MailIsOpen()
+    local account = ns.Account
+
+    if not account then
+        return false
+    end
+
+    return account.Shown("MailFrame") or account.Shown("OpenMailFrame")
+end
+
+-- Title, zone, and time only. The page text stays in the book.
+local function RecordRead()
+    if MailIsOpen() or type(ItemTextGetItem) ~= "function" then
+        return
+    end
+
+    local success, title = SafeCall(ItemTextGetItem)
+    title = success and SafeText(title) or nil
+
+    if not title or title == openReadTitle then
+        return
+    end
+
+    openReadTitle = title
+    Biography:Record(Biography.KIND.READ, string.format("Read %s", title))
+end
+
 local function RecordQuestTurnIn(questID)
     questID = U.ToSafeNumber(questID)
 
@@ -769,6 +798,16 @@ local function OnEvent(_, event, arg1, arg2, ...)
         return
     end
 
+    if event == "ITEM_TEXT_READY" then
+        RecordRead()
+        return
+    end
+
+    if event == "ITEM_TEXT_CLOSED" then
+        openReadTitle = nil
+        return
+    end
+
     if event == "SKILL_LINES_CHANGED"
         or event == "TRADE_SKILL_LIST_UPDATE"
     then
@@ -812,6 +851,8 @@ RegisterEventIfAvailable("SCREENSHOT_SUCCEEDED")
 RegisterEventIfAvailable("SKILL_LINES_CHANGED")
 RegisterEventIfAvailable("TRADE_SKILL_LIST_UPDATE")
 RegisterEventIfAvailable("ENCOUNTER_END")
+RegisterEventIfAvailable("ITEM_TEXT_READY")
+RegisterEventIfAvailable("ITEM_TEXT_CLOSED")
 
 eventFrame:SetScript("OnEvent", OnEvent)
 

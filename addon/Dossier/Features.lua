@@ -14,7 +14,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.BIOGRAPHY },
         modules = { "Data.Biography" },
         aliases = { "bio", "biography" },
-        description = "Records level-ups, deaths, new zones, quests, achievements, skill-ups, and boss kills.",
+        description = "Records level-ups, deaths, new zones, quests, achievements, skill-ups, boss kills, and books you open.",
     },
     {
         id = "kills",

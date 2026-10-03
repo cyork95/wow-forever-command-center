@@ -12,6 +12,7 @@
 - Tasks are daily, weekly, or one-time notes, with a zone window for tasks, shopping shorts, and rares here. /dossier tasks opens it.
 - Quests lists every completed quest the game reports, grouped by zone, with a date when Dossier saw the turn-in.
 - The site and in-game addon lists no longer have a tab for other addons. One Options switch, Other addons, lets Dossier read character data those addons already saved.
+- The Biography notes each book, scroll, or plaque you open, with the title, zone, and time. The page text is not saved.
 - The game needs a full restart after updating, because new files were added.
 
 ## 2.1.1
