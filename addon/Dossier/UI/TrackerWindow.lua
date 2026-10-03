@@ -84,11 +84,11 @@ function Tracker:Lines()
         for _, task in ipairs(tasks:Open(Account().CharacterKey())) do
             if not task.zone or task.zone == "" or task.zone == zone then
                 if not shown then
-                    table.insert(lines, "Tasks")
+                    table.insert(lines, "Still to do")
                     shown = true
                 end
 
-                table.insert(lines, "  " .. task.name)
+                table.insert(lines, "  " .. task.name .. "  " .. tasks:Cadence(task))
             end
         end
     end
@@ -152,7 +152,7 @@ function Tracker:Refresh()
     end
 
     local lines = self:Lines()
-    self.text:SetText(#lines > 0 and table.concat(lines, "\n") or "Nothing in this zone.")
+    self.text:SetText(#lines > 0 and table.concat(lines, "\n") or "Nothing waiting in this zone.")
 end
 
 local function EnsureFrame()

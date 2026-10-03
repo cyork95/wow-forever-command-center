@@ -19,7 +19,7 @@ MainFrame.activeTab = "export"
 MainFrame.TAB_ORDER = {
     "export", "biography", "kills", "session",
     "mail", "lockouts",
-    "shopping", "tasks", "quests", "screenshots", "options", "help",
+    "shopping", "tasks", "screenshots", "options", "help",
 }
 
 local FRAME_WIDTH = 740

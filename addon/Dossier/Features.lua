@@ -59,16 +59,7 @@ C.FEATURES = {
         sections = {},
         modules = { "Data.Tasks", "UI.TrackerWindow" },
         aliases = { "tasks", "task" },
-        description = "Daily, weekly, and one-time tasks, plus a window for this zone.",
-    },
-    {
-        id = "questhistory",
-        label = "Quests",
-        tab = "quests",
-        sections = {},
-        modules = { "Data.QuestHistory" },
-        aliases = { "quests", "quest" },
-        description = "Keeps every quest the game says this character has completed.",
+        description = "Tasks you mean to finish, and notes you write. Mark a task done for the day or the week.",
     },
     {
         id = "shopping",

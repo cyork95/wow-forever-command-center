@@ -2149,10 +2149,6 @@ SlashCmdList[
                 Commands:OpenTab("tasks")
                 Commands:OpenTracker()
             end)
-        elseif argument == "quests"
-            or argument == "quest"
-        then
-            IfFeatureOn("questhistory", function() Commands:OpenTab("quests") end)
         elseif argument == "panel"
         then
             Commands:ToggleKillPanel()

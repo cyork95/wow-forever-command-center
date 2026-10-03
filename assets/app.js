@@ -1744,10 +1744,34 @@ function renderLedgerBoards() {
   const taskRoot = document.getElementById("tasks-list");
   const taskNote = document.getElementById("tasks-note");
   if (taskRoot && taskNote) {
-    taskNote.textContent = empty || "Tasks you wrote.";
+    const now = Math.floor(Date.now() / 1000);
+    const taskLine = (task) => {
+      const kind = task.repeatKind || "once";
+      const until = Number(task.doneUntil);
+      const done = until === -1 || (until > 0 && until > now);
+      const cadence = kind === "weekly" ? "Each week" : kind === "once" ? "Just once" : "Each day";
+      let status = "Due today";
+      if (done && kind === "weekly") status = "Done this week";
+      else if (done && kind === "once") status = "Finished";
+      else if (done) status = "Done today";
+      else if (kind === "weekly") status = "Due this week";
+      else if (kind === "once") status = "Still to do";
+      const place = task.zone ? ` · ${task.zone}` : "";
+      return el("div", { class: "task-row" }, [
+        el("strong", { text: task.name || "Task" }),
+        el("span", { text: `${status} · ${cadence}${place}` })
+      ]);
+    };
+    taskNote.textContent = empty || "Written in game. Done, edit, and delete live on the Tasks tab.";
     taskRoot.replaceChildren(...names.map((key) => {
       const rows = asList(people[key].tasks);
-      return card(key, rows.length ? rows.map((task) => `${task.name}  ${task.repeatKind || "once"}  ${task.zone || ""}  ${task.doneUntil ? "done" : "open"}`) : ["No tasks yet."]);
+      const notes = asList(people[key].notes);
+      return el("article", { class: "card task-board" }, [
+        el("h3", { text: key }),
+        ...(rows.length ? rows.map(taskLine) : [el("p", { class: "meta", text: "Nothing waiting." })]),
+        el("h4", { text: "Notes" }),
+        notes.length ? el("div", { class: "note-grid" }, notes.map((note) => el("div", { class: "note-card", text: note.text }))) : el("p", { class: "meta", text: "No notes yet." })
+      ]);
     }));
   }
 }

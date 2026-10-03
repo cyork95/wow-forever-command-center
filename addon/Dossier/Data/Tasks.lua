@@ -21,10 +21,11 @@ local function CharacterRow()
     end
 
     if type(bucket[key]) ~= "table" then
-        bucket[key] = { items = {} }
+        bucket[key] = { items = {}, notes = {} }
     end
 
     bucket[key].items = type(bucket[key].items) == "table" and bucket[key].items or {}
+    bucket[key].notes = type(bucket[key].notes) == "table" and bucket[key].notes or {}
 
     return bucket[key], key
 end
@@ -85,8 +86,83 @@ local function IsOpen(task)
     return not task.doneUntil or Account().Now() >= task.doneUntil
 end
 
-function Tasks:Add(name, repeatKind, zone, kind)
-    local row = CharacterRow()
+local function RowFor(key)
+    local row, ownKey = CharacterRow()
+
+    if not row then
+        return nil
+    end
+
+    if not key or key == ownKey then
+        return row
+    end
+
+    local bucket = Bucket()
+
+    if type(bucket[key]) ~= "table" then
+        bucket[key] = { items = {}, notes = {} }
+    end
+
+    bucket[key].items = type(bucket[key].items) == "table" and bucket[key].items or {}
+    bucket[key].notes = type(bucket[key].notes) == "table" and bucket[key].notes or {}
+
+    return bucket[key]
+end
+
+function Tasks:Cadence(task)
+    if task and task.repeatKind == "weekly" then
+        return "Each week"
+    end
+
+    if task and task.repeatKind == "once" then
+        return "Just once"
+    end
+
+    return "Each day"
+end
+
+function Tasks:Status(task)
+    if not task or IsOpen(task) then
+        if task and task.repeatKind == "weekly" then
+            return "Due this week"
+        end
+
+        if task and task.repeatKind == "once" then
+            return "Still to do"
+        end
+
+        return "Due today"
+    end
+
+    if task.repeatKind == "weekly" then
+        return "Done this week"
+    end
+
+    if task.repeatKind == "once" then
+        return "Finished"
+    end
+
+    return "Done today"
+end
+
+function Tasks:DoneLabel(task)
+    if task and not IsOpen(task) then
+        return "Undo"
+    end
+
+    if task and task.repeatKind == "weekly" then
+        return "Done this week"
+    end
+
+    if task and task.repeatKind == "once" then
+        return "Finished"
+    end
+
+    return "Done today"
+end
+
+function Tasks:Add(name, repeatKind, zone, kind, key)
+    local row = RowFor(key)
 
     if not row or type(name) ~= "string" or name == "" then
         return
@@ -99,6 +175,36 @@ function Tasks:Add(name, repeatKind, zone, kind)
         kind = kind or "task",
         doneUntil = nil,
     })
+end
+
+function Tasks:Update(index, key, name, repeatKind)
+    local row = RowFor(key)
+    local task = row and row.items[index]
+
+    if not task or type(name) ~= "string" or name == "" then
+        return
+    end
+
+    task.name = name
+
+    if repeatKind then
+        task.repeatKind = repeatKind
+    end
+end
+
+function Tasks:SetDone(index, key, done)
+    local row = RowFor(key)
+    local task = row and row.items[index]
+
+    if not task then
+        return
+    end
+
+    if done then
+        task.doneUntil = task.repeatKind == "once" and -1 or ResetAt(task.repeatKind)
+    else
+        task.doneUntil = nil
+    end
 end
 
 function Tasks:Remove(index, key)
@@ -158,12 +264,55 @@ function Tasks:All(key)
     for index, task in ipairs(record and record.items or {}) do
         table.insert(rows, {
             index = index,
+            character = key or Account().CharacterKey(),
             name = task.name,
             repeatKind = task.repeatKind,
             zone = task.zone,
             kind = task.kind,
             open = IsOpen(task),
         })
+    end
+
+    return rows
+end
+
+function Tasks:AddNote(text, key)
+    local row = RowFor(key)
+
+    if not row or type(text) ~= "string" or text == "" then
+        return
+    end
+
+    table.insert(row.notes, 1, { text = text, time = Account().Now() })
+end
+
+function Tasks:UpdateNote(index, text, key)
+    local row = RowFor(key)
+    local note = row and row.notes[index]
+
+    if not note or type(text) ~= "string" or text == "" then
+        return
+    end
+
+    note.text = text
+end
+
+function Tasks:RemoveNote(index, key)
+    local row = RowFor(key)
+
+    if row and row.notes[index] then
+        table.remove(row.notes, index)
+    end
+end
+
+function Tasks:Notes(key)
+    local record = Bucket() and Bucket()[key or Account().CharacterKey()]
+    local rows = {}
+
+    for index, note in ipairs(record and record.notes or {}) do
+        if type(note) == "table" and type(note.text) == "string" and note.text ~= "" then
+            table.insert(rows, { index = index, text = note.text, time = note.time })
+        end
     end
 
     return rows

@@ -302,6 +302,26 @@ h2 {
   font-size: 14px;
 }
 
+.task-board { display: grid; gap: 8px; }
+.task-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.task-row span { color: var(--muted); text-align: right; }
+.note-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.note-card {
+  border: 1px solid var(--line);
+  background: rgba(224, 184, 90, 0.06);
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 88px;
+  white-space: pre-wrap;
+}
+
 .meta { color: var(--muted); margin: 0 0 10px; }
 
 .warn {

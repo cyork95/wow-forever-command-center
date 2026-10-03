@@ -57,6 +57,10 @@ local function Find(quests, questID)
 end
 
 function QuestHistory:Note(questID, title, zone, when)
+    if not ns:IsFeatureOn("questhistory") then
+        return
+    end
+
     local row = Row()
 
     if not row or not questID then
@@ -194,7 +198,7 @@ eventFrame:SetScript("OnEvent", function(_, event)
     end
 end)
 
-pcall(eventFrame.RegisterEvent, eventFrame, "PLAYER_LOGIN")
+-- Questie keeps the journey. This list no longer records. Saved rows stay.
 
 function QuestHistory:SetFeatureActive(on)
     if on then
@@ -205,17 +209,17 @@ function QuestHistory:SetFeatureActive(on)
 end
 
 function QuestHistory:NoteTurnIn(questID, title, zone, when)
-    if not ns:IsFeatureOn("questhistory") then
-        return
-    end
-
-    self:Note(questID, title, zone or Account().Zone(), when)
-
     local tasks = ns.Data and ns.Data.Tasks
 
     if tasks and ns:IsFeatureOn("tasks") then
         tasks:CompleteMatching(title, questID)
     end
+
+    if not ns:IsFeatureOn("questhistory") then
+        return
+    end
+
+    self:Note(questID, title, zone or Account().Zone(), when)
 end
 
 ns.Data = ns.Data or {}

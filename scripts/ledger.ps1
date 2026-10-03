@@ -92,6 +92,14 @@ function Convert-LedgerCharacter($db, $key) {
     }
   }
 
+  $notes = @()
+  foreach ($note in (Get-LuaRows (LV $db "tasks" $key "notes"))) {
+    if ($note -isnot [System.Collections.IDictionary]) { continue }
+    $text = LV $note "text"
+    if (-not $text) { continue }
+    $notes += [ordered]@{ text = $text; time = LV $note "time" }
+  }
+
   $quests = @()
   foreach ($quest in (Get-LuaRows (LV $db "questHistory" $key "quests"))) {
     if ($quest -isnot [System.Collections.IDictionary]) { continue }
@@ -136,6 +144,7 @@ function Convert-LedgerCharacter($db, $key) {
     mail = @($letters)
     sessions = @($sessions)
     tasks = @($tasks)
+    notes = @($notes)
     quests = @($quests)
     lockouts = [ordered]@{ saved = @($saved); runs = @($runs) }
   }
