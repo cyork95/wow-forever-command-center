@@ -8595,67 +8595,7 @@ function TextFormatter:AddStatistics(lines, data)
     AddBlankLine(lines)
 end
 
-function TextFormatter:AddCompanions(
-    lines,
-    data
-)
-    return
-
-    AddSectionHeader(
-        lines,
-        data.title
-        or C.SECTION_LABELS[
-            C.SECTIONS.COMPANIONS
-        ]
-    )
-
-    local entries =
-        data.entries
-        or {}
-
-    if #entries == 0 then
-        AddLine(
-            lines,
-            C.TEXT.COMPANIONS_NONE
-        )
-
-        AddBlankLine(
-            lines
-        )
-
-        return
-    end
-
-    for _, entry
-        in ipairs(entries)
-    do
-        AddSubHeader(
-            lines,
-            U.SafeString(
-                entry.title,
-                "Companion"
-            )
-        )
-
-        for _, text
-            in ipairs(
-                entry.lines
-                or {}
-            )
-        do
-            AddLine(
-                lines,
-                U.SafeString(
-                    text,
-                    ""
-                )
-            )
-        end
-    end
-
-    AddBlankLine(
-        lines
-    )
+function TextFormatter:AddCompanions()
 end
 
 local COMPACT_LINE_LIMIT = 240
