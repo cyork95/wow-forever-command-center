@@ -23,6 +23,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.KILLS },
         modules = { "Data.Kills" },
         aliases = { "kills", "kill" },
+        extraTabs = { "rares" },
         description = "Counts the creatures you kill with their drops and gold, and shows counts on tooltips.",
     },
     {
@@ -32,7 +33,63 @@ C.FEATURES = {
         sections = { C.SECTIONS.SESSIONS },
         modules = { "Data.Session", "UI.KillPanel" },
         aliases = { "session", "sessions", "panel" },
+        extraTabs = { "sessions" },
         description = "Times play sessions with gathering, gold, and XP per hour, and runs the session panel.",
+    },
+    {
+        id = "ledger",
+        label = "Ledger",
+        tab = "ledger",
+        extraTabs = { "currencies", "reputation" },
+        sections = {},
+        modules = { "Data.Ledger" },
+        aliases = { "ledger", "currencies", "currency", "reputation", "rep" },
+        description = "Records gold, currencies, and reputation for every character on this account.",
+    },
+    {
+        id = "mail",
+        label = "Mail",
+        tab = "mail",
+        sections = {},
+        modules = { "Data.Mail" },
+        aliases = { "mail" },
+        description = "Keeps letters you send and receive, with who, subject, gold, and items.",
+    },
+    {
+        id = "professions",
+        label = "Professions",
+        tab = "professions",
+        sections = {},
+        modules = { "Data.ProfessionBoard" },
+        aliases = { "professions", "profession" },
+        description = "Saves each character's profession skill and rank.",
+    },
+    {
+        id = "lockouts",
+        label = "Lockouts",
+        tab = "lockouts",
+        sections = {},
+        modules = { "Data.Runs" },
+        aliases = { "lockouts", "lockout", "runs" },
+        description = "Saves instance lockouts and a diary of runs you enter and leave.",
+    },
+    {
+        id = "tasks",
+        label = "Tasks",
+        tab = "tasks",
+        sections = {},
+        modules = { "Data.Tasks", "UI.TrackerWindow" },
+        aliases = { "tasks", "task" },
+        description = "Daily, weekly, and one-time tasks, plus a window for this zone.",
+    },
+    {
+        id = "questhistory",
+        label = "Quests",
+        tab = "quests",
+        sections = {},
+        modules = { "Data.QuestHistory" },
+        aliases = { "quests", "quest" },
+        description = "Keeps every quest the game says this character has completed.",
     },
     {
         id = "shopping",
@@ -54,12 +111,11 @@ C.FEATURES = {
     },
     {
         id = "companions",
-        label = "Companions",
-        tab = "companions",
-        sections = { C.SECTIONS.COMPANIONS },
+        label = "Other addons",
+        sections = {},
         modules = {},
-        aliases = { "companions", "companion" },
-        description = "Reads Syndicator, KillDex, AllTheThings, and others for what they know about you.",
+        aliases = { "companions", "companion", "addons", "other" },
+        description = "When this is on, Dossier can read character data another addon already saved. It does not act for you.",
     },
 }
 
@@ -70,7 +126,14 @@ Features.byAlias = {}
 
 for _, feature in ipairs(C.FEATURES) do
     Features.byId[feature.id] = feature
-    Features.byTab[feature.tab] = feature
+
+    if feature.tab then
+        Features.byTab[feature.tab] = feature
+    end
+
+    for _, tabId in ipairs(feature.extraTabs or {}) do
+        Features.byTab[tabId] = feature
+    end
 
     for _, section in ipairs(feature.sections) do
         Features.bySection[section] = feature

@@ -288,6 +288,73 @@ function Kills:RecordKill(mobID, details)
 
     mob.zone = details.zone or mob.zone
 
+    if details.classification == "rare" or details.classification == "rareelite" then
+        local account = ns.Account
+        local bucket = account and account.Bucket("rares")
+        local id = tostring(mobID)
+
+        if bucket then
+            local rare = bucket[id]
+
+            if type(rare) ~= "table" then
+                rare = { pins = {}, loot = {} }
+                bucket[id] = rare
+            end
+
+            rare.name = mob.name
+            rare.classification = details.classification
+            rare.kills = (rare.kills or 0) + 1
+            rare.zone = mob.zone
+            rare.character = account.CharacterKey()
+            rare.time = now
+            rare.pins = type(rare.pins) == "table" and rare.pins or {}
+
+            local map, x, y = nil, nil, nil
+
+            if C_Map and type(C_Map.GetBestMapForUnit) == "function" and type(C_Map.GetPlayerMapPosition) == "function" then
+                local okMap, mapID = pcall(C_Map.GetBestMapForUnit, "player")
+                local okPos, pos, posY = pcall(C_Map.GetPlayerMapPosition, mapID, "player")
+
+                if okMap and okPos then
+                    map = mapID
+
+                    if type(pos) == "table" then
+                        x, y = pos.x, pos.y
+                    elseif type(pos) == "number" then
+                        x, y = pos, posY
+                    end
+
+                    if type(x) == "number" and x <= 1 then
+                        x = math.floor(x * 1000 + 0.5) / 10
+                    end
+
+                    if type(y) == "number" and y <= 1 then
+                        y = math.floor(y * 1000 + 0.5) / 10
+                    end
+                end
+            end
+
+            rare.map = map or rare.map
+            rare.x = x or rare.x
+            rare.y = y or rare.y
+            rare.loot = type(rare.loot) == "table" and rare.loot or {}
+            Kills.lastRare = { id = id, at = type(GetTime) == "function" and GetTime() or 0 }
+            account.Push(rare.pins, {
+                time = now,
+                zone = rare.zone,
+                x = rare.x,
+                y = rare.y,
+                character = rare.character,
+            }, 20)
+
+            local tasks = ns.Data and ns.Data.Tasks
+
+            if tasks and ns:IsFeatureOn("tasks") then
+                tasks:CompleteMatching(mob.name, nil)
+            end
+        end
+    end
+
     session.kills = session.kills + 1
     session.byMob[mobID] = (session.byMob[mobID] or 0) + 1
     table.insert(session.recent, 1, { mobID = mobID, name = mob.name, t = now })
@@ -871,6 +938,31 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         lootWindowSeen = false
     elseif event == "CHAT_MSG_MONEY" then
         OnMoney(...)
+    elseif event == "CHAT_MSG_LOOT" then
+        local text = ...
+        local recent = Kills.lastRare
+        local now = type(GetTime) == "function" and GetTime() or 0
+
+        if recent and (now - (recent.at or 0)) < 12 and type(text) == "string" then
+            local item = string.match(text, "%[(.-)%]")
+            local bucket = ns.Account and ns.Account.Database() and ns.Account.Database().rares
+            local rare = bucket and bucket[recent.id]
+
+            if item and type(rare) == "table" then
+                rare.loot = type(rare.loot) == "table" and rare.loot or {}
+                local seen = false
+
+                for _, name in ipairs(rare.loot) do
+                    if name == item then
+                        seen = true
+                    end
+                end
+
+                if not seen then
+                    table.insert(rare.loot, item)
+                end
+            end
+        end
     elseif event == "PLAYER_LOGIN" then
         OnLogin()
     end
@@ -889,6 +981,7 @@ end
 Register("LOOT_OPENED")
 Register("LOOT_CLOSED")
 Register("CHAT_MSG_MONEY")
+Register("CHAT_MSG_LOOT")
 
 session.start = Now()
 

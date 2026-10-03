@@ -16,13 +16,17 @@ MainFrame.readinessText = nil
 MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
-MainFrame.TAB_ORDER = { "export", "biography", "kills", "session", "shopping", "screenshots", "companions", "options", "help" }
+MainFrame.TAB_ORDER = {
+    "export", "biography", "kills", "rares", "session", "sessions",
+    "ledger", "currencies", "reputation", "mail", "professions", "lockouts",
+    "shopping", "tasks", "quests", "screenshots", "options", "help",
+}
 
 local FRAME_WIDTH = 720
-local FRAME_HEIGHT = 540
+local FRAME_HEIGHT = 680
 local NAV_WIDTH = 140
 local CONTENT_PADDING = 16
-local TAB_SPACING = 34
+local TAB_SPACING = 28
 local CARD_GAP = 8
 local CARD_COLUMNS = 3
 local CARD_HEADER = 28
@@ -42,7 +46,17 @@ local TAB_LABELS = {
     biography = C.TEXT.TAB_BIOGRAPHY,
     kills = C.TEXT.TAB_KILLS,
     session = C.TEXT.TAB_SESSION,
+    sessions = C.TEXT.TAB_SESSIONS,
+    rares = C.TEXT.TAB_RARES,
+    ledger = C.TEXT.TAB_LEDGER,
+    currencies = C.TEXT.TAB_CURRENCIES,
+    reputation = C.TEXT.TAB_REPUTATION,
+    mail = C.TEXT.TAB_MAIL,
+    professions = C.TEXT.TAB_PROFESSIONS,
+    lockouts = C.TEXT.TAB_LOCKOUTS,
     shopping = C.TEXT.TAB_SHOPPING,
+    tasks = C.TEXT.TAB_TASKS,
+    quests = C.TEXT.TAB_QUESTS,
     screenshots = C.TEXT.TAB_SCREENSHOTS,
     options = C.TEXT.TAB_OPTIONS,
     help = C.TEXT.TAB_HELP,
@@ -482,13 +496,32 @@ local function BuildHelpPage(page)
     end)
 end
 
+local function BuildHousePage(viewName)
+    return function(page)
+        local view = ns.UI and ns.UI[viewName]
+
+        if view and type(view.Build) == "function" then
+            view:Build(page)
+        end
+    end
+end
+
 local PAGE_BUILDERS = {
     export = BuildExportPage,
-    companions = BuildCompanionsPage,
     biography = BuildBiographyPage,
     kills = BuildKillsPage,
+    rares = BuildHousePage("RaresView"),
     session = BuildSessionPage,
+    sessions = BuildHousePage("SessionsView"),
+    ledger = BuildHousePage("LedgerView"),
+    currencies = BuildHousePage("CurrenciesView"),
+    reputation = BuildHousePage("ReputationView"),
+    mail = BuildHousePage("MailView"),
+    professions = BuildHousePage("ProfessionsView"),
+    lockouts = BuildHousePage("LockoutsView"),
     shopping = BuildShoppingPage,
+    tasks = BuildHousePage("TasksView"),
+    quests = BuildHousePage("QuestHistoryView"),
     screenshots = BuildScreenshotsPage,
     options = BuildOptionsPage,
     help = BuildHelpPage,
@@ -538,6 +571,7 @@ local function EnsureFrame()
         local tab = Theme.CreateTab(nav, TAB_LABELS[tabId], function()
             MainFrame:SelectTab(tabId)
         end)
+        tab:SetHeight(26)
         MainFrame.tabs[tabId] = tab
 
         local page = CreateFrame("Frame", nil, content)
@@ -585,9 +619,7 @@ function MainFrame:SelectTab(tabId)
         self.tabs[id]:SetSelected(id == tabId)
     end
 
-    if tabId == "companions" then
-        RefreshCompanionRows()
-    elseif tabId == "biography" then
+    if tabId == "biography" then
         local view = ns.UI and ns.UI.BiographyView
 
         if view and type(view.ShowNewest) == "function" then
@@ -617,6 +649,24 @@ function MainFrame:SelectTab(tabId)
         if view and type(view.Refresh) == "function" then
             view:Refresh()
         end
+    end
+
+    local houseViews = {
+        rares = "RaresView",
+        sessions = "SessionsView",
+        ledger = "LedgerView",
+        currencies = "CurrenciesView",
+        reputation = "ReputationView",
+        mail = "MailView",
+        professions = "ProfessionsView",
+        lockouts = "LockoutsView",
+        tasks = "TasksView",
+        quests = "QuestHistoryView",
+    }
+    local house = houseViews[tabId] and ns.UI and ns.UI[houseViews[tabId]]
+
+    if house and type(house.Refresh) == "function" then
+        house:Refresh()
     end
 end
 

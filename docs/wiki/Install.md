@@ -10,7 +10,7 @@ Dossier is for World of Warcraft Forever. Install it in that client's AddOns fol
 4. Start the game, open **AddOns** on the character select screen, and make sure Dossier is ticked.
 5. Log in and type `/dossier`.
 
-The addon needs no other addon. Companions are optional and only add data you already have in another addon. See [[Companions]].
+The addon needs no other addon. When Other addons is on, Dossier can read character data another addon already saved. See [[Companions]].
 
 ## Coming from AIExport
 

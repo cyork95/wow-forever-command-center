@@ -36,7 +36,7 @@ The window has nine tabs:
 - Session: a timer with this session's kills, gathering, gold, and XP
 - Shopping: the items and recipes you plan to gather or buy
 - Screenshotter: automatic screenshots at big moments, like Memento
-- Companions: the optional addons Dossier can read, each with its own switch
+- Other addons: one switch for reading character data another addon saved
 - Options: the minimap icon, item stats, detailed export, and a switch for
   each part of Dossier
 - Help: this guide
@@ -51,15 +51,21 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier bio         Open the Biography tab
 /dossier kills       Open the Kills tab
 /dossier session     Open the Session tab
+/dossier sessions    Open finished sessions for every character
 /dossier panel       Show or hide the live session panel
+/dossier ledger      Open the Ledger tab
+/dossier mail        Open the Mail tab
+/dossier rares       Open the Rares tab
+/dossier lockouts    Open the Lockouts tab
+/dossier tasks       Open the Tasks tab and the zone window
+/dossier quests      Open completed quests
 /dossier shop        Open the Shopping tab
 /dossier shots       Open the Screenshotter tab
 /dossier shot        Take a screenshot now
-/dossier companions  Open the Companions tab
 /dossier options     Open the Options tab
 /dossier settings    Open Dossier's page in the game's Settings
-/dossier off kills   Turn a feature off (bio, kills, session, shop, shots,
-                     companions)
+/dossier off kills   Turn a feature off (bio, kills, session, ledger, mail,
+                     professions, lockouts, tasks, quests, shop, shots)
 /dossier on kills    Turn it back on
 /dossier help        Open this guide
 
@@ -88,7 +94,7 @@ The report starts with "Exported By: Dossier" and then one block per section:
 - Quests in your log and completed quests
 - Skills, Profession Details (saved copy), Talents, Spellbook
 - Biography: the timeline described below
-- Companions: data from the optional addons described below
+- Session currency, session reputation, gold changes, profession ranks, and rares, when those switches are on
 - AddOns: every installed addon and whether it loaded
 
 Sections you leave unticked are not in the report.
@@ -250,36 +256,35 @@ the game's usual names. Each one is noted in the Biography with the reason,
 so a website or tool that reads the Biography can name and caption them.
 
 
-9. Companions
--------------
-Dossier never needs another addon. When one of these is loaded, Dossier can
-read what it has saved for this character and add it to the Companions
-section of the export:
+9. Ledger, mail, rares, lockouts, tasks, and quests
+---------------------------------------------------
+Ledger records gold in and out, currency changes, and reputation for the
+character you are playing. Currencies and Reputation are part of the same
+switch. The lists include your other characters from this account.
 
-- Syndicator: your mail, and your bank contents even while the bank is closed
-- KillDex: total kills, creature types, your top 15 creatures, and items seen
-  dropping. Once Dossier has kills of its own, the Companions tab shows
-  KillDex as "Built into Dossier" and leaves its block out.
-- AllTheThings: deaths, quests, areas explored, time played, and mount, pet,
-  toy, and title counts
-- Nova Instance Tracker: your saved lockouts and recent instance runs
-- Profession Master: every recipe you know, grouped by profession
-- Auctionator: the auction price of each stack in your bags, plus a total
-- Memento: the boss kills it recorded. While the Screenshotter is on and
-  Memento is not loaded, the Companions tab shows Memento as "Built into
-  Dossier". Boss kills are in the Biography either way.
-- Talents Forever: your planned talent build and saved builds for your class
+Mail stores letters you send and receive. It does not send, take, return,
+or open mail for you.
 
-Each one is optional. The Companions tab shows whether each addon is loaded,
-installed but not loaded, or not installed, with a switch to leave it out.
-Switches are on by default and only work while that addon is loaded. Untick
-Companions on the Export tab to leave out all of them at once.
+Rares records a rare or rare elite you kill, with the zone, coordinates,
+and drops you actually looted. It uses the Kills switch.
 
-If a companion addon changes how it saves data, its block says it could not
-be read instead of breaking the export.
+Lockouts stores the instances you are saved to and a short diary of runs
+you enter and leave. Sessions stores finished play sessions. The live
+timer stays on the Session tab.
+
+Tasks are daily, weekly, or one-time notes you write. A quest turn-in or a
+matching rare kill can mark one done. /dossier tasks opens a window for
+this zone. Quests lists every quest the game says you have completed.
+
+10. Other addons
+----------------
+Dossier does not need another addon. When Other addons is on, it can read
+character data another addon has already saved, such as a bank copy or a
+recipe list, and fold that into the normal report. Turning it off stops
+those reads. Saved data stays.
 
 
-10. Options
+11. Options
 -----------
 The Options tab has two parts. The same options are in the game's Settings,
 under AddOns > Dossier (/dossier settings), with an Open Dossier button.
@@ -290,13 +295,13 @@ and a Reload UI button.
 
 Features, for every character on your account: every part of Dossier can be
 turned off here, or with /dossier off and /dossier on. The switches are
-Biography, Kills, Session, Shopping list, Screenshotter, and Companions.
+Biography, Kills, Session, Ledger, Mail, Professions, Lockouts, Tasks, Quests, Shopping list, Screenshotter, and Other addons.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left
 out of the report, and its commands say how to turn it back on. Turning
 Session off also hides the session panel and saves the current session to
-Previous sessions. Turning Companions off stops Dossier reading any other
+Previous sessions. Turning Other addons off stops Dossier reading any other
 addon.
 
 Nothing a feature saved is deleted. Turn it back on and its history is
@@ -305,7 +310,7 @@ still there. The switches apply to every character on your account.
 The Export tab, its other sections, Help, and Options are always on.
 
 
-11. Tips for the AI chat
+12. Tips for the AI chat
 ------------------------
 - Paste one character per message. Each report has one "Character:" line.
 - Tell the assistant what you want first: a leveling plan, a gear check,
@@ -316,7 +321,7 @@ The Export tab, its other sections, Help, and Options are always on.
   where you are comfortable sharing that.
 
 
-12. Example AI skill
+13. Example AI skill
 --------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named
@@ -369,8 +374,8 @@ file exists. Keep older files; they are the history.
   lines are recipes they plan to make, and "Ready:" lists what is done.
 - "Statistics:" holds the game's own lifetime counters, one "== Category =="
   block each. A statistic that is not listed has no value yet.
-- "Companions:" holds optional blocks such as "== Syndicator ==". They
-  only appear when the player has those addons.
+- "Session currency:", "Session reputation:", "Gold change:", "Profession:",
+  and "Rare:" are the ledger lines, when those switches are on.
 
 ## Answer
 

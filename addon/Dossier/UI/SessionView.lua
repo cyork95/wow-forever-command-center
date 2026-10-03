@@ -37,6 +37,16 @@ function SessionView.SummaryText(summary)
 
     table.insert(lines, string.format(C.TEXT.SESSION_LINE_GATHERED, count(summary.gathered), count(summary.gatheredPerHour)))
     table.insert(lines, string.format(C.TEXT.SESSION_LINE_GOLD, session.FormatGold(summary.gold), session.FormatGold(summary.goldPerHour)))
+
+    local ledger = ns.Data and ns.Data.Ledger
+
+    if ledger and ns:IsFeatureOn("ledger") and type(ledger.SessionLine) == "function" then
+        local line = ledger:SessionLine()
+
+        if line then
+            table.insert(lines, line)
+        end
+    end
     table.insert(lines, string.format(C.TEXT.SESSION_LINE_XP, count(summary.xp), count(summary.xpPerHour)))
 
     if summary.timeToLevel then

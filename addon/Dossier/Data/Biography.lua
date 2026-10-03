@@ -427,6 +427,12 @@ local function RecordQuestTurnIn(questID)
 
     local title = GetQuestTitle(questID)
 
+    local history = ns.Data and ns.Data.QuestHistory
+
+    if history and history.NoteTurnIn then
+        history:NoteTurnIn(questID, title, nil, ns.Account and ns.Account.Now())
+    end
+
     if title then
         Biography:Record(
             Biography.KIND.QUEST,
@@ -473,6 +479,12 @@ local function ResolvePendingQuestTitle(questID)
         if entry.questID == questID and entry.text == placeholder then
             entry.text = string.format("Turned in %s", title)
         end
+    end
+
+    local history = ns.Data and ns.Data.QuestHistory
+
+    if history and history.Note then
+        history:Note(questID, title, nil, nil)
     end
 
     Notify()

@@ -16,7 +16,7 @@ The window has nine tabs down the left side. A feature you turn off on the Optio
 | Session | The timer, this session's rates, and the live panel options |
 | Shopping | Items and recipes you plan to gather or buy |
 | Screenshotter | Automatic screenshots at big moments |
-| Companions | Optional addons Dossier can read, each with its own switch |
+| Ledger, Mail, Professions, Lockouts, Tasks, Quests | Gold, letters, skills, instances, tasks, and completed quests |
 | Options | Minimap icon, item stats, detailed export, and a switch for each part |
 | Help | The in-game guide, and **Copy guide** |
 
@@ -34,7 +34,8 @@ The same options are in the game's Settings, under **AddOns > Dossier**.
 | `/dossier shop` | Open the Shopping tab |
 | `/dossier shots` | Open the Screenshotter tab |
 | `/dossier shot` | Take a screenshot now |
-| `/dossier companions` | Open the Companions tab |
+| `/dossier ledger` | Open the Ledger tab |
+| `/dossier tasks` | Open Tasks and the zone window |
 | `/dossier options` | Open the Options tab |
 | `/dossier settings` | Open Dossier's page in the game's Settings |
 | `/dossier help` | Open the in-game guide |
@@ -50,7 +51,7 @@ The same options are in the game's Settings, under **AddOns > Dossier**.
 | `session`, `sessions`, or `panel` | Session |
 | `shop` or `shopping` | Shopping list |
 | `shots`, `screenshots`, `screenshotter`, or `shot` | Screenshotter |
-| `companions` or `companion` | Companions |
+| `companions` or `companion` | Other addons |
 
 Examples: `/dossier off kills`, `/dossier on shop`.
 

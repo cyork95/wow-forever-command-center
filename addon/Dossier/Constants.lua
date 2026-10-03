@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "2.1.1"
+C.VERSION = "2.2.0"
 C.SLASH_COMMAND = "/dossier"
 C.SLASH_ALIAS = "/aixport"
 C.ADDON_TITLE = "Dossier"
@@ -68,7 +68,6 @@ C.SECTION_ORDER = {
     C.SECTIONS.TALENTS,
     C.SECTIONS.SPELLBOOK,
     C.SECTIONS.BIOGRAPHY,
-    C.SECTIONS.COMPANIONS,
     C.SECTIONS.ADDONS,
 }
 
@@ -314,9 +313,9 @@ C.TEXT = {
     READINESS_BANK_STALE = "Bank saved %s ago. Open it to refresh.",
     READINESS_PROFESSION_MISSING = "%s not saved yet. Open its window once.",
     READINESS_PROFESSION_STALE = "%s saved %s ago. Open its window to refresh.",
-    READINESS_USING_FALLBACK = "Using %s's copy for now.",
-    PROFESSION_MASTER_FALLBACK_NOTE = "(From Profession Master; open the profession window to refresh.)",
-    SYNDICATOR_BANK_FALLBACK_NOTE = "(From Syndicator; open your bank to refresh.)",
+    READINESS_USING_FALLBACK = "Using a saved copy for now.",
+    PROFESSION_MASTER_FALLBACK_NOTE = "(Saved copy; open the profession window to refresh.)",
+    SYNDICATOR_BANK_FALLBACK_NOTE = "(Saved copy; open your bank to refresh.)",
     TAB_KILLS = "Kills",
     KILLS_TOOLTIP = "Killed %d time%s",
     KILLS_EMPTY = "No kills yet. Dossier counts every creature you or your pet finish off, outside dungeons and raids.",
@@ -345,6 +344,16 @@ C.TEXT = {
     SESSION_TOOLTIP_MORE = "and %d more: see the Session tab",
     SESSION_TOOLTIP_HELP = "Click the title to pause or resume the timer. Right-click it to reset the session.",
     TAB_SESSION = "Session",
+    TAB_SESSIONS = "Sessions",
+    TAB_RARES = "Rares",
+    TAB_LEDGER = "Ledger",
+    TAB_CURRENCIES = "Currencies",
+    TAB_REPUTATION = "Reputation",
+    TAB_MAIL = "Mail",
+    TAB_PROFESSIONS = "Professions",
+    TAB_LOCKOUTS = "Lockouts",
+    TAB_TASKS = "Tasks",
+    TAB_QUESTS = "Quests",
     SESSION_PAUSE = "Pause",
     SESSION_RESUME = "Start",
     SESSION_RESET = "Reset",

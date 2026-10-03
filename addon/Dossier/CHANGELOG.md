@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.2.0
+
+- Session gold saved at logout no longer goes negative when the game reports an empty wallet. A live session can still show a spend. Older saved sessions are clamped at zero.
+- New Ledger, Currencies, and Reputation tabs share one Options switch. They keep gold, currency, and reputation for every character on the account.
+- New Mail tab stores sent and received letters. Dossier does not send or take mail.
+- New Professions tab shows each character's skill and rank. The site Professions tab shows the same table above the recipe list.
+- Rares records where you killed a rare, the coordinates, and drops you actually looted. It hides with the Kills switch.
+- Lockouts stores current instance saves and a diary of runs. Once Dossier has a run or a lockout, Nova Instance Tracker's export block stays out.
+- Sessions lists finished play sessions for the account. The Session tab is still the live timer.
+- Tasks are daily, weekly, or one-time notes, with a zone window for tasks, shopping shorts, and rares here. /dossier tasks opens it.
+- Quests lists every completed quest the game reports, grouped by zone, with a date when Dossier saw the turn-in.
+- The site and in-game addon lists no longer have a tab for other addons. One Options switch, Other addons, lets Dossier read character data those addons already saved.
+- The game needs a full restart after updating, because new files were added.
+
 ## 2.1.1
 
 - The export shows your health as current and max, such as `Health: 486/486`, instead of `n/a/486`. When the game hides your current health, Dossier uses your max health, or 0 if you are dead.

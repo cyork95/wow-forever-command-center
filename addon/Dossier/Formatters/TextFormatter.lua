@@ -8316,6 +8316,24 @@ function TextFormatter:AddKills(lines, data)
         AddLine(lines, "Drops seen: " .. table.concat(shown, ", "))
     end
 
+    local rares = ns.Account and ns.Account.Database() and ns.Account.Database().rares
+    local mine = ns.Account and ns.Account.CharacterKey()
+
+    if ns:IsFeatureOn("kills") and type(rares) == "table" then
+        for _, rare in pairs(rares) do
+            if type(rare) == "table" and rare.character == mine and rare.name then
+                local place = rare.zone or "Unknown zone"
+
+                if rare.x and rare.y then
+                    place = string.format("%s %.1f, %.1f", place, rare.x, rare.y)
+                end
+
+                local loot = type(rare.loot) == "table" and table.concat(rare.loot, ", ") or ""
+                AddLine(lines, "Rare: " .. rare.name .. "  " .. place .. (loot ~= "" and ("  " .. loot) or ""))
+            end
+        end
+    end
+
     AddBlankLine(lines)
 end
 
@@ -8581,6 +8599,8 @@ function TextFormatter:AddCompanions(
     lines,
     data
 )
+    return
+
     AddSectionHeader(
         lines,
         data.title
@@ -9386,6 +9406,35 @@ function TextFormatter:AddCurrencies(lines, data)
     AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.CURRENCIES])
     AddLine(lines, "Gold: " .. FormatMoneyCopper(data.money))
 
+    local ledger = ns.Data and ns.Data.Ledger
+
+    if ledger and ns:IsFeatureOn("ledger") and type(ledger.ExportLines) == "function" then
+        local extra = ledger:ExportLines()
+
+        for _, line in ipairs(extra.currencies or {}) do
+            AddLine(lines, line)
+        end
+
+        for _, line in ipairs(extra.gold or {}) do
+            AddLine(lines, line)
+        end
+    end
+
+    local board = ns.Data and ns.Data.ProfessionBoard
+
+    if board and ns:IsFeatureOn("professions") and type(board.Rows) == "function" then
+        local key = ns.Account and ns.Account.CharacterKey()
+
+        for _, row in ipairs(board:Rows()) do
+            if row.character == key then
+                for _, skill in ipairs(row.skills or {}) do
+                    local max = skill.max and skill.max > 0 and ("/" .. skill.max) or ""
+                    AddLine(lines, "Profession: " .. skill.name .. " " .. tostring(skill.current or 0) .. max)
+                end
+            end
+        end
+    end
+
     local categories = data.categories or {}
 
     if #categories > 0 then
@@ -9451,6 +9500,14 @@ function TextFormatter:AddReputations(lines, data)
 
     for _, entry in ipairs(data.entries or {}) do
         AddLine(lines, CompactReputationLine(entry))
+    end
+
+    local ledger = ns.Data and ns.Data.Ledger
+
+    if ledger and ns:IsFeatureOn("ledger") and type(ledger.ExportLines) == "function" then
+        for _, line in ipairs(ledger:ExportLines().reputations or {}) do
+            AddLine(lines, line)
+        end
     end
 
     AddBlankLine(lines)
