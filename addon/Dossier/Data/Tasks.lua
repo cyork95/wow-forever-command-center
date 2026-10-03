@@ -75,6 +75,42 @@ local function ResetAt(repeatKind)
         return now + 86400
     end
 
+    if type(date) == "function" and type(time) == "function" and (repeatKind == "monthly" or repeatKind == "yearly") then
+        local ok, clock = pcall(date, "*t", now)
+
+        if ok and type(clock) == "table" then
+            local stamp
+
+            if repeatKind == "monthly" then
+                local month = clock.month + 1
+                local year = clock.year
+
+                if month > 12 then
+                    month = 1
+                    year = year + 1
+                end
+
+                stamp = { year = year, month = month, day = 1, hour = 0, min = 0, sec = 0 }
+            else
+                stamp = { year = clock.year + 1, month = 1, day = 1, hour = 0, min = 0, sec = 0 }
+            end
+
+            local converted, value = pcall(time, stamp)
+
+            if converted and type(value) == "number" then
+                return value
+            end
+        end
+    end
+
+    if repeatKind == "monthly" then
+        return now + (30 * 86400)
+    end
+
+    if repeatKind == "yearly" then
+        return now + (365 * 86400)
+    end
+
     return nil
 end
 
@@ -110,11 +146,21 @@ local function RowFor(key)
 end
 
 function Tasks:Cadence(task)
-    if task and task.repeatKind == "weekly" then
+    local kind = task and task.repeatKind
+
+    if kind == "weekly" then
         return "Each week"
     end
 
-    if task and task.repeatKind == "once" then
+    if kind == "monthly" then
+        return "Each month"
+    end
+
+    if kind == "yearly" then
+        return "Each year"
+    end
+
+    if kind == "once" then
         return "Just once"
     end
 
@@ -122,27 +168,26 @@ function Tasks:Cadence(task)
 end
 
 function Tasks:Status(task)
-    if not task or IsOpen(task) then
-        if task and task.repeatKind == "weekly" then
-            return "Due this week"
-        end
+    local kind = task and task.repeatKind
+    local open = not task or IsOpen(task)
 
-        if task and task.repeatKind == "once" then
-            return "Still to do"
-        end
-
-        return "Due today"
+    if kind == "weekly" then
+        return open and "Due this week" or "Done this week"
     end
 
-    if task.repeatKind == "weekly" then
-        return "Done this week"
+    if kind == "monthly" then
+        return open and "Due this month" or "Done this month"
     end
 
-    if task.repeatKind == "once" then
-        return "Finished"
+    if kind == "yearly" then
+        return open and "Due this year" or "Done this year"
     end
 
-    return "Done today"
+    if kind == "once" then
+        return open and "Still to do" or "Finished"
+    end
+
+    return open and "Due today" or "Done today"
 end
 
 function Tasks:DoneLabel(task)
@@ -150,11 +195,21 @@ function Tasks:DoneLabel(task)
         return "Undo"
     end
 
-    if task and task.repeatKind == "weekly" then
+    local kind = task and task.repeatKind
+
+    if kind == "weekly" then
         return "Done this week"
     end
 
-    if task and task.repeatKind == "once" then
+    if kind == "monthly" then
+        return "Done this month"
+    end
+
+    if kind == "yearly" then
+        return "Done this year"
+    end
+
+    if kind == "once" then
         return "Finished"
     end
 
@@ -276,25 +331,30 @@ function Tasks:All(key)
     return rows
 end
 
-function Tasks:AddNote(text, key)
+function Tasks:AddNote(title, text, key)
     local row = RowFor(key)
 
-    if not row or type(text) ~= "string" or text == "" then
+    if not row or type(title) ~= "string" or title == "" then
         return
     end
 
-    table.insert(row.notes, 1, { text = text, time = Account().Now() })
+    table.insert(row.notes, 1, {
+        title = title,
+        text = type(text) == "string" and text or "",
+        time = Account().Now(),
+    })
 end
 
-function Tasks:UpdateNote(index, text, key)
+function Tasks:UpdateNote(index, title, text, key)
     local row = RowFor(key)
     local note = row and row.notes[index]
 
-    if not note or type(text) ~= "string" or text == "" then
+    if not note or type(title) ~= "string" or title == "" then
         return
     end
 
-    note.text = text
+    note.title = title
+    note.text = type(text) == "string" and text or ""
 end
 
 function Tasks:RemoveNote(index, key)
@@ -310,8 +370,13 @@ function Tasks:Notes(key)
     local rows = {}
 
     for index, note in ipairs(record and record.notes or {}) do
-        if type(note) == "table" and type(note.text) == "string" and note.text ~= "" then
-            table.insert(rows, { index = index, text = note.text, time = note.time })
+        if type(note) == "table" then
+            local title = type(note.title) == "string" and note.title or ""
+            local text = type(note.text) == "string" and note.text or ""
+
+            if title ~= "" or text ~= "" then
+                table.insert(rows, { index = index, title = title, text = text, time = note.time })
+            end
         end
     end
 

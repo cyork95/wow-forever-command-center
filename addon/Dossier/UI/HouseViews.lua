@@ -785,16 +785,27 @@ function TasksView:Build(page)
     placeholder:SetPoint("TOPLEFT", 8, -8)
     placeholder:SetText("What do you need to do?")
 
-    local kindButton = Theme.CreateButton(page, "Each day", 96, 22, "default", function(self)
+    local kindButton = Theme.CreateButton(page, "Each day", 110, 22, "default", function(self)
         if repeatKind == "daily" then
             repeatKind = "weekly"
         elseif repeatKind == "weekly" then
+            repeatKind = "monthly"
+        elseif repeatKind == "monthly" then
+            repeatKind = "yearly"
+        elseif repeatKind == "yearly" then
             repeatKind = "once"
         else
             repeatKind = "daily"
         end
 
-        self:SetLabel(repeatKind == "weekly" and "Each week" or (repeatKind == "once" and "Just once" or "Each day"))
+        local labels = {
+            weekly = "Each week",
+            monthly = "Each month",
+            yearly = "Each year",
+            once = "Just once",
+        }
+
+        self:SetLabel(labels[repeatKind] or "Each day")
     end)
     kindButton:SetPoint("LEFT", nameBox, "RIGHT", 8, 0)
 
@@ -828,6 +839,14 @@ function TasksView:Build(page)
             return "Each week"
         end
 
+        if kind == "monthly" then
+            return "Each month"
+        end
+
+        if kind == "yearly" then
+            return "Each year"
+        end
+
         if kind == "once" then
             return "Just once"
         end
@@ -858,7 +877,7 @@ function TasksView:Build(page)
         card.title:SetJustifyV("TOP")
         card.detail = Theme.CreateText(card, "GameFontHighlightSmall", "muted")
         card.detail:SetJustifyH("LEFT")
-        card.done = Theme.CreateButton(card, "Done today", 118, 20, "primary", function() end)
+        card.done = Theme.CreateButton(card, "Done today", 132, 20, "primary", function() end)
         card.edit = Theme.CreateButton(card, "Edit", 46, 20, "default", function() end)
         card.delete = Theme.CreateButton(card, "Delete", 56, 20, "default", function() end)
         cards[index] = card
@@ -1151,27 +1170,41 @@ function NotesView:Build(page)
     end)
     characterButton:SetPoint("TOPLEFT", 0, 0)
 
-    local noteBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
-    noteBox:SetSize(360, 48)
-    noteBox:SetPoint("TOPLEFT", 0, -32)
-    noteBox:SetAutoFocus(false)
-    noteBox:SetMultiLine(true)
-    noteBox:SetFontObject(ChatFontNormal)
-    noteBox:SetTextInsets(8, 8, 8, 8)
-    noteBox:SetMaxLetters(400)
-    Theme.ApplyBackdrop(noteBox, "card", "accent")
+    local titleBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
+    titleBox:SetSize(280, 22)
+    titleBox:SetPoint("TOPLEFT", 0, -30)
+    titleBox:SetAutoFocus(false)
+    titleBox:SetFontObject(ChatFontNormal)
+    titleBox:SetTextInsets(8, 8, 0, 0)
+    titleBox:SetMaxLetters(80)
+    Theme.ApplyBackdrop(titleBox, "card", "accent")
 
-    local placeholder = Theme.CreateText(noteBox, "GameFontHighlightSmall", "disabled")
-    placeholder:SetPoint("TOPLEFT", 8, -8)
-    placeholder:SetText("Jot something down")
+    local titlePlaceholder = Theme.CreateText(titleBox, "GameFontHighlightSmall", "disabled")
+    titlePlaceholder:SetPoint("LEFT", 8, 0)
+    titlePlaceholder:SetText("Title")
 
     local add = Theme.CreateButton(page, "Add note", 84, 22, "primary", function()
         NotesView:Commit()
     end)
-    add:SetPoint("LEFT", noteBox, "RIGHT", 8, 0)
+    add:SetPoint("LEFT", titleBox, "RIGHT", 8, 0)
+
+    local noteBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
+    noteBox:SetHeight(72)
+    noteBox:SetPoint("TOPLEFT", 0, -58)
+    noteBox:SetPoint("RIGHT", 0, 0)
+    noteBox:SetAutoFocus(false)
+    noteBox:SetMultiLine(true)
+    noteBox:SetFontObject(ChatFontNormal)
+    noteBox:SetTextInsets(8, 8, 8, 8)
+    noteBox:SetMaxLetters(4000)
+    Theme.ApplyBackdrop(noteBox, "card", "accent")
+
+    local placeholder = Theme.CreateText(noteBox, "GameFontHighlightSmall", "disabled")
+    placeholder:SetPoint("TOPLEFT", 8, -8)
+    placeholder:SetText("Write the note")
 
     local box = Theme.CreatePanel(page, "dark", "border")
-    box:SetPoint("TOPLEFT", 0, -88)
+    box:SetPoint("TOPLEFT", 0, -138)
     box:SetPoint("BOTTOMRIGHT", 0, 0)
 
     local scroll = CreateFrame("ScrollFrame", nil, box, "UIPanelScrollFrameTemplate")
@@ -1192,8 +1225,10 @@ function NotesView:Build(page)
 
     local function LayoutComposer()
         characterButton:SetLabel(character or "This character")
-        placeholder:SetText(editing and "Change this note" or "Jot something down")
+        titlePlaceholder:SetText(editing and "Change the title" or "Title")
+        placeholder:SetText(editing and "Change the note" or "Write the note")
         add:SetLabel(editing and "Save" or "Add note")
+        titlePlaceholder:SetShown(Trim(titleBox:GetText()) == "")
         placeholder:SetShown(Trim(noteBox:GetText()) == "")
     end
 
@@ -1211,6 +1246,10 @@ function NotesView:Build(page)
         card.title:SetJustifyH("LEFT")
         card.title:SetJustifyV("TOP")
         card.title:SetWordWrap(true)
+        card.body = Theme.CreateText(card, "GameFontHighlightSmall", "text")
+        card.body:SetJustifyH("LEFT")
+        card.body:SetJustifyV("TOP")
+        card.body:SetWordWrap(true)
         card.edit = Theme.CreateButton(card, "Edit", 46, 20, "default", function() end)
         card.delete = Theme.CreateButton(card, "Delete", 56, 20, "default", function() end)
         cards[index] = card
@@ -1220,32 +1259,45 @@ function NotesView:Build(page)
 
     function NotesView:Commit()
         local tasks = ns.Data and ns.Data.Tasks
+        local title = Trim(titleBox:GetText())
         local text = Trim(noteBox:GetText())
 
-        if text == "" or not tasks or not character then
+        if title == "" or not tasks or not character then
             return
         end
 
         if editing then
-            tasks:UpdateNote(editing, text, character)
+            tasks:UpdateNote(editing, title, text, character)
         else
-            tasks:AddNote(text, character)
+            tasks:AddNote(title, text, character)
         end
 
         editing = nil
+        titleBox:SetText("")
         noteBox:SetText("")
         noteBox:ClearFocus()
         NotesView:Refresh()
     end
 
+    titleBox:SetScript("OnTextChanged", function()
+        titlePlaceholder:SetShown(Trim(titleBox:GetText()) == "")
+    end)
+    titleBox:SetScript("OnEnterPressed", function()
+        noteBox:SetFocus()
+    end)
+    titleBox:SetScript("OnEscapePressed", function(self)
+        editing = nil
+        self:SetText("")
+        noteBox:SetText("")
+        self:ClearFocus()
+        LayoutComposer()
+    end)
     noteBox:SetScript("OnTextChanged", function()
         placeholder:SetShown(Trim(noteBox:GetText()) == "")
     end)
-    noteBox:SetScript("OnEnterPressed", function()
-        NotesView:Commit()
-    end)
     noteBox:SetScript("OnEscapePressed", function(self)
         editing = nil
+        titleBox:SetText("")
         self:SetText("")
         self:ClearFocus()
         LayoutComposer()
@@ -1276,7 +1328,7 @@ function NotesView:Build(page)
             empty:SetText("Log in on a character to write notes.")
             empty:Show()
         elseif #notes == 0 then
-            empty:SetText("No notes yet. Write one in the box above.")
+            empty:SetText("No notes yet. Add a title and a note above.")
             empty:Show()
         else
             empty:Hide()
@@ -1286,40 +1338,72 @@ function NotesView:Build(page)
             count = count + 1
             local card = TakeCard(count)
             local noteIndex = note.index
-            local noteText = note.text
+            local noteTitle = note.title ~= "" and note.title or "Note"
+            local noteText = note.text or ""
             local column = (count - 1) % 2
-            card.title:SetText("|cffe7d7b1" .. noteText .. "|r")
+            local textWidth = columnWidth - 20
+            card:SetWidth(columnWidth)
+            card.title:SetWidth(textWidth - 110)
+            card.title:SetText("|cffffd36b" .. noteTitle .. "|r")
+            card.body:SetWidth(textWidth)
+            card.body:SetText(noteText ~= "" and ("|cffe7d7b1" .. noteText .. "|r") or "")
+            card.body:SetShown(noteText ~= "")
             card.title:ClearAllPoints()
-            card.title:SetPoint("TOPLEFT", 10, -32)
-            card.title:SetPoint("RIGHT", -10, 0)
+            card.title:SetPoint("TOPLEFT", 10, -8)
+            card.body:ClearAllPoints()
+            card.body:SetPoint("TOPLEFT", 10, -((card.title:GetStringHeight() or 16) + 14))
+            card.body:SetPoint("RIGHT", -10, 0)
             card.edit:ClearAllPoints()
             card.edit:SetPoint("TOPRIGHT", -8, -6)
             card.delete:ClearAllPoints()
             card.delete:SetPoint("RIGHT", card.edit, "LEFT", -4, 0)
             card.edit:SetScript("OnClick", function()
                 editing = noteIndex
+                titleBox:SetText(note.title or "")
                 noteBox:SetText(noteText)
-                noteBox:SetFocus()
+                titleBox:SetFocus()
                 LayoutComposer()
             end)
             card.delete:SetScript("OnClick", function()
                 tasks:RemoveNote(noteIndex, character)
                 if editing == noteIndex then
                     editing = nil
+                    titleBox:SetText("")
                     noteBox:SetText("")
                 end
                 NotesView:Refresh()
             end)
-            card:SetWidth(columnWidth)
-            local height = math.max(88, (card.title:GetStringHeight() or 16) + 48)
-            card:SetHeight(height)
+            local function BlockHeight(fontString, plain, lineHeight)
+                local measured = fontString:GetStringHeight() or 0
+
+                if measured > 4 then
+                    return measured
+                end
+
+                if plain == "" then
+                    return 0
+                end
+
+                local perLine = math.max(8, math.floor(fontString:GetWidth() / 7))
+                local lines = 0
+
+                for paragraph in (plain .. "\n"):gmatch("([^\n]*)\n") do
+                    lines = lines + math.max(1, math.ceil(math.max(#paragraph, 1) / perLine))
+                end
+
+                return lines * lineHeight
+            end
+
+            local bodyHeight = noteText ~= "" and BlockHeight(card.body, noteText, 14) or 0
+            local height = 16 + BlockHeight(card.title, noteTitle, 16) + bodyHeight + 16
+            card:SetHeight(math.max(44, height))
             card:ClearAllPoints()
             card:SetPoint("TOPLEFT", 4 + column * (columnWidth + 8), -y)
 
             if column == 0 then
-                rowHeight = height
+                rowHeight = card:GetHeight()
             else
-                y = y + math.max(rowHeight, height) + 8
+                y = y + math.max(rowHeight, card:GetHeight()) + 8
                 rowHeight = 0
             end
         end

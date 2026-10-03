@@ -38,7 +38,7 @@ The window lists a tab for each part that is switched on:
 - Mail: letters you sent and received. Dossier does not send or take mail
 - Lockouts: saved instances and a diary of runs
 - Shopping: the items and recipes you plan to gather or buy
-- Tasks: things to finish each day, each week, or just once, plus a window for this zone
+- Tasks: things to finish each day, week, month, or year, or just once, plus a window for this zone
 - Notes: a pad of boxes you can write, edit, and delete
 - Screenshotter: automatic screenshots at big moments
 - Options: the minimap icon, item stats, detailed export, and a switch for
@@ -277,12 +277,12 @@ Lockouts stores the instances you are saved to and a short diary of runs
 you enter and leave. Sessions stores finished play sessions. The live
 timer stays on the Session tab.
 
-Tasks are things you mean to finish: each day, each week, or just once.
-Done today, Done this week, or Finished checks one off. Edit and Delete
+Tasks are things you mean to finish: each day, each week, each month, each year, or just once.
+Done today, Done this week, Done this month, Done this year, or Finished checks one off. Edit and Delete
 change the list. /dossier tasks opens a window for this zone. That window
 has the same choices as the session panel: show it, lock it, pick Tasks,
 Shopping, or Rares, and set how solid the background is. Notes is its own
-tab. Each note is a box you can write, edit, or delete. A quest
+tab. Each note has a title and a body. Two notes sit on a line, and the body wraps to its full length. A quest
 turn-in can still mark a matching task done. Completed quests stay in
 Questie. A turn-in is still a line in the Biography.
 

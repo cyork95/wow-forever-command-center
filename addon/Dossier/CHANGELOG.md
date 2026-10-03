@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.12
+
+- A task can repeat each month or each year, as well as each day, each week, or just once. Marking it done keeps it done until that month or year ends.
+- Each note has a title and a body. Two notes sit on a line, and the body wraps so the whole note shows.
+
 ## 2.2.11
 
 - Notes are their own tab. Each note is a box you can add, edit, or delete. The Tasks tab and the task panel no longer hold notes.

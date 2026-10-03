@@ -96,8 +96,9 @@ function Convert-LedgerCharacter($db, $key) {
   foreach ($note in (Get-LuaRows (LV $db "tasks" $key "notes"))) {
     if ($note -isnot [System.Collections.IDictionary]) { continue }
     $text = LV $note "text"
-    if (-not $text) { continue }
-    $notes += [ordered]@{ text = $text; time = LV $note "time" }
+    $title = LV $note "title"
+    if (-not $text -and -not $title) { continue }
+    $notes += [ordered]@{ title = $title; text = $text; time = LV $note "time" }
   }
 
   $quests = @()

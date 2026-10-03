@@ -1749,13 +1749,28 @@ function renderLedgerBoards() {
       const kind = task.repeatKind || "once";
       const until = Number(task.doneUntil);
       const done = until === -1 || (until > 0 && until > now);
-      const cadence = kind === "weekly" ? "Each week" : kind === "once" ? "Just once" : "Each day";
-      let status = "Due today";
-      if (done && kind === "weekly") status = "Done this week";
-      else if (done && kind === "once") status = "Finished";
-      else if (done) status = "Done today";
-      else if (kind === "weekly") status = "Due this week";
-      else if (kind === "once") status = "Still to do";
+      const cadence = {
+        daily: "Each day",
+        weekly: "Each week",
+        monthly: "Each month",
+        yearly: "Each year",
+        once: "Just once"
+      }[kind] || "Each day";
+      const openLabel = {
+        daily: "Due today",
+        weekly: "Due this week",
+        monthly: "Due this month",
+        yearly: "Due this year",
+        once: "Still to do"
+      }[kind] || "Due today";
+      const doneLabel = {
+        daily: "Done today",
+        weekly: "Done this week",
+        monthly: "Done this month",
+        yearly: "Done this year",
+        once: "Finished"
+      }[kind] || "Done today";
+      const status = done ? doneLabel : openLabel;
       const place = task.zone ? ` · ${task.zone}` : "";
       return el("div", { class: "task-row" }, [
         el("strong", { text: task.name || "Task" }),
@@ -1770,7 +1785,10 @@ function renderLedgerBoards() {
         el("h3", { text: key }),
         ...(rows.length ? rows.map(taskLine) : [el("p", { class: "meta", text: "Nothing waiting." })]),
         el("h4", { text: "Notes" }),
-        notes.length ? el("div", { class: "note-grid" }, notes.map((note) => el("div", { class: "note-card", text: note.text }))) : el("p", { class: "meta", text: "No notes yet." })
+        notes.length ? el("div", { class: "note-grid" }, notes.map((note) => el("div", { class: "note-card" }, [
+          note.title ? el("strong", { text: note.title }) : null,
+          el("p", { text: note.text || "" })
+        ].filter(Boolean)))) : el("p", { class: "meta", text: "No notes yet." })
       ]);
     }));
   }
