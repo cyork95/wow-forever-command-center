@@ -156,7 +156,7 @@ function KillsView.DetailText(id, mob)
     end
 
     local lines = {
-        string.format("|cff%s%s|r", nameColor, mob.name or "Unknown"),
+        string.format("%s|cff%s%s|r", rare and "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:14:14:0:0|t " or "", nameColor, mob.name or "Unknown"),
         "|cff8d9aa3" .. table.concat(facts, "   ") .. "|r",
         string.format("|cffffcc66%s kills|r    |cff8d9aa3first %s    last %s|r", FormatCount(mob.kills), FormatDate(mob.firstKill), FormatDate(mob.lastKill)),
     }
@@ -416,7 +416,7 @@ function KillsView:Refresh()
 
             row.mobID = entry.id
             local rare = mob.classification == "rare" or mob.classification == "rareelite"
-            row.cells.name:SetText((rare and "|cffffd36b" or "|cffe8eef2") .. (mob.name or "Unknown") .. "|r")
+            row.cells.name:SetText((rare and "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:12:12:0:0|t |cffffd36b" or "|cffe8eef2") .. (mob.name or "Unknown") .. "|r")
             row.cells.kills:SetText("|cffffcc66" .. FormatCount(mob.kills) .. "|r")
             row.cells.level:SetText((tonumber(mob.level) or 0) > 0 and tostring(mob.level) or "")
             row.cells.zone:SetText(mob.zone or "")

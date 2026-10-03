@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.4
+
+- A rare on the Kills list has a star beside its name. The name stays gold.
+
 ## 2.2.3
 
 - The Rares tab is gone. Rare names stay gold in the kill list, and selecting one still shows its kill count and drops.
