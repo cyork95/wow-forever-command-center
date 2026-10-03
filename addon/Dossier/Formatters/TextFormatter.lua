@@ -4297,6 +4297,9 @@ function TextFormatter:AddCharacterStats(
     )
 end
 
+local AppendJournalatorGold
+local AppendAltoholicReputations
+
 function TextFormatter:AddCurrenciesDetailed(
     lines,
     data
@@ -4316,6 +4319,8 @@ function TextFormatter:AddCurrenciesDetailed(
                 data.money
             )
     )
+
+    AppendJournalatorGold(lines)
 
     local entries =
         data.entries
@@ -5502,6 +5507,8 @@ function TextFormatter:AddReputationsDetailed(
             )
         end
     end
+
+    AppendAltoholicReputations(lines, #entries)
 
     local diagnostics =
         data.diagnostics
@@ -9338,6 +9345,66 @@ local function CompactCurrencyList(entries)
     return values
 end
 
+function AppendJournalatorGold(lines)
+    local companions = ns.Companions
+
+    if not companions or type(companions.Read) ~= "function" then
+        return
+    end
+
+    local rows = companions:Read("journalator", "ReadGold")
+
+    if type(rows) ~= "table" or #rows == 0 then
+        return
+    end
+
+    AddLine(lines, "Gold, last 7 days")
+
+    for _, line in ipairs(rows) do
+        if type(line) == "string" then
+            AddLine(lines, line)
+        end
+    end
+end
+
+function AppendAltoholicReputations(lines, liveCount)
+    local companions = ns.Companions
+
+    if not companions or type(companions.Read) ~= "function" then
+        return
+    end
+
+    local groups = companions:Read("altoholic", "ReadReputations")
+
+    if type(groups) ~= "table" or #groups == 0 then
+        return
+    end
+
+    local player = UnitName("player")
+    local shown = false
+
+    for _, group in ipairs(groups) do
+        if type(group) == "table" and type(group.lines) == "table" then
+            local skip = liveCount > 0 and type(player) == "string" and group.character == player
+
+            if not skip then
+                if not shown then
+                    AddLine(lines, "Saved standings")
+                    shown = true
+                end
+
+                AddLine(lines, group.character or "Character")
+
+                for _, line in ipairs(group.lines) do
+                    if type(line) == "string" then
+                        AddLine(lines, line)
+                    end
+                end
+            end
+        end
+    end
+end
+
 function TextFormatter:AddCurrencies(lines, data)
     if IsDetailedExport() then
         return self:AddCurrenciesDetailed(lines, data)
@@ -9345,20 +9412,7 @@ function TextFormatter:AddCurrencies(lines, data)
 
     AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.CURRENCIES])
     AddLine(lines, "Gold: " .. FormatMoneyCopper(data.money))
-
-    local ledger = ns.Data and ns.Data.Ledger
-
-    if ledger and ns:IsFeatureOn("ledger") and type(ledger.ExportLines) == "function" then
-        local extra = ledger:ExportLines()
-
-        for _, line in ipairs(extra.currencies or {}) do
-            AddLine(lines, line)
-        end
-
-        for _, line in ipairs(extra.gold or {}) do
-            AddLine(lines, line)
-        end
-    end
+    AppendJournalatorGold(lines)
 
     local board = ns.Data and ns.Data.ProfessionBoard
 
@@ -9438,17 +9492,14 @@ function TextFormatter:AddReputations(lines, data)
 
     AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.REPUTATIONS])
 
+    local liveCount = 0
+
     for _, entry in ipairs(data.entries or {}) do
         AddLine(lines, CompactReputationLine(entry))
+        liveCount = liveCount + 1
     end
 
-    local ledger = ns.Data and ns.Data.Ledger
-
-    if ledger and ns:IsFeatureOn("ledger") and type(ledger.ExportLines) == "function" then
-        for _, line in ipairs(ledger:ExportLines().reputations or {}) do
-            AddLine(lines, line)
-        end
-    end
+    AppendAltoholicReputations(lines, liveCount)
 
     AddBlankLine(lines)
 end

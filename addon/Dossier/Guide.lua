@@ -34,8 +34,7 @@ The window lists a tab for each part that is switched on:
 - Export: the sections, grouped into cards, and the Create Export button
 - Biography: your timeline, 40 lines per page
 - Kills: creatures you have killed. Rare names are gold, with their drops when you select one
-- Session and Sessions: the live timer, then finished sessions for the account
-- Ledger, Currencies, and Reputation: gold, currency icons, and reputation bars
+- Session: the live timer, with previous sessions below
 - Mail: letters you sent and received. Dossier does not send or take mail
 - Professions: each character's skill and rank
 - Lockouts: saved instances and a diary of runs
@@ -59,7 +58,6 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier session     Open the Session tab
 /dossier sessions    Open the live Session tab
 /dossier panel       Show or hide the live session panel
-/dossier ledger      Open the Ledger tab
 /dossier mail        Open the Mail tab
 /dossier rares       Open the Kills tab, where rare names are gold
 /dossier lockouts    Open the Lockouts tab
@@ -70,7 +68,7 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier shot        Take a screenshot now
 /dossier options     Open the Options tab
 /dossier settings    Open Dossier's page in the game's Settings
-/dossier off kills   Turn a feature off (bio, kills, session, ledger, mail,
+/dossier off kills   Turn a feature off (bio, kills, session, mail,
                      professions, lockouts, tasks, quests, shop, shots)
 /dossier on kills    Turn it back on
 /dossier help        Open this guide
@@ -100,7 +98,7 @@ The report starts with "Exported By: Dossier" and then one block per section:
 - Quests in your log and completed quests
 - Skills, Profession Details (saved copy), Talents, Spellbook
 - Biography: the timeline described below
-- Session currency, session reputation, gold changes, profession ranks, and rares, when those switches are on
+- Gold for the last 7 days, saved reputation standings, profession ranks, and rares, when Journalator, Altoholic, or those switches are on
 - AddOns: every installed addon and whether it loaded
 
 Sections you leave unticked are not in the report.
@@ -264,11 +262,11 @@ the game's usual names. Each one is noted in the Biography with the reason,
 so a website or tool that reads the Biography can name and caption them.
 
 
-9. Ledger, mail, lockouts, tasks, and quests
+9. Mail, lockouts, tasks, and quests
 ---------------------------------------------------
-Ledger records gold in and out, currency changes, and reputation for the
-character you are playing. Currencies and Reputation are part of the same
-switch. The lists include your other characters from this account.
+Gold for the last 7 days and reputation for each character are read from
+Journalator and Altoholic when you create an export, if Other addons is on.
+Dossier does not keep its own ledger or reputation lists.
 
 Mail stores letters you send and receive. It does not send, take, return,
 or open mail for you.
@@ -287,9 +285,10 @@ this zone. Quests lists every quest the game says you have completed.
 10. Other addons
 ----------------
 Dossier does not need another addon. When Other addons is on, it can read
-character data another addon has already saved, such as a bank copy or a
-recipe list, and fold that into the normal report. Turning it off stops
-those reads. Saved data stays.
+character data another addon has already saved, such as a bank copy, a
+recipe list, Journalator's gold log, or Altoholic's reputation, and fold
+that into the normal report. Turning it off stops those reads. Saved data
+stays.
 
 
 11. Options
@@ -303,7 +302,7 @@ and a Reload UI button.
 
 Features, for every character on your account: every part of Dossier can be
 turned off here, or with /dossier off and /dossier on. The switches are
-Biography, Kills, Session, Ledger, Mail, Professions, Lockouts, Tasks, Quests, Shopping list, Screenshotter, and Other addons.
+Biography, Kills, Session, Mail, Professions, Lockouts, Tasks, Quests, Shopping list, Screenshotter, and Other addons.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left
@@ -382,8 +381,9 @@ file exists. Keep older files; they are the history.
   lines are recipes they plan to make, and "Ready:" lists what is done.
 - "Statistics:" holds the game's own lifetime counters, one "== Category =="
   block each. A statistic that is not listed has no value yet.
-- "Session currency:", "Session reputation:", "Gold change:", "Profession:",
-  and "Rare:" are the ledger lines, when those switches are on.
+- "Gold, last 7 days" and "Saved standings" come from Journalator and
+  Altoholic when Other addons is on. "Profession:" and "Rare:" stay when
+  those switches are on.
 
 ## Answer
 

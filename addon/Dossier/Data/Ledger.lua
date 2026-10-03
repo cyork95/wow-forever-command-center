@@ -712,15 +712,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
-Register("PLAYER_LOGIN")
-Register("PLAYER_MONEY")
-Register("CURRENCY_DISPLAY_UPDATE")
-Register("UPDATE_FACTION")
-Register("CHAT_MSG_COMBAT_FACTION_CHANGE")
-Register("CHAT_MSG_MONEY")
-Register("CHAT_MSG_SYSTEM")
-Register("CHAT_MSG_LOOT")
-Register("QUEST_TURNED_IN")
+-- Gold, currencies, and reputation are read from Journalator and Altoholic
+-- at export time. This module no longer records them. Saved rows stay.
 
 ns.Data = ns.Data or {}
 ns.Data.Ledger = Ledger

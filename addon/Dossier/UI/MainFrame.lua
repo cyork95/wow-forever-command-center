@@ -18,7 +18,7 @@ MainFrame.activeTab = "export"
 
 MainFrame.TAB_ORDER = {
     "export", "biography", "kills", "session",
-    "ledger", "currencies", "reputation", "mail", "professions", "lockouts",
+    "mail", "professions", "lockouts",
     "shopping", "tasks", "quests", "screenshots", "options", "help",
 }
 

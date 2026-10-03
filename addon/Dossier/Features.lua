@@ -35,16 +35,6 @@ C.FEATURES = {
         description = "Times play sessions with gathering, gold, and XP per hour, and runs the session panel.",
     },
     {
-        id = "ledger",
-        label = "Ledger",
-        tab = "ledger",
-        extraTabs = { "currencies", "reputation" },
-        sections = {},
-        modules = { "Data.Ledger" },
-        aliases = { "ledger", "currencies", "currency", "reputation", "rep" },
-        description = "Records gold, currencies, and reputation for every character on this account.",
-    },
-    {
         id = "mail",
         label = "Mail",
         tab = "mail",
@@ -212,6 +202,10 @@ function Features.PrintOff(id)
 end
 
 function ns:IsFeatureOn(id)
+    if not Features.byId[id] then
+        return false
+    end
+
     local store = Store()
     return not (store and store[id] == false)
 end

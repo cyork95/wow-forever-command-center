@@ -2135,17 +2135,6 @@ SlashCmdList[
         elseif argument == "sessions"
         then
             IfFeatureOn("session", function() Commands:OpenTab("session") end)
-        elseif argument == "ledger"
-        then
-            IfFeatureOn("ledger", function() Commands:OpenTab("ledger") end)
-        elseif argument == "currencies"
-            or argument == "currency"
-        then
-            IfFeatureOn("ledger", function() Commands:OpenTab("currencies") end)
-        elseif argument == "reputation"
-            or argument == "rep"
-        then
-            IfFeatureOn("ledger", function() Commands:OpenTab("reputation") end)
         elseif argument == "mail"
         then
             IfFeatureOn("mail", function() Commands:OpenTab("mail") end)

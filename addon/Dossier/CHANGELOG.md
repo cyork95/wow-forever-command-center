@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.6
+
+- The Ledger, Currencies, and Reputation tabs are gone. Dossier no longer records gold, currencies, or reputation itself. Saved rows stay.
+- Creating an export reads the last 7 days of gold from Journalator and reputation standings from Altoholic, when Other addons is on.
+
 ## 2.2.5
 
 - Ulrathor gets an example rare, Hogger, so the gold name and star can be checked on the Kills list. Other characters are unchanged.
