@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2
+
+- A gold change no longer errors. Recording loot or a vendor sale was calling the currency sync before that function existed.
+
 ## 2.2.1
 
 - Mail keeps one row per letter. Opening the mailbox no longer saves the same letter again each time the inbox updates, and copies already saved are folded together.

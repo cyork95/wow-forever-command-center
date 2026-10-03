@@ -246,6 +246,8 @@ function Ledger:RecordGold(delta, source, detail, balance)
     }, GOLD_CAP)
 end
 
+local SyncCurrencies
+
 local function OnMoney()
     local money = ReadMoney()
 
@@ -287,7 +289,7 @@ local function CurrencyList()
     return data.entries or {}
 end
 
-local function SyncCurrencies()
+function SyncCurrencies()
     local row = Character()
 
     if not row or not ns:IsFeatureOn("ledger") then
