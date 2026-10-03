@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.10
+
+- The task panel uses the same choices as the session panel: show it, lock it, pick which lines, and set the background. The lines are colored instead of plain text.
+
 ## 2.2.9
 
 - The Quests tab is gone. Dossier no longer records a completed-quest list. Saved rows stay. Questie still has the journey, on the site and in game. A turn-in is still a Biography line, and it can still mark a task done.

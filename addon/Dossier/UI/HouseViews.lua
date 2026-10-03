@@ -731,9 +731,64 @@ function TasksView:Build(page)
     end)
     characterButton:SetPoint("LEFT", notesButton, "RIGHT", 12, 0)
 
+    local C = ns.constants
+    local panelCard = Theme.CreateCard(page, C.TEXT.TASK_PANEL_CARD)
+    panelCard:SetPoint("TOPLEFT", 0, -28)
+    panelCard:SetPoint("RIGHT", 0, 0)
+    panelCard:SetHeight(96)
+
+    local showBox = Theme.CreateCheckbox(panelCard, C.TEXT.TASK_SHOW_PANEL, function(self)
+        local panel = ns.UI and ns.UI.TrackerWindow
+
+        if panel then
+            panel:SetShown(self:GetChecked() == true)
+        end
+    end)
+    showBox:SetPoint("TOPLEFT", 10, -26)
+
+    local zoneBox = Theme.CreateCheckbox(panelCard, C.TEXT.TASK_OPEN_ZONE, function(self)
+        local panel = ns.UI and ns.UI.TrackerWindow
+
+        if panel then
+            panel:SetAutoOpen(self:GetChecked() == true)
+        end
+    end)
+    zoneBox:SetPoint("TOPLEFT", 220, -26)
+
+    local lineBoxes = {}
+
+    for index, key in ipairs(C.TASK_PANEL_LINES) do
+        local lineKey = key
+        local box = Theme.CreateCheckbox(panelCard, C.TASK_PANEL_LINE_LABELS[key], function(self)
+            local panel = ns.UI and ns.UI.TrackerWindow
+
+            if panel then
+                panel:SetLine(lineKey, self:GetChecked() == true)
+            end
+        end)
+        box:SetPoint("TOPLEFT", 10 + (index - 1) * 150, -48)
+        lineBoxes[key] = box
+    end
+
+    local opacityLabel = Theme.CreateText(panelCard, "GameFontHighlightSmall", "text")
+    opacityLabel:SetPoint("BOTTOMLEFT", 10, 10)
+    opacityLabel:SetText(C.TEXT.KILLS_PANEL_OPACITY)
+
+    local opacityValue = Theme.CreateText(panelCard, "GameFontHighlightSmall", "muted")
+    local opacitySlider = Theme.CreateSlider(panelCard, 90, 0, 100, 5, function(_, value)
+        opacityValue:SetText(string.format(C.TEXT.KILLS_PANEL_OPACITY_VALUE, value))
+        local panel = ns.UI and ns.UI.TrackerWindow
+
+        if panel and panel:GetOpacity() ~= value then
+            panel:SetOpacity(value)
+        end
+    end)
+    opacitySlider:SetPoint("BOTTOMLEFT", 130, 12)
+    opacityValue:SetPoint("LEFT", opacitySlider, "RIGHT", 8, 0)
+
     local nameBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
     nameBox:SetSize(280, 44)
-    nameBox:SetPoint("TOPLEFT", 0, -30)
+    nameBox:SetPoint("TOPLEFT", 0, -132)
     nameBox:SetAutoFocus(false)
     nameBox:SetMultiLine(true)
     nameBox:SetFontObject(ChatFontNormal)
@@ -764,7 +819,7 @@ function TasksView:Build(page)
     add:SetPoint("LEFT", kindButton, "RIGHT", 8, 0)
 
     local box = Theme.CreatePanel(page, "dark", "border")
-    box:SetPoint("TOPLEFT", 0, -82)
+    box:SetPoint("TOPLEFT", 0, -184)
     box:SetPoint("BOTTOMRIGHT", 0, 0)
 
     local scroll = CreateFrame("ScrollFrame", nil, box, "UIPanelScrollFrameTemplate")
@@ -922,7 +977,7 @@ function TasksView:Build(page)
                 card.delete:Show()
                 card.detail:Hide()
                 card.title:SetWordWrap(true)
-                card.title:SetText(noteText)
+                card.title:SetText("|cffe7d7b1" .. noteText .. "|r")
                 card.title:ClearAllPoints()
                 card.title:SetPoint("TOPLEFT", 10, -32)
                 card.title:SetPoint("RIGHT", -10, 0)
@@ -974,8 +1029,9 @@ function TasksView:Build(page)
                 card.delete:Show()
                 card.detail:Show()
                 card.title:SetWordWrap(false)
-                card.title:SetText(taskName or "")
-                card.detail:SetText(tasks:Status(task) .. "  ·  " .. tasks:Cadence(task) .. (task.zone and task.zone ~= "" and ("  ·  " .. task.zone) or ""))
+                card.title:SetText((open and "|cff7ee0e6" or "|cff8d9aa3") .. (taskName or "") .. "|r")
+                local place = task.zone and task.zone ~= "" and ("  |cff8d9aa3" .. task.zone .. "|r") or ""
+                card.detail:SetText((open and "|cffffd36b" or "|cff8d9aa3") .. tasks:Status(task) .. "|r  |cff8d9aa3" .. tasks:Cadence(task) .. "|r" .. place)
                 card.done:SetLabel(tasks:DoneLabel(task))
                 card.title:ClearAllPoints()
                 card.title:SetPoint("TOPLEFT", 10, -8)
@@ -1026,6 +1082,21 @@ function TasksView:Build(page)
 
         if type(scroll.UpdateScrollChildRect) == "function" then
             scroll:UpdateScrollChildRect()
+        end
+
+        local panel = ns.UI and ns.UI.TrackerWindow
+
+        if panel then
+            showBox:SetChecked(panel:IsEnabled())
+            zoneBox:SetChecked(panel:IsAutoOpen())
+
+            for key, lineBox in pairs(lineBoxes) do
+                lineBox:SetChecked(panel:IsLineOn(key))
+            end
+
+            local opacity = panel:GetOpacity()
+            opacitySlider:SetValue(opacity)
+            opacityValue:SetText(string.format(C.TEXT.KILLS_PANEL_OPACITY_VALUE, opacity))
         end
     end
 

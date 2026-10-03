@@ -1,8 +1,13 @@
 local _, ns = ...
 
+local C = ns.constants
+
 local Tracker = {}
 
 local dismissedZone = nil
+local WIDTH = 260
+local LINE_HEIGHT = 16
+local TOP_OFFSET = 32
 
 local function Account()
     return ns.Account
@@ -19,7 +24,96 @@ local function Settings()
         bucket.autoOpen = true
     end
 
+    if type(bucket.lines) ~= "table" then
+        bucket.lines = {}
+    end
+
+    if bucket.opacity == nil then
+        bucket.opacity = C.KILLS_PANEL_DEFAULT_OPACITY
+    end
+
     return bucket
+end
+
+function Tracker:IsEnabled()
+    local settings = Settings()
+    return settings ~= nil and settings.shown == true
+end
+
+function Tracker:IsLocked()
+    local settings = Settings()
+    return settings ~= nil and settings.locked == true
+end
+
+function Tracker:IsAutoOpen()
+    local settings = Settings()
+    return settings == nil or settings.autoOpen ~= false
+end
+
+function Tracker:SetAutoOpen(on)
+    local settings = Settings()
+
+    if settings then
+        settings.autoOpen = on == true
+    end
+end
+
+function Tracker:IsLineOn(key)
+    local settings = Settings()
+    return settings == nil or settings.lines[key] ~= false
+end
+
+function Tracker:SetLine(key, enabled)
+    local settings = Settings()
+
+    if settings then
+        settings.lines[key] = enabled == true
+        self:Refresh()
+    end
+end
+
+function Tracker:GetOpacity()
+    local settings = Settings()
+    local value = settings and tonumber(settings.opacity)
+
+    if not value then
+        return C.KILLS_PANEL_DEFAULT_OPACITY
+    end
+
+    return math.max(0, math.min(100, value))
+end
+
+function Tracker:SetOpacity(percent)
+    local settings = Settings()
+
+    if settings then
+        settings.opacity = math.max(0, math.min(100, math.floor((tonumber(percent) or 0) + 0.5)))
+    end
+
+    self:ApplyOpacity()
+end
+
+function Tracker:ApplyOpacity()
+    if self.frame then
+        ns.Theme.SetBackdropAlpha(self.frame, "panel", "border", self:GetOpacity() / 100)
+    end
+end
+
+local function SavePosition(frame)
+    local settings = Settings()
+
+    if not settings or type(frame.GetPoint) ~= "function" then
+        return
+    end
+
+    local point, _, relativePoint, x, y = frame:GetPoint(1)
+
+    if point then
+        settings.point = point
+        settings.relativePoint = relativePoint
+        settings.x = x
+        settings.y = y
+    end
 end
 
 local function Zone()
@@ -67,10 +161,10 @@ local function RareLine(unit)
     end
 
     if x and y then
-        return string.format("%s  %s %.1f, %.1f", name, place, x, y)
+        return string.format("|cffffd36b%s|r  |cff8d9aa3%s %.1f, %.1f|r", name, place, x, y)
     end
 
-    return name .. "  " .. place
+    return "|cffffd36b" .. name .. "|r  |cff8d9aa3" .. place .. "|r"
 end
 
 function Tracker:Lines()
@@ -78,24 +172,24 @@ function Tracker:Lines()
     local zone = Zone()
     local tasks = ns.Data and ns.Data.Tasks
 
-    if tasks and ns:IsFeatureOn("tasks") then
+    if self:IsLineOn("tasks") and tasks and ns:IsFeatureOn("tasks") then
         local shown = false
 
         for _, task in ipairs(tasks:Open(Account().CharacterKey())) do
             if not task.zone or task.zone == "" or task.zone == zone then
                 if not shown then
-                    table.insert(lines, "Still to do")
+                    table.insert(lines, "|cffffd36bStill to do|r")
                     shown = true
                 end
 
-                table.insert(lines, "  " .. task.name .. "  " .. tasks:Cadence(task))
+                table.insert(lines, "|cff7ee0e6" .. (task.name or "Task") .. "|r  |cff8d9aa3" .. tasks:Cadence(task) .. "|r")
             end
         end
     end
 
     local shop = ns.Data and ns.Data.ShoppingList
 
-    if shop and ns:IsFeatureOn("shopping") and type(shop.GetShortRows) == "function" then
+    if self:IsLineOn("shopping") and shop and ns:IsFeatureOn("shopping") and type(shop.GetShortRows) == "function" then
         local shorts = shop:GetShortRows()
         local shown = false
 
@@ -104,28 +198,32 @@ function Tracker:Lines()
 
             if name then
                 if not shown then
-                    table.insert(lines, "Shopping")
+                    table.insert(lines, "|cffb7e3a1Shopping short|r")
                     shown = true
                 end
 
-                table.insert(lines, string.format("  %s  %s", name, tostring(row.short or 0)))
+                table.insert(lines, string.format("|cffb7e3a1%s|r  |cffffd36b%s still needed|r", name, tostring(row.short or 0)))
             end
         end
     end
 
-    if ns:IsFeatureOn("kills") then
+    if self:IsLineOn("rares") and ns:IsFeatureOn("kills") then
         local shown = false
         local bucket = Account() and Account().Database() and Account().Database().rares or {}
 
+        local function AddRare(line)
+            if not shown then
+                table.insert(lines, "|cffffcc66Rares here|r")
+                shown = true
+            end
+
+            table.insert(lines, "  " .. line)
+        end
+
         for _, rare in pairs(bucket) do
             if type(rare) == "table" and rare.name and rare.zone == zone then
-                if not shown then
-                    table.insert(lines, "Rares here")
-                    shown = true
-                end
-
                 local place = rare.x and rare.y and string.format("%.1f, %.1f", rare.x, rare.y) or ""
-                table.insert(lines, "  " .. rare.name .. (place ~= "" and ("  " .. place) or ""))
+                AddRare("|cffffd36b" .. rare.name .. "|r" .. (place ~= "" and ("  |cff8d9aa3" .. place .. "|r") or ""))
             end
         end
 
@@ -133,12 +231,7 @@ function Tracker:Lines()
             local line = RareLine(unit)
 
             if line then
-                if not shown then
-                    table.insert(lines, "Rares here")
-                    shown = true
-                end
-
-                table.insert(lines, "  " .. line)
+                AddRare(line)
             end
         end
     end
@@ -147,12 +240,25 @@ function Tracker:Lines()
 end
 
 function Tracker:Refresh()
-    if not self.text then
+    if not self.frame or not self.frame:IsShown() or not self.text then
         return
     end
 
     local lines = self:Lines()
-    self.text:SetText(#lines > 0 and table.concat(lines, "\n") or "Nothing waiting in this zone.")
+    local zone = Zone()
+    local title = "|cffffd36b" .. string.upper(C.TEXT.TASK_PANEL_TITLE) .. "|r"
+
+    if zone and zone ~= "" then
+        title = title .. "  |cff7ee0e6" .. zone .. "|r"
+    end
+
+    self.titleText:SetText(title)
+    self.text:SetText(#lines > 0 and table.concat(lines, "\n") or ("|cff8d9aa3" .. C.TEXT.TASK_PANEL_EMPTY .. "|r"))
+    self.frame:SetHeight(TOP_OFFSET + math.max(#lines, 1) * LINE_HEIGHT + 12)
+
+    if self.lockButton then
+        self.lockButton:SetLabel(self:IsLocked() and C.TEXT.KILLS_PANEL_UNLOCK or C.TEXT.KILLS_PANEL_LOCK)
+    end
 end
 
 local function EnsureFrame()
@@ -162,70 +268,104 @@ local function EnsureFrame()
 
     local Theme = ns.Theme
     local frame = Theme.CreatePanel(UIParent, "panel", "border", "DossierTracker")
-    frame:SetSize(240, 220)
+    frame:SetSize(WIDTH, 120)
     frame:SetFrameStrata("MEDIUM")
     frame:SetMovable(true)
     frame:EnableMouse(true)
     frame:RegisterForDrag("LeftButton")
+
     if type(frame.SetClampedToScreen) == "function" then
         frame:SetClampedToScreen(true)
     end
-    frame:SetPoint("LEFT", UIParent, "LEFT", 40, 40)
+
+    local settings = Settings()
+
+    if settings and settings.point then
+        frame:SetPoint(settings.point, UIParent, settings.relativePoint or settings.point, settings.x or 0, settings.y or 0)
+    else
+        frame:SetPoint("LEFT", UIParent, "LEFT", 40, 40)
+    end
+
     frame:SetScript("OnDragStart", function(self)
-        self:StartMoving()
+        if not Tracker:IsLocked() then
+            self:StartMoving()
+        end
     end)
     frame:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
+        SavePosition(self)
     end)
-
-    local title = Theme.CreateText(frame, "GameFontHighlight", "text")
-    title:SetPoint("TOPLEFT", 12, -10)
-    title:SetText("Tasks")
 
     local close = Theme.CreateCloseButton(frame, function()
         dismissedZone = Zone()
-        frame:Hide()
+        Tracker:SetShown(false)
     end)
     close:SetSize(18, 18)
-    close:SetPoint("TOPRIGHT", -6, -6)
+    close:SetPoint("TOPRIGHT", -6, -5)
 
-    local toggle = Theme.CreateCheckbox(frame, "Open on zone change", function(self)
-        local settings = Settings()
+    local lock = Theme.CreateButton(frame, C.TEXT.KILLS_PANEL_LOCK, 52, 18, "default", function()
+        local current = Settings()
 
-        if settings then
-            settings.autoOpen = self:GetChecked() == true
+        if current then
+            current.locked = not Tracker:IsLocked()
+            Tracker:Refresh()
         end
     end)
-    toggle:SetPoint("BOTTOMLEFT", 10, 8)
-    toggle:SetChecked(true)
+    lock:SetPoint("RIGHT", close, "LEFT", -4, 0)
+
+    local title = Theme.CreateText(frame, "GameFontNormalSmall", "accent")
+    title:SetPoint("TOPLEFT", 10, -8)
+    title:SetPoint("RIGHT", lock, "LEFT", -6, 0)
+    title:SetJustifyH("LEFT")
+    title:SetWordWrap(false)
 
     local text = Theme.CreateText(frame, "GameFontHighlightSmall", "text")
-    text:SetPoint("TOPLEFT", 12, -32)
-    text:SetPoint("BOTTOMRIGHT", -12, 32)
+    text:SetPoint("TOPLEFT", 10, -TOP_OFFSET)
+    text:SetWidth(WIDTH - 20)
     text:SetJustifyH("LEFT")
     text:SetJustifyV("TOP")
+    text:SetSpacing(2)
 
     Tracker.frame = frame
     Tracker.text = text
-    Tracker.toggle = toggle
+    Tracker.titleText = title
+    Tracker.lockButton = lock
+    Tracker:ApplyOpacity()
 
     return frame
 end
 
-function Tracker:Show()
-    if not ns:IsFeatureOn("tasks") then
+local refreshingView = false
+
+function Tracker:SetShown(shown)
+    if shown and not ns:IsFeatureOn("tasks") then
         return
     end
 
-    local frame = EnsureFrame()
     local settings = Settings()
 
-    if settings and self.toggle then
-        self.toggle:SetChecked(settings.autoOpen ~= false)
+    if settings then
+        settings.shown = shown == true
     end
 
-    frame:Show()
-    self:Refresh()
+    if shown then
+        EnsureFrame():Show()
+        self:Refresh()
+    elseif self.frame then
+        self.frame:Hide()
+    end
+
+    local view = ns.UI and ns.UI.TasksView
+
+    if not refreshingView and view and view.Refresh then
+        refreshingView = true
+        view:Refresh()
+        refreshingView = false
+    end
+end
+
+function Tracker:Show()
+    self:SetShown(true)
 end
 
 function Tracker:Hide()
@@ -278,6 +418,14 @@ eventFrame:SetScript("OnEvent", function(_, event)
         return
     end
 
+    if event == "PLAYER_REGEN_ENABLED" then
+        if Tracker:IsEnabled() then
+            EnsureFrame():Show()
+            Tracker:Refresh()
+        end
+        return
+    end
+
     if event == "ZONE_CHANGED_NEW_AREA" or event == "PLAYER_ENTERING_WORLD" then
         Tracker:ConsiderZone()
         return
@@ -293,6 +441,7 @@ pcall(eventFrame.RegisterEvent, eventFrame, "PLAYER_ENTERING_WORLD")
 pcall(eventFrame.RegisterEvent, eventFrame, "PLAYER_TARGET_CHANGED")
 pcall(eventFrame.RegisterEvent, eventFrame, "UPDATE_MOUSEOVER_UNIT")
 pcall(eventFrame.RegisterEvent, eventFrame, "PLAYER_REGEN_DISABLED")
+pcall(eventFrame.RegisterEvent, eventFrame, "PLAYER_REGEN_ENABLED")
 
 ns.UI = ns.UI or {}
 ns.UI.TrackerWindow = Tracker

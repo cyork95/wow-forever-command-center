@@ -278,7 +278,9 @@ timer stays on the Session tab.
 Tasks are things you mean to finish: each day, each week, or just once.
 Done today, Done this week, or Finished checks one off. Edit and Delete
 change the list. Notes, on the same tab, is a pad of boxes you can write,
-edit, and delete. /dossier tasks opens a window for this zone. A quest
+edit, and delete. /dossier tasks opens a window for this zone. That window
+has the same choices as the session panel: show it, lock it, pick Tasks,
+Shopping, or Rares, and set how solid the background is. A quest
 turn-in can still mark a matching task done. Completed quests stay in
 Questie. A turn-in is still a line in the Biography.
 

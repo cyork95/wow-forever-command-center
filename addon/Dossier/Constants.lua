@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "2.2.9"
+C.VERSION = "2.2.10"
 C.SLASH_COMMAND = "/dossier"
 C.SLASH_ALIAS = "/aixport"
 C.ADDON_TITLE = "Dossier"
@@ -210,6 +210,14 @@ C.SESSION_CATEGORY_LABELS = {
     quest = "Quest item",
 }
 
+C.TASK_PANEL_LINES = { "tasks", "shopping", "rares" }
+
+C.TASK_PANEL_LINE_LABELS = {
+    tasks = "Tasks here",
+    shopping = "Shopping short",
+    rares = "Rares here",
+}
+
 C.SESSION_PANEL_LINES = { "kills", "gathered", "gold", "xp", "recent" }
 
 C.SESSION_PANEL_LINE_LABELS = {
@@ -359,6 +367,11 @@ C.TEXT = {
     SESSION_RESET = "Reset",
     SESSION_THIS_SESSION = "This session",
     SESSION_PANEL_CARD = "Session panel",
+    TASK_PANEL_CARD = "Task panel",
+    TASK_SHOW_PANEL = "Show the task panel",
+    TASK_OPEN_ZONE = "Open when the zone changes",
+    TASK_PANEL_TITLE = "Tasks",
+    TASK_PANEL_EMPTY = "Nothing waiting in this zone.",
     SESSION_CATEGORIES = "Count as gathered",
     SESSION_TIME_TO_LEVEL = "Next level in %s",
     SESSION_LEVELS = "Levels gained: %d",
