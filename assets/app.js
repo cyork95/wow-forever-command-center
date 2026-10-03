@@ -1776,6 +1776,10 @@ function renderAltoholic() {
   const place = [person.subZone, person.zone].filter(Boolean).join(", ");
   const identity = [`Level ${person.level || "?"}`, person.race, person.class].filter(Boolean).join(" ");
   const professions = asList(person.professions);
+  const gear = asList(person.gear);
+  const bags = asList(person.bags);
+  const stats = person.stats && typeof person.stats === "object" ? person.stats : null;
+  const questGroups = asList(person.quests);
   const reputations = asList(person.reputations);
   const currencies = asList(person.currencies);
   const mail = asList(person.mail);
@@ -1798,8 +1802,44 @@ function renderAltoholic() {
       document.createTextNode(place ? ` · ${place}` : ""),
       document.createTextNode(` · ${formatGold(person.gold || 0)}`),
       person.played ? document.createTextNode(` · ${formatPlayed(person.played)} played`) : null,
+      person.itemLevel ? document.createTextNode(` · item level ${person.itemLevel}`) : null,
       person.rested ? document.createTextNode(" · rested") : null
     ].filter(Boolean)),
+    el("h4", { text: "Gear" }),
+    ...(gear.length ? [el("div", { class: "alto-gear" }, gear.map((piece) => el("div", { class: "lock-run" }, [
+      el("span", { class: "muted", text: piece.slot }),
+      el("span", { class: "name", text: piece.name })
+    ])))] : [el("p", { class: "meta", text: "No gear saved. Open the character sheet in game." })]),
+    el("h4", { text: "Bags" }),
+    ...(bags.length ? bags.map((bag) => el("div", { class: "alto-bag" }, [
+      el("h5", { text: bag.name }),
+      el("ul", { class: "alto-items" }, asList(bag.items).map((item) => {
+        const count = Number(item.count) || 1;
+        return el("li", { text: count > 1 ? `${count} ${item.name}` : item.name });
+      }))
+    ])) : [el("p", { class: "meta", text: "No bags saved. Open the bags in game." })]),
+    el("h4", { text: "Stats" }),
+    stats ? el("div", { class: "alto-stats" }, [
+      ["Health", stats.health],
+      [stats.powerType || "Power", stats.power],
+      ["Strength", stats.strength],
+      ["Agility", stats.agility],
+      ["Stamina", stats.stamina],
+      ["Intellect", stats.intellect],
+      ["Armor", stats.armor],
+      ["Melee", stats.melee],
+      ["Attack power", stats.attackPower],
+      ["Spell damage", stats.spellDamage],
+      ["Healing", stats.spellHealing],
+      ["Spell crit", stats.spellCrit ? `${stats.spellCrit}%` : ""]
+    ].filter((pair) => pair[1] !== null && pair[1] !== undefined && pair[1] !== "").map((pair) => el("span", { text: `${pair[0]} ${pair[1]}` }))) : el("p", { class: "meta", text: "No stat snapshot saved." }),
+    el("h4", { text: "Quest log" }),
+    ...(questGroups.length ? questGroups.map((group) => el("div", { class: "alto-bag" }, [
+      el("h5", { text: group.zone }),
+      el("ul", { class: "alto-items" }, asList(group.quests).map((quest) => el("li", {
+        text: quest.ready ? `${quest.name} · ready` : quest.name
+      })))
+    ])) : [el("p", { class: "meta", text: "No quests in the log." })]),
     el("h4", { text: "Professions" }),
     ...(professions.length ? professions.map((skill) => {
       const value = Number(skill.rank) || 0;
