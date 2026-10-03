@@ -2,7 +2,9 @@
 
 Project: https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
-Paste the summary into the project summary field. Paste the description into the project description. Screenshots are uploaded by hand. This file is left out of the addon zip.
+Paste the summary into the project summary field. Paste the description into the project description. Paste the changelog into the file changelog when you upload the zip. Screenshots are uploaded by hand. This file is left out of the addon zip.
+
+Upload file: `dist/Dossier-2.2.13.zip`
 
 ## Name
 
@@ -10,7 +12,7 @@ Dossier — Your Character, Ready for AI
 
 ## Summary
 
-Paste your World of Warcraft Forever character into any AI chat. Gear, quests, professions, kills, sessions, and a biography that writes itself.
+Paste your World of Warcraft Forever character into any AI chat. Gear, quests, professions, kills, sessions, mail, lockouts, tasks, notes, and a biography that writes itself.
 
 ## Description
 
@@ -24,11 +26,17 @@ Dossier is for World of Warcraft Forever. It needs no other addon.
 
 - **Export.** Sections grouped into cards. The window shows an approximate token count and the three largest sections, so you can leave out what you do not need. **Detailed export** puts item, spell, and quest IDs back.
 - **Biography.** From the day you install it, Dossier writes logins, level-ups, deaths, new zones, quest turn-ins, achievements, boss kills, profession gains, and every screenshot. Nothing is deleted.
-- **Kills.** Every creature you or your pet finish. Tooltips can say how many times. Loot and gold stay with that creature. An old KillDex history is copied in once.
-- **Session.** A timer that starts on your first kill, loot, gold, or XP. Kills, gathering, gold, and XP per hour, plus time to the next level. A small panel you can park on screen. The last 20 sessions are kept.
+- **Kills.** Every creature you or your pet finish. Tooltips can say how many times. Loot and gold stay with that creature. Rare names are marked on the list. An old KillDex history is copied in once.
+- **Session.** A timer that starts on your first kill, loot, gold, or XP. Kills, gathering, gold, and XP per hour, plus time to the next level. A small panel you can show, lock, and fade. The last 20 sessions are kept.
+- **Mail.** Letters you send and receive, with who, subject, gold, and items. Dossier does not send, take, or return mail.
+- **Lockouts.** The instances you are saved to, and a short diary of runs you enter and leave.
+- **Tasks.** Things you mean to finish each day, each week, each month, each year, or just once. Done greys out the button and the line changes to Done today, Done this week, and so on. Undo puts it back on the schedule. Edit and Delete stay on each task. A zone panel can show tasks, shopping, and rares here.
+- **Notes.** Their own tab. Each note has a title and a body. Two notes sit on a line, and the body wraps so the whole note shows. Edit and Delete stay on each box.
 - **Shopping list.** What you mean to gather or buy, against what is already in your bags and bank. Shift-click a recipe to add its reagents. Dossier reminds you at vendors. It never buys or moves anything.
 - **Screenshotter.** A shot on level-ups, deaths, achievements, boss kills, and similar moments, with the reason written into the Biography.
-- **Switches.** Biography, Kills, Session, Shopping list, Screenshotter, and Companions each turn off from the Options tab, or with `/dossier off`. Off means that part stops watching the game and leaves the export. Saved history stays.
+- **Switches.** Biography, Kills, Session, Mail, Lockouts, Tasks, Notes, Shopping list, Screenshotter, and Other addons each turn off from the Options tab, or with `/dossier off`. Off means that part stops watching the game and leaves the export. Saved history stays.
+
+Completed quests stay in Questie. A turn-in is still a Biography line, and it can still mark a matching task done. Opening a profession window still fills the recipe section of an export. Dossier does not keep its own profession-rank list.
 
 ## A report in four steps
 
@@ -45,22 +53,42 @@ The report includes your character name, realm, and gold. Paste it only where yo
 
 ## Optional companions
 
-If you already use them, Dossier can add their character data to the report:
+If you already use them, Dossier can add their character data to the report. Other addons is one switch. The export works with none of them.
 
+- Journalator (gold for the last 7 days)
+- Altoholic (saved reputation, and profession ranks when that addon already has them)
 - Syndicator (mail and bank)
 - AllTheThings (deaths, quests, time played, collection counts)
 - Nova Instance Tracker (lockouts)
 - Profession Master (recipes)
 - Auctionator (bag prices)
 - Talents Forever (planned builds)
+- KillDex (one-time copy of an old kill history)
+- Memento (Dossier pauses its own screenshots while Memento is loaded, so you do not get two of each)
 
-Each has its own switch, and the export works with none of them. Want another addon covered? Ask in the comments.
+Want another addon covered? Ask in the comments.
 
 ## Links
 
 - [Player wiki](https://github.com/cyork95/wow-forever-command-center/wiki) — install, export, each tab, and how to use the report with an AI
 - [York.Dev](https://yorkdevelops.com/links/) — site, writing, and other projects
 - [Buy Me a Coffee](https://buymeacoffee.com/coyofroyo) — if Dossier is useful to you
+
+## Changelog
+
+Paste this into the changelog field for the 2.2.13 file. The last page was 2.1.1, so this is everything players gain in this upload.
+
+2.2.13
+
+- Tasks repeat each day, week, month, or year, or just once. Marking one done greys out the button and changes the line from Due today to Done today (or this week, month, or year). Undo, under that button, puts it back. Edit and Delete stay on the task. A zone panel can show tasks, shopping, and rares, with the same show, lock, and background choices as the session panel.
+- Notes are their own tab. Each note has a title and a body. Two notes sit on a line, and the body wraps to its full length.
+- Mail keeps letters you send and receive. Dossier does not send or take mail.
+- Lockouts saves the instances you are saved to and a short diary of runs.
+- Rare creatures stay on the Kills tab, marked on the list.
+- Biography notes each book, scroll, or plaque you open, without saving the page text.
+- When Other addons is on, an export can include the last 7 days of gold from Journalator and saved reputation from Altoholic.
+- The Quests tab is gone. Questie still has the journey. A turn-in is still a Biography line, and it can still mark a matching task done.
+- The Professions tab is gone. Opening a profession window still fills the recipe section of an export.
 
 ## Screenshots
 
@@ -83,7 +111,7 @@ No image files are stored in this repo for the carousel. Use the retake for the 
 
 ## Short posts
 
-**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
+**X / Discord:** Dossier copies your WoW Forever character into text. `/dossier`, Create Export, paste it into whatever AI you use. It also keeps a biography, kill log, session rates, mail, lockouts, tasks, notes, a shopping list, and screenshots of the big moments. Each of those can be turned off. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
 **Links page entry:** Dossier — Your Character, Ready for AI. https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-for-ai
 
