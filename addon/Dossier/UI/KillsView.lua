@@ -90,18 +90,60 @@ function KillsView.HeaderText()
     )
 end
 
-function KillsView.DetailText(id, mob)
-    if type(mob) ~= "table" then
-        return C.TEXT.KILLS_DETAIL_EMPTY
+local QUALITY_HEX = {
+    [0] = "9d9d9d",
+    [1] = "ffffff",
+    [2] = "1eff00",
+    [3] = "0070dd",
+    [4] = "a335ee",
+    [5] = "ff8000",
+    [6] = "e6cc80",
+}
+
+local function ItemLook(itemID)
+    local id = tonumber(itemID)
+
+    if not id then
+        return nil, nil
     end
 
+    local texture, quality = nil, nil
+
+    if type(GetItemInfo) == "function" then
+        local ok, _, _, itemQuality, _, _, _, _, _, _, itemTexture = pcall(GetItemInfo, id)
+
+        if ok then
+            quality = itemQuality
+            texture = itemTexture
+        end
+    end
+
+    if not texture and C_Item and type(C_Item.GetItemIconByID) == "function" then
+        local ok, icon = pcall(C_Item.GetItemIconByID, id)
+        texture = ok and icon or texture
+    end
+
+    if not texture and C_Item and type(C_Item.RequestLoadItemDataByID) == "function" then
+        pcall(C_Item.RequestLoadItemDataByID, id)
+    end
+
+    return texture, tonumber(quality)
+end
+
+function KillsView.DetailText(id, mob)
+    if type(mob) ~= "table" then
+        return "|cff8d9aa3" .. C.TEXT.KILLS_DETAIL_EMPTY .. "|r"
+    end
+
+    local rare = mob.classification == "rare" or mob.classification == "rareelite"
+    local nameColor = rare and "ffd36b" or "e8eef2"
     local facts = {}
 
     if (tonumber(mob.level) or 0) > 0 then
         table.insert(facts, "level " .. mob.level)
     end
 
-    if mob.classification then
+    if mob.classification and mob.classification ~= "normal" then
         table.insert(facts, mob.classification)
     end
 
@@ -114,17 +156,20 @@ function KillsView.DetailText(id, mob)
     end
 
     local lines = {
-        (mob.name or "Unknown") .. (#facts > 0 and (" (" .. table.concat(facts, ", ") .. ")") or ""),
-        string.format("Killed %s times. First %s, last %s.", FormatCount(mob.kills), FormatDate(mob.firstKill), FormatDate(mob.lastKill)),
+        string.format("%s|cff%s%s|r", rare and "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:14:14:0:0|t " or "", nameColor, mob.name or "Unknown"),
+        "|cff8d9aa3" .. table.concat(facts, "   ") .. "|r",
+        string.format("|cffffcc66%s kills|r    |cff8d9aa3first %s    last %s|r", FormatCount(mob.kills), FormatDate(mob.firstKill), FormatDate(mob.lastKill)),
     }
 
     if (mob.gold or 0) > 0 then
-        table.insert(lines, "Gold looted: " .. FormatMoney(mob.gold))
+        local coins = ns.Account and ns.Account.Coins and ns.Account.Coins(mob.gold) or FormatMoney(mob.gold)
+        table.insert(lines, coins)
     end
 
     local drops = {}
 
-    for _, entry in pairs(mob.loot or {}) do
+    for itemID, entry in pairs(mob.loot or {}) do
+        entry.itemID = entry.itemID or itemID
         table.insert(drops, entry)
     end
 
@@ -136,16 +181,18 @@ function KillsView.DetailText(id, mob)
         return (a.name or "") < (b.name or "")
     end)
 
+    table.insert(lines, "")
+    table.insert(lines, "|cff3ec7d1Drops|r")
+
     if #drops == 0 then
-        table.insert(lines, C.TEXT.KILLS_NO_DROPS)
+        table.insert(lines, "|cff8d9aa3" .. C.TEXT.KILLS_NO_DROPS .. "|r")
     else
-        local parts = {}
-
         for _, entry in ipairs(drops) do
-            table.insert(parts, string.format("%s x%s", entry.name or "Unknown item", FormatCount(entry.quantity)))
+            local texture, quality = ItemLook(entry.itemID)
+            local icon = texture and string.format("|T%s:16:16:0:0|t ", texture) or ""
+            local hex = QUALITY_HEX[quality or 1] or "ffffff"
+            table.insert(lines, string.format("%s|cff%s%s|r   |cffffd36bx%s|r", icon, hex, entry.name or "Unknown item", FormatCount(entry.quantity)))
         end
-
-        table.insert(lines, "Drops: " .. table.concat(parts, ", "))
     end
 
     return table.concat(lines, "\n")
@@ -368,8 +415,9 @@ function KillsView:Refresh()
             local mob = entry.mob
 
             row.mobID = entry.id
-            row.cells.name:SetText(mob.name or "Unknown")
-            row.cells.kills:SetText(FormatCount(mob.kills))
+            local rare = mob.classification == "rare" or mob.classification == "rareelite"
+            row.cells.name:SetText((rare and "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:12:12:0:0|t |cffffd36b" or "|cffe8eef2") .. (mob.name or "Unknown") .. "|r")
+            row.cells.kills:SetText("|cffffcc66" .. FormatCount(mob.kills) .. "|r")
             row.cells.level:SetText((tonumber(mob.level) or 0) > 0 and tostring(mob.level) or "")
             row.cells.zone:SetText(mob.zone or "")
             row.cells.last:SetText(KillsView.FormatAgo(mob.lastKill))

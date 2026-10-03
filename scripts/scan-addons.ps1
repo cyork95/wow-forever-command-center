@@ -9,6 +9,8 @@ $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "professions.ps1")
 . (Join-Path $PSScriptRoot "quests.ps1")
 . (Join-Path $PSScriptRoot "biography.ps1")
+. (Join-Path $PSScriptRoot "ledger.ps1")
+. (Join-Path $PSScriptRoot "altoholic.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -548,12 +550,13 @@ function Apply-Snapshot($record, $snap, $character) {
   $best = $exportedAt
   foreach ($source in @($snap.nova, $snap.att)) {
     if (-not $source -or $null -eq $source.level) { continue }
+    if ($source -eq $snap.nova -and $snap.dossierAt) { continue }
     if (-not $best -or $source.at -gt $best) {
       $rec["level"] = $source.level
       $best = $source.at
     }
   }
-  if ($snap.nova -and $null -ne $snap.nova.goldCopper -and (-not $exportedAt -or $snap.nova.at -gt $exportedAt)) {
+  if ($snap.nova -and $null -ne $snap.nova.goldCopper -and (-not $exportedAt -or $snap.nova.at -gt $exportedAt) -and -not $snap.dossierAt) {
     $rec["goldCopper"] = $snap.nova.goldCopper
   }
   if ($snap.att -and $snap.att.playedSeconds) { $rec["playedSeconds"] = $snap.att.playedSeconds }
@@ -686,5 +689,7 @@ $unmatched | Select-Object -Unique | ForEach-Object {
 }
 
 Update-Biography $wtfRoot $repo $characters
+Update-Ledger $wtfRoot $repo
+Update-Altoholic $wtfRoot $repo
 
 Update-Screenshots $gameRoot $repo $characters

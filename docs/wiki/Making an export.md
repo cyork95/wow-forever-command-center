@@ -55,7 +55,7 @@ The report includes your character name, realm, and gold. Paste it only where yo
 ### System
 
 - **AddOns.** Every installed addon and whether it loaded.
-- **Companions.** Data from optional addons. Untick this once to leave all of them out. See [[Companions]].
+- **Session currency, session reputation, gold changes, profession ranks, and rares.** Printed when those switches are on.
 
 ## Token size
 

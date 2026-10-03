@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "professions", "dungeons", "quests", "macros", "addons", "house"];
+const TABS = ["roster", "hunts", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
 
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
@@ -38,6 +38,8 @@ const state = {
   quests: null,
   questLoading: false,
   questQuery: "",
+  altoholic: null,
+  altoName: "",
   books: null,
   openBookRegions: new Set(),
   openBookMaps: new Set(),
@@ -492,6 +494,17 @@ function renderSheet() {
   const sources = Object.entries(live.sources || {})
     .map(([name, when]) => (when ? `${name} ${String(when).slice(5, 10).replace("-", "/")}` : name));
   if (sources.length) stats.append(el("p", { class: "meta sources", text: `From ${sources.join(" · ")}` }));
+  const record = ledgerRecord(character);
+  if (record) {
+    const goldLines = asList(record.gold).slice(0, 6).map((row) => {
+      const when = formatWhen(row.time);
+      return `${when ? `${when} ` : ""}${row.source || "gold"} ${formatGold(row.delta)}`;
+    });
+    const currencyLines = asList(record.currencies).slice(0, 6).map((row) => `${row.name} ${row.quantity}`);
+    const repLines = asList(record.reputations).slice(0, 6).map((row) => `${row.name} ${row.standing || row.value || ""}`.trim());
+    const bits = [...goldLines, ...currencyLines, ...repLines];
+    if (bits.length) stats.append(el("p", { class: "meta", text: bits.join(" · ") }));
+  }
 
   if (asList(live.gear).length) {
     const table = el("table", { class: "gear" });
@@ -1283,17 +1296,28 @@ function renderProfessions() {
   picker.value = state.selected;
   document.getElementById("prof-view").value = state.profView;
   root.replaceChildren();
+  const skillsRoot = document.getElementById("prof-skills");
+  if (skillsRoot) {
+    const cards = Object.entries(ledgerCharacters()).map(([key, record]) => {
+      const skills = asList(record.professions);
+      return el("article", { class: "card" }, [
+        el("h3", { text: key }),
+        el("p", { text: skills.length ? skills.map((skill) => `${skill.name} ${skill.current}${skill.max ? `/${skill.max}` : ""}`).join("   ") : "No skills saved yet." })
+      ]);
+    });
+    skillsRoot.replaceChildren(...(cards.length ? cards : [el("p", { class: "empty-note", text: "No profession skills saved yet. Log in on a character to record them." })]));
+  }
   const data = state.professions;
   if (!data) {
     note.textContent = "Loading the craft list…";
     return;
   }
   if (data.missing) {
-    note.textContent = "No craft list yet. Install Profession Master, run scripts/scan-addons.ps1, then commit data/professions.json.";
+    note.textContent = "No craft list yet. Run scripts/scan-addons.ps1, then commit data/professions.json.";
     return;
   }
   const version = versionLabel(data.version);
-  note.textContent = `From ${data.source}${version ? ` ${version}` : ""}. Reagent counts cover bags, bank, and mail.`;
+  note.textContent = `Recipe list${version ? ` ${version}` : ""}. Reagent counts cover bags, bank, and mail.`;
 
   const character = selectedCharacter();
   const live = (state.stats.characters || {})[character.id] || {};
@@ -1493,10 +1517,10 @@ async function loadQuests() {
 }
 
 function renderFinishedQuest(quest) {
-  const meta = quest.level ? `Level ${quest.level}` : "";
+  const bits = [quest.level ? `Level ${quest.level}` : "", quest.turnedIn ? `Turned in ${quest.turnedIn}` : ""].filter(Boolean);
   return el("article", { class: "quest" }, [
     el("strong", { text: quest.name }),
-    meta ? el("small", { text: meta }) : null
+    bits.length ? el("small", { text: bits.join(" · ") }) : null
   ]);
 }
 
@@ -1529,6 +1553,13 @@ function renderQuests() {
     return;
   }
   const catalog = questCatalog();
+  const turnedIn = new Map();
+  characterLedgerKeys(character).forEach((key) => {
+    asList(ledgerCharacters()[key] && ledgerCharacters()[key].quests).forEach((quest) => {
+      const id = Number(quest.questID);
+      if (id && quest.time) turnedIn.set(id, formatWhen(quest.time));
+    });
+  });
   const q = nameKey(state.questQuery);
   const rows = done.map((id) => {
     const known = catalog.get(id);
@@ -1536,7 +1567,8 @@ function renderQuests() {
       id,
       name: known && known.name ? known.name : `Quest ${id}`,
       level: known && known.level ? known.level : null,
-      zone: known && known.zone ? known.zone : "Other"
+      zone: known && known.zone ? known.zone : "Other",
+      turnedIn: turnedIn.get(id) || ""
     };
   }).filter((quest) => !q || nameKey(`${quest.name} ${quest.zone}`).includes(q));
   if (!rows.length) {
@@ -1564,16 +1596,330 @@ function renderQuests() {
   });
 }
 
+function ledgerCharacters() {
+  const table = state.ledger && state.ledger.characters;
+  return table && typeof table === "object" ? table : {};
+}
+
+function characterLedgerKeys(character) {
+  const first = String(character && character.name || "").split(" ")[0].toLowerCase();
+  if (!first) return [];
+  return Object.keys(ledgerCharacters()).filter((key) => key.split("-")[0].toLowerCase() === first);
+}
+
+function ledgerRecord(character) {
+  const keys = characterLedgerKeys(character);
+  return keys.length ? ledgerCharacters()[keys[0]] : null;
+}
+
+function formatWhen(seconds) {
+  const n = Number(seconds);
+  if (!n) return "";
+  return new Date(n * 1000).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
+function lockoutCard(key, lockouts) {
+  const saved = asList(lockouts.saved);
+  const runs = asList(lockouts.runs);
+  const savedNodes = saved.length ? saved.map((entry) => {
+    const progress = Number(entry.progress) || 0;
+    const encounters = Number(entry.encounters) || 0;
+    const ratio = encounters > 0 ? Math.min(100, Math.round((progress / encounters) * 100)) : 0;
+    const done = encounters > 0 && progress >= encounters;
+    const detail = [entry.difficulty, entry.resetText].filter(Boolean).join(" · ");
+    return el("div", { class: "lock-row" }, [
+      el("div", { class: "lock-top" }, [
+        el("strong", { text: entry.name || "Instance" }),
+        el("span", { text: encounters > 0 ? `${progress}/${encounters}` : "" })
+      ]),
+      detail ? el("p", { class: "meta", text: detail }) : null,
+      el("div", { class: "lock-bar", "aria-hidden": "true" }, [
+        el("div", { style: `width:${ratio}%;background:${done ? "var(--teal)" : "var(--gold)"}` })
+      ])
+    ]);
+  }) : [el("p", { class: "meta", text: "No saved instances." })];
+  const runNodes = runs.length ? runs.map((run) => {
+    const levels = run.levelFrom && run.levelTo && run.levelTo !== run.levelFrom ? `${run.levelFrom} to ${run.levelTo}` : "";
+    const gold = Number(run.gold);
+    return el("div", { class: "lock-run" }, [
+      el("span", { class: "when", text: formatWhen(run.entered) || "—" }),
+      el("span", { class: "name", text: run.name || "Instance" }),
+      el("span", { text: formatPlayed(run.seconds) }),
+      levels ? el("span", { class: "muted", text: levels }) : null,
+      gold ? el("span", { text: formatGold(gold) }) : null,
+      Number(run.mobs) > 0 ? el("span", { class: "muted", text: `${run.mobs} kills` }) : null
+    ]);
+  }) : [el("p", { class: "meta", text: "No instance runs yet." })];
+  return el("article", { class: "card lock-card" }, [
+    el("h3", { text: key }),
+    el("h4", { text: "Saved now" }),
+    ...savedNodes,
+    el("h4", { text: "Recent runs" }),
+    ...runNodes
+  ]);
+}
+
+function renderLedgerBoards() {
+  const book = state.ledger || {};
+  const people = ledgerCharacters();
+  const names = Object.keys(people).sort();
+  const empty = names.length ? "" : "No ledger save yet. Log out in game, then run scripts/scan-addons.ps1.";
+  const card = (title, lines) => el("article", { class: "card" }, [
+    el("h3", { text: title }),
+    ...lines.map((line) => el("p", { text: line }))
+  ]);
+
+  const ledgerRoot = document.getElementById("ledger-list");
+  const ledgerNote = document.getElementById("ledger-note");
+  if (ledgerRoot && ledgerNote) {
+    ledgerNote.textContent = empty || `Gold for ${names.length} characters.`;
+    ledgerRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].gold).slice(0, 12);
+      return card(key, rows.length ? rows.map((row) => `${formatWhen(row.time)}  ${row.source || "other"}  ${formatGold(row.delta)}${row.detail ? `  ${row.detail}` : ""}`) : ["No gold changes saved."]);
+    }));
+  }
+
+  const currencyRoot = document.getElementById("currencies-list");
+  const currencyNote = document.getElementById("currencies-note");
+  if (currencyRoot && currencyNote) {
+    currencyNote.textContent = empty || "Latest currency totals.";
+    currencyRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].currencies);
+      return card(key, rows.length ? rows.map((row) => `${row.name}  ${row.quantity}`) : ["No currencies saved."]);
+    }));
+  }
+
+  const repRoot = document.getElementById("reputation-list");
+  const repNote = document.getElementById("reputation-note");
+  if (repRoot && repNote) {
+    repNote.textContent = empty || "Latest reputation standings.";
+    repRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].reputations);
+      return card(key, rows.length ? rows.map((row) => `${row.name}  ${row.standing || row.value || ""}`.trim()) : ["No reputation saved."]);
+    }));
+  }
+
+  const mailRoot = document.getElementById("mail-list");
+  const mailNote = document.getElementById("mail-note");
+  if (mailRoot && mailNote) {
+    mailNote.textContent = empty || "Sent and received letters.";
+    mailRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].mail);
+      return card(key, rows.length ? rows.map((letter) => `${formatWhen(letter.time)}  ${letter.direction || ""}  ${letter.who || ""}  ${letter.subject || ""}  ${formatGold(letter.gold || 0)}  ${letter.status || ""}`) : ["No mail recorded yet."]);
+    }));
+  }
+
+  const rareRoot = document.getElementById("rares-list");
+  const rareNote = document.getElementById("rares-note");
+  if (rareRoot && rareNote) {
+    const rares = asList(book.rares);
+    rareNote.textContent = rares.length ? `${rares.length} rares recorded.` : "No rares recorded yet.";
+    rareRoot.replaceChildren(...rares.map((rare) => {
+      const place = rare.x != null && rare.y != null ? `${rare.zone || "Unknown zone"} ${Number(rare.x).toFixed(1)}, ${Number(rare.y).toFixed(1)}` : (rare.zone || "Unknown zone");
+      const loot = asList(rare.loot);
+      return card(`${rare.name || "Rare"}  ${rare.character || ""}`, [
+        `${rare.kills || 0}  ${place}`,
+        loot.length ? loot.join(", ") : "No drops recorded yet."
+      ]);
+    }));
+  }
+
+  const lockRoot = document.getElementById("lockouts-list");
+  const lockNote = document.getElementById("lockouts-note");
+  if (lockRoot && lockNote) {
+    lockNote.textContent = empty || "Saved instances and recent runs.";
+    lockRoot.replaceChildren(...names.map((key) => lockoutCard(key, people[key].lockouts || {})));
+  }
+
+  const sessionRoot = document.getElementById("sessions-list");
+  const sessionNote = document.getElementById("sessions-note");
+  if (sessionRoot && sessionNote) {
+    sessionNote.textContent = empty || "Finished sessions.";
+    sessionRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].sessions);
+      return card(key, rows.length ? rows.map((entry) => `${formatWhen(entry.start)}  ${entry.zone || ""}  ${entry.seconds || 0}s  ${formatGold(entry.gold || 0)}  ${entry.xp || 0} XP`) : ["No finished sessions yet."]);
+    }));
+  }
+
+  const taskRoot = document.getElementById("tasks-list");
+  const taskNote = document.getElementById("tasks-note");
+  if (taskRoot && taskNote) {
+    const now = Math.floor(Date.now() / 1000);
+    const taskLine = (task) => {
+      const kind = task.repeatKind || "once";
+      const until = Number(task.doneUntil);
+      const done = until === -1 || (until > 0 && until > now);
+      const cadence = {
+        daily: "Each day",
+        weekly: "Each week",
+        monthly: "Each month",
+        yearly: "Each year",
+        once: "Just once"
+      }[kind] || "Each day";
+      const openLabel = {
+        daily: "Due today",
+        weekly: "Due this week",
+        monthly: "Due this month",
+        yearly: "Due this year",
+        once: "Still to do"
+      }[kind] || "Due today";
+      const doneLabel = {
+        daily: "Done today",
+        weekly: "Done this week",
+        monthly: "Done this month",
+        yearly: "Done this year",
+        once: "Finished"
+      }[kind] || "Done today";
+      const status = done ? doneLabel : openLabel;
+      const place = task.zone ? ` · ${task.zone}` : "";
+      return el("div", { class: "task-row" }, [
+        el("strong", { text: task.name || "Task" }),
+        el("span", { text: `${status} · ${cadence}${place}` })
+      ]);
+    };
+    taskNote.textContent = empty || "Written in game. Done, edit, and delete live on the Tasks tab.";
+    taskRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].tasks);
+      const notes = asList(people[key].notes);
+      return el("article", { class: "card task-board" }, [
+        el("h3", { text: key }),
+        ...(rows.length ? rows.map(taskLine) : [el("p", { class: "meta", text: "Nothing waiting." })]),
+        el("h4", { text: "Notes" }),
+        notes.length ? el("div", { class: "note-grid" }, notes.map((note) => el("div", { class: "note-card" }, [
+          note.title ? el("strong", { text: note.title }) : null,
+          el("p", { text: note.text || "" })
+        ].filter(Boolean)))) : el("p", { class: "meta", text: "No notes yet." })
+      ]);
+    }));
+  }
+}
+
+function renderAltoholic() {
+  const note = document.getElementById("alto-note");
+  const picker = document.getElementById("alto-character");
+  const sheet = document.getElementById("alto-sheet");
+  if (!note || !picker || !sheet) return;
+  const people = asList(state.altoholic && state.altoholic.characters);
+  if (!people.length) {
+    note.textContent = "No Altoholic save yet. Log out in game, then run scripts/scan-addons.ps1.";
+    picker.replaceChildren();
+    sheet.replaceChildren();
+    return;
+  }
+  if (!people.some((person) => person.name === state.altoName)) state.altoName = people[0].name;
+  picker.replaceChildren(...people.map((person) => el("option", {
+    value: person.name,
+    text: person.realm ? `${person.name} · ${person.realm}` : person.name,
+    selected: person.name === state.altoName ? "selected" : null
+  })));
+  const person = people.find((row) => row.name === state.altoName) || people[0];
+  const when = state.altoholic.updated ? state.altoholic.updated.replace("T", " ") : "an unknown time";
+  note.textContent = `Saved by Altoholic at ${when}.`;
+  const place = [person.subZone, person.zone].filter(Boolean).join(", ");
+  const identity = [`Level ${person.level || "?"}`, person.race, person.class].filter(Boolean).join(" ");
+  const professions = asList(person.professions);
+  const gear = asList(person.gear);
+  const bags = asList(person.bags);
+  const stats = person.stats && typeof person.stats === "object" ? person.stats : null;
+  const questGroups = asList(person.quests);
+  const reputations = asList(person.reputations);
+  const currencies = asList(person.currencies);
+  const mail = asList(person.mail);
+  const bar = (label, value, max, right) => {
+    const ratio = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0;
+    return el("div", { class: "lock-row" }, [
+      el("div", { class: "lock-top" }, [
+        el("strong", { text: label }),
+        el("span", { text: right || (max > 0 ? `${value}/${max}` : "") })
+      ]),
+      el("div", { class: "lock-bar", "aria-hidden": "true" }, [
+        el("div", { style: `width:${ratio}%;background:var(--gold)` })
+      ])
+    ]);
+  };
+  sheet.replaceChildren(el("article", { class: "card lock-card alto-sheet" }, [
+    el("h3", { text: person.name }),
+    el("p", { class: "alto-meta" }, [
+      el("strong", { text: identity }),
+      document.createTextNode(place ? ` · ${place}` : ""),
+      document.createTextNode(` · ${formatGold(person.gold || 0)}`),
+      person.played ? document.createTextNode(` · ${formatPlayed(person.played)} played`) : null,
+      person.itemLevel ? document.createTextNode(` · item level ${person.itemLevel}`) : null,
+      person.rested ? document.createTextNode(" · rested") : null
+    ].filter(Boolean)),
+    el("h4", { text: "Gear" }),
+    ...(gear.length ? [el("div", { class: "alto-gear" }, gear.map((piece) => el("div", { class: "lock-run" }, [
+      el("span", { class: "muted", text: piece.slot }),
+      el("span", { class: "name", text: piece.name })
+    ])))] : [el("p", { class: "meta", text: "No gear saved. Open the character sheet in game." })]),
+    el("h4", { text: "Bags" }),
+    ...(bags.length ? bags.map((bag) => el("div", { class: "alto-bag" }, [
+      el("h5", { text: bag.name }),
+      el("ul", { class: "alto-items" }, asList(bag.items).map((item) => {
+        const count = Number(item.count) || 1;
+        return el("li", { text: count > 1 ? `${count} ${item.name}` : item.name });
+      }))
+    ])) : [el("p", { class: "meta", text: "No bags saved. Open the bags in game." })]),
+    el("h4", { text: "Stats" }),
+    stats ? el("div", { class: "alto-stats" }, [
+      ["Health", stats.health],
+      [stats.powerType || "Power", stats.power],
+      ["Strength", stats.strength],
+      ["Agility", stats.agility],
+      ["Stamina", stats.stamina],
+      ["Intellect", stats.intellect],
+      ["Armor", stats.armor],
+      ["Melee", stats.melee],
+      ["Attack power", stats.attackPower],
+      ["Spell damage", stats.spellDamage],
+      ["Healing", stats.spellHealing],
+      ["Spell crit", stats.spellCrit ? `${stats.spellCrit}%` : ""]
+    ].filter((pair) => pair[1] !== null && pair[1] !== undefined && pair[1] !== "").map((pair) => el("span", { text: `${pair[0]} ${pair[1]}` }))) : el("p", { class: "meta", text: "No stat snapshot saved." }),
+    el("h4", { text: "Quest log" }),
+    ...(questGroups.length ? questGroups.map((group) => el("div", { class: "alto-bag" }, [
+      el("h5", { text: group.zone }),
+      el("ul", { class: "alto-items" }, asList(group.quests).map((quest) => el("li", {
+        text: quest.ready ? `${quest.name} · ready` : quest.name
+      })))
+    ])) : [el("p", { class: "meta", text: "No quests in the log." })]),
+    el("h4", { text: "Professions" }),
+    ...(professions.length ? professions.map((skill) => {
+      const value = Number(skill.rank) || 0;
+      const max = Number(skill.max) || 0;
+      return bar(skill.name, value, max > 0 ? max : Math.max(value, 1), max > 0 ? `${value}/${max}` : String(value));
+    }) : [el("p", { class: "meta", text: "No profession ranks saved." })]),
+    el("h4", { text: "Reputation" }),
+    ...(reputations.length ? reputations.map((row) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: row.name }),
+      el("span", { text: row.standing || "" }),
+      row.next ? el("span", { class: "muted", text: `${row.progress || 0}/${row.next}` }) : null
+    ])) : [el("p", { class: "meta", text: "No reputation saved." })]),
+    el("h4", { text: "Currencies" }),
+    ...(currencies.length ? currencies.map((row) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: row.name }),
+      el("span", { text: String(row.quantity) })
+    ])) : [el("p", { class: "meta", text: "No currencies saved." })]),
+    el("h4", { text: "Mail" }),
+    ...(mail.length ? mail.map((letter) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: letter.sender || "Unknown" }),
+      el("span", { text: letter.subject || "" }),
+      Number(letter.money) ? el("span", { text: formatGold(letter.money) }) : null,
+      letter.daysLeft ? el("span", { class: "muted", text: `${letter.daysLeft} days left` }) : null
+    ])) : [el("p", { class: "meta", text: "No mail saved. Open a mailbox on that character." })])
+  ]));
+}
+
 function render() {
   renderHouse();
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderLedgerBoards();
+  renderAltoholic();
   renderProfessions();
   renderDungeons();
   renderQuests();
   renderMacros();
-  renderAddons();
 }
 
 async function loadJson(path) {
@@ -1591,12 +1937,14 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, screenshots, dungeons, books] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, altoholic, screenshots, dungeons, books] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
+      loadJson("data/ledger.json").catch(() => ({ characters: {}, rares: [] })),
+      loadJson("data/altoholic.json").catch(() => ({ characters: [] })),
       loadJson("data/screenshots.json").catch(() => []),
       loadJson("data/dungeons.json").catch(() => null),
       loadJson("data/library-books.json").catch(() => null)
@@ -1607,6 +1955,8 @@ async function main() {
     state.checklist = checklist;
     state.stats = stats;
     state.addons = addons;
+    state.ledger = ledger;
+    state.altoholic = altoholic;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
     buildOwned();
@@ -1644,6 +1994,10 @@ async function main() {
     renderDungeons();
   });
   document.getElementById("quest-character")?.addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("alto-character")?.addEventListener("change", (event) => {
+    state.altoName = event.target.value;
+    renderAltoholic();
+  });
   document.getElementById("quest-search")?.addEventListener("input", (event) => {
     state.questQuery = event.target.value;
     renderQuests();

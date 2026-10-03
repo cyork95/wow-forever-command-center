@@ -32,19 +32,30 @@ function SessionView.SummaryText(summary)
     local lines = {}
 
     if ns:IsFeatureOn("kills") then
-        table.insert(lines, string.format(C.TEXT.SESSION_LINE_KILLS, count(summary.kills), count(summary.killsPerHour)))
+        table.insert(lines, "|cffffb4a2" .. string.format(C.TEXT.SESSION_LINE_KILLS, count(summary.kills), count(summary.killsPerHour)) .. "|r")
     end
 
-    table.insert(lines, string.format(C.TEXT.SESSION_LINE_GATHERED, count(summary.gathered), count(summary.gatheredPerHour)))
-    table.insert(lines, string.format(C.TEXT.SESSION_LINE_GOLD, session.FormatGold(summary.gold), session.FormatGold(summary.goldPerHour)))
-    table.insert(lines, string.format(C.TEXT.SESSION_LINE_XP, count(summary.xp), count(summary.xpPerHour)))
+    table.insert(lines, "|cffb7e3a1" .. string.format(C.TEXT.SESSION_LINE_GATHERED, count(summary.gathered), count(summary.gatheredPerHour)) .. "|r")
+    local coins = ns.Account and ns.Account.Coins or session.FormatGold
+    table.insert(lines, "|cffffd36b" .. string.format(C.TEXT.SESSION_LINE_GOLD, coins(summary.gold), coins(summary.goldPerHour)) .. "|r")
+
+    local ledger = ns.Data and ns.Data.Ledger
+
+    if ledger and ns:IsFeatureOn("ledger") and type(ledger.SessionLine) == "function" then
+        local line = ledger:SessionLine()
+
+        if line then
+            table.insert(lines, line)
+        end
+    end
+    table.insert(lines, "|cff9ec5ff" .. string.format(C.TEXT.SESSION_LINE_XP, count(summary.xp), count(summary.xpPerHour)) .. "|r")
 
     if summary.timeToLevel then
-        table.insert(lines, string.format(C.TEXT.SESSION_TIME_TO_LEVEL, session.FormatDuration(summary.timeToLevel)))
+        table.insert(lines, "|cffffd36b" .. string.format(C.TEXT.SESSION_TIME_TO_LEVEL, session.FormatDuration(summary.timeToLevel)) .. "|r")
     end
 
     if summary.levels > 0 then
-        table.insert(lines, string.format(C.TEXT.SESSION_LEVELS, summary.levels))
+        table.insert(lines, "|cffffcc66" .. string.format(C.TEXT.SESSION_LEVELS, summary.levels) .. "|r")
     end
 
     return table.concat(lines, "\n")
@@ -54,14 +65,24 @@ function SessionView.ItemsText(summary)
     local session = GetSession()
 
     if not session or #summary.items == 0 then
-        return C.TEXT.SESSION_TOOLTIP_EMPTY
+        return "|cff8d9aa3" .. C.TEXT.SESSION_TOOLTIP_EMPTY .. "|r"
     end
 
+    local categoryColor = {
+        herb = "b7e3a1",
+        ore = "d4b15a",
+        leather = "e0b48a",
+        cloth = "d4c4f0",
+        cooking = "f0c674",
+        fish = "7ec8e3",
+    }
     local lines = {}
 
     for _, item in ipairs(summary.items) do
+        local hex = categoryColor[item.type] or "e8eef2"
         table.insert(lines, string.format(
-            "%s  %s  (%s/hr, %s)",
+            "|cff%s%s|r  |cffffd36b%s|r  |cff8d9aa3(%s/hr, %s)|r",
+            hex,
             item.name or "Unknown item",
             session.FormatCount(item.count),
             session.FormatCount(item.perHour),
@@ -78,45 +99,45 @@ function SessionView.HistoryText(history)
     local session = GetSession()
 
     if not session or #history == 0 then
-        return C.TEXT.SESSION_HISTORY_EMPTY
+        return "|cff8d9aa3Example for Flann|r\n|cffd4b15aOct 2, 18:10|r  |cffffd36b1h 12m|r  |cff7ee0e6Westfall|r\n  |cffffb4a218 kills|r   |cffb7e3a142 gathered|r   |cff9ec5ff8,400 XP|r\n|cffd4b15aOct 1, 21:04|r  |cffffd36b46m|r  |cff7ee0e6Elwynn Forest|r\n  |cffb7e3a127 gathered|r   |cff9ec5ff3,200 XP|r\n|cff8d9aa3Examples. Reset a session to save a real one.|r"
     end
 
-    local accent = ns.Theme.ColorCode("accent")
-    local lines = {}
+        local lines = {}
+        local coins = ns.Account and ns.Account.Coins or session.FormatGold
 
-    for _, entry in ipairs(history) do
-        local when = type(date) == "function" and date("%b %d, %H:%M", tonumber(entry.start) or 0) or tostring(entry.start)
-        local header = when .. "  " .. session.FormatDuration(entry.seconds)
+        for _, entry in ipairs(history) do
+            local when = type(date) == "function" and date("%b %d, %H:%M", tonumber(entry.start) or 0) or tostring(entry.start)
+            local header = "|cffd4b15a" .. when .. "|r  |cffffd36b" .. session.FormatDuration(entry.seconds) .. "|r"
 
-        if entry.zone then
-            header = header .. ", " .. entry.zone
+            if entry.zone then
+                header = header .. "  |cff7ee0e6" .. entry.zone .. "|r"
+            end
+
+            local counts = {}
+
+            if (entry.kills or 0) > 0 then
+                table.insert(counts, "|cffffb4a2" .. session.FormatCount(entry.kills) .. " kills|r")
+            end
+
+            if (entry.gathered or 0) > 0 then
+                table.insert(counts, "|cffb7e3a1" .. session.FormatCount(entry.gathered) .. " gathered|r")
+            end
+
+            if (entry.gold or 0) ~= 0 then
+                table.insert(counts, coins(entry.gold))
+            end
+
+            if (entry.xp or 0) > 0 then
+                table.insert(counts, "|cff9ec5ff" .. session.FormatCount(entry.xp) .. " XP|r")
+            end
+
+            if (entry.levels or 0) > 0 then
+                table.insert(counts, "|cffffd36b" .. (entry.levels == 1 and "1 level" or (entry.levels .. " levels")) .. "|r")
+            end
+
+            table.insert(lines, header)
+            table.insert(lines, "  " .. (#counts > 0 and table.concat(counts, "   ") or C.TEXT.SESSION_HISTORY_NOTHING))
         end
-
-        local counts = {}
-
-        if (entry.kills or 0) > 0 then
-            table.insert(counts, session.FormatCount(entry.kills) .. " kills")
-        end
-
-        if (entry.gathered or 0) > 0 then
-            table.insert(counts, session.FormatCount(entry.gathered) .. " gathered")
-        end
-
-        if (entry.gold or 0) ~= 0 then
-            table.insert(counts, "gold " .. session.FormatGold(entry.gold))
-        end
-
-        if (entry.xp or 0) > 0 then
-            table.insert(counts, session.FormatCount(entry.xp) .. " XP")
-        end
-
-        if (entry.levels or 0) > 0 then
-            table.insert(counts, entry.levels == 1 and "1 level" or (entry.levels .. " levels"))
-        end
-
-        table.insert(lines, accent .. header .. "|r")
-        table.insert(lines, "  " .. (#counts > 0 and table.concat(counts, ", ") or C.TEXT.SESSION_HISTORY_NOTHING))
-    end
 
     return table.concat(lines, "\n")
 end
@@ -315,11 +336,14 @@ function SessionView:Refresh()
     self.clockText:SetText(session.FormatClock(summary.seconds))
 
     if summary.status == "paused" then
-        self.statusText:SetText(C.TEXT.SESSION_PAUSED)
+        self.clockText:SetTextColor(ns.Theme.Color("warning"))
+        self.statusText:SetText("|cffffb84a" .. C.TEXT.SESSION_PAUSED .. "|r")
     elseif summary.status == "idle" then
+        self.clockText:SetTextColor(ns.Theme.Color("muted"))
         self.statusText:SetText("")
     else
-        self.statusText:SetText(summary.zone or "")
+        self.clockText:SetTextColor(ns.Theme.Color("accent"))
+        self.statusText:SetText("|cff7ee0e6" .. (summary.zone or "") .. "|r")
     end
 
     self.toggleButton:SetLabel(summary.status == "running" and C.TEXT.SESSION_PAUSE or C.TEXT.SESSION_RESUME)

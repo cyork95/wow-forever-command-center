@@ -2022,10 +2022,12 @@ function Commands:OpenHelp()
     )
 end
 
-function Commands:OpenCompanions()
-    self:OpenTab(
-        "companions"
-    )
+function Commands:OpenTracker()
+    local tracker = ns.UI and ns.UI.TrackerWindow
+
+    if tracker and tracker.Show then
+        tracker:Show()
+    end
 end
 
 function Commands:OpenKills()
@@ -2121,16 +2123,36 @@ SlashCmdList[
             or argument == "biography"
         then
             IfFeatureOn("biography", function() Commands:OpenBiography() end)
-        elseif argument == "companions"
-        then
-            IfFeatureOn("companions", function() Commands:OpenCompanions() end)
         elseif argument == "kills"
         then
             IfFeatureOn("kills", function() Commands:OpenKills() end)
+        elseif argument == "rares"
+        then
+            IfFeatureOn("kills", function() Commands:OpenTab("kills") end)
         elseif argument == "session"
-            or argument == "sessions"
         then
             IfFeatureOn("session", function() Commands:OpenSession() end)
+        elseif argument == "sessions"
+        then
+            IfFeatureOn("session", function() Commands:OpenTab("session") end)
+        elseif argument == "mail"
+        then
+            IfFeatureOn("mail", function() Commands:OpenTab("mail") end)
+        elseif argument == "lockouts"
+            or argument == "lockout"
+        then
+            IfFeatureOn("lockouts", function() Commands:OpenTab("lockouts") end)
+        elseif argument == "tasks"
+            or argument == "task"
+        then
+            IfFeatureOn("tasks", function()
+                Commands:OpenTab("tasks")
+                Commands:OpenTracker()
+            end)
+        elseif argument == "notes"
+            or argument == "note"
+        then
+            IfFeatureOn("notes", function() Commands:OpenTab("notes") end)
         elseif argument == "panel"
         then
             Commands:ToggleKillPanel()

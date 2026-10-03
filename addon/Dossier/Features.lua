@@ -14,7 +14,7 @@ C.FEATURES = {
         sections = { C.SECTIONS.BIOGRAPHY },
         modules = { "Data.Biography" },
         aliases = { "bio", "biography" },
-        description = "Records level-ups, deaths, new zones, quests, achievements, skill-ups, and boss kills.",
+        description = "Records level-ups, deaths, new zones, quests, achievements, skill-ups, boss kills, and books you open.",
     },
     {
         id = "kills",
@@ -33,6 +33,42 @@ C.FEATURES = {
         modules = { "Data.Session", "UI.KillPanel" },
         aliases = { "session", "sessions", "panel" },
         description = "Times play sessions with gathering, gold, and XP per hour, and runs the session panel.",
+    },
+    {
+        id = "mail",
+        label = "Mail",
+        tab = "mail",
+        sections = {},
+        modules = { "Data.Mail" },
+        aliases = { "mail" },
+        description = "Keeps letters you send and receive, with who, subject, gold, and items.",
+    },
+    {
+        id = "lockouts",
+        label = "Lockouts",
+        tab = "lockouts",
+        sections = {},
+        modules = { "Data.Runs" },
+        aliases = { "lockouts", "lockout", "runs" },
+        description = "Saves instance lockouts and a diary of runs you enter and leave.",
+    },
+    {
+        id = "tasks",
+        label = "Tasks",
+        tab = "tasks",
+        sections = {},
+        modules = { "Data.Tasks", "UI.TrackerWindow" },
+        aliases = { "tasks", "task" },
+        description = "Tasks you mean to finish. Mark a task done for the day or the week.",
+    },
+    {
+        id = "notes",
+        label = "Notes",
+        tab = "notes",
+        sections = {},
+        modules = {},
+        aliases = { "notes", "note" },
+        description = "Notes you write. Each one is its own box you can edit or delete.",
     },
     {
         id = "shopping",
@@ -54,12 +90,11 @@ C.FEATURES = {
     },
     {
         id = "companions",
-        label = "Companions",
-        tab = "companions",
-        sections = { C.SECTIONS.COMPANIONS },
+        label = "Other addons",
+        sections = {},
         modules = {},
-        aliases = { "companions", "companion" },
-        description = "Reads Syndicator, KillDex, AllTheThings, and others for what they know about you.",
+        aliases = { "companions", "companion", "addons", "other" },
+        description = "When this is on, Dossier can read character data another addon already saved. It does not act for you.",
     },
 }
 
@@ -70,7 +105,14 @@ Features.byAlias = {}
 
 for _, feature in ipairs(C.FEATURES) do
     Features.byId[feature.id] = feature
-    Features.byTab[feature.tab] = feature
+
+    if feature.tab then
+        Features.byTab[feature.tab] = feature
+    end
+
+    for _, tabId in ipairs(feature.extraTabs or {}) do
+        Features.byTab[tabId] = feature
+    end
 
     for _, section in ipairs(feature.sections) do
         Features.bySection[section] = feature
@@ -151,6 +193,10 @@ function Features.PrintOff(id)
 end
 
 function ns:IsFeatureOn(id)
+    if not Features.byId[id] then
+        return false
+    end
+
     local store = Store()
     return not (store and store[id] == false)
 end

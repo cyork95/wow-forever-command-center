@@ -1,0 +1,446 @@
+{
+    "updated":  "2026-10-03T15:22:00",
+    "source":  "Altoholic",
+    "characters":  [
+                       {
+                           "name":  "Ullrathor Highgale",
+                           "realm":  "Classic Beta PvE 2",
+                           "level":  15,
+                           "class":  "Druid",
+                           "race":  "",
+                           "zone":  "Darkshore",
+                           "subZone":  "",
+                           "gold":  19523,
+                           "rested":  false,
+                           "xp":  12567,
+                           "maxXp":  14400,
+                           "played":  51608,
+                           "lastUpdate":  1791055320,
+                           "itemLevel":  7.1,
+                           "gear":  [
+                                        {
+                                            "slot":  "Shirt",
+                                            "name":  "Thendal Survivalist\u0027s Shirt",
+                                            "id":  271668
+                                        },
+                                        {
+                                            "slot":  "Chest",
+                                            "name":  "Elder\u0027s Tunic",
+                                            "id":  263332
+                                        },
+                                        {
+                                            "slot":  "Waist",
+                                            "name":  "Dryweed Belt",
+                                            "id":  15399
+                                        },
+                                        {
+                                            "slot":  "Legs",
+                                            "name":  "Shadowgale Pants",
+                                            "id":  263307
+                                        },
+                                        {
+                                            "slot":  "Feet",
+                                            "name":  "Empyrean Treads",
+                                            "id":  273875
+                                        },
+                                        {
+                                            "slot":  "Wrist",
+                                            "name":  "Windsong Bangles",
+                                            "id":  263336
+                                        },
+                                        {
+                                            "slot":  "Hands",
+                                            "name":  "Welldrip Gloves",
+                                            "id":  15401
+                                        },
+                                        {
+                                            "slot":  "Back",
+                                            "name":  "Hunter\u0027s Simple Cloak",
+                                            "id":  257943
+                                        },
+                                        {
+                                            "slot":  "Main Hand",
+                                            "name":  "Balanced Quarterstaff",
+                                            "id":  257343
+                                        }
+                                    ],
+                           "bags":  [
+                                        {
+                                            "id":  0,
+                                            "name":  "Backpack",
+                                            "items":  [
+                                                          {
+                                                              "name":  "Hearthstone",
+                                                              "id":  6948,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Minor Mana Potion",
+                                                              "id":  2455,
+                                                              "count":  5
+                                                          },
+                                                          {
+                                                              "name":  "Lesser Healing Potion",
+                                                              "id":  858,
+                                                              "count":  2
+                                                          },
+                                                          {
+                                                              "name":  "Minor Healing Potion",
+                                                              "id":  118,
+                                                              "count":  2
+                                                          },
+                                                          {
+                                                              "name":  "Minor Troll\u0027s Blood Elixir",
+                                                              "id":  3382,
+                                                              "count":  5
+                                                          },
+                                                          {
+                                                              "name":  "Scroll: LOWER PING WHOMEVER",
+                                                              "id":  211787,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Scroll: LOWER PING WHOMEVER",
+                                                              "id":  211787,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Pincer Bites",
+                                                              "id":  263512,
+                                                              "count":  5
+                                                          },
+                                                          {
+                                                              "name":  "Skywall Souffle",
+                                                              "id":  263509,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Windstone",
+                                                              "id":  255663,
+                                                              "count":  13
+                                                          },
+                                                          {
+                                                              "name":  "Mining Pick",
+                                                              "id":  2901,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Sorrowsong Gloves",
+                                                              "id":  263310,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Ancient Heirloom",
+                                                              "id":  264908,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Linen Cloth",
+                                                              "id":  2589,
+                                                              "count":  18
+                                                          },
+                                                          {
+                                                              "name":  "Recipe: Pincer Bites",
+                                                              "id":  263513,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Recipe: Skywall Souffle",
+                                                              "id":  263511,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Advisor Emerson\u0027s Instructions",
+                                                              "id":  285356,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Anaya\u0027s Pendant",
+                                                              "id":  5382,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Empty Cliffspring Falls Sampler",
+                                                              "id":  15844,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Empty Sampling Tube",
+                                                              "id":  12350,
+                                                              "count":  1
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "id":  1,
+                                            "name":  "Small Green Pouch",
+                                            "items":  [
+                                                          {
+                                                              "name":  "Fandral\u0027s Message",
+                                                              "id":  5390,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Feather of Jai\u0027vhanel",
+                                                              "id":  281038,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Highborne Relic",
+                                                              "id":  5360,
+                                                              "count":  7
+                                                          },
+                                                          {
+                                                              "name":  "Thundris\u0027 Letter",
+                                                              "id":  279045,
+                                                              "count":  1
+                                                          },
+                                                          {
+                                                              "name":  "Al\u0027Alketh Cultist\u0027s Ear",
+                                                              "id":  258771,
+                                                              "count":  3
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "id":  2,
+                                            "name":  "Simple Leather Satchel",
+                                            "items":  [
+                                                          {
+                                                              "name":  "Loose Chain Bracers",
+                                                              "id":  2643,
+                                                              "count":  1
+                                                          }
+                                                      ]
+                                        },
+                                        {
+                                            "id":  4,
+                                            "name":  "Linen Bag",
+                                            "items":  [
+                                                          {
+                                                              "name":  "Warped Cloak",
+                                                              "id":  1505,
+                                                              "count":  1
+                                                          }
+                                                      ]
+                                        }
+                                    ],
+                           "stats":  {
+                                         "health":  462,
+                                         "power":  "904",
+                                         "powerType":  "Mana",
+                                         "strength":  "34",
+                                         "agility":  "34",
+                                         "stamina":  "46",
+                                         "intellect":  "63",
+                                         "armor":  "88",
+                                         "melee":  "25-35",
+                                         "attackPower":  "48",
+                                         "spellDamage":  "3",
+                                         "spellHealing":  "3",
+                                         "spellCrit":  "6.18"
+                                     },
+                           "quests":  [
+                                          {
+                                              "zone":  "Ashenvale",
+                                              "quests":  [
+                                                             {
+                                                                 "id":  990,
+                                                                 "name":  "Trek to Ashenvale",
+                                                                 "ready":  false
+                                                             }
+                                                         ]
+                                          },
+                                          {
+                                              "zone":  "Darkshore",
+                                              "quests":  [
+                                                             {
+                                                                 "id":  958,
+                                                                 "name":  "Tools of the Highborne",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  957,
+                                                                 "name":  "Bashal\u0027Aran",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  98025,
+                                                                 "name":  "WANTED: Jai\u0027vhanel",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  1002,
+                                                                 "name":  "Buzzbox 323",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  4811,
+                                                                 "name":  "The Red Crystal",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  4762,
+                                                                 "name":  "The Cliffspring River",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  2138,
+                                                                 "name":  "Cleansing of the Infected",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  963,
+                                                                 "name":  "For Love Eternal",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  947,
+                                                                 "name":  "Cave Mushrooms",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  1138,
+                                                                 "name":  "Fruit of the Sea",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  952,
+                                                                 "name":  "Grove of the Ancients",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  965,
+                                                                 "name":  "The Tower of Althalaxx",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  4740,
+                                                                 "name":  "WANTED: Murkdeep!",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  986,
+                                                                 "name":  "A Lost Master",
+                                                                 "ready":  false
+                                                             },
+                                                             {
+                                                                 "id":  729,
+                                                                 "name":  "The Absent Minded Prospector",
+                                                                 "ready":  false
+                                                             }
+                                                         ]
+                                          },
+                                          {
+                                              "zone":  "Stormwind City",
+                                              "quests":  [
+                                                             {
+                                                                 "id":  97914,
+                                                                 "name":  "Quest 97914",
+                                                                 "ready":  false
+                                                             }
+                                                         ]
+                                          },
+                                          {
+                                              "zone":  "Westfall",
+                                              "quests":  [
+                                                             {
+                                                                 "id":  98021,
+                                                                 "name":  "Quest 98021",
+                                                                 "ready":  false
+                                                             }
+                                                         ]
+                                          },
+                                          {
+                                              "zone":  "Druid",
+                                              "quests":  [
+                                                             {
+                                                                 "id":  6122,
+                                                                 "name":  "The Principal Source",
+                                                                 "ready":  false
+                                                             }
+                                                         ]
+                                          }
+                                      ],
+                           "professions":  [
+                                               {
+                                                   "name":  "Cooking",
+                                                   "rank":  1,
+                                                   "max":  75
+                                               },
+                                               {
+                                                   "name":  "Mining",
+                                                   "rank":  1,
+                                                   "max":  75
+                                               },
+                                               {
+                                                   "name":  "Herbalism",
+                                                   "rank":  3,
+                                                   "max":  75
+                                               }
+                                           ],
+                           "reputations":  [
+                                               {
+                                                   "name":  "Faction 2758",
+                                                   "standing":  "Friendly",
+                                                   "progress":  2300,
+                                                   "next":  6000
+                                               },
+                                               {
+                                                   "name":  "Stormwind",
+                                                   "standing":  "Friendly",
+                                                   "progress":  602,
+                                                   "next":  6000
+                                               },
+                                               {
+                                                   "name":  "Alliance",
+                                                   "standing":  "Friendly",
+                                                   "progress":  727,
+                                                   "next":  6000
+                                               },
+                                               {
+                                                   "name":  "Faction 2740",
+                                                   "standing":  "Friendly",
+                                                   "progress":  200,
+                                                   "next":  6000
+                                               },
+                                               {
+                                                   "name":  "Faction 2779",
+                                                   "standing":  "Friendly",
+                                                   "progress":  3035,
+                                                   "next":  6000
+                                               },
+                                               {
+                                                   "name":  "Darnassus",
+                                                   "standing":  "Neutral",
+                                                   "progress":  2247,
+                                                   "next":  3000
+                                               },
+                                               {
+                                                   "name":  "Ironforge",
+                                                   "standing":  "Neutral",
+                                                   "progress":  2502,
+                                                   "next":  3000
+                                               },
+                                               {
+                                                   "name":  "Cenarion Circle",
+                                                   "standing":  "Neutral",
+                                                   "progress":  2135,
+                                                   "next":  3000
+                                               },
+                                               {
+                                                   "name":  "Gnomeregan",
+                                                   "standing":  "Neutral",
+                                                   "progress":  2690,
+                                                   "next":  3000
+                                               }
+                                           ],
+                           "currencies":  [
+
+                                          ],
+                           "mail":  [
+
+                                    ]
+                       }
+                   ]
+}

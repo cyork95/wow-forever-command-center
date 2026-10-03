@@ -29,14 +29,18 @@ yet, or saved more than a week ago, and marks those sections with "!". Until
 then, Dossier uses Syndicator's bank copy and Profession Master's recipes if
 those addons are loaded.
 
-The window has nine tabs:
+The window lists a tab for each part that is switched on:
+
 - Export: the sections, grouped into cards, and the Create Export button
 - Biography: your timeline, 40 lines per page
-- Kills: every creature you have killed, with drops and gold
-- Session: a timer with this session's kills, gathering, gold, and XP
+- Kills: creatures you have killed. Rare names are gold, with their drops when you select one
+- Session: the live timer, with previous sessions below
+- Mail: letters you sent and received. Dossier does not send or take mail
+- Lockouts: saved instances and a diary of runs
 - Shopping: the items and recipes you plan to gather or buy
-- Screenshotter: automatic screenshots at big moments, like Memento
-- Companions: the optional addons Dossier can read, each with its own switch
+- Tasks: things to finish each day, week, month, or year, or just once, plus a window for this zone
+- Notes: a pad of boxes you can write, edit, and delete
+- Screenshotter: automatic screenshots at big moments
 - Options: the minimap icon, item stats, detailed export, and a switch for
   each part of Dossier
 - Help: this guide
@@ -51,15 +55,20 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier bio         Open the Biography tab
 /dossier kills       Open the Kills tab
 /dossier session     Open the Session tab
+/dossier sessions    Open the live Session tab
 /dossier panel       Show or hide the live session panel
+/dossier mail        Open the Mail tab
+/dossier rares       Open the Kills tab, where rare names are gold
+/dossier lockouts    Open the Lockouts tab
+/dossier tasks       Open the Tasks tab and the zone window
+/dossier notes       Open the Notes tab
 /dossier shop        Open the Shopping tab
 /dossier shots       Open the Screenshotter tab
 /dossier shot        Take a screenshot now
-/dossier companions  Open the Companions tab
 /dossier options     Open the Options tab
 /dossier settings    Open Dossier's page in the game's Settings
-/dossier off kills   Turn a feature off (bio, kills, session, shop, shots,
-                     companions)
+/dossier off kills   Turn a feature off (bio, kills, session, mail,
+                     lockouts, tasks, notes, shop, shots)
 /dossier on kills    Turn it back on
 /dossier help        Open this guide
 
@@ -88,7 +97,7 @@ The report starts with "Exported By: Dossier" and then one block per section:
 - Quests in your log and completed quests
 - Skills, Profession Details (saved copy), Talents, Spellbook
 - Biography: the timeline described below
-- Companions: data from the optional addons described below
+- Gold for the last 7 days, saved reputation standings, profession ranks, and rares, when Journalator, Altoholic, or those switches are on
 - AddOns: every installed addon and whether it loaded
 
 Sections you leave unticked are not in the report.
@@ -110,6 +119,8 @@ character it is loaded on:
 - Every death, with the subzone and zone
 - The first time you enter each zone in a session
 - Every quest you turn in, by name
+- Every book, scroll, or plaque you open, by title, with the zone and time.
+  The pages themselves are not saved
 - Every achievement you earn
 - Every boss you defeat, with the difficulty
 - Learning a profession, and each rise in profession skill
@@ -250,36 +261,41 @@ the game's usual names. Each one is noted in the Biography with the reason,
 so a website or tool that reads the Biography can name and caption them.
 
 
-9. Companions
--------------
-Dossier never needs another addon. When one of these is loaded, Dossier can
-read what it has saved for this character and add it to the Companions
-section of the export:
+9. Mail, lockouts, tasks, and quests
+---------------------------------------------------
+Gold for the last 7 days and reputation for each character are read from
+Journalator and Altoholic when you create an export, if Other addons is on.
+Dossier does not keep its own ledger or reputation lists.
 
-- Syndicator: your mail, and your bank contents even while the bank is closed
-- KillDex: total kills, creature types, your top 15 creatures, and items seen
-  dropping. Once Dossier has kills of its own, the Companions tab shows
-  KillDex as "Built into Dossier" and leaves its block out.
-- AllTheThings: deaths, quests, areas explored, time played, and mount, pet,
-  toy, and title counts
-- Nova Instance Tracker: your saved lockouts and recent instance runs
-- Profession Master: every recipe you know, grouped by profession
-- Auctionator: the auction price of each stack in your bags, plus a total
-- Memento: the boss kills it recorded. While the Screenshotter is on and
-  Memento is not loaded, the Companions tab shows Memento as "Built into
-  Dossier". Boss kills are in the Biography either way.
-- Talents Forever: your planned talent build and saved builds for your class
+Mail stores letters you send and receive. It does not send, take, return,
+or open mail for you.
 
-Each one is optional. The Companions tab shows whether each addon is loaded,
-installed but not loaded, or not installed, with a switch to leave it out.
-Switches are on by default and only work while that addon is loaded. Untick
-Companions on the Export tab to leave out all of them at once.
+A rare or rare elite stays on the Kills tab. Its name is gold, and selecting
+it shows the kill count and the drops you looted.
 
-If a companion addon changes how it saves data, its block says it could not
-be read instead of breaking the export.
+Lockouts stores the instances you are saved to and a short diary of runs
+you enter and leave. Sessions stores finished play sessions. The live
+timer stays on the Session tab.
+
+Tasks are things you mean to finish: each day, each week, each month, each year, or just once.
+Done today, Done this week, Done this month, Done this year, or Finished checks one off. The button greys out and the line changes to Done today, Done this week, and so on. Undo, under that button, puts it back on the schedule. Edit and Delete
+change the list. /dossier tasks opens a window for this zone. That window
+has the same choices as the session panel: show it, lock it, pick Tasks,
+Shopping, or Rares, and set how solid the background is. Notes is its own
+tab. Each note has a title and a body. Two notes sit on a line, and the body wraps to its full length. A quest
+turn-in can still mark a matching task done. Completed quests stay in
+Questie. A turn-in is still a line in the Biography.
+
+10. Other addons
+----------------
+Dossier does not need another addon. When Other addons is on, it can read
+character data another addon has already saved, such as a bank copy, a
+recipe list, Journalator's gold log, or Altoholic's reputation, and fold
+that into the normal report. Profession ranks from Altoholic show on the
+site. Turning it off stops those reads. Saved data stays.
 
 
-10. Options
+11. Options
 -----------
 The Options tab has two parts. The same options are in the game's Settings,
 under AddOns > Dossier (/dossier settings), with an Open Dossier button.
@@ -290,13 +306,13 @@ and a Reload UI button.
 
 Features, for every character on your account: every part of Dossier can be
 turned off here, or with /dossier off and /dossier on. The switches are
-Biography, Kills, Session, Shopping list, Screenshotter, and Companions.
+Biography, Kills, Session, Mail, Lockouts, Tasks, Notes, Shopping list, Screenshotter, and Other addons.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left
 out of the report, and its commands say how to turn it back on. Turning
 Session off also hides the session panel and saves the current session to
-Previous sessions. Turning Companions off stops Dossier reading any other
+Previous sessions. Turning Other addons off stops Dossier reading any other
 addon.
 
 Nothing a feature saved is deleted. Turn it back on and its history is
@@ -305,7 +321,7 @@ still there. The switches apply to every character on your account.
 The Export tab, its other sections, Help, and Options are always on.
 
 
-11. Tips for the AI chat
+12. Tips for the AI chat
 ------------------------
 - Paste one character per message. Each report has one "Character:" line.
 - Tell the assistant what you want first: a leveling plan, a gear check,
@@ -316,7 +332,7 @@ The Export tab, its other sections, Help, and Options are always on.
   where you are comfortable sharing that.
 
 
-12. Example AI skill
+13. Example AI skill
 --------------------
 Some assistants, such as Cursor, can load a saved instruction file called a
 skill. Save the text between the lines below as SKILL.md in a folder named
@@ -369,8 +385,9 @@ file exists. Keep older files; they are the history.
   lines are recipes they plan to make, and "Ready:" lists what is done.
 - "Statistics:" holds the game's own lifetime counters, one "== Category =="
   block each. A statistic that is not listed has no value yet.
-- "Companions:" holds optional blocks such as "== Syndicator ==". They
-  only appear when the player has those addons.
+- "Gold, last 7 days" and "Saved standings" come from Journalator and
+  Altoholic when Other addons is on. "Profession:" and "Rare:" stay when
+  those switches are on.
 
 ## Answer
 
@@ -379,6 +396,26 @@ what the user asked. Name real quests, zones, and items from the report.
 Keep advice to things the character can do at its current level.
 ------------------------------ end SKILL.md ------------------------------
 ]]
+
+function Guide:GetDisplayText()
+    local gold = "|cffd4b15a"
+    local muted = "|cff8d9aa3"
+    local lines = {}
+
+    for line in (self:GetText() .. "\n"):gmatch("(.-)\n") do
+        if line:match("^%d+%. ") or line:match("^%d%d%. ") then
+            table.insert(lines, gold .. line .. "|r")
+        elseif line:match("^-+$") or line:match("^=+$") then
+            table.insert(lines, muted .. line .. "|r")
+        elseif line:match("^/") then
+            table.insert(lines, "|cff7ee0e6" .. line .. "|r")
+        else
+            table.insert(lines, line)
+        end
+    end
+
+    return table.concat(lines, "\n")
+end
 
 function Guide:GetText()
     local title =

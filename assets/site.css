@@ -53,7 +53,7 @@ button, input, select { font: inherit; color: inherit; }
 a { color: var(--teal); }
 
 .wrap {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 32px));
   margin: 0 auto;
 }
 
@@ -101,26 +101,30 @@ h1 {
 main { padding: 22px 0 64px; }
 
 .tabs {
-  display: flex;
-  gap: 6px;
-  margin: 22px 0 0;
-  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: 4px;
+  margin: 18px 0 0;
+  padding: 0;
 }
 
 .tab {
   appearance: none;
+  min-width: 0;
   background:
     linear-gradient(180deg, rgba(224, 184, 90, 0.16), rgba(20, 25, 16, 0.2));
   border: 1px solid var(--line);
   border-bottom: 0;
-  border-radius: 12px 12px 0 0;
-  padding: 10px 18px;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 6px;
   cursor: pointer;
   color: var(--muted);
   font-family: "Cinzel", Georgia, serif;
-  font-size: 13px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .tab[aria-selected="true"] {
@@ -133,7 +137,7 @@ main { padding: 22px 0 64px; }
 .panel {
   background: linear-gradient(180deg, rgba(36, 48, 29, 0.55), rgba(20, 25, 16, 0.2));
   border: 1px solid var(--line);
-  border-radius: 0 16px 16px 16px;
+  border-radius: 0 0 16px 16px;
   padding: 8px 18px 22px;
   box-shadow: inset 0 1px 0 rgba(224, 184, 90, 0.18), var(--shadow);
 }
@@ -234,6 +238,89 @@ h2 {
   font-size: 22px;
   letter-spacing: 0.02em;
 }
+
+.lock-card h4 {
+  margin: 16px 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.lock-row { margin: 0 0 14px; }
+
+.lock-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.lock-top strong { color: var(--cream); }
+
+.lock-top span, .lock-run .muted { color: var(--muted); }
+
+.lock-bar {
+  height: 6px;
+  background: #10150e;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.lock-bar > div { height: 100%; border-radius: 99px; }
+
+.lock-run {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lock-run .when { color: var(--gold); }
+.lock-run .name { color: var(--teal); font-weight: 600; }
+
+.alto-sheet { display: grid; gap: 16px; }
+.alto-meta { margin: 0; color: var(--muted); }
+.alto-meta strong { color: var(--cream); font-weight: 600; }
+.alto-gear { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.alto-bag h5 { margin: 8px 0 6px; font-size: 15px; font-weight: 600; color: var(--cream); }
+.alto-items { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.alto-items li {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+.alto-stats { display: flex; flex-wrap: wrap; gap: 8px; }
+.alto-stats span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 14px;
+}
+
+.task-board { display: grid; gap: 8px; }
+.task-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.task-row span { color: var(--muted); text-align: right; }
+.note-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: start; }
+.note-card {
+  border: 1px solid var(--line);
+  background: rgba(224, 184, 90, 0.06);
+  border-radius: 12px;
+  padding: 12px;
+}
+.note-card strong { display: block; margin-bottom: 6px; color: var(--gold, #e0b85a); }
+.note-card p { margin: 0; white-space: pre-wrap; }
 
 .meta { color: var(--muted); margin: 0 0 10px; }
 
@@ -771,6 +858,6 @@ footer.site {
   .hunt-detail { padding-left: 14px; }
   .hunt-row, .part { grid-template-columns: auto 1fr; }
   .hunt-row .badge, .part .tries { grid-column: 2; justify-self: start; }
-  .tabs { flex-wrap: wrap; }
+  .tabs { grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); }
   .panel { border-radius: 16px; padding-inline: 12px; }
 }

@@ -54,7 +54,7 @@ Put the request first, then the export.
 | `Sessions:` | `This session:`, then `== Gathered ==`, then `== Recent sessions ==`. |
 | `Shopping list:` | Short items, then `Crafting:`, then `Ready:`. |
 | `Statistics:` | The game's lifetime counters, one `== Category ==` block. A missing statistic has no value yet. |
-| `Companions:` | Optional blocks such as `== Syndicator ==`. Absent when those addons are off or not installed. |
+| `Session currency:`, `Session reputation:`, `Gold change:`, `Profession:`, `Rare:` | This session's ledger, skill ranks, and rares you killed. |
 
 Two `Exported By:` lines means two characters. Ask the assistant to treat each block on its own.
 
@@ -92,7 +92,7 @@ If you can write files, save the paste unchanged as exports/<name>-<realm>-YYYY-
 - "Sessions:" starts with "This session:", the current play session with hourly rates. "== Gathered ==" lists lifetime gathering by type, and "== Recent sessions ==" has one dated line per past session.
 - "Shopping list:" is what the player plans to gather or buy. Short items come first, one line each with what they have and need; "Crafting:" lines are recipes they plan to make, and "Ready:" lists what is done.
 - "Statistics:" holds the game's own lifetime counters, one "== Category ==" block each. A statistic that is not listed has no value yet.
-- "Companions:" holds optional blocks such as "== Syndicator ==". They only appear when the player has those addons.
+- "Session currency:", "Session reputation:", "Gold change:", "Profession:", and "Rare:" are the ledger lines, when those switches are on.
 
 ## Answer
 
