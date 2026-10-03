@@ -73,9 +73,14 @@ function OptionsView.New(parent, width, extras)
         width = 548
     end
 
-    local container = CreateFrame("Frame", nil, parent)
-    container:SetPoint("TOPLEFT", left, extras.top or 0)
-    container:SetPoint("BOTTOMRIGHT", -left, 0)
+    local scroll = CreateFrame("ScrollFrame", nil, parent, "UIPanelScrollFrameTemplate")
+    scroll:SetPoint("TOPLEFT", left, extras.top or 0)
+    scroll:SetPoint("BOTTOMRIGHT", -4, 0)
+
+    local container = CreateFrame("Frame", nil, scroll)
+    width = math.max(100, width - 28)
+    container:SetWidth(width)
+    scroll:SetScrollChild(container)
 
     local general = Theme.CreateCard(container, C.TEXT.LABEL_GENERAL)
     general:SetSize(width, GENERAL_HEIGHT)
@@ -141,6 +146,7 @@ function OptionsView.New(parent, width, extras)
     alwaysOn:SetWidth(width)
     alwaysOn:SetJustifyH("LEFT")
     alwaysOn:SetText(C.TEXT.FEATURES_ALWAYS_ON)
+    container:SetHeight(math.abs(y) + 36)
 
     container:SetScript("OnShow", function()
         set:Refresh()

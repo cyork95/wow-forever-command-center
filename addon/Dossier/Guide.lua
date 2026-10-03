@@ -57,7 +57,7 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier bio         Open the Biography tab
 /dossier kills       Open the Kills tab
 /dossier session     Open the Session tab
-/dossier sessions    Open finished sessions for every character
+/dossier sessions    Open the live Session tab
 /dossier panel       Show or hide the live session panel
 /dossier ledger      Open the Ledger tab
 /dossier mail        Open the Mail tab

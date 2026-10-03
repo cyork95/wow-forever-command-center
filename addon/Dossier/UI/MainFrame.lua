@@ -17,7 +17,7 @@ MainFrame.readinessMarkers = {}
 MainFrame.activeTab = "export"
 
 MainFrame.TAB_ORDER = {
-    "export", "biography", "kills", "rares", "session", "sessions",
+    "export", "biography", "kills", "rares", "session",
     "ledger", "currencies", "reputation", "mail", "professions", "lockouts",
     "shopping", "tasks", "quests", "screenshots", "options", "help",
 }

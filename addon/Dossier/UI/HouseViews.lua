@@ -135,7 +135,13 @@ local function LedgerBlocks(state)
             return summary
         end
 
-        return { { kind = "line", text = "|cff8d9aa3" .. (summary or "No entries for this character in this period.") .. "|r" } }
+        return {
+            { kind = "heading", text = "|cff8d9aa3Example for Flann, until a real gold change is saved|r" },
+            { kind = "line", text = string.format("|cff3ec7d1Questing|r    in %s    out %s    net %s", Gold(125000), Gold(0), Gold(125000)) },
+            { kind = "line", text = string.format("|cff3ec7d1Vendors|r    in %s    out %s    net %s", Gold(48000), Gold(32000), Gold(16000)) },
+            { kind = "line", text = string.format("|cff3ec7d1Auction House|r    in %s    out %s    net %s", Gold(250000), Gold(40000), Gold(210000)) },
+            { kind = "line", text = string.format("|cff3ec7d1Looting|r    in %s    out %s    net %s", Gold(8600), Gold(0), Gold(8600)) },
+        }
     end
 
     local text = LedgerText(state)
@@ -308,38 +314,42 @@ function MailView:Build(page)
         keys = function()
             return ns.Data.Mail:CharacterKeys()
         end,
-        text = function(state)
+        blocks = function(state)
             local rows = ns.Data.Mail:Letters(state.character, direction, state.query or "")
-
-            if #rows == 0 then
-                return "No mail recorded yet."
-            end
-
-            local lines = {}
+            local blocks = {}
 
             for _, letter in ipairs(rows) do
-                local way = letter.direction == "sent" and "to" or "from"
-                local items = letter.items and letter.items ~= "" and ("  " .. letter.items) or ""
-                table.insert(lines, string.format(
-                    "%s  %s %s  %s%s  %s",
-                    When(letter.time),
-                    way,
-                    letter.who or "someone",
-                    Gold(letter.gold or 0),
-                    items,
-                    letter.status or ""
-                ))
+                local way = letter.direction == "sent" and "To" or "From"
+                local status = letter.status or ""
+                local statusColor = status == "waiting" and "|cff7dffb3" or "|cff8d9aa3"
 
-                if letter.subject and letter.subject ~= "" then
-                    table.insert(lines, "  " .. letter.subject)
+                table.insert(blocks, {
+                    kind = "heading",
+                    text = string.format("|cffffd36b%s %s|r    %s%s|r", way, letter.who or "someone", statusColor, status),
+                })
+
+                local bits = { "|cff8d9aa3" .. When(letter.time) .. "|r" }
+
+                if (tonumber(letter.gold) or 0) ~= 0 then
+                    table.insert(bits, Gold(letter.gold))
                 end
 
-                if letter.body and letter.body ~= "" then
-                    table.insert(lines, "  " .. letter.body)
+                if letter.items and letter.items ~= "" then
+                    table.insert(bits, "|cff7ee0e6" .. letter.items .. "|r")
+                end
+
+                table.insert(blocks, { kind = "line", text = table.concat(bits, "    ") })
+
+                if letter.subject and letter.subject ~= "" then
+                    table.insert(blocks, { kind = "line", text = letter.subject })
                 end
             end
 
-            return table.concat(lines, "\n")
+            if #blocks == 0 then
+                return { { kind = "line", text = "|cff8d9aa3No mail recorded yet.|r" } }
+            end
+
+            return blocks
         end,
     })
 end
@@ -364,28 +374,36 @@ function ProfessionsView:Build(page)
 
             return keys
         end,
-        text = function(state)
-            local lines = {}
+        blocks = function(state)
+            local blocks = {}
 
             for _, row in ipairs(ns.Data.ProfessionBoard:Rows()) do
                 if state.character == "all" or state.character == row.character then
-                    local bits = {}
+                    table.insert(blocks, { kind = "heading", text = "|cffffd36b" .. row.character .. "|r" })
 
-                    for _, skill in ipairs(row.skills) do
-                        local max = skill.max and skill.max > 0 and ("/" .. skill.max) or ""
-                        table.insert(bits, skill.name .. " " .. skill.current .. max)
+                    if #(row.skills or {}) == 0 then
+                        table.insert(blocks, { kind = "line", text = "|cff8d9aa3No skills saved yet.|r" })
                     end
 
-                    table.insert(lines, row.character)
-                    table.insert(lines, "  " .. (#bits > 0 and table.concat(bits, "   ") or "No skills saved yet."))
+                    for _, skill in ipairs(row.skills or {}) do
+                        local max = tonumber(skill.max) or 0
+                        table.insert(blocks, {
+                            kind = "bar",
+                            label = skill.name,
+                            right = max > 0 and (skill.current .. " / " .. max) or tostring(skill.current),
+                            value = skill.current,
+                            max = max > 0 and max or 1,
+                            color = "Honored",
+                        })
+                    end
                 end
             end
 
-            if #lines == 0 then
-                return "No profession skills saved yet. Log in on a character to record them."
+            if #blocks == 0 then
+                return { { kind = "line", text = "|cff8d9aa3No profession skills saved yet. Open the character skills window once, then check again.|r" } }
             end
 
-            return table.concat(lines, "\n")
+            return blocks
         end,
     })
 end
@@ -404,9 +422,8 @@ function RaresView:Build(page)
             return {}
         end,
         footer = true,
-        text = function()
+        blocks = function()
             local bucket = ns.Account.Bucket("rares") or {}
-            local lines = {}
             local rows = {}
 
             for _, rare in pairs(bucket) do
@@ -416,17 +433,29 @@ function RaresView:Build(page)
             end
 
             table.sort(rows, function(a, b)
-                return (a.time or 0) > (b.time or 0)
+                return (a.kills or 0) > (b.kills or 0)
             end)
+
+            local blocks = {}
 
             for _, rare in ipairs(rows) do
                 local place = rare.zone or "Unknown zone"
 
                 if rare.x and rare.y then
-                    place = string.format("%s %.1f, %.1f", place, rare.x, rare.y)
+                    place = string.format("%s  %.1f, %.1f", place, rare.x, rare.y)
                 end
 
-                table.insert(lines, string.format("%s    %d    %s    %s", rare.name or "Rare", rare.kills or 0, place, rare.character or ""))
+                local kills = tonumber(rare.kills) or 0
+                local times = kills == 1 and "1 kill" or (kills .. " kills")
+
+                table.insert(blocks, {
+                    kind = "heading",
+                    text = string.format("|cffffd36b%s|r    |cffffcc66%s|r", rare.name or "Rare", times),
+                })
+                table.insert(blocks, {
+                    kind = "line",
+                    text = string.format("|cff7ee0e6%s|r    |cff8d9aa3%s|r", place, rare.character or ""),
+                })
 
                 local drops = {}
 
@@ -436,30 +465,17 @@ function RaresView:Build(page)
                     end
                 end
 
-                if #drops == 0 then
-                    table.insert(lines, "  No drops recorded yet.")
-                else
-                    table.insert(lines, "  " .. table.concat(drops, ", "))
-                end
-
-                for index, pin in ipairs(rare.pins or {}) do
-                    if index > 1 then
-                        local pinPlace = pin.zone or ""
-
-                        if pin.x and pin.y then
-                            pinPlace = string.format("%s %.1f, %.1f", pinPlace, pin.x, pin.y)
-                        end
-
-                        table.insert(lines, "  earlier  " .. When(pin.time) .. "  " .. pinPlace .. "  " .. (pin.character or ""))
-                    end
-                end
+                table.insert(blocks, {
+                    kind = "line",
+                    text = #drops == 0 and "|cff8d9aa3No drops recorded yet.|r" or "|cffb7e3a1" .. table.concat(drops, ", ") .. "|r",
+                })
             end
 
-            if #lines == 0 then
-                return "No rares recorded yet."
+            if #blocks == 0 then
+                return { { kind = "line", text = "|cff8d9aa3No rares recorded yet. A rare kill is added here, with its kill count.|r" } }
             end
 
-            return table.concat(lines, "\n")
+            return blocks
         end,
     })
 
@@ -619,10 +635,17 @@ local TasksView = {}
 
 function TasksView:Build(page)
     local Theme = ns.Theme
-    local nameBox = CreateFrame("EditBox", nil, page, "InputBoxTemplate")
-    nameBox:SetSize(160, 20)
-    nameBox:SetPoint("TOPLEFT", 190, -2)
+    local nameBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
+    nameBox:SetSize(180, 22)
+    nameBox:SetPoint("TOPLEFT", 190, 0)
     nameBox:SetAutoFocus(false)
+    nameBox:SetFontObject(ChatFontNormal)
+    nameBox:SetTextInsets(6, 6, 0, 0)
+    Theme.ApplyBackdrop(nameBox, "dark", "border")
+
+    local placeholder = Theme.CreateText(nameBox, "GameFontHighlightSmall", "disabled")
+    placeholder:SetPoint("LEFT", 7, 0)
+    placeholder:SetText("Task name")
 
     local repeatKind = "daily"
     local kindButton = Theme.CreateButton(page, "Daily", 70, 22, "default", function(self)
@@ -634,15 +657,32 @@ function TasksView:Build(page)
             repeatKind = "daily"
         end
 
-        self:SetText(repeatKind:gsub("^%l", string.upper))
+        self:SetLabel(repeatKind:gsub("^%l", string.upper))
     end)
     kindButton:SetPoint("LEFT", nameBox, "RIGHT", 8, 0)
 
-    local add = Theme.CreateButton(page, "Add", 50, 22, "default", function()
-        ns.Data.Tasks:Add(nameBox:GetText(), repeatKind, ns.Account.Zone(), "task")
+    local function AddTask()
+        local name = (nameBox:GetText() or ""):gsub("^%s+", ""):gsub("%s+$", "")
+
+        if name == "" or not ns.Data.Tasks then
+            return
+        end
+
+        ns.Data.Tasks:Add(name, repeatKind, ns.Account.Zone(), "task")
         nameBox:SetText("")
+        nameBox:ClearFocus()
         TasksView.state.refresh()
+    end
+
+    nameBox:SetScript("OnTextChanged", function(self)
+        placeholder:SetShown((self:GetText() or "") == "")
     end)
+    nameBox:SetScript("OnEnterPressed", AddTask)
+    nameBox:SetScript("OnEscapePressed", function(self)
+        self:ClearFocus()
+    end)
+
+    local add = Theme.CreateButton(page, "Add", 50, 22, "primary", AddTask)
     add:SetPoint("LEFT", kindButton, "RIGHT", 8, 0)
 
     self.state = ns.UI.HouseList.Build(page, {
@@ -679,34 +719,98 @@ function TasksView:Refresh()
 end
 
 local QuestHistoryView = {}
+local questCache = { at = 0, data = nil }
+local questTitlesHooked = false
+
+local function CompletedQuestData()
+    local now = type(GetTime) == "function" and GetTime() or 0
+
+    if questCache.data and (now - questCache.at) < 3 then
+        return questCache.data
+    end
+
+    local completed = ns.Data and ns.Data.CompletedQuests
+
+    if not completed or type(completed.Collect) ~= "function" then
+        return nil
+    end
+
+    local ok, data = pcall(completed.Collect, completed)
+
+    if not ok or type(data) ~= "table" then
+        return nil
+    end
+
+    questCache.at = now
+    questCache.data = data
+
+    if not questTitlesHooked and type(completed.OnTitlesReady) == "function" then
+        questTitlesHooked = true
+        completed:OnTitlesReady(function()
+            questCache.at = 0
+
+            if QuestHistoryView.state then
+                QuestHistoryView.state.refresh()
+            end
+        end)
+    end
+
+    return data
+end
 
 function QuestHistoryView:Build(page)
-    local Theme = ns.Theme
-    local areaOnly = false
-    local areaButton = Theme.CreateButton(page, "All zones", 100, 22, "default", function(self)
-        areaOnly = not areaOnly
-        self:SetText(areaOnly and "This area" or "All zones")
-        QuestHistoryView.state.refresh()
-    end)
-    areaButton:SetPoint("TOPLEFT", 190, 0)
-
     self.state = ns.UI.HouseList.Build(page, {
+        search = true,
         keys = function()
-            return ns.Data.QuestHistory:CharacterKeys()
+            return {}
         end,
-        text = function(state)
-            local zone = areaOnly and ns.Account.Zone() or nil
-            local rows = ns.Data.QuestHistory:List(state.character, zone, "")
+        blocks = function(state)
+            local data = CompletedQuestData()
+            local blocks = {}
+            local needle = string.lower(state.query or "")
+            local seen = {}
+            local titles = {}
 
-            if #rows == 0 then
-                return areaOnly and "No quests turned in here yet." or "No completed quests yet."
+            for _, quest in ipairs(data and data.resolvedQuests or {}) do
+                local title = type(quest) == "table" and quest.title or nil
+
+                if type(title) == "string" and title ~= "" and not quest.tracking then
+                    local key = string.lower(title)
+
+                    if not seen[key] and (needle == "" or string.find(key, needle, 1, true)) then
+                        seen[key] = true
+                        table.insert(titles, title)
+                    end
+                end
             end
 
-            return Grouped(rows, "zone", function(row)
-                local when = row.time and ("  " .. When(row.time)) or ""
-                local who = state.character == "all" and ("  " .. row.character) or ""
-                return row.title .. when .. who
-            end)
+            table.sort(titles)
+
+            local count = data and tonumber(data.count) or #titles
+            local who = ns.Account.CharacterKey() or "This character"
+            table.insert(blocks, {
+                kind = "heading",
+                text = string.format("|cffffd36b%s|r    |cff8d9aa3%d finished|r", who, count or 0),
+            })
+
+            for _, title in ipairs(titles) do
+                table.insert(blocks, { kind = "line", text = title })
+            end
+
+            local unnamed = data and tonumber(data.unresolvedCount) or 0
+
+            if unnamed and unnamed > 0 then
+                table.insert(blocks, {
+                    kind = "line",
+                    text = string.format("|cff8d9aa3%d finished quests are still waiting for a name.|r", unnamed),
+                })
+            end
+
+            if #titles == 0 and (not unnamed or unnamed == 0) then
+                return { { kind = "line", text = "|cff8d9aa3No completed quests in the export list yet.|r" } }
+            end
+
+            return blocks
         end,
     })
 end

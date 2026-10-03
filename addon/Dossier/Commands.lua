@@ -2134,7 +2134,7 @@ SlashCmdList[
             IfFeatureOn("session", function() Commands:OpenSession() end)
         elseif argument == "sessions"
         then
-            IfFeatureOn("session", function() Commands:OpenTab("sessions") end)
+            IfFeatureOn("session", function() Commands:OpenTab("session") end)
         elseif argument == "ledger"
         then
             IfFeatureOn("ledger", function() Commands:OpenTab("ledger") end)

@@ -6,29 +6,142 @@ local function Account()
     return ns.Account
 end
 
-local function ReadSkills()
-    local skills = {}
+local KEEP = {
+    Alchemy = true,
+    Blacksmithing = true,
+    Enchanting = true,
+    Engineering = true,
+    Herbalism = true,
+    Leatherworking = true,
+    Mining = true,
+    Skinning = true,
+    Tailoring = true,
+    Cooking = true,
+    Fishing = true,
+    ["First Aid"] = true,
+    Poisons = true,
+    Lockpicking = true,
+}
 
+local function AddSkill(skills, seen, name, current, max)
+    if type(name) ~= "string" or name == "" or seen[name] then
+        return
+    end
+
+    current = tonumber(current)
+
+    if not current then
+        return
+    end
+
+    seen[name] = true
+    table.insert(skills, {
+        name = name,
+        current = current,
+        max = tonumber(max) or 0,
+    })
+end
+
+local function ReadProfessionSlots(skills, seen)
+    if type(GetProfessions) ~= "function" or type(GetProfessionInfo) ~= "function" then
+        return false
+    end
+
+    local ok, first, second, archaeology, fishing, cooking = pcall(GetProfessions)
+
+    if not ok then
+        return false
+    end
+
+    local found = false
+
+    for _, index in ipairs({ first, second, archaeology, fishing, cooking }) do
+        if tonumber(index) then
+            local success, name, _, rank, maxRank = pcall(GetProfessionInfo, index)
+
+            if success then
+                AddSkill(skills, seen, name, rank, maxRank)
+                found = true
+            end
+        end
+    end
+
+    return found
+end
+
+local function ReadClassicLines(skills, seen)
     if type(GetNumSkillLines) ~= "function" or type(GetSkillLineInfo) ~= "function" then
-        return skills
+        return
+    end
+
+    if type(ExpandSkillHeader) == "function" then
+        for _ = 1, 8 do
+            local ok, count = pcall(GetNumSkillLines)
+
+            if not ok or type(count) ~= "number" then
+                break
+            end
+
+            local expanded = false
+
+            for index = 1, count do
+                local success, _, isHeader, isExpanded = pcall(GetSkillLineInfo, index)
+
+                if success and isHeader and not isExpanded then
+                    pcall(ExpandSkillHeader, index)
+                    expanded = true
+                    break
+                end
+            end
+
+            if not expanded then
+                break
+            end
+        end
     end
 
     local ok, count = pcall(GetNumSkillLines)
 
     if not ok or type(count) ~= "number" then
-        return skills
+        return
     end
 
     for index = 1, count do
-        local success, name, isHeader, _, rank, _, _, maxRank = pcall(GetSkillLineInfo, index)
+        local success, name, isHeader, _, rank, _, _, maxRank, isAbandonable = pcall(GetSkillLineInfo, index)
 
-        if success and isHeader ~= true and type(name) == "string" and name ~= "" and tonumber(rank) then
-            table.insert(skills, {
-                name = name,
-                current = tonumber(rank) or 0,
-                max = tonumber(maxRank) or 0,
-            })
+        if success and isHeader ~= true and (KEEP[name] or isAbandonable == true) then
+            AddSkill(skills, seen, name, rank, maxRank)
         end
+    end
+end
+
+local function ReadModernLines(skills, seen)
+    if type(C_SkillInfo) ~= "table" or type(C_SkillInfo.GetNumSkillLines) ~= "function" or type(C_SkillInfo.GetSkillLineInfo) ~= "function" then
+        return
+    end
+
+    local ok, count = pcall(C_SkillInfo.GetNumSkillLines)
+
+    if not ok or type(count) ~= "number" then
+        return
+    end
+
+    for index = 1, count do
+        local success, info = pcall(C_SkillInfo.GetSkillLineInfo, index)
+
+        if success and type(info) == "table" and info.isHeader ~= true and (KEEP[info.name] or info.isAbandonable == true) then
+            AddSkill(skills, seen, info.name, info.skillRank or info.rank, info.skillMaxRank or info.maxRank)
+        end
+    end
+end
+
+local function ReadSkills()
+    local skills = {}
+    local seen = {}
+
+    if not ReadProfessionSlots(skills, seen) then
+        ReadClassicLines(skills, seen)
+        ReadModernLines(skills, seen)
     end
 
     return skills
@@ -88,12 +201,21 @@ local function Register(event)
     end
 end
 
-eventFrame:SetScript("OnEvent", function()
+eventFrame:SetScript("OnEvent", function(_, event)
+    if event == "PLAYER_LOGIN" and C_Timer and type(C_Timer.After) == "function" then
+        C_Timer.After(2, function()
+            ProfessionBoard:Snapshot()
+        end)
+    end
+
     ProfessionBoard:Snapshot()
 end)
 
 Register("PLAYER_LOGIN")
+Register("PLAYER_ENTERING_WORLD")
 Register("SKILL_LINES_CHANGED")
+Register("TRADE_SKILL_SHOW")
+Register("TRADE_SKILL_UPDATE")
 
 function ProfessionBoard:SetFeatureActive(on)
     ns.Features.SetEvents(eventFrame, registered, on)

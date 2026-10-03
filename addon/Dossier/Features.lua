@@ -33,7 +33,6 @@ C.FEATURES = {
         sections = { C.SECTIONS.SESSIONS },
         modules = { "Data.Session", "UI.KillPanel" },
         aliases = { "session", "sessions", "panel" },
-        extraTabs = { "sessions" },
         description = "Times play sessions with gathering, gold, and XP per hour, and runs the session panel.",
     },
     {

@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.2.1
+
+- Mail keeps one row per letter. Opening the mailbox no longer saves the same letter again each time the inbox updates, and copies already saved are folded together.
+- Professions read the skill list this client actually provides, including after login and when the profession window opens.
+- The Quests tab lists the same finished quests as the export, one title each. Names still loading stay as a count.
+- Adding a task uses a real text box. Press Enter or Add.
+- Options scrolls inside the window so the switches stay on screen.
+- Biography lines show a colored kind, the zone, and the level.
+- Selecting a creature shows its name, kill count, and drops with item icons and quality colors. Rare names are gold in the kill list and on the Rares tab, which also shows how many times each rare was killed.
+- The Session window colors kills, gathering, gold, and XP. The separate Sessions tab is gone. The live Session tab still keeps previous sessions.
+- The site ledger includes example gold rows for Flann so the layout is visible before a scan replaces them.
+
 ## 2.2.0
 
 - Session gold saved at logout no longer goes negative when the game reports an empty wallet. A live session can still show a spend. Older saved sessions are clamped at zero.

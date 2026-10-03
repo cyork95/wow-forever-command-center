@@ -6,8 +6,6 @@ local CAP = 500
 
 Mail.refusedEvents = {}
 
-local seen = {}
-
 local function Account()
     return ns.Account
 end
@@ -54,7 +52,120 @@ function Mail:CharacterKeys()
     return ordered
 end
 
+local function Richness(letter)
+    local score = 0
+
+    if letter.who and letter.who ~= "" then
+        score = score + 2
+    end
+
+    if letter.subject and letter.subject ~= "" then
+        score = score + 4
+    end
+
+    if letter.items and letter.items ~= "" then
+        score = score + 3 + #letter.items
+    end
+
+    if letter.body and letter.body ~= "" then
+        score = score + 2
+    end
+
+    if (tonumber(letter.gold) or 0) > 0 then
+        score = score + 1
+    end
+
+    return score
+end
+
+local function FillLetter(keep, extra)
+    if (not keep.subject or keep.subject == "") and extra.subject and extra.subject ~= "" then
+        keep.subject = extra.subject
+    end
+
+    if extra.items and extra.items ~= "" and #extra.items > #(keep.items or "") then
+        keep.items = extra.items
+    end
+
+    if (not keep.body or keep.body == "") and extra.body and extra.body ~= "" then
+        keep.body = extra.body
+    end
+
+    if (tonumber(keep.gold) or 0) == 0 and (tonumber(extra.gold) or 0) > 0 then
+        keep.gold = extra.gold
+    end
+
+    if extra.status == "waiting" then
+        keep.status = "waiting"
+    end
+
+    local keptTime = tonumber(keep.time) or 0
+    local extraTime = tonumber(extra.time) or 0
+
+    if extraTime > 0 and (keptTime == 0 or extraTime < keptTime) then
+        keep.time = extraTime
+    end
+end
+
+function Mail:Cleanup()
+    local bucket = Bucket()
+
+    if not bucket then
+        return
+    end
+
+    for _, record in pairs(bucket) do
+        if type(record) == "table" and type(record.letters) == "table" then
+            local kept = {}
+
+            for _, letter in ipairs(record.letters) do
+                if type(letter) == "table" and ((letter.who and letter.who ~= "") or (letter.subject and letter.subject ~= "")) then
+                    local merged = false
+
+                    for _, other in ipairs(kept) do
+                        local sameWho = (other.who or "") == (letter.who or "")
+                        local sameDirection = (other.direction or "") == (letter.direction or "")
+                        local subjectA = other.subject or ""
+                        local subjectB = letter.subject or ""
+                        local sameSubject = subjectA == subjectB or subjectA == "" or subjectB == ""
+                        local close = math.abs((tonumber(other.time) or 0) - (tonumber(letter.time) or 0)) <= 180
+                        local goldA = tonumber(other.gold) or 0
+                        local goldB = tonumber(letter.gold) or 0
+                        local sameGold = goldA == goldB or goldA == 0 or goldB == 0
+
+                        if sameWho and sameDirection and sameSubject and close and sameGold then
+                            if Richness(letter) > Richness(other) then
+                                local waiting = other.status == "waiting" or letter.status == "waiting"
+                                other.who = letter.who or other.who
+                                other.subject = (letter.subject and letter.subject ~= "") and letter.subject or other.subject
+                                other.items = (letter.items and letter.items ~= "") and letter.items or other.items
+                                other.body = (letter.body and letter.body ~= "") and letter.body or other.body
+                                other.gold = goldB > 0 and letter.gold or other.gold
+                                other.status = waiting and "waiting" or (letter.status or other.status)
+                                FillLetter(other, letter)
+                            else
+                                FillLetter(other, letter)
+                            end
+
+                            merged = true
+                            break
+                        end
+                    end
+
+                    if not merged then
+                        table.insert(kept, letter)
+                    end
+                end
+            end
+
+            record.letters = kept
+        end
+    end
+end
+
 function Mail:Letters(key, direction, query)
+    self:Cleanup()
+
     local keys = key and key ~= "all" and { key } or self:CharacterKeys()
     local rows = {}
     local needle = type(query) == "string" and string.lower(query) or ""
@@ -92,19 +203,10 @@ local function Remember(letter)
         return
     end
 
-    local id = table.concat({
-        letter.direction or "",
-        tostring(letter.time or 0),
-        letter.who or "",
-        letter.subject or "",
-        letter.items or "",
-    }, "|")
-
-    if seen[id] then
+    if (not letter.who or letter.who == "") and (not letter.subject or letter.subject == "") then
         return
     end
 
-    seen[id] = true
     letter.character = Account().CharacterKey()
     Account().Push(row.letters, letter, CAP)
 end
@@ -127,62 +229,109 @@ local function ItemList(index)
     return table.concat(names, ", ")
 end
 
+local function FindWaiting(letters, claimed, sender, subject, money)
+    local loose = nil
+
+    for _, letter in ipairs(letters) do
+        if not claimed[letter] and letter.direction == "received" and letter.status == "waiting" and (letter.who or "") == sender then
+            local savedSubject = letter.subject or ""
+            local sameSubject = savedSubject == (subject or "") or savedSubject == ""
+
+            if sameSubject then
+                if savedSubject == (subject or "") and (tonumber(letter.gold) or 0) == (tonumber(money) or 0) then
+                    return letter
+                end
+
+                loose = loose or letter
+            end
+        end
+    end
+
+    return loose
+end
+
 local function ReadInbox()
     if type(GetInboxNumItems) ~= "function" or type(GetInboxHeaderInfo) ~= "function" then
         return
     end
 
-    local ok, count = pcall(GetInboxNumItems)
+    Mail:Cleanup()
+
+    local ok, count, total = pcall(GetInboxNumItems)
 
     if not ok or type(count) ~= "number" then
         return
     end
 
-    local waiting = {}
+    if type(total) == "number" and count < total then
+        return
+    end
+
+    local headers = {}
+    local complete = true
 
     for index = 1, count do
         local success, _, _, sender, subject, money, _, daysLeft = pcall(GetInboxHeaderInfo, index)
 
-        if success then
-            local items = ItemList(index)
-            local stamp = table.concat({ sender or "", subject or "", items }, "|")
-            local row = Character()
-            local existing = nil
-
-            for _, letter in ipairs(row and row.letters or {}) do
-                if letter.direction == "received" and letter.status == "waiting"
-                    and letter.who == sender and letter.subject == subject and letter.items == items
-                then
-                    existing = letter
-                    break
-                end
-            end
-
-            if existing then
-                existing.daysLeft = tonumber(daysLeft)
-                existing.gold = tonumber(money) or existing.gold
-            else
-                Remember({
-                    direction = "received",
-                    time = Account().Now(),
-                    who = sender,
-                    subject = subject,
-                    gold = tonumber(money) or 0,
-                    items = items,
-                    daysLeft = tonumber(daysLeft),
-                    status = "waiting",
-                })
-            end
-
-            waiting[stamp] = true
+        if not success or type(sender) ~= "string" or sender == "" or subject == nil then
+            complete = false
+        else
+            table.insert(headers, {
+                sender = sender,
+                subject = subject,
+                money = tonumber(money) or 0,
+                daysLeft = tonumber(daysLeft),
+                items = ItemList(index),
+            })
         end
+    end
+
+    if not complete then
+        return
     end
 
     local row = Character()
 
-    for _, letter in ipairs(row and row.letters or {}) do
+    if not row then
+        return
+    end
+
+    local claimed = {}
+    local waiting = {}
+
+    for _, header in ipairs(headers) do
+        local existing = FindWaiting(row.letters, claimed, header.sender, header.subject, header.money)
+
+        if existing then
+            claimed[existing] = true
+            existing.who = header.sender
+            existing.subject = header.subject
+            existing.daysLeft = header.daysLeft
+            existing.gold = header.money
+
+            if header.items ~= "" then
+                existing.items = header.items
+            end
+        else
+            Remember({
+                direction = "received",
+                time = Account().Now(),
+                who = header.sender,
+                subject = header.subject,
+                gold = header.money,
+                items = header.items,
+                daysLeft = header.daysLeft,
+                status = "waiting",
+            })
+            claimed[row.letters[1]] = true
+        end
+
+        waiting[header.sender .. "|" .. (header.subject or "")] = true
+    end
+
+    for _, letter in ipairs(row.letters) do
         if letter.direction == "received" and letter.status == "waiting" then
-            local id = table.concat({ letter.who or "", letter.subject or "", letter.items or "" }, "|")
+            local id = (letter.who or "") .. "|" .. (letter.subject or "")
 
             if not waiting[id] then
                 letter.status = "taken"
@@ -208,14 +357,33 @@ local function ReadSent()
         end
     end
 
+    if type(who) ~= "string" or who == "" then
+        return
+    end
+
+    local row = Character()
+    local now = Account().Now()
+    local itemText = table.concat(items, ", ")
+
+    for _, letter in ipairs(row and row.letters or {}) do
+        if letter.direction == "sent" and letter.who == who and (letter.subject or "") == (subject or "")
+            and math.abs((tonumber(letter.time) or 0) - now) <= 10
+        then
+            letter.body = body or letter.body
+            letter.gold = tonumber(money) or letter.gold
+            letter.items = itemText ~= "" and itemText or letter.items
+            return
+        end
+    end
+
     Remember({
         direction = "sent",
-        time = Account().Now(),
+        time = now,
         who = who,
         subject = subject,
         body = body,
         gold = tonumber(money) or 0,
-        items = table.concat(items, ", "),
+        items = itemText,
         status = "sent",
     })
 end
@@ -307,6 +475,7 @@ eventFrame:SetScript("OnEvent", function(_, event)
     elseif event == "MAIL_SEND_SUCCESS" then
         ReadSent()
     elseif event == "PLAYER_LOGIN" then
+        Mail:Cleanup()
         Mail:TryImportParcel()
 
         local expiring = Mail:Expiring()

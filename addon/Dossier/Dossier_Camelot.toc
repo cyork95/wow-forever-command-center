@@ -3,7 +3,7 @@
 ## Notes: Dossier, formerly AIExport. Type /dossier and press Create Export to copy a text report of your character into an AI chat. It keeps a Biography timeline, tracks kills, times play sessions with kills, gathering, gold, and XP per hour, keeps a shopping list with have and need counts, and takes screenshots at big moments. Every feature can be switched off on the Options tab or in the game's Settings > AddOns page. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /dossier help shows the guide and an example AI skill.
 ## Category: Data Export
 ## Author: Dossier
-## Version: 2.2.0
+## Version: 2.2.1
 ## IconTexture: Interface\AddOns\Dossier\Media\MinimapIcon
 ## X-License: MIT
 ## SavedVariables: DossierDB

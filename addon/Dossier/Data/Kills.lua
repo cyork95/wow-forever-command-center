@@ -741,10 +741,12 @@ function Kills:GetSession()
     local mobs = self:GetMobs()
 
     for _, mobID in ipairs(session.recentMobs) do
+        local mob = mobs[mobID]
         table.insert(creatures, {
             mobID = mobID,
-            name = mobs[mobID] and mobs[mobID].name or "Unknown",
+            name = mob and mob.name or "Unknown",
             count = session.byMob[mobID] or 0,
+            classification = mob and mob.classification or nil,
         })
     end
 

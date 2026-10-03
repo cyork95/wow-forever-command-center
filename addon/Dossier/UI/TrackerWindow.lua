@@ -143,16 +143,6 @@ function Tracker:Lines()
         end
     end
 
-    local quests = ns.Data and ns.Data.QuestHistory
-
-    if quests and ns:IsFeatureOn("questhistory") and zone then
-        local rows = quests:List(Account().CharacterKey(), zone, "")
-
-        if #rows > 0 then
-            table.insert(lines, "Quests here  " .. #rows)
-        end
-    end
-
     return lines
 end
 
