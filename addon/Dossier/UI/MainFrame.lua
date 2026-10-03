@@ -18,15 +18,15 @@ MainFrame.activeTab = "export"
 
 MainFrame.TAB_ORDER = {
     "export", "biography", "kills", "session",
-    "mail", "professions", "lockouts",
+    "mail", "lockouts",
     "shopping", "tasks", "quests", "screenshots", "options", "help",
 }
 
-local FRAME_WIDTH = 720
-local FRAME_HEIGHT = 680
-local NAV_WIDTH = 140
+local FRAME_WIDTH = 740
+local FRAME_HEIGHT = 580
+local NAV_WIDTH = 158
 local CONTENT_PADDING = 16
-local TAB_SPACING = 28
+local TAB_SPACING = 32
 local CARD_GAP = 8
 local CARD_COLUMNS = 3
 local CARD_HEADER = 28
@@ -539,8 +539,8 @@ function MainFrame:LayoutTabs()
         if tab then
             if ns:IsTabFeatureOn(tabId) then
                 tab:ClearAllPoints()
-                tab:SetPoint("TOPLEFT", 1, -10 - (index * TAB_SPACING))
-                tab:SetPoint("TOPRIGHT", -1, -10 - (index * TAB_SPACING))
+                tab:SetPoint("TOPLEFT", 8, -8 - (index * TAB_SPACING))
+                tab:SetPoint("TOPRIGHT", -8, -8 - (index * TAB_SPACING))
                 tab:Show()
                 index = index + 1
             else
@@ -573,7 +573,7 @@ local function EnsureFrame()
         local tab = Theme.CreateTab(nav, TAB_LABELS[tabId], function()
             MainFrame:SelectTab(tabId)
         end)
-        tab:SetHeight(26)
+        tab:SetHeight(28)
         MainFrame.tabs[tabId] = tab
 
         local page = CreateFrame("Frame", nil, content)

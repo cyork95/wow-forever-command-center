@@ -36,7 +36,6 @@ The window lists a tab for each part that is switched on:
 - Kills: creatures you have killed. Rare names are gold, with their drops when you select one
 - Session: the live timer, with previous sessions below
 - Mail: letters you sent and received. Dossier does not send or take mail
-- Professions: each character's skill and rank
 - Lockouts: saved instances and a diary of runs
 - Shopping: the items and recipes you plan to gather or buy
 - Tasks: daily, weekly, and one-time notes, plus a window for this zone
@@ -69,7 +68,7 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier options     Open the Options tab
 /dossier settings    Open Dossier's page in the game's Settings
 /dossier off kills   Turn a feature off (bio, kills, session, mail,
-                     professions, lockouts, tasks, quests, shop, shots)
+                     lockouts, tasks, quests, shop, shots)
 /dossier on kills    Turn it back on
 /dossier help        Open this guide
 
@@ -287,8 +286,8 @@ this zone. Quests lists every quest the game says you have completed.
 Dossier does not need another addon. When Other addons is on, it can read
 character data another addon has already saved, such as a bank copy, a
 recipe list, Journalator's gold log, or Altoholic's reputation, and fold
-that into the normal report. Turning it off stops those reads. Saved data
-stays.
+that into the normal report. Profession ranks from Altoholic show on the
+site. Turning it off stops those reads. Saved data stays.
 
 
 11. Options
@@ -302,7 +301,7 @@ and a Reload UI button.
 
 Features, for every character on your account: every part of Dossier can be
 turned off here, or with /dossier off and /dossier on. The switches are
-Biography, Kills, Session, Mail, Professions, Lockouts, Tasks, Quests, Shopping list, Screenshotter, and Other addons.
+Biography, Kills, Session, Mail, Lockouts, Tasks, Quests, Shopping list, Screenshotter, and Other addons.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left

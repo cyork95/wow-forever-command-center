@@ -9414,21 +9414,6 @@ function TextFormatter:AddCurrencies(lines, data)
     AddLine(lines, "Gold: " .. FormatMoneyCopper(data.money))
     AppendJournalatorGold(lines)
 
-    local board = ns.Data and ns.Data.ProfessionBoard
-
-    if board and ns:IsFeatureOn("professions") and type(board.Rows) == "function" then
-        local key = ns.Account and ns.Account.CharacterKey()
-
-        for _, row in ipairs(board:Rows()) do
-            if row.character == key then
-                for _, skill in ipairs(row.skills or {}) do
-                    local max = skill.max and skill.max > 0 and ("/" .. skill.max) or ""
-                    AddLine(lines, "Profession: " .. skill.name .. " " .. tostring(skill.current or 0) .. max)
-                end
-            end
-        end
-    end
-
     local categories = data.categories or {}
 
     if #categories > 0 then

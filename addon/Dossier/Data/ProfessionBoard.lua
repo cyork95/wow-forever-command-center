@@ -211,11 +211,8 @@ eventFrame:SetScript("OnEvent", function(_, event)
     ProfessionBoard:Snapshot()
 end)
 
-Register("PLAYER_LOGIN")
-Register("PLAYER_ENTERING_WORLD")
-Register("SKILL_LINES_CHANGED")
-Register("TRADE_SKILL_SHOW")
-Register("TRADE_SKILL_UPDATE")
+-- Profession ranks are read from Altoholic on the site. This board no longer
+-- records them. Saved rows stay.
 
 function ProfessionBoard:SetFeatureActive(on)
     ns.Features.SetEvents(eventFrame, registered, on)

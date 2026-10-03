@@ -2138,10 +2138,6 @@ SlashCmdList[
         elseif argument == "mail"
         then
             IfFeatureOn("mail", function() Commands:OpenTab("mail") end)
-        elseif argument == "professions"
-            or argument == "profession"
-        then
-            IfFeatureOn("professions", function() Commands:OpenTab("professions") end)
         elseif argument == "lockouts"
             or argument == "lockout"
         then

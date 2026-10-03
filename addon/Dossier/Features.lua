@@ -44,15 +44,6 @@ C.FEATURES = {
         description = "Keeps letters you send and receive, with who, subject, gold, and items.",
     },
     {
-        id = "professions",
-        label = "Professions",
-        tab = "professions",
-        sections = {},
-        modules = { "Data.ProfessionBoard" },
-        aliases = { "professions", "profession" },
-        description = "Saves each character's profession skill and rank.",
-    },
-    {
         id = "lockouts",
         label = "Lockouts",
         tab = "lockouts",
