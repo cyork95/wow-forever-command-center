@@ -1616,6 +1616,47 @@ function formatWhen(seconds) {
   return new Date(n * 1000).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 }
 
+function lockoutCard(key, lockouts) {
+  const saved = asList(lockouts.saved);
+  const runs = asList(lockouts.runs);
+  const savedNodes = saved.length ? saved.map((entry) => {
+    const progress = Number(entry.progress) || 0;
+    const encounters = Number(entry.encounters) || 0;
+    const ratio = encounters > 0 ? Math.min(100, Math.round((progress / encounters) * 100)) : 0;
+    const done = encounters > 0 && progress >= encounters;
+    const detail = [entry.difficulty, entry.resetText].filter(Boolean).join(" · ");
+    return el("div", { class: "lock-row" }, [
+      el("div", { class: "lock-top" }, [
+        el("strong", { text: entry.name || "Instance" }),
+        el("span", { text: encounters > 0 ? `${progress}/${encounters}` : "" })
+      ]),
+      detail ? el("p", { class: "meta", text: detail }) : null,
+      el("div", { class: "lock-bar", "aria-hidden": "true" }, [
+        el("div", { style: `width:${ratio}%;background:${done ? "var(--teal)" : "var(--gold)"}` })
+      ])
+    ]);
+  }) : [el("p", { class: "meta", text: "No saved instances." })];
+  const runNodes = runs.length ? runs.map((run) => {
+    const levels = run.levelFrom && run.levelTo && run.levelTo !== run.levelFrom ? `${run.levelFrom} to ${run.levelTo}` : "";
+    const gold = Number(run.gold);
+    return el("div", { class: "lock-run" }, [
+      el("span", { class: "when", text: formatWhen(run.entered) || "—" }),
+      el("span", { class: "name", text: run.name || "Instance" }),
+      el("span", { text: formatPlayed(run.seconds) }),
+      levels ? el("span", { class: "muted", text: levels }) : null,
+      gold ? el("span", { text: formatGold(gold) }) : null,
+      Number(run.mobs) > 0 ? el("span", { class: "muted", text: `${run.mobs} kills` }) : null
+    ]);
+  }) : [el("p", { class: "meta", text: "No instance runs yet." })];
+  return el("article", { class: "card lock-card" }, [
+    el("h3", { text: key }),
+    el("h4", { text: "Saved now" }),
+    ...savedNodes,
+    el("h4", { text: "Recent runs" }),
+    ...runNodes
+  ]);
+}
+
 function renderLedgerBoards() {
   const book = state.ledger || {};
   const people = ledgerCharacters();
@@ -1685,12 +1726,7 @@ function renderLedgerBoards() {
   const lockNote = document.getElementById("lockouts-note");
   if (lockRoot && lockNote) {
     lockNote.textContent = empty || "Saved instances and recent runs.";
-    lockRoot.replaceChildren(...names.map((key) => {
-      const lockouts = people[key].lockouts || {};
-      const saved = asList(lockouts.saved).map((entry) => `${entry.name || "Instance"}  ${entry.difficulty || ""}  ${entry.progress || 0}/${entry.encounters || 0}  ${entry.resetText || ""}`);
-      const runs = asList(lockouts.runs).map((run) => `${formatWhen(run.entered)}  ${run.name || "Instance"}  ${run.seconds || 0}s  ${formatGold(run.gold || 0)}`);
-      return card(key, [...(saved.length ? saved : ["No saved instances."]), ...(runs.length ? runs : ["No instance runs yet."])]);
-    }));
+    lockRoot.replaceChildren(...names.map((key) => lockoutCard(key, people[key].lockouts || {})));
   }
 
   const sessionRoot = document.getElementById("sessions-list");

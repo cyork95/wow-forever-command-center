@@ -514,60 +514,120 @@ end
 
 local LockoutsView = {}
 
+local function RunDuration(seconds)
+    local session = ns.Data and ns.Data.Session
+
+    if session and type(session.FormatDuration) == "function" then
+        return session.FormatDuration(seconds)
+    end
+
+    seconds = tonumber(seconds) or 0
+
+    if seconds < 0 then
+        seconds = 0
+    end
+
+    local hours = math.floor(seconds / 3600)
+    local minutes = math.floor((seconds % 3600) / 60)
+
+    if hours > 0 then
+        return string.format("%dh %dm", hours, minutes)
+    end
+
+    return string.format("%dm", minutes)
+end
+
 function LockoutsView:Build(page)
     self.state = ns.UI.HouseList.Build(page, {
         keys = function()
             return ns.Data.Runs:CharacterKeys()
         end,
-        text = function(state)
-            local lines = { "Saved now" }
-            local saved = ns.Data.Runs:SavedLines()
+        blocks = function(state)
+            local blocks = { { kind = "heading", text = "Saved now" } }
+            local groups = {}
+            local order = {}
 
-            if #saved == 0 then
-                table.insert(lines, "  No saved instances.")
-            end
-
-            for _, entry in ipairs(saved) do
+            for _, entry in ipairs(ns.Data.Runs:SavedLines()) do
                 if state.character == "all" or state.character == entry.character then
-                    table.insert(lines, string.format(
-                        "  %s    %s    %s/%s    %s",
-                        entry.character,
-                        entry.difficulty or "",
-                        tostring(entry.progress or 0),
-                        tostring(entry.encounters or 0),
-                        entry.resetText or ""
-                    ))
-                    table.insert(lines, "  " .. entry.name)
+                    if not groups[entry.character] then
+                        groups[entry.character] = {}
+                        table.insert(order, entry.character)
+                    end
+
+                    table.insert(groups[entry.character], entry)
                 end
             end
 
-            table.insert(lines, "")
-            table.insert(lines, "Recent runs")
+            if #order == 0 then
+                table.insert(blocks, { kind = "line", text = "|cff8d9aa3No saved instances.|r" })
+            end
+
+            for _, character in ipairs(order) do
+                if state.character == "all" then
+                    table.insert(blocks, { kind = "line", text = "|cffd4b15a" .. character .. "|r" })
+                end
+
+                for _, entry in ipairs(groups[character]) do
+                    local progress = tonumber(entry.progress) or 0
+                    local encounters = tonumber(entry.encounters) or 0
+                    local done = encounters > 0 and progress >= encounters
+                    local notes = {}
+
+                    if entry.difficulty and entry.difficulty ~= "" then
+                        table.insert(notes, entry.difficulty)
+                    end
+
+                    if entry.resetText and entry.resetText ~= "" then
+                        table.insert(notes, entry.resetText)
+                    end
+
+                    table.insert(blocks, {
+                        kind = "bar",
+                        label = entry.name or "Instance",
+                        note = table.concat(notes, "   "),
+                        right = encounters > 0 and string.format("%d/%d", progress, encounters) or "",
+                        value = progress,
+                        max = encounters > 0 and encounters or 1,
+                        color = done and { 0.45, 0.78, 0.42 } or { 0.86, 0.64, 0.28 },
+                    })
+                end
+            end
+
+            table.insert(blocks, { kind = "heading", text = "Recent runs" })
 
             local runs = ns.Data.Runs:RunLines(state.character)
 
             if #runs == 0 then
-                table.insert(lines, "  No instance runs yet.")
+                table.insert(blocks, { kind = "line", text = "|cff8d9aa3No instance runs yet.|r" })
             end
 
             for _, run in ipairs(runs) do
-                local levels = ""
+                local details = { "|cffd4b15a" .. When(run.entered) .. "|r" }
 
                 if run.levelFrom and run.levelTo and run.levelTo ~= run.levelFrom then
-                    levels = string.format("  level %s to %s", tostring(run.levelFrom), tostring(run.levelTo))
+                    table.insert(details, string.format("|cff9ec5ff%s to %s|r", tostring(run.levelFrom), tostring(run.levelTo)))
                 end
 
-                table.insert(lines, string.format(
-                    "%s  %s  %s%s  %s",
-                    When(run.entered),
-                    run.name or "Instance",
-                        ns.Data.Session and ns.Data.Session.FormatDuration and ns.Data.Session.FormatDuration(run.seconds) or "",
-                    levels,
-                    run.gold and Gold(run.gold) or ""
-                ))
+                if tonumber(run.gold) and tonumber(run.gold) ~= 0 then
+                    table.insert(details, Gold(run.gold))
+                end
+
+                if tonumber(run.mobs) and tonumber(run.mobs) > 0 then
+                    table.insert(details, string.format("|cffff8a7a%s kills|r", tostring(run.mobs)))
+                end
+
+                if state.character == "all" and run.character and run.character ~= "" then
+                    table.insert(details, "|cff8d9aa3" .. run.character .. "|r")
+                end
+
+                table.insert(blocks, {
+                    kind = "line",
+                    text = string.format("|cff7ee0e6%s|r    |cffffd36b%s|r", run.name or "Instance", RunDuration(run.seconds)),
+                })
+                table.insert(blocks, { kind = "line", text = table.concat(details, "    ") })
             end
 
-            return table.concat(lines, "\n")
+            return blocks
         end,
     })
 end

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.7
+
+- The Lockouts tab shows each saved instance as a progress bar, with difficulty and reset under the name. Each run is two lines: the instance and how long it took, then time, level, gold, and kills.
+
 ## 2.2.6
 
 - The Ledger, Currencies, and Reputation tabs are gone. Dossier no longer records gold, currencies, or reputation itself. Saved rows stay.

@@ -236,6 +236,48 @@ h2 {
   letter-spacing: 0.02em;
 }
 
+.lock-card h4 {
+  margin: 16px 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.lock-row { margin: 0 0 14px; }
+
+.lock-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.lock-top strong { color: var(--cream); }
+
+.lock-top span, .lock-run .muted { color: var(--muted); }
+
+.lock-bar {
+  height: 6px;
+  background: #10150e;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.lock-bar > div { height: 100%; border-radius: 99px; }
+
+.lock-run {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lock-run .when { color: var(--gold); }
+.lock-run .name { color: var(--teal); font-weight: 600; }
+
 .meta { color: var(--muted); margin: 0 0 10px; }
 
 .warn {

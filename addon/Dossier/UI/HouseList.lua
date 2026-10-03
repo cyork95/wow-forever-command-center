@@ -137,14 +137,21 @@ local function AttachBlocks(box)
                 local row = Take("bar", function()
                     local frame = CreateFrame("Frame", nil, self.content)
                     frame:SetHeight(28)
-                    local name = Theme.CreateText(frame, "GameFontHighlightSmall", "text")
-                    name:SetPoint("TOPLEFT", 0, 0)
                     local right = Theme.CreateText(frame, "GameFontHighlightSmall", "muted")
                     right:SetPoint("TOPRIGHT", 0, 0)
+                    local name = Theme.CreateText(frame, "GameFontHighlightSmall", "text")
+                    name:SetPoint("TOPLEFT", 0, 0)
+                    name:SetPoint("TOPRIGHT", right, "TOPLEFT", -8, 0)
+                    name:SetJustifyH("LEFT")
+                    name:SetWordWrap(false)
+                    local note = Theme.CreateText(frame, "GameFontDisableSmall", "muted")
+                    note:SetPoint("TOPLEFT", 0, -14)
+                    note:SetPoint("RIGHT", 0, 0)
+                    note:SetJustifyH("LEFT")
                     local bar = CreateFrame("StatusBar", nil, frame)
                     bar:SetPoint("BOTTOMLEFT", 0, 2)
                     bar:SetPoint("BOTTOMRIGHT", 0, 2)
-                    bar:SetHeight(8)
+                    bar:SetHeight(6)
                     bar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
                     bar:SetMinMaxValues(0, 1)
                     local back = bar:CreateTexture(nil, "BACKGROUND")
@@ -153,21 +160,31 @@ local function AttachBlocks(box)
                     back:SetVertexColor(0.08, 0.09, 0.1, 0.9)
                     frame.name = name
                     frame.right = right
+                    frame.note = note
                     frame.bar = bar
                     return frame
                 end)
+                local note = block.note or ""
+                local rowHeight = note ~= "" and 42 or 28
                 row:SetWidth(width)
+                row:SetHeight(rowHeight)
                 row.name:SetText(block.label or "")
                 row.right:SetText(block.right or "")
+                row.note:SetText(note)
+                if note == "" then
+                    row.note:Hide()
+                else
+                    row.note:Show()
+                end
                 local maxValue = tonumber(block.max) or 0
                 local value = tonumber(block.value) or 0
                 row.bar:SetMinMaxValues(0, maxValue > 0 and maxValue or 1)
                 row.bar:SetValue(maxValue > 0 and math.min(value, maxValue) or 0)
-                local color = STANDING_COLORS[block.color] or { 0.25, 0.78, 0.82 }
+                local color = type(block.color) == "table" and block.color or STANDING_COLORS[block.color] or { 0.25, 0.78, 0.82 }
                 row.bar:SetStatusBarColor(color[1], color[2], color[3])
                 row:ClearAllPoints()
                 row:SetPoint("TOPLEFT", 4, -y)
-                y = y + 32
+                y = y + rowHeight + 6
             else
                 local line = Take("line", function()
                     local text = Theme.CreateText(self.content, "GameFontHighlightSmall", "text")

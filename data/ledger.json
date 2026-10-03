@@ -24,7 +24,15 @@
       ],
       "tasks": [],
       "quests": [],
-      "lockouts": { "saved": [], "runs": [] }
+      "lockouts": {
+        "saved": [
+          { "name": "Example: Deadmines", "difficulty": "Normal", "progress": 3, "encounters": 6, "resetText": "Resets in 2 days" },
+          { "name": "Example: The Stockade", "difficulty": "Normal", "progress": 5, "encounters": 5, "resetText": "Resets in 18 hours" }
+        ],
+        "runs": [
+          { "entered": 1790971800, "name": "Example: Deadmines", "seconds": 2460, "levelFrom": 18, "levelTo": 20, "gold": 18400, "mobs": 42 }
+        ]
+      }
     }
   },
   "rares": [
