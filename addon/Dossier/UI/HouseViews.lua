@@ -695,25 +695,10 @@ local TasksView = {}
 
 function TasksView:Build(page)
     local Theme = ns.Theme
-    local mode = "tasks"
     local repeatKind = "daily"
     local editing = nil
     local character = ns.Account.CharacterKey()
     local cards = {}
-
-    local tasksButton = Theme.CreateButton(page, "Tasks", 72, 22, "default", function()
-        mode = "tasks"
-        editing = nil
-        TasksView:Refresh()
-    end)
-    tasksButton:SetPoint("TOPLEFT", 0, 0)
-
-    local notesButton = Theme.CreateButton(page, "Notes", 72, 22, "default", function()
-        mode = "notes"
-        editing = nil
-        TasksView:Refresh()
-    end)
-    notesButton:SetPoint("LEFT", tasksButton, "RIGHT", 6, 0)
 
     local characterButton = Theme.CreateButton(page, character or "This character", 200, 22, "default", function()
         local keys = ns.Data.Tasks and ns.Data.Tasks:CharacterKeys() or {}
@@ -729,7 +714,7 @@ function TasksView:Build(page)
         editing = nil
         TasksView:Refresh()
     end)
-    characterButton:SetPoint("LEFT", notesButton, "RIGHT", 12, 0)
+    characterButton:SetPoint("TOPLEFT", 0, 0)
 
     local C = ns.constants
     local panelCard = Theme.CreateCard(page, C.TEXT.TASK_PANEL_CARD)
@@ -766,7 +751,7 @@ function TasksView:Build(page)
                 panel:SetLine(lineKey, self:GetChecked() == true)
             end
         end)
-        box:SetPoint("TOPLEFT", 10 + (index - 1) * 150, -48)
+        box:SetPoint("TOPLEFT", 10 + (index - 1) * 128, -48)
         lineBoxes[key] = box
     end
 
@@ -787,7 +772,7 @@ function TasksView:Build(page)
     opacityValue:SetPoint("LEFT", opacitySlider, "RIGHT", 8, 0)
 
     local nameBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
-    nameBox:SetSize(280, 44)
+    nameBox:SetSize(280, 36)
     nameBox:SetPoint("TOPLEFT", 0, -132)
     nameBox:SetAutoFocus(false)
     nameBox:SetMultiLine(true)
@@ -819,7 +804,7 @@ function TasksView:Build(page)
     add:SetPoint("LEFT", kindButton, "RIGHT", 8, 0)
 
     local box = Theme.CreatePanel(page, "dark", "border")
-    box:SetPoint("TOPLEFT", 0, -184)
+    box:SetPoint("TOPLEFT", 0, -176)
     box:SetPoint("BOTTOMRIGHT", 0, 0)
 
     local scroll = CreateFrame("ScrollFrame", nil, box, "UIPanelScrollFrameTemplate")
@@ -851,25 +836,10 @@ function TasksView:Build(page)
     end
 
     local function LayoutComposer()
-        Theme.SetBorderColor(tasksButton, mode == "tasks" and "accent" or "border")
-        Theme.SetBorderColor(notesButton, mode == "notes" and "accent" or "border")
         characterButton:SetLabel(character or "This character")
-
-        if mode == "notes" then
-            kindButton:Hide()
-            add:ClearAllPoints()
-            add:SetPoint("LEFT", nameBox, "RIGHT", 8, 0)
-            placeholder:SetText(editing and "Change this note" or "Jot something down")
-            add:SetLabel(editing and "Save" or "Add note")
-        else
-            kindButton:Show()
-            kindButton:SetLabel(CadenceLabel(repeatKind))
-            add:ClearAllPoints()
-            add:SetPoint("LEFT", kindButton, "RIGHT", 8, 0)
-            placeholder:SetText(editing and "Change this task" or "What do you need to do?")
-            add:SetLabel(editing and "Save" or "Add task")
-        end
-
+        kindButton:SetLabel(CadenceLabel(repeatKind))
+        placeholder:SetText(editing and "Change this task" or "What do you need to do?")
+        add:SetLabel(editing and "Save" or "Add task")
         placeholder:SetShown(Trim(nameBox:GetText()) == "")
     end
 
@@ -904,13 +874,7 @@ function TasksView:Build(page)
             return
         end
 
-        if mode == "notes" then
-            if editing then
-                tasks:UpdateNote(editing, text, character)
-            else
-                tasks:AddNote(text, character)
-            end
-        elseif editing then
+        if editing then
             tasks:Update(editing, character, text, repeatKind)
         else
             local zone = character == ns.Account.CharacterKey() and ns.Account.Zone() or nil
@@ -955,58 +919,8 @@ function TasksView:Build(page)
         local count = 0
 
         if not tasks or not character then
-            empty:SetText("Log in on a character to write tasks and notes.")
+            empty:SetText("Log in on a character to write tasks.")
             empty:Show()
-        elseif mode == "notes" then
-            local notes = tasks:Notes(character)
-
-            if #notes == 0 then
-                empty:SetText("No notes yet. Write one in the box above.")
-                empty:Show()
-            else
-                empty:Hide()
-            end
-
-            for _, note in ipairs(notes) do
-                count = count + 1
-                local card = TakeCard(count)
-                local noteIndex = note.index
-                local noteText = note.text
-                card.done:Hide()
-                card.edit:Show()
-                card.delete:Show()
-                card.detail:Hide()
-                card.title:SetWordWrap(true)
-                card.title:SetText("|cffe7d7b1" .. noteText .. "|r")
-                card.title:ClearAllPoints()
-                card.title:SetPoint("TOPLEFT", 10, -32)
-                card.title:SetPoint("RIGHT", -10, 0)
-                card.edit:ClearAllPoints()
-                card.edit:SetPoint("TOPRIGHT", -8, -6)
-                card.delete:ClearAllPoints()
-                card.delete:SetPoint("RIGHT", card.edit, "LEFT", -4, 0)
-                card.edit:SetScript("OnClick", function()
-                    editing = noteIndex
-                    mode = "notes"
-                    nameBox:SetText(noteText)
-                    nameBox:SetFocus()
-                    LayoutComposer()
-                end)
-                card.delete:SetScript("OnClick", function()
-                    tasks:RemoveNote(noteIndex, character)
-                    if editing == noteIndex then
-                        editing = nil
-                        nameBox:SetText("")
-                    end
-                    TasksView:Refresh()
-                end)
-                card:SetWidth(width)
-                local height = math.max(72, (card.title:GetStringHeight() or 16) + 44)
-                card:SetHeight(height)
-                card:ClearAllPoints()
-                card:SetPoint("TOPLEFT", 4, -y)
-                y = y + height + 8
-            end
         else
             local rows = tasks:All(character)
 
@@ -1051,7 +965,6 @@ function TasksView:Build(page)
                 end)
                 card.edit:SetScript("OnClick", function()
                     editing = taskIndex
-                    mode = "tasks"
                     repeatKind = taskKind or "daily"
                     nameBox:SetText(taskName or "")
                     nameBox:SetFocus()
@@ -1214,6 +1127,219 @@ function QuestHistoryView:Refresh()
     end
 end
 
+local NotesView = {}
+
+function NotesView:Build(page)
+    local Theme = ns.Theme
+    local editing = nil
+    local character = ns.Account.CharacterKey()
+    local cards = {}
+
+    local characterButton = Theme.CreateButton(page, character or "This character", 200, 22, "default", function()
+        local keys = ns.Data.Tasks and ns.Data.Tasks:CharacterKeys() or {}
+        local nextIndex = 1
+
+        for index, key in ipairs(keys) do
+            if key == character then
+                nextIndex = index + 1
+            end
+        end
+
+        character = keys[nextIndex] or keys[1] or character
+        editing = nil
+        NotesView:Refresh()
+    end)
+    characterButton:SetPoint("TOPLEFT", 0, 0)
+
+    local noteBox = CreateFrame("EditBox", nil, page, Theme.BACKDROP_TEMPLATE)
+    noteBox:SetSize(360, 48)
+    noteBox:SetPoint("TOPLEFT", 0, -32)
+    noteBox:SetAutoFocus(false)
+    noteBox:SetMultiLine(true)
+    noteBox:SetFontObject(ChatFontNormal)
+    noteBox:SetTextInsets(8, 8, 8, 8)
+    noteBox:SetMaxLetters(400)
+    Theme.ApplyBackdrop(noteBox, "card", "accent")
+
+    local placeholder = Theme.CreateText(noteBox, "GameFontHighlightSmall", "disabled")
+    placeholder:SetPoint("TOPLEFT", 8, -8)
+    placeholder:SetText("Jot something down")
+
+    local add = Theme.CreateButton(page, "Add note", 84, 22, "primary", function()
+        NotesView:Commit()
+    end)
+    add:SetPoint("LEFT", noteBox, "RIGHT", 8, 0)
+
+    local box = Theme.CreatePanel(page, "dark", "border")
+    box:SetPoint("TOPLEFT", 0, -88)
+    box:SetPoint("BOTTOMRIGHT", 0, 0)
+
+    local scroll = CreateFrame("ScrollFrame", nil, box, "UIPanelScrollFrameTemplate")
+    scroll:SetPoint("TOPLEFT", 8, -8)
+    scroll:SetPoint("BOTTOMRIGHT", -28, 8)
+
+    local content = CreateFrame("Frame", nil, scroll)
+    content:SetSize(1, 1)
+    scroll:SetScrollChild(content)
+
+    local empty = Theme.CreateText(content, "GameFontHighlightSmall", "muted")
+    empty:SetPoint("TOPLEFT", 8, -8)
+    empty:SetJustifyH("LEFT")
+
+    local function Trim(value)
+        return (value or ""):gsub("^%s+", ""):gsub("%s+$", "")
+    end
+
+    local function LayoutComposer()
+        characterButton:SetLabel(character or "This character")
+        placeholder:SetText(editing and "Change this note" or "Jot something down")
+        add:SetLabel(editing and "Save" or "Add note")
+        placeholder:SetShown(Trim(noteBox:GetText()) == "")
+    end
+
+    local function TakeCard(index)
+        local card = cards[index]
+
+        if card then
+            card:Show()
+            return card
+        end
+
+        card = CreateFrame("Frame", nil, content, Theme.BACKDROP_TEMPLATE)
+        Theme.ApplyBackdrop(card, "card", "border")
+        card.title = Theme.CreateText(card, "GameFontHighlight", "text")
+        card.title:SetJustifyH("LEFT")
+        card.title:SetJustifyV("TOP")
+        card.title:SetWordWrap(true)
+        card.edit = Theme.CreateButton(card, "Edit", 46, 20, "default", function() end)
+        card.delete = Theme.CreateButton(card, "Delete", 56, 20, "default", function() end)
+        cards[index] = card
+
+        return card
+    end
+
+    function NotesView:Commit()
+        local tasks = ns.Data and ns.Data.Tasks
+        local text = Trim(noteBox:GetText())
+
+        if text == "" or not tasks or not character then
+            return
+        end
+
+        if editing then
+            tasks:UpdateNote(editing, text, character)
+        else
+            tasks:AddNote(text, character)
+        end
+
+        editing = nil
+        noteBox:SetText("")
+        noteBox:ClearFocus()
+        NotesView:Refresh()
+    end
+
+    noteBox:SetScript("OnTextChanged", function()
+        placeholder:SetShown(Trim(noteBox:GetText()) == "")
+    end)
+    noteBox:SetScript("OnEnterPressed", function()
+        NotesView:Commit()
+    end)
+    noteBox:SetScript("OnEscapePressed", function(self)
+        editing = nil
+        self:SetText("")
+        self:ClearFocus()
+        LayoutComposer()
+    end)
+
+    function NotesView:Refresh()
+        local tasks = ns.Data and ns.Data.Tasks
+
+        if not character then
+            character = ns.Account.CharacterKey()
+        end
+
+        LayoutComposer()
+
+        local width = (scroll:GetWidth() or 0) - 12
+
+        if width < 240 then
+            width = 420
+        end
+
+        local columnWidth = math.floor((width - 12) / 2)
+        local y = 4
+        local count = 0
+        local rowHeight = 0
+        local notes = tasks and character and tasks:Notes(character) or {}
+
+        if not tasks or not character then
+            empty:SetText("Log in on a character to write notes.")
+            empty:Show()
+        elseif #notes == 0 then
+            empty:SetText("No notes yet. Write one in the box above.")
+            empty:Show()
+        else
+            empty:Hide()
+        end
+
+        for _, note in ipairs(notes) do
+            count = count + 1
+            local card = TakeCard(count)
+            local noteIndex = note.index
+            local noteText = note.text
+            local column = (count - 1) % 2
+            card.title:SetText("|cffe7d7b1" .. noteText .. "|r")
+            card.title:ClearAllPoints()
+            card.title:SetPoint("TOPLEFT", 10, -32)
+            card.title:SetPoint("RIGHT", -10, 0)
+            card.edit:ClearAllPoints()
+            card.edit:SetPoint("TOPRIGHT", -8, -6)
+            card.delete:ClearAllPoints()
+            card.delete:SetPoint("RIGHT", card.edit, "LEFT", -4, 0)
+            card.edit:SetScript("OnClick", function()
+                editing = noteIndex
+                noteBox:SetText(noteText)
+                noteBox:SetFocus()
+                LayoutComposer()
+            end)
+            card.delete:SetScript("OnClick", function()
+                tasks:RemoveNote(noteIndex, character)
+                if editing == noteIndex then
+                    editing = nil
+                    noteBox:SetText("")
+                end
+                NotesView:Refresh()
+            end)
+            card:SetWidth(columnWidth)
+            local height = math.max(88, (card.title:GetStringHeight() or 16) + 48)
+            card:SetHeight(height)
+            card:ClearAllPoints()
+            card:SetPoint("TOPLEFT", 4 + column * (columnWidth + 8), -y)
+
+            if column == 0 then
+                rowHeight = height
+            else
+                y = y + math.max(rowHeight, height) + 8
+                rowHeight = 0
+            end
+        end
+
+        if count % 2 == 1 then
+            y = y + rowHeight + 8
+        end
+
+        for index = count + 1, #cards do
+            cards[index]:Hide()
+        end
+
+        content:SetHeight(math.max(y + 8, 40))
+        content:SetWidth(width)
+    end
+end
+
+function NotesView:Refresh()
+end
+
 ns.UI = ns.UI or {}
 ns.UI.LedgerView = LedgerView
 ns.UI.CurrenciesView = CurrenciesView
@@ -1224,4 +1350,5 @@ ns.UI.RaresView = RaresView
 ns.UI.LockoutsView = LockoutsView
 ns.UI.SessionsView = SessionsView
 ns.UI.TasksView = TasksView
+ns.UI.NotesView = NotesView
 ns.UI.QuestHistoryView = QuestHistoryView

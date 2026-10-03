@@ -59,7 +59,16 @@ C.FEATURES = {
         sections = {},
         modules = { "Data.Tasks", "UI.TrackerWindow" },
         aliases = { "tasks", "task" },
-        description = "Tasks you mean to finish, and notes you write. Mark a task done for the day or the week.",
+        description = "Tasks you mean to finish. Mark a task done for the day or the week.",
+    },
+    {
+        id = "notes",
+        label = "Notes",
+        tab = "notes",
+        sections = {},
+        modules = {},
+        aliases = { "notes", "note" },
+        description = "Notes you write. Each one is its own box you can edit or delete.",
     },
     {
         id = "shopping",

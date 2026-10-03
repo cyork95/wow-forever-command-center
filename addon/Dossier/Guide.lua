@@ -38,7 +38,8 @@ The window lists a tab for each part that is switched on:
 - Mail: letters you sent and received. Dossier does not send or take mail
 - Lockouts: saved instances and a diary of runs
 - Shopping: the items and recipes you plan to gather or buy
-- Tasks: daily, weekly, and one-time notes, plus a window for this zone
+- Tasks: things to finish each day, each week, or just once, plus a window for this zone
+- Notes: a pad of boxes you can write, edit, and delete
 - Screenshotter: automatic screenshots at big moments
 - Options: the minimap icon, item stats, detailed export, and a switch for
   each part of Dossier
@@ -60,13 +61,14 @@ options are in the game's Settings, under AddOns > Dossier.
 /dossier rares       Open the Kills tab, where rare names are gold
 /dossier lockouts    Open the Lockouts tab
 /dossier tasks       Open the Tasks tab and the zone window
+/dossier notes       Open the Notes tab
 /dossier shop        Open the Shopping tab
 /dossier shots       Open the Screenshotter tab
 /dossier shot        Take a screenshot now
 /dossier options     Open the Options tab
 /dossier settings    Open Dossier's page in the game's Settings
 /dossier off kills   Turn a feature off (bio, kills, session, mail,
-                     lockouts, tasks, shop, shots)
+                     lockouts, tasks, notes, shop, shots)
 /dossier on kills    Turn it back on
 /dossier help        Open this guide
 
@@ -277,10 +279,10 @@ timer stays on the Session tab.
 
 Tasks are things you mean to finish: each day, each week, or just once.
 Done today, Done this week, or Finished checks one off. Edit and Delete
-change the list. Notes, on the same tab, is a pad of boxes you can write,
-edit, and delete. /dossier tasks opens a window for this zone. That window
+change the list. /dossier tasks opens a window for this zone. That window
 has the same choices as the session panel: show it, lock it, pick Tasks,
-Shopping, or Rares, and set how solid the background is. A quest
+Shopping, or Rares, and set how solid the background is. Notes is its own
+tab. Each note is a box you can write, edit, or delete. A quest
 turn-in can still mark a matching task done. Completed quests stay in
 Questie. A turn-in is still a line in the Biography.
 
@@ -304,7 +306,7 @@ and a Reload UI button.
 
 Features, for every character on your account: every part of Dossier can be
 turned off here, or with /dossier off and /dossier on. The switches are
-Biography, Kills, Session, Mail, Lockouts, Tasks, Shopping list, Screenshotter, and Other addons.
+Biography, Kills, Session, Mail, Lockouts, Tasks, Notes, Shopping list, Screenshotter, and Other addons.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left

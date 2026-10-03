@@ -2149,6 +2149,10 @@ SlashCmdList[
                 Commands:OpenTab("tasks")
                 Commands:OpenTracker()
             end)
+        elseif argument == "notes"
+            or argument == "note"
+        then
+            IfFeatureOn("notes", function() Commands:OpenTab("notes") end)
         elseif argument == "panel"
         then
             Commands:ToggleKillPanel()

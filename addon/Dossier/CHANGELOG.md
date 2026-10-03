@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.11
+
+- Notes are their own tab. Each note is a box you can add, edit, or delete. The Tasks tab and the task panel no longer hold notes.
+
 ## 2.2.10
 
 - The task panel uses the same choices as the session panel: show it, lock it, pick which lines, and set the background. The lines are colored instead of plain text.

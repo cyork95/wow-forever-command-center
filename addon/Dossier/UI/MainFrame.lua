@@ -19,7 +19,7 @@ MainFrame.activeTab = "export"
 MainFrame.TAB_ORDER = {
     "export", "biography", "kills", "session",
     "mail", "lockouts",
-    "shopping", "tasks", "screenshots", "options", "help",
+    "shopping", "tasks", "notes", "screenshots", "options", "help",
 }
 
 local FRAME_WIDTH = 740
@@ -56,6 +56,7 @@ local TAB_LABELS = {
     lockouts = C.TEXT.TAB_LOCKOUTS,
     shopping = C.TEXT.TAB_SHOPPING,
     tasks = C.TEXT.TAB_TASKS,
+    notes = "Notes",
     quests = C.TEXT.TAB_QUESTS,
     screenshots = C.TEXT.TAB_SCREENSHOTS,
     options = C.TEXT.TAB_OPTIONS,
@@ -523,6 +524,7 @@ local PAGE_BUILDERS = {
     lockouts = BuildHousePage("LockoutsView"),
     shopping = BuildShoppingPage,
     tasks = BuildHousePage("TasksView"),
+    notes = BuildHousePage("NotesView"),
     quests = BuildHousePage("QuestHistoryView"),
     screenshots = BuildScreenshotsPage,
     options = BuildOptionsPage,
@@ -663,6 +665,7 @@ function MainFrame:SelectTab(tabId)
         professions = "ProfessionsView",
         lockouts = "LockoutsView",
         tasks = "TasksView",
+        notes = "NotesView",
         quests = "QuestHistoryView",
     }
     local house = houseViews[tabId] and ns.UI and ns.UI[houseViews[tabId]]
