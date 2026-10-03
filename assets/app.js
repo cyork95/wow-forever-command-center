@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "mail", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
+const TABS = ["roster", "hunts", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
 
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
@@ -38,6 +38,8 @@ const state = {
   quests: null,
   questLoading: false,
   questQuery: "",
+  altoholic: null,
+  altoName: "",
   books: null,
   openBookRegions: new Set(),
   openBookMaps: new Set(),
@@ -1750,12 +1752,88 @@ function renderLedgerBoards() {
   }
 }
 
+function renderAltoholic() {
+  const note = document.getElementById("alto-note");
+  const picker = document.getElementById("alto-character");
+  const sheet = document.getElementById("alto-sheet");
+  if (!note || !picker || !sheet) return;
+  const people = asList(state.altoholic && state.altoholic.characters);
+  if (!people.length) {
+    note.textContent = "No Altoholic save yet. Log out in game, then run scripts/scan-addons.ps1.";
+    picker.replaceChildren();
+    sheet.replaceChildren();
+    return;
+  }
+  if (!people.some((person) => person.name === state.altoName)) state.altoName = people[0].name;
+  picker.replaceChildren(...people.map((person) => el("option", {
+    value: person.name,
+    text: person.realm ? `${person.name} · ${person.realm}` : person.name,
+    selected: person.name === state.altoName ? "selected" : null
+  })));
+  const person = people.find((row) => row.name === state.altoName) || people[0];
+  const when = state.altoholic.updated ? state.altoholic.updated.replace("T", " ") : "an unknown time";
+  note.textContent = `Saved by Altoholic at ${when}.`;
+  const place = [person.subZone, person.zone].filter(Boolean).join(", ");
+  const identity = [`Level ${person.level || "?"}`, person.race, person.class].filter(Boolean).join(" ");
+  const professions = asList(person.professions);
+  const reputations = asList(person.reputations);
+  const currencies = asList(person.currencies);
+  const mail = asList(person.mail);
+  const bar = (label, value, max, right) => {
+    const ratio = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0;
+    return el("div", { class: "lock-row" }, [
+      el("div", { class: "lock-top" }, [
+        el("strong", { text: label }),
+        el("span", { text: right || (max > 0 ? `${value}/${max}` : "") })
+      ]),
+      el("div", { class: "lock-bar", "aria-hidden": "true" }, [
+        el("div", { style: `width:${ratio}%;background:var(--gold)` })
+      ])
+    ]);
+  };
+  sheet.replaceChildren(el("article", { class: "card lock-card alto-sheet" }, [
+    el("h3", { text: person.name }),
+    el("p", { class: "alto-meta" }, [
+      el("strong", { text: identity }),
+      document.createTextNode(place ? ` · ${place}` : ""),
+      document.createTextNode(` · ${formatGold(person.gold || 0)}`),
+      person.played ? document.createTextNode(` · ${formatPlayed(person.played)} played`) : null,
+      person.rested ? document.createTextNode(" · rested") : null
+    ].filter(Boolean)),
+    el("h4", { text: "Professions" }),
+    ...(professions.length ? professions.map((skill) => {
+      const value = Number(skill.rank) || 0;
+      const max = Number(skill.max) || 0;
+      return bar(skill.name, value, max > 0 ? max : Math.max(value, 1), max > 0 ? `${value}/${max}` : String(value));
+    }) : [el("p", { class: "meta", text: "No profession ranks saved." })]),
+    el("h4", { text: "Reputation" }),
+    ...(reputations.length ? reputations.map((row) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: row.name }),
+      el("span", { text: row.standing || "" }),
+      row.next ? el("span", { class: "muted", text: `${row.progress || 0}/${row.next}` }) : null
+    ])) : [el("p", { class: "meta", text: "No reputation saved." })]),
+    el("h4", { text: "Currencies" }),
+    ...(currencies.length ? currencies.map((row) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: row.name }),
+      el("span", { text: String(row.quantity) })
+    ])) : [el("p", { class: "meta", text: "No currencies saved." })]),
+    el("h4", { text: "Mail" }),
+    ...(mail.length ? mail.map((letter) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: letter.sender || "Unknown" }),
+      el("span", { text: letter.subject || "" }),
+      Number(letter.money) ? el("span", { text: formatGold(letter.money) }) : null,
+      letter.daysLeft ? el("span", { class: "muted", text: `${letter.daysLeft} days left` }) : null
+    ])) : [el("p", { class: "meta", text: "No mail saved. Open a mailbox on that character." })])
+  ]));
+}
+
 function render() {
   renderHouse();
   renderRoster();
   renderSheet();
   renderChecklist();
   renderLedgerBoards();
+  renderAltoholic();
   renderProfessions();
   renderDungeons();
   renderQuests();
@@ -1777,13 +1855,14 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, ledger, screenshots, dungeons, books] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, altoholic, screenshots, dungeons, books] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
       loadJson("data/ledger.json").catch(() => ({ characters: {}, rares: [] })),
+      loadJson("data/altoholic.json").catch(() => ({ characters: [] })),
       loadJson("data/screenshots.json").catch(() => []),
       loadJson("data/dungeons.json").catch(() => null),
       loadJson("data/library-books.json").catch(() => null)
@@ -1795,6 +1874,7 @@ async function main() {
     state.stats = stats;
     state.addons = addons;
     state.ledger = ledger;
+    state.altoholic = altoholic;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
     buildOwned();
@@ -1832,6 +1912,10 @@ async function main() {
     renderDungeons();
   });
   document.getElementById("quest-character")?.addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("alto-character")?.addEventListener("change", (event) => {
+    state.altoName = event.target.value;
+    renderAltoholic();
+  });
   document.getElementById("quest-search")?.addEventListener("input", (event) => {
     state.questQuery = event.target.value;
     renderQuests();

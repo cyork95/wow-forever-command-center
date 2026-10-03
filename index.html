@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=16">
+  <link rel="stylesheet" href="assets/site.css?v=17">
 </head>
 <body>
   <div class="frame">
@@ -26,6 +26,7 @@
         <button type="button" class="tab" role="tab" id="tab-roster" data-tab="roster" aria-controls="panel-roster" aria-selected="true">Roster</button>
         <button type="button" class="tab" role="tab" id="tab-hunts" data-tab="hunts" aria-controls="panel-hunts" aria-selected="false" tabindex="-1">Hunts</button>
         <button type="button" class="tab" role="tab" id="tab-mail" data-tab="mail" aria-controls="panel-mail" aria-selected="false" tabindex="-1">Mail</button>
+        <button type="button" class="tab" role="tab" id="tab-altoholic" data-tab="altoholic" aria-controls="panel-altoholic" aria-selected="false" tabindex="-1">Altoholic</button>
         <button type="button" class="tab" role="tab" id="tab-professions" data-tab="professions" aria-controls="panel-professions" aria-selected="false" tabindex="-1">Professions</button>
         <button type="button" class="tab" role="tab" id="tab-lockouts" data-tab="lockouts" aria-controls="panel-lockouts" aria-selected="false" tabindex="-1">Lockouts</button>
         <button type="button" class="tab" role="tab" id="tab-tasks" data-tab="tasks" aria-controls="panel-tasks" aria-selected="false" tabindex="-1">Tasks</button>
@@ -121,6 +122,13 @@
       <div id="macro-list"></div>
     </section>
 
+    <section class="panel" id="panel-altoholic" role="tabpanel" aria-labelledby="tab-altoholic" data-panel="altoholic" hidden>
+      <div class="section-head"><h2>Altoholic</h2><p id="alto-note">Loading Altoholic…</p></div>
+      <div class="toolbar">
+        <select id="alto-character" aria-label="Character"></select>
+      </div>
+      <div id="alto-sheet"></div>
+    </section>
     <section class="panel" id="panel-mail" role="tabpanel" aria-labelledby="tab-mail" data-panel="mail" hidden>
       <div class="section-head"><h2>Mail</h2><p id="mail-note">Loading mail…</p></div>
       <div id="mail-list"></div>
@@ -150,6 +158,6 @@
   </div>
   <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
   <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
-  <script src="assets/app.js?v=15"></script>
+  <script src="assets/app.js?v=16"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "quests.ps1")
 . (Join-Path $PSScriptRoot "biography.ps1")
 . (Join-Path $PSScriptRoot "ledger.ps1")
+. (Join-Path $PSScriptRoot "altoholic.ps1")
 $repo = Split-Path -Parent $PSScriptRoot
 $configPath = Join-Path $PSScriptRoot "addons.local.json"
 $catalogPath = Join-Path $repo "data\addon-catalog.json"
@@ -689,5 +690,6 @@ $unmatched | Select-Object -Unique | ForEach-Object {
 
 Update-Biography $wtfRoot $repo $characters
 Update-Ledger $wtfRoot $repo
+Update-Altoholic $wtfRoot $repo
 
 Update-Screenshots $gameRoot $repo $characters
