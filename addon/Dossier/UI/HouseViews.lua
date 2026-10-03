@@ -878,6 +878,7 @@ function TasksView:Build(page)
         card.detail = Theme.CreateText(card, "GameFontHighlightSmall", "muted")
         card.detail:SetJustifyH("LEFT")
         card.done = Theme.CreateButton(card, "Done today", 132, 20, "primary", function() end)
+        card.undo = Theme.CreateButton(card, "Undo", 48, 16, "default", function() end)
         card.edit = Theme.CreateButton(card, "Edit", 46, 20, "default", function() end)
         card.delete = Theme.CreateButton(card, "Delete", 56, 20, "default", function() end)
         cards[index] = card
@@ -966,6 +967,13 @@ function TasksView:Build(page)
                 local place = task.zone and task.zone ~= "" and ("  |cff8d9aa3" .. task.zone .. "|r") or ""
                 card.detail:SetText((open and "|cffffd36b" or "|cff8d9aa3") .. tasks:Status(task) .. "|r  |cff8d9aa3" .. tasks:Cadence(task) .. "|r" .. place)
                 card.done:SetLabel(tasks:DoneLabel(task))
+                if open then
+                    card.done:Enable()
+                    card.undo:Hide()
+                else
+                    card.done:Disable()
+                    card.undo:Show()
+                end
                 card.title:ClearAllPoints()
                 card.title:SetPoint("TOPLEFT", 10, -8)
                 card.title:SetPoint("RIGHT", card.delete, "LEFT", -8, 0)
@@ -974,12 +982,18 @@ function TasksView:Build(page)
                 card.detail:SetPoint("RIGHT", card.delete, "LEFT", -8, 0)
                 card.done:ClearAllPoints()
                 card.done:SetPoint("TOPRIGHT", -8, -8)
+                card.undo:ClearAllPoints()
+                card.undo:SetPoint("TOPRIGHT", card.done, "BOTTOMRIGHT", 0, -2)
                 card.edit:ClearAllPoints()
                 card.edit:SetPoint("RIGHT", card.done, "LEFT", -4, 0)
                 card.delete:ClearAllPoints()
                 card.delete:SetPoint("RIGHT", card.edit, "LEFT", -4, 0)
                 card.done:SetScript("OnClick", function()
-                    tasks:SetDone(taskIndex, character, open)
+                    tasks:SetDone(taskIndex, character, true)
+                    TasksView:Refresh()
+                end)
+                card.undo:SetScript("OnClick", function()
+                    tasks:SetDone(taskIndex, character, false)
                     TasksView:Refresh()
                 end)
                 card.edit:SetScript("OnClick", function()
@@ -997,11 +1011,12 @@ function TasksView:Build(page)
                     end
                     TasksView:Refresh()
                 end)
+                local height = open and 52 or 70
                 card:SetWidth(width)
-                card:SetHeight(52)
+                card:SetHeight(height)
                 card:ClearAllPoints()
                 card:SetPoint("TOPLEFT", 4, -y)
-                y = y + 60
+                y = y + height + 8
             end
         end
 

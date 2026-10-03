@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.13
+
+- Marking a task done greys out that button and changes the line from Due today to Done today. A small Undo under the button puts it back on the schedule.
+
 ## 2.2.12
 
 - A task can repeat each month or each year, as well as each day, each week, or just once. Marking it done keeps it done until that month or year ends.

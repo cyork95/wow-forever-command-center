@@ -169,7 +169,15 @@ end
 
 function Tasks:Status(task)
     local kind = task and task.repeatKind
-    local open = not task or IsOpen(task)
+    local open = true
+
+    if task then
+        if type(task.open) == "boolean" then
+            open = task.open
+        else
+            open = IsOpen(task)
+        end
+    end
 
     if kind == "weekly" then
         return open and "Due this week" or "Done this week"
@@ -191,10 +199,6 @@ function Tasks:Status(task)
 end
 
 function Tasks:DoneLabel(task)
-    if task and not IsOpen(task) then
-        return "Undo"
-    end
-
     local kind = task and task.repeatKind
 
     if kind == "weekly" then

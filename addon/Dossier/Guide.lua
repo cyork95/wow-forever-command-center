@@ -278,7 +278,7 @@ you enter and leave. Sessions stores finished play sessions. The live
 timer stays on the Session tab.
 
 Tasks are things you mean to finish: each day, each week, each month, each year, or just once.
-Done today, Done this week, Done this month, Done this year, or Finished checks one off. Edit and Delete
+Done today, Done this week, Done this month, Done this year, or Finished checks one off. The button greys out and the line changes to Done today, Done this week, and so on. Undo, under that button, puts it back on the schedule. Edit and Delete
 change the list. /dossier tasks opens a window for this zone. That window
 has the same choices as the session panel: show it, lock it, pick Tasks,
 Shopping, or Rares, and set how solid the background is. Notes is its own
