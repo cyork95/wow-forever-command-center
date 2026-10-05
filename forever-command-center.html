@@ -141,7 +141,7 @@ footer { color: var(--muted); font-size: 12px; padding: 24px 16px 40px; }
 
 <section id="hunts" style="margin-top:20px;">
   <h2 style="color:var(--gold);font-size:16px;">Farm board</h2>
-  <p class="meta">Sheet is source of truth. This board is a snapshot from Sep 23. Mark status on the sheet.</p>
+  <p class="meta">Sheet is source of truth. This board is a snapshot from Oct 5. Mark status on the sheet.</p>
   <div class="filters">
     <input id="q" placeholder="Search item, zone, toon…" oninput="draw()">
     <select id="type" onchange="draw()"><option value="">All types</option></select>
@@ -182,7 +182,15 @@ const hunts = [
   {item:"Minimule",type:"Pet",zone:"Three Corners",toon:"Any Alliance",prio:"Low",status:"Planned",notes:"1500 Merchant Favor."},
   {item:"Black Market BMAH",type:"Vanity",zone:"Riverglades",toon:"Gold",prio:"Low",status:"Parked",notes:"Gold sink. Not gear."},
   {item:"Coldflame Saber",type:"Gear",zone:"Shadowfang Keep",toon:"Lucinis",prio:"High",status:"Planned",notes:"Baron Silverlaine via Scroll of the Saber. +7 Int / +32 SP / +98 Fire melee vs Frozen. Battlemage toy unless later rungs exist."},
-  {item:"Scroll of the Saber + imbues",type:"Discovery",zone:"Libraries / SFK",toon:"Lucinis",prio:"Medium",status:"Planned",notes:"Comprehension books then saber scroll. Ice Knife dagger freeze. Imbue Spark resets Fire Blast on melee hit. Not a new class."}
+  {item:"Scroll of the Saber + imbues",type:"Discovery",zone:"Libraries / SFK",toon:"Lucinis",prio:"Medium",status:"Planned",notes:"Comprehension books then saber scroll. Ice Knife dagger freeze. Imbue Spark resets Fire Blast on melee hit. Not a new class."},
+  {item:"Violet Sorcerer's Vestments",type:"Set",zone:"Unknown",toon:"Lucinis",prio:"Medium",status:"Parked",notes:"Cloth caster set. Stats still hidden."},
+  {item:"Krol'dok Battlegear",type:"Set",zone:"Krol'dok Stronghold",toon:"Bramblebeard",prio:"Medium",status:"Parked",notes:"Levels 40-45. Likely mail or plate melee."},
+  {item:"Defias Enforcer's Garb",type:"Set",zone:"Alcaz Prison",toon:"No rogue yet",prio:"Low",status:"Parked",notes:"Levels 48-53. Informational."},
+  {item:"Galestrider mounts",type:"Mount",zone:"Zephras Isle",toon:"Any",prio:"Low",status:"Parked",notes:"8 colors. Not obtainable. Ullrathor killed 16 galestriders."},
+  {item:"Devilsaur mounts",type:"Mount",zone:"Unknown",toon:"Any",prio:"Low",status:"Parked",notes:"5 colors. Not obtainable yet."},
+  {item:"Warden Saber mounts",type:"Mount",zone:"Unknown",toon:"Any",prio:"Low",status:"Parked",notes:"4 colors. Not obtainable yet."},
+  {item:"Druid Moose mounts",type:"Mount",zone:"Unknown",toon:"Any",prio:"Low",status:"Parked",notes:"4 colors. Not obtainable yet."},
+  {item:"Ambassador's Bloodrobes",type:"Gear",zone:"Unknown",toon:"Lucinis / Vesperinis / Malavus / Sorinis",prio:"Medium",status:"Parked",notes:"Spell Pierce. Spells ignore part of magic resistance."}
 ];
 const types = [...new Set(hunts.map(h=>h.type))].sort();
 const statuses = [...new Set(hunts.map(h=>h.status))].sort();

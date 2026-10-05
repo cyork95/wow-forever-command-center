@@ -203,12 +203,62 @@ local function TaggedBySomeoneElse(guid)
     return nil
 end
 
-local function IsOurKiller(attackerGUID)
-    if not attackerGUID then
+-- Combat-log ownership. A hunter pet or a guardian (Snake Trap and the like)
+-- often is not UnitGUID("pet") at the moment of the killing blow.
+local AFFILIATION_MINE = 0x00000001
+local TYPE_OURS = 0x00000400 + 0x00001000 + 0x00002000
+
+local cachedPetGUID
+
+local function Band(flags, mask)
+    if type(flags) ~= "number" or IsSecret(flags) then
+        return nil
+    end
+
+    if type(bit) ~= "table" or type(bit.band) ~= "function" then
+        return nil
+    end
+
+    local ok, value = pcall(bit.band, flags, mask)
+
+    if ok and type(value) == "number" then
+        return value
+    end
+
+    return nil
+end
+
+local function RememberPet()
+    local guid = Read(UnitGUID, "pet")
+
+    if guid then
+        cachedPetGUID = guid
+    end
+end
+
+local function IsOurPet(guid)
+    if not guid or IsSecret(guid) then
         return false
     end
 
-    return attackerGUID == Read(UnitGUID, "player") or attackerGUID == Read(UnitGUID, "pet")
+    return guid == Read(UnitGUID, "pet") or guid == cachedPetGUID
+end
+
+local function IsOurKiller(attackerGUID, sourceFlags)
+    if attackerGUID and not IsSecret(attackerGUID) then
+        if attackerGUID == Read(UnitGUID, "player") or IsOurPet(attackerGUID) then
+            return true
+        end
+    end
+
+    local mine = Band(sourceFlags, AFFILIATION_MINE)
+    local kind = Band(sourceFlags, TYPE_OURS)
+
+    if mine == nil or kind == nil then
+        return false
+    end
+
+    return mine ~= 0 and kind ~= 0
 end
 
 local FALLBACK_UNITS = { "target", "mouseover", "focus", "pettarget", "targettarget" }
@@ -459,16 +509,82 @@ local function OnNameplateRemoved(unit)
     end
 end
 
-local function OnPartyKill(attackerGUID, targetGUID)
-    if InInstance() or IsSecret(attackerGUID) or IsSecret(targetGUID) then
+local function OnPartyKill(attackerGUID, targetGUID, sourceFlags)
+    if InInstance() or IsSecret(targetGUID) or IsOurPet(targetGUID) then
         return
     end
 
-    if not targetGUID or not IsOurKiller(attackerGUID) or TaggedBySomeoneElse(targetGUID) then
+    if IsSecret(attackerGUID) then
+        attackerGUID = nil
+    end
+
+    if not targetGUID or not IsOurKiller(attackerGUID, sourceFlags) or TaggedBySomeoneElse(targetGUID) then
         return
     end
 
     RecordUnitDeath(targetGUID)
+end
+
+-- Payload slot of overkill after the combat-log prefix. A value of 0 or more
+-- is the killing blow. Pet specials often arrive this way and never as PARTY_KILL.
+local OVERKILL_AT = {
+    SWING_DAMAGE = 2,
+    RANGE_DAMAGE = 5,
+    SPELL_DAMAGE = 5,
+    SPELL_PERIODIC_DAMAGE = 5,
+}
+
+local function CombatLogInfo(...)
+    if type(CombatLogGetCurrentEventInfo) == "function" then
+        local ok, info = pcall(function()
+            return { CombatLogGetCurrentEventInfo() }
+        end)
+
+        if ok and type(info) == "table" and type(info[2]) == "string" then
+            return info
+        end
+    end
+
+    return { ... }
+end
+
+local function OnCombatLog(...)
+    if InInstance() then
+        return
+    end
+
+    local info = CombatLogInfo(...)
+    local subevent = info[2]
+
+    if type(subevent) ~= "string" then
+        return
+    end
+
+    -- hideCaster is a boolean in the current prefix. Older logs omit it.
+    local shift = type(info[3]) == "boolean" and 1 or 0
+    local sourceGUID = info[3 + shift]
+    local sourceFlags = info[5 + shift]
+    local destGUID = info[7 + shift]
+    local prefix = shift == 1 and 11 or 10
+
+    if subevent == "PARTY_KILL" then
+        OnPartyKill(sourceGUID, destGUID, sourceFlags)
+        return
+    end
+
+    local at = OVERKILL_AT[subevent]
+
+    if not at then
+        return
+    end
+
+    local overkill = info[prefix + at]
+
+    if type(overkill) ~= "number" or IsSecret(overkill) or overkill < 0 then
+        return
+    end
+
+    OnPartyKill(sourceGUID, destGUID, sourceFlags)
 end
 
 local function OnUnitDied(guid)
@@ -931,6 +1047,8 @@ local function EnsureExampleRare()
 end
 
 local function OnLogin()
+    RememberPet()
+
     if ns:IsFeatureOn("companions") then
         Kills:ImportKillDex()
     end
@@ -963,6 +1081,14 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         OnNameplateRemoved(...)
     elseif event == "PARTY_KILL" then
         OnPartyKill(...)
+    elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+        OnCombatLog(...)
+    elseif event == "UNIT_PET" then
+        local unit = ...
+
+        if unit == "player" then
+            RememberPet()
+        end
     elseif event == "UNIT_DIED" then
         OnUnitDied(...)
     elseif event == "LOOT_OPENED" then
@@ -1005,8 +1131,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 end)
 
 Register("PLAYER_LOGIN")
+Register("UNIT_PET")
 Register("NAME_PLATE_UNIT_ADDED")
 Register("NAME_PLATE_UNIT_REMOVED")
+Register("COMBAT_LOG_EVENT_UNFILTERED")
 
 if Register("PARTY_KILL") then
     Kills.source = "PARTY_KILL"

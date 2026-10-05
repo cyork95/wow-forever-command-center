@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "2.2.13"
+C.VERSION = "2.2.14"
 C.SLASH_COMMAND = "/dossier"
 C.SLASH_ALIAS = "/aixport"
 C.ADDON_TITLE = "Dossier"
@@ -40,6 +40,7 @@ C.SECTIONS = {
     COMPANIONS = "companions",
     ADDONS = "addons",
     SHOPPING = "shopping",
+    PET = "pet",
 }
 
 C.SECTION_ORDER = {
@@ -51,6 +52,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.BANK,
     C.SECTIONS.SHOPPING,
     C.SECTIONS.EQUIPMENT,
+    C.SECTIONS.PET,
     C.SECTIONS.LOCKOUTS,
     C.SECTIONS.PROGRESS,
     C.SECTIONS.KILLS,
@@ -79,6 +81,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.BAGS] = "Bags",
     [C.SECTIONS.BANK] = "Bank",
     [C.SECTIONS.EQUIPMENT] = "Equipment",
+    [C.SECTIONS.PET] = "Combat pet",
     [C.SECTIONS.LOCKOUTS] = "Lockouts",
     [C.SECTIONS.PROGRESS] = "Progress",
     [C.SECTIONS.ACHIEVEMENTS] = "Achievements",
@@ -108,6 +111,7 @@ C.SECTION_GROUPS = {
             C.SECTIONS.LOCATION,
             C.SECTIONS.CHARACTER_STATS,
             C.SECTIONS.EQUIPMENT,
+            C.SECTIONS.PET,
             C.SECTIONS.REPUTATIONS,
             C.SECTIONS.CURRENCIES,
         },
@@ -170,6 +174,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.BANK] = true,
     [C.SECTIONS.SHOPPING] = true,
     [C.SECTIONS.EQUIPMENT] = true,
+    [C.SECTIONS.PET] = true,
     [C.SECTIONS.LOCKOUTS] = true,
     [C.SECTIONS.PROGRESS] = true,
     [C.SECTIONS.ACHIEVEMENTS] = true,
@@ -327,6 +332,7 @@ C.TEXT = {
     TAB_KILLS = "Kills",
     KILLS_TOOLTIP = "Killed %d time%s",
     KILLS_EMPTY = "No kills yet. Dossier counts every creature you or your pet finish off, outside dungeons and raids.",
+    PET_EMPTY = "No combat pet.",
     KILLS_NO_MATCH = "No creature matches that search.",
     KILLS_HEADER = "Lifetime %s kills of %s creatures   Session %s (%s per hour)   Gold looted %s",
     KILLS_IMPORTED = "Includes %s kills copied from KillDex.",

@@ -80,6 +80,14 @@ C.FEATURES = {
         description = "Items and recipes you plan to gather or buy, with have and need counts and reminders.",
     },
     {
+        id = "pet",
+        label = "Combat pet",
+        sections = { C.SECTIONS.PET },
+        modules = { "Data.Pet" },
+        aliases = { "pet", "pets", "stable" },
+        description = "The hunter beast, warlock demon, or other combat pet that is out, plus the pets in the stable.",
+    },
+    {
         id = "screenshots",
         label = "Screenshotter",
         tab = "screenshots",

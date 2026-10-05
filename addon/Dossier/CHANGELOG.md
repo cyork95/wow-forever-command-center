@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.14
+
+- A hunter's pet or guardian killing blow counts as that hunter's kill, including a pet special.
+- The export can include the combat pet that is out, or the last one dismissed, and the pets in the stable. Combat pet can be switched off on the Options tab, or left out of one export.
+
 ## 2.2.13
 
 - Marking a task done greys out that button and changes the line from Due today to Done today. A small Undo under the button puts it back on the schedule.
