@@ -143,8 +143,8 @@ not in the timeline.
 
 5. Kills
 --------
-Dossier counts every creature you or your pet finish off. A hunter pet or
-guardian killing blow counts for you, including a pet special. A creature
+Dossier counts every creature you or your pet finish off. A hunter pet special
+or a warlock demon's spell counts for you, the same as your own killing blow. A creature
 another player tagged first is not counted. Inside dungeons and raids the
 game hides which creature died, so only bosses are recorded there, in the
 Biography.

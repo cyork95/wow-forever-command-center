@@ -1,6 +1,6 @@
 # Kills
 
-Dossier counts every creature you or your pet finish off. A hunter pet or guardian killing blow counts for that character, including a pet special. A creature another player tagged first is not counted.
+Dossier counts every creature you or your pet finish off. A hunter pet special or a warlock demon's spell counts for that character, the same as your own killing blow. A creature another player tagged first is not counted.
 
 Loot you pick up and gold you loot are added to the creature you took them from.
 
