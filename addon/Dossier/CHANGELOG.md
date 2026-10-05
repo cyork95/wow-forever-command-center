@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.18
+
+- Stop registering the combat log. This client blocks that call. A hunter pet or warlock demon kill counts when that pet's target dies.
+
 ## 2.2.17
 
 - Register the combat log directly. The protected-call error was blocking pet damage, so a demon's kill never reached the Kills count.

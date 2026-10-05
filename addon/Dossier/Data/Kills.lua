@@ -693,17 +693,100 @@ local function DeathName(text)
     return text:match("^(.+) dies%.$") or text:match("^(.+) dies!$")
 end
 
-local function OnHostileDeath(text)
-    if InInstance() then
+local function PetTargetFresh()
+    local pet = lastPetTarget
+
+    if not pet or not pet.guid or not pet.name then
+        return nil
+    end
+
+    if Clock() - pet.at > PET_TARGET_SECONDS then
+        return nil
+    end
+
+    return pet
+end
+
+-- The combat log cannot be registered on this client, so a pet kill is the
+-- pet's target dying. Hunter beasts and warlock demons share this path.
+local function CreditPetTargetDeath()
+    local pet = PetTargetFresh()
+
+    if not pet or TaggedBySomeoneElse(pet.guid) then
+        return
+    end
+
+    RecordUnitDeath(pet.guid, {
+        hostile = true,
+        name = pet.name,
+    })
+end
+
+local function ConsiderPetTargetDead()
+    local pet = PetTargetFresh()
+
+    if not pet or countedDeaths[pet.guid] then
+        return
+    end
+
+    local unit = FindUnit(pet.guid)
+
+    if not unit then
+        return
+    end
+
+    if Read(UnitIsDead, unit) == true then
+        CreditPetTargetDeath()
+        return
+    end
+
+    local health = Read(UnitHealth, unit)
+    local maxHealth = Read(UnitHealthMax, unit)
+
+    if type(health) == "number" and health <= 0 and type(maxHealth) == "number" and maxHealth > 0 then
+        CreditPetTargetDeath()
+    end
+end
+
+local function VictimName(text)
+    if type(text) ~= "string" then
+        return nil
+    end
+
+    text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+    text = text:gsub("|H.-|h(.-)|h", "%1")
+    text = strtrim and strtrim(text) or text
+
+    return text:match("hits (.+) for %d")
+        or text:match("crits (.+) for %d")
+        or text:match("ticks (.+) for %d")
+end
+
+local function OnPetDamage(text)
+    local name = VictimName(text)
+
+    if not name then
         return
     end
 
     WatchPetTarget()
 
-    local name = DeathName(text)
     local pet = lastPetTarget
 
-    if not name or not pet or pet.name ~= name or Clock() - pet.at > PET_TARGET_SECONDS then
+    if pet and pet.name == name then
+        pet.at = Clock()
+    end
+end
+
+local function OnHostileDeath(text)
+    if InInstance() then
+        return
+    end
+
+    local name = DeathName(text)
+    local pet = PetTargetFresh()
+
+    if not name or not pet or pet.name ~= name then
         return
     end
 
@@ -713,7 +796,7 @@ local function OnHostileDeath(text)
         return
     end
 
-    RecordUnitDeath(pet.guid)
+    CreditPetTargetDeath()
 end
 
 -- Payload slot of overkill after the combat-log prefix. A value of 0 or more
@@ -1251,16 +1334,6 @@ local function Register(event)
     return ok
 end
 
--- The combat log refuses a pcall'd RegisterEvent: the caller is UNKNOWN()
--- and the client blocks it, so pet damage never arrives.
-local function SetCombatLogRegistered(on)
-    if on then
-        eventFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-    else
-        eventFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-    end
-end
-
 local function IsLoggedInNow()
     return type(IsLoggedIn) ~= "function" or IsLoggedIn() == true
 end
@@ -1310,16 +1383,7 @@ local function OnLogin()
 end
 
 function Kills:SetFeatureActive(on, loading)
-    local events = {}
-
-    for _, event in ipairs(registeredEvents) do
-        if event ~= "COMBAT_LOG_EVENT_UNFILTERED" then
-            table.insert(events, event)
-        end
-    end
-
-    ns.Features.SetEvents(eventFrame, events, on)
-    SetCombatLogRegistered(on)
+    ns.Features.SetEvents(eventFrame, registeredEvents, on)
     lootWindowSeen = false
 
     if on and not loading and IsLoggedInNow() then
@@ -1354,6 +1418,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         end
     elseif event == "CHAT_MSG_COMBAT_HOSTILE_DEATH" then
         OnHostileDeath(...)
+    elseif event == "CHAT_MSG_COMBAT_PET_HITS" or event == "CHAT_MSG_SPELL_PET_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_PET_DAMAGE" then
+        OnPetDamage(...)
+    elseif event == "UNIT_HEALTH" then
+        ConsiderPetTargetDead()
     elseif event == "UNIT_PET" then
         local unit = ...
 
@@ -1406,7 +1474,11 @@ Register("UNIT_PET")
 Register("NAME_PLATE_UNIT_ADDED")
 Register("NAME_PLATE_UNIT_REMOVED")
 Register("UNIT_TARGET")
+Register("UNIT_HEALTH")
 Register("CHAT_MSG_COMBAT_HOSTILE_DEATH")
+Register("CHAT_MSG_COMBAT_PET_HITS")
+Register("CHAT_MSG_SPELL_PET_DAMAGE")
+Register("CHAT_MSG_SPELL_PERIODIC_PET_DAMAGE")
 
 if Register("PARTY_KILL") then
     Kills.source = "PARTY_KILL"
@@ -1426,5 +1498,25 @@ ns:RegisterModule("Data.Kills", Kills)
 ns.Data = ns.Data or {}
 ns.Data.Kills = Kills
 
-table.insert(registeredEvents, "COMBAT_LOG_EVENT_UNFILTERED")
-SetCombatLogRegistered(true)
+local pollElapsed = 0
+
+eventFrame:SetScript("OnUpdate", function(_, elapsed)
+    if not ns:IsFeatureOn("kills") or InInstance() then
+        return
+    end
+
+    pollElapsed = pollElapsed + (tonumber(elapsed) or 0)
+
+    if pollElapsed < 0.25 then
+        return
+    end
+
+    pollElapsed = 0
+
+    if not Read(UnitExists, "pet") then
+        return
+    end
+
+    WatchPetTarget()
+    ConsiderPetTargetDead()
+end)
