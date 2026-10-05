@@ -763,6 +763,26 @@ local function OnCombatLog(...)
     local destFlags = info[9 + shift]
     local prefix = shift == 1 and 11 or 10
 
+    -- A death event has no source. Credit it from the hit we just landed.
+    if subevent == "UNIT_DIED" then
+        local hit = RecentHit(destGUID)
+
+        if hit then
+            local hostile = hit.hostile
+
+            if hostile == nil then
+                hostile = true
+            end
+
+            OnPartyKill(Read(UnitGUID, "player"), destGUID, AFFILIATION_MINE + 0x00000400, nil, {
+                name = hit.name or (type(destName) == "string" and destName or nil),
+                hostile = hostile,
+            })
+        end
+
+        return
+    end
+
     if not IsOurKiller(sourceGUID, sourceFlags, sourceName) then
         local scannedGuid, scannedName = ScanVictim(info)
 
@@ -789,25 +809,6 @@ local function OnCombatLog(...)
 
     if subevent == "PARTY_KILL" then
         OnPartyKill(sourceGUID, destGUID, sourceFlags, sourceName, extra)
-        return
-    end
-
-    if subevent == "UNIT_DIED" then
-        local hit = RecentHit(destGUID)
-
-        if hit then
-            local hostile = hit.hostile
-
-            if hostile == nil then
-                hostile = extra.hostile
-            end
-
-            OnPartyKill(Read(UnitGUID, "player"), destGUID, AFFILIATION_MINE + 0x00000400, nil, {
-                name = hit.name or extra.name,
-                hostile = hostile,
-            })
-        end
-
         return
     end
 
@@ -1250,6 +1251,16 @@ local function Register(event)
     return ok
 end
 
+-- The combat log refuses a pcall'd RegisterEvent: the caller is UNKNOWN()
+-- and the client blocks it, so pet damage never arrives.
+local function SetCombatLogRegistered(on)
+    if on then
+        eventFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    else
+        eventFrame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    end
+end
+
 local function IsLoggedInNow()
     return type(IsLoggedIn) ~= "function" or IsLoggedIn() == true
 end
@@ -1299,7 +1310,16 @@ local function OnLogin()
 end
 
 function Kills:SetFeatureActive(on, loading)
-    ns.Features.SetEvents(eventFrame, registeredEvents, on)
+    local events = {}
+
+    for _, event in ipairs(registeredEvents) do
+        if event ~= "COMBAT_LOG_EVENT_UNFILTERED" then
+            table.insert(events, event)
+        end
+    end
+
+    ns.Features.SetEvents(eventFrame, events, on)
+    SetCombatLogRegistered(on)
     lootWindowSeen = false
 
     if on and not loading and IsLoggedInNow() then
@@ -1385,7 +1405,6 @@ Register("PLAYER_LOGIN")
 Register("UNIT_PET")
 Register("NAME_PLATE_UNIT_ADDED")
 Register("NAME_PLATE_UNIT_REMOVED")
-Register("COMBAT_LOG_EVENT_UNFILTERED")
 Register("UNIT_TARGET")
 Register("CHAT_MSG_COMBAT_HOSTILE_DEATH")
 
@@ -1406,3 +1425,6 @@ ns:RegisterModule("Data.Kills", Kills)
 
 ns.Data = ns.Data or {}
 ns.Data.Kills = Kills
+
+table.insert(registeredEvents, "COMBAT_LOG_EVENT_UNFILTERED")
+SetCombatLogRegistered(true)

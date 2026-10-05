@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.17
+
+- Register the combat log directly. The protected-call error was blocking pet damage, so a demon's kill never reached the Kills count.
+
 ## 2.2.16
 
 - Fix the Kills error that stopped a pet's kill from being recorded. A warlock demon's target dying now counts for that warlock.
