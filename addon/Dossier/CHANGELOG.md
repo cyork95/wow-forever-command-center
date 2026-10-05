@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.16
+
+- Fix the Kills error that stopped a pet's kill from being recorded. A warlock demon's target dying now counts for that warlock.
+
 ## 2.2.15
 
 - A warlock demon's spell, and a hunter pet's special, counts as that character's kill when the pet lands the blow. The kill still counts if the mob is the pet's target rather than yours.
