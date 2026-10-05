@@ -2,23 +2,7 @@
 
 ## 2.2.18
 
-- Stop registering the combat log. This client blocks that call. A hunter pet or warlock demon kill counts when that pet's target dies.
-
-## 2.2.17
-
-- Register the combat log directly. The protected-call error was blocking pet damage, so a demon's kill never reached the Kills count.
-
-## 2.2.16
-
-- Fix the Kills error that stopped a pet's kill from being recorded. A warlock demon's target dying now counts for that warlock.
-
-## 2.2.15
-
-- A warlock demon's spell, and a hunter pet's special, counts as that character's kill when the pet lands the blow. The kill still counts if the mob is the pet's target rather than yours.
-
-## 2.2.14
-
-- A hunter's pet or guardian killing blow counts as that hunter's kill, including a pet special.
+- A hunter pet or a warlock demon kill counts for that character when the pet's target dies, the same as your own killing blow. A creature another player tagged first is not counted.
 - The export can include the combat pet that is out, or the last one dismissed, and the pets in the stable. Combat pet can be switched off on the Options tab, or left out of one export.
 
 ## 2.2.13
