@@ -1124,7 +1124,7 @@ function renderDungeons() {
         ...asList(quest.rewardItems).map((item) => item.name)].join(" ");
       return nameKey(hay).includes(q);
     });
-    if (!bosses.length && !quests.length) return;
+    if (!bosses.length && !quests.length && !wholeDungeon) return;
     shown++;
 
     const allLoot = asList(dungeon.bosses).flatMap((boss) => asList(boss.loot));

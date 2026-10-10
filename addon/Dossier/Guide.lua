@@ -83,6 +83,7 @@ The report starts with "Exported By: Dossier" and then one block per section:
 - Character Stats: name-realm, level, race, class, XP, health, stats, ratings
 - Currencies, Collections, Reputations
 - Bags, Bank (saved copy), Equipment with item level and stats
+- Combat pet: the beast or demon that is out, or the last one dismissed, and the stable
 - Shopping list: what you are short of, the recipes you plan to craft,
   and what is ready
 - Lockouts, Progress, Achievements, Appearances
@@ -142,7 +143,8 @@ not in the timeline.
 
 5. Kills
 --------
-Dossier counts every creature you or your pet finish off. A creature
+Dossier counts every creature you or your pet finish off. A hunter pet special
+or a warlock demon's spell counts for you, the same as your own killing blow. A creature
 another player tagged first is not counted. Inside dungeons and raids the
 game hides which creature died, so only bosses are recorded there, in the
 Biography.
@@ -306,7 +308,7 @@ and a Reload UI button.
 
 Features, for every character on your account: every part of Dossier can be
 turned off here, or with /dossier off and /dossier on. The switches are
-Biography, Kills, Session, Mail, Lockouts, Tasks, Notes, Shopping list, Screenshotter, and Other addons.
+Biography, Kills, Session, Mail, Lockouts, Tasks, Notes, Shopping list, Combat pet, Screenshotter, and Other addons.
 
 A feature that is off stops recording and running completely. Its tab is
 hidden, its section on the Export tab is greyed out with "(off)" and left
@@ -376,7 +378,14 @@ file exists. Keep older files; they are the history.
   "HH:MM event". Use it to see what happened since the last report:
   levels gained, deaths, new zones, quests turned in, profession gains.
 - "Kills:" lists total kills, kills by creature type, the most-killed
-  creatures, and items seen dropping.
+  creatures, and items seen dropping. A pet or guardian killing blow is
+  included in that character's totals.
+- "Combat pet:" is the summoned hunter beast, warlock demon, or other
+  combat pet. Status is Out or Dismissed. Family, level, diet, happiness,
+  and abilities are included when the game provides them. "Stable" lists
+  the other pets that character can call. "No combat pet." means none.
+  Battle pets stay in Collections. Use the pet that is out, and the stable,
+  when suggesting a pet or a different tactic.
 - "Sessions:" starts with "This session:", the current play session with
   hourly rates. "== Gathered ==" lists lifetime gathering by type, and
   "== Recent sessions ==" has one dated line per past session.

@@ -50,6 +50,7 @@ The same options are in the game's Settings, under **AddOns > Dossier**.
 | `kills` or `kill` | Kills |
 | `session`, `sessions`, or `panel` | Session |
 | `shop` or `shopping` | Shopping list |
+| `pet`, `pets`, or `stable` | Combat pet |
 | `shots`, `screenshots`, `screenshotter`, or `shot` | Screenshotter |
 | `companions` or `companion` | Other addons |
 
