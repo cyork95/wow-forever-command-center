@@ -1,8 +1,8 @@
 # Addon exports
 
-The site reads `characters.json`, `checklist.json`, and `stats.json`. Checkboxes stay in the browser. Character stats, gear, gold, and profession skill stay in `stats.json`, which gets replaced when an export comes in.
+The site reads roster identity from `characters.json`. Live character numbers, hunt rows, and task checks come from the Google Sheet. `stats.json` and `checklist.json` are the fallback when that sheet does not load. Checkboxes are columns on the sheet, one per character. They are not stored in the browser. Checks saved in a browser before the sheet were left behind.
 
-Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.lua` dump is fine too. Name the file with the character and the date, for example `skyrinis-2026-11-04.json`.
+Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.lua` dump is fine too. Name the file with the character and the date, for example `skyrinis-2026-11-04.json`. Paste that JSON into the sheet Import tab (cell B2, then **Command center → Parse import**) to update the live page. Committing `stats.json` only refreshes the fallback.
 
 ```json
 {
@@ -45,7 +45,7 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 }
 ```
 
-`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts still get added to `checklist.json` by hand so the board stays the source of truth.
+`character` must match a name in `characters.json`, or the JSON can be the whole `stats.json` map (`characters` keyed by roster id). `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts are rows on the sheet Hunts tab. `checklist.json` stays the fallback, so add the hunt there too when the offline copy should match. The in-game `/dossier` report is text. `parseImport` accepts this JSON, not that text.
 
 `scripts/scan-addons.ps1` also reads addon saves under `WTF` and adds these fields to each character in `stats.json`:
 

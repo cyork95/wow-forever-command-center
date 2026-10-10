@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=22">
+  <link rel="stylesheet" href="assets/site.css?v=23">
 </head>
 <body>
   <div class="frame">
@@ -61,12 +61,6 @@
         </select>
       </div>
       <div id="checklist"></div>
-      <div class="actions">
-        <button type="button" id="export-checks">Download checkboxes</button>
-        <label class="file-btn">Load checkboxes
-          <input id="import-checks" type="file" accept="application/json,.json">
-        </label>
-      </div>
     </section>
 
     <section class="panel" id="panel-professions" role="tabpanel" aria-labelledby="tab-professions" data-panel="professions" hidden>
@@ -152,12 +146,25 @@
   </main>
   <footer class="site">
     <div class="wrap">
-      <p>Checks and try counts stay in this browser. Click a hunt for the note and the counter. Character stats update when an addon export is merged into <code>data/stats.json</code>.</p>
+      <p id="sheet-status" class="meta" hidden></p>
+      <details class="sheet-settings">
+        <summary>Sheet writes</summary>
+        <p id="sheet-write-note">The page reads the published sheet. To save a check from this browser, paste the Apps Script web app URL and the write secret. They stay in this browser.</p>
+        <label>Script URL
+          <input id="sheet-script-url" type="url" autocomplete="off" spellcheck="false">
+        </label>
+        <label>Write secret
+          <input id="sheet-secret" type="password" autocomplete="off">
+        </label>
+        <button type="button" id="sheet-save-write">Save in this browser</button>
+      </details>
+      <p>Character numbers, hunt checks, and task checks come from the Google Sheet. If the sheet does not load, the page uses the saved copy in the repo and does not keep new checks. Checks saved in this browser before the sheet were left behind.</p>
     </div>
   </footer>
   </div>
   <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
   <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
-  <script src="assets/app.js?v=19"></script>
+  <script src="assets/sheet.js?v=1"></script>
+  <script src="assets/app.js?v=20"></script>
 </body>
 </html>

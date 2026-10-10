@@ -58,15 +58,17 @@ const state = {
   openId: "",
   tab: "roster",
   checks: {},
-  attempts: {}
+  attempts: {},
+  tasks: [],
+  taskChecks: {},
+  sheetLive: false,
+  sheetWriting: 0
 };
 
 function loadStore() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
     if (saved.selected) state.selected = saved.selected;
-    if (saved.checks) state.checks = saved.checks;
-    if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
     if (typeof saved.place === "string") state.place = saved.place;
     if (["known", "make", "learn", "all"].includes(saved.profView)) state.profView = saved.profView;
@@ -75,6 +77,7 @@ function loadStore() {
     state.checks = {};
     state.attempts = {};
   }
+  saveStore();
 }
 
 function saveStore() {
@@ -83,22 +86,126 @@ function saveStore() {
     scope: state.scope,
     place: state.place,
     profView: state.profView,
-    tab: state.tab,
-    checks: state.checks,
-    attempts: state.attempts
+    tab: state.tab
   }));
 }
 
+function noteSheet(message) {
+  const node = document.getElementById("sheet-status");
+  if (!node) return;
+  node.hidden = !message;
+  node.textContent = message || "";
+}
+
+function sheetMiss() {
+  if (!window.SheetStore || !SheetStore.canWrite()) {
+    return "The sheet did not save. Add the script URL and write secret under Sheet writes.";
+  }
+  return "The sheet did not save.";
+}
+
+function manualChecked(id, characterId) {
+  const row = state.checks[id];
+  return !!(row && row[characterId]);
+}
+
+function writeLocalCheck(id, characterId, checked) {
+  if (!state.checks[id]) state.checks[id] = {};
+  state.checks[id][characterId] = !!checked;
+}
+
+async function commitChecks(changes) {
+  state.sheetWriting += 1;
+  const saved = [];
+  let failed = false;
+  try {
+    if (!window.SheetStore || !SheetStore.canWrite()) failed = true;
+    else {
+      for (const change of changes) {
+        const result = await SheetStore.post("toggleHunt", {
+          id: change.id,
+          characterId: state.selected,
+          checked: change.checked
+        });
+        if (!result.ok) {
+          failed = true;
+          break;
+        }
+        saved.push(change);
+      }
+    }
+    if (!failed) {
+      noteSheet("");
+      return;
+    }
+    changes.forEach((change) => writeLocalCheck(change.id, state.selected, change.prev));
+    for (const change of saved) {
+      await SheetStore.post("toggleHunt", {
+        id: change.id,
+        characterId: state.selected,
+        checked: change.prev
+      });
+    }
+    noteSheet(sheetMiss());
+    renderChecklist();
+    renderDungeons();
+  } finally {
+    state.sheetWriting -= 1;
+  }
+}
+
+async function persistTries(id, count, prev) {
+  state.sheetWriting += 1;
+  try {
+    const result = window.SheetStore && SheetStore.canWrite()
+      ? await SheetStore.post("setTries", { id, characterId: state.selected, count })
+      : { ok: false };
+    if (result.ok) {
+      noteSheet("");
+      return;
+    }
+    if (!state.attempts[id]) state.attempts[id] = {};
+    if (!prev) delete state.attempts[id][state.selected];
+    else state.attempts[id][state.selected] = prev;
+    noteSheet(sheetMiss());
+    renderChecklist();
+  } finally {
+    state.sheetWriting -= 1;
+  }
+}
+
+async function commitTask(id, checked, prev) {
+  state.sheetWriting += 1;
+  try {
+    const result = window.SheetStore && SheetStore.canWrite()
+      ? await SheetStore.post("toggleTask", { id, characterId: state.selected, checked })
+      : { ok: false };
+    if (result.ok) {
+      noteSheet("");
+      return;
+    }
+    if (!state.taskChecks[id]) state.taskChecks[id] = {};
+    state.taskChecks[id][state.selected] = prev;
+    noteSheet(sheetMiss());
+    renderLedgerBoards();
+  } finally {
+    state.sheetWriting -= 1;
+  }
+}
+
 function attemptCount(id) {
-  const n = Number(state.attempts[id]);
+  const row = state.attempts[id] || {};
+  const n = Number(row[state.selected]);
   return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
 }
 
 function setAttempts(id, value) {
   const n = Math.max(0, Math.floor(Number(value) || 0));
-  if (n === 0) delete state.attempts[id];
-  else state.attempts[id] = n;
-  saveStore();
+  const prev = attemptCount(id);
+  if (!state.attempts[id]) state.attempts[id] = {};
+  if (n === 0) delete state.attempts[id][state.selected];
+  else state.attempts[id][state.selected] = n;
+  persistTries(id, n, prev);
 }
 
 function huntGroup(item) {
@@ -241,23 +348,33 @@ function lootInHand(item) {
   if (ownedNote(item)) return true;
   const links = lootLinksFor(item);
   if (links.length) return links.some((link) => isChecked(link.entry));
-  return !!state.checks[dropStoreKey(item)];
+  return manualChecked(dropStoreKey(item), state.selected);
 }
 
 function setLootCheck(item, checked) {
   const links = lootLinksFor(item);
   if (!links.length) {
-    state.checks[dropStoreKey(item)] = checked;
-  } else {
-    links.forEach((link) => {
-      if (!link.parent && link.entry.parts && checked && !piecesReady(link.entry)) return;
-      state.checks[link.entry.id] = checked;
-      if (link.parent && !piecesReady(link.parent)) state.checks[link.parent.id] = false;
-    });
+    noteSheet("That drop is not a hunt on the sheet, so the check was not saved.");
+    renderDungeons();
+    return;
   }
-  saveStore();
+  const changes = [];
+  links.forEach((link) => {
+    if (!link.parent && link.entry.parts && checked && !piecesReady(link.entry)) return;
+    const prev = manualChecked(link.entry.id, state.selected);
+    writeLocalCheck(link.entry.id, state.selected, checked);
+    changes.push({ id: link.entry.id, checked, prev });
+    if (link.parent && !piecesReady(link.parent)) {
+      const prevParent = manualChecked(link.parent.id, state.selected);
+      if (prevParent) {
+        writeLocalCheck(link.parent.id, state.selected, false);
+        changes.push({ id: link.parent.id, checked: false, prev: prevParent });
+      }
+    }
+  });
   renderChecklist();
   renderDungeons();
+  if (changes.length) commitChecks(changes);
 }
 
 function dungeonGear(dungeon) {
@@ -316,8 +433,15 @@ function huntMobs(item) {
 
 function isChecked(item) {
   if (ownedNote(item)) return true;
-  if (Object.prototype.hasOwnProperty.call(state.checks, item.id)) return state.checks[item.id];
-  return !!item.defaultDone;
+  if (state.scope === "house") {
+    const people = state.characters.filter((character) => matchesCharacter(item, character));
+    const list = people.length ? people : state.characters;
+    if (list.some((character) => manualChecked(item.id, character.id))) return true;
+    return !state.sheetLive && !!item.defaultDone;
+  }
+  if (manualChecked(item.id, state.selected)) return true;
+  if (!state.sheetLive) return !!item.defaultDone;
+  return false;
 }
 
 function selectedCharacter() {
@@ -385,8 +509,11 @@ function el(tag, attrs, children) {
 
 function renderHouse() {
   const house = state.house;
-  document.getElementById("lede").textContent =
-    `${house.player} · ${house.faction} · ${house.ruleset} · ${house.edition}`;
+  const base = `${house.player} · ${house.faction} · ${house.ruleset} · ${house.edition}`;
+  const fallback = state.sheetLive
+    ? ""
+    : " Showing the saved copy. The Google Sheet did not load, so checks on this page are not saved.";
+  document.getElementById("lede").textContent = base + fallback;
   const chips = document.getElementById("chips");
   chips.replaceChildren();
   [
@@ -476,7 +603,9 @@ function renderSheet() {
   stats.append(el("h3", { text: "Stats" }));
   const updated = state.stats.updated
     ? `Updated ${state.stats.updated}.`
-    : "No addon export merged yet. Level, gear, and gold show up here after the next dump.";
+    : (state.sheetLive
+      ? "No row on the sheet yet. Paste this character's JSON into the Import tab."
+      : "No addon export merged yet. Level, gear, and gold show up here after the next dump.");
   stats.append(el("p", { class: "empty-note", text: updated }));
   const grid = el("div", { class: "stat-grid" });
   [
@@ -653,14 +782,28 @@ function renderPart(item, part) {
   const found = ownedNote(part);
   const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}`, title: found || null });
   box.checked = checked;
-  if (found) box.disabled = true;
+  if (found || state.scope === "house") box.disabled = true;
+  if (state.scope === "house" && !found) box.title = "Switch to this character to check this hunt.";
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
-    state.checks[part.id] = box.checked;
-    if (!piecesReady(item)) state.checks[item.id] = false;
-    saveStore();
+    if (state.scope === "house") {
+      box.checked = isChecked(part);
+      return;
+    }
+    const changes = [];
+    const prev = manualChecked(part.id, state.selected);
+    writeLocalCheck(part.id, state.selected, box.checked);
+    changes.push({ id: part.id, checked: box.checked, prev });
+    if (!piecesReady(item)) {
+      const prevParent = manualChecked(item.id, state.selected);
+      if (prevParent) {
+        writeLocalCheck(item.id, state.selected, false);
+        changes.push({ id: item.id, checked: false, prev: prevParent });
+      }
+    }
     renderChecklist();
     renderDungeons();
+    commitChecks(changes);
   });
   const partKills = killLog(part.mobs);
   const partDrop = dropNote(part.name);
@@ -691,17 +834,23 @@ function renderHunt(item) {
     title: found || null
   });
   box.checked = checked;
-  if ((item.parts && !ready) || found) box.disabled = true;
+  if (state.scope === "house" || (item.parts && !ready) || found) box.disabled = true;
+  if (state.scope === "house" && !found) box.title = "Switch to this character to check this hunt.";
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
+    if (state.scope === "house") {
+      box.checked = isChecked(item);
+      return;
+    }
     if (item.parts && box.checked && !piecesReady(item)) {
       box.checked = false;
       return;
     }
-    state.checks[item.id] = box.checked;
-    saveStore();
+    const prev = manualChecked(item.id, state.selected);
+    writeLocalCheck(item.id, state.selected, box.checked);
     renderChecklist();
     renderDungeons();
+    commitChecks([{ id: item.id, checked: box.checked, prev }]);
   });
 
   const summary = el("button", {
@@ -807,12 +956,18 @@ function renderChecklist() {
   if (books) list.append(books);
 }
 
-function bookKey(book) {
-  return `book:${state.selected}:${nameKey(book.name)}`;
+function bookSheetId(book) {
+  const slug = String(book.name || "")
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return `book:${slug}`;
 }
 
 function bookTurnedIn(book) {
-  return !!state.checks[bookKey(book)];
+  return manualChecked(bookSheetId(book), state.selected);
 }
 
 function renderBookMap(book) {
@@ -833,9 +988,11 @@ function renderBook(book) {
   const box = el("input", { type: "checkbox", "aria-label": `Turned in ${book.name}` });
   box.checked = done;
   box.addEventListener("change", () => {
-    state.checks[bookKey(book)] = box.checked;
-    saveStore();
+    const id = bookSheetId(book);
+    const prev = manualChecked(id, state.selected);
+    writeLocalCheck(id, state.selected, box.checked);
     renderChecklist();
+    commitChecks([{ id, checked: box.checked, prev }]);
   });
   const pin = asList(book.pins)[0];
   const coords = pin ? `${pin.x}, ${pin.y}` : "";
@@ -926,39 +1083,10 @@ function selectCharacter(id) {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderLedgerBoards();
   renderProfessions();
   renderQuests();
   renderMacros();
-}
-
-function exportChecks() {
-  const blob = new Blob([JSON.stringify({
-    exportedAt: new Date().toISOString(),
-    selected: state.selected,
-    checks: state.checks,
-    attempts: state.attempts
-  }, null, 2)], { type: "application/json" });
-  const link = el("a", { href: URL.createObjectURL(blob), download: "forever-checklist.json" });
-  link.click();
-  URL.revokeObjectURL(link.href);
-}
-
-function importChecks(file) {
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const data = JSON.parse(String(reader.result));
-      if (!data.checks || typeof data.checks !== "object") throw new Error("missing checks");
-      state.checks = data.checks;
-      if (data.attempts && typeof data.attempts === "object") state.attempts = data.attempts;
-      if (data.selected) state.selected = data.selected;
-      saveStore();
-      render();
-    } catch {
-      window.alert("That file is not a checklist export.");
-    }
-  };
-  reader.readAsText(file);
 }
 
 function cleanAddonText(value) {
@@ -1744,53 +1872,55 @@ function renderLedgerBoards() {
   const taskRoot = document.getElementById("tasks-list");
   const taskNote = document.getElementById("tasks-note");
   if (taskRoot && taskNote) {
-    const now = Math.floor(Date.now() / 1000);
+    const who = selectedCharacter();
+    const tasks = asList(state.tasks);
+    const cadenceLabel = {
+      daily: "Each day",
+      weekly: "Each week",
+      monthly: "Each month",
+      yearly: "Each year",
+      once: "Just once"
+    };
+    if (!state.sheetLive) taskNote.textContent = "The sheet did not load, so there is no task list.";
+    else if (!tasks.length) taskNote.textContent = "No tasks on the sheet yet.";
+    else taskNote.textContent = who ? `Checks for ${who.name}.` : "Checks for this character.";
     const taskLine = (task) => {
-      const kind = task.repeatKind || "once";
-      const until = Number(task.doneUntil);
-      const done = until === -1 || (until > 0 && until > now);
-      const cadence = {
-        daily: "Each day",
-        weekly: "Each week",
-        monthly: "Each month",
-        yearly: "Each year",
-        once: "Just once"
-      }[kind] || "Each day";
-      const openLabel = {
-        daily: "Due today",
-        weekly: "Due this week",
-        monthly: "Due this month",
-        yearly: "Due this year",
-        once: "Still to do"
-      }[kind] || "Due today";
-      const doneLabel = {
-        daily: "Done today",
-        weekly: "Done this week",
-        monthly: "Done this month",
-        yearly: "Done this year",
-        once: "Finished"
-      }[kind] || "Done today";
-      const status = done ? doneLabel : openLabel;
+      const done = !!(state.taskChecks[task.id] && state.taskChecks[task.id][state.selected]);
+      const box = el("input", { type: "checkbox", "aria-label": `Done: ${task.name || "Task"}` });
+      box.checked = done;
+      box.addEventListener("change", () => {
+        if (!state.taskChecks[task.id]) state.taskChecks[task.id] = {};
+        state.taskChecks[task.id][state.selected] = box.checked;
+        renderLedgerBoards();
+        commitTask(task.id, box.checked, done);
+      });
+      const cadence = cadenceLabel[task.cadence] || task.cadence || "Just once";
       const place = task.zone ? ` · ${task.zone}` : "";
       return el("div", { class: "task-row" }, [
-        el("strong", { text: task.name || "Task" }),
-        el("span", { text: `${status} · ${cadence}${place}` })
+        box,
+        el("div", {}, [
+          el("strong", { text: task.name || "Task" }),
+          el("span", { text: `${cadence}${place}` }),
+          task.notes ? el("p", { class: "meta", text: task.notes }) : null
+        ])
       ]);
     };
-    taskNote.textContent = empty || "Written in game. Done, edit, and delete live on the Tasks tab.";
-    taskRoot.replaceChildren(...names.map((key) => {
-      const rows = asList(people[key].tasks);
+    const taskCard = el("article", { class: "card task-board" }, [
+      el("h3", { text: who ? who.name : "Tasks" }),
+      ...(tasks.length ? tasks.map(taskLine) : [el("p", { class: "meta", text: "Nothing on the list." })])
+    ]);
+    const noteCards = names.map((key) => {
       const notes = asList(people[key].notes);
       return el("article", { class: "card task-board" }, [
         el("h3", { text: key }),
-        ...(rows.length ? rows.map(taskLine) : [el("p", { class: "meta", text: "Nothing waiting." })]),
         el("h4", { text: "Notes" }),
         notes.length ? el("div", { class: "note-grid" }, notes.map((note) => el("div", { class: "note-card" }, [
           note.title ? el("strong", { text: note.title }) : null,
           el("p", { text: note.text || "" })
         ].filter(Boolean)))) : el("p", { class: "meta", text: "No notes yet." })
       ]);
-    }));
+    });
+    taskRoot.replaceChildren(taskCard, ...noteCards);
   }
 }
 
@@ -1928,6 +2058,51 @@ async function loadJson(path) {
   return response.json();
 }
 
+function applySheet(live) {
+  state.stats = live.stats;
+  state.checklist = live.checklist;
+  state.checks = live.checks || {};
+  state.attempts = live.attempts || {};
+  state.tasks = live.tasks || [];
+  state.taskChecks = live.taskChecks || {};
+  state.sheetLive = true;
+}
+
+async function reloadSheet() {
+  if (!state.sheetLive || state.sheetWriting || !window.SheetStore) return;
+  const live = await SheetStore.loadLive();
+  if (!live) {
+    noteSheet("The sheet did not refresh.");
+    return;
+  }
+  applySheet(live);
+  buildOwned();
+  buildDrops();
+  noteSheet("");
+  render();
+}
+
+function bindSheetSettings() {
+  const url = document.getElementById("sheet-script-url");
+  const secret = document.getElementById("sheet-secret");
+  const note = document.getElementById("sheet-write-note");
+  const button = document.getElementById("sheet-save-write");
+  if (!url || !secret || !button || !window.SheetStore) return;
+  const saved = SheetStore.readWriteSettings();
+  url.value = saved.scriptUrl || "";
+  secret.value = saved.writeSecret || "";
+  if (note && SheetStore.writeSource() === "file") {
+    note.textContent = "This computer is using data/sheet.local.json for writes. The fields below are for a browser that does not have that file.";
+  }
+  button.addEventListener("click", () => {
+    SheetStore.saveWriteSettings(url.value.trim(), secret.value);
+    if (!note) return;
+    note.textContent = SheetStore.writeSource() === "file"
+      ? "Saved in this browser. data/sheet.local.json still wins on the next load here."
+      : "Saved in this browser.";
+  });
+}
+
 async function main() {
   loadStore();
   const params = new URLSearchParams(location.search);
@@ -1959,6 +2134,15 @@ async function main() {
     state.altoholic = altoholic;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
+    const live = window.SheetStore ? await SheetStore.loadLive() : null;
+    if (live) applySheet(live);
+    else {
+      state.sheetLive = false;
+      state.checks = {};
+      state.attempts = {};
+      state.tasks = [];
+      state.taskChecks = {};
+    }
     buildOwned();
     buildDrops();
   } catch (error) {
@@ -2007,11 +2191,9 @@ async function main() {
     saveStore();
     renderChecklist();
   });
-  document.getElementById("export-checks").addEventListener("click", exportChecks);
-  document.getElementById("import-checks").addEventListener("change", (event) => {
-    const file = event.target.files && event.target.files[0];
-    if (file) importChecks(file);
-    event.target.value = "";
+  bindSheetSettings();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") reloadSheet();
   });
   render();
 }
