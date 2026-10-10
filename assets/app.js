@@ -50,7 +50,7 @@ const state = {
   profView: "known",
   profQuery: "",
   openDungeons: new Set(),
-  selected: "skyrinis",
+  selected: "flann",
   scope: "character",
   place: "",
   query: "",
@@ -2150,7 +2150,15 @@ async function main() {
     console.error(error);
     return;
   }
-  if (!state.characters.some((c) => c.id === state.selected)) state.selected = state.characters[0].id;
+  const explicit = params.get("c");
+  const chosen = state.characters.find((c) => c.id === state.selected);
+  const asked = explicit && state.characters.some((c) => c.id === explicit);
+  if (!chosen || (!asked && chosen.betaSafe === false)) {
+    const standIn = state.characters.find((c) => c.id === "flann")
+      || state.characters.find((c) => c.betaSafe);
+    if (standIn) state.selected = standIn.id;
+  }
+  saveStore();
   document.getElementById("scope").value = state.scope;
   fillPlaceOptions();
   document.getElementById("place").addEventListener("change", (event) => {
