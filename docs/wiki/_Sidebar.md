@@ -6,6 +6,7 @@
 - [[Making an export]]
 - [[Biography]]
 - [[Kills]]
+- [[Combat pet]]
 - [[Session]]
 - [[Shopping list]]
 - [[Screenshotter]]

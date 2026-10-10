@@ -17,6 +17,7 @@ The report includes your character name, realm, and gold. Paste it only where yo
 - **Location.** Zone, subzone, map, coordinates, and hearthstone.
 - **Character Stats.** Name and realm, level, race, class, XP, health, stats, and ratings. Health is current and max, such as `Health: 486/486`.
 - **Equipment.** One line per slot with item level, quality, and stats.
+- **Combat pet.** The beast or demon that is out, or the last one dismissed, and the stable. See [[Combat pet]].
 - **Reputations.**
 - **Currencies.**
 

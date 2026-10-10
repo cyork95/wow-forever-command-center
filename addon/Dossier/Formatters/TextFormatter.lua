@@ -9803,6 +9803,81 @@ function TextFormatter.EstimateTokens(characters)
     return math.ceil(count / (C.CHARACTERS_PER_TOKEN or 4))
 end
 
+function TextFormatter:AddPet(lines, data)
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.PET])
+
+    local active = data.active
+    local stable = data.stable or {}
+
+    if not active and #stable == 0 then
+        AddLine(lines, C.TEXT.PET_EMPTY)
+        AddBlankLine(lines)
+        return
+    end
+
+    local status = "None"
+
+    if data.status == "out" then
+        status = "Out"
+    elseif data.status == "dismissed" then
+        status = "Dismissed"
+    end
+
+    AddLine(lines, "Status: " .. status)
+
+    if active then
+        AddLine(lines, "Name: " .. (active.name or "Unknown"))
+
+        if U.IsNonEmptyString(active.family) then
+            AddLine(lines, "Family: " .. active.family)
+        end
+
+        if U.IsNonEmptyString(active.creatureType) and active.creatureType ~= active.family then
+            AddLine(lines, "Type: " .. active.creatureType)
+        end
+
+        if tonumber(active.level) then
+            AddLine(lines, "Level: " .. tostring(active.level))
+        end
+
+        if tonumber(active.health) and tonumber(active.healthMax) then
+            AddLine(lines, string.format("Health: %d/%d", active.health, active.healthMax))
+        end
+
+        if U.IsNonEmptyString(active.diet) then
+            AddLine(lines, "Diet: " .. active.diet)
+        end
+
+        if U.IsNonEmptyString(active.happiness) then
+            AddLine(lines, "Happiness: " .. active.happiness)
+        end
+
+        if type(active.spells) == "table" and #active.spells > 0 then
+            AddLine(lines, "Abilities: " .. table.concat(active.spells, ", "))
+        end
+    end
+
+    if #stable > 0 then
+        AddSubHeader(lines, "Stable")
+
+        for index, row in ipairs(stable) do
+            local bits = { row.name or "Unknown" }
+
+            if U.IsNonEmptyString(row.family) then
+                table.insert(bits, row.family)
+            end
+
+            if tonumber(row.level) then
+                table.insert(bits, "level " .. tostring(row.level))
+            end
+
+            AddLine(lines, index .. ". " .. table.concat(bits, ", "))
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
 function TextFormatter:Build(
     selectedSections,
     exportData
@@ -9879,6 +9954,15 @@ function TextFormatter:Build(
                 self:AddEquipment(
                     lines,
                     exportData.equipment
+                    or {}
+                )
+            end,
+
+        [C.SECTIONS.PET] =
+            function()
+                self:AddPet(
+                    lines,
+                    exportData.pet
                     or {}
                 )
             end,

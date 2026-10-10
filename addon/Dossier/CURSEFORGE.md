@@ -4,7 +4,7 @@ Project: https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-f
 
 Paste the summary into the project summary field. Paste the description into the project description. Paste the changelog into the file changelog when you upload the zip. Screenshots are uploaded by hand. This file is left out of the addon zip.
 
-Upload file: `dist/Dossier-2.2.13.zip`
+Upload file: `dist/Dossier-2.2.18.zip`
 
 ## Name
 
@@ -76,19 +76,12 @@ Want another addon covered? Ask in the comments.
 
 ## Changelog
 
-Paste this into the changelog field for the 2.2.13 file. The last page was 2.1.1, so this is everything players gain in this upload.
+Paste this into the changelog field for the 2.2.18 file.
 
-2.2.13
+2.2.18
 
-- Tasks repeat each day, week, month, or year, or just once. Marking one done greys out the button and changes the line from Due today to Done today (or this week, month, or year). Undo, under that button, puts it back. Edit and Delete stay on the task. A zone panel can show tasks, shopping, and rares, with the same show, lock, and background choices as the session panel.
-- Notes are their own tab. Each note has a title and a body. Two notes sit on a line, and the body wraps to its full length.
-- Mail keeps letters you send and receive. Dossier does not send or take mail.
-- Lockouts saves the instances you are saved to and a short diary of runs.
-- Rare creatures stay on the Kills tab, marked on the list.
-- Biography notes each book, scroll, or plaque you open, without saving the page text.
-- When Other addons is on, an export can include the last 7 days of gold from Journalator and saved reputation from Altoholic.
-- The Quests tab is gone. Questie still has the journey. A turn-in is still a Biography line, and it can still mark a matching task done.
-- The Professions tab is gone. Opening a profession window still fills the recipe section of an export.
+- A hunter pet or a warlock demon kill counts for that character when the pet's target dies, the same as your own killing blow. A creature another player tagged first is not counted.
+- The export can include the combat pet that is out, or the last one dismissed, and the pets in the stable. Combat pet can be switched off on the Options tab, or left out of one export.
 
 ## Screenshots
 

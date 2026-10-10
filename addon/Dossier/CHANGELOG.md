@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.18
+
+- A hunter pet or a warlock demon kill counts for that character when the pet's target dies, the same as your own killing blow. A creature another player tagged first is not counted.
+- The export can include the combat pet that is out, or the last one dismissed, and the pets in the stable. Combat pet can be switched off on the Options tab, or left out of one export.
+
 ## 2.2.13
 
 - Marking a task done greys out that button and changes the line from Due today to Done today. A small Undo under the button puts it back on the schedule.

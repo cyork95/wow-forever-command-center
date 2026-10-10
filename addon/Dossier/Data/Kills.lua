@@ -15,9 +15,11 @@ local NAMEPLATE_PRUNE_SECONDS = 60
 local RECENT_KILL_SECONDS = 5
 local RECENT_LIST_SIZE = 10
 local MIN_RATE_SECONDS = 60
+local HIT_WINDOW = 4
 
 local nameplateCache = {}
 local countedDeaths = {}
+local recentHits = {}
 local lastPrune = 0
 local lastKillGUID = nil
 local lastKillAt = 0
@@ -167,6 +169,12 @@ local function Prune()
             countedDeaths[guid] = nil
         end
     end
+
+    for guid, hit in pairs(recentHits) do
+        if now - hit.at > HIT_WINDOW then
+            recentHits[guid] = nil
+        end
+    end
 end
 
 -- UnitIsTapDenied raises on a secret token, so the token is checked first.
@@ -203,12 +211,105 @@ local function TaggedBySomeoneElse(guid)
     return nil
 end
 
-local function IsOurKiller(attackerGUID)
-    if not attackerGUID then
+-- Combat-log ownership. A hunter pet, a warlock demon, or a guardian often is
+-- not a player PARTY_KILL, and the killing spell may not carry overkill.
+local AFFILIATION_MINE = 0x00000001
+local CONTROL_PLAYER = 0x00000100
+local REACTION_HOSTILE = 0x00000040
+local TYPE_OURS = 0x00000400 + 0x00000800 + 0x00001000 + 0x00002000 + 0x00004000
+
+local cachedPetGUID
+local cachedPetName
+local lastPetTarget
+
+local function Band(flags, mask)
+    if type(flags) ~= "number" or IsSecret(flags) then
+        return nil
+    end
+
+    if type(bit) ~= "table" or type(bit.band) ~= "function" then
+        return nil
+    end
+
+    local ok, value = pcall(bit.band, flags, mask)
+
+    if ok and type(value) == "number" then
+        return value
+    end
+
+    return nil
+end
+
+local function RememberPet()
+    local guid = Read(UnitGUID, "pet")
+    local name = Read(UnitName, "pet")
+
+    if guid then
+        cachedPetGUID = guid
+    end
+
+    if type(name) == "string" and name ~= "" and name ~= "Unknown" then
+        cachedPetName = name
+    end
+end
+
+local function IsOurPet(guid)
+    if not guid or IsSecret(guid) then
         return false
     end
 
-    return attackerGUID == Read(UnitGUID, "player") or attackerGUID == Read(UnitGUID, "pet")
+    return guid == Read(UnitGUID, "pet") or guid == cachedPetGUID
+end
+
+-- "Pet-0-..." is a guid. "Imp" or "Voidwalker" is the demon's name.
+local function IsGuid(value)
+    return type(value) == "string" and not IsSecret(value) and value:find("^%u%a*%-") ~= nil
+end
+
+local function PetName()
+    local name = Read(UnitName, "pet")
+
+    if type(name) == "string" and name ~= "" and name ~= "Unknown" then
+        return name
+    end
+
+    return cachedPetName
+end
+
+local function IsOurKiller(attackerGUID, sourceFlags, sourceName)
+    if attackerGUID and not IsSecret(attackerGUID) then
+        if attackerGUID == Read(UnitGUID, "player") or IsOurPet(attackerGUID) then
+            return true
+        end
+
+        if not IsGuid(attackerGUID) then
+            local petName = PetName()
+            local playerName = Read(UnitName, "player")
+
+            if attackerGUID == playerName or (petName and attackerGUID == petName) then
+                return true
+            end
+        end
+    end
+
+    local mine = Band(sourceFlags, AFFILIATION_MINE)
+    local kind = Band(sourceFlags, TYPE_OURS)
+    local controlled = Band(sourceFlags, CONTROL_PLAYER)
+
+    if mine ~= nil and mine ~= 0 and ((kind ~= nil and kind ~= 0) or (controlled ~= nil and controlled ~= 0)) then
+        return true
+    end
+
+    if type(sourceName) == "string" and sourceName ~= "" and (mine == nil or mine ~= 0) then
+        local petName = PetName()
+        local playerName = Read(UnitName, "player")
+
+        if sourceName == playerName or (petName and sourceName == petName) then
+            return true
+        end
+    end
+
+    return false
 end
 
 local FALLBACK_UNITS = { "target", "mouseover", "focus", "pettarget", "targettarget" }
@@ -380,7 +481,7 @@ function Kills:RecordKill(mobID, details)
     return mob
 end
 
-local function RecordUnitDeath(guid)
+local function RecordUnitDeath(guid, extra)
     if not guid or countedDeaths[guid] then
         return
     end
@@ -397,12 +498,19 @@ local function RecordUnitDeath(guid)
     if not details then
         local unit = FindUnit(guid)
 
-        -- Without a unit there is no way to tell a hostile mob from a scripted quest NPC.
-        if not unit then
+        if unit then
+            details = ReadUnitDetails(unit)
+        elseif extra and extra.hostile and type(extra.name) == "string" and extra.name ~= "" then
+            -- The pet's target is often gone by the time the death event arrives.
+            details = {
+                name = extra.name,
+                level = 0,
+                classification = "normal",
+                isFriendly = false,
+            }
+        else
             return
         end
-
-        details = ReadUnitDetails(unit)
     end
 
     if details.isFriendly then
@@ -459,16 +567,349 @@ local function OnNameplateRemoved(unit)
     end
 end
 
-local function OnPartyKill(attackerGUID, targetGUID)
-    if InInstance() or IsSecret(attackerGUID) or IsSecret(targetGUID) then
+local function OnPartyKill(attackerGUID, targetGUID, sourceFlags, sourceName, extra)
+    if InInstance() or IsSecret(targetGUID) or IsOurPet(targetGUID) then
         return
     end
 
-    if not targetGUID or not IsOurKiller(attackerGUID) or TaggedBySomeoneElse(targetGUID) then
+    if IsSecret(attackerGUID) then
+        attackerGUID = nil
+    end
+
+    if not targetGUID or not IsOurKiller(attackerGUID, sourceFlags, sourceName) or TaggedBySomeoneElse(targetGUID) then
         return
     end
 
-    RecordUnitDeath(targetGUID)
+    RecordUnitDeath(targetGUID, extra)
+end
+
+local function HostileFlags(flags)
+    local hostile = Band(flags, REACTION_HOSTILE)
+
+    if hostile == nil then
+        return nil
+    end
+
+    return hostile ~= 0
+end
+
+local function RememberDest(guid, name, flags)
+    if not guid or IsSecret(guid) or not Kills.GetMobID(guid) then
+        return
+    end
+
+    recentHits[guid] = {
+        at = Clock(),
+        name = type(name) == "string" and name or nil,
+        hostile = HostileFlags(flags),
+    }
+
+    if not nameplateCache[guid] then
+        local unit = FindUnit(guid)
+
+        if unit then
+            nameplateCache[guid] = ReadUnitDetails(unit)
+        end
+    end
+end
+
+local function RecentHit(guid)
+    local hit = guid and recentHits[guid]
+
+    if not hit or Clock() - hit.at > HIT_WINDOW then
+        return nil
+    end
+
+    return hit
+end
+
+local PET_TARGET_SECONDS = 8
+
+local function WatchPetTarget()
+    local guid = Read(UnitGUID, "pettarget")
+
+    if not guid or IsSecret(guid) or not Kills.GetMobID(guid) then
+        return
+    end
+
+    local details = ReadUnitDetails("pettarget")
+
+    if details.isFriendly then
+        return
+    end
+
+    lastPetTarget = {
+        guid = guid,
+        name = details.name,
+        at = Clock(),
+    }
+    nameplateCache[guid] = details
+end
+
+local function ArgIsOurs(value)
+    if IsOurPet(value) or value == Read(UnitGUID, "player") then
+        return true
+    end
+
+    if type(value) ~= "string" or IsGuid(value) or IsSecret(value) then
+        return false
+    end
+
+    local petName = PetName()
+    local playerName = Read(UnitName, "player")
+
+    return value == playerName or (petName ~= nil and value == petName)
+end
+
+-- The pet guid or name, then the next creature guid, whatever slot the log used.
+local function ScanVictim(info)
+    local seenOurs = false
+
+    for index = 1, #info do
+        local value = info[index]
+
+        if ArgIsOurs(value) then
+            seenOurs = true
+        elseif seenOurs and IsGuid(value) and Kills.GetMobID(value) then
+            local nextValue = info[index + 1]
+            local name = type(nextValue) == "string" and not IsGuid(nextValue) and nextValue or nil
+
+            return value, name
+        end
+    end
+
+    return nil
+end
+
+local function DeathName(text)
+    if type(text) ~= "string" then
+        return nil
+    end
+
+    text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+    text = text:gsub("|H.-|h(.-)|h", "%1")
+    text = strtrim and strtrim(text) or text
+
+    return text:match("^(.+) dies%.$") or text:match("^(.+) dies!$")
+end
+
+local function PetTargetFresh()
+    local pet = lastPetTarget
+
+    if not pet or not pet.guid or not pet.name then
+        return nil
+    end
+
+    if Clock() - pet.at > PET_TARGET_SECONDS then
+        return nil
+    end
+
+    return pet
+end
+
+-- The combat log cannot be registered on this client, so a pet kill is the
+-- pet's target dying. Hunter beasts and warlock demons share this path.
+local function CreditPetTargetDeath()
+    local pet = PetTargetFresh()
+
+    if not pet or TaggedBySomeoneElse(pet.guid) then
+        return
+    end
+
+    RecordUnitDeath(pet.guid, {
+        hostile = true,
+        name = pet.name,
+    })
+end
+
+local function ConsiderPetTargetDead()
+    local pet = PetTargetFresh()
+
+    if not pet or countedDeaths[pet.guid] then
+        return
+    end
+
+    local unit = FindUnit(pet.guid)
+
+    if not unit then
+        return
+    end
+
+    if Read(UnitIsDead, unit) == true then
+        CreditPetTargetDeath()
+        return
+    end
+
+    local health = Read(UnitHealth, unit)
+    local maxHealth = Read(UnitHealthMax, unit)
+
+    if type(health) == "number" and health <= 0 and type(maxHealth) == "number" and maxHealth > 0 then
+        CreditPetTargetDeath()
+    end
+end
+
+local function VictimName(text)
+    if type(text) ~= "string" then
+        return nil
+    end
+
+    text = text:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+    text = text:gsub("|H.-|h(.-)|h", "%1")
+    text = strtrim and strtrim(text) or text
+
+    return text:match("hits (.+) for %d")
+        or text:match("crits (.+) for %d")
+        or text:match("ticks (.+) for %d")
+end
+
+local function OnPetDamage(text)
+    local name = VictimName(text)
+
+    if not name then
+        return
+    end
+
+    WatchPetTarget()
+
+    local pet = lastPetTarget
+
+    if pet and pet.name == name then
+        pet.at = Clock()
+    end
+end
+
+local function OnHostileDeath(text)
+    if InInstance() then
+        return
+    end
+
+    local name = DeathName(text)
+    local pet = PetTargetFresh()
+
+    if not name or not pet or pet.name ~= name then
+        return
+    end
+
+    local unit = FindUnit(pet.guid)
+
+    if unit and Read(UnitIsDead, unit) == false then
+        return
+    end
+
+    CreditPetTargetDeath()
+end
+
+-- Payload slot of overkill after the combat-log prefix. A value of 0 or more
+-- is the killing blow. A demon's Firebolt often has no overkill and only a later death.
+local OVERKILL_AT = {
+    SWING_DAMAGE = 2,
+    RANGE_DAMAGE = 5,
+    SPELL_DAMAGE = 5,
+    SPELL_PERIODIC_DAMAGE = 5,
+    DAMAGE_SHIELD = 5,
+    DAMAGE_SPLIT = 5,
+}
+
+local function OnCombatLog(...)
+    if InInstance() then
+        return
+    end
+
+    -- The combat log only fills in when this is called from the event itself.
+    -- A nested call comes back empty, which dropped every pet spell.
+    local info = { ... }
+
+    if type(info[1]) == "string" then
+        table.insert(info, 1, 0)
+    end
+
+    local subevent = info[2]
+
+    if type(subevent) ~= "string" then
+        return
+    end
+
+    WatchPetTarget()
+
+    -- hideCaster is a boolean, or 0/1, in the current prefix. Older logs omit it.
+    local shift = 0
+
+    if type(info[3]) == "boolean" or (type(info[3]) == "number" and type(info[4]) == "string") then
+        shift = 1
+    end
+
+    local sourceGUID = info[3 + shift]
+    local sourceName = info[4 + shift]
+    local sourceFlags = info[5 + shift]
+    local destGUID = info[7 + shift]
+    local destName = info[8 + shift]
+    local destFlags = info[9 + shift]
+    local prefix = shift == 1 and 11 or 10
+
+    -- A death event has no source. Credit it from the hit we just landed.
+    if subevent == "UNIT_DIED" then
+        local hit = RecentHit(destGUID)
+
+        if hit then
+            local hostile = hit.hostile
+
+            if hostile == nil then
+                hostile = true
+            end
+
+            OnPartyKill(Read(UnitGUID, "player"), destGUID, AFFILIATION_MINE + 0x00000400, nil, {
+                name = hit.name or (type(destName) == "string" and destName or nil),
+                hostile = hostile,
+            })
+        end
+
+        return
+    end
+
+    if not IsOurKiller(sourceGUID, sourceFlags, sourceName) then
+        local scannedGuid, scannedName = ScanVictim(info)
+
+        if not scannedGuid then
+            return
+        end
+
+        sourceGUID = Read(UnitGUID, "pet") or Read(UnitGUID, "player")
+        sourceFlags = AFFILIATION_MINE + 0x00001000
+        sourceName = PetName()
+        destGUID = scannedGuid
+        destName = scannedName or destName
+        destFlags = REACTION_HOSTILE
+    end
+
+    local extra = {
+        name = type(destName) == "string" and destName or nil,
+        hostile = HostileFlags(destFlags),
+    }
+
+    if extra.hostile == nil then
+        extra.hostile = true
+    end
+
+    if subevent == "PARTY_KILL" then
+        OnPartyKill(sourceGUID, destGUID, sourceFlags, sourceName, extra)
+        return
+    end
+
+    local at = OVERKILL_AT[subevent]
+
+    if not at then
+        return
+    end
+
+    RememberDest(destGUID, destName, destFlags)
+
+    local overkill = info[prefix + at]
+
+    if type(overkill) ~= "number" or IsSecret(overkill) or overkill < 0 then
+        return
+    end
+
+    OnPartyKill(sourceGUID, destGUID, sourceFlags, sourceName, extra)
 end
 
 local function OnUnitDied(guid)
@@ -931,6 +1372,8 @@ local function EnsureExampleRare()
 end
 
 local function OnLogin()
+    RememberPet()
+
     if ns:IsFeatureOn("companions") then
         Kills:ImportKillDex()
     end
@@ -963,6 +1406,28 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         OnNameplateRemoved(...)
     elseif event == "PARTY_KILL" then
         OnPartyKill(...)
+    elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+        if type(CombatLogGetCurrentEventInfo) == "function" then
+            OnCombatLog(CombatLogGetCurrentEventInfo())
+        else
+            OnCombatLog(...)
+        end
+    elseif event == "UNIT_TARGET" then
+        if ... == "pet" then
+            WatchPetTarget()
+        end
+    elseif event == "CHAT_MSG_COMBAT_HOSTILE_DEATH" then
+        OnHostileDeath(...)
+    elseif event == "CHAT_MSG_COMBAT_PET_HITS" or event == "CHAT_MSG_SPELL_PET_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_PET_DAMAGE" then
+        OnPetDamage(...)
+    elseif event == "UNIT_HEALTH" then
+        ConsiderPetTargetDead()
+    elseif event == "UNIT_PET" then
+        local unit = ...
+
+        if unit == "player" then
+            RememberPet()
+        end
     elseif event == "UNIT_DIED" then
         OnUnitDied(...)
     elseif event == "LOOT_OPENED" then
@@ -1005,8 +1470,15 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 end)
 
 Register("PLAYER_LOGIN")
+Register("UNIT_PET")
 Register("NAME_PLATE_UNIT_ADDED")
 Register("NAME_PLATE_UNIT_REMOVED")
+Register("UNIT_TARGET")
+Register("UNIT_HEALTH")
+Register("CHAT_MSG_COMBAT_HOSTILE_DEATH")
+Register("CHAT_MSG_COMBAT_PET_HITS")
+Register("CHAT_MSG_SPELL_PET_DAMAGE")
+Register("CHAT_MSG_SPELL_PERIODIC_PET_DAMAGE")
 
 if Register("PARTY_KILL") then
     Kills.source = "PARTY_KILL"
@@ -1025,3 +1497,26 @@ ns:RegisterModule("Data.Kills", Kills)
 
 ns.Data = ns.Data or {}
 ns.Data.Kills = Kills
+
+local pollElapsed = 0
+
+eventFrame:SetScript("OnUpdate", function(_, elapsed)
+    if not ns:IsFeatureOn("kills") or InInstance() then
+        return
+    end
+
+    pollElapsed = pollElapsed + (tonumber(elapsed) or 0)
+
+    if pollElapsed < 0.25 then
+        return
+    end
+
+    pollElapsed = 0
+
+    if not Read(UnitExists, "pet") then
+        return
+    end
+
+    WatchPetTarget()
+    ConsiderPetTargetDead()
+end)

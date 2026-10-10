@@ -50,7 +50,8 @@ Put the request first, then the export.
 | `Equipment:` | One line per gear slot. |
 | `Skills:` and `Profession Details:` | Ranks and recipes. |
 | `Biography:` | Dated timeline. Each line is `HH:MM event`. |
-| `Kills:` | Totals, creature types, top creatures, drops, gold looted. |
+| `Kills:` | Totals, creature types, top creatures, drops, gold looted. Pet and guardian killing blows count for that character. |
+| `Combat pet:` | The beast or demon that is out, or the last one dismissed, plus the stable. Battle pets stay in Collections. |
 | `Sessions:` | `This session:`, then `== Gathered ==`, then `== Recent sessions ==`. |
 | `Shopping list:` | Short items, then `Crafting:`, then `Ready:`. |
 | `Statistics:` | The game's lifetime counters, one `== Category ==` block. A missing statistic has no value yet. |
@@ -88,7 +89,8 @@ If you can write files, save the paste unchanged as exports/<name>-<realm>-YYYY-
 - Gear is under "Equipment:", one line per slot with item level, quality, and stats.
 - Professions are under "Skills:" and "Profession Details:". Learned recipes are grouped by difficulty color: Orange and Yellow still give skill-ups, Green rarely, Grey never.
 - The "Biography:" section is a dated timeline. Each line is "HH:MM event". Use it to see what happened since the last report: levels gained, deaths, new zones, quests turned in, profession gains.
-- "Kills:" lists total kills, kills by creature type, the most-killed creatures, and items seen dropping.
+- "Kills:" lists total kills, kills by creature type, the most-killed creatures, and items seen dropping. A pet or guardian killing blow is included in that character's totals.
+- "Combat pet:" is the summoned hunter beast, warlock demon, or other combat pet. Status is Out or Dismissed. Family, level, diet, happiness, and abilities are included when the game provides them. "Stable" lists the other pets that character can call. "No combat pet." means none. Battle pets stay in Collections. Use the pet that is out, and the stable, when suggesting a pet or a different tactic.
 - "Sessions:" starts with "This session:", the current play session with hourly rates. "== Gathered ==" lists lifetime gathering by type, and "== Recent sessions ==" has one dated line per past session.
 - "Shopping list:" is what the player plans to gather or buy. Short items come first, one line each with what they have and need; "Crafting:" lines are recipes they plan to make, and "Ready:" lists what is done.
 - "Statistics:" holds the game's own lifetime counters, one "== Category ==" block each. A statistic that is not listed has no value yet.

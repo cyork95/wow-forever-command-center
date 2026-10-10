@@ -2921,6 +2921,18 @@
                                             "startItem":  null
                                         }
                                     ]
+                     },
+                     {
+                         "name":  "Excavation Site",
+                         "level":  "24-29",
+                         "location":  "Above Whelgar's Excavation, Wetlands",
+                         "description":  "A Forever beta dungeon of rampaging Titan constructs. Bosses, loot, quests, and reputation are not in the journal yet.",
+                         "bosses":  [
+
+                                    ],
+                         "quests":  [
+
+                                    ]
                      }
                  ]
 }

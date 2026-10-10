@@ -739,6 +739,9 @@ local function GetCollector(
         [C.SECTIONS.EQUIPMENT] =
             data.Equipment,
 
+        [C.SECTIONS.PET] =
+            data.Pet,
+
         [C.SECTIONS.LOCKOUTS] =
             data.Lockouts,
 

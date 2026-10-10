@@ -11,7 +11,8 @@ In scope:
 
 - Stats, gear, bags, bank, gold, currencies, reputations, professions, recipes, talents, spells
 - Quests the character has done, achievements, statistics
-- Kills, loot, gathering, play sessions (time, gold, XP, and items per hour)
+- Kills, loot, gathering, play sessions (time, gold, XP, and items per hour). A hunter pet or guardian killing blow counts as that character's kill.
+- The character's combat pet and stable: the hunter beast, warlock demon, or other pet that is out, and the pets waiting in the stable
 - The Biography timeline and screenshots of the character's moments
 - Plans and goals the character sets, such as a shopping list with have and need counts
 

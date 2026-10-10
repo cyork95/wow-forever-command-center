@@ -23,6 +23,7 @@ Saved for every character on the account. The same switches are `/dossier off <f
 | Kills | Creature counts, drops, gold, and tooltip counts |
 | Session | The timer, gathering, gold, and XP per hour, and the session panel |
 | Shopping list | Have and need counts, and vendor reminders |
+| Combat pet | The summoned hunter beast, warlock demon, or other combat pet, and the stable |
 | Screenshotter | Screenshots at big moments |
 | Other addons | Reading character data another addon already saved |
 
