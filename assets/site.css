@@ -307,7 +307,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  align-items: baseline;
+  align-items: center;
   padding: 8px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -689,6 +689,19 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 .saves p { margin: 8px 0 0; font-size: 13px; }
 
 .actions button:hover, .char:hover { border-color: var(--gold); }
+
+.sheet-settings { margin-top: 12px; max-width: 36rem; }
+.sheet-settings summary { cursor: pointer; }
+.sheet-settings label { display: flex; flex-direction: column; gap: 4px; margin: 8px 0; }
+.sheet-settings input, .sheet-settings button {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: inherit;
+  padding: 8px 10px;
+}
+.sheet-settings button { cursor: pointer; align-self: start; }
+#sheet-status { color: var(--gold); }
 
 .file-btn input { display: none; }
 

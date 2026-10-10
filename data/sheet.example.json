@@ -1,0 +1,7 @@
+{
+  "characters": "https://docs.google.com/spreadsheets/d/e/PUBLISH_ID/pub?gid=0&single=true&output=csv",
+  "hunts": "https://docs.google.com/spreadsheets/d/e/PUBLISH_ID/pub?gid=HUNTS_GID&single=true&output=csv",
+  "tasks": "https://docs.google.com/spreadsheets/d/e/PUBLISH_ID/pub?gid=TASKS_GID&single=true&output=csv",
+  "scriptUrl": "https://script.google.com/macros/s/DEPLOYMENT_ID/exec",
+  "writeSecret": "paste-the-secret-here"
+}

@@ -16,7 +16,7 @@ Do not dump news into the Roster Doc.
 Keep Alliance house: Starhollow elves, Blackwell, Emberkeg, Xorr pairings.
 Beta: never take Skyrinis, Sorinis, or Malavus.
 
-`Forever_Roster.html` is the roster doc. `data/checklist.json` is the hunt list the live site reads. `forever-command-center.html` is the dashboard snapshot. New hunts go in `data/checklist.json` and that snapshot. Do not put patch news on the roster.
+`Forever_Roster.html` is the roster doc. The live hunt list and its checks are the Hunts tab of the Google Sheet. `data/checklist.json` is the offline fallback. `forever-command-center.html` is the dashboard snapshot. New hunts go on the Hunts tab, and into `data/checklist.json` when the fallback should match. Do not put patch news on the roster. Sheet setup is `scripts/sheets/SCHEMA.md`.
 
 ## Addon
 
@@ -34,10 +34,12 @@ Package with `powershell -File scripts/package-addon.ps1`. There is no Lua test 
 
 ## Site
 
-- Hunts: `data/checklist.json`. Parked future drops use `"status": "Parked"`.
+- Hunts: the Google Sheet Hunts tab is the live list. `data/checklist.json` is the fallback when the sheet does not load. Parked future drops use `"status": "Parked"`.
+- Tasks: the Tasks tab on the sheet, one checkbox column per character. The site task list is empty when the sheet does not load. Ledger notes stay in `data/ledger.json`.
+- Characters: `data/characters.json` is still the roster (names, specs, roles). Live level, gold, gear, and the rest of the snapshot come from the sheet's Characters tab. `data/stats.json` is the fallback. Do not invent quest titles. Forever quest ids missing from `data/quests.json` stay as `Quest <id>` in `assets/app.js`.
+- Hunt checks are per character column. "Owned" notes stay account-wide: a pet in one character's bags can show as owned on another character's sheet, and the note names who holds it. The site does not write that automatic check back to the sheet. Whole-house view counts a hunt in hand when any matching character column is checked, or the item is owned, and does not toggle from that view.
+- Browser checklist state is not stored. Checks saved in localStorage before the sheet were not copied over.
 - Dungeons: `data/dungeons.json`. A dungeon with no bosses still has to render. `assets/app.js` shows it when the name matches, including an empty placeholder.
-- Characters: `data/characters.json`. Do not invent quest titles. Forever quest ids missing from `data/quests.json` stay as `Quest <id>` in `assets/app.js`.
-- Hunt checks and "owned" notes are account-wide. A pet in one character's bags can show as owned on another character's sheet, and the note names who holds it.
 - Empty quest scans, empty macros, and blank stats on characters who have not been played stay blank.
 
 ## Shipping
