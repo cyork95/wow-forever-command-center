@@ -49,13 +49,13 @@
     "name": "Thorin Caskmend",
     "race": "Dwarf",
     "className": "Shaman",
-    "spec": "Spec still open",
+    "spec": "Restoration (main, healing-focused), Enhancement (dual)",
     "professions": ["Skinning", "Leatherworking"],
     "roles": ["crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Launch roster. Replaces Bramblebeard Emberkeg. Pairs with Ephai Xorr, a Human warrior with Mining and Blacksmithing.",
-    "talentNote": "Spec is open until the shaman trees are in hand.",
+    "talentNote": "Restoration main, healing-focused. Enhancement dual.",
     "talentUrl": null,
     "pairsWith": "Ephai Xorr (Human warrior, Mining / Blacksmithing)"
   }
