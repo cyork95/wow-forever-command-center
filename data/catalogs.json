@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "note": "Name catalogs for resolving raw IDs. quests.source is the existing committed catalog; extra holds Forever IDs learned from Dossier exports (Phase 1a+) that quests.json does not know. factions is filled only from verified sources — unresolved IDs stay listed, never invented.",
+  "quests": {
+    "source": "data/quests.json",
+    "extra": {}
+  },
+  "factions": {},
+  "unresolved": {
+    "quests": [],
+    "factions": []
+  }
+}
