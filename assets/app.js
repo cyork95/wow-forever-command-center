@@ -60,9 +60,7 @@ const state = {
   checks: {},
   attempts: {},
   tasks: [],
-  taskChecks: {},
-  sheetLive: false,
-  sheetWriting: 0
+  taskChecks: {}
 };
 
 function loadStore() {
@@ -90,19 +88,10 @@ function saveStore() {
   }));
 }
 
-function noteSheet(message) {
-  const node = document.getElementById("sheet-status");
-  if (!node) return;
-  node.hidden = !message;
-  node.textContent = message || "";
-}
-
-function sheetMiss() {
-  if (!window.SheetStore || !SheetStore.canWrite()) {
-    return "The sheet did not save. Add the script URL and write secret under Sheet writes.";
-  }
-  return "The sheet did not save.";
-}
+// The Google Sheet is retired (see the footer): hunt, attempt and task
+// checks live only in this page view. Toggling updates the board;
+// reloading resets to the saved copy. The commit functions below are
+// kept as no-ops so every toggle call site behaves the same.
 
 function manualChecked(id, characterId) {
   const row = state.checks[id];
@@ -114,83 +103,17 @@ function writeLocalCheck(id, characterId, checked) {
   state.checks[id][characterId] = !!checked;
 }
 
-async function commitChecks(changes) {
-  state.sheetWriting += 1;
-  const saved = [];
-  let failed = false;
-  try {
-    if (!window.SheetStore || !SheetStore.canWrite()) failed = true;
-    else {
-      for (const change of changes) {
-        const result = await SheetStore.post("toggleHunt", {
-          id: change.id,
-          characterId: state.selected,
-          checked: change.checked
-        });
-        if (!result.ok) {
-          failed = true;
-          break;
-        }
-        saved.push(change);
-      }
-    }
-    if (!failed) {
-      noteSheet("");
-      return;
-    }
-    changes.forEach((change) => writeLocalCheck(change.id, state.selected, change.prev));
-    for (const change of saved) {
-      await SheetStore.post("toggleHunt", {
-        id: change.id,
-        characterId: state.selected,
-        checked: change.prev
-      });
-    }
-    noteSheet(sheetMiss());
-    renderChecklist();
-    renderDungeons();
-  } finally {
-    state.sheetWriting -= 1;
-  }
+async function commitChecks() {
+  // Sheet retired: the writeLocalCheck call at the toggle site already
+  // updated this page view. Nothing to persist.
 }
 
-async function persistTries(id, count, prev) {
-  state.sheetWriting += 1;
-  try {
-    const result = window.SheetStore && SheetStore.canWrite()
-      ? await SheetStore.post("setTries", { id, characterId: state.selected, count })
-      : { ok: false };
-    if (result.ok) {
-      noteSheet("");
-      return;
-    }
-    if (!state.attempts[id]) state.attempts[id] = {};
-    if (!prev) delete state.attempts[id][state.selected];
-    else state.attempts[id][state.selected] = prev;
-    noteSheet(sheetMiss());
-    renderChecklist();
-  } finally {
-    state.sheetWriting -= 1;
-  }
+async function persistTries() {
+  // Sheet retired: setAttempts already updated this page view.
 }
 
-async function commitTask(id, checked, prev) {
-  state.sheetWriting += 1;
-  try {
-    const result = window.SheetStore && SheetStore.canWrite()
-      ? await SheetStore.post("toggleTask", { id, characterId: state.selected, checked })
-      : { ok: false };
-    if (result.ok) {
-      noteSheet("");
-      return;
-    }
-    if (!state.taskChecks[id]) state.taskChecks[id] = {};
-    state.taskChecks[id][state.selected] = prev;
-    noteSheet(sheetMiss());
-    renderLedgerBoards();
-  } finally {
-    state.sheetWriting -= 1;
-  }
+async function commitTask() {
+  // Sheet retired: the toggle site already updated this page view.
 }
 
 function attemptCount(id) {
@@ -354,7 +277,7 @@ function lootInHand(item) {
 function setLootCheck(item, checked) {
   const links = lootLinksFor(item);
   if (!links.length) {
-    noteSheet("That drop is not a hunt on the sheet, so the check was not saved.");
+    // That drop is not a tracked hunt, so the check cannot attach anywhere.
     renderDungeons();
     return;
   }
@@ -437,11 +360,11 @@ function isChecked(item) {
     const people = state.characters.filter((character) => matchesCharacter(item, character));
     const list = people.length ? people : state.characters;
     if (list.some((character) => manualChecked(item.id, character.id))) return true;
-    return !state.sheetLive && !!item.defaultDone;
+    // Sheet retired: the saved copy in checklist.json is the only source.
+    return !!item.defaultDone;
   }
   if (manualChecked(item.id, state.selected)) return true;
-  if (!state.sheetLive) return !!item.defaultDone;
-  return false;
+  return !!item.defaultDone;
 }
 
 function selectedCharacter() {
@@ -510,10 +433,7 @@ function el(tag, attrs, children) {
 function renderHouse() {
   const house = state.house;
   const base = `${house.player} · ${house.faction} · ${house.ruleset} · ${house.edition}`;
-  const fallback = state.sheetLive
-    ? ""
-    : " Showing the saved copy. The Google Sheet did not load, so checks on this page are not saved.";
-  document.getElementById("lede").textContent = base + fallback;
+  document.getElementById("lede").textContent = base;
   const chips = document.getElementById("chips");
   chips.replaceChildren();
   [
@@ -562,7 +482,7 @@ function renderSheet() {
   identity.append(el("h3", { text: character.name }));
   identity.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
   if (!character.betaSafe) {
-    identity.append(el("p", { class: "warn", text: "Reserved name. Do not use this character in beta." }));
+    identity.append(el("p", { class: "warn", text: "To be reserved Oct 27. Do not use this character in beta." }));
   }
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
@@ -601,11 +521,12 @@ function renderSheet() {
 
   const stats = el("article", { class: "card" });
   stats.append(el("h3", { text: "Stats" }));
-  const updated = state.stats.updated
+  // stats.json can carry a date from unrelated beta snapshots, so the
+  // "updated" line is only shown when THIS character actually has data.
+  const hasLive = live && Object.keys(live).length > 0;
+  const updated = hasLive && state.stats.updated
     ? `Updated ${state.stats.updated}.`
-    : (state.sheetLive
-      ? "No row on the sheet yet. Paste this character's JSON into the Import tab."
-      : "No addon export merged yet. Level, gear, and gold show up here after the next dump.");
+    : "No addon export merged yet. Level, gear, and gold show up here after the first launch-roster export.";
   stats.append(el("p", { class: "empty-note", text: updated }));
   const grid = el("div", { class: "stat-grid" });
   [
@@ -656,7 +577,7 @@ function renderSheet() {
   lifetime.append(el("h3", { text: "Statistics" }));
   const groups = statisticGroups(live.statistics);
   if (!groups.length) {
-    lifetime.append(el("p", { class: "empty-note", text: "Open the character window and use the bottom tab on the right. The scan does not read Dossier's Statistics section yet, so paste the counters you care about into the export under statistics." }));
+    lifetime.append(el("p", { class: "empty-note", text: "No statistics recorded yet." }));
   } else {
     const wrap = el("div", { class: "stat-groups" });
     groups.forEach((group) => {
@@ -1187,6 +1108,7 @@ function renderLootItem(item) {
     box,
     el("span", { class: `item q-${quality}`, text: item.name }),
     state.huntNames && state.huntNames.has(nameKey(item.name)) ? el("span", { class: "badge", text: "Hunt" }) : null,
+    item.verified === false ? el("span", { class: "badge", text: "Unverified" }) : null,
     bits ? el("small", { text: bits }) : null
   ]);
 }
@@ -1725,7 +1647,11 @@ function renderQuests() {
 }
 
 function ledgerCharacters() {
-  const table = state.ledger && state.ledger.characters;
+  const book = state.ledger || {};
+  // Placeholder example data is never rendered. The ledger only shows
+  // real scan output; anything else renders the honest empty states.
+  if (book.updated === "example") return {};
+  const table = book.characters;
   return table && typeof table === "object" ? table : {};
 }
 
@@ -1830,11 +1756,20 @@ function renderLedgerBoards() {
   const mailRoot = document.getElementById("mail-list");
   const mailNote = document.getElementById("mail-note");
   if (mailRoot && mailNote) {
-    mailNote.textContent = empty || "Sent and received letters.";
-    mailRoot.replaceChildren(...names.map((key) => {
+    // Redacted view: correspondent, date and item names only.
+    // No bodies, no gold amounts, no subjects.
+    let total = 0;
+    const cards = names.map((key) => {
       const rows = asList(people[key].mail);
-      return card(key, rows.length ? rows.map((letter) => `${formatWhen(letter.time)}  ${letter.direction || ""}  ${letter.who || ""}  ${letter.subject || ""}  ${formatGold(letter.gold || 0)}  ${letter.status || ""}`) : ["No mail recorded yet."]);
-    }));
+      total += rows.length;
+      const lines = rows.map((letter) => {
+        const items = asList(letter.items).map((entry) => String(entry)).filter(Boolean);
+        return `${formatWhen(letter.time)} · ${letter.who || "Unknown sender"} · ${items.length ? items.join(", ") : "no items listed"}`;
+      });
+      return card(`${key} (${rows.length})`, lines.length ? lines : ["No mail recorded yet."]);
+    });
+    mailNote.textContent = empty || (total ? `${total} letters across ${names.length} characters. Names and items only.` : "Sent and received letters.");
+    mailRoot.replaceChildren(...cards);
   }
 
   const rareRoot = document.getElementById("rares-list");
@@ -1881,9 +1816,7 @@ function renderLedgerBoards() {
       yearly: "Each year",
       once: "Just once"
     };
-    if (!state.sheetLive) taskNote.textContent = "The sheet did not load, so there is no task list.";
-    else if (!tasks.length) taskNote.textContent = "No tasks on the sheet yet.";
-    else taskNote.textContent = who ? `Checks for ${who.name}.` : "Checks for this character.";
+    taskNote.textContent = tasks.length ? (who ? `Checks for ${who.name}.` : "Checks for this character.") : "No task list yet. Tasks return with the canonical data.";
     const taskLine = (task) => {
       const done = !!(state.taskChecks[task.id] && state.taskChecks[task.id][state.selected]);
       const box = el("input", { type: "checkbox", "aria-label": `Done: ${task.name || "Task"}` });
@@ -1929,9 +1862,15 @@ function renderAltoholic() {
   const picker = document.getElementById("alto-character");
   const sheet = document.getElementById("alto-sheet");
   if (!note || !picker || !sheet) return;
-  const people = asList(state.altoholic && state.altoholic.characters);
+  // Only roster characters render. Stale snapshots of removed beta
+  // characters (with their unresolved quest/faction IDs) never show;
+  // the tab stays in its honest empty state until the canonical
+  // DataStore parse lands in Phase 2a.
+  const rosterFirsts = new Set(state.characters.map((c) => String(c.name || "").split(" ")[0].toLowerCase()));
+  const people = asList(state.altoholic && state.altoholic.characters)
+    .filter((person) => rosterFirsts.has(String(person.name || "").split(" ")[0].toLowerCase()));
   if (!people.length) {
-    note.textContent = "No Altoholic save yet. Log out in game, then run scripts/scan-addons.ps1.";
+    note.textContent = "No canonical Altoholic scan yet. This tab fills in when the Phase 2a DataStore parse lands.";
     picker.replaceChildren();
     sheet.replaceChildren();
     return;
@@ -2058,51 +1997,6 @@ async function loadJson(path) {
   return response.json();
 }
 
-function applySheet(live) {
-  state.stats = live.stats;
-  state.checklist = live.checklist;
-  state.checks = live.checks || {};
-  state.attempts = live.attempts || {};
-  state.tasks = live.tasks || [];
-  state.taskChecks = live.taskChecks || {};
-  state.sheetLive = true;
-}
-
-async function reloadSheet() {
-  if (!state.sheetLive || state.sheetWriting || !window.SheetStore) return;
-  const live = await SheetStore.loadLive();
-  if (!live) {
-    noteSheet("The sheet did not refresh.");
-    return;
-  }
-  applySheet(live);
-  buildOwned();
-  buildDrops();
-  noteSheet("");
-  render();
-}
-
-function bindSheetSettings() {
-  const url = document.getElementById("sheet-script-url");
-  const secret = document.getElementById("sheet-secret");
-  const note = document.getElementById("sheet-write-note");
-  const button = document.getElementById("sheet-save-write");
-  if (!url || !secret || !button || !window.SheetStore) return;
-  const saved = SheetStore.readWriteSettings();
-  url.value = saved.scriptUrl || "";
-  secret.value = saved.writeSecret || "";
-  if (note && SheetStore.writeSource() === "file") {
-    note.textContent = "This computer is using data/sheet.local.json for writes. The fields below are for a browser that does not have that file.";
-  }
-  button.addEventListener("click", () => {
-    SheetStore.saveWriteSettings(url.value.trim(), secret.value);
-    if (!note) return;
-    note.textContent = SheetStore.writeSource() === "file"
-      ? "Saved in this browser. data/sheet.local.json still wins on the next load here."
-      : "Saved in this browser.";
-  });
-}
-
 async function main() {
   loadStore();
   const params = new URLSearchParams(location.search);
@@ -2134,15 +2028,13 @@ async function main() {
     state.altoholic = altoholic;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
-    const live = window.SheetStore ? await SheetStore.loadLive() : null;
-    if (live) applySheet(live);
-    else {
-      state.sheetLive = false;
-      state.checks = {};
-      state.attempts = {};
-      state.tasks = [];
-      state.taskChecks = {};
-    }
+    // The Google Sheet is retired: the repo JSON files are the only source.
+    // state.checks/attempts/taskChecks start empty and live only in this
+    // page view; checklist.json still carries the saved hunt list.
+    state.checks = {};
+    state.attempts = {};
+    state.tasks = [];
+    state.taskChecks = {};
     buildOwned();
     buildDrops();
   } catch (error) {
@@ -2150,13 +2042,14 @@ async function main() {
     console.error(error);
     return;
   }
+  // Roster identity comes from data/characters.json alone. A saved or
+  // linked id that is not on the roster falls back to the first roster
+  // character; there is no beta stand-in anymore.
   const explicit = params.get("c");
-  const chosen = state.characters.find((c) => c.id === state.selected);
   const asked = explicit && state.characters.some((c) => c.id === explicit);
-  if (!chosen || (!asked && chosen.betaSafe === false)) {
-    const standIn = state.characters.find((c) => c.id === "flann")
-      || state.characters.find((c) => c.betaSafe);
-    if (standIn) state.selected = standIn.id;
+  if (asked) state.selected = explicit;
+  else if (!state.characters.some((c) => c.id === state.selected)) {
+    state.selected = state.characters.length ? state.characters[0].id : "";
   }
   saveStore();
   document.getElementById("scope").value = state.scope;
@@ -2198,10 +2091,6 @@ async function main() {
     state.scope = event.target.value;
     saveStore();
     renderChecklist();
-  });
-  bindSheetSettings();
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") reloadSheet();
   });
   render();
 }

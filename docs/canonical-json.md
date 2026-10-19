@@ -87,3 +87,13 @@ historical exports) are excluded from the public file.
 Public mail, when it ships, is correspondent, date and item names
 only — no bodies, no gold amounts. If that cannot be done cleanly,
 counts only.
+## Phase 1c backlog (recorded, no code yet)
+
+- Hunts/checklist persistence: after the sheet retirement, toggles are
+  session-only (in-memory, reset on reload). Needs a persistence design
+  before launch; device-local storage is the leading simple option.
+  Checks must survive reloads by the Oct 27 reservation/hunt period.
+- Mail long-term source: the canonical pipeline's redacted projection, never a
+  committed data/ledger.json with real data. The 1b revert of a real-data
+  ledger during testing was correct and stays the rule: gold, bag/bank
+  contents, mail and ledger detail are private-local only.

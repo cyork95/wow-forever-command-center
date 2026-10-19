@@ -146,25 +146,12 @@
   </main>
   <footer class="site">
     <div class="wrap">
-      <p id="sheet-status" class="meta" hidden></p>
-      <details class="sheet-settings">
-        <summary>Sheet writes</summary>
-        <p id="sheet-write-note">The page reads the published sheet. To save a check from this browser, paste the Apps Script web app URL and the write secret. They stay in this browser.</p>
-        <label>Script URL
-          <input id="sheet-script-url" type="url" autocomplete="off" spellcheck="false">
-        </label>
-        <label>Write secret
-          <input id="sheet-secret" type="password" autocomplete="off">
-        </label>
-        <button type="button" id="sheet-save-write">Save in this browser</button>
-      </details>
-      <p>Character numbers, hunt checks, and task checks come from the Google Sheet. If the sheet does not load, the page uses the saved copy in the repo and does not keep new checks. Checks saved in this browser before the sheet were left behind.</p>
+      <p>Character numbers and the hunt list come from addon exports committed to this repo. Hunt checks are kept for this page view only and reset on reload. The Google Sheet is retired; its Apps Script and seed scripts stay in the repo as an archive.</p>
     </div>
   </footer>
   </div>
   <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
   <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
-  <script src="assets/sheet.js?v=1"></script>
-  <script src="assets/app.js?v=21"></script>
+  <script src="assets/app.js?v=22"></script>
 </body>
 </html>
