@@ -97,3 +97,11 @@ counts only.
   committed data/ledger.json with real data. The 1b revert of a real-data
   ledger during testing was correct and stays the rule: gold, bag/bank
   contents, mail and ledger detail are private-local only.
+## Deploy notes
+
+- GitHub Pages builds the main branch only (verified via the deployments API:
+  every recorded Pages build is ref=main). Pushing any other branch never
+  deploys. A merge into main IS the live deploy.
+- Session rule: no branch comparison or deployment-base conclusion without a
+  fresh git fetch in the same session. Stale local refs caused a wrong
+  base call during Phase 1b (local main predated PR #27).
