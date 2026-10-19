@@ -101,6 +101,36 @@ function manualChecked(id, characterId) {
 function writeLocalCheck(id, characterId, checked) {
   if (!state.checks[id]) state.checks[id] = {};
   state.checks[id][characterId] = !!checked;
+  persistHunts();
+}
+
+var HUNT_STORE_KEY = 'wow-forever-hunts-v1';
+
+function persistHunts() {
+  try {
+    localStorage.setItem(HUNT_STORE_KEY, JSON.stringify({ checks: state.checks, attempts: state.attempts }));
+  } catch (error) { /* private window: checks stay in memory for this page view */ }
+}
+
+function loadHunts() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(HUNT_STORE_KEY) || 'null'); } catch (error) { saved = null; }
+  if (!saved) return;
+  if (saved.checks && typeof saved.checks === 'object') state.checks = saved.checks;
+  if (saved.attempts && typeof saved.attempts === 'object') state.attempts = saved.attempts;
+}
+
+function resetHunts() {
+  state.checks = {};
+  state.attempts = {};
+  try { localStorage.removeItem(HUNT_STORE_KEY); } catch (error) { /* ignore */ }
+  renderChecklist();
+  renderDungeons();
+}
+
+function explicitlyUnchecked(id, characterId) {
+  const row = state.checks[id];
+  return !!(row && Object.prototype.hasOwnProperty.call(row, characterId) && !row[characterId]);
 }
 
 async function commitChecks() {
@@ -128,6 +158,7 @@ function setAttempts(id, value) {
   if (!state.attempts[id]) state.attempts[id] = {};
   if (n === 0) delete state.attempts[id][state.selected];
   else state.attempts[id][state.selected] = n;
+  persistHunts();
   persistTries(id, n, prev);
 }
 
@@ -364,6 +395,7 @@ function isChecked(item) {
     return !!item.defaultDone;
   }
   if (manualChecked(item.id, state.selected)) return true;
+  if (explicitlyUnchecked(item.id, state.selected)) return false;
   return !!item.defaultDone;
 }
 
@@ -2035,6 +2067,7 @@ async function main() {
     state.attempts = {};
     state.tasks = [];
     state.taskChecks = {};
+    loadHunts();
     buildOwned();
     buildDrops();
   } catch (error) {
@@ -2087,6 +2120,7 @@ async function main() {
     state.questQuery = event.target.value;
     renderQuests();
   });
+  document.getElementById("reset-checks").addEventListener("click", () => { resetHunts(); });
   document.getElementById("scope").addEventListener("change", (event) => {
     state.scope = event.target.value;
     saveStore();

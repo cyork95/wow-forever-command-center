@@ -38,7 +38,7 @@ Package with `powershell -File scripts/package-addon.ps1`. There is no Lua test 
 - Tasks: the Tasks tab on the sheet, one checkbox column per character. The site task list is empty when the sheet does not load. Ledger notes stay in `data/ledger.json`.
 - Characters: `data/characters.json` is still the roster (names, specs, roles). Live level, gold, gear, and the rest of the snapshot come from the sheet's Characters tab. `data/stats.json` is the fallback. Do not invent quest titles. Forever quest ids missing from `data/quests.json` stay as `Quest <id>` in `assets/app.js`.
 - Hunt checks are per character column. "Owned" notes stay account-wide: a pet in one character's bags can show as owned on another character's sheet, and the note names who holds it. The site does not write that automatic check back to the sheet. Whole-house view counts a hunt in hand when any matching character column is checked, or the item is owned, and does not toggle from that view.
-- Browser checklist state is not stored. Checks saved in localStorage before the sheet were not copied over.
+- Hunts checklist state persists in localStorage (key wow-forever-hunts-v1), merged over checklist.json defaults. Checks saved in localStorage before the sheet were not copied over.
 - Dungeons: `data/dungeons.json`. A dungeon with no bosses still has to render. `assets/app.js` shows it when the name matches, including an empty placeholder.
 - Empty quest scans, empty macros, and blank stats on characters who have not been played stay blank.
 

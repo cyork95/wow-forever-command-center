@@ -12,5 +12,14 @@
     "scope": "shared",
     "icon": "spell_nature_earthbindtotem",
     "lines": ["/thank"]
+  },
+  {
+    "id": "look-better",
+    "name": "Look Better",
+    "scope": "shared",
+    "icon": "inv_scroll_02",
+    "lines": [
+      "/run local c=C_CVar local d=c.GetCVar(\"groundEffectDensity\")==\"256\" c.SetCVar(\"groundEffectDensity\",d and 48 or 256) c.SetCVar(\"groundEffectDist\",d and 320 or 500) c.SetCVar(\"GroundEffectFade\",d and 70 or 370)"
+    ]
   }
 ]
