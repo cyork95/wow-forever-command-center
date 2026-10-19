@@ -27,7 +27,7 @@ Each of these can be turned off. Off means that part stops watching the game and
 - **Session.** A timer for kills, gathering, gold, and XP per hour, plus time to the next level. [[Session]]
 - **Shopping list.** What you mean to gather or buy, against what is already in your bags and bank. [[Shopping list]]
 - **Screenshotter.** A shot on level-ups, deaths, achievements, boss kills, and similar moments. [[Screenshotter]]
-- **Companions.** Optional character data from addons you already use. [[Companions]]
+- **Other addons.** One switch lets Dossier read character data another addon already saved. [[Companions]]
 
 ## Commands
 

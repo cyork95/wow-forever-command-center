@@ -37,10 +37,11 @@ If AIExport is still loaded, Dossier prints a reminder in chat to turn it off.
 | `/dossier shop` | Open the Shopping tab |
 | `/dossier shots` | Open the Screenshotter tab |
 | `/dossier shot` | Take a screenshot now |
-| `/dossier companions` | Open the Companions tab |
+| `/dossier ledger` | Open the Ledger tab |
+| `/dossier tasks` | Open Tasks and the zone window |
 | `/dossier options` | Open the Options tab |
 | `/dossier settings` | Open Dossier's page in the game's Settings |
-| `/dossier off <feature>` | Turn a feature off: `bio`, `kills`, `session`, `shop`, `shots`, or `companions` |
+| `/dossier off <feature>` | Turn a feature off: `bio`, `kills`, `session`, `ledger`, `mail`, `tasks`, `quests`, `shop`, `shots`, or `companions` |
 | `/dossier on <feature>` | Turn it back on |
 | `/dossier help` | Open the guide and the example AI skill |
 
@@ -48,7 +49,7 @@ Left-click the minimap button to open the window. Right-click it to show or hide
 
 ## The window
 
-The window has nine tabs down the left side. A feature you turn off on the Options tab also hides its tab.
+The window has a tab down the left side for each part that is switched on. A feature you turn off on the Options tab also hides its tab.
 
 - **Export**: the report sections, grouped into Character, Inventory, Progress, Abilities, Story, and System cards, with **Select All**, **Clear All**, and **Create Export**.
 - **Biography**: your timeline, 40 lines per page.
@@ -56,7 +57,14 @@ The window has nine tabs down the left side. A feature you turn off on the Optio
 - **Session**: the session timer, this session's kills, gathering, gold, and XP, and the live session panel options.
 - **Shopping**: the items and recipes you plan to gather or buy, with what you have and what you still need.
 - **Screenshotter**: automatic screenshots at big moments, with a switch for each moment.
-- **Companions**: the optional addons Dossier can read, each with its status and an on/off switch.
+- **Ledger, Currencies, and Reputation**: gold, currencies, and reputation for every character on the account.
+- **Mail**: letters you sent and received. Dossier does not send or take mail.
+- **Professions**: each character's skill and rank.
+- **Rares**: where you killed a rare, and the drops you actually looted.
+- **Lockouts**: saved instances and a diary of runs.
+- **Sessions**: finished play sessions. The Session tab is still the live timer.
+- **Tasks**: daily, weekly, and one-time notes, plus a window for this zone.
+- **Quests**: every quest the game says this character has completed.
 - **Options**: the minimap icon, item stats in bags and bank, detailed export, Reload UI, and a switch for each part of Dossier. See [Options](#options).
 - **Help**: the guide and a **Copy guide** button.
 

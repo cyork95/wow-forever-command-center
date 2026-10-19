@@ -159,11 +159,11 @@ function KillPanel.StatLines(summary)
     local lines = {}
 
     if KillPanel:IsLineOn("kills") and ns:IsFeatureOn("kills") then
-        table.insert(lines, string.format(C.TEXT.SESSION_LINE_KILLS, FormatCount(summary.kills), FormatCount(summary.killsPerHour)))
+        table.insert(lines, "|cffffb4a2" .. string.format(C.TEXT.SESSION_LINE_KILLS, FormatCount(summary.kills), FormatCount(summary.killsPerHour)) .. "|r")
     end
 
     if KillPanel:IsLineOn("gathered") then
-        table.insert(lines, string.format(C.TEXT.SESSION_LINE_GATHERED, FormatCount(summary.gathered), FormatCount(summary.gatheredPerHour)))
+        table.insert(lines, "|cffb7e3a1" .. string.format(C.TEXT.SESSION_LINE_GATHERED, FormatCount(summary.gathered), FormatCount(summary.gatheredPerHour)) .. "|r")
 
         local parts = {}
 
@@ -181,11 +181,12 @@ function KillPanel.StatLines(summary)
     end
 
     if KillPanel:IsLineOn("gold") and session then
-        table.insert(lines, string.format(C.TEXT.SESSION_LINE_GOLD, session.FormatGold(summary.gold), session.FormatGold(summary.goldPerHour)))
+        local coins = ns.Account and ns.Account.Coins or session.FormatGold
+        table.insert(lines, "|cffffd36b" .. string.format(C.TEXT.SESSION_LINE_GOLD, coins(summary.gold), coins(summary.goldPerHour)) .. "|r")
     end
 
     if KillPanel:IsLineOn("xp") then
-        local text = string.format(C.TEXT.SESSION_LINE_XP, FormatCount(summary.xp), FormatCount(summary.xpPerHour))
+        local text = "|cff9ec5ff" .. string.format(C.TEXT.SESSION_LINE_XP, FormatCount(summary.xp), FormatCount(summary.xpPerHour)) .. "|r"
 
         if summary.timeToLevel and session then
             text = text .. string.format(C.TEXT.SESSION_LINE_LEVEL, session.FormatDuration(summary.timeToLevel))
@@ -206,7 +207,9 @@ function KillPanel.ListText(summary)
     local nameColor = ns.Theme.ColorCode("text")
 
     for _, creature in ipairs(summary.creatures) do
-        table.insert(lines, string.format("%s%s|r  x%s", nameColor, creature.name, FormatCount(creature.count)))
+        local rare = creature.classification == "rare" or creature.classification == "rareelite"
+        local color = rare and "|cffffd36b" or nameColor
+        table.insert(lines, string.format("%s%s|r  |cffffcc66x%s|r", color, creature.name, FormatCount(creature.count)))
     end
 
     return table.concat(lines, "\n")

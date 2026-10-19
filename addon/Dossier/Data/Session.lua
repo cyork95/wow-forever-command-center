@@ -108,6 +108,17 @@ local function GetStore()
     return Session.FillDefaults(db.session or {}, db)
 end
 
+-- Persisted session gold never goes below zero. Live gold can still show a spend.
+local function PersistGold(copper)
+    copper = math.floor(tonumber(copper) or 0)
+
+    if copper < 0 then
+        return 0
+    end
+
+    return copper
+end
+
 function Session.FillDefaults(store, db)
     if db then
         db.session = store
@@ -121,6 +132,16 @@ function Session.FillDefaults(store, db)
         if store.categories[category.key] == nil then
             store.categories[category.key] = category.default
         end
+    end
+
+    for _, entry in ipairs(store.history) do
+        if type(entry) == "table" then
+            entry.gold = PersistGold(entry.gold)
+        end
+    end
+
+    if type(store.current) == "table" then
+        store.current.gold = PersistGold(store.current.gold)
     end
 
     return store
@@ -219,8 +240,25 @@ function Session:GetKills()
     return state.killsCarried + (kills and kills.kills or 0)
 end
 
-function Session:GetGold()
+-- A GetMoney() of 0 while the last real balance was higher is the client unloading
+-- on logout, not an empty purse. 0 is truthy in Lua, so it used to be subtracted
+-- from the starting wallet and saved as a large negative.
+function Session:TrustedMoney()
     local money = Read(GetMoney)
+
+    if money == nil then
+        return lastMoney
+    end
+
+    if money == 0 and (lastMoney or 0) > 0 then
+        return lastMoney
+    end
+
+    return money
+end
+
+function Session:GetGold()
+    local money = self:TrustedMoney()
 
     if not money or not state.startMoney then
         return state.goldCarried
@@ -313,7 +351,7 @@ local function HistoryEntry()
         zone = state.zone,
         kills = Session:GetKills(),
         gathered = state.gathered,
-        gold = Session:GetGold(),
+        gold = PersistGold(Session:GetGold()),
         xp = state.xp,
         levels = state.levels,
     }
@@ -324,6 +362,15 @@ local function PushHistory(store, entry)
 
     while #store.history > HISTORY_SIZE do
         table.remove(store.history)
+    end
+
+    local account = ns.Account
+    local key = account and account.CharacterKey()
+    local bucket = account and account.Bucket("sessions")
+
+    if bucket and key then
+        bucket[key] = type(bucket[key]) == "table" and bucket[key] or {}
+        account.Push(bucket[key], entry, 20)
     end
 end
 
@@ -534,6 +581,11 @@ local function OnMoney()
         return
     end
 
+    -- Unload reports 0. Keep the last balance so the saved session is not minus the wallet.
+    if money == 0 and (lastMoney or 0) > 0 then
+        return
+    end
+
     if not state.startMoney then
         state.startMoney = money
     end
@@ -625,7 +677,7 @@ local function SaveCurrent()
         byType = state.byType,
         xp = state.xp,
         levels = state.levels,
-        gold = Session:GetGold(),
+        gold = PersistGold(Session:GetGold()),
         kills = Session:GetKills(),
     }
 end
@@ -637,7 +689,7 @@ local function SavedHistoryEntry(saved)
         zone = saved.zone,
         kills = tonumber(saved.kills) or 0,
         gathered = tonumber(saved.gathered) or 0,
-        gold = tonumber(saved.gold) or 0,
+        gold = PersistGold(saved.gold),
         xp = tonumber(saved.xp) or 0,
         levels = tonumber(saved.levels) or 0,
     }

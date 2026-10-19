@@ -42,7 +42,7 @@ Screenshots are saved in `World of Warcraft\_classic_beta_\Screenshots` with the
 
 While Memento is loaded, the Screenshotter pauses so you do not get two screenshots of the same moment. The tab says so. Disable Memento in the AddOns list to let Dossier take over.
 
-When the Screenshotter is on and Memento is not loaded, the Companions tab shows Memento as **Built into Dossier**. Boss kills Memento recorded stay available as a companion block until then. Boss kills are in the Biography either way.
+Boss kills are in the Biography. Dossier does not take a second screenshot of a moment another screenshot addon already captured while that addon is loaded.
 
 ## Turning it off
 

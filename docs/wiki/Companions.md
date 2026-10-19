@@ -1,10 +1,6 @@
-# Companions
+# Other addons
 
-Dossier never needs another addon. When one of these is loaded, Dossier can read what it has saved for this character and add it to the Companions section of the export.
-
-Each companion is optional. The Companions tab shows whether each addon is loaded, installed but not loaded, or not installed, and has a switch to leave it out. Switches are on by default and only work while that addon is loaded.
-
-Untick **Companions** on the Export tab to leave all of them out of one report. `/dossier off companions` stops Dossier reading any other addon and hides the tab. See [[Options]].
+Dossier does not have a Companions tab. One Options switch, **Other addons**, lets Dossier read character data another addon already saved and fold it into the normal report. `/dossier off companions` stops those reads. Saved data stays. See [[Options]].
 
 If a companion addon changes how it saves data, its block says it could not be read. The rest of the export still works.
 

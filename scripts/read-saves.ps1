@@ -274,6 +274,7 @@ function Get-SaveSnapshots($wtfRoot, $characters) {
       $aiFolder = if ($last) { "$first-$last" } else { $first }
       $aiFile = Find-DossierSave $accountDossierFiles $aiFolder
       if ($aiFile) {
+        $snap.dossierAt = $aiFile.LastWriteTime.ToString("yyyy-MM-ddTHH:mm:ss")
         $kills = Convert-KillMobs (LV (Read-DossierSave $aiFile) "kills" "mobs")
         if ($kills) {
           $snap.kills = $kills

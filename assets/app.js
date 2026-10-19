@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "professions", "dungeons", "quests", "macros", "addons", "house"];
+const TABS = ["roster", "hunts", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
 
 const HUNT_GROUPS = [
   { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
@@ -38,6 +38,8 @@ const state = {
   quests: null,
   questLoading: false,
   questQuery: "",
+  altoholic: null,
+  altoName: "",
   books: null,
   openBookRegions: new Set(),
   openBookMaps: new Set(),
@@ -48,7 +50,7 @@ const state = {
   profView: "known",
   profQuery: "",
   openDungeons: new Set(),
-  selected: "skyrinis",
+  selected: "flann",
   scope: "character",
   place: "",
   query: "",
@@ -56,15 +58,15 @@ const state = {
   openId: "",
   tab: "roster",
   checks: {},
-  attempts: {}
+  attempts: {},
+  tasks: [],
+  taskChecks: {}
 };
 
 function loadStore() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
     if (saved.selected) state.selected = saved.selected;
-    if (saved.checks) state.checks = saved.checks;
-    if (saved.attempts) state.attempts = saved.attempts;
     if (saved.scope) state.scope = saved.scope;
     if (typeof saved.place === "string") state.place = saved.place;
     if (["known", "make", "learn", "all"].includes(saved.profView)) state.profView = saved.profView;
@@ -73,6 +75,7 @@ function loadStore() {
     state.checks = {};
     state.attempts = {};
   }
+  saveStore();
 }
 
 function saveStore() {
@@ -81,22 +84,51 @@ function saveStore() {
     scope: state.scope,
     place: state.place,
     profView: state.profView,
-    tab: state.tab,
-    checks: state.checks,
-    attempts: state.attempts
+    tab: state.tab
   }));
 }
 
+// The Google Sheet is retired (see the footer): hunt, attempt and task
+// checks live only in this page view. Toggling updates the board;
+// reloading resets to the saved copy. The commit functions below are
+// kept as no-ops so every toggle call site behaves the same.
+
+function manualChecked(id, characterId) {
+  const row = state.checks[id];
+  return !!(row && row[characterId]);
+}
+
+function writeLocalCheck(id, characterId, checked) {
+  if (!state.checks[id]) state.checks[id] = {};
+  state.checks[id][characterId] = !!checked;
+}
+
+async function commitChecks() {
+  // Sheet retired: the writeLocalCheck call at the toggle site already
+  // updated this page view. Nothing to persist.
+}
+
+async function persistTries() {
+  // Sheet retired: setAttempts already updated this page view.
+}
+
+async function commitTask() {
+  // Sheet retired: the toggle site already updated this page view.
+}
+
 function attemptCount(id) {
-  const n = Number(state.attempts[id]);
+  const row = state.attempts[id] || {};
+  const n = Number(row[state.selected]);
   return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
 }
 
 function setAttempts(id, value) {
   const n = Math.max(0, Math.floor(Number(value) || 0));
-  if (n === 0) delete state.attempts[id];
-  else state.attempts[id] = n;
-  saveStore();
+  const prev = attemptCount(id);
+  if (!state.attempts[id]) state.attempts[id] = {};
+  if (n === 0) delete state.attempts[id][state.selected];
+  else state.attempts[id][state.selected] = n;
+  persistTries(id, n, prev);
 }
 
 function huntGroup(item) {
@@ -239,23 +271,33 @@ function lootInHand(item) {
   if (ownedNote(item)) return true;
   const links = lootLinksFor(item);
   if (links.length) return links.some((link) => isChecked(link.entry));
-  return !!state.checks[dropStoreKey(item)];
+  return manualChecked(dropStoreKey(item), state.selected);
 }
 
 function setLootCheck(item, checked) {
   const links = lootLinksFor(item);
   if (!links.length) {
-    state.checks[dropStoreKey(item)] = checked;
-  } else {
-    links.forEach((link) => {
-      if (!link.parent && link.entry.parts && checked && !piecesReady(link.entry)) return;
-      state.checks[link.entry.id] = checked;
-      if (link.parent && !piecesReady(link.parent)) state.checks[link.parent.id] = false;
-    });
+    // That drop is not a tracked hunt, so the check cannot attach anywhere.
+    renderDungeons();
+    return;
   }
-  saveStore();
+  const changes = [];
+  links.forEach((link) => {
+    if (!link.parent && link.entry.parts && checked && !piecesReady(link.entry)) return;
+    const prev = manualChecked(link.entry.id, state.selected);
+    writeLocalCheck(link.entry.id, state.selected, checked);
+    changes.push({ id: link.entry.id, checked, prev });
+    if (link.parent && !piecesReady(link.parent)) {
+      const prevParent = manualChecked(link.parent.id, state.selected);
+      if (prevParent) {
+        writeLocalCheck(link.parent.id, state.selected, false);
+        changes.push({ id: link.parent.id, checked: false, prev: prevParent });
+      }
+    }
+  });
   renderChecklist();
   renderDungeons();
+  if (changes.length) commitChecks(changes);
 }
 
 function dungeonGear(dungeon) {
@@ -314,7 +356,14 @@ function huntMobs(item) {
 
 function isChecked(item) {
   if (ownedNote(item)) return true;
-  if (Object.prototype.hasOwnProperty.call(state.checks, item.id)) return state.checks[item.id];
+  if (state.scope === "house") {
+    const people = state.characters.filter((character) => matchesCharacter(item, character));
+    const list = people.length ? people : state.characters;
+    if (list.some((character) => manualChecked(item.id, character.id))) return true;
+    // Sheet retired: the saved copy in checklist.json is the only source.
+    return !!item.defaultDone;
+  }
+  if (manualChecked(item.id, state.selected)) return true;
   return !!item.defaultDone;
 }
 
@@ -383,8 +432,8 @@ function el(tag, attrs, children) {
 
 function renderHouse() {
   const house = state.house;
-  document.getElementById("lede").textContent =
-    `${house.player} · ${house.faction} · ${house.ruleset} · ${house.edition}`;
+  const base = `${house.player} · ${house.faction} · ${house.ruleset} · ${house.edition}`;
+  document.getElementById("lede").textContent = base;
   const chips = document.getElementById("chips");
   chips.replaceChildren();
   [
@@ -433,7 +482,7 @@ function renderSheet() {
   identity.append(el("h3", { text: character.name }));
   identity.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
   if (!character.betaSafe) {
-    identity.append(el("p", { class: "warn", text: "Reserved name. Do not use this character in beta." }));
+    identity.append(el("p", { class: "warn", text: "To be reserved Oct 27. Do not use this character in beta." }));
   }
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
@@ -472,9 +521,12 @@ function renderSheet() {
 
   const stats = el("article", { class: "card" });
   stats.append(el("h3", { text: "Stats" }));
-  const updated = state.stats.updated
+  // stats.json can carry a date from unrelated beta snapshots, so the
+  // "updated" line is only shown when THIS character actually has data.
+  const hasLive = live && Object.keys(live).length > 0;
+  const updated = hasLive && state.stats.updated
     ? `Updated ${state.stats.updated}.`
-    : "No addon export merged yet. Level, gear, and gold show up here after the next dump.";
+    : "No addon export merged yet. Level, gear, and gold show up here after the first launch-roster export.";
   stats.append(el("p", { class: "empty-note", text: updated }));
   const grid = el("div", { class: "stat-grid" });
   [
@@ -492,6 +544,17 @@ function renderSheet() {
   const sources = Object.entries(live.sources || {})
     .map(([name, when]) => (when ? `${name} ${String(when).slice(5, 10).replace("-", "/")}` : name));
   if (sources.length) stats.append(el("p", { class: "meta sources", text: `From ${sources.join(" · ")}` }));
+  const record = ledgerRecord(character);
+  if (record) {
+    const goldLines = asList(record.gold).slice(0, 6).map((row) => {
+      const when = formatWhen(row.time);
+      return `${when ? `${when} ` : ""}${row.source || "gold"} ${formatGold(row.delta)}`;
+    });
+    const currencyLines = asList(record.currencies).slice(0, 6).map((row) => `${row.name} ${row.quantity}`);
+    const repLines = asList(record.reputations).slice(0, 6).map((row) => `${row.name} ${row.standing || row.value || ""}`.trim());
+    const bits = [...goldLines, ...currencyLines, ...repLines];
+    if (bits.length) stats.append(el("p", { class: "meta", text: bits.join(" · ") }));
+  }
 
   if (asList(live.gear).length) {
     const table = el("table", { class: "gear" });
@@ -514,7 +577,7 @@ function renderSheet() {
   lifetime.append(el("h3", { text: "Statistics" }));
   const groups = statisticGroups(live.statistics);
   if (!groups.length) {
-    lifetime.append(el("p", { class: "empty-note", text: "Open the character window and use the bottom tab on the right. The scan does not read Dossier's Statistics section yet, so paste the counters you care about into the export under statistics." }));
+    lifetime.append(el("p", { class: "empty-note", text: "No statistics recorded yet." }));
   } else {
     const wrap = el("div", { class: "stat-groups" });
     groups.forEach((group) => {
@@ -640,14 +703,28 @@ function renderPart(item, part) {
   const found = ownedNote(part);
   const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}`, title: found || null });
   box.checked = checked;
-  if (found) box.disabled = true;
+  if (found || state.scope === "house") box.disabled = true;
+  if (state.scope === "house" && !found) box.title = "Switch to this character to check this hunt.";
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
-    state.checks[part.id] = box.checked;
-    if (!piecesReady(item)) state.checks[item.id] = false;
-    saveStore();
+    if (state.scope === "house") {
+      box.checked = isChecked(part);
+      return;
+    }
+    const changes = [];
+    const prev = manualChecked(part.id, state.selected);
+    writeLocalCheck(part.id, state.selected, box.checked);
+    changes.push({ id: part.id, checked: box.checked, prev });
+    if (!piecesReady(item)) {
+      const prevParent = manualChecked(item.id, state.selected);
+      if (prevParent) {
+        writeLocalCheck(item.id, state.selected, false);
+        changes.push({ id: item.id, checked: false, prev: prevParent });
+      }
+    }
     renderChecklist();
     renderDungeons();
+    commitChecks(changes);
   });
   const partKills = killLog(part.mobs);
   const partDrop = dropNote(part.name);
@@ -678,17 +755,23 @@ function renderHunt(item) {
     title: found || null
   });
   box.checked = checked;
-  if ((item.parts && !ready) || found) box.disabled = true;
+  if (state.scope === "house" || (item.parts && !ready) || found) box.disabled = true;
+  if (state.scope === "house" && !found) box.title = "Switch to this character to check this hunt.";
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
+    if (state.scope === "house") {
+      box.checked = isChecked(item);
+      return;
+    }
     if (item.parts && box.checked && !piecesReady(item)) {
       box.checked = false;
       return;
     }
-    state.checks[item.id] = box.checked;
-    saveStore();
+    const prev = manualChecked(item.id, state.selected);
+    writeLocalCheck(item.id, state.selected, box.checked);
     renderChecklist();
     renderDungeons();
+    commitChecks([{ id: item.id, checked: box.checked, prev }]);
   });
 
   const summary = el("button", {
@@ -794,12 +877,18 @@ function renderChecklist() {
   if (books) list.append(books);
 }
 
-function bookKey(book) {
-  return `book:${state.selected}:${nameKey(book.name)}`;
+function bookSheetId(book) {
+  const slug = String(book.name || "")
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return `book:${slug}`;
 }
 
 function bookTurnedIn(book) {
-  return !!state.checks[bookKey(book)];
+  return manualChecked(bookSheetId(book), state.selected);
 }
 
 function renderBookMap(book) {
@@ -820,9 +909,11 @@ function renderBook(book) {
   const box = el("input", { type: "checkbox", "aria-label": `Turned in ${book.name}` });
   box.checked = done;
   box.addEventListener("change", () => {
-    state.checks[bookKey(book)] = box.checked;
-    saveStore();
+    const id = bookSheetId(book);
+    const prev = manualChecked(id, state.selected);
+    writeLocalCheck(id, state.selected, box.checked);
     renderChecklist();
+    commitChecks([{ id, checked: box.checked, prev }]);
   });
   const pin = asList(book.pins)[0];
   const coords = pin ? `${pin.x}, ${pin.y}` : "";
@@ -913,39 +1004,10 @@ function selectCharacter(id) {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderLedgerBoards();
   renderProfessions();
   renderQuests();
   renderMacros();
-}
-
-function exportChecks() {
-  const blob = new Blob([JSON.stringify({
-    exportedAt: new Date().toISOString(),
-    selected: state.selected,
-    checks: state.checks,
-    attempts: state.attempts
-  }, null, 2)], { type: "application/json" });
-  const link = el("a", { href: URL.createObjectURL(blob), download: "forever-checklist.json" });
-  link.click();
-  URL.revokeObjectURL(link.href);
-}
-
-function importChecks(file) {
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const data = JSON.parse(String(reader.result));
-      if (!data.checks || typeof data.checks !== "object") throw new Error("missing checks");
-      state.checks = data.checks;
-      if (data.attempts && typeof data.attempts === "object") state.attempts = data.attempts;
-      if (data.selected) state.selected = data.selected;
-      saveStore();
-      render();
-    } catch {
-      window.alert("That file is not a checklist export.");
-    }
-  };
-  reader.readAsText(file);
 }
 
 function cleanAddonText(value) {
@@ -1046,6 +1108,7 @@ function renderLootItem(item) {
     box,
     el("span", { class: `item q-${quality}`, text: item.name }),
     state.huntNames && state.huntNames.has(nameKey(item.name)) ? el("span", { class: "badge", text: "Hunt" }) : null,
+    item.verified === false ? el("span", { class: "badge", text: "Unverified" }) : null,
     bits ? el("small", { text: bits }) : null
   ]);
 }
@@ -1111,7 +1174,7 @@ function renderDungeons() {
         ...asList(quest.rewardItems).map((item) => item.name)].join(" ");
       return nameKey(hay).includes(q);
     });
-    if (!bosses.length && !quests.length) return;
+    if (!bosses.length && !quests.length && !wholeDungeon) return;
     shown++;
 
     const allLoot = asList(dungeon.bosses).flatMap((boss) => asList(boss.loot));
@@ -1283,17 +1346,28 @@ function renderProfessions() {
   picker.value = state.selected;
   document.getElementById("prof-view").value = state.profView;
   root.replaceChildren();
+  const skillsRoot = document.getElementById("prof-skills");
+  if (skillsRoot) {
+    const cards = Object.entries(ledgerCharacters()).map(([key, record]) => {
+      const skills = asList(record.professions);
+      return el("article", { class: "card" }, [
+        el("h3", { text: key }),
+        el("p", { text: skills.length ? skills.map((skill) => `${skill.name} ${skill.current}${skill.max ? `/${skill.max}` : ""}`).join("   ") : "No skills saved yet." })
+      ]);
+    });
+    skillsRoot.replaceChildren(...(cards.length ? cards : [el("p", { class: "empty-note", text: "No profession skills saved yet. Log in on a character to record them." })]));
+  }
   const data = state.professions;
   if (!data) {
     note.textContent = "Loading the craft list…";
     return;
   }
   if (data.missing) {
-    note.textContent = "No craft list yet. Install Profession Master, run scripts/scan-addons.ps1, then commit data/professions.json.";
+    note.textContent = "No craft list yet. Run scripts/scan-addons.ps1, then commit data/professions.json.";
     return;
   }
   const version = versionLabel(data.version);
-  note.textContent = `From ${data.source}${version ? ` ${version}` : ""}. Reagent counts cover bags, bank, and mail.`;
+  note.textContent = `Recipe list${version ? ` ${version}` : ""}. Reagent counts cover bags, bank, and mail.`;
 
   const character = selectedCharacter();
   const live = (state.stats.characters || {})[character.id] || {};
@@ -1493,10 +1567,10 @@ async function loadQuests() {
 }
 
 function renderFinishedQuest(quest) {
-  const meta = quest.level ? `Level ${quest.level}` : "";
+  const bits = [quest.level ? `Level ${quest.level}` : "", quest.turnedIn ? `Turned in ${quest.turnedIn}` : ""].filter(Boolean);
   return el("article", { class: "quest" }, [
     el("strong", { text: quest.name }),
-    meta ? el("small", { text: meta }) : null
+    bits.length ? el("small", { text: bits.join(" · ") }) : null
   ]);
 }
 
@@ -1529,6 +1603,13 @@ function renderQuests() {
     return;
   }
   const catalog = questCatalog();
+  const turnedIn = new Map();
+  characterLedgerKeys(character).forEach((key) => {
+    asList(ledgerCharacters()[key] && ledgerCharacters()[key].quests).forEach((quest) => {
+      const id = Number(quest.questID);
+      if (id && quest.time) turnedIn.set(id, formatWhen(quest.time));
+    });
+  });
   const q = nameKey(state.questQuery);
   const rows = done.map((id) => {
     const known = catalog.get(id);
@@ -1536,7 +1617,8 @@ function renderQuests() {
       id,
       name: known && known.name ? known.name : `Quest ${id}`,
       level: known && known.level ? known.level : null,
-      zone: known && known.zone ? known.zone : "Other"
+      zone: known && known.zone ? known.zone : "Other",
+      turnedIn: turnedIn.get(id) || ""
     };
   }).filter((quest) => !q || nameKey(`${quest.name} ${quest.zone}`).includes(q));
   if (!rows.length) {
@@ -1564,16 +1646,349 @@ function renderQuests() {
   });
 }
 
+function ledgerCharacters() {
+  const book = state.ledger || {};
+  // Placeholder example data is never rendered. The ledger only shows
+  // real scan output; anything else renders the honest empty states.
+  if (book.updated === "example") return {};
+  const table = book.characters;
+  return table && typeof table === "object" ? table : {};
+}
+
+function characterLedgerKeys(character) {
+  const first = String(character && character.name || "").split(" ")[0].toLowerCase();
+  if (!first) return [];
+  return Object.keys(ledgerCharacters()).filter((key) => key.split("-")[0].toLowerCase() === first);
+}
+
+function ledgerRecord(character) {
+  const keys = characterLedgerKeys(character);
+  return keys.length ? ledgerCharacters()[keys[0]] : null;
+}
+
+function formatWhen(seconds) {
+  const n = Number(seconds);
+  if (!n) return "";
+  return new Date(n * 1000).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
+function lockoutCard(key, lockouts) {
+  const saved = asList(lockouts.saved);
+  const runs = asList(lockouts.runs);
+  const savedNodes = saved.length ? saved.map((entry) => {
+    const progress = Number(entry.progress) || 0;
+    const encounters = Number(entry.encounters) || 0;
+    const ratio = encounters > 0 ? Math.min(100, Math.round((progress / encounters) * 100)) : 0;
+    const done = encounters > 0 && progress >= encounters;
+    const detail = [entry.difficulty, entry.resetText].filter(Boolean).join(" · ");
+    return el("div", { class: "lock-row" }, [
+      el("div", { class: "lock-top" }, [
+        el("strong", { text: entry.name || "Instance" }),
+        el("span", { text: encounters > 0 ? `${progress}/${encounters}` : "" })
+      ]),
+      detail ? el("p", { class: "meta", text: detail }) : null,
+      el("div", { class: "lock-bar", "aria-hidden": "true" }, [
+        el("div", { style: `width:${ratio}%;background:${done ? "var(--teal)" : "var(--gold)"}` })
+      ])
+    ]);
+  }) : [el("p", { class: "meta", text: "No saved instances." })];
+  const runNodes = runs.length ? runs.map((run) => {
+    const levels = run.levelFrom && run.levelTo && run.levelTo !== run.levelFrom ? `${run.levelFrom} to ${run.levelTo}` : "";
+    const gold = Number(run.gold);
+    return el("div", { class: "lock-run" }, [
+      el("span", { class: "when", text: formatWhen(run.entered) || "—" }),
+      el("span", { class: "name", text: run.name || "Instance" }),
+      el("span", { text: formatPlayed(run.seconds) }),
+      levels ? el("span", { class: "muted", text: levels }) : null,
+      gold ? el("span", { text: formatGold(gold) }) : null,
+      Number(run.mobs) > 0 ? el("span", { class: "muted", text: `${run.mobs} kills` }) : null
+    ]);
+  }) : [el("p", { class: "meta", text: "No instance runs yet." })];
+  return el("article", { class: "card lock-card" }, [
+    el("h3", { text: key }),
+    el("h4", { text: "Saved now" }),
+    ...savedNodes,
+    el("h4", { text: "Recent runs" }),
+    ...runNodes
+  ]);
+}
+
+function renderLedgerBoards() {
+  const book = state.ledger || {};
+  const people = ledgerCharacters();
+  const names = Object.keys(people).sort();
+  const empty = names.length ? "" : "No ledger save yet. Log out in game, then run scripts/scan-addons.ps1.";
+  const card = (title, lines) => el("article", { class: "card" }, [
+    el("h3", { text: title }),
+    ...lines.map((line) => el("p", { text: line }))
+  ]);
+
+  const ledgerRoot = document.getElementById("ledger-list");
+  const ledgerNote = document.getElementById("ledger-note");
+  if (ledgerRoot && ledgerNote) {
+    ledgerNote.textContent = empty || `Gold for ${names.length} characters.`;
+    ledgerRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].gold).slice(0, 12);
+      return card(key, rows.length ? rows.map((row) => `${formatWhen(row.time)}  ${row.source || "other"}  ${formatGold(row.delta)}${row.detail ? `  ${row.detail}` : ""}`) : ["No gold changes saved."]);
+    }));
+  }
+
+  const currencyRoot = document.getElementById("currencies-list");
+  const currencyNote = document.getElementById("currencies-note");
+  if (currencyRoot && currencyNote) {
+    currencyNote.textContent = empty || "Latest currency totals.";
+    currencyRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].currencies);
+      return card(key, rows.length ? rows.map((row) => `${row.name}  ${row.quantity}`) : ["No currencies saved."]);
+    }));
+  }
+
+  const repRoot = document.getElementById("reputation-list");
+  const repNote = document.getElementById("reputation-note");
+  if (repRoot && repNote) {
+    repNote.textContent = empty || "Latest reputation standings.";
+    repRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].reputations);
+      return card(key, rows.length ? rows.map((row) => `${row.name}  ${row.standing || row.value || ""}`.trim()) : ["No reputation saved."]);
+    }));
+  }
+
+  const mailRoot = document.getElementById("mail-list");
+  const mailNote = document.getElementById("mail-note");
+  if (mailRoot && mailNote) {
+    // Redacted view: correspondent, date and item names only.
+    // No bodies, no gold amounts, no subjects.
+    let total = 0;
+    const cards = names.map((key) => {
+      const rows = asList(people[key].mail);
+      total += rows.length;
+      const lines = rows.map((letter) => {
+        const items = asList(letter.items).map((entry) => String(entry)).filter(Boolean);
+        return `${formatWhen(letter.time)} · ${letter.who || "Unknown sender"} · ${items.length ? items.join(", ") : "no items listed"}`;
+      });
+      return card(`${key} (${rows.length})`, lines.length ? lines : ["No mail recorded yet."]);
+    });
+    mailNote.textContent = empty || (total ? `${total} letters across ${names.length} characters. Names and items only.` : "Sent and received letters.");
+    mailRoot.replaceChildren(...cards);
+  }
+
+  const rareRoot = document.getElementById("rares-list");
+  const rareNote = document.getElementById("rares-note");
+  if (rareRoot && rareNote) {
+    const rares = asList(book.rares);
+    rareNote.textContent = rares.length ? `${rares.length} rares recorded.` : "No rares recorded yet.";
+    rareRoot.replaceChildren(...rares.map((rare) => {
+      const place = rare.x != null && rare.y != null ? `${rare.zone || "Unknown zone"} ${Number(rare.x).toFixed(1)}, ${Number(rare.y).toFixed(1)}` : (rare.zone || "Unknown zone");
+      const loot = asList(rare.loot);
+      return card(`${rare.name || "Rare"}  ${rare.character || ""}`, [
+        `${rare.kills || 0}  ${place}`,
+        loot.length ? loot.join(", ") : "No drops recorded yet."
+      ]);
+    }));
+  }
+
+  const lockRoot = document.getElementById("lockouts-list");
+  const lockNote = document.getElementById("lockouts-note");
+  if (lockRoot && lockNote) {
+    lockNote.textContent = empty || "Saved instances and recent runs.";
+    lockRoot.replaceChildren(...names.map((key) => lockoutCard(key, people[key].lockouts || {})));
+  }
+
+  const sessionRoot = document.getElementById("sessions-list");
+  const sessionNote = document.getElementById("sessions-note");
+  if (sessionRoot && sessionNote) {
+    sessionNote.textContent = empty || "Finished sessions.";
+    sessionRoot.replaceChildren(...names.map((key) => {
+      const rows = asList(people[key].sessions);
+      return card(key, rows.length ? rows.map((entry) => `${formatWhen(entry.start)}  ${entry.zone || ""}  ${entry.seconds || 0}s  ${formatGold(entry.gold || 0)}  ${entry.xp || 0} XP`) : ["No finished sessions yet."]);
+    }));
+  }
+
+  const taskRoot = document.getElementById("tasks-list");
+  const taskNote = document.getElementById("tasks-note");
+  if (taskRoot && taskNote) {
+    const who = selectedCharacter();
+    const tasks = asList(state.tasks);
+    const cadenceLabel = {
+      daily: "Each day",
+      weekly: "Each week",
+      monthly: "Each month",
+      yearly: "Each year",
+      once: "Just once"
+    };
+    taskNote.textContent = tasks.length ? (who ? `Checks for ${who.name}.` : "Checks for this character.") : "No task list yet. Tasks return with the canonical data.";
+    const taskLine = (task) => {
+      const done = !!(state.taskChecks[task.id] && state.taskChecks[task.id][state.selected]);
+      const box = el("input", { type: "checkbox", "aria-label": `Done: ${task.name || "Task"}` });
+      box.checked = done;
+      box.addEventListener("change", () => {
+        if (!state.taskChecks[task.id]) state.taskChecks[task.id] = {};
+        state.taskChecks[task.id][state.selected] = box.checked;
+        renderLedgerBoards();
+        commitTask(task.id, box.checked, done);
+      });
+      const cadence = cadenceLabel[task.cadence] || task.cadence || "Just once";
+      const place = task.zone ? ` · ${task.zone}` : "";
+      return el("div", { class: "task-row" }, [
+        box,
+        el("div", {}, [
+          el("strong", { text: task.name || "Task" }),
+          el("span", { text: `${cadence}${place}` }),
+          task.notes ? el("p", { class: "meta", text: task.notes }) : null
+        ])
+      ]);
+    };
+    const taskCard = el("article", { class: "card task-board" }, [
+      el("h3", { text: who ? who.name : "Tasks" }),
+      ...(tasks.length ? tasks.map(taskLine) : [el("p", { class: "meta", text: "Nothing on the list." })])
+    ]);
+    const noteCards = names.map((key) => {
+      const notes = asList(people[key].notes);
+      return el("article", { class: "card task-board" }, [
+        el("h3", { text: key }),
+        el("h4", { text: "Notes" }),
+        notes.length ? el("div", { class: "note-grid" }, notes.map((note) => el("div", { class: "note-card" }, [
+          note.title ? el("strong", { text: note.title }) : null,
+          el("p", { text: note.text || "" })
+        ].filter(Boolean)))) : el("p", { class: "meta", text: "No notes yet." })
+      ]);
+    });
+    taskRoot.replaceChildren(taskCard, ...noteCards);
+  }
+}
+
+function renderAltoholic() {
+  const note = document.getElementById("alto-note");
+  const picker = document.getElementById("alto-character");
+  const sheet = document.getElementById("alto-sheet");
+  if (!note || !picker || !sheet) return;
+  // Only roster characters render. Stale snapshots of removed beta
+  // characters (with their unresolved quest/faction IDs) never show;
+  // the tab stays in its honest empty state until the canonical
+  // DataStore parse lands in Phase 2a.
+  const rosterFirsts = new Set(state.characters.map((c) => String(c.name || "").split(" ")[0].toLowerCase()));
+  const people = asList(state.altoholic && state.altoholic.characters)
+    .filter((person) => rosterFirsts.has(String(person.name || "").split(" ")[0].toLowerCase()));
+  if (!people.length) {
+    note.textContent = "No canonical Altoholic scan yet. This tab fills in when the Phase 2a DataStore parse lands.";
+    picker.replaceChildren();
+    sheet.replaceChildren();
+    return;
+  }
+  if (!people.some((person) => person.name === state.altoName)) state.altoName = people[0].name;
+  picker.replaceChildren(...people.map((person) => el("option", {
+    value: person.name,
+    text: person.realm ? `${person.name} · ${person.realm}` : person.name,
+    selected: person.name === state.altoName ? "selected" : null
+  })));
+  const person = people.find((row) => row.name === state.altoName) || people[0];
+  const when = state.altoholic.updated ? state.altoholic.updated.replace("T", " ") : "an unknown time";
+  note.textContent = `Saved by Altoholic at ${when}.`;
+  const place = [person.subZone, person.zone].filter(Boolean).join(", ");
+  const identity = [`Level ${person.level || "?"}`, person.race, person.class].filter(Boolean).join(" ");
+  const professions = asList(person.professions);
+  const gear = asList(person.gear);
+  const bags = asList(person.bags);
+  const stats = person.stats && typeof person.stats === "object" ? person.stats : null;
+  const questGroups = asList(person.quests);
+  const reputations = asList(person.reputations);
+  const currencies = asList(person.currencies);
+  const mail = asList(person.mail);
+  const bar = (label, value, max, right) => {
+    const ratio = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0;
+    return el("div", { class: "lock-row" }, [
+      el("div", { class: "lock-top" }, [
+        el("strong", { text: label }),
+        el("span", { text: right || (max > 0 ? `${value}/${max}` : "") })
+      ]),
+      el("div", { class: "lock-bar", "aria-hidden": "true" }, [
+        el("div", { style: `width:${ratio}%;background:var(--gold)` })
+      ])
+    ]);
+  };
+  sheet.replaceChildren(el("article", { class: "card lock-card alto-sheet" }, [
+    el("h3", { text: person.name }),
+    el("p", { class: "alto-meta" }, [
+      el("strong", { text: identity }),
+      document.createTextNode(place ? ` · ${place}` : ""),
+      document.createTextNode(` · ${formatGold(person.gold || 0)}`),
+      person.played ? document.createTextNode(` · ${formatPlayed(person.played)} played`) : null,
+      person.itemLevel ? document.createTextNode(` · item level ${person.itemLevel}`) : null,
+      person.rested ? document.createTextNode(" · rested") : null
+    ].filter(Boolean)),
+    el("h4", { text: "Gear" }),
+    ...(gear.length ? [el("div", { class: "alto-gear" }, gear.map((piece) => el("div", { class: "lock-run" }, [
+      el("span", { class: "muted", text: piece.slot }),
+      el("span", { class: "name", text: piece.name })
+    ])))] : [el("p", { class: "meta", text: "No gear saved. Open the character sheet in game." })]),
+    el("h4", { text: "Bags" }),
+    ...(bags.length ? bags.map((bag) => el("div", { class: "alto-bag" }, [
+      el("h5", { text: bag.name }),
+      el("ul", { class: "alto-items" }, asList(bag.items).map((item) => {
+        const count = Number(item.count) || 1;
+        return el("li", { text: count > 1 ? `${count} ${item.name}` : item.name });
+      }))
+    ])) : [el("p", { class: "meta", text: "No bags saved. Open the bags in game." })]),
+    el("h4", { text: "Stats" }),
+    stats ? el("div", { class: "alto-stats" }, [
+      ["Health", stats.health],
+      [stats.powerType || "Power", stats.power],
+      ["Strength", stats.strength],
+      ["Agility", stats.agility],
+      ["Stamina", stats.stamina],
+      ["Intellect", stats.intellect],
+      ["Armor", stats.armor],
+      ["Melee", stats.melee],
+      ["Attack power", stats.attackPower],
+      ["Spell damage", stats.spellDamage],
+      ["Healing", stats.spellHealing],
+      ["Spell crit", stats.spellCrit ? `${stats.spellCrit}%` : ""]
+    ].filter((pair) => pair[1] !== null && pair[1] !== undefined && pair[1] !== "").map((pair) => el("span", { text: `${pair[0]} ${pair[1]}` }))) : el("p", { class: "meta", text: "No stat snapshot saved." }),
+    el("h4", { text: "Quest log" }),
+    ...(questGroups.length ? questGroups.map((group) => el("div", { class: "alto-bag" }, [
+      el("h5", { text: group.zone }),
+      el("ul", { class: "alto-items" }, asList(group.quests).map((quest) => el("li", {
+        text: quest.ready ? `${quest.name} · ready` : quest.name
+      })))
+    ])) : [el("p", { class: "meta", text: "No quests in the log." })]),
+    el("h4", { text: "Professions" }),
+    ...(professions.length ? professions.map((skill) => {
+      const value = Number(skill.rank) || 0;
+      const max = Number(skill.max) || 0;
+      return bar(skill.name, value, max > 0 ? max : Math.max(value, 1), max > 0 ? `${value}/${max}` : String(value));
+    }) : [el("p", { class: "meta", text: "No profession ranks saved." })]),
+    el("h4", { text: "Reputation" }),
+    ...(reputations.length ? reputations.map((row) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: row.name }),
+      el("span", { text: row.standing || "" }),
+      row.next ? el("span", { class: "muted", text: `${row.progress || 0}/${row.next}` }) : null
+    ])) : [el("p", { class: "meta", text: "No reputation saved." })]),
+    el("h4", { text: "Currencies" }),
+    ...(currencies.length ? currencies.map((row) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: row.name }),
+      el("span", { text: String(row.quantity) })
+    ])) : [el("p", { class: "meta", text: "No currencies saved." })]),
+    el("h4", { text: "Mail" }),
+    ...(mail.length ? mail.map((letter) => el("div", { class: "lock-run" }, [
+      el("span", { class: "name", text: letter.sender || "Unknown" }),
+      el("span", { text: letter.subject || "" }),
+      Number(letter.money) ? el("span", { text: formatGold(letter.money) }) : null,
+      letter.daysLeft ? el("span", { class: "muted", text: `${letter.daysLeft} days left` }) : null
+    ])) : [el("p", { class: "meta", text: "No mail saved. Open a mailbox on that character." })])
+  ]));
+}
+
 function render() {
   renderHouse();
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderLedgerBoards();
+  renderAltoholic();
   renderProfessions();
   renderDungeons();
   renderQuests();
   renderMacros();
-  renderAddons();
 }
 
 async function loadJson(path) {
@@ -1591,12 +2006,14 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, screenshots, dungeons, books] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, altoholic, screenshots, dungeons, books] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
+      loadJson("data/ledger.json").catch(() => ({ characters: {}, rares: [] })),
+      loadJson("data/altoholic.json").catch(() => ({ characters: [] })),
       loadJson("data/screenshots.json").catch(() => []),
       loadJson("data/dungeons.json").catch(() => null),
       loadJson("data/library-books.json").catch(() => null)
@@ -1607,8 +2024,17 @@ async function main() {
     state.checklist = checklist;
     state.stats = stats;
     state.addons = addons;
+    state.ledger = ledger;
+    state.altoholic = altoholic;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
+    // The Google Sheet is retired: the repo JSON files are the only source.
+    // state.checks/attempts/taskChecks start empty and live only in this
+    // page view; checklist.json still carries the saved hunt list.
+    state.checks = {};
+    state.attempts = {};
+    state.tasks = [];
+    state.taskChecks = {};
     buildOwned();
     buildDrops();
   } catch (error) {
@@ -1616,7 +2042,16 @@ async function main() {
     console.error(error);
     return;
   }
-  if (!state.characters.some((c) => c.id === state.selected)) state.selected = state.characters[0].id;
+  // Roster identity comes from data/characters.json alone. A saved or
+  // linked id that is not on the roster falls back to the first roster
+  // character; there is no beta stand-in anymore.
+  const explicit = params.get("c");
+  const asked = explicit && state.characters.some((c) => c.id === explicit);
+  if (asked) state.selected = explicit;
+  else if (!state.characters.some((c) => c.id === state.selected)) {
+    state.selected = state.characters.length ? state.characters[0].id : "";
+  }
+  saveStore();
   document.getElementById("scope").value = state.scope;
   fillPlaceOptions();
   document.getElementById("place").addEventListener("change", (event) => {
@@ -1644,6 +2079,10 @@ async function main() {
     renderDungeons();
   });
   document.getElementById("quest-character")?.addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("alto-character")?.addEventListener("change", (event) => {
+    state.altoName = event.target.value;
+    renderAltoholic();
+  });
   document.getElementById("quest-search")?.addEventListener("input", (event) => {
     state.questQuery = event.target.value;
     renderQuests();
@@ -1652,12 +2091,6 @@ async function main() {
     state.scope = event.target.value;
     saveStore();
     renderChecklist();
-  });
-  document.getElementById("export-checks").addEventListener("click", exportChecks);
-  document.getElementById("import-checks").addEventListener("change", (event) => {
-    const file = event.target.files && event.target.files[0];
-    if (file) importChecks(file);
-    event.target.value = "";
   });
   render();
 }

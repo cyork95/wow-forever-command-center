@@ -11,6 +11,7 @@ The Biography starts at install. It does not fill in play from before that day. 
 - Every death, with the subzone and zone.
 - The first time you enter each zone in a session.
 - Every quest you turn in, by name.
+- Every book, scroll, or plaque you open, by title, with the zone. The page text is not saved. Opening the same book again later adds another line. Letters in the mailbox are left to the Mail tab.
 - Every achievement you earn.
 - Every boss you defeat, with the difficulty. Inside dungeons and raids, bosses are recorded here. Trash kills are not, because the game hides which creature died. See [[Kills]].
 - Learning a profession, and each rise in profession skill.

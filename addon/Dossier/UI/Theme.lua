@@ -412,7 +412,9 @@ function Theme.CreateTab(parent, label, onClick)
     bar:Hide()
 
     local text = Theme.CreateText(tab, "GameFontHighlight", "muted")
-    text:SetPoint("LEFT", 16, 0)
+    text:SetPoint("LEFT", 14, 0)
+    text:SetPoint("RIGHT", -10, 0)
+    text:SetJustifyH("LEFT")
     text:SetJustifyV("MIDDLE")
     text:SetText(label or "")
 

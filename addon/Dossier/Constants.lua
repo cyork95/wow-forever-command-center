@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "2.1.1"
+C.VERSION = "2.2.18"
 C.SLASH_COMMAND = "/dossier"
 C.SLASH_ALIAS = "/aixport"
 C.ADDON_TITLE = "Dossier"
@@ -40,6 +40,7 @@ C.SECTIONS = {
     COMPANIONS = "companions",
     ADDONS = "addons",
     SHOPPING = "shopping",
+    PET = "pet",
 }
 
 C.SECTION_ORDER = {
@@ -51,6 +52,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.BANK,
     C.SECTIONS.SHOPPING,
     C.SECTIONS.EQUIPMENT,
+    C.SECTIONS.PET,
     C.SECTIONS.LOCKOUTS,
     C.SECTIONS.PROGRESS,
     C.SECTIONS.KILLS,
@@ -68,7 +70,6 @@ C.SECTION_ORDER = {
     C.SECTIONS.TALENTS,
     C.SECTIONS.SPELLBOOK,
     C.SECTIONS.BIOGRAPHY,
-    C.SECTIONS.COMPANIONS,
     C.SECTIONS.ADDONS,
 }
 
@@ -80,6 +81,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.BAGS] = "Bags",
     [C.SECTIONS.BANK] = "Bank",
     [C.SECTIONS.EQUIPMENT] = "Equipment",
+    [C.SECTIONS.PET] = "Combat pet",
     [C.SECTIONS.LOCKOUTS] = "Lockouts",
     [C.SECTIONS.PROGRESS] = "Progress",
     [C.SECTIONS.ACHIEVEMENTS] = "Achievements",
@@ -109,6 +111,7 @@ C.SECTION_GROUPS = {
             C.SECTIONS.LOCATION,
             C.SECTIONS.CHARACTER_STATS,
             C.SECTIONS.EQUIPMENT,
+            C.SECTIONS.PET,
             C.SECTIONS.REPUTATIONS,
             C.SECTIONS.CURRENCIES,
         },
@@ -171,6 +174,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.BANK] = true,
     [C.SECTIONS.SHOPPING] = true,
     [C.SECTIONS.EQUIPMENT] = true,
+    [C.SECTIONS.PET] = true,
     [C.SECTIONS.LOCKOUTS] = true,
     [C.SECTIONS.PROGRESS] = true,
     [C.SECTIONS.ACHIEVEMENTS] = true,
@@ -209,6 +213,14 @@ C.SESSION_CATEGORY_LABELS = {
     holiday = "Holiday",
     consumable = "Consumable",
     quest = "Quest item",
+}
+
+C.TASK_PANEL_LINES = { "tasks", "shopping", "rares" }
+
+C.TASK_PANEL_LINE_LABELS = {
+    tasks = "Tasks here",
+    shopping = "Shopping short",
+    rares = "Rares here",
 }
 
 C.SESSION_PANEL_LINES = { "kills", "gathered", "gold", "xp", "recent" }
@@ -284,7 +296,7 @@ C.TEXT = {
     BUTTON_OLDER = "Older",
     BUTTON_NEWER = "Newer",
     BUTTON_COPY_GUIDE = "Copy guide",
-    BIOGRAPHY_EMPTY = "No events yet. Dossier records level-ups, deaths, new zones, quest turn-ins, achievements, profession skill-ups, and screenshots from now on.",
+    BIOGRAPHY_EMPTY = "No events yet. Dossier records level-ups, deaths, new zones, quest turn-ins, achievements, profession skill-ups, books you open, and screenshots from now on.",
     LABEL_SUBTITLE = "Character reports for AI chats",
     LABEL_EXPORT_HINT = "Ctrl+C to copy, then paste into your AI chat",
     LABEL_MAIN_DESCRIPTION = "Choose what goes into the report, then press Create Export and paste the text into an AI chat.",
@@ -314,12 +326,13 @@ C.TEXT = {
     READINESS_BANK_STALE = "Bank saved %s ago. Open it to refresh.",
     READINESS_PROFESSION_MISSING = "%s not saved yet. Open its window once.",
     READINESS_PROFESSION_STALE = "%s saved %s ago. Open its window to refresh.",
-    READINESS_USING_FALLBACK = "Using %s's copy for now.",
-    PROFESSION_MASTER_FALLBACK_NOTE = "(From Profession Master; open the profession window to refresh.)",
-    SYNDICATOR_BANK_FALLBACK_NOTE = "(From Syndicator; open your bank to refresh.)",
+    READINESS_USING_FALLBACK = "Using a saved copy for now.",
+    PROFESSION_MASTER_FALLBACK_NOTE = "(Saved copy; open the profession window to refresh.)",
+    SYNDICATOR_BANK_FALLBACK_NOTE = "(Saved copy; open your bank to refresh.)",
     TAB_KILLS = "Kills",
     KILLS_TOOLTIP = "Killed %d time%s",
     KILLS_EMPTY = "No kills yet. Dossier counts every creature you or your pet finish off, outside dungeons and raids.",
+    PET_EMPTY = "No combat pet.",
     KILLS_NO_MATCH = "No creature matches that search.",
     KILLS_HEADER = "Lifetime %s kills of %s creatures   Session %s (%s per hour)   Gold looted %s",
     KILLS_IMPORTED = "Includes %s kills copied from KillDex.",
@@ -345,11 +358,26 @@ C.TEXT = {
     SESSION_TOOLTIP_MORE = "and %d more: see the Session tab",
     SESSION_TOOLTIP_HELP = "Click the title to pause or resume the timer. Right-click it to reset the session.",
     TAB_SESSION = "Session",
+    TAB_SESSIONS = "Sessions",
+    TAB_RARES = "Rares",
+    TAB_LEDGER = "Ledger",
+    TAB_CURRENCIES = "Currencies",
+    TAB_REPUTATION = "Reputation",
+    TAB_MAIL = "Mail",
+    TAB_PROFESSIONS = "Professions",
+    TAB_LOCKOUTS = "Lockouts",
+    TAB_TASKS = "Tasks",
+    TAB_QUESTS = "Quests",
     SESSION_PAUSE = "Pause",
     SESSION_RESUME = "Start",
     SESSION_RESET = "Reset",
     SESSION_THIS_SESSION = "This session",
     SESSION_PANEL_CARD = "Session panel",
+    TASK_PANEL_CARD = "Task panel",
+    TASK_SHOW_PANEL = "Show the task panel",
+    TASK_OPEN_ZONE = "Open when the zone changes",
+    TASK_PANEL_TITLE = "Tasks",
+    TASK_PANEL_EMPTY = "Nothing waiting in this zone.",
     SESSION_CATEGORIES = "Count as gathered",
     SESSION_TIME_TO_LEVEL = "Next level in %s",
     SESSION_LEVELS = "Levels gained: %d",

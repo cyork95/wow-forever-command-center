@@ -92,6 +92,21 @@ ns.Companions:Register({
     title = "Nova Instance Tracker",
     addons = { "NovaInstanceTracker" },
     adds = "Your saved lockouts and your recent instance runs.",
+    IsBuiltIn = function()
+        if not ns:IsFeatureOn("lockouts") or not ns.Account then
+            return false
+        end
+
+        local db = ns.Account.Database()
+        local key = ns.Account.CharacterKey()
+        local row = db and key and type(db.lockouts) == "table" and db.lockouts[key] or nil
+
+        if type(row) ~= "table" then
+            return false
+        end
+
+        return #(row.saved or {}) > 0 or #(row.runs or {}) > 0
+    end,
     Collect = function(_, H)
         local global = H.Get(NITdatabase, "global")
 

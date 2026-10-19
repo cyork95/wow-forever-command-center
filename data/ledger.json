@@ -1,0 +1,49 @@
+{
+  "updated": "example",
+  "characters": {
+    "Flann Anvilhew": {
+      "gold": [
+        { "time": 1790979000, "delta": 125000, "balance": 540000, "source": "quest", "detail": "Example: The Defias Brotherhood" },
+        { "time": 1790975400, "delta": -32000, "balance": 415000, "source": "vendor", "detail": "Example: Mining pick" },
+        { "time": 1790971800, "delta": 250000, "balance": 447000, "source": "auction", "detail": "Example: Copper Ore" },
+        { "time": 1790968200, "delta": 8600, "balance": 197000, "source": "loot", "detail": "Example: Westfall" }
+      ],
+      "currencies": [],
+      "reputations": [
+        { "id": "example-stormwind", "name": "Stormwind", "standing": "Friendly", "value": 3200 }
+      ],
+      "professions": [
+        { "name": "Mining", "current": 42, "max": 75 },
+        { "name": "Blacksmithing", "current": 18, "max": 75 }
+      ],
+      "mail": [
+        { "time": 1790979000, "direction": "received", "who": "Auction House", "subject": "Example: Auction successful", "gold": 250000, "items": "", "status": "taken" }
+      ],
+      "sessions": [
+        { "start": 1790971800, "seconds": 4320, "zone": "Westfall", "gold": 48000, "xp": 8400, "kills": 18 }
+      ],
+      "tasks": [],
+      "quests": [],
+      "lockouts": {
+        "saved": [
+          { "name": "Example: Deadmines", "difficulty": "Normal", "progress": 3, "encounters": 6, "resetText": "Resets in 2 days" },
+          { "name": "Example: The Stockade", "difficulty": "Normal", "progress": 5, "encounters": 5, "resetText": "Resets in 18 hours" }
+        ],
+        "runs": [
+          { "entered": 1790971800, "name": "Example: Deadmines", "seconds": 2460, "levelFrom": 18, "levelTo": 20, "gold": 18400, "mobs": 42 }
+        ]
+      }
+    }
+  },
+  "rares": [
+    {
+      "name": "Example: Hogger",
+      "character": "Flann Anvilhew",
+      "kills": 2,
+      "zone": "Elwynn Forest",
+      "x": 27.4,
+      "y": 92.1,
+      "loot": ["Tough Jerky"]
+    }
+  ]
+}

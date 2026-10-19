@@ -35,7 +35,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/scan-addons.ps1
 Read the output:
 
 - `Wrote N addons to data/addons.json` means the addon list refreshed.
-- `Merged <name> into data/stats.json (<id>)` means the sheet updated. It also writes `data/exports/<name>-<date>.json`.
+- `Merged <name> into data/stats.json (<id>)` means the fallback file updated. It also writes `data/exports/<name>-<date>.json`. Paste that JSON into the Google Sheet Import tab so the live page updates. The sheet, not this file, is what the site reads when Google is reachable.
 - `Updated <name> from Nova Instance Tracker, Syndicator, ...` means the scan read that character's addon saves under `WTF`. This runs even without a paste. The saves are written when the user logs out or types `/reload`, so a character still logged in shows last session's numbers.
 - `Skipped unmatched character: <name>` means the name is not in `data/characters.json`. Ask whether to add them, with race, class, spec, and professions from the dump. Do not guess a spec. After adding them, run the scan again.
 - Some dumps carry only the first name (`Character: Trendirun-Realm`). The scan matches those on the roster's first name, so keep the full name from the one over the character's head in a screenshot.
@@ -76,7 +76,7 @@ The scan does not read the export's Statistics section. It fills the `Character`
 
 ## 5. Report what changed
 
-Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in a few sentences: level, zone, gold, profession skill changes, new recipes, and new or removed addons. Name any hunt from `data/checklist.json` that now checks itself because the item or recipe showed up. New hunts go to the Farm Sheet and `data/checklist.json`, not the Roster Doc.
+Run `git diff --stat` and read the diff for `data/stats.json`. Tell the user in a few sentences: level, zone, gold, profession skill changes, new recipes, and new or removed addons. Name any hunt from `data/checklist.json` that now checks itself because the item or recipe showed up. New hunts go on the Google Sheet Hunts tab and in `data/checklist.json` (the offline fallback), not the Roster Doc. Remind them to paste `data/exports/<name>-<date>.json` into the sheet Import tab for the live page.
 
 ## 6. Commit and open a PR
 

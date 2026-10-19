@@ -23,8 +23,9 @@ Saved for every character on the account. The same switches are `/dossier off <f
 | Kills | Creature counts, drops, gold, and tooltip counts |
 | Session | The timer, gathering, gold, and XP per hour, and the session panel |
 | Shopping list | Have and need counts, and vendor reminders |
+| Combat pet | The summoned hunter beast, warlock demon, or other combat pet, and the stable |
 | Screenshotter | Screenshots at big moments |
-| Companions | Reading Syndicator, AllTheThings, and the other optional addons |
+| Other addons | Reading character data another addon already saved |
 
 A feature that is off stops completely:
 
@@ -33,7 +34,7 @@ A feature that is off stops completely:
 - Its section on the Export tab is greyed out with `(off)` and left out of the report
 - Its commands say how to turn it back on
 
-Turning Session off also hides the session panel and saves the current session to Previous sessions. Turning Companions off stops Dossier reading any other addon.
+Turning Session off also hides the session panel and saves the current session to Previous sessions. Turning Other addons off stops Dossier reading any other addon.
 
 Nothing a feature saved is deleted. Turn it back on and its history is still there.
 

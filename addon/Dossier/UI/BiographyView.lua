@@ -14,6 +14,19 @@ BiographyView.page = nil
 
 local ROWS_PER_PAGE = 40
 
+local KIND_LABEL = {
+    level = "|cffffd36bLevel|r",
+    death = "|cfff26b5bDeath|r",
+    zone = "|cff7ee0e6Zone|r",
+    quest = "|cffb7e3a1Quest|r",
+    achievement = "|cffb794f6Feat|r",
+    profession = "|cfff0a05aSkill|r",
+    screenshot = "|cffc5cdd3Shot|r",
+    boss = "|cffff8a3dBoss|r",
+    read = "|cffe6d3a3Read|r",
+    login = "|cff8d9aa3Here|r",
+}
+
 BiographyView.ROWS_PER_PAGE = ROWS_PER_PAGE
 
 local function GetBiography()
@@ -69,13 +82,21 @@ local function BuildPageText(events, page)
                 table.insert(lines, dateColor .. entryDate .. "|r")
             end
 
+            local kind = KIND_LABEL[entry.kind] or "|cff8d9aa3Note|r"
+            local where = entry.zone and ("   |cff7ee0e6" .. entry.zone .. "|r") or ""
+            local level = tonumber(entry.level)
+            local levelText = level and level > 0 and ("   |cff8d9aa3" .. level .. "|r") or ""
+
             table.insert(
                 lines,
                 string.format(
-                    "%s%s|r  %s",
+                    "%s%s|r   %s   %s%s%s",
                     timeColor,
                     biography:FormatTime(entry.t),
-                    U.SafeString(entry.text, "")
+                    kind,
+                    U.SafeString(entry.text, ""),
+                    where,
+                    levelText
                 )
             )
         end

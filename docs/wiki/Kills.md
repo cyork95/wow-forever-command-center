@@ -1,6 +1,6 @@
 # Kills
 
-Dossier counts every creature you or your pet finish off. A creature another player tagged first is not counted.
+Dossier counts every creature you or your pet finish off. A hunter pet special or a warlock demon's spell counts for that character, the same as your own killing blow. A creature another player tagged first is not counted.
 
 Loot you pick up and gold you loot are added to the creature you took them from.
 
@@ -32,7 +32,7 @@ The Kills section, in the Progress card and on by default, lists:
 
 ## KillDex
 
-If KillDex was installed, Dossier copies its kill history once, the first time it loads, so earlier kills carry over. After that, KillDex is no longer needed. Once Dossier has kills of its own, the Companions tab shows KillDex as **Built into Dossier** and leaves its block out of the export.
+If KillDex was installed, Dossier copies its kill history once, the first time it loads, so earlier kills carry over. After that, KillDex is no longer needed. Once Dossier has kills of its own, KillDex's block stays out of the export.
 
 ## Turning it off
 
