@@ -11,7 +11,9 @@
     "betaSafe": false,
     "blurb": "Main look. Cat primary, bear off-tank. Walk on Air plus loremaster nodes. Reserve Oct 27.",
     "talentNote": "Feral cat primary. The old 16/0/35 resto tree is retired. Rebuild in beta around Charge, Primal Fury, and Berserk.",
-    "talentUrl": null,
+    "talentLinks": [
+      { "label": "Feral 0/43/8", "url": "https://talentsforever.com/druid/60/-55230302120132012551-05003-QRSTV2XYZbcdfghijVlo-6" }
+    ],
     "pairsWith": null
   },
   {
@@ -19,14 +21,17 @@
     "name": "Sorinis Starhollow",
     "race": "Night Elf",
     "className": "Druid",
-    "spec": "51/0/0 Balance",
+    "spec": "Restoration (main), Balance (dual)",
     "professions": ["Herbalism", "Alchemy"],
     "roles": ["caster", "crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Owl flagship. Pairs with Akian Xorr, a Night Elf bear with Skinning and Leatherworking.",
-    "talentNote": "51/0/0 pure Balance.",
-    "talentUrl": "https://talentsforever.com/druid/60/55322231551521351-0000000000000000000-0000000000000000",
+    "talentNote": "Restoration 16/0/35 main. Balance 38/0/13 dual.",
+    "talentLinks": [
+      { "label": "Restoration 16/0/35", "url": "https://talentsforever.com/druid/60/053202301--5050035103113251-6" },
+      { "label": "Balance 38/0/13 (dual)", "url": "https://talentsforever.com/druid/60/5532223115021051--505003-ABCDEFGHIJLMOPkmp-7" }
+    ],
     "pairsWith": "Akian Xorr (Night Elf bear, Skinning / Leatherworking)"
   },
   {
@@ -34,14 +39,17 @@
     "name": "Malavus Blackwell",
     "race": "Human",
     "className": "Warlock",
-    "spec": "34/0/17 Affliction",
+    "spec": "Affliction 40/11/0 (main), Demonology (dual)",
     "professions": ["Enchanting", "Tailoring"],
     "roles": ["caster", "crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Pairs with Vitiate Xorr, a Human paladin with Mining and Engineering. Face 10, foxtail, green eyes.",
-    "talentNote": "34/0/17 Affliction / Destruction.",
-    "talentUrl": "https://talentsforever.com/warlock/60/20552300035201051-0000000000000000000-2505005000000000",
+    "talentNote": "Affliction 40/11/0 main. Demonology 5/33/13 dual.",
+    "talentLinks": [
+      { "label": "Affliction 40/11/0", "url": "https://talentsforever.com/warlock/60/25550300035201351-0050203001--BCDFKLNOPQTVXaAJ-6" },
+      { "label": "Demonology 5/33/13 (dual)", "url": "https://talentsforever.com/warlock/60/005-0050233201211031351-20550001-6" }
+    ],
     "pairsWith": "Vitiate Xorr (Human paladin, Mining / Engineering)"
   },
   {
@@ -56,7 +64,10 @@
     "betaSafe": false,
     "blurb": "Launch roster. Replaces Bramblebeard Emberkeg. Pairs with Ephai Xorr, a Human warrior with Mining and Blacksmithing.",
     "talentNote": "Restoration main, healing-focused. Enhancement dual.",
-    "talentUrl": null,
+    "talentLinks": [
+      { "label": "Restoration 0/8/43", "url": "https://talentsforever.com/shaman/60/-035-5030523315513151-RSikmopqrstuvwxn-6" },
+      { "label": "Enhancement 18/33/0 (dual)", "url": "https://talentsforever.com/shaman/60/050533002-052032031005112251--6" }
+    ],
     "pairsWith": "Ephai Xorr (Human warrior, Mining / Blacksmithing)"
   }
 ]

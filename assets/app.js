@@ -533,9 +533,9 @@ function renderSheet() {
   });
   identity.append(profs);
   identity.append(el("p", { class: "meta", text: character.talentNote }));
-  if (character.talentUrl) {
-    identity.append(el("a", { href: character.talentUrl, target: "_blank", rel: "noreferrer", text: "Open the saved talent tree" }));
-  }
+  asList(character.talentLinks).forEach((link) => {
+    identity.append(el("a", { href: link.url, target: "_blank", rel: "noreferrer", text: link.label }));
+  });
   if (character.pairsWith) {
     identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
   }
