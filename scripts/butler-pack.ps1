@@ -197,6 +197,17 @@ function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
     foreach ($got in $recent) { $out += "- $($got.collectedAt): $($got.name) ($($got.type))." }
     $out += ""
   }
+  if ($extra -and $extra.rarityById -and $extra.rarityById.ContainsKey([string]$char.id) -and $extra.rarity) {
+    $out += "## Rarity attempts"
+    $out += ""
+    $ritems = @($extra.rarity.items)
+    $out += "- $($ritems.Count) items tracked, $($extra.rarity.summary.itemsWithAttempts) with attempts, $($extra.rarity.summary.totalAttempts) total attempts."
+    foreach ($rit in @($ritems | Select-Object -First 20)) {
+      $rline = if ($null -ne $rit.attempts) { "$($rit.attempts) attempts" } else { "no attempts recorded" }
+      $out += "- $($rit.name) [$($rit.group)]: $rline."
+    }
+    $out += ""
+  }
   $out += "## Relevant guides"
   $out += ""
   $mine = @($guides | Where-Object { @($_.appliesTo) -contains $char.rosterId })
@@ -223,6 +234,9 @@ if ($attDoc) { foreach ($entry in @($attDoc.characters)) { if ($entry.canonicalI
 $historyDoc = Read-JsonFile (Join-Path $PrivateDir "collection-history.json")
 $historyEntries = @()
 if ($historyDoc) { $historyEntries = @($historyDoc.entries) }
+$rarityDoc = Read-JsonFile (Join-Path $PrivateDir "rarity.json")
+$rarityById = @{}
+if ($rarityDoc) { foreach ($s in @($rarityDoc.statistics)) { if ($s.canonicalId) { $rarityById[[string]$s.canonicalId] = $s } } }
 if (-not $charsDoc -or -not @($charsDoc.characters).Count) { throw "No canonical characters in $PrivateDir. Run scripts/parse-dossier-export.ps1 first." }
 $prevDir = Join-Path $PrivateDir "prev"
 $prevDoc = Read-JsonFile (Join-Path $prevDir "characters.json")
@@ -230,7 +244,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries }
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc }
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
