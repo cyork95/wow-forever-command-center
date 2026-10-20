@@ -241,7 +241,7 @@ so no grouping information was clobbered.
   `match.questIds[]` / `match.itemIds[]` land in the ATT have-sets.
   Otherwise the manual toggle applies, stored account-wide. ATT SVs record
   haves only, so wants are hand-curated in the hunts data and never derived
-  from ATT. Zero of the 19 collection wants match today -- all manual.
+  from ATT. Zero of the 21 collection wants match today -- all manual.
 - Gear hunts (`targetCharacters`): manual check-off per character, unchanged.
 - Class missions (`quests[]`, `targetCharacters`): progress derives from the
   ATT per-character quest have-sets; none are tracked today.
@@ -270,10 +270,12 @@ so no grouping information was clobbered.
 - Butler packs print `## Hunts` per character: matched gear hunts, mission
   progress from the private Questie complete ids, and the collections line
   account-wide and identical in every pack.
-- Classification snapshot (41 entries): 19 collection, 14 gear, 8 unset --
+- Classification snapshot (41 entries): 21 collection, 14 gear, 6 unset --
   the 4 milestones (house tasks, not hunts), bmah (a shop, not one
-  collectible), whimsyfin + peace-tea (consumable recipes fit no bucket),
-  hunter-family-pets (a per-hunter stable plan). Human calls pending.
+  collectible), hunter-family-pets (a per-hunter stable plan). The two
+  consumable recipes (whimsyfin, peace-tea) were classified collection per
+  the Butler decision; the remaining six unset entries stay unset
+  permanently by the same decision.
 - Site logic tests live beside the PowerShell suite as
   `scripts/tests/test-hunts-logic.mjs` (run with `node ...`); it loads
   assets/app.js in a vm and asserts migration, obtained matching, mission
