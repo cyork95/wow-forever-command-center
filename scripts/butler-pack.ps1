@@ -188,6 +188,15 @@ function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
     $out += "- Last played (ATT): $($att.lastPlayed)."
     $out += ""
   }
+  $recent = @()
+  if ($extra -and $extra.history) { $recent = @($extra.history | Select-Object -Last 5) }
+  if ($recent.Count) {
+    $out += "## Recently obtained (account-wide, ATT Collection History)"
+    $out += ""
+    [array]::Reverse($recent)
+    foreach ($got in $recent) { $out += "- $($got.collectedAt): $($got.name) ($($got.type))." }
+    $out += ""
+  }
   $out += "## Relevant guides"
   $out += ""
   $mine = @($guides | Where-Object { @($_.appliesTo) -contains $char.rosterId })
@@ -211,6 +220,9 @@ $collDoc = Read-JsonFile (Join-Path $PrivateDir "collections.json")
 $attDoc = Read-JsonFile (Join-Path $PrivateDir "att.json")
 $attById = @{}
 if ($attDoc) { foreach ($entry in @($attDoc.characters)) { if ($entry.canonicalId) { $attById[[string]$entry.canonicalId] = $entry } } }
+$historyDoc = Read-JsonFile (Join-Path $PrivateDir "collection-history.json")
+$historyEntries = @()
+if ($historyDoc) { $historyEntries = @($historyDoc.entries) }
 if (-not $charsDoc -or -not @($charsDoc.characters).Count) { throw "No canonical characters in $PrivateDir. Run scripts/parse-dossier-export.ps1 first." }
 $prevDir = Join-Path $PrivateDir "prev"
 $prevDoc = Read-JsonFile (Join-Path $prevDir "characters.json")
@@ -218,7 +230,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById }
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries }
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
