@@ -12,7 +12,7 @@ generation time, never at render time.
 | `data/private/characters.json` | private, gitignored | One record per parsed character: identity, level, location, gold, gear, bags, bank, professions, reputations, quests, kills, sessions, statistics, achievements, talents, spells, biography, lockouts, shopping. |
 | `data/private/collections.json` | private, gitignored | Per-character collections (mounts/pets/toys counts and names), collected appearances, completed quest names/count. |
 | `data/private/economy.json` | private, gitignored | Per-character `goldCopper` and the raw `Character - Wealth` statistics lines. Full ledger detail joins in Phase 2. |
-| `data/characters.public.json` | public, committed | Redacted site input. Roster-matched characters only: roster id, display name, level, race, class, professions with ranks, collection counts, completed quest count, total kills. No gold, no bags, no bank, no mail, no ledger detail, no item locations. |
+| `data/characters.public.json` | public, committed | Redacted site input. Roster-matched characters only: roster id, display name, level, race, class, professions with ranks, reputation names with standings, currency names, collection counts, completed quest count, total kills. No gold, no bags, no bank, no mail, no ledger detail, no item locations. |
 | `data/characters.json` | public, committed | Hand-kept roster identity (names, specs, professions, trees, house rules). The parser never overwrites it; it uses it to match in-game names to roster ids. |
 | `data/catalogs.json` | public, committed | Quest/faction name catalog index. `quests.source` points at `data/quests.json`; `extra` and `factions` are filled only from verified sources. Unresolved IDs are listed, never invented. |
 

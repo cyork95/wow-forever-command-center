@@ -97,7 +97,7 @@ try {
 
   # Fixture-leak: git grep only sees tracked files, so the gitignored fixture
   # dir and temp output can never match. The only allowed hit is this file.
-  $leaks = @(git -C $repo grep --name-only "Fixturin" -- . ":!scripts/tests/test-parse-saved-vars.ps1" 2>$null)
+  $leaks = @(git -C $repo grep --name-only "Fixturin" -- . ":!scripts/tests/test-parse-saved-vars.ps1" ":!scripts/tests/test-parse-dossier-export.ps1" 2>$null)
   Assert ($leaks.Count -eq 0) ("no fixture id in committed files" + $(if ($leaks.Count) { ": $($leaks -join ', ')" } else { "" }))
 
   Write-Output "PASS test-parse-saved-vars"

@@ -38,7 +38,7 @@ const state = {
   quests: null,
   questLoading: false,
   questQuery: "",
-  altoholic: null,
+  publicChars: null,
   altoName: "",
   books: null,
   openBookRegions: new Set(),
@@ -1894,38 +1894,29 @@ function renderAltoholic() {
   const picker = document.getElementById("alto-character");
   const sheet = document.getElementById("alto-sheet");
   if (!note || !picker || !sheet) return;
-  // Only roster characters render. Stale snapshots of removed beta
-  // characters (with their unresolved quest/faction IDs) never show;
-  // the tab stays in its honest empty state until the canonical
-  // DataStore parse lands in Phase 2a.
-  const rosterFirsts = new Set(state.characters.map((c) => String(c.name || "").split(" ")[0].toLowerCase()));
-  const people = asList(state.altoholic && state.altoholic.characters)
-    .filter((person) => rosterFirsts.has(String(person.name || "").split(" ")[0].toLowerCase()));
-  if (!people.length) {
-    note.textContent = "No canonical Altoholic scan yet. This tab fills in when the Phase 2a DataStore parse lands.";
+  // Phase 2a: roster-matched canonical scans only (data/characters.public.json,
+  // itself generated from the private canonical set). Public view shows
+  // professions with ranks, named reputations and named currencies. Numeric
+  // currency values, gold, gear, bags, stats, quests and mail stay private.
+  const roster = asList(state.characters);
+  const scans = new Map(asList(state.publicChars && state.publicChars.characters).map((c) => [String(c.name || "").toLowerCase(), c]));
+  if (!scans.size) {
+    note.textContent = "No roster scan merged yet. Log in on a launch character and run a fresh export.";
     picker.replaceChildren();
     sheet.replaceChildren();
     return;
   }
-  if (!people.some((person) => person.name === state.altoName)) state.altoName = people[0].name;
-  picker.replaceChildren(...people.map((person) => el("option", {
-    value: person.name,
-    text: person.realm ? `${person.name} · ${person.realm}` : person.name,
-    selected: person.name === state.altoName ? "selected" : null
+  if (!roster.some((c) => String(c.name) === state.altoName)) state.altoName = roster.length ? roster[0].name : "";
+  picker.replaceChildren(...roster.map((c) => el("option", {
+    value: c.name,
+    text: c.name,
+    selected: c.name === state.altoName ? "selected" : null
   })));
-  const person = people.find((row) => row.name === state.altoName) || people[0];
-  const when = state.altoholic.updated ? state.altoholic.updated.replace("T", " ") : "an unknown time";
-  note.textContent = `Saved by Altoholic at ${when}.`;
-  const place = [person.subZone, person.zone].filter(Boolean).join(", ");
-  const identity = [`Level ${person.level || "?"}`, person.race, person.class].filter(Boolean).join(" ");
-  const professions = asList(person.professions);
-  const gear = asList(person.gear);
-  const bags = asList(person.bags);
-  const stats = person.stats && typeof person.stats === "object" ? person.stats : null;
-  const questGroups = asList(person.quests);
-  const reputations = asList(person.reputations);
-  const currencies = asList(person.currencies);
-  const mail = asList(person.mail);
+  const person = scans.get(String(state.altoName || "").toLowerCase()) || null;
+  const professions = asList(person && person.professions);
+  const reputations = asList(person && person.reputations);
+  const currencies = asList(person && person.currencies);
+  note.textContent = person ? `Canonical scan for ${person.name}.` : `No scan saved for ${state.altoName} yet.`;
   const bar = (label, value, max, right) => {
     const ratio = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0;
     return el("div", { class: "lock-row" }, [
@@ -1939,77 +1930,25 @@ function renderAltoholic() {
     ]);
   };
   sheet.replaceChildren(el("article", { class: "card lock-card alto-sheet" }, [
-    el("h3", { text: person.name }),
-    el("p", { class: "alto-meta" }, [
-      el("strong", { text: identity }),
-      document.createTextNode(place ? ` · ${place}` : ""),
-      document.createTextNode(` · ${formatGold(person.gold || 0)}`),
-      person.played ? document.createTextNode(` · ${formatPlayed(person.played)} played`) : null,
-      person.itemLevel ? document.createTextNode(` · item level ${person.itemLevel}`) : null,
-      person.rested ? document.createTextNode(" · rested") : null
-    ].filter(Boolean)),
-    el("h4", { text: "Gear" }),
-    ...(gear.length ? [el("div", { class: "alto-gear" }, gear.map((piece) => el("div", { class: "lock-run" }, [
-      el("span", { class: "muted", text: piece.slot }),
-      el("span", { class: "name", text: piece.name })
-    ])))] : [el("p", { class: "meta", text: "No gear saved. Open the character sheet in game." })]),
-    el("h4", { text: "Bags" }),
-    ...(bags.length ? bags.map((bag) => el("div", { class: "alto-bag" }, [
-      el("h5", { text: bag.name }),
-      el("ul", { class: "alto-items" }, asList(bag.items).map((item) => {
-        const count = Number(item.count) || 1;
-        return el("li", { text: count > 1 ? `${count} ${item.name}` : item.name });
-      }))
-    ])) : [el("p", { class: "meta", text: "No bags saved. Open the bags in game." })]),
-    el("h4", { text: "Stats" }),
-    stats ? el("div", { class: "alto-stats" }, [
-      ["Health", stats.health],
-      [stats.powerType || "Power", stats.power],
-      ["Strength", stats.strength],
-      ["Agility", stats.agility],
-      ["Stamina", stats.stamina],
-      ["Intellect", stats.intellect],
-      ["Armor", stats.armor],
-      ["Melee", stats.melee],
-      ["Attack power", stats.attackPower],
-      ["Spell damage", stats.spellDamage],
-      ["Healing", stats.spellHealing],
-      ["Spell crit", stats.spellCrit ? `${stats.spellCrit}%` : ""]
-    ].filter((pair) => pair[1] !== null && pair[1] !== undefined && pair[1] !== "").map((pair) => el("span", { text: `${pair[0]} ${pair[1]}` }))) : el("p", { class: "meta", text: "No stat snapshot saved." }),
-    el("h4", { text: "Quest log" }),
-    ...(questGroups.length ? questGroups.map((group) => el("div", { class: "alto-bag" }, [
-      el("h5", { text: group.zone }),
-      el("ul", { class: "alto-items" }, asList(group.quests).map((quest) => el("li", {
-        text: quest.ready ? `${quest.name} · ready` : quest.name
-      })))
-    ])) : [el("p", { class: "meta", text: "No quests in the log." })]),
+    el("h3", { text: state.altoName }),
+    ...(!person ? [el("p", { class: "meta", text: "Log in on this character and run a fresh export to fill this tab." })] : []),
     el("h4", { text: "Professions" }),
     ...(professions.length ? professions.map((skill) => {
-      const value = Number(skill.rank) || 0;
+      const value = Number(skill.current) || 0;
       const max = Number(skill.max) || 0;
       return bar(skill.name, value, max > 0 ? max : Math.max(value, 1), max > 0 ? `${value}/${max}` : String(value));
     }) : [el("p", { class: "meta", text: "No profession ranks saved." })]),
     el("h4", { text: "Reputation" }),
     ...(reputations.length ? reputations.map((row) => el("div", { class: "lock-run" }, [
       el("span", { class: "name", text: row.name }),
-      el("span", { text: row.standing || "" }),
-      row.next ? el("span", { class: "muted", text: `${row.progress || 0}/${row.next}` }) : null
+      el("span", { text: row.standing || "" })
     ])) : [el("p", { class: "meta", text: "No reputation saved." })]),
     el("h4", { text: "Currencies" }),
     ...(currencies.length ? currencies.map((row) => el("div", { class: "lock-run" }, [
-      el("span", { class: "name", text: row.name }),
-      el("span", { text: String(row.quantity) })
-    ])) : [el("p", { class: "meta", text: "No currencies saved." })]),
-    el("h4", { text: "Mail" }),
-    ...(mail.length ? mail.map((letter) => el("div", { class: "lock-run" }, [
-      el("span", { class: "name", text: letter.sender || "Unknown" }),
-      el("span", { text: letter.subject || "" }),
-      Number(letter.money) ? el("span", { text: formatGold(letter.money) }) : null,
-      letter.daysLeft ? el("span", { class: "muted", text: `${letter.daysLeft} days left` }) : null
-    ])) : [el("p", { class: "meta", text: "No mail saved. Open a mailbox on that character." })])
+      el("span", { class: "name", text: row.name })
+    ])) : [el("p", { class: "meta", text: "No currencies saved." })])
   ]));
 }
-
 function render() {
   renderHouse();
   renderRoster();
@@ -2038,14 +1977,14 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, ledger, altoholic, screenshots, dungeons, books] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
       loadJson("data/addons.json").catch(() => null),
       loadJson("data/ledger.json").catch(() => ({ characters: {}, rares: [] })),
-      loadJson("data/altoholic.json").catch(() => ({ characters: [] })),
+      loadJson("data/characters.public.json").catch(() => ({ characters: [] })),
       loadJson("data/screenshots.json").catch(() => []),
       loadJson("data/dungeons.json").catch(() => null),
       loadJson("data/library-books.json").catch(() => null)
@@ -2057,7 +1996,7 @@ async function main() {
     state.stats = stats;
     state.addons = addons;
     state.ledger = ledger;
-    state.altoholic = altoholic;
+    state.publicChars = publicChars;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
     // The Google Sheet is retired: the repo JSON files are the only source.
