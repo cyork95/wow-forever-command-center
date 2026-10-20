@@ -155,3 +155,70 @@ added. No embedding, no scraping, no thumbnails fetched.
   `skyrinis`) plus topic tags for future surfaces (`economy`). The roster card
   in `assets/app.js` lists entries mapped to that character; the Butler pack
   prints the same mapping under "Relevant guides" per character.
+
+## Phase 2b (SavedVariables: ATT + Collection History + Rarity + Questie)
+
+`scripts/parse-att.ps1`, `parse-att-history.ps1`, `parse-rarity.ps1` and
+`scripts/parse-questie.ps1` read the account-level SVs in place under the real
+WTF root (same Account-dir loop as 2a) and merge into the private set. No
+SavedVariables are ever copied into the repo. Chattynator content is never
+read; Polestar is never parsed for progress. Per-character Questie.lua files
+are literally `QuestieConfigCharacter = nil` in game, so only the
+account-level file is read -- do not go looking for per-char Journey files.
+
+- `data/private/att.json` (private, gitignored): ATT owns have-detail. One
+  record per SV character GUID, roster-agnostic (matched to canonicalId by
+  first token; unmatched beta throwaways flow through with null; launch
+  names flow through unchanged): have id-sets for quests, spells,
+  exploration, flightPaths, achievements, titles, toys, mounts, battlePets,
+  priorQuests and oneTimeQuests, plus customCollects and scanTimes. The
+  account block adds sources. Dossier-owned fields (level, time played,
+  deaths, professions, counts, names) are deliberately NOT extracted.
+  Value semantics observed in-data: character quest ids map to 1, account
+  quest ids to 2, sources to 1. Empty categories store as empty lists,
+  populated ones as dicts; the parser handles both. The SV records haves
+  only -- want-detail is not derivable from it and stays with the Dossier
+  totals; never invent it.
+- `data/private/collection-history.json` (private, gitignored): Collection
+  History owns the obtained-timeline. Entries keep collectedAt as stored
+  (first-class ISO strings), type, cleaned name, itemId parsed from
+  `|Hitem:id|` when present, and the raw colour-code text (private only).
+  No character attribution exists in the SV, so the timeline is
+  account-wide by construction.
+- `data/private/rarity.json` (private, gitignored): Rarity owns attempts,
+  attempts layer ONLY -- it never decides have/want. Per-item SavedVariables
+  fields follow the installed addon (`Interface/AddOns/Rarity/DB/Item.lua`
+  expectedFields): attempts, lastAttempts, realAttempts, finds, totalFinds,
+  time, lastTime, plus known/enabled/found recorded raw. Zero attempts with
+  items present is the honest empty state and overwrites normally; it is
+  never manufactured and never a reset.
+- `data/private/quest-history.json` (private, gitignored): Questie owns
+  quest history. One record per SV character key; stale short-name session
+  keys (`<name> - PvE`) resolve to the same canonicalId as current full
+  names. Journey events carry timestamp plus ISO, event, subType, quest,
+  level and newLevel; any SubType is accepted (Accept/Complete/Level
+  observed; Abandon not yet seen). Current-name keys legitimately carry
+  complete[] with no journey -- that is not a reset.
+- Public: `data/att.public.json` (committed) carries the public-safe
+  subset: account have-sets and obtainedTimeline/obtainedCount (name, type,
+  timestamp, itemId; raw colour text stays private). Per-character detail is
+  roster-matched only, like `characters.public.json` -- honestly empty until
+  Nov 4. Rarity and quest history have no public projection: private only.
+- Butler packs gain optional sections, skipped when the files are absent:
+  Collections detail (ATT), Recently obtained (account-wide last 5), Rarity
+  attempts, Quest history (merged across each character's SV keys).
+- Ingest safety: every 2b parser records sources (file, sizeBytes, mtime),
+  counts and generatedAt, prints a stdout diff, and retains a prev/ copy. A
+  missing source, zero records, or source-shrink plus count-drop WARNS and
+  keeps the previous good canonical -- good data is never overwritten with
+  a reset file. Reset-shape caveat: an emptied Lua table parses to an empty
+  LIST through lua-saved.ps1, so parsers guard `-is IDictionary` before
+  indexing; the reset tests exercise exactly this.
+
+PowerShell 5.1 pitfalls addenda (see 2a list above, still true): keep .ps1
+files pure ASCII -- 5.1 decodes BOM-less UTF-8 as ANSI, and a non-ASCII dash
+inside a double-quoted string broke the tokenizer while the same character
+in comments was harmless. `@()` around a `List[object]` also bites through
+hashtable values (the pack's `$extra` map): `.ToArray()` first. And
+`@($oneHash) | ConvertTo-Json` serializes a bare object, not a one-element
+array (pipeline unrolling) -- readers accept bare-object docs too.
