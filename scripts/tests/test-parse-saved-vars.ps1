@@ -2,7 +2,7 @@
 # Run: powershell -NoProfile -File scripts/tests/test-parse-saved-vars.ps1
 # Builds a temp WTF layout from gitignored fixtures (fake names only), parses
 # into a temp private dir, and asserts the merge plus the privacy rule:
-# no fixture id may appear in any committed file (git grep, test file excluded).
+# no fixture id may appear in any shipped file (git grep, scripts/tests/ excluded).
 
 $ErrorActionPreference = "Stop"
 $scriptDir = $PSScriptRoot
@@ -96,8 +96,10 @@ try {
   Assert (@($catalogs.unresolved.factions) -contains 9999) "catalog lists 9999 as unresolved"
 
   # Fixture-leak: git grep only sees tracked files, so the gitignored fixture
-  # dir and temp output can never match. The only allowed hit is this file.
-  $leaks = @(git -C $repo grep --name-only "Fixturin" -- . ":!scripts/tests/test-parse-saved-vars.ps1" ":!scripts/tests/test-parse-dossier-export.ps1" 2>$null)
+  # dir and temp output can never match. Any test may use the fixture names,
+  # so the whole scripts/tests/ dir is excluded; every shipped path (data/,
+  # assets/, docs/, non-test scripts) is still scanned.
+  $leaks = @(git -C $repo grep --name-only "Fixturin" -- . ":!scripts/tests/" 2>$null)
   Assert ($leaks.Count -eq 0) ("no fixture id in committed files" + $(if ($leaks.Count) { ": $($leaks -join ', ')" } else { "" }))
 
   Write-Output "PASS test-parse-saved-vars"
