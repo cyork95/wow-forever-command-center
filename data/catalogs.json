@@ -5,9 +5,17 @@
     "source": "data/quests.json",
     "extra": {}
   },
-  "factions": {},
+  "factions": {
+    "47": "Ironforge",
+    "54": "Gnomeregan Exiles",
+    "69": "Darnassus",
+    "72": "Stormwind",
+    "369": "Gadgetzan",
+    "469": "Alliance",
+    "609": "Cenarion Circle"
+  },
   "unresolved": {
     "quests": [],
-    "factions": []
+    "factions": [169, 2740, 2758, 2779]
   }
 }

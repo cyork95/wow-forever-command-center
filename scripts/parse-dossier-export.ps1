@@ -435,6 +435,20 @@ function Upsert-ById($list, $record) {
 foreach ($exportFile in $ExportPath) {
   if (-not (Test-Path $exportFile)) { throw "Export not found: $exportFile" }
   $parsed = Parse-DossierExport $exportFile $roster
+  # Preserve Phase 2a SavedVariables merges across re-parses: a fresh export
+  # must not wipe the syndicator/datastore blocks merged by parse-saved-vars.ps1.
+  $priorChar = @($canonicalChars.characters | Where-Object { $_.id -eq $parsed.character.id } | Select-Object -First 1)
+  if ($priorChar.Count) {
+    foreach ($field in @("syndicator", "datastore")) {
+      if ($null -ne $priorChar[0].$field) { $parsed.character[$field] = $priorChar[0].$field }
+    }
+  }
+  $priorEcon = @($canonicalEcon.characters | Where-Object { $_.id -eq $parsed.economy.id } | Select-Object -First 1)
+  if ($priorEcon.Count) {
+    foreach ($field in @("syndicatorMoneyCopper", "datastoreMoneyCopper")) {
+      if ($null -ne $priorEcon[0].$field) { $parsed.economy[$field] = $priorEcon[0].$field }
+    }
+  }
   $canonicalChars.characters = @(Upsert-ById @($canonicalChars.characters) $parsed.character)
   $canonicalColl.characters = @(Upsert-ById @($canonicalColl.characters) $parsed.collections)
   $canonicalEcon.characters = @(Upsert-ById @($canonicalEcon.characters) $parsed.economy)
@@ -460,6 +474,24 @@ foreach ($char in @($canonicalChars.characters)) {
       $counts[$prop.Name] = [ordered]@{ have = $prop.Value.have; total = $prop.Value.total }
     }
   }
+  # Phase 2a: names only, values stay private. DataStore (designated Phase 2
+  # source) wins when present; unresolved IDs without a name never project.
+  $pubReps = New-Object System.Collections.Generic.List[object]
+  $dsReps = @()
+  if ($char.datastore -and $char.datastore.reputations) { $dsReps = @($char.datastore.reputations) }
+  $repSource = if (@($dsReps).Count) { $dsReps } else { @($char.reputations) }
+  foreach ($rep in $repSource) {
+    if ([string]::IsNullOrEmpty($rep.name)) { continue }
+    $pubReps.Add([ordered]@{ name = [string]$rep.name; standing = [string]$rep.standing })
+  }
+  $pubCurs = New-Object System.Collections.Generic.List[object]
+  $dsCurs = @()
+  if ($char.datastore -and $char.datastore.currencies) { $dsCurs = @($char.datastore.currencies) }
+  $curSource = if (@($dsCurs).Count) { $dsCurs } else { @($char.currencies) }
+  foreach ($cur in $curSource) {
+    if ([string]::IsNullOrEmpty($cur.name)) { continue }
+    $pubCurs.Add([ordered]@{ name = [string]$cur.name })
+  }
   $public.characters = @($public.characters) + @([ordered]@{
     id = $char.rosterId
     name = $char.displayName
@@ -467,6 +499,8 @@ foreach ($char in @($canonicalChars.characters)) {
     race = $char.race
     className = $char.className
     professions = @($char.professions | ForEach-Object { [ordered]@{ name = $_.name; current = $_.current; max = $_.max } })
+    reputations = $pubReps.ToArray()
+    currencies = $pubCurs.ToArray()
     collections = $counts
     completedQuestCount = $char.quests.completedCount
     totalKills = $char.kills.total

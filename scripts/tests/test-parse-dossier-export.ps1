@@ -72,7 +72,78 @@ try {
     Assert ($beta.goldCopper -eq 28863) "beta gold 28863 matches legacy export JSON"
   }
 
+  # Phase 2a projection: a roster-matched synthetic export projects reputation
+  # and currency NAMES only — no values, no raw text, no gold.
+  $synDir = Join-Path $tmp "synthetic"
+  New-Item -ItemType Directory -Force -Path $synDir | Out-Null
+  $synExport = Join-Path $synDir "fixturin-export.txt"
+  $synRoster = Join-Path $synDir "roster.json"
+  $exportText = @(
+    "Dossier 2.2.18 - Character Export",
+    "Character Stats:",
+    "Character: Fixturin Testmend-Fixture",
+    "Faction: Alliance",
+    "Race: Human",
+    "Class: Warrior",
+    "Level: 10",
+    "Currencies:",
+    "Gold: 1g 2s 3c",
+    "Honor Points: 12/25000",
+    "Skills:",
+    "== Professions ==",
+    "Mining 5 / 75",
+    "Reputations:",
+    "Ironforge Honored 2315 / 9000"
+  ) -join "`n"
+  $noBom = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText($synExport, $exportText + "`n", $noBom)
+  [System.IO.File]::WriteAllText($synRoster, '[{"id":"fixturin-test","name":"Fixturin Testmend"}]', $noBom)
+  $synOut = Join-Path $synDir "public.json"
+  & powershell -NoProfile -File $parser -ExportPath $synExport -PrivateDir (Join-Path $synDir "private") -PublicPath $synOut -RosterPath $synRoster | Out-Host
+  $synPublic = Get-Content -Raw $synOut | ConvertFrom-Json
+  Assert (@($synPublic.characters).Count -eq 1) "synthetic roster char projected"
+  $sp = $synPublic.characters[0]
+  Assert ($sp.id -eq "fixturin-test") "roster id carried into public"
+  Assert (@($sp.reputations).Count -eq 1 -and $sp.reputations[0].name -eq "Ironforge" -and $sp.reputations[0].standing -eq "Honored") "reputation name+standing projected"
+  Assert (@($sp.reputations[0].PSObject.Properties.Name | Where-Object { $_ -notin @("name", "standing") }).Count -eq 0) "no reputation values in public"
+  Assert (@($sp.currencies).Count -eq 1 -and $sp.currencies[0].name -eq "Honor Points") "currency name projected"
+  Assert (@($sp.currencies[0].PSObject.Properties.Name | Where-Object { $_ -ne "name" }).Count -eq 0) "no currency values in public"
+  $synRaw = Get-Content -Raw $synOut
+  foreach ($forbidden in @("2315", "9000", "12/25000", "10203", '"goldCopper"', '"raw"', '"quantity"')) {
+    Assert ($synRaw -notmatch [regex]::Escape($forbidden)) "public file has no $forbidden"
+  }
+
+
+  # Datastore preference + merge preservation: inject a Phase 2a merge result,
+  # re-parse the same export, and prove the merge survives with datastore first.
+  $privCharsPath = Join-Path (Join-Path $synDir "private") "characters.json"
+  $privChars = Get-Content -Raw $privCharsPath | ConvertFrom-Json
+  $seed = $privChars.characters[0]
+  $seed | Add-Member -NotePropertyName "syndicator" -NotePropertyValue ([ordered]@{ moneyCopper = 12345 }) -Force
+  $seed | Add-Member -NotePropertyName "datastore" -NotePropertyValue ([ordered]@{
+      source = "datastore"
+      reputations = @(
+        [ordered]@{ id = 47; name = "Ironforge"; standing = "Revered"; standingId = 7; value = 15000; source = "datastore" },
+        [ordered]@{ id = 9999; standing = "Friendly"; standingId = 5; value = 1234; source = "datastore" }
+      )
+      currencies = @([ordered]@{ name = "Honor Points"; quantity = 12; source = "datastore" })
+    }) -Force
+  $noBom2 = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText($privCharsPath, ($privChars | ConvertTo-Json -Depth 20), $noBom2)
+  & powershell -NoProfile -File $parser -ExportPath $synExport -PrivateDir (Join-Path $synDir "private") -PublicPath $synOut -RosterPath $synRoster | Out-Host
+  $reparsed = Get-Content -Raw $privCharsPath | ConvertFrom-Json
+  Assert ($reparsed.characters[0].syndicator.moneyCopper -eq 12345) "syndicator block survives re-parse"
+  Assert (@($reparsed.characters[0].datastore.reputations).Count -eq 2) "datastore block survives re-parse"
+  $repub = Get-Content -Raw $synOut | ConvertFrom-Json
+  $rIron = @($repub.characters[0].reputations | Where-Object { $_.name -eq "Ironforge" })[0]
+  Assert ($rIron.standing -eq "Revered") "datastore standing wins over dossier export"
+  Assert (@($repub.characters[0].reputations | Where-Object { $_.id -eq 9999 }).Count -eq 0) "unresolved id never projected"
+  $synRaw2 = Get-Content -Raw $synOut
+  Assert ($synRaw2 -notmatch "9999") "public file has no unresolved id"
+
   Write-Output "PASS test-parse-dossier-export"
+
+
 } finally {
   if (Test-Path $tmp) { Remove-Item -Recurse -Force $tmp }
 }

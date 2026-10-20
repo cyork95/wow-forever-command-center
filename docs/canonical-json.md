@@ -12,7 +12,7 @@ generation time, never at render time.
 | `data/private/characters.json` | private, gitignored | One record per parsed character: identity, level, location, gold, gear, bags, bank, professions, reputations, quests, kills, sessions, statistics, achievements, talents, spells, biography, lockouts, shopping. |
 | `data/private/collections.json` | private, gitignored | Per-character collections (mounts/pets/toys counts and names), collected appearances, completed quest names/count. |
 | `data/private/economy.json` | private, gitignored | Per-character `goldCopper` and the raw `Character - Wealth` statistics lines. Full ledger detail joins in Phase 2. |
-| `data/characters.public.json` | public, committed | Redacted site input. Roster-matched characters only: roster id, display name, level, race, class, professions with ranks, collection counts, completed quest count, total kills. No gold, no bags, no bank, no mail, no ledger detail, no item locations. |
+| `data/characters.public.json` | public, committed | Redacted site input. Roster-matched characters only: roster id, display name, level, race, class, professions with ranks, reputation names with standings, currency names, collection counts, completed quest count, total kills. No gold, no bags, no bank, no mail, no ledger detail, no item locations. |
 | `data/characters.json` | public, committed | Hand-kept roster identity (names, specs, professions, trees, house rules). The parser never overwrites it; it uses it to match in-game names to roster ids. |
 | `data/catalogs.json` | public, committed | Quest/faction name catalog index. `quests.source` points at `data/quests.json`; `extra` and `factions` are filled only from verified sources. Unresolved IDs are listed, never invented. |
 
@@ -105,3 +105,38 @@ counts only.
 - Session rule: no branch comparison or deployment-base conclusion without a
   fresh git fetch in the same session. Stale local refs caused a wrong
   base call during Phase 1b (local main predated PR #27).
+
+## Phase 2a (SavedVariables: Syndicator + DataStore)
+
+`scripts/parse-saved-vars.ps1` reads `Syndicator.lua`, `DataStore_Reputations.lua`,
+`DataStore_Currencies.lua` and `DataStore_Characters.lua` in place under the real
+`WTF/` root (from `scripts/addons.local.json`, overridable with `-WtfRoot`) and
+merges them into the private set. No SavedVariables are ever copied into the repo.
+
+- `characters.json` records gain source-tagged blocks; dossier-export fields are
+  never overwritten (snapshot times differ):
+  - `syndicator = { moneyCopper, bags, bank, bankTabs, equipped, mail[{itemName,
+    itemId, count, expiresAt}] }` — inventory/mail/bank/gold stay private-only.
+  - `datastore = { reputations[{id, name?, standing, standingId, negative,
+    value}], currencies[{name, quantity}] }`.
+- `economy.json` records gain `syndicatorMoneyCopper` and `datastoreMoneyCopper`.
+- `data/catalogs.json` `factions` maps only IDs verified by the repo map in
+  `scripts/altoholic.ps1`, corroborated in-data by the Flann Dossier export (same
+  standings per faction; Gadgetzan 600 == 600). Anything else stays in
+  `unresolved.factions` — names are never invented. Currency names resolve from
+  the in-file `DataStore_Currencies_Catalog` (e.g. Honor Points = id 1792,
+  triple-checked against Syndicator, DataStore totals and the Dossier export).
+- Duplicate Syndicator rows (stale short names, realm-suffix variants) resolve by
+  money agreement: same-session DataStore money outranks the older dossier gold.
+- Anonymous DataStore entries pair to characters by nearest-preceding logout
+  timestamp inside one hour (positional pairing misattributes when beta
+  throwaways without exports interleave).
+- Fixtures live only under gitignored `data/private/fixtures/` with obviously
+  fake names; the test asserts no fixture id appears in any committed file.
+
+PowerShell 5.1 pitfalls hit while writing the parser (recorded so later phases
+do not re-learn them): never wrap a `List[object]` in `@(...)` — the DLR
+MaybeDebase binder throws "Argument types do not match" (use `.ToArray()`;
+`List[string]` and arrays are fine); never round-trip UTF-8 JSON through
+`Get-Content -Raw` (it decodes as ANSI — read with `[IO.File]::ReadAllText`
+plus explicit UTF8).
