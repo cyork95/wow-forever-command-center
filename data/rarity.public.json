@@ -1,0 +1,24 @@
+{
+    "schemaVersion":  1,
+    "generatedAt":  "2026-10-20T18:52:23",
+    "source":  "rarity",
+    "items":  [
+                  {
+                      "id":  "Musical Gustjumper",
+                      "name":  "Musical Gustjumper",
+                      "attempts":  null,
+                      "found":  true
+                  },
+                  {
+                      "id":  "Tallstrider Hatchling",
+                      "name":  "Tallstrider Hatchling",
+                      "attempts":  null,
+                      "found":  true
+                  }
+              ],
+    "summary":  {
+                    "itemsTracked":  2,
+                    "itemsWithAttempts":  0,
+                    "totalAttempts":  0
+                }
+}

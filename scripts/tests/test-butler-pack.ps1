@@ -57,15 +57,39 @@ try {
   }
   Write-Utf8 (Join-Path $privateDir "characters.json") ($seed | ConvertTo-Json -Depth 20)
   Write-Utf8 (Join-Path $privateDir "collections.json") '{"schemaVersion":1,"generatedAt":null,"characters":[]}'
+  $hunts = @(
+    [ordered]@{ id = "g-mine"; name = "Fixture Sword"; kind = "Gear"; type = "gear"; zone = "Fixture"; minLevel = 1; priority = "High"; status = "Planned"; owners = @("Fixturin"); targetCharacters = @("Fixturin"); notes = ""; source = "Test" },
+    [ordered]@{ id = "g-other"; name = "Far Sword"; kind = "Gear"; type = "gear"; zone = "Far"; minLevel = 1; priority = "Low"; status = "Planned"; owners = @("malavus"); targetCharacters = @("malavus"); notes = ""; source = "Test" },
+    [ordered]@{ id = "m-mine"; name = "Fixture Mission"; kind = "Quest"; type = "mission"; zone = "Fixture"; minLevel = 1; priority = "High"; status = "Planned"; owners = @("fixturin"); targetCharacters = @("fixturin"); quests = @(7, 8); notes = ""; source = "Test" },
+    [ordered]@{ id = "c-got"; name = "Fixture Helm"; kind = "Pet"; type = "collection"; zone = "Fixture"; minLevel = 1; priority = "Low"; status = "Planned"; owners = @("all"); accountWide = $true; assignedTo = @("all"); match = [ordered]@{ names = @("Fixture Helm") }; notes = ""; source = "Test" },
+    [ordered]@{ id = "c-want"; name = "Fixture Mount"; kind = "Mount"; type = "collection"; zone = "Fixture"; minLevel = 1; priority = "Low"; status = "Planned"; owners = @("all"); accountWide = $true; assignedTo = @("all"); match = [ordered]@{ names = @("Fixture Mount") }; notes = ""; source = "Test" }
+  )
+  $huntsPath = Join-Path $tmp "hunts.json"
+  Write-Utf8 $huntsPath ($hunts | ConvertTo-Json -Depth 20)
+  Write-Utf8 (Join-Path $privateDir "collection-history.json") ([ordered]@{
+      schemaVersion = 1; generatedAt = "2026-10-20T00:00:00"; sources = @(); count = 1
+      types = [ordered]@{ ItemWithAppearance = 1 }
+      entries = @([ordered]@{ collectedAt = "2026-10-01 18:32:02"; type = "ItemWithAppearance"; name = "Fixture Helm"; itemId = 424242; raw = "raw" })
+    } | ConvertTo-Json -Depth 20)
+  Write-Utf8 (Join-Path $privateDir "quest-history.json") ([ordered]@{
+      schemaVersion = 1; generatedAt = "2026-10-20T00:00:00"; sources = @(); count = 0
+      characters = @([ordered]@{ svKey = "Fixturin Testmend"; name = "Fixturin"; canonicalId = "fixturin"; guid = $null; journey = @(); completeIds = @(7); counts = [ordered]@{ source = "questie"; events = 0; accepts = 0; completes = 0; levelUps = 0; other = 0; completeIds = 1 } })
+    } | ConvertTo-Json -Depth 20)
   $guidesPath = Join-Path $tmp "guides.json"
   Write-Utf8 $guidesPath ($guides | ConvertTo-Json -Depth 20)
 
-  & powershell -NoProfile -File $generator -PrivateDir $privateDir -OutDir $outDir -GuidesPath $guidesPath | Out-Host
+  & powershell -NoProfile -File $generator -PrivateDir $privateDir -OutDir $outDir -GuidesPath $guidesPath -HuntsPath $huntsPath | Out-Host
 
   $pack = Get-Content -Raw (Join-Path $outDir "fixturin.md")
   Assert ($pack -match "## Relevant guides") "pack has Relevant guides section"
   Assert ($pack -match "Sorinis Guide: https://example.invalid/sorinis") "mapped guide printed with title and url"
   Assert ($pack -notmatch "Malavus Guide") "unmapped guide excluded"
+  Assert ($pack -match "## Hunts") "pack has Hunts section"
+  Assert ($pack -match "Fixture Sword") "matching gear hunt listed"
+  Assert ($pack -notmatch "Far Sword") "non-matching gear hunt excluded"
+  Assert ($pack -match "Fixture Mission: 1 of 2 quests complete") "mission progress from Questie complete ids"
+  Assert ($pack -match "Collections \(account-wide, identical in every pack\): 1 of 2 obtained") "account-wide collections line with obtained count"
+  Assert ($pack -match "Fixture Helm \(obtained\)") "timeline-matched collection listed as obtained"
 
   Write-Output "PASS test-butler-pack"
 } finally {

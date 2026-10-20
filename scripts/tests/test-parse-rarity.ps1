@@ -19,6 +19,7 @@ $tmp = Join-Path $repo ("data\private\test-tmp-" + [guid]::NewGuid().ToString("N
 $wtf = Join-Path $tmp "wtf"
 $svDir = Join-Path $wtf "Account\TestAcct\SavedVariables"
 $privateDir = Join-Path $tmp "private"
+$publicPath = Join-Path $tmp "rarity.public.json"
 New-Item -ItemType Directory -Force -Path $svDir | Out-Null
 New-Item -ItemType Directory -Force -Path $privateDir | Out-Null
 
@@ -40,7 +41,7 @@ try {
   }
   Write-Utf8 (Join-Path $privateDir "characters.json") ($seedChars | ConvertTo-Json -Depth 20)
 
-  & powershell -NoProfile -File $parser -WtfRoot $wtf -PrivateDir $privateDir | Out-Host
+  & powershell -NoProfile -File $parser -WtfRoot $wtf -PrivateDir $privateDir -PublicPath $publicPath | Out-Host
 
   $rar = Get-Content -Raw (Join-Path $privateDir "rarity.json") -Encoding UTF8 | ConvertFrom-Json
   Assert (@($rar.items).Count -eq 2) "2 tracked items, got $(@($rar.items).Count)"
@@ -61,17 +62,32 @@ try {
   $stat = @($rar.statistics | Where-Object { $_.guid -eq "Player-9999-AAAAAAAA" })[0]
   Assert ($null -ne $stat -and $stat.canonicalId -eq "fixturin") "statistics matched to canonical fixturin"
   Assert ((@($stat.statistics | Where-Object { $_.id -eq 1097 })[0]).value -eq 3) "statistic 1097 value 3"
-  Assert (-not (Test-Path (Join-Path $tmp "rarity.public.json"))) "no public projection written"
+  $pub = Get-Content -Raw $publicPath -Encoding UTF8 | ConvertFrom-Json
+  Assert (@($pub.items).Count -eq 2) "public projection carries 2 items"
+  $pubDrop = @($pub.items | Where-Object { $_.id -eq "Fixture Dropper" })[0]
+  Assert ($null -ne $pubDrop -and $pubDrop.name -eq "Fixture Dropper") "public item has id and display name"
+  Assert ($pubDrop.attempts -eq 5) "public attempts 5"
+  Assert ($pubDrop.found -eq $false) "public found flag false"
+  Assert ($null -eq $pubDrop.PSObject.Properties["lastAttempts"]) "public carries counts only, no time fields"
+  Assert ($pub.summary.totalAttempts -eq 5) "public summary total attempts 5"
+  Assert ($pub.source -eq "rarity") "public source-tagged"
+  $pubRaw = Get-Content -Raw $publicPath -Encoding UTF8
+  Assert ($pubRaw -notmatch "Player-") "no character GUIDs in public projection"
+  Assert ($pubRaw -notmatch "Fixturin Testmend") "no character names in public projection"
+  Assert ($null -eq $pub.PSObject.Properties["statistics"]) "statistics block never projects"
 
   # Ingest guard: a reset (empty) SV must WARN and keep the previous good data.
   # Zero attempts with items present is NOT a reset (covered above).
   $kept = Get-Content -Raw (Join-Path $privateDir "rarity.json") -Encoding UTF8
   Write-Utf8 (Join-Path $svDir "Rarity.lua") "RarityDB = {`n}`n"
-  $second = & powershell -NoProfile -File $parser -WtfRoot $wtf -PrivateDir $privateDir 2>&1 | Out-String
+  $pubKept = Get-Content -Raw $publicPath -Encoding UTF8
+  $second = & powershell -NoProfile -File $parser -WtfRoot $wtf -PrivateDir $privateDir -PublicPath $publicPath 2>&1 | Out-String
   Write-Output $second
   Assert ($second -match "KEPT previous") "reset source keeps previous good canonical"
   $still = Get-Content -Raw (Join-Path $privateDir "rarity.json") -Encoding UTF8
   Assert ($still -eq $kept) "previous rarity.json byte-identical after reset"
+  $pubStill = Get-Content -Raw $publicPath -Encoding UTF8
+  Assert ($pubStill -eq $pubKept) "public projection untouched by reset"
 
   $leaks = @(git -C $repo grep --name-only "Fixturin" -- . ":!scripts/tests/" 2>$null)
   Assert ($leaks.Count -eq 0) ("no fixture id in committed files" + $(if ($leaks.Count) { ": $($leaks -join ', ')" } else { "" }))

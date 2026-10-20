@@ -17,14 +17,10 @@ const STORE_KEY = "wow-forever-command-center-v1";
 const TABS = ["roster", "hunts", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
 
 const HUNT_GROUPS = [
-  { id: "equipment", label: "Equipment", types: ["Gear", "Set", "Trinket", "Jewelry", "Relic"] },
-  { id: "mounts", label: "Mounts", types: ["Mount"] },
-  { id: "pets", label: "Pets", types: ["Pet"] },
-  { id: "toys", label: "Toys", types: ["Vanity"] },
-  { id: "recipes", label: "Recipes", types: ["Recipe", "Profession"] },
-  { id: "discoveries", label: "Discoveries", types: ["Discovery"] },
-  { id: "keepsakes", label: "Keepsakes", types: ["Tabard"] },
-  { id: "milestones", label: "Milestones", types: ["Milestone"] }
+  { id: "collections", label: "Collections", types: ["collection"] },
+  { id: "gear", label: "Gear hunts", types: ["gear"] },
+  { id: "missions", label: "Class missions", types: ["mission"] },
+  { id: "other", label: "Other", types: [] }
 ];
 
 const state = {
@@ -40,6 +36,8 @@ const state = {
   questQuery: "",
   publicChars: null,
   guides: [],
+  att: null,
+  rarity: null,
   altoName: "",
   books: null,
   openBookRegions: new Set(),
@@ -105,7 +103,180 @@ function writeLocalCheck(id, characterId, checked) {
   persistHunts();
 }
 
-var HUNT_STORE_KEY = 'wow-forever-hunts-v1';
+var HUNT_STORE_KEY = 'wow-forever-hunts-v2';
+var HUNT_STORE_KEY_V1 = 'wow-forever-hunts-v1';
+
+// Collection checks are account-wide: one shared check per hunt, keyed by
+// hunt alone. Gear and mission checks stay per character.
+var ACCOUNT_CHECK = "*";
+
+function huntBucket(item) {
+  return item.type === "collection" || item.type === "gear" || item.type === "mission" ? item.type : "";
+}
+
+// Display category. checklist.json carries kind (the pre-#39 type); fall
+// back to a non-bucket type so older files still label themselves.
+function huntKind(item) {
+  if (item.kind) return item.kind;
+  if (item.type && huntBucket(item) !== item.type) return item.type;
+  return "";
+}
+
+function checkKey(item) {
+  return huntBucket(item) === "collection" ? ACCOUNT_CHECK : state.selected;
+}
+
+// Tri-state manual read: true / false / null when nothing was recorded,
+// so defaults apply only when the hunter never touched the box.
+function manualState(id, key) {
+  const row = state.checks[id];
+  if (!row || !Object.prototype.hasOwnProperty.call(row, key)) return null;
+  return !!row[key];
+}
+
+// Best-effort v1 -> v2 migration. Checks whose hunt id survives unchanged
+// carry over: gear and mission checks keep their per-character shape,
+// collection checks collapse to one account-wide check (checked wins when
+// several characters had it checked). Attempts carry over untouched.
+// Anything unmapped (unknown hunt id) is dropped and reported.
+function migrateV1Checks(saved) {
+  const out = { checks: {}, attempts: {}, dropped: [] };
+  if (saved.attempts && typeof saved.attempts === "object") out.attempts = saved.attempts;
+  const rows = (saved.checks && typeof saved.checks === "object") ? saved.checks : {};
+  const parentOf = {};
+  state.checklist.forEach((item) => (item.parts || []).forEach((part) => { parentOf[part.id] = item; }));
+  Object.keys(rows).forEach((id) => {
+    const item = state.checklist.find((hunt) => hunt.id === id);
+    const parent = parentOf[id];
+    if (!item && !parent) { out.dropped.push(id); return; }
+    const bucket = huntBucket(item || parent);
+    const values = rows[id] || {};
+    if (bucket === "collection") {
+      const keys = Object.keys(values);
+      if (!keys.length) return;
+      if (keys.some((key) => !!values[key])) out.checks[id] = { [ACCOUNT_CHECK]: true };
+      else if (keys.some((key) => Object.prototype.hasOwnProperty.call(values, key) && !values[key])) {
+        out.checks[id] = { [ACCOUNT_CHECK]: false };
+      }
+    } else {
+      out.checks[id] = values;
+    }
+  });
+  return out;
+}
+
+let attCache = null;
+
+// Have-sets from the ATT public projection: account quest/source ids plus
+// every Collection History timeline name (lowercased) and item id.
+function attSets() {
+  if (attCache) return attCache;
+  const sets = { quests: new Set(), sources: new Set(), names: new Map(), itemIds: new Set() };
+  const att = state.att;
+  if (att && att.account) {
+    (att.account.questsHave || []).forEach((id) => sets.quests.add(Number(id)));
+    (att.account.sourcesHave || []).forEach((id) => sets.sources.add(Number(id)));
+  }
+  ((att && att.obtainedTimeline) || []).forEach((entry) => {
+    if (entry && entry.name) sets.names.set(String(entry.name).trim().toLowerCase(), entry);
+    if (entry && entry.itemId !== null && entry.itemId !== undefined) sets.itemIds.add(Number(entry.itemId));
+  });
+  attCache = sets;
+  return sets;
+}
+
+// A curated collection want renders OBTAINED when its item/quest id lands
+// in the ATT have-sets or the Collection History timeline. Returns the
+// reason string, or "" when nothing matched (manual toggles then apply).
+function isObtained(item) {
+  if (huntBucket(item) !== "collection") return "";
+  const sets = attSets();
+  const match = item.match || {};
+  for (const questId of match.questIds || []) {
+    if (sets.quests.has(Number(questId))) return "Obtained (AllTheThings quest record).";
+  }
+  for (const itemId of match.itemIds || []) {
+    if (sets.sources.has(Number(itemId)) || sets.itemIds.has(Number(itemId))) return "Obtained (AllTheThings).";
+  }
+  for (const name of match.names || []) {
+    if (sets.names.has(String(name).trim().toLowerCase())) return "Obtained (ATT Collection History).";
+  }
+  return "";
+}
+
+function rarityFor(item) {
+  if (!item.rarityId || !state.rarity) return null;
+  const rows = state.rarity.items || [];
+  return rows.find((entry) => entry.id === item.rarityId || entry.name === item.rarityId) || null;
+}
+
+// Attempts/time display beside a hunt. Rarity never decides obtained
+// status; honest zeros render as zeros.
+function rarityText(item) {
+  const row = rarityFor(item);
+  if (!row) return "";
+  const n = Number(row.attempts);
+  const tries = Number.isFinite(n) && n > 0 ? `${n} ${n === 1 ? "attempt" : "attempts"}` : "0 attempts";
+  return `Rarity tracked: ${tries}${row.found ? ", found" : ""}`;
+}
+
+// Per-character completed quest set from the roster-gated ATT projection.
+// Null when this character has no scan yet: missions then render an honest
+// no-data state and light up once launch characters are scanned.
+function characterQuestSet(characterId) {
+  const rows = (state.att && state.att.characters) || [];
+  const row = rows.find((entry) => entry.canonicalId === characterId);
+  if (!row || !Array.isArray(row.questsHave)) return null;
+  return new Set(row.questsHave.map(Number));
+}
+
+function missionProgress(item, characterId) {
+  const quests = Array.isArray(item.quests) ? item.quests.map(Number) : [];
+  if (!quests.length) return { total: 0, done: 0, empty: true, noData: false };
+  const set = characterQuestSet(characterId);
+  if (!set) return { total: quests.length, done: 0, empty: false, noData: true };
+  return { total: quests.length, done: quests.filter((quest) => set.has(quest)).length, empty: false, noData: false };
+}
+
+function missionComplete(item, characterId) {
+  const progress = missionProgress(item, characterId);
+  return !progress.empty && !progress.noData && progress.total > 0 && progress.done >= progress.total;
+}
+
+function missionText(item, characterId) {
+  const progress = missionProgress(item, characterId);
+  if (progress.empty) return "No quest list yet";
+  if (progress.noData) return "No scan data yet";
+  return `${progress.done} of ${progress.total} quests`;
+}
+
+function questName(questId) {
+  const catalog = questCatalog();
+  const known = catalog.get(Number(questId));
+  return known && known.name ? known.name : `Quest ${questId}`;
+}
+
+// Typed guide target: { kind: "polestar" | "video" | "doc", ref }. Video
+// and doc refs resolve against guides.json ids; polestar refs are free-text
+// in-game guide names (Polestar's SV is never parsed for progress).
+function guideLine(ref) {
+  if (!ref || !ref.ref) return null;
+  if (ref.kind === "polestar") return { text: `In-game guide: ${ref.ref} (Polestar)` };
+  const guides = state.guides || [];
+  const guide = guides.find((entry) => entry.id === ref.ref);
+  if (guide) return { title: guide.title, url: guide.url };
+  return { text: `Guide ref ${ref.ref} (not in guides.json yet)` };
+}
+
+function partChecked(item, part) {
+  if (ownedNote(part)) return true;
+  if (huntBucket(item) === "collection") {
+    const saved = manualState(part.id, ACCOUNT_CHECK);
+    if (saved !== null) return saved;
+    return !!part.defaultDone;
+  }
+  return isChecked(part);
+}
 
 function persistHunts() {
   try {
@@ -116,15 +287,27 @@ function persistHunts() {
 function loadHunts() {
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(HUNT_STORE_KEY) || 'null'); } catch (error) { saved = null; }
-  if (!saved) return;
-  if (saved.checks && typeof saved.checks === 'object') state.checks = saved.checks;
-  if (saved.attempts && typeof saved.attempts === 'object') state.attempts = saved.attempts;
+  if (saved) {
+    if (saved.checks && typeof saved.checks === 'object') state.checks = saved.checks;
+    if (saved.attempts && typeof saved.attempts === 'object') state.attempts = saved.attempts;
+    return { migrated: false, dropped: [] };
+  }
+  let legacy = null;
+  try { legacy = JSON.parse(localStorage.getItem(HUNT_STORE_KEY_V1) || 'null'); } catch (error) { legacy = null; }
+  if (!legacy) return { migrated: false, dropped: [] };
+  const moved = migrateV1Checks(legacy);
+  state.checks = moved.checks;
+  state.attempts = moved.attempts;
+  persistHunts();
+  try { localStorage.removeItem(HUNT_STORE_KEY_V1); } catch (error) { /* ignore */ }
+  return { migrated: true, dropped: moved.dropped };
 }
 
 function resetHunts() {
   state.checks = {};
   state.attempts = {};
   try { localStorage.removeItem(HUNT_STORE_KEY); } catch (error) { /* ignore */ }
+  try { localStorage.removeItem(HUNT_STORE_KEY_V1); } catch (error) { /* ignore */ }
   renderChecklist();
   renderDungeons();
 }
@@ -214,7 +397,7 @@ function ownedNote(item) {
   const key = nameKey(item.name);
   const held = owned.items.get(key);
   if (held) return held;
-  if (item.type === "Recipe" || RECIPE_PREFIX.test(item.name)) {
+  if (huntKind(item) === "Recipe" || RECIPE_PREFIX.test(item.name)) {
     const base = nameKey(item.name.replace(RECIPE_PREFIX, ""));
     const known = owned.recipes.get(base);
     if (known) return known;
@@ -274,7 +457,7 @@ function buildDrops() {
       .filter((name) => zone.includes(nameKey(name).replace(/^the /, ""))));
     entries.forEach((entry) => (dropDungeons.get(nameKey(entry.name)) || []).forEach((name) => inDungeons.add(name)));
     const kind = inDungeons.size ? "dungeon"
-      : hunt.type === "Milestone" || hunt.source === "Pack" ? "none"
+      : huntKind(hunt) === "Milestone" || hunt.source === "Pack" ? "none"
       : "world";
     places.set(hunt.id, { kind, dungeons: [...inDungeons] });
   });
@@ -316,13 +499,15 @@ function setLootCheck(item, checked) {
   const changes = [];
   links.forEach((link) => {
     if (!link.parent && link.entry.parts && checked && !piecesReady(link.entry)) return;
-    const prev = manualChecked(link.entry.id, state.selected);
-    writeLocalCheck(link.entry.id, state.selected, checked);
+    const lootKey = checkKey(link.parent || link.entry);
+    const prev = manualState(link.entry.id, lootKey);
+    writeLocalCheck(link.entry.id, lootKey, checked);
     changes.push({ id: link.entry.id, checked, prev });
     if (link.parent && !piecesReady(link.parent)) {
-      const prevParent = manualChecked(link.parent.id, state.selected);
+      const parentKey = checkKey(link.parent);
+      const prevParent = manualState(link.parent.id, parentKey);
       if (prevParent) {
-        writeLocalCheck(link.parent.id, state.selected, false);
+        writeLocalCheck(link.parent.id, parentKey, false);
         changes.push({ id: link.parent.id, checked: false, prev: prevParent });
       }
     }
@@ -387,7 +572,17 @@ function huntMobs(item) {
 }
 
 function isChecked(item) {
-  if (ownedNote(item)) return true;
+  if (isObtained(item) || ownedNote(item)) return true;
+  const bucket = huntBucket(item);
+  // Class missions are derived from quest completion data; manual checks
+  // never apply.
+  if (bucket === "mission") return missionComplete(item, state.selected);
+  if (bucket === "collection") {
+    const saved = manualState(item.id, ACCOUNT_CHECK);
+    if (saved !== null) return saved;
+    return !!item.defaultDone;
+  }
+  // Gear and legacy untyped hunts keep per-character behavior.
   if (state.scope === "house") {
     const people = state.characters.filter((character) => matchesCharacter(item, character));
     const list = people.length ? people : state.characters;
@@ -416,11 +611,17 @@ function visibleItems() {
   const character = selectedCharacter();
   const q = state.query.trim().toLowerCase();
   return state.checklist.filter((item) => {
-    if (state.scope === "character" && !matchesCharacter(item, character)) return false;
+    const bucket = huntBucket(item);
+    if (state.scope === "house") {
+      if (bucket === "gear" || bucket === "mission") return false;
+    } else {
+      if (bucket === "collection") return false;
+      if (!matchesCharacter(item, character)) return false;
+    }
     if (!matchesPlace(item)) return false;
     if (!q) return true;
     const parts = (item.parts || []).map((part) => `${part.name} ${part.how || ""}`).join(" ");
-    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type} ${parts} ${huntPlace(item).dungeons.join(" ")}`.toLowerCase();
+    const hay = `${item.name} ${item.zone} ${item.notes} ${item.how || ""} ${item.type || ""} ${huntKind(item)} ${parts} ${huntPlace(item).dungeons.join(" ")}`.toLowerCase();
     return hay.includes(q);
   });
 }
@@ -686,7 +887,7 @@ function whoLabel(item) {
     hunter: "Hunters",
     caster: "Casters"
   };
-  return (item.owners || []).map((id) => {
+  return (item.targetCharacters || item.assignedTo || item.owners || []).map((id) => {
     const character = state.characters.find((entry) => entry.id === id);
     return character ? character.name : (names[id] || id);
   }).join(", ");
@@ -702,7 +903,7 @@ function fact(label, value) {
 function piecesReady(item) {
   if (!item.parts || !item.parts.length) return true;
   const need = item.need || item.parts.length;
-  return item.parts.filter((part) => isChecked(part)).length >= need;
+  return item.parts.filter((part) => partChecked(item, part)).length >= need;
 }
 
 function renderTries(id, label) {
@@ -733,26 +934,27 @@ function renderTries(id, label) {
 }
 
 function renderPart(item, part) {
-  const checked = isChecked(part);
+  const parentKey = huntBucket(item) === "collection" ? ACCOUNT_CHECK : state.selected;
+  const checked = partChecked(item, part);
   const found = ownedNote(part);
   const box = el("input", { type: "checkbox", "aria-label": `Got ${part.name}`, title: found || null });
   box.checked = checked;
-  if (found || state.scope === "house") box.disabled = true;
-  if (state.scope === "house" && !found) box.title = "Switch to this character to check this hunt.";
+  if (found || (state.scope === "house" && huntBucket(item) !== "collection")) box.disabled = true;
+  if (state.scope === "house" && !found && huntBucket(item) !== "collection") box.title = "Switch to this character to check this hunt.";
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
-    if (state.scope === "house") {
-      box.checked = isChecked(part);
+    if (state.scope === "house" && huntBucket(item) !== "collection") {
+      box.checked = partChecked(item, part);
       return;
     }
     const changes = [];
-    const prev = manualChecked(part.id, state.selected);
-    writeLocalCheck(part.id, state.selected, box.checked);
+    const prev = manualState(part.id, parentKey);
+    writeLocalCheck(part.id, parentKey, box.checked);
     changes.push({ id: part.id, checked: box.checked, prev });
     if (!piecesReady(item)) {
-      const prevParent = manualChecked(item.id, state.selected);
+      const prevParent = manualState(item.id, parentKey);
       if (prevParent) {
-        writeLocalCheck(item.id, state.selected, false);
+        writeLocalCheck(item.id, parentKey, false);
         changes.push({ id: item.id, checked: false, prev: prevParent });
       }
     }
@@ -775,25 +977,47 @@ function renderPart(item, part) {
   ]);
 }
 
+function guideKids(item) {
+  const guide = guideLine(item.guideRef);
+  if (!guide) return [];
+  if (guide.url) return [el("p", { class: "guide-ref" }, [el("a", { href: guide.url, text: guide.title })])];
+  return [el("p", { class: "guide-ref", text: guide.text })];
+}
+
+function missionKids(item, bucket) {
+  if (bucket !== "mission" || !Array.isArray(item.quests) || !item.quests.length) return [];
+  const done = characterQuestSet(state.selected) || new Set();
+  return item.quests.map((questId) => {
+    const hit = done.has(Number(questId));
+    return el("p", { class: `mission-quest ${hit ? "done" : "todo"}`, text: `${hit ? "Done" : "Todo"}: ${questName(questId)}` });
+  });
+}
+
 function renderHunt(item) {
+  const bucket = huntBucket(item);
   const checked = isChecked(item);
   const open = state.openId === item.id;
   const tries = attemptCount(item.id);
   const group = huntGroup(item);
   const ready = piecesReady(item);
-  const pieceCount = item.parts ? item.parts.filter((part) => isChecked(part)).length : 0;
+  const pieceCount = item.parts ? item.parts.filter((part) => partChecked(item, part)).length : 0;
   const found = ownedNote(item);
+  const auto = isObtained(item);
   const box = el("input", {
     type: "checkbox",
     "aria-label": `Got ${item.name}`,
-    title: found || null
+    title: found || auto || null
   });
   box.checked = checked;
-  if (state.scope === "house" || (item.parts && !ready) || found) box.disabled = true;
-  if (state.scope === "house" && !found) box.title = "Switch to this character to check this hunt.";
+  if ((state.scope === "house" && bucket !== "collection") || (item.parts && !ready) || found || auto || bucket === "mission") box.disabled = true;
+  if (state.scope === "house" && !found && !auto && bucket !== "collection") box.title = "Switch to this character to check this hunt.";
   box.addEventListener("click", (event) => event.stopPropagation());
   box.addEventListener("change", () => {
-    if (state.scope === "house") {
+    if (bucket === "mission") {
+      box.checked = isChecked(item);
+      return;
+    }
+    if (state.scope === "house" && bucket !== "collection") {
       box.checked = isChecked(item);
       return;
     }
@@ -801,8 +1025,9 @@ function renderHunt(item) {
       box.checked = false;
       return;
     }
-    const prev = manualChecked(item.id, state.selected);
-    writeLocalCheck(item.id, state.selected, box.checked);
+    const huntKey = checkKey(item);
+    const prev = manualState(item.id, huntKey);
+    writeLocalCheck(item.id, huntKey, box.checked);
     renderChecklist();
     renderDungeons();
     commitChecks([{ id: item.id, checked: box.checked, prev }]);
@@ -818,13 +1043,14 @@ function renderHunt(item) {
     }
   });
   summary.append(el("strong", { text: item.name }));
-  const meta = `${group.label} · ${item.zone} · level ${item.minLevel}+`;
+  const meta = `${huntKind(item) || group.label} · ${item.zone} · level ${item.minLevel}+`;
   const pieceText = item.parts
     ? `${pieceCount} of ${item.need || item.parts.length} pieces`
     : "";
   const kills = killLog(huntMobs(item));
   const killText = kills.total ? `${kills.total} ${kills.total === 1 ? "kill" : "kills"} logged` : "";
-  const attemptText = [meta, pieceText, found, killText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
+  const mission = bucket === "mission" ? missionText(item, state.selected) : "";
+  const attemptText = [meta, pieceText, found || auto, rarityText(item), mission, killText, tries ? `${tries} ${tries === 1 ? "try" : "tries"}` : ""]
     .filter(Boolean)
     .join(" · ");
   summary.append(el("span", { class: "sub", text: attemptText }));
@@ -849,8 +1075,12 @@ function renderHunt(item) {
       fact("Zone", item.zone),
       fact("From", `level ${item.minLevel}`),
       fact("Source", item.source),
-      fact("For", whoLabel(item))
-    ])
+      fact("For", whoLabel(item)),
+      rarityFor(item) ? fact("Rarity", rarityText(item)) : null,
+      bucket === "collection" ? fact("Scope", "Whole house (shared check)") : null
+    ]),
+    ...guideKids(item),
+    ...missionKids(item, bucket)
   ];
   if (kills.total && !item.parts) {
     detailKids.push(el("p", { class: "kill-log", text: `KillDex: ${kills.text}` }));
@@ -882,14 +1112,17 @@ function renderChecklist() {
   list.replaceChildren();
   if (!items.length) {
     const books = renderLibraryBooks();
-    list.append(books || el("p", { class: "empty-note", text: "Nothing on this filter." }));
+    if (books) { list.append(books); return; }
+    list.append(el("p", { class: "empty-note", text: state.scope === "character"
+      ? "No gear hunts or class missions for this character yet. Collections live in the Whole house view."
+      : "No collection hunts on this filter." }));
     return;
   }
 
   const rank = { High: 0, Medium: 1, Low: 2 };
   HUNT_GROUPS.forEach((group) => {
     const rows = items
-      .filter((item) => group.types.includes(item.type))
+      .filter((item) => group.types.includes(item.type) || (!item.type && group.id === "other"))
       .sort((a, b) => {
         const parked = (a.status === "Parked") - (b.status === "Parked");
         if (parked) return parked;
@@ -907,6 +1140,13 @@ function renderChecklist() {
     rows.forEach((item) => block.append(renderHunt(item)));
     list.append(block);
   });
+  const buckets = new Set(items.map((item) => huntBucket(item)));
+  if (state.scope === "character" && !buckets.has("gear") && !buckets.has("mission") && !buckets.has("")) {
+    list.append(el("p", { class: "empty-note", text: "No gear hunts or class missions for this character yet. Collections live in the Whole house view." }));
+  }
+  if (state.scope === "house" && !buckets.has("collection") && !buckets.has("")) {
+    list.append(el("p", { class: "empty-note", text: "No collection hunts yet." }));
+  }
   const books = renderLibraryBooks();
   if (books) list.append(books);
 }
@@ -1979,7 +2219,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
@@ -1990,7 +2230,9 @@ async function main() {
       loadJson("data/screenshots.json").catch(() => []),
       loadJson("data/dungeons.json").catch(() => null),
       loadJson("data/library-books.json").catch(() => null),
-      loadJson("data/guides.json").catch(() => ({ guides: [] }))
+      loadJson("data/guides.json").catch(() => ({ guides: [] })),
+      loadJson("data/att.public.json").catch(() => null),
+      loadJson("data/rarity.public.json").catch(() => null)
     ]);
     state.books = books;
     state.house = house;
@@ -2003,6 +2245,9 @@ async function main() {
     state.screenshots = screenshots;
     state.dungeons = dungeons;
     state.guides = asList(guidesFile && guidesFile.guides);
+    state.att = attFile;
+    state.rarity = rarityFile;
+    attCache = null;
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this
     // page view; checklist.json still carries the saved hunt list.

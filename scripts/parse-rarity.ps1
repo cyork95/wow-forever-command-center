@@ -6,9 +6,11 @@
 # Chattynator content is never read (names/sizes only). Polestar progress is
 # never parsed (guides stay pointer-only).
 # Usage:
-#   powershell -File scripts/parse-rarity.ps1 [-WtfRoot <wtf>] [-PrivateDir <dir>]
-# Private output: data/private/rarity.json (gitignored). No public output:
-# attempt histories stay private-local, like gold and mail.
+#   powershell -File scripts/parse-rarity.ps1 [-WtfRoot <wtf>] [-PrivateDir <dir>] [-PublicPath <file>]
+# Private output: data/private/rarity.json (gitignored, full detail).
+# Public output:  data/rarity.public.json (redacted Hunts-tab projection:
+# item id, display name, attempts, found flag, plus summary counts. No
+# character GUIDs, names, servers, profiles or statistics.)
 # See docs/canonical-json.md. One source per field: Rarity owns attempts;
 # Collection History owns the obtained-timeline; ATT owns have/want; Dossier
 # remains the aggregator for what it already exports. An honest empty result
@@ -20,6 +22,7 @@
 param(
   [string]$WtfRoot = "",
   [string]$PrivateDir = "",
+  [string]$PublicPath = "",
   [long]$MaxFileBytes = 5242880
 )
 
@@ -27,6 +30,7 @@ $ErrorActionPreference = "Stop"
 $repo = Split-Path -Parent ($PSScriptRoot -replace '^\\\\\?\\','')
 . (Join-Path $PSScriptRoot "lua-saved.ps1")
 if (-not $PrivateDir) { $PrivateDir = Join-Path $repo "data\private" }
+if (-not $PublicPath) { $PublicPath = Join-Path $repo "data\rarity.public.json" }
 if (-not $WtfRoot) {
   $local = Join-Path $PSScriptRoot "addons.local.json"
   if (Test-Path $local) {
@@ -248,4 +252,31 @@ foreach ($item in $items.ToArray()) {
   $att = if ($null -ne $item.attempts) { "attempts $($item.attempts)" } else { "no attempts recorded" }
   Write-Output ("RARITY: [$($item.group)] $($item.name) (known $($item.known), found $($item.found)): $att")
 }
-Write-Output "Private: $rarityPath ($($items.Count) items, PRIVATE ONLY -- no public projection)"
+Write-Output "Private: $rarityPath ($($items.Count) items)"
+# Public redaction (allowlist): the Hunts tab attempts display needs item
+# id, display name, attempts and the found flag, plus summary counts. The
+# SavedVariables key items by display name; numeric item ids live only in
+# the addon's static DB, so the SV key doubles as the id. Character GUIDs,
+# player names, servers, profiles and the statistics block never project.
+$publicItems = New-Object System.Collections.Generic.List[object]
+foreach ($item in $items.ToArray()) {
+  $publicItems.Add([ordered]@{
+      id = [string]$item.name
+      name = [string]$item.name
+      attempts = $item.attempts
+      found = $item.found
+    })
+}
+$public = [ordered]@{
+  schemaVersion = 1
+  generatedAt = $stamp
+  source = "rarity"
+  items = $publicItems.ToArray()
+  summary = [ordered]@{
+    itemsTracked = $items.Count
+    itemsWithAttempts = $itemsWithAttempts
+    totalAttempts = $totalAttempts
+  }
+}
+Write-JsonFile $PublicPath $public
+Write-Output "Public: $PublicPath ($($publicItems.Count) items, redacted: no GUIDs, names, servers or statistics)"

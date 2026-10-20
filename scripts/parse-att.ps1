@@ -281,7 +281,8 @@ foreach ($c in @($newDoc.characters)) {
       $publicChars.Add([ordered]@{
           canonicalId = [string]$r.id
           name = $c.name
-          questsHave = [int]$c.have.quests.count
+          questsHave = @($c.have.quests.have)
+          questsHaveCount = [int]$c.have.quests.count
           spellsHave = [int]$c.have.spells.count
           explorationHave = [int]$c.have.exploration.count
           flightPathsHave = [int]$c.have.flightpaths.count

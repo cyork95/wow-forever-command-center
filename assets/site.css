@@ -455,6 +455,10 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 .hunt.group-discoveries { border-left-color: #7eb6e0; }
 .hunt.group-keepsakes { border-left-color: #e7d7a1; }
 .hunt.group-milestones { border-left-color: #d0d0c8; }
+.hunt.group-collections { border-left-color: var(--teal); }
+.hunt.group-gear { border-left-color: #d7a15a; }
+.hunt.group-missions { border-left-color: #7eb6e0; }
+.hunt.group-other { border-left-color: #d0d0c8; }
 .hunt.done { opacity: 0.7; }
 .hunt.parked { border-style: dashed; border-left-style: solid; }
 .hunt.open { background: #202a1a; box-shadow: var(--shadow); }

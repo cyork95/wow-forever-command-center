@@ -54,7 +54,7 @@
         <input id="search" type="search" placeholder="Search hunts, zones, notes">
         <select id="scope" aria-label="Whose list">
           <option value="character">This character</option>
-          <option value="house">Whole house</option>
+          <option value="house">Collections (whole house)</option>
         </select>
         <button type="button" id="reset-checks" title="Clear checks saved on this device">Reset saved checks</button>
         <select id="place" aria-label="Where the hunt happens">
@@ -147,7 +147,7 @@
   </main>
   <footer class="site">
     <div class="wrap">
-      <p>Character numbers and the hunt list come from addon exports committed to this repo. Hunt checks save on this device only, merged over the saved hunt list. Use Reset saved checks on the Hunts tab to clear them. The Google Sheet is retired; its Apps Script and seed scripts stay in the repo as an archive.</p>
+      <p>Character numbers and the hunt list come from addon exports committed to this repo. Hunts come in three buckets: account-wide Collections, per-character Gear hunts, and per-character Class missions whose progress derives from quest completion scans. Collection checks are shared across the whole house; gear checks are per character. Checks save on this device only (v2 store, migrated from v1 where possible). Use Reset saved checks on the Hunts tab to clear them. The Google Sheet is retired; its Apps Script and seed scripts stay in the repo as an archive.</p>
     </div>
   </footer>
   </div>

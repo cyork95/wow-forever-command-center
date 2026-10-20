@@ -82,6 +82,8 @@ try {
   Assert ($public.account.questsHaveCount -eq 2) "public account quest count 2"
   Assert (@($public.characters).Count -eq 1) "public characters roster-gated to 1"
   Assert (@($public.characters)[0].canonicalId -eq "fixturin-id") "public character uses roster id"
+  Assert ((@(@($public.characters)[0].questsHave) -contains 111) -and (@(@($public.characters)[0].questsHave) -contains 222)) "public character carries quest have-sets for mission progress"
+  Assert ((@($public.characters)[0].questsHaveCount) -eq 2) "public character quest count 2"
 
   # Ingest guard: a reset (empty) SV must WARN and keep the previous good file.
   $kept = Get-Content -Raw (Join-Path $privateDir "att.json") -Encoding UTF8
