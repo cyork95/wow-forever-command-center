@@ -200,11 +200,28 @@ function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
   if ($extra -and $extra.rarityById -and $extra.rarityById.ContainsKey([string]$char.id) -and $extra.rarity) {
     $out += "## Rarity attempts"
     $out += ""
-    $ritems = @($extra.rarity.items)
+    $ritems = @()
+    if ($extra.rarity.items) { $ritems = @($extra.rarity.items) }
     $out += "- $($ritems.Count) items tracked, $($extra.rarity.summary.itemsWithAttempts) with attempts, $($extra.rarity.summary.totalAttempts) total attempts."
     foreach ($rit in @($ritems | Select-Object -First 20)) {
       $rline = if ($null -ne $rit.attempts) { "$($rit.attempts) attempts" } else { "no attempts recorded" }
       $out += "- $($rit.name) [$($rit.group)]: $rline."
+    }
+    $out += ""
+  }
+  if ($extra -and $extra.questieById -and $extra.questieById.ContainsKey([string]$char.id)) {
+    $out += "## Quest history (Questie Journey)"
+    $out += ""
+    $qlist = $extra.questieById[[string]$char.id]
+    if ($qlist -is [System.Collections.Generic.List[object]]) { $qlist = $qlist.ToArray() }
+    $qrecs = @($qlist)
+    $qacc = 0; $qcomp = 0; $qcids = 0
+    foreach ($qr in $qrecs) { $qacc += [int]$qr.counts.accepts; $qcomp += [int]$qr.counts.completes; $qcids += [int]$qr.counts.completeIds }
+    $out += "- $(@($qrecs).Count) tracked keys, $qacc accepts, $qcomp completes, $qcids complete quest ids."
+    $qevents = @($qrecs | ForEach-Object { if ($_.journey) { @($_.journey) } } | Sort-Object timestamp | Select-Object -Last 5)
+    foreach ($qe in $qevents) {
+      $qlabel = if ($qe.event -ieq "Level") { "reached level $($qe.newLevel)" } else { "$($qe.subType) quest $($qe.quest) (level $($qe.level))" }
+      $out += "- $($qe.timestampIso): $qlabel."
     }
     $out += ""
   }
@@ -237,6 +254,9 @@ if ($historyDoc) { $historyEntries = @($historyDoc.entries) }
 $rarityDoc = Read-JsonFile (Join-Path $PrivateDir "rarity.json")
 $rarityById = @{}
 if ($rarityDoc) { foreach ($s in @($rarityDoc.statistics)) { if ($s.canonicalId) { $rarityById[[string]$s.canonicalId] = $s } } }
+$questieDoc = Read-JsonFile (Join-Path $PrivateDir "quest-history.json")
+$questieById = @{}
+if ($questieDoc) { foreach ($q in @($questieDoc.characters)) { if ($q.canonicalId) { $qid = [string]$q.canonicalId; if (-not $questieById.ContainsKey($qid)) { $questieById[$qid] = New-Object System.Collections.Generic.List[object] }; $questieById[$qid].Add($q) } } }
 if (-not $charsDoc -or -not @($charsDoc.characters).Count) { throw "No canonical characters in $PrivateDir. Run scripts/parse-dossier-export.ps1 first." }
 $prevDir = Join-Path $PrivateDir "prev"
 $prevDoc = Read-JsonFile (Join-Path $prevDir "characters.json")
@@ -244,7 +264,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc }
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById }
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
