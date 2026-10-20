@@ -1,6 +1,6 @@
 # Parse AllTheThings SavedVariables in place (never copied into the repo) and
 # merge them into the PRIVATE canonical JSON set. Phase 2b parser 1 of 4:
-# ATT full lists (ATTAccountWideData / ATTCharacterData) — collection
+# ATT full lists (ATTAccountWideData / ATTCharacterData) -- collection
 # have-detail beyond the counts Dossier already summarises.
 # This is independent of the Dossier addon track: no addon changes here.
 # Chattynator content is never read (names/sizes only). Polestar progress is
@@ -233,7 +233,7 @@ function Get-AttTotals($doc) {
 # Ingest safety (Forever beta quirk: an SV can come back empty/reset after a
 # patch or a bad logout). Timestamp and diff every ingest; a source that
 # shrinks unexpectedly or parses to zero records WARNS and keeps the previous
-# good canonical — good data is never overwritten with a reset file.
+# good canonical -- good data is never overwritten with a reset file.
 $newTotals = Get-AttTotals $newDoc
 $prevTotals = Get-AttTotals $prev
 $keepReason = $null

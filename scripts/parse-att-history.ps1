@@ -1,6 +1,6 @@
 # Parse the ATT Collection History SavedVariables in place (never copied into
 # the repo) into the PRIVATE canonical JSON set. Phase 2b parser 2 of 4: the
-# obtained-timeline — history[] with collectedAt timestamps, first-class.
+# obtained-timeline -- history[] with collectedAt timestamps, first-class.
 # This is independent of the Dossier addon track: no addon changes here.
 # Chattynator content is never read (names/sizes only). Polestar progress is
 # never parsed (guides stay pointer-only).
@@ -143,7 +143,7 @@ $newDoc = [ordered]@{
 # Ingest safety (Forever beta quirk: an SV can come back empty/reset after a
 # patch or a bad logout). Timestamp and diff every ingest; a source that
 # shrinks unexpectedly or parses to zero entries WARNS and keeps the previous
-# good canonical — good data is never overwritten with a reset file.
+# good canonical -- good data is never overwritten with a reset file.
 $prevCount = 0
 if ($prev) { $prevCount = [int]$prev.count }
 $keepReason = $null
