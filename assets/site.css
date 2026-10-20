@@ -874,3 +874,45 @@ footer.site {
   .tabs { grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); }
   .panel { border-radius: 16px; padding-inline: 12px; }
 }
+
+/* Phones (Task #41). Additions only: everything here lives inside
+   max-width queries, so desktop (>860px) renders exactly as before. */
+@media (max-width: 600px) {
+  html, body { overflow-x: hidden; overflow-x: clip; }
+
+  /* Tab bar stays a wrapping grid row so every tab is reachable
+     without horizontal scrolling. */
+  .tabs { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); }
+  .tab { font-size: 11px; padding: 12px 4px; min-height: 44px; white-space: normal; }
+
+  /* Roster and hunt cards go single column, full width. */
+  .roster { grid-template-columns: 1fr; }
+
+  /* Toolbars wrap; controls reach tap height. */
+  .toolbar input, .toolbar select, .toolbar button { min-height: 44px; }
+  #reset-checks { min-height: 44px; padding: 10px 14px; }
+  .section-head { gap: 8px; }
+
+  /* Touch targets. Checkboxes grow to 28px inside their padded rows;
+     buttons, tries steppers and macro controls reach 44px height. */
+  .hunt-row input[type="checkbox"], .book > input, .loot li input { width: 28px; height: 28px; flex: none; }
+  .tries button { min-width: 44px; height: 44px; }
+  .try-count { height: 44px; }
+  .macro-copy, .book-map-toggle { min-height: 44px; padding: 10px 14px; font-size: 14px; }
+
+  /* Wide content scrolls inside its own container, never the page. */
+  .gear { display: block; max-width: 100%; overflow-x: auto; }
+  .group-label { flex-wrap: wrap; row-gap: 4px; }
+  .hunt-detail { padding-left: 12px; padding-right: 10px; }
+}
+
+@media (max-width: 430px) {
+  .panel { padding-inline: 10px; }
+  h2 { font-size: 22px; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .dungeon > summary { padding: 12px; }
+  .dungeon > summary h3 { font-size: 18px; }
+  .dungeon > :not(summary) { margin-left: 12px; margin-right: 12px; }
+  .macro-icon { width: 36px; height: 36px; }
+  .tab { font-size: 10px; }
+}
