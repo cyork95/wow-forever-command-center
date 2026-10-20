@@ -9,13 +9,15 @@
 param(
   [string]$PrivateDir = "",
   [string]$OutDir = "",
-  [string]$GuidesPath = ""
+  [string]$GuidesPath = "",
+  [string]$HuntsPath = ""
 )
 
 $ErrorActionPreference = "Stop"
 $repo = Split-Path -Parent (($PSScriptRoot -replace '^\\\\\?\\', ''))
 if (-not $PrivateDir) { $PrivateDir = Join-Path $repo "data\private" }
 if (-not $OutDir) { $OutDir = Join-Path $PrivateDir "butler" }
+if (-not $HuntsPath) { $HuntsPath = Join-Path $repo "data\checklist.json" }
 
 function Read-JsonFile($path) {
   if (-not (Test-Path $path)) { return $null }
@@ -90,6 +92,36 @@ function Get-DiffLines($now, $prev) {
   if ($newBio -gt 0) { $lines += "- Biography: $newBio new events." }
   if (-not $lines.Count) { $lines += "Nothing changed since last export." }
   return $lines
+}
+
+function Test-PackHuntMatch($owners, $char) {
+  $full = if ($char.displayName) { [string]$char.displayName } else { [string]$char.name }
+  $tok = (([string]$full -split '\s+'))[0]
+  $list = @($owners)
+  if ($list -contains "horde") { return $false }
+  if ($list -contains "all" -or $list -contains "alliance") { return $true }
+  if ($list -contains [string]$char.id) { return $true }
+  if ($tok -and ($list -contains $tok)) { return $true }
+  return $false
+}
+
+function Get-PackObtained($hunts, $historyEntries) {
+  $names = @{}
+  foreach ($entry in @($historyEntries)) {
+    if ($entry.name) { $names[[string]$entry.name.Trim().ToLowerInvariant()] = $true }
+  }
+  $got = New-Object System.Collections.Generic.List[object]
+  foreach ($hunt in @($hunts)) {
+    if ([string]$hunt.type -ne "collection") { continue }
+    $hit = $false
+    if ($hunt.match -and $hunt.match.names) {
+      foreach ($wanted in @($hunt.match.names)) {
+        if ($wanted -and $names.ContainsKey([string]$wanted.Trim().ToLowerInvariant())) { $hit = $true; break }
+      }
+    }
+    if ($hit) { $got.Add($hunt) }
+  }
+  return $got.ToArray()
 }
 
 function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
@@ -225,6 +257,47 @@ function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
     }
     $out += ""
   }
+  $packHunts = @()
+  if ($extra -and $extra.hunts) { $packHunts = @($extra.hunts) }
+  if ($packHunts.Count) {
+    $out += "## Hunts"
+    $out += ""
+    $packGear = @($packHunts | Where-Object { [string]$_.type -eq "gear" -and (Test-PackHuntMatch $_.targetCharacters $char) })
+    if ($packGear.Count) {
+      $out += "- Gear hunts ($($packGear.Count)):"
+      foreach ($hunt in $packGear) { $out += "  - $($hunt.name) [$($hunt.kind)] ($($hunt.zone), $($hunt.status))." }
+    } else {
+      $out += "- Gear hunts: none tracked for this character."
+    }
+    $packMissions = @($packHunts | Where-Object { [string]$_.type -eq "mission" -and (Test-PackHuntMatch $_.targetCharacters $char) })
+    if ($packMissions.Count) {
+      $doneIds = @()
+      if ($extra -and $extra.questieById -and $extra.questieById.ContainsKey([string]$char.id)) {
+        $qlist = $extra.questieById[[string]$char.id]
+        if ($qlist -is [System.Collections.Generic.List[object]]) { $qlist = $qlist.ToArray() }
+        foreach ($rec in @($qlist)) { $doneIds += @($rec.completeIds) }
+      }
+      foreach ($mission in $packMissions) {
+        $quests = @()
+        if ($mission.quests) { $quests = @($mission.quests) }
+        if (-not $quests.Count) {
+          $out += "- $($mission.name): no quest list yet."
+        } elseif (-not $doneIds.Count) {
+          $out += "- $($mission.name): no Questie data for this character yet."
+        } else {
+          $hit = @($quests | Where-Object { $doneIds -contains $_ }).Count
+          $out += "- $($mission.name): $hit of $($quests.Count) quests complete."
+        }
+      }
+    } else {
+      $out += "- Class missions: none tracked yet."
+    }
+    $packColls = @($packHunts | Where-Object { [string]$_.type -eq "collection" })
+    $packGot = @(Get-PackObtained $packHunts $(if ($extra) { $extra.history } else { $null }))
+    $out += "- Collections (account-wide, identical in every pack): $($packGot.Count) of $($packColls.Count) obtained."
+    foreach ($got in $packGot) { $out += "  - $($got.name) (obtained)." }
+    $out += ""
+  }
   $out += "## Relevant guides"
   $out += ""
   $mine = @($guides | Where-Object { @($_.appliesTo) -contains $char.rosterId })
@@ -250,6 +323,9 @@ $attById = @{}
 if ($attDoc) { foreach ($entry in @($attDoc.characters)) { if ($entry.canonicalId) { $attById[[string]$entry.canonicalId] = $entry } } }
 $historyDoc = Read-JsonFile (Join-Path $PrivateDir "collection-history.json")
 $historyEntries = @()
+$huntsDoc = Read-JsonFile $HuntsPath
+$huntsList = @()
+if ($huntsDoc -is [System.Collections.IList]) { $huntsList = @($huntsDoc) }
 if ($historyDoc) { $historyEntries = @($historyDoc.entries) }
 $rarityDoc = Read-JsonFile (Join-Path $PrivateDir "rarity.json")
 $rarityById = @{}
@@ -264,7 +340,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById }
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById; hunts = $huntsList }
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
