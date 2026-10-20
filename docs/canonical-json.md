@@ -140,3 +140,18 @@ MaybeDebase binder throws "Argument types do not match" (use `.ToArray()`;
 `List[string]` and arrays are fine); never round-trip UTF-8 JSON through
 `Get-Content -Raw` (it decodes as ANSI — read with `[IO.File]::ReadAllText`
 plus explicit UTF8).
+
+## Guides (board #42)
+
+`data/guides.json` is a hand-curated list of outbound links (video/article):
+id, title, url, creator, type, topics[], appliesTo[], keyTimestamps?,
+added. No embedding, no scraping, no thumbnails fetched.
+
+- Curation flow: the Butler keeps a running index of candidate guides across
+  sessions; at handover it proposes entries, and the curator appends the
+  approved ones to `data/guides.json` by hand. The file is committed (titles
+  and URLs are public information).
+- `appliesTo` holds roster character ids (currently `malavus`, `sorinis`,
+  `skyrinis`) plus topic tags for future surfaces (`economy`). The roster card
+  in `assets/app.js` lists entries mapped to that character; the Butler pack
+  prints the same mapping under "Relevant guides" per character.

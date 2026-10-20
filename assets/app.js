@@ -39,6 +39,7 @@ const state = {
   questLoading: false,
   questQuery: "",
   publicChars: null,
+  guides: [],
   altoName: "",
   books: null,
   openBookRegions: new Set(),
@@ -536,6 +537,7 @@ function renderSheet() {
   asList(character.talentLinks).forEach((link) => {
     identity.append(el("a", { href: link.url, target: "_blank", rel: "noreferrer", text: link.label }));
   });
+  const myGuides = asList(state.guides).filter((guide) => asList(guide.appliesTo).includes(character.id));   if (myGuides.length) {     const guideLine = el("p", { class: "meta", text: "Guides: " });     myGuides.forEach((guide, index) => {       if (index) guideLine.append(document.createTextNode(" Â· "));       guideLine.append(el("a", { href: guide.url, target: "_blank", rel: "noreferrer", text: guide.title }));     });     identity.append(guideLine);   }
   if (character.pairsWith) {
     identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
   }
@@ -1977,7 +1979,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
@@ -1987,7 +1989,8 @@ async function main() {
       loadJson("data/characters.public.json").catch(() => ({ characters: [] })),
       loadJson("data/screenshots.json").catch(() => []),
       loadJson("data/dungeons.json").catch(() => null),
-      loadJson("data/library-books.json").catch(() => null)
+      loadJson("data/library-books.json").catch(() => null),
+      loadJson("data/guides.json").catch(() => ({ guides: [] }))
     ]);
     state.books = books;
     state.house = house;
@@ -1999,6 +2002,7 @@ async function main() {
     state.publicChars = publicChars;
     state.screenshots = screenshots;
     state.dungeons = dungeons;
+    state.guides = asList(guidesFile && guidesFile.guides);
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this
     // page view; checklist.json still carries the saved hunt list.

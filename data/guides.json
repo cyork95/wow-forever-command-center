@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "note": "Curated outbound links only. No embedding, no scraping, no thumbnails. Entries are added by hand after review; appliesTo holds roster character ids (plus topic tags like economy for future surfaces).",
+  "guides": [
+    {
+      "id": "never-go-broke-economy",
+      "title": "7 Simple Rules to NEVER Go Broke in WoW Forever",
+      "url": "https://youtu.be/E97_VMQOddM",
+      "creator": "Hazpataz",
+      "type": "video",
+      "topics": ["economy", "bank alt", "disenchanting", "auctionator", "professions", "investing"],
+      "appliesTo": ["economy", "malavus"],
+      "added": "2026-10-19"
+    },
+    {
+      "id": "complete-druid-leveling",
+      "title": "The Complete Druid Leveling Guide | Warcraft Forever",
+      "url": "https://youtu.be/yJmAp3FCXck",
+      "creator": "mmarkers",
+      "type": "video",
+      "topics": ["druid", "leveling", "feral", "balance", "restoration"],
+      "appliesTo": ["sorinis", "skyrinis"],
+      "added": "2026-10-19"
+    }
+  ]
+}

@@ -4,11 +4,12 @@
 # diffed against the previous private snapshot (retained under prev/).
 # Gold and ledger detail ARE included: this output is local-only, never
 # committed. See docs/canonical-json.md.
-# Usage: powershell -File scripts/butler-pack.ps1 [-PrivateDir <dir>] [-OutDir <dir>]
+# Usage: powershell -File scripts/butler-pack.ps1 [-PrivateDir <dir>] [-OutDir <dir>] [-GuidesPath <file>]
 
 param(
   [string]$PrivateDir = "",
-  [string]$OutDir = ""
+  [string]$OutDir = "",
+  [string]$GuidesPath = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -91,7 +92,7 @@ function Get-DiffLines($now, $prev) {
   return $lines
 }
 
-function Build-Pack($char, $coll, $econ, $prev) {
+function Build-Pack($char, $coll, $econ, $prev, $guides) {
   $out = @()
   $title = if ($char.displayName) { $char.displayName } else { $char.name }
   $out += "# Butler pack: $title"
@@ -177,6 +178,12 @@ function Build-Pack($char, $coll, $econ, $prev) {
     if ($petNames.Count) { $out += "- Battle pets: $($petNames -join ", ")." }
     $out += ""
   }
+  $out += "## Relevant guides"
+  $out += ""
+  $mine = @($guides | Where-Object { @($_.appliesTo) -contains $char.rosterId })
+  foreach ($guide in $mine) { $out += "- $($guide.title): $($guide.url)" }
+  if (-not $mine.Count) { $out += "No curated guides for this character yet." }
+  $out += ""
   $out += "## What changed since last export"
   $out += ""
   $out += @(Get-DiffLines $char $prev)
@@ -185,6 +192,10 @@ function Build-Pack($char, $coll, $econ, $prev) {
 }
 
 # ---- Main ----
+if (-not $GuidesPath) { $GuidesPath = Join-Path $repo "data\guides.json" }
+$guidesDoc = Read-JsonFile $GuidesPath
+$guides = @()
+if ($guidesDoc -and $guidesDoc.guides) { $guides = @($guidesDoc.guides) }
 $charsDoc = Read-JsonFile (Join-Path $PrivateDir "characters.json")
 $collDoc = Read-JsonFile (Join-Path $PrivateDir "collections.json")
 if (-not $charsDoc -or -not @($charsDoc.characters).Count) { throw "No canonical characters in $PrivateDir. Run scripts/parse-dossier-export.ps1 first." }
@@ -194,7 +205,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id]
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
