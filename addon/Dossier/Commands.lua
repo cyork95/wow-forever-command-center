@@ -769,6 +769,9 @@ local function GetCollector(
         [C.SECTIONS.COMPLETED_QUESTS] =
             data.CompletedQuests,
 
+        [C.SECTIONS.QUEST_HISTORY] =
+            data.QuestJourney,
+
         [C.SECTIONS.SKILLS] =
             data.Skills,
 

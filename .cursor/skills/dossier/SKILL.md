@@ -29,6 +29,7 @@ If you can write files, save the paste unchanged as exports/<name>-<realm>-YYYY-
 - "Shopping list:" is what the player plans to gather or buy. Short items come first, one line each with what they have and need; "Crafting:" lines are recipes they plan to make, and "Ready:" lists what is done.
 - "Statistics:" holds the game's own lifetime counters, one "== Category ==" block each. A statistic that is not listed has no value yet.
 - "Gold, last 7 days" and "Saved standings" come from Journalator and Altoholic when Other addons is on. "Profession:" and "Rare:" stay when those switches are on.
+- "Quest history:" comes from Questie's journey when Other addons and its Questie switch are both on. Each line is a dated accept, completion, abandonment, or level-up for this character; "Quest <id>" means the name was not available.
 
 ## Answer
 

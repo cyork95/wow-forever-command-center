@@ -10,6 +10,7 @@ If a companion addon changes how it saves data, its block says it could not be r
 | --- | --- |
 | Syndicator | Your mail, and your bank contents while the bank is closed |
 | AllTheThings | Deaths, quests, areas explored, time played, and mount, pet, toy, and title counts |
+| Questie | Quest history from its journey for this character: accepts, completions, abandonments, and level-ups, as its own export section |
 | Nova Instance Tracker | Your saved lockouts and recent instance runs |
 | Profession Master | Every recipe you know, grouped by profession |
 | Auctionator | The auction price of each stack in your bags, plus a total |
