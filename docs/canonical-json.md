@@ -198,7 +198,7 @@ account-level file is read -- do not go looking for per-char Journey files.
   names. Journey events carry timestamp plus ISO, event, subType, quest,
   level and newLevel; any SubType is accepted (Accept/Complete/Level
   observed; Abandon not yet seen). Current-name keys legitimately carry
-  complete[] with no journey -- that is not a reset.
+  complete[] with no journey -- that is not a reset. Dossier 2.2.19+ can print a "Quest history" export section from the same journey (Other-addons plus Questie switch, Questie loaded). It is presentation-only for the AI chat: `parse-dossier-export.ps1` segments the heading but ingests nothing from it -- the SV file stays the single owner.
 - Public: `data/att.public.json` (committed) carries the public-safe
   subset: account have-sets and obtainedTimeline/obtainedCount (name, type,
   timestamp, itemId; raw colour text stays private). Per-character detail is
