@@ -4,7 +4,7 @@ Project: https://legacy.curseforge.com/wow/addons/dossier-your-character-ready-f
 
 Paste the summary into the project summary field. Paste the description into the project description. Paste the changelog into the file changelog when you upload the zip. Screenshots are uploaded by hand. This file is left out of the addon zip.
 
-Upload file: `dist/Dossier-2.2.18.zip`
+Upload file: `dist/Dossier-2.2.19.zip`
 
 ## Name
 
@@ -36,7 +36,7 @@ Dossier is for World of Warcraft Forever. It needs no other addon.
 - **Screenshotter.** A shot on level-ups, deaths, achievements, boss kills, and similar moments, with the reason written into the Biography.
 - **Switches.** Biography, Kills, Session, Mail, Lockouts, Tasks, Notes, Shopping list, Screenshotter, and Other addons each turn off from the Options tab, or with `/dossier off`. Off means that part stops watching the game and leaves the export. Saved history stays.
 
-Completed quests stay in Questie. A turn-in is still a Biography line, and it can still mark a matching task done. Opening a profession window still fills the recipe section of an export. Dossier does not keep its own profession-rank list.
+Completed quests stay in Questie. When Questie is installed, its journey for this character can join the export as Quest history: when each quest was accepted, completed, or abandoned and at what level, plus level-ups. It stays out unless Other addons and its Questie switch are both on. A turn-in is still a Biography line, and it can still mark a matching task done. Opening a profession window still fills the recipe section of an export. Dossier does not keep its own profession-rank list.
 
 ## A report in four steps
 
@@ -59,6 +59,7 @@ If you already use them, Dossier can add their character data to the report. Oth
 - Altoholic (saved reputation, and profession ranks when that addon already has them)
 - Syndicator (mail and bank)
 - AllTheThings (deaths, quests, time played, collection counts)
+- Questie (quest history from its journey: accepts, completions, abandonments, level-ups for this character)
 - Nova Instance Tracker (lockouts)
 - Profession Master (recipes)
 - Auctionator (bag prices)
@@ -76,9 +77,11 @@ Want another addon covered? Ask in the comments.
 
 ## Changelog
 
-Paste this into the changelog field for the 2.2.18 file.
+Paste this into the changelog field for the 2.2.19 file.
 
-2.2.18
+2.2.19
+
+- The export can include Quest history from Questie's journey: when each quest was accepted, completed, or abandoned and at what level, plus level-ups. It needs Questie installed, and it stays out of the report unless Other addons and its Questie switch are both on.
 
 - A hunter pet or a warlock demon kill counts for that character when the pet's target dies, the same as your own killing blow. A creature another player tagged first is not counted.
 - The export can include the combat pet that is out, or the last one dismissed, and the pets in the stable. Combat pet can be switched off on the Options tab, or left out of one export.

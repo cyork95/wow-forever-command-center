@@ -9020,6 +9020,109 @@ function TextFormatter:AddCompletedQuests(lines, data)
     AddBlankLine(lines)
 end
 
+local function FormatJourneyEvent(event)
+    if type(event) ~= "table" then
+        return nil
+    end
+
+    local stamp = U.IsNonEmptyString(event.date) and (event.date .. "  ") or ""
+
+    if event.event == "Level" then
+        local newLevel = U.ToSafeNumber(event.newLevel)
+
+        if newLevel ~= nil then
+            return string.format("%sReached level %d", stamp, newLevel)
+        end
+
+        return nil
+    end
+
+    if event.event == "Note" then
+        if U.IsNonEmptyString(event.title) then
+            return stamp .. "Note: " .. (InlineText(event.title) or event.title)
+        end
+
+        return nil
+    end
+
+    if event.event == "Quest" then
+        local questID = U.ToSafeNumber(event.quest)
+
+        if questID == nil then
+            return nil
+        end
+
+        local action = event.subType
+
+        if action == "Accept" then
+            action = "Accepted"
+        elseif action == "Complete" then
+            action = "Completed"
+        elseif action == "Abandon" then
+            action = "Abandoned"
+        elseif not U.IsNonEmptyString(action) then
+            action = "Updated"
+        end
+
+        local name = U.IsNonEmptyString(event.title) and event.title or ("Quest " .. tostring(questID))
+        local level = U.ToSafeNumber(event.level)
+
+        if level ~= nil then
+            return string.format("%s%s %s (ID %d, level %d)", stamp, action, name, questID, level)
+        end
+
+        return string.format("%s%s %s (ID %d)", stamp, action, name, questID)
+    end
+
+    return nil
+end
+
+function TextFormatter:AddQuestHistory(lines, data)
+    local events = data.events or {}
+
+    if #events == 0 then
+        return
+    end
+
+    AddSectionHeader(lines, data.title or C.SECTION_LABELS[C.SECTIONS.QUEST_HISTORY])
+
+    local counts = data.counts or {}
+    AddLine(
+        lines,
+        string.format(
+            "Journey events: %d (%d accepted, %d completed, %d abandoned, %d level-ups)",
+            U.ToSafeNumber(counts.events) or #events,
+            U.ToSafeNumber(counts.accepts) or 0,
+            U.ToSafeNumber(counts.completes) or 0,
+            U.ToSafeNumber(counts.abandons) or 0,
+            U.ToSafeNumber(counts.levelUps) or 0
+        )
+    )
+
+    local omitted = U.ToSafeNumber(data.omitted) or 0
+
+    if omitted > 0 then
+        AddLine(
+            lines,
+            string.format(
+                "Showing the %d most recent; %d earlier events not shown.",
+                #events,
+                omitted
+            )
+        )
+    end
+
+    for _, event in ipairs(events) do
+        local text = FormatJourneyEvent(event)
+
+        if text ~= nil then
+            AddLine(lines, text)
+        end
+    end
+
+    AddBlankLine(lines)
+end
+
 local function RecipeDifficultyKey(recipe)
     local key = RECIPE_DIFFICULTY_KEYS[string.lower(U.SafeString(recipe.difficulty, ""))]
     return key or "other"
@@ -10080,6 +10183,14 @@ function TextFormatter:Build(
                 self:AddCompletedQuests(
                     lines,
                     exportData.completed_quests
+                    or {}
+                )
+            end,
+        [C.SECTIONS.QUEST_HISTORY] =
+            function()
+                self:AddQuestHistory(
+                    lines,
+                    exportData.quest_history
                     or {}
                 )
             end,

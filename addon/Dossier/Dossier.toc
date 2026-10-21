@@ -1,9 +1,9 @@
 ## Interface: 16001
 ## Title: Dossier
-## Notes: Dossier, formerly AIExport. Type /dossier and press Create Export to copy a text report of your character into an AI chat. It keeps a Biography timeline, tracks kills, times play sessions with kills, gathering, gold, and XP per hour, keeps a shopping list with have and need counts, and takes screenshots at big moments. Every feature can be switched off on the Options tab or in the game's Settings > AddOns page. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, and Talents Forever when they are loaded. /dossier help shows the guide and an example AI skill.
+## Notes: Dossier, formerly AIExport. Type /dossier and press Create Export to copy a text report of your character into an AI chat. It keeps a Biography timeline, tracks kills, times play sessions with kills, gathering, gold, and XP per hour, keeps a shopping list with have and need counts, and takes screenshots at big moments. Every feature can be switched off on the Options tab or in the game's Settings > AddOns page. Optional Companions add data from Syndicator, KillDex, AllTheThings, Nova Instance Tracker, Profession Master, Auctionator, Memento, Talents Forever, and Questie when they are loaded. /dossier help shows the guide and an example AI skill.
 ## Category: Data Export
 ## Author: Dossier
-## Version: 2.2.18
+## Version: 2.2.19
 ## IconTexture: Interface\AddOns\Dossier\Media\MinimapIcon
 ## X-License: MIT
 ## SavedVariables: DossierDB
@@ -43,6 +43,7 @@ Data/Talents.lua
 Data/Spellbook.lua
 Data/Biography.lua
 Data/QuestHistory.lua
+Data/QuestJourney.lua
 Data/Tasks.lua
 Data/Kills.lua
 Data/Pet.lua
@@ -61,6 +62,7 @@ Companions/Journalator.lua
 Companions/Altoholic.lua
 Companions/Memento.lua
 Companions/TalentsForever.lua
+Companions/Questie.lua
 Data/Readiness.lua
 Formatters/TextFormatter.lua
 UI/Theme.lua

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.constants = ns.constants or {}
 local C = ns.constants
 
-C.VERSION = "2.2.18"
+C.VERSION = "2.2.19"
 C.SLASH_COMMAND = "/dossier"
 C.SLASH_ALIAS = "/aixport"
 C.ADDON_TITLE = "Dossier"
@@ -29,6 +29,7 @@ C.SECTIONS = {
     REPUTATIONS = "reputations",
     QUESTS = "quests",
     COMPLETED_QUESTS = "completed_quests",
+    QUEST_HISTORY = "quest_history",
     SKILLS = "skills",
     PROFESSION_DETAILS = "profession_details",
     TALENTS = "talents",
@@ -65,6 +66,7 @@ C.SECTION_ORDER = {
     C.SECTIONS.REPUTATIONS,
     C.SECTIONS.QUESTS,
     C.SECTIONS.COMPLETED_QUESTS,
+    C.SECTIONS.QUEST_HISTORY,
     C.SECTIONS.SKILLS,
     C.SECTIONS.PROFESSION_DETAILS,
     C.SECTIONS.TALENTS,
@@ -91,6 +93,7 @@ C.SECTION_LABELS = {
     [C.SECTIONS.REPUTATIONS] = "Reputations",
     [C.SECTIONS.QUESTS] = "Quests",
     [C.SECTIONS.COMPLETED_QUESTS] = "Quest (completed)",
+    [C.SECTIONS.QUEST_HISTORY] = "Quest history",
     [C.SECTIONS.SKILLS] = "Skills",
     [C.SECTIONS.PROFESSION_DETAILS] = "Profession Details",
     [C.SECTIONS.TALENTS] = "Talents",
@@ -133,6 +136,7 @@ C.SECTION_GROUPS = {
             C.SECTIONS.PROGRESS,
             C.SECTIONS.QUESTS,
             C.SECTIONS.COMPLETED_QUESTS,
+            C.SECTIONS.QUEST_HISTORY,
             C.SECTIONS.ACHIEVEMENTS,
             C.SECTIONS.COMPLETED_ACHIEVEMENTS,
             C.SECTIONS.LOCKOUTS,
@@ -184,6 +188,7 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.REPUTATIONS] = true,
     [C.SECTIONS.QUESTS] = true,
     [C.SECTIONS.COMPLETED_QUESTS] = true,
+    [C.SECTIONS.QUEST_HISTORY] = true,
     [C.SECTIONS.SKILLS] = true,
     [C.SECTIONS.PROFESSION_DETAILS] = true,
     [C.SECTIONS.TALENTS] = true,
@@ -196,7 +201,8 @@ C.DEFAULT_SELECTIONS = {
     [C.SECTIONS.ADDONS] = true,
 }
 
-C.KILLS_EXPORT_TOP = 25
+C.QUEST_HISTORY_EXPORT_LIMIT = 300
+ C.KILLS_EXPORT_TOP = 25
 C.KILLS_EXPORT_DROPS = 60
 C.KILLS_PANEL_DEFAULT_OPACITY = 96
 

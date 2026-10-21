@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.19
+
+- The export can include Quest history from Questie's journey: when each quest was accepted, completed, or abandoned and at what level, plus level-ups. It needs Questie installed, and it stays out of the report unless Other addons and its Questie switch are both on.
+
 ## 2.2.18
 
 - A hunter pet or a warlock demon kill counts for that character when the pet's target dies, the same as your own killing blow. A creature another player tagged first is not counted.

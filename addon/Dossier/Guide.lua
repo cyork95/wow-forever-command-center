@@ -294,7 +294,9 @@ Dossier does not need another addon. When Other addons is on, it can read
 character data another addon has already saved, such as a bank copy, a
 recipe list, Journalator's gold log, or Altoholic's reputation, and fold
 that into the normal report. Profession ranks from Altoholic show on the
-site. Turning it off stops those reads. Saved data stays.
+site. Questie's journey for this character can join the report as Quest
+history, with its own switch on the same tab. Turning it off stops those
+reads. Saved data stays.
 
 
 11. Options

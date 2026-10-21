@@ -22,7 +22,8 @@ Beta: never take Skyrinis, Sorinis, or Malavus.
 
 Source is `addon/Dossier/`. Version is `C.VERSION` in `Constants.lua` and `## Version` in both `.toc` files. A player-facing change gets a `CHANGELOG.md` line and a matching wiki page.
 
-Export sections live in `Constants.lua` (`SECTIONS`, `SECTION_ORDER`, `SECTION_GROUPS`, `DEFAULT_SELECTIONS`). A switchable feature is an entry in `Features.lua`. Collectors are `Data/*.lua` with `Collect()`, wired in `Commands.lua` `GetCollector`, and printed from `Formatters/TextFormatter.lua`. Load new data files from both `Dossier.toc` and `Dossier_Camelot.toc`.
+Export sections live in `Constants.lua` (`SECTIONS`, `SECTION_ORDER`, `SECTION_GROUPS`, `DEFAULT_SELECTIONS`). A switchable feature is an entry in `Features.lua`. Collectors are `Data/*.lua` with `Collect()`, wired in `Commands.lua` `GetCollector`, and printed from `Formatters/TextFormatter.lua`. Load new data files from both `Dossier.toc` and `Dossier_Camelot.toc`. Companions (`Companions/*.lua`) read the source addon
+running Lua globals, never its SavedVariables file: Questie journey comes from `Questie.db.char.journey`, which AceDB already scopes to the current character. A companion reader used by a section goes through `Companions:Read`, gated by the per-addon switch.
 
 Kills (`Data/Kills.lua`) count a player, pet, or guardian killing blow, including pet specials (`SWING_DAMAGE`, `RANGE_DAMAGE`, `SPELL_DAMAGE`, `SPELL_PERIODIC_DAMAGE` with overkill of 0 or more, and `PARTY_KILL`). Ownership is the player GUID, the current or cached pet GUID, or combat-log flags for affiliation mine plus type player, pet, or guardian. The same corpse is not counted twice. Trash inside a dungeon or raid is not counted. Do not count the pet's own death.
 
