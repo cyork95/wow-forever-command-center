@@ -31,7 +31,7 @@ Combat pet (`Data/Pet.lua`, export section `pet`) is the summoned class pet and 
 
 Currency and reputation stay current snapshots. Do not add Journalator-style session history unless a new ticket asks for it.
 
-Package with `powershell -File scripts/package-addon.ps1`. There is no Lua test suite. Syntax-check touched Lua with `luac` or `lua` when it is installed. WoW itself is not available here.
+Package with `powershell -File scripts/package-addon.ps1`. A Dossier deploy is not complete until the merged build is also synced to the game AddOns folder and the installed version verified. There is no Lua test suite. Syntax-check touched Lua with `luac` or `lua` when it is installed. WoW itself is not available here.
 
 ## Site
 
