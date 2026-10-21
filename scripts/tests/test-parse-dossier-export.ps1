@@ -93,7 +93,13 @@ try {
     "== Professions ==",
     "Mining 5 / 75",
     "Reputations:",
-    "Ironforge Honored 2315 / 9000"
+    "Ironforge Honored 2315 / 9000",
+    "Quest history:",
+    "Journey events: 4 (2 accepted, 1 completed, 0 abandoned, 1 level-ups)",
+    "2026-10-20 14:03  Accepted Fixture Errand (ID 1234, level 10)",
+    "2026-10-20 14:11  Reached level 11",
+    "2026-10-20 14:26  Accepted Second Errand (ID 1235, level 11)",
+    "2026-10-20 14:40  Completed Fixture Errand (ID 1234, level 11)"
   ) -join "`n"
   $noBom = New-Object System.Text.UTF8Encoding $false
   [System.IO.File]::WriteAllText($synExport, $exportText + "`n", $noBom)
@@ -112,6 +118,10 @@ try {
   foreach ($forbidden in @("2315", "9000", "12/25000", "10203", '"goldCopper"', '"raw"', '"quantity"')) {
     Assert ($synRaw -notmatch [regex]::Escape($forbidden)) "public file has no $forbidden"
   }
+  Assert ($synRaw -notmatch "Journey events") "quest history section not projected into public"
+  Assert ($synRaw -notmatch "Fixture Errand") "quest history lines stay out of public"
+  $synPrivRaw = Get-Content -Raw (Join-Path (Join-Path $synDir "private") "characters.json")
+  Assert ($synPrivRaw -notmatch "Journey events") "quest history not ingested into private canonical (Questie SV owns it)"
 
 
   # Datastore preference + merge preservation: inject a Phase 2a merge result,

@@ -53,7 +53,7 @@ $script:TopHeadings = @(
   "Shopping list", "Equipment", "Combat pet", "Lockouts", "Progress", "Kills",
   "Sessions", "Statistics", "Achievements", "Achievement (completed)",
   "Appearance (collected)", "Appearances", "Reputations", "Quests",
-  "Quest (completed)", "Skills", "Profession Details", "Talents", "Spellbook",
+  "Quest (completed)", "Quest history", "Skills", "Profession Details", "Talents", "Spellbook",
   "Biography", "Companions", "AddOns", "Mail", "Tasks", "Notes"
 )
 
