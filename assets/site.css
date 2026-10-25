@@ -643,6 +643,51 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 .badge.low { background: #d7d0c2; }
 .badge.parked { background: transparent; color: var(--muted); border: 1px solid var(--line); }
 
+
+.journey-zone {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--teal);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  background: #182014;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.journey-zone.done { border-left-color: var(--gold); }
+
+.journey-zone-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.journey-zone-sub { color: var(--muted); margin: 4px 0 0; }
+
+.journey-section { margin-top: 12px; }
+
+.journey-row .sub {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: right;
+}
+
+.journey-row.done .journey-name { color: var(--muted); text-decoration: line-through; }
+
+.journey-priority { margin: 8px 0 12px 20px; }
+
+.journey-priority-head {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+
+.journey-guide { margin: 4px 0; }
+
 .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .actions button, .file-btn {
