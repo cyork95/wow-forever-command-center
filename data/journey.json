@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "character": "skyrinis",
+  "zones": [
+    {
+      "id": "zephras-isle",
+      "name": "Zephras Isle",
+      "order": 1,
+      "levelBand": "1-10",
+      "summary": "Floating island home of the Skyborne and Skyrinis's starting zone. Leads on to Stormwind and Elwynn Forest.",
+      "quests": [
+        { "id": 92463, "name": "The Cirrusfly Queen" },
+        { "id": 92464, "name": "Elemental Unrest" },
+        { "id": 92465, "name": "Agitators" },
+        { "id": 92470, "name": "Foul Matriarch" },
+        { "id": 92474, "name": "Falling With Style" },
+        { "id": 92485, "name": "A Student of Nature" },
+        { "id": 92544, "name": "Al'Aketh Thugs" },
+        { "id": 92597, "name": "Reading the Ley Lines" },
+        { "id": 93552, "name": "Harvesting Windstones" },
+        { "id": 94414, "name": "The Anchors of Zephras" },
+        { "id": 92469, "name": "Return to Rorian" },
+        { "id": 92472, "name": "The Next Step" },
+        { "id": 92473, "name": "Aggressive Encroachment" },
+        { "id": 92553, "name": "Restocking the Larders" },
+        { "id": 92596, "name": "The High Order" },
+        { "id": 93461, "name": "Welcome to Shen'dar Village" },
+        { "id": 96646, "name": "Camping 101: Cooking" },
+        { "id": 97970, "name": "Camping 101: Mining" },
+        { "id": 92528, "name": "Among the Faithful" },
+        { "id": 93036, "name": "Infiltrating the Cult" },
+        { "id": 93318, "name": "WANTED: Vulgara the Insatiable" },
+        { "id": 92708, "name": "A Grand Adventure" },
+        { "id": 92709, "name": "A Grand Adventure" },
+        { "id": 94369, "name": "The Fate of Zephras", "note": "Isle capstone." }
+      ],
+      "exploration": [
+        { "name": "Shen'dar Village", "note": "Hub village; see quest 93461." },
+        { "name": "Valanaar", "note": "See quest 92701." },
+        { "name": "Falaath Village", "note": "See quest 92529." },
+        { "name": "Zephras Isle", "note": "The isle itself; see quest 94369." }
+      ],
+      "collectibles": [
+        { "name": "Musical Gustjumper", "kind": "Pet", "note": "Singing-frog pet; same want as the Hunts entry." },
+        { "name": "Galestrider mounts", "kind": "Mount", "note": "Parked family until a color is obtainable." }
+      ],
+      "rares": [
+        { "name": "Vulgara the Insatiable", "priority": true, "note": "WANTED poster; see quest 93318." }
+      ],
+      "boes": [],
+      "professions": [
+        { "skill": "Mining", "target": 75, "note": "Work copper while clearing the isle; see Camping 101: Mining (quest 97970)." },
+        { "skill": "Herbalism", "target": 75, "note": "Herb the quest route; see Camping 101: Herbalism (quest 97968)." },
+        { "skill": "Cooking", "target": 75, "note": "Cook quest drops; see Camping 101: Cooking (quest 96646)." },
+        { "skill": "Fishing", "target": 75, "note": "Fish isle waters; see Camping 101: Fishing (quest 97967)." },
+        { "skill": "First Aid", "target": 75, "note": "Cloth drops off the Al'Aketh fighting; see Camping 101: First Aid (quest 97965)." }
+      ],
+      "guideRefs": []
+    },
+    {
+      "id": "elwynn-forest",
+      "name": "Elwynn Forest",
+      "order": 2,
+      "levelBand": "1-10",
+      "summary": "Human starting zone around Goldshire and Northshire; the 1-10 arc before Westfall.",
+      "quests": [
+        { "id": 16, "name": "Give Gerard a Drink" },
+        { "id": 7, "name": "Kobold Camp Cleanup" },
+        { "id": 15, "name": "Investigate Echo Ridge" },
+        { "id": 21, "name": "Skirmish at Echo Ridge" },
+        { "id": 18, "name": "Brotherhood of Thieves" },
+        { "id": 6, "name": "Bounty on Garrick Padfoot" },
+        { "id": 60, "name": "Kobold Candles" },
+        { "id": 62, "name": "The Fargodeep Mine" },
+        { "id": 47, "name": "Gold Dust Exchange" },
+        { "id": 76, "name": "The Jasperlode Mine" },
+        { "id": 86, "name": "Pie for Billy" },
+        { "id": 87, "name": "Goldtooth" },
+        { "id": 88, "name": "Princess Must Die!" },
+        { "id": 11, "name": "Riverpaw Gnoll Bounty" },
+        { "id": 37, "name": "Find the Lost Guards" },
+        { "id": 39, "name": "Deliver Thomas' Report" },
+        { "id": 71, "name": "Report to Thomas" },
+        { "id": 109, "name": "Report to Gryan Stoutmantle" },
+        { "id": 176, "name": "Wanted: \"Hogger\"" }
+      ],
+      "exploration": [
+        { "name": "Northshire Valley" },
+        { "name": "Northshire Abbey" },
+        { "name": "Echo Ridge" },
+        { "name": "Goldshire" },
+        { "name": "Fargodeep Mine" },
+        { "name": "Jasperlode Mine" },
+        { "name": "Stonefield Farm" },
+        { "name": "Maclure Vineyards" }
+      ],
+      "collectibles": [],
+      "rares": [
+        { "name": "Hogger", "priority": true, "note": "WANTED poster; see quests 176 and 147." },
+        { "name": "Princess", "note": "See quest 88." },
+        { "name": "Goldtooth", "note": "See quest 87." }
+      ],
+      "boes": [],
+      "professions": [
+        { "skill": "Mining", "target": 65, "note": "Copper in the Fargodeep and Jasperlode mines; see quests 62 and 76." },
+        { "skill": "Herbalism", "target": 75, "note": "Peacebloom and Silverleaf along the Northshire to Goldshire road." },
+        { "skill": "Fishing", "target": 75, "note": "Fish the waters around Goldshire; see quest 40." },
+        { "skill": "First Aid", "target": 75, "note": "Linen off the gnolls and Defias of the militia arc; see quests 11 and 83." }
+      ],
+      "guideRefs": []
+    }
+  ]
+}
