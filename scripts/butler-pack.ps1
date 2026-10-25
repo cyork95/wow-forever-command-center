@@ -10,7 +10,8 @@ param(
   [string]$PrivateDir = "",
   [string]$OutDir = "",
   [string]$GuidesPath = "",
-  [string]$HuntsPath = ""
+  [string]$HuntsPath = "",
+  [string]$JourneyPath = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -18,6 +19,7 @@ $repo = Split-Path -Parent (($PSScriptRoot -replace '^\\\\\?\\', ''))
 if (-not $PrivateDir) { $PrivateDir = Join-Path $repo "data\private" }
 if (-not $OutDir) { $OutDir = Join-Path $PrivateDir "butler" }
 if (-not $HuntsPath) { $HuntsPath = Join-Path $repo "data\checklist.json" }
+if (-not $JourneyPath) { $JourneyPath = Join-Path $repo "data\journey.json" }
 
 function Read-JsonFile($path) {
   if (-not (Test-Path $path)) { return $null }
@@ -122,6 +124,43 @@ function Get-PackObtained($hunts, $historyEntries) {
     if ($hit) { $got.Add($hunt) }
   }
   return $got.ToArray()
+}
+
+function Get-JourneyStatus($zones, $doneQuests, $historyNames) {
+  $rows = @()
+  foreach ($zone in @($zones | Sort-Object order)) {
+    $total = 0
+    $done = 0
+    $gateTotal = 0
+    $gateDone = 0
+    $firstOpen = $null
+    foreach ($section in @("quests", "exploration", "collectibles", "rares", "boes", "professions")) {
+      foreach ($item in @($zone.$section)) {
+        $total += 1
+        $hit = $false
+        $why = ""
+        if ($section -eq "quests" -and $null -ne $item.id) {
+          $hit = $doneQuests -contains [int]$item.id
+          $why = "quest $($item.id)"
+        } elseif ($section -eq "collectibles") {
+          $hit = $historyNames -contains ([string]$item.name).ToLowerInvariant()
+          $why = "account collection history"
+        } else {
+          $why = if ($section -eq "exploration") { "pending scan" } else { "manual tick" }
+        }
+        if ($section -in @("quests", "exploration", "collectibles")) {
+          $gateTotal += 1
+          if ($hit) { $gateDone += 1 }
+          elseif (-not $firstOpen) {
+            $firstOpen = [ordered]@{ zone = $zone.name; section = $section; name = $item.name; why = $why }
+          }
+        }
+        if ($hit) { $done += 1 }
+      }
+    }
+    $rows += [ordered]@{ zone = $zone.name; total = $total; done = $done; gateTotal = $gateTotal; gateDone = $gateDone; open = $firstOpen }
+  }
+  return $rows
 }
 
 function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
@@ -298,6 +337,41 @@ function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
     foreach ($got in $packGot) { $out += "  - $($got.name) (obtained)." }
     $out += ""
   }
+  $journey = $null
+  if ($extra -and $extra.journey) { $journey = $extra.journey }
+  if ($journey -and [string]$journey.character -eq [string]$char.id) {
+    $out += "## Journey"
+    $out += ""
+    $att = $null
+    if ($extra -and $extra.attById -and $extra.attById.ContainsKey([string]$char.id)) { $att = $extra.attById[[string]$char.id] }
+    $doneQuests = @()
+    if ($att -and $att.have -and $att.have.quests) { $doneQuests = @($att.have.quests.have) }
+    $historyNames = @()
+    if ($extra -and $extra.history) { $historyNames = @($extra.history | ForEach-Object { if ($_.name) { ([string]$_.name).ToLowerInvariant() } }) }
+    $journeyRows = @(Get-JourneyStatus @($journey.zones) $doneQuests $historyNames)
+    $jTotal = 0; $jDone = 0
+    foreach ($row in $journeyRows) { $jTotal += [int]$row.total; $jDone += [int]$row.done }
+    $jPct = if ($jTotal) { [int][math]::Round(100 * $jDone / $jTotal) } else { 0 }
+    $jCurrent = @($journeyRows | Where-Object { [int]$_.gateDone -lt [int]$_.gateTotal } | Select-Object -First 1)
+    if ($jCurrent.Count) {
+      $out += "- Route: $jDone of $jTotal route items ($jPct%). Current zone: $($jCurrent[0].zone)."
+    } else {
+      $out += "- Route: $jDone of $jTotal route items ($jPct%). Route complete: every gating section is DONE."
+    }
+    if (-not $att) {
+      $out += "- Skyrinis has no ATT scan yet: quest and exploration items show as pending."
+    }
+    foreach ($row in $journeyRows) {
+      $badge = if ([int]$row.gateDone -ge [int]$row.gateTotal) { "DONE" } else { "$($row.gateDone) of $($row.gateTotal) gating" }
+      $out += "- $($row.zone): $($row.done) of $($row.total) ($badge)."
+    }
+    if ($jCurrent.Count -and $jCurrent[0].open) {
+      $next = $jCurrent[0].open
+      $out += "- Next: $($next.name) ($($next.zone), $($next.section), $($next.why))."
+    }
+    $out += "- Manual ticks (rares, BoEs, profession milestones) live in the browser only."
+    $out += ""
+  }
   $out += "## Relevant guides"
   $out += ""
   $mine = @($guides | Where-Object { @($_.appliesTo) -contains $char.rosterId })
@@ -324,6 +398,7 @@ if ($attDoc) { foreach ($entry in @($attDoc.characters)) { if ($entry.canonicalI
 $historyDoc = Read-JsonFile (Join-Path $PrivateDir "collection-history.json")
 $historyEntries = @()
 $huntsDoc = Read-JsonFile $HuntsPath
+$journeyDoc = Read-JsonFile $JourneyPath
 $huntsList = @()
 if ($huntsDoc -is [System.Collections.IList]) { $huntsList = @($huntsDoc) }
 if ($historyDoc) { $historyEntries = @($historyDoc.entries) }
@@ -340,7 +415,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById; hunts = $huntsList }
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById; hunts = $huntsList; journey = $journeyDoc }
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
