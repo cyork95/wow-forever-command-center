@@ -17,8 +17,8 @@
     <div class="wrap">
       <p class="eyebrow">World of Warcraft: Forever</p>
       <h1>Command Center</h1>
-      <p class="lede" id="lede">Loading the house…</p>
-      <div class="chips" id="chips"></div>
+      <p class="lede" id="lede">Roster, hunts, and merged addon stats for the whole house.</p>
+      <p class="character-pick"><label for="character-picker">Character</label> <select id="character-picker" aria-label="Character"></select></p>
     </div>
   </header>
   <main class="wrap">
@@ -34,7 +34,6 @@
         <button type="button" class="tab" role="tab" id="tab-dungeons" data-tab="dungeons" aria-controls="panel-dungeons" aria-selected="false" tabindex="-1">Dungeons</button>
         <button type="button" class="tab" role="tab" id="tab-quests" data-tab="quests" aria-controls="panel-quests" aria-selected="false" tabindex="-1">Quests</button>
         <button type="button" class="tab" role="tab" id="tab-macros" data-tab="macros" aria-controls="panel-macros" aria-selected="false" tabindex="-1">Macros</button>
-        <button type="button" class="tab" role="tab" id="tab-house" data-tab="house" aria-controls="panel-house" aria-selected="false" tabindex="-1">House</button>
       </nav>
     <section class="panel" id="panel-roster" role="tabpanel" aria-labelledby="tab-roster" data-panel="roster">
       <div class="section-head">
@@ -85,7 +84,6 @@
       </div>
       <div id="prof-skills"></div>
       <div class="toolbar">
-        <select id="prof-character" aria-label="Character"></select>
         <select id="prof-view" aria-label="Which crafts">
           <option value="known">Known crafts</option>
           <option value="make">Can make now</option>
@@ -114,7 +112,6 @@
         <p id="quest-source">Loading finished quests…</p>
       </div>
       <div class="toolbar">
-        <select id="quest-character" aria-label="Character"></select>
         <input id="quest-search" type="search" placeholder="Search finished quests and zones">
       </div>
       <div id="quest-list"></div>
@@ -126,7 +123,6 @@
         <p id="macro-source">Loading macros…</p>
       </div>
       <div class="toolbar">
-        <select id="macro-character" aria-label="Character"></select>
       </div>
       <div id="macro-list"></div>
     </section>
@@ -134,7 +130,6 @@
     <section class="panel" id="panel-altoholic" role="tabpanel" aria-labelledby="tab-altoholic" data-panel="altoholic" hidden>
       <div class="section-head"><h2>Altoholic</h2><p id="alto-note">Loading Altoholic…</p></div>
       <div class="toolbar">
-        <select id="alto-character" aria-label="Character"></select>
       </div>
       <div id="alto-sheet"></div>
     </section>
@@ -151,13 +146,6 @@
       <div id="tasks-list"></div>
     </section>
 
-    <section class="panel" id="panel-house" role="tabpanel" aria-labelledby="tab-house" data-panel="house" hidden>
-      <div class="section-head">
-        <h2>House rules</h2>
-        <p>Names, faction, and the beta lock.</p>
-      </div>
-      <ul class="rules" id="rules"></ul>
-    </section>
   </main>
   <footer class="site">
     <div class="wrap">
@@ -167,6 +155,6 @@
   </div>
   <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
   <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
-  <script src="assets/app.js?v=22"></script>
+  <script src="assets/app.js?v=23"></script>
 </body>
 </html>

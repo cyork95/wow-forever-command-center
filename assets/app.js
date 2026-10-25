@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "journey", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
+const TABS = ["roster", "hunts", "journey", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros"];
 
 const HUNT_GROUPS = [
   { id: "collections", label: "Collections", types: ["collection"] },
@@ -24,7 +24,6 @@ const HUNT_GROUPS = [
 ];
 
 const state = {
-  house: null,
   characters: [],
   checklist: [],
   journey: null,
@@ -40,7 +39,6 @@ const state = {
   guides: [],
   att: null,
   rarity: null,
-  altoName: "",
   books: null,
   openBookRegions: new Set(),
   openBookMaps: new Set(),
@@ -832,23 +830,6 @@ function el(tag, attrs, children) {
   return node;
 }
 
-function renderHouse() {
-  const house = state.house;
-  const base = `${house.player} · ${house.faction} · ${house.ruleset} · ${house.edition}`;
-  document.getElementById("lede").textContent = base;
-  const chips = document.getElementById("chips");
-  chips.replaceChildren();
-  [
-    `Beta ${house.beta} · cap ${house.betaCap}`,
-    `Names ${house.nameReservation}`,
-    `Launch ${house.launch}`,
-    `Raids ${house.raids}`
-  ].forEach((text) => chips.append(el("span", { class: "chip", text })));
-  const rules = document.getElementById("rules");
-  rules.replaceChildren();
-  house.rules.forEach((rule) => rules.append(el("li", { text: rule })));
-}
-
 function renderRoster() {
   const roster = document.getElementById("roster");
   roster.replaceChildren();
@@ -1581,19 +1562,22 @@ function renderLibraryBooks() {
   return block;
 }
 
+function renderCharacterPicker() {
+  const picker = document.getElementById("character-picker");
+  if (!picker || !state.characters.length) return;
+  if (picker.options.length !== state.characters.length) {
+    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
+  }
+  picker.value = state.selected;
+}
+
 function selectCharacter(id) {
   state.selected = id;
   saveStore();
   const url = new URL(location.href);
   url.searchParams.set("c", id);
   history.replaceState(null, "", url);
-  renderRoster();
-  renderSheet();
-  renderChecklist();
-  renderLedgerBoards();
-  renderProfessions();
-  renderQuests();
-  renderMacros();
+  render();
 }
 
 function cleanAddonText(value) {
@@ -1700,7 +1684,7 @@ function renderLootItem(item) {
 }
 
 function questFactionShown(quest) {
-  const faction = (state.house && state.house.faction) || "Alliance";
+  const faction = "Alliance";
   return !quest.faction || quest.faction === "Both" || quest.faction === faction;
 }
 
@@ -1924,12 +1908,7 @@ function renderCraft(craft, known, skill, counts) {
 function renderProfessions() {
   const root = document.getElementById("prof-list");
   const note = document.getElementById("prof-source");
-  const picker = document.getElementById("prof-character");
-  if (!root || !note || !picker || !state.characters.length) return;
-  if (picker.options.length !== state.characters.length) {
-    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
-  }
-  picker.value = state.selected;
+  if (!root || !note || !state.characters.length) return;
   document.getElementById("prof-view").value = state.profView;
   root.replaceChildren();
   const skillsRoot = document.getElementById("prof-skills");
@@ -2065,18 +2044,13 @@ function renderMacro(macro) {
 function renderMacros() {
   const root = document.getElementById("macro-list");
   const note = document.getElementById("macro-source");
-  const picker = document.getElementById("macro-character");
-  if (!root || !note || !picker || !state.characters.length) return;
-  if (picker.options.length !== state.characters.length) {
-    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
-  }
-  picker.value = state.selected;
+  if (!root || !note || !state.characters.length) return;
   root.replaceChildren();
   if (!state.macros) {
     note.textContent = "Loading macros…";
     return;
   }
-  const who = state.characters.find((c) => c.id === state.selected);
+  const who = selectedCharacter();
   const shared = state.macros.filter((m) => m.scope !== "character");
   const own = state.macros.filter((m) => m.scope === "character" && m.character === state.selected);
   note.textContent = "Shared macros work on every character on the account. Character macros belong to one toon.";
@@ -2163,12 +2137,7 @@ function renderFinishedQuest(quest) {
 function renderQuests() {
   const root = document.getElementById("quest-list");
   const note = document.getElementById("quest-source");
-  const picker = document.getElementById("quest-character");
-  if (!root || !note || !picker || !state.characters.length) return;
-  if (picker.options.length !== state.characters.length) {
-    picker.replaceChildren(...state.characters.map((c) => el("option", { value: c.id, text: c.name })));
-  }
-  picker.value = state.selected;
+  if (!root || !note || !state.characters.length) return;
   root.replaceChildren();
   const data = state.quests;
   if (!data) {
@@ -2445,9 +2414,14 @@ function renderLedgerBoards() {
 
 function renderAltoholic() {
   const note = document.getElementById("alto-note");
-  const picker = document.getElementById("alto-character");
   const sheet = document.getElementById("alto-sheet");
-  if (!note || !picker || !sheet) return;
+  if (!note || !sheet) return;
+  const character = selectedCharacter();
+  if (!character) {
+    note.textContent = "No roster characters yet.";
+    sheet.replaceChildren();
+    return;
+  }
   // Phase 2a: roster-matched canonical scans only (data/characters.public.json,
   // itself generated from the private canonical set). Public view shows
   // professions with ranks, named reputations and named currencies. Numeric
@@ -2456,21 +2430,14 @@ function renderAltoholic() {
   const scans = new Map(asList(state.publicChars && state.publicChars.characters).map((c) => [String(c.name || "").toLowerCase(), c]));
   if (!scans.size) {
     note.textContent = "No roster scan merged yet. Log in on a launch character and run a fresh export.";
-    picker.replaceChildren();
     sheet.replaceChildren();
     return;
   }
-  if (!roster.some((c) => String(c.name) === state.altoName)) state.altoName = roster.length ? roster[0].name : "";
-  picker.replaceChildren(...roster.map((c) => el("option", {
-    value: c.name,
-    text: c.name,
-    selected: c.name === state.altoName ? "selected" : null
-  })));
-  const person = scans.get(String(state.altoName || "").toLowerCase()) || null;
+  const person = scans.get(String(character.name || "").toLowerCase()) || null;
   const professions = asList(person && person.professions);
   const reputations = asList(person && person.reputations);
   const currencies = asList(person && person.currencies);
-  note.textContent = person ? `Canonical scan for ${person.name}.` : `No scan saved for ${state.altoName} yet.`;
+  note.textContent = person ? `Canonical scan for ${person.name}.` : `No scan saved for ${character.name} yet.`;
   const bar = (label, value, max, right) => {
     const ratio = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0;
     return el("div", { class: "lock-row" }, [
@@ -2484,7 +2451,7 @@ function renderAltoholic() {
     ]);
   };
   sheet.replaceChildren(el("article", { class: "card lock-card alto-sheet" }, [
-    el("h3", { text: state.altoName }),
+    el("h3", { text: character.name }),
     ...(!person ? [el("p", { class: "meta", text: "Log in on this character and run a fresh export to fill this tab." })] : []),
     el("h4", { text: "Professions" }),
     ...(professions.length ? professions.map((skill) => {
@@ -2504,7 +2471,7 @@ function renderAltoholic() {
   ]));
 }
 function render() {
-  renderHouse();
+  renderCharacterPicker();
   renderRoster();
   renderSheet();
   renderChecklist();
@@ -2532,8 +2499,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile] = await Promise.all([
-      loadJson("data/house.json"),
+    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile] = await Promise.all([
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
@@ -2549,7 +2515,6 @@ async function main() {
       loadJson("data/journey.json").catch(() => null)
     ]);
     state.books = books;
-    state.house = house;
     state.characters = characters;
     state.checklist = checklist;
     state.stats = stats;
@@ -2600,8 +2565,7 @@ async function main() {
     state.query = event.target.value;
     renderChecklist();
   });
-  document.getElementById("prof-character").addEventListener("change", (event) => selectCharacter(event.target.value));
-  document.getElementById("macro-character").addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("character-picker").addEventListener("change", (event) => selectCharacter(event.target.value));
   document.getElementById("prof-view").addEventListener("change", (event) => {
     state.profView = event.target.value;
     saveStore();
@@ -2614,11 +2578,6 @@ async function main() {
   document.getElementById("dungeon-search").addEventListener("input", (event) => {
     state.dungeonQuery = event.target.value;
     renderDungeons();
-  });
-  document.getElementById("quest-character")?.addEventListener("change", (event) => selectCharacter(event.target.value));
-  document.getElementById("alto-character")?.addEventListener("change", (event) => {
-    state.altoName = event.target.value;
-    renderAltoholic();
   });
   document.getElementById("quest-search")?.addEventListener("input", (event) => {
     state.questQuery = event.target.value;
