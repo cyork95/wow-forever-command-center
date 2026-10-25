@@ -298,6 +298,21 @@ when one exists (`{id, name}`) or go in name-only (`{name}`, manual tick).
   files second, clearly-attributed community knowledge only where it can be
   cross-checked against one of the first two. No invented quest ids, item
   ids, or rare names; gaps are listed in the ticket report, not hidden.
+- Seed inclusion rule (J1, verbatim): a quest ships in a zone's list iff
+  (a) its id is verified for that zone -- by ATT Camelot zone membership
+  (coords on the zone map) or by the repo quests.json zone label (including
+  the Northshire Valley and Northshire Abbey sub-zone labels for Elwynn)
+  -- AND the repo zone label, when present, does not assign it to a
+  different zone -- AND (b) its name verifies in at least one
+  Questie-family source (repo quests.json preferred, else the installed
+  QuestieDB toc name decode). Verified same-name duplicates ship as
+  separate entries with sibling notes. Anything failing (a) or (b) goes to
+  the omissions ledger in the ticket report. Result: 142 Zephras Isle
+  quests (every ATT-verified in-zone id named) and 83 Elwynn Forest quests
+  (49 repo Elwynn-family labels plus 34 ATT extras). Deliberately excluded:
+  11 quests with Elwynn objectives that belong to other zones (345, 346,
+  1097 Stormwind City; 1667 Warrior; 1860 Mage; 2205, 2300 Rogue; 5623,
+  5624, 5628, 5635 Priest).
 - J1 seeds: Zephras Isle (Skyborne starting zone: ATT Camelot map 2521 lore
   names the Skyborne and the floating island; checklist hunts reuse the name)
   and Elwynn Forest (map 1429; 1-10 classic arc). No Polestar 01-guide exists

@@ -60,6 +60,9 @@ if (journey) {
       assert(typeof item.name === "string" && item.name.length > 0, `zone ${zone.id} exploration has a name`);
     });
   });
+  // J1 complete-coverage snapshot: 142 Zephras Isle + 83 Elwynn Forest quests.
+  const questTotal = journey.zones.reduce((sum, zone) => sum + (zone.quests || []).length, 0);
+  assert(questTotal === 225, `route ships 225 quests (142 Zephras Isle + 83 Elwynn Forest), got ${questTotal}`);
 }
 
 // Part B: progress computation (pure logic, synthetic fixtures only).

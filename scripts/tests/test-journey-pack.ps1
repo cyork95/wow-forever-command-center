@@ -85,9 +85,9 @@ try {
   & powershell -NoProfile -File $generator -PrivateDir $privateDir -OutDir $outDir | Out-Host
 
   $pack = Get-Content -Raw (Join-Path $outDir "skyrinis.md")
-  Assert ($pack -match "Route: 2 of 70 route items \(3%\)") "computed overall progress from quest have plus history name"
+  Assert ($pack -match "Route: 2 of 252 route items \(1%\)") "computed overall progress from quest have plus history name"
   Assert ($pack -notmatch "no ATT scan yet") "no-scan note clears once scans exist"
-  Assert ($pack -match "Zephras Isle: 2 of 36 \(2 of 30 gating\)") "zone line with gating sub-count"
+  Assert ($pack -match "Zephras Isle: 2 of 154 \(2 of 148 gating\)") "zone line with gating sub-count"
   Assert ($pack -match "Next: Elemental Unrest \(Zephras Isle, quests, quest 92464\)") "next advances past the completed quest"
 
   Write-Output "PASS test-journey-pack"
