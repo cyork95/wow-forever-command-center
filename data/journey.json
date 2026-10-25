@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": 1,
+  "character": "skyrinis",
+  "zones": [
+    {
+      "id": "zephras-isle",
+      "name": "Zephras Isle",
+      "order": 1,
+      "levelBand": "1-10",
+      "summary": "Floating island home of the Skyborne and Skyrinis's starting zone. Leads on to Stormwind and Elwynn Forest.",
+      "quests": [
+        {
+          "id": 92463,
+          "name": "The Cirrusfly Queen"
+        },
+        {
+          "id": 92464,
+          "name": "Elemental Unrest"
+        },
+        {
+          "id": 92465,
+          "name": "Agitators"
+        },
+        {
+          "id": 92470,
+          "name": "Foul Matriarch"
+        },
+        {
+          "id": 92474,
+          "name": "Falling With Style"
+        },
+        {
+          "id": 92481,
+          "name": "A Student of the Arcane"
+        },
+        {
+          "id": 92482,
+          "name": "The Way of the Hunter"
+        },
+        {
+          "id": 92483,
+          "name": "At Home in the Shadows"
+        },
+        {
+          "id": 92484,
+          "name": "Embracing the Elements"
+        },
+        {
+          "id": 92485,
+          "name": "A Student of Nature"
+        },
+        {
+          "id": 92532,
+          "name": "The Warrior's Path"
+        },
+        {
+          "id": 92544,
+          "name": "Al'Aketh Thugs"
+        },
+        {
+          "id": 92597,
+          "name": "Reading the Ley Lines"
+        },
+        {
+          "id": 92598,
+          "name": "The Gift of Skysight"
+        },
+        {
+          "id": 93552,
+          "name": "Harvesting Windstones"
+        },
+        {
+          "id": 94414,
+          "name": "The Anchors of Zephras"
+        },
+        {
+          "id": 92466,
+          "name": "Call of Earth",
+          "note": "Same-name variant; see also quest 92467, 92468."
+        },
+        {
+          "id": 92467,
+          "name": "Call of Earth",
+          "note": "Same-name variant; see also quest 92466, 92468."
+        },
+        {
+          "id": 92468,
+          "name": "Call of Earth",
+          "note": "Same-name variant; see also quest 92466, 92467."
+        },
+        {
+          "id": 92469,
+          "name": "Return to Rorian"
+        },
+        {
+          "id": 92472,
+          "name": "The Next Step"
+        },
+        {
+          "id": 92473,
+          "name": "Aggressive Encroachment"
+        },
+        {
+          "id": 92471,
+          "name": "Aetheen of the Gales"
+        },
+        {
+          "id": 92514,
+          "name": "Welcome to Shen'dar Village",
+          "note": "Same-name variant; see also quest 93461."
+        },
+        {
+          "id": 92515,
+          "name": "The Problem With Prideclaws"
+        },
+        {
+          "id": 92516,
+          "name": "Hippogryph Harrassment"
+        },
+        {
+          "id": 92517,
+          "name": "The Criminal Element"
+        },
+        {
+          "id": 92553,
+          "name": "Restocking the Larders"
+        },
+        {
+          "id": 92595,
+          "name": "The Windshapers"
+        },
+        {
+          "id": 92596,
+          "name": "The High Order"
+        },
+        {
+          "id": 92699,
+          "name": "The Supreme Magister"
+        },
+        {
+          "id": 92700,
+          "name": "The Grand Skyseer"
+        },
+        {
+          "id": 92727,
+          "name": "The Missing Scholar",
+          "note": "Same-name variant; see also quest 92849, 92850."
+        },
+        {
+          "id": 92849,
+          "name": "The Missing Scholar",
+          "note": "Same-name variant; see also quest 92727, 92850."
+        },
+        {
+          "id": 92850,
+          "name": "The Missing Scholar",
+          "note": "Same-name variant; see also quest 92727, 92849."
+        },
+        {
+          "id": 93317,
+          "name": "Crab Season"
+        },
+        {
+          "id": 93318,
+          "name": "WANTED: Vulgara the Insatiable"
+        },
+        {
+          "id": 93319,
+          "name": "Pilfered Windstones"
+        },
+        {
+          "id": 93461,
+          "name": "Welcome to Shen'dar Village",
+          "note": "Same-name variant; see also quest 92514."
+        },
+        {
+          "id": 93735,
+          "name": "The Broken Construct",
+          "note": "Same-name variant; see also quest 93737, 93738."
+        },
+        {
+          "id": 93736,
+          "name": "Unwelcome Spirits"
+        },
+        {
+          "id": 93737,
+          "name": "The Broken Construct",
+          "note": "Same-name variant; see also quest 93735, 93738."
+        },
+        {
+          "id": 93738,
+          "name": "The Broken Construct",
+          "note": "Same-name variant; see also quest 93735, 93737."
+        },
+        {
+          "id": 93746,
+          "name": "A Firm Response"
+        },
+        {
+          "id": 93951,
+          "name": "A Little Beauty"
+        },
+        {
+          "id": 94411,
+          "name": "Meddlesome Mages"
+        },
+        {
+          "id": 94413,
+          "name": "A Magical Affront"
+        },
+        {
+          "id": 96101,
+          "name": "The Great Outdoors"
+        },
+        {
+          "id": 96638,
+          "name": "The Adventurer"
+        },
+        {
+          "id": 96646,
+          "name": "Camping 101: Cooking"
+        },
+        {
+          "id": 97963,
+          "name": "Camping 101: Alchemy"
+        },
+        {
+          "id": 97964,
+          "name": "Camping 101: Blacksmithing"
+        },
+        {
+          "id": 97965,
+          "name": "Camping 101: First Aid"
+        },
+        {
+          "id": 97967,
+          "name": "Camping 101: Fishing"
+        },
+        {
+          "id": 97968,
+          "name": "Camping 101: Herbalism"
+        },
+        {
+          "id": 97969,
+          "name": "Camping 101: Leatherworking"
+        },
+        {
+          "id": 97970,
+          "name": "Camping 101: Mining"
+        },
+        {
+          "id": 97971,
+          "name": "Camping 101: Skinning"
+        },
+        {
+          "id": 97972,
+          "name": "Camping 101: Tailoring",
+          "note": "Same-name variant; see also quest 97973."
+        },
+        {
+          "id": 97973,
+          "name": "Camping 101: Tailoring",
+          "note": "Same-name variant; see also quest 97972."
+        },
+        {
+          "id": 98284,
+          "name": "Camping 101: Enchanting",
+          "note": "Same-name variant; see also quest 98286."
+        },
+        {
+          "id": 98285,
+          "name": "Camping 101: Engineering"
+        },
+        {
+          "id": 98286,
+          "name": "Camping 101: Enchanting",
+          "note": "Same-name variant; see also quest 98284."
+        },
+        {
+          "id": 92528,
+          "name": "Among the Faithful"
+        },
+        {
+          "id": 92529,
+          "name": "Falaath Village"
+        },
+        {
+          "id": 92550,
+          "name": "Havoc in the Highlands"
+        },
+        {
+          "id": 92551,
+          "name": "Stolen Supplies"
+        },
+        {
+          "id": 92679,
+          "name": "Blood Tithe"
+        },
+        {
+          "id": 92682,
+          "name": "Make Yourself Useful"
+        },
+        {
+          "id": 92683,
+          "name": "Flutterfly Dust"
+        },
+        {
+          "id": 92684,
+          "name": "Ornery Ornery Galestriders"
+        },
+        {
+          "id": 92685,
+          "name": "The Hills Have Eyes"
+        },
+        {
+          "id": 92693,
+          "name": "Standing Our Ground"
+        },
+        {
+          "id": 92698,
+          "name": "What Is My Purpose?"
+        },
+        {
+          "id": 92703,
+          "name": "Deliver the News"
+        },
+        {
+          "id": 92840,
+          "name": "Catching Wind"
+        },
+        {
+          "id": 93036,
+          "name": "Infiltrating the Cult"
+        },
+        {
+          "id": 93926,
+          "name": "The Western Watch"
+        },
+        {
+          "id": 93927,
+          "name": "A Last Request"
+        },
+        {
+          "id": 99260,
+          "name": "Fillion's Mission"
+        },
+        {
+          "id": 92579,
+          "name": "To Valanaar",
+          "note": "Same-name variant; see also quest 92701."
+        },
+        {
+          "id": 92640,
+          "name": "Desperate Times"
+        },
+        {
+          "id": 92642,
+          "name": "Disrupting Logistics"
+        },
+        {
+          "id": 92643,
+          "name": "The Turncoat"
+        },
+        {
+          "id": 92644,
+          "name": "Unfortunate News"
+        },
+        {
+          "id": 92645,
+          "name": "Breaking the Breaker"
+        },
+        {
+          "id": 92701,
+          "name": "To Valanaar",
+          "note": "Same-name variant; see also quest 92579."
+        },
+        {
+          "id": 92834,
+          "name": "Avenged Tenfold"
+        },
+        {
+          "id": 92860,
+          "name": "In Service of Zephras",
+          "note": "Same-name variant; see also quest 92871."
+        },
+        {
+          "id": 92871,
+          "name": "In Service of Zephras",
+          "note": "Same-name variant; see also quest 92860."
+        },
+        {
+          "id": 92880,
+          "name": "Return to Valanaar"
+        },
+        {
+          "id": 92881,
+          "name": "The High Elder's Request"
+        },
+        {
+          "id": 93320,
+          "name": "Tower Defense"
+        },
+        {
+          "id": 93740,
+          "name": "Blood for Blood"
+        },
+        {
+          "id": 93948,
+          "name": "Deliver the Signet"
+        },
+        {
+          "id": 93949,
+          "name": "Bugged"
+        },
+        {
+          "id": 94568,
+          "name": "The Cult's True Plans"
+        },
+        {
+          "id": 98512,
+          "name": "Al'Aketh Assassins"
+        },
+        {
+          "id": 92646,
+          "name": "Confront Lorthuna",
+          "note": "Same-name variant; see also quest 93835."
+        },
+        {
+          "id": 92708,
+          "name": "A Grand Adventure",
+          "note": "Same-name variant; see also quest 92709."
+        },
+        {
+          "id": 92709,
+          "name": "A Grand Adventure",
+          "note": "Same-name variant; see also quest 92708."
+        },
+        {
+          "id": 92947,
+          "name": "Making Our Move"
+        },
+        {
+          "id": 93065,
+          "name": "Prepare for Battle"
+        },
+        {
+          "id": 93089,
+          "name": "What Comes Next",
+          "note": "Same-name variant; see also quest 93090."
+        },
+        {
+          "id": 93090,
+          "name": "What Comes Next",
+          "note": "Same-name variant; see also quest 93089."
+        },
+        {
+          "id": 93835,
+          "name": "Confront Lorthuna",
+          "note": "Same-name variant; see also quest 92646."
+        },
+        {
+          "id": 93836,
+          "name": "The Fate of Zephras",
+          "note": "Same-name variant; see also quest 94369."
+        },
+        {
+          "id": 93958,
+          "name": "The Inner Sanctum"
+        },
+        {
+          "id": 94369,
+          "name": "The Fate of Zephras",
+          "note": "Same-name variant; see also quest 93836."
+        },
+        {
+          "id": 94946,
+          "name": "The Magical City of Dalaran"
+        },
+        {
+          "id": 95349,
+          "name": "The Earthen Ring"
+        },
+        {
+          "id": 92741,
+          "name": "Unwelcome Visitors"
+        },
+        {
+          "id": 93159,
+          "name": "The Strange Hermit"
+        },
+        {
+          "id": 93160,
+          "name": "The Forest's Bounty"
+        },
+        {
+          "id": 93165,
+          "name": "Mercy Falls on Deaf Ears"
+        },
+        {
+          "id": 93172,
+          "name": "Free the Hollows"
+        },
+        {
+          "id": 93459,
+          "name": "More Al'Aketh Ears"
+        },
+        {
+          "id": 94484,
+          "name": "Unnerving Silence"
+        },
+        {
+          "id": 94485,
+          "name": "Tears of the Lady"
+        },
+        {
+          "id": 94486,
+          "name": "Feathers for Binding"
+        },
+        {
+          "id": 94487,
+          "name": "Unwanted and Unworthy"
+        },
+        {
+          "id": 94488,
+          "name": "The Ties That Bind"
+        },
+        {
+          "id": 94489,
+          "name": "The Wounds of Betrayal"
+        },
+        {
+          "id": 94491,
+          "name": "The Fate of the Den"
+        },
+        {
+          "id": 94493,
+          "name": "A Sacrifice in Vain"
+        },
+        {
+          "id": 94896,
+          "name": "Aid For The Refugees"
+        },
+        {
+          "id": 94897,
+          "name": "The Fate of a Loved One"
+        },
+        {
+          "id": 94490,
+          "name": "Ripped Missive"
+        },
+        {
+          "id": 93791,
+          "name": "Speak with Belann"
+        },
+        {
+          "id": 93797,
+          "name": "Boughs in the Wind"
+        },
+        {
+          "id": 94003,
+          "name": "The Skybreaker Bulwark"
+        },
+        {
+          "id": 94006,
+          "name": "The Great Ursera Spirit"
+        },
+        {
+          "id": 94007,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94013, 94978, 94979."
+        },
+        {
+          "id": 94013,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94007, 94978, 94979."
+        },
+        {
+          "id": 94050,
+          "name": "Training the Beast"
+        },
+        {
+          "id": 94638,
+          "name": "Strength and Mercy"
+        },
+        {
+          "id": 94978,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94007, 94013, 94979."
+        },
+        {
+          "id": 94979,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94007, 94013, 94978."
+        },
+        {
+          "id": 97243,
+          "name": "Call of Fire",
+          "note": "Same-name variant; see also quest 97244, 97245, 97257."
+        },
+        {
+          "id": 97244,
+          "name": "Call of Fire",
+          "note": "Same-name variant; see also quest 97243, 97245, 97257."
+        },
+        {
+          "id": 97245,
+          "name": "Call of Fire",
+          "note": "Same-name variant; see also quest 97243, 97244, 97257."
+        },
+        {
+          "id": 97257,
+          "name": "Call of Fire",
+          "note": "Same-name variant; see also quest 97243, 97244, 97245."
+        }
+      ],
+      "exploration": [
+        {
+          "name": "Shen'dar Village",
+          "note": "Hub village; see quest 93461."
+        },
+        {
+          "name": "Valanaar",
+          "note": "See quest 92701."
+        },
+        {
+          "name": "Falaath Village",
+          "note": "See quest 92529."
+        },
+        {
+          "name": "Zephras Isle",
+          "note": "The isle itself; see quest 94369."
+        }
+      ],
+      "collectibles": [
+        {
+          "name": "Musical Gustjumper",
+          "kind": "Pet",
+          "note": "Singing-frog pet; same want as the Hunts entry."
+        },
+        {
+          "name": "Galestrider mounts",
+          "kind": "Mount",
+          "note": "Parked family until a color is obtainable."
+        }
+      ],
+      "rares": [
+        {
+          "name": "Vulgara the Insatiable",
+          "priority": true,
+          "note": "WANTED poster; see quest 93318."
+        }
+      ],
+      "boes": [],
+      "professions": [
+        {
+          "skill": "Mining",
+          "target": 75,
+          "note": "Work copper while clearing the isle; see Camping 101: Mining (quest 97970)."
+        },
+        {
+          "skill": "Herbalism",
+          "target": 75,
+          "note": "Herb the quest route; see Camping 101: Herbalism (quest 97968)."
+        },
+        {
+          "skill": "Cooking",
+          "target": 75,
+          "note": "Cook quest drops; see Camping 101: Cooking (quest 96646)."
+        },
+        {
+          "skill": "Fishing",
+          "target": 75,
+          "note": "Fish isle waters; see Camping 101: Fishing (quest 97967)."
+        },
+        {
+          "skill": "First Aid",
+          "target": 75,
+          "note": "Cloth drops off the Al'Aketh fighting; see Camping 101: First Aid (quest 97965)."
+        }
+      ],
+      "guideRefs": []
+    },
+    {
+      "id": "elwynn-forest",
+      "name": "Elwynn Forest",
+      "order": 2,
+      "levelBand": "1-10",
+      "summary": "Human starting zone around Goldshire and Northshire; the 1-10 arc before Westfall.",
+      "quests": [
+        {
+          "id": 16,
+          "name": "Give Gerard a Drink"
+        },
+        {
+          "id": 783,
+          "name": "A Threat Within"
+        },
+        {
+          "id": 5805,
+          "name": "Welcome!"
+        },
+        {
+          "id": 7677,
+          "name": "White Stallion Exchange"
+        },
+        {
+          "id": 7678,
+          "name": "Palomino Exchange"
+        },
+        {
+          "id": 6,
+          "name": "Bounty on Garrick Padfoot"
+        },
+        {
+          "id": 7,
+          "name": "Kobold Camp Cleanup"
+        },
+        {
+          "id": 18,
+          "name": "Brotherhood of Thieves"
+        },
+        {
+          "id": 33,
+          "name": "Wolves Across the Border"
+        },
+        {
+          "id": 3903,
+          "name": "Milly Osworth"
+        },
+        {
+          "id": 3904,
+          "name": "Milly's Harvest"
+        },
+        {
+          "id": 3905,
+          "name": "Grape Manifest"
+        },
+        {
+          "id": 5261,
+          "name": "Eagan Peltskinner"
+        },
+        {
+          "id": 15,
+          "name": "Investigate Echo Ridge"
+        },
+        {
+          "id": 60,
+          "name": "Kobold Candles"
+        },
+        {
+          "id": 61,
+          "name": "Shipment to Stormwind"
+        },
+        {
+          "id": 47,
+          "name": "Gold Dust Exchange"
+        },
+        {
+          "id": 62,
+          "name": "The Fargodeep Mine"
+        },
+        {
+          "id": 76,
+          "name": "The Jasperlode Mine"
+        },
+        {
+          "id": 83,
+          "name": "Red Linen Goods"
+        },
+        {
+          "id": 95998,
+          "name": "The Great Outdoors"
+        },
+        {
+          "id": 96626,
+          "name": "Camping 101: Cooking"
+        },
+        {
+          "id": 96627,
+          "name": "The Adventurer"
+        },
+        {
+          "id": 97915,
+          "name": "Camping 101: Alchemy"
+        },
+        {
+          "id": 97916,
+          "name": "Camping 101: Blacksmithing"
+        },
+        {
+          "id": 97917,
+          "name": "Camping 101: Enchanting"
+        },
+        {
+          "id": 97918,
+          "name": "Camping 101: Engineering"
+        },
+        {
+          "id": 97919,
+          "name": "Camping 101: First Aid"
+        },
+        {
+          "id": 97920,
+          "name": "Camping 101: Fishing"
+        },
+        {
+          "id": 97921,
+          "name": "Camping 101: Herbalism"
+        },
+        {
+          "id": 97922,
+          "name": "Camping 101: Leatherworking"
+        },
+        {
+          "id": 97923,
+          "name": "Camping 101: Mining"
+        },
+        {
+          "id": 97924,
+          "name": "Camping 101: Skinning"
+        },
+        {
+          "id": 97925,
+          "name": "Camping 101: Tailoring"
+        },
+        {
+          "id": 99127,
+          "name": "A Net Disaster"
+        },
+        {
+          "id": 99128,
+          "name": "Slimy Menace"
+        },
+        {
+          "id": 99129,
+          "name": "A Man About a Murloc"
+        },
+        {
+          "id": 99130,
+          "name": "An Enticing Offer"
+        },
+        {
+          "id": 99131,
+          "name": "Baited for Success"
+        },
+        {
+          "id": 99143,
+          "name": "Bottles and Baubles"
+        },
+        {
+          "id": 21,
+          "name": "Skirmish at Echo Ridge"
+        },
+        {
+          "id": 54,
+          "name": "Report to Goldshire"
+        },
+        {
+          "id": 84,
+          "name": "Back to Billy"
+        },
+        {
+          "id": 85,
+          "name": "Lost Necklace"
+        },
+        {
+          "id": 86,
+          "name": "Pie for Billy"
+        },
+        {
+          "id": 87,
+          "name": "Goldtooth"
+        },
+        {
+          "id": 106,
+          "name": "Young Lovers"
+        },
+        {
+          "id": 107,
+          "name": "Note to William"
+        },
+        {
+          "id": 111,
+          "name": "Speak with Gramma"
+        },
+        {
+          "id": 112,
+          "name": "Collecting Kelp"
+        },
+        {
+          "id": 114,
+          "name": "The Escape"
+        },
+        {
+          "id": 176,
+          "name": "Wanted:  \"Hogger\""
+        },
+        {
+          "id": 2158,
+          "name": "Rest and Relaxation"
+        },
+        {
+          "id": 5545,
+          "name": "A Bundle of Trouble"
+        },
+        {
+          "id": 91751,
+          "name": "Rough Wolf Pelts"
+        },
+        {
+          "id": 91753,
+          "name": "An Enchanting Lesson"
+        },
+        {
+          "id": 11,
+          "name": "Riverpaw Gnoll Bounty"
+        },
+        {
+          "id": 88,
+          "name": "Princess Must Die!"
+        },
+        {
+          "id": 239,
+          "name": "Westbrook Garrison Needs Help!"
+        },
+        {
+          "id": 35,
+          "name": "Further Concerns"
+        },
+        {
+          "id": 37,
+          "name": "Find the Lost Guards"
+        },
+        {
+          "id": 39,
+          "name": "Deliver Thomas' Report"
+        },
+        {
+          "id": 40,
+          "name": "A Fishy Peril"
+        },
+        {
+          "id": 45,
+          "name": "Discover Rolf's Fate"
+        },
+        {
+          "id": 46,
+          "name": "Bounty on Murlocs"
+        },
+        {
+          "id": 52,
+          "name": "Protect the Frontier"
+        },
+        {
+          "id": 59,
+          "name": "Cloth and Leather Armor"
+        },
+        {
+          "id": 71,
+          "name": "Report to Thomas"
+        },
+        {
+          "id": 147,
+          "name": "Manhunt"
+        },
+        {
+          "id": 91723,
+          "name": "Delicate Instruments",
+          "note": "Same-name variant; see also quest 91724."
+        },
+        {
+          "id": 91724,
+          "name": "Delicate Instruments",
+          "note": "Same-name variant; see also quest 91723."
+        },
+        {
+          "id": 91725,
+          "name": "Stolen Enchanting Supplies"
+        },
+        {
+          "id": 91732,
+          "name": "Good Steel"
+        },
+        {
+          "id": 91733,
+          "name": "Downstream"
+        },
+        {
+          "id": 91736,
+          "name": "Applejack Still"
+        },
+        {
+          "id": 91738,
+          "name": "An Apple Treat"
+        },
+        {
+          "id": 109,
+          "name": "Report to Gryan Stoutmantle"
+        },
+        {
+          "id": 123,
+          "name": "The Collector"
+        },
+        {
+          "id": 94774,
+          "name": "Divine Grace"
+        },
+        {
+          "id": 94792,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94863, 94864."
+        },
+        {
+          "id": 94793,
+          "name": "Training the Beast"
+        },
+        {
+          "id": 94863,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94792, 94864."
+        },
+        {
+          "id": 94864,
+          "name": "Taming the Beast",
+          "note": "Same-name variant; see also quest 94792, 94863."
+        }
+      ],
+      "exploration": [
+        {
+          "name": "Northshire Valley"
+        },
+        {
+          "name": "Northshire Abbey"
+        },
+        {
+          "name": "Echo Ridge"
+        },
+        {
+          "name": "Goldshire"
+        },
+        {
+          "name": "Fargodeep Mine"
+        },
+        {
+          "name": "Jasperlode Mine"
+        },
+        {
+          "name": "Stonefield Farm"
+        },
+        {
+          "name": "Maclure Vineyards"
+        }
+      ],
+      "collectibles": [],
+      "rares": [
+        {
+          "name": "Hogger",
+          "priority": true,
+          "note": "WANTED poster; see quests 176 and 147."
+        },
+        {
+          "name": "Princess",
+          "note": "See quest 88."
+        },
+        {
+          "name": "Goldtooth",
+          "note": "See quest 87."
+        }
+      ],
+      "boes": [],
+      "professions": [
+        {
+          "skill": "Mining",
+          "target": 65,
+          "note": "Copper in the Fargodeep and Jasperlode mines; see quests 62 and 76."
+        },
+        {
+          "skill": "Herbalism",
+          "target": 75,
+          "note": "Peacebloom and Silverleaf along the Northshire to Goldshire road."
+        },
+        {
+          "skill": "Fishing",
+          "target": 75,
+          "note": "Fish the waters around Goldshire; see quest 40."
+        },
+        {
+          "skill": "First Aid",
+          "target": 75,
+          "note": "Linen off the gnolls and Defias of the militia arc; see quests 11 and 83."
+        }
+      ],
+      "guideRefs": []
+    }
+  ]
+}

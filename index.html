@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=23">
+  <link rel="stylesheet" href="assets/site.css?v=24">
 </head>
 <body>
   <div class="frame">
@@ -25,6 +25,7 @@
     <nav class="tabs" role="tablist" aria-label="Command center">
         <button type="button" class="tab" role="tab" id="tab-roster" data-tab="roster" aria-controls="panel-roster" aria-selected="true">Roster</button>
         <button type="button" class="tab" role="tab" id="tab-hunts" data-tab="hunts" aria-controls="panel-hunts" aria-selected="false" tabindex="-1">Hunts</button>
+        <button type="button" class="tab" role="tab" id="tab-journey" data-tab="journey" aria-controls="panel-journey" aria-selected="false" tabindex="-1">Journey</button>
         <button type="button" class="tab" role="tab" id="tab-mail" data-tab="mail" aria-controls="panel-mail" aria-selected="false" tabindex="-1">Mail</button>
         <button type="button" class="tab" role="tab" id="tab-altoholic" data-tab="altoholic" aria-controls="panel-altoholic" aria-selected="false" tabindex="-1">Altoholic</button>
         <button type="button" class="tab" role="tab" id="tab-professions" data-tab="professions" aria-controls="panel-professions" aria-selected="false" tabindex="-1">Professions</button>
@@ -62,6 +63,19 @@
         </select>
       </div>
       <div id="checklist"></div>
+    </section>
+
+    <section class="panel" id="panel-journey" role="tabpanel" aria-labelledby="tab-journey" data-panel="journey" hidden>
+      <div class="section-head">
+        <h2>Journey</h2>
+        <p>Skyrinis's 100% route, zone by zone. Quests, exploration, and collectibles check automatically from scans; rares, BoEs, and profession milestones are manual ticks.</p>
+      </div>
+      <div id="journey-head"></div>
+      <div class="toolbar">
+        <button type="button" id="journey-reset" title="Clear checks saved on this device">Reset saved checks</button>
+      </div>
+      <div id="journey-zones"></div>
+      <p class="empty-note">Manual checks save on this device only.</p>
     </section>
 
     <section class="panel" id="panel-professions" role="tabpanel" aria-labelledby="tab-professions" data-panel="professions" hidden>

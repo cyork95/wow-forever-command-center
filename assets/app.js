@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
+const TABS = ["roster", "hunts", "journey", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "house"];
 
 const HUNT_GROUPS = [
   { id: "collections", label: "Collections", types: ["collection"] },
@@ -27,6 +27,8 @@ const state = {
   house: null,
   characters: [],
   checklist: [],
+  journey: null,
+  journeyChecks: {},
   stats: { updated: null, characters: {} },
   addons: null,
   dungeons: null,
@@ -310,6 +312,172 @@ function resetHunts() {
   try { localStorage.removeItem(HUNT_STORE_KEY_V1); } catch (error) { /* ignore */ }
   renderChecklist();
   renderDungeons();
+}
+var JOURNEY_STORE_KEY = 'wow-forever-journey-v1';
+
+// Route data for the Journey tab (data/journey.json): zones in running order
+// for the journey character. Progress renders from data/att.public.json plus
+// device-local manual checks; adding a zone later is data-only.
+function journeyZones() {
+  var zones = (state.journey && state.journey.zones) || [];
+  return zones.slice().sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+}
+
+function journeyCharacterId() {
+  return (state.journey && state.journey.character) || "skyrinis";
+}
+
+// Per-character completed quest set for the journey character. Null when he
+// has no scan yet: quest and exploration items then render an honest pending
+// state instead of fake zeros or false completions.
+function journeyQuestSet() {
+  return characterQuestSet(journeyCharacterId());
+}
+
+// Per-character exploration set for the journey character, when the
+// projection carries one (ids or names). Null until scanned.
+function journeyExplorationSet() {
+  var rows = (state.att && state.att.characters) || [];
+  var row = null;
+  rows.forEach(function (entry) {
+    if (entry && entry.canonicalId === journeyCharacterId()) row = entry;
+  });
+  if (!row || row.explorationHave === null || row.explorationHave === undefined) return null;
+  if (!Array.isArray(row.explorationHave)) return null;
+  var set = { ids: [], names: [] };
+  row.explorationHave.forEach(function (value) {
+    if (typeof value === "number" || /^\d+$/.test(String(value))) {
+      if (set.ids.indexOf(Number(value)) < 0) set.ids.push(Number(value));
+    } else if (value) {
+      var name = String(value).trim().toLowerCase();
+      if (set.names.indexOf(name) < 0) set.names.push(name);
+    }
+  });
+  return set;
+}
+
+function journeyDisplayName(zone, section, item) {
+  if (item.name) return item.name;
+  if (section === "professions") return item.skill + " " + item.target;
+  return "Unnamed route item";
+}
+
+// One route item resolves to done / auto / pending / manual. Quests with a
+// verified id, exploration, and collectibles check automatically at render;
+// quests without ids, rares, BoEs, and profession milestones are manual ticks
+// stored under the journey localStorage key.
+function journeyItemState(zone, section, item) {
+  var name = journeyDisplayName(zone, section, item);
+  if (section === "quests" && item.id !== undefined && item.id !== null) {
+    var questSet = journeyQuestSet();
+    if (!questSet) return { done: false, auto: true, pending: true, reason: "Skyrinis has not been scanned yet." };
+    var questDone = questSet.has(Number(item.id));
+    return { done: questDone, auto: true, pending: false, reason: questDone ? "Skyrinis completed this quest." : "" };
+  }
+  if (section === "exploration") {
+    var exploreSet = journeyExplorationSet();
+    if (!exploreSet) return { done: false, auto: true, pending: true, reason: "Skyrinis has not been scanned yet." };
+    var explored = exploreSet.names.indexOf(name.trim().toLowerCase()) >= 0;
+    return { done: explored, auto: true, pending: false, reason: explored ? "Skyrinis explored this area." : "" };
+  }
+  if (section === "collectibles") {
+    var sets = attSets();
+    var held = sets.names.has(name.trim().toLowerCase());
+    return { done: held, auto: true, pending: false, reason: held ? "Obtained (account collection history)." : "" };
+  }
+  var key = zone.id + "::" + name;
+  var saved = state.journeyChecks[key];
+  return { done: !!saved, auto: false, pending: false, manual: true, key: key, reason: "" };
+}
+
+function journeySectionLabel(section) {
+  return {
+    quests: "Quests",
+    exploration: "Exploration",
+    collectibles: "Collectibles",
+    rares: "Rares",
+    boes: "BoE targets",
+    professions: "Profession milestones",
+    guideRefs: "Notes and guides"
+  }[section] || section;
+}
+
+// Only Quests, Exploration, and Collectibles gate a zone DONE. Rares, BoEs,
+// and profession milestones count toward the zone % but never gate.
+var JOURNEY_GATING = ["quests", "exploration", "collectibles"];
+
+var JOURNEY_SECTIONS = ["quests", "exploration", "collectibles", "rares", "boes", "professions"];
+
+function journeyZoneProgress(zone) {
+  var total = 0;
+  var done = 0;
+  var gated = true;
+  var pending = false;
+  JOURNEY_SECTIONS.forEach(function (section) {
+    ((zone && zone[section]) || []).forEach(function (item) {
+      total += 1;
+      var status = journeyItemState(zone, section, item);
+      if (status.done) done += 1;
+      if (status.pending) pending = true;
+      if (JOURNEY_GATING.indexOf(section) >= 0 && !status.done) gated = false;
+    });
+  });
+  return { total: total, done: done, gated: gated, pending: pending };
+}
+
+function journeyOverall() {
+  var zones = journeyZones();
+  var total = 0;
+  var done = 0;
+  zones.forEach(function (zone) {
+    var progress = journeyZoneProgress(zone);
+    total += progress.total;
+    done += progress.done;
+  });
+  var current = null;
+  zones.forEach(function (zone) {
+    if (!current && !journeyZoneProgress(zone).gated) current = zone;
+  });
+  return { total: total, done: done, current: current };
+}
+
+// Every route item carrying priority, with its zone, for the route header.
+function journeyPriorityTargets() {
+  var targets = [];
+  journeyZones().forEach(function (zone) {
+    JOURNEY_SECTIONS.forEach(function (section) {
+      ((zone && zone[section]) || []).forEach(function (item) {
+        if (item && item.priority) {
+          targets.push({
+            zone: zone.name,
+            zoneId: zone.id,
+            section: journeySectionLabel(section),
+            name: journeyDisplayName(zone, section, item),
+            done: journeyItemState(zone, section, item).done
+          });
+        }
+      });
+    });
+  });
+  return targets;
+}
+
+function persistJourney() {
+  try {
+    localStorage.setItem(JOURNEY_STORE_KEY, JSON.stringify({ checks: state.journeyChecks }));
+  } catch (error) { /* private window: checks stay in memory for this page view */ }
+}
+
+function loadJourney() {
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(JOURNEY_STORE_KEY) || "null"); } catch (error) { saved = null; }
+  state.journeyChecks = (saved && saved.checks && typeof saved.checks === "object") ? saved.checks : {};
+}
+
+function resetJourney() {
+  state.journeyChecks = {};
+  try { localStorage.removeItem(JOURNEY_STORE_KEY); } catch (error) { /* ignore */ }
+  renderJourney();
 }
 
 function explicitlyUnchecked(id, characterId) {
@@ -1149,6 +1317,150 @@ function renderChecklist() {
   }
   const books = renderLibraryBooks();
   if (books) list.append(books);
+}
+
+function writeJourneyCheck(zoneId, name, checked) {
+  state.journeyChecks[zoneId + "::" + name] = !!checked;
+  persistJourney();
+}
+
+function renderJourneyItem(zone, section, item) {
+  var status = journeyItemState(zone, section, item);
+  var name = journeyDisplayName(zone, section, item);
+  var star = item.priority ? " ★" : "";
+  var box = el("input", {
+    type: "checkbox",
+    "aria-label": "Journey: " + name,
+    title: status.reason || null
+  });
+  box.checked = status.done;
+  if (!status.manual) {
+    box.disabled = true;
+  } else {
+    box.addEventListener("change", function () {
+      writeJourneyCheck(zone.id, name, box.checked);
+      renderJourney();
+    });
+  }
+  var bits = [];
+  if (section === "quests" && item.id !== undefined && item.id !== null) bits.push("Quest " + item.id);
+  if (section === "quests" && (item.id === undefined || item.id === null)) bits.push("Manual");
+  if (section === "collectibles") bits.push(status.done ? status.reason : "Account-wide");
+  if (section === "exploration" && status.pending) bits.push("character not yet scanned");
+  if (section === "exploration" && !status.pending) bits.push(status.done ? "explored" : "unexplored");
+  if (status.manual && item.note) bits.push(item.note);
+  if (!status.manual && !status.pending && item.note) bits.push(item.note);
+  if (status.pending && item.note) bits.push(item.note);
+  var row = el("div", { class: "hunt-row journey-row" }, [
+    box,
+    el("span", { class: "journey-name", text: name + star }),
+    el("span", { class: "sub", text: bits.join(" · ") })
+  ]);
+  if (status.done) row.classList.add("done");
+  return row;
+}
+
+function renderJourneySection(zone, section) {
+  var items = (zone && zone[section]) || [];
+  var label = journeySectionLabel(section);
+  var done = 0;
+  items.forEach(function (item) {
+    if (journeyItemState(zone, section, item).done) done += 1;
+  });
+  var block = el("section", { class: "journey-section" }, [
+    el("div", { class: "group-label" }, [
+      el("span", { text: label }),
+      el("em", { text: done + " / " + items.length })
+    ])
+  ]);
+  if (section === "guideRefs") {
+    if (!items.length) {
+      block.append(el("p", { class: "empty-note", text: "No curated guides for this zone yet." }));
+      return block;
+    }
+    items.forEach(function (ref) {
+      var line = guideLine(ref);
+      if (!line) return;
+      block.append(el("p", { class: "journey-guide" }, [
+        line.url ? el("a", { href: line.url, text: line.title }) : el("span", { text: line.text })
+      ]));
+    });
+    return block;
+  }
+  if (!items.length) {
+    block.append(el("p", { class: "empty-note", text: "No curated targets in this section yet." }));
+    return block;
+  }
+  items.forEach(function (item) {
+    block.append(renderJourneyItem(zone, section, item));
+  });
+  return block;
+}
+
+function renderJourneyZone(zone) {
+  var progress = journeyZoneProgress(zone);
+  var percent = progress.total ? Math.round((progress.done / progress.total) * 100) : 0;
+  var badge = progress.gated ? "DONE" : (progress.pending ? "AWAITING SCAN" : progress.done + " of " + progress.total);
+  var card = el("article", { class: "journey-zone" + (progress.gated ? " done" : "") }, [
+    el("div", { class: "journey-zone-head" }, [
+      el("strong", { text: zone.order + ". " + zone.name }),
+      el("span", { class: "badge", text: badge })
+    ]),
+    el("p", { class: "journey-zone-sub", text: (zone.levelBand ? "Level " + zone.levelBand : "") + (zone.summary ? " · " + zone.summary : "") }),
+    el("div", { class: "progress", "aria-hidden": "true" }, [
+      el("div", { style: "width: " + percent + "%" })
+    ])
+  ]);
+  JOURNEY_SECTIONS.forEach(function (section) {
+    card.append(renderJourneySection(zone, section));
+  });
+  card.append(renderJourneySection(zone, "guideRefs"));
+  return card;
+}
+
+function renderJourney() {
+  var head = document.getElementById("journey-head");
+  var zonesRoot = document.getElementById("journey-zones");
+  if (!head || !zonesRoot) return;
+  head.replaceChildren();
+  zonesRoot.replaceChildren();
+  if (!state.journey) {
+    head.append(el("p", { class: "empty-note", text: "Journey data did not load." }));
+    return;
+  }
+  var zones = journeyZones();
+  var overall = journeyOverall();
+  var percent = overall.total ? Math.round((overall.done / overall.total) * 100) : 0;
+  head.append(el("p", { text: overall.done + " of " + overall.total + " route items (" + percent + "%)" }));
+  head.append(el("div", { class: "progress", "aria-hidden": "true" }, [
+    el("div", { style: "width: " + percent + "%" })
+  ]));
+  head.append(el("p", {
+    text: overall.current
+      ? "Current zone: " + overall.current.name
+      : "Route complete: every gating section is DONE."
+  }));
+  var targets = journeyPriorityTargets();
+  if (targets.length) {
+    var list = el("ul", { class: "journey-priority" });
+    targets.forEach(function (target) {
+      list.append(el("li", {
+        text: "★ " + target.name + " (" + target.zone + " · " + target.section + ")" + (target.done ? " — done" : "")
+      }));
+    });
+    head.append(el("p", { class: "journey-priority-head", text: "Priority targets" }));
+    head.append(list);
+  }
+  var noData = zones.some(function (zone) { return journeyZoneProgress(zone).pending; });
+  if (noData) {
+    head.append(el("p", {
+      class: "empty-note",
+      text: "Skyrinis has not been scanned yet: auto items show as pending, never as zeros or completions. The curated route below displays in full."
+    }));
+  }
+  zones.forEach(function (zone) {
+    zonesRoot.append(renderJourneyZone(zone));
+  });
 }
 
 function bookSheetId(book) {
@@ -2196,6 +2508,7 @@ function render() {
   renderRoster();
   renderSheet();
   renderChecklist();
+  renderJourney();
   renderLedgerBoards();
   renderAltoholic();
   renderProfessions();
@@ -2219,7 +2532,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile] = await Promise.all([
+    const [house, characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile] = await Promise.all([
       loadJson("data/house.json"),
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
@@ -2232,7 +2545,8 @@ async function main() {
       loadJson("data/library-books.json").catch(() => null),
       loadJson("data/guides.json").catch(() => ({ guides: [] })),
       loadJson("data/att.public.json").catch(() => null),
-      loadJson("data/rarity.public.json").catch(() => null)
+      loadJson("data/rarity.public.json").catch(() => null),
+      loadJson("data/journey.json").catch(() => null)
     ]);
     state.books = books;
     state.house = house;
@@ -2247,6 +2561,7 @@ async function main() {
     state.guides = asList(guidesFile && guidesFile.guides);
     state.att = attFile;
     state.rarity = rarityFile;
+    state.journey = journeyFile;
     attCache = null;
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this
@@ -2256,6 +2571,7 @@ async function main() {
     state.tasks = [];
     state.taskChecks = {};
     loadHunts();
+    loadJourney();
     buildOwned();
     buildDrops();
   } catch (error) {
@@ -2309,6 +2625,7 @@ async function main() {
     renderQuests();
   });
   document.getElementById("reset-checks").addEventListener("click", () => { resetHunts(); });
+  document.getElementById("journey-reset").addEventListener("click", () => { resetJourney(); });
   document.getElementById("scope").addEventListener("change", (event) => {
     state.scope = event.target.value;
     saveStore();

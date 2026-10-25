@@ -280,3 +280,67 @@ so no grouping information was clobbered.
   `scripts/tests/test-hunts-logic.mjs` (run with `node ...`); it loads
   assets/app.js in a vm and asserts migration, obtained matching, mission
   states, rarity text and guide refs with synthetic fixtures.
+
+
+## Journey (board #51, Phase J1)
+
+`data/journey.json` is a hand-curated route for Skyrinis's 100% completionist
+run: `{ schemaVersion, character: "skyrinis", zones[] }`, zones in running
+order. Each zone carries every section key (`quests`, `exploration`,
+`collectibles`, `rares`, `boes`, `professions`, `guideRefs`); sections with
+nothing verifiable yet stay empty arrays. Quest entries carry a verified id
+when one exists (`{id, name}`) or go in name-only (`{name}`, manual tick).
+
+- Curation flow: Butler/Cody curate in the ticket or its decisions comment,
+  then hand-edit `journey.json`. Zone-count-agnostic: adding a zone later is
+  data-only. Curation sources in trust order: installed addon data (QuestieDB
+  / Questie quest data, AllTheThings zone lists) first, this repo's data
+  files second, clearly-attributed community knowledge only where it can be
+  cross-checked against one of the first two. No invented quest ids, item
+  ids, or rare names; gaps are listed in the ticket report, not hidden.
+- Seed inclusion rule (J1, verbatim): a quest ships in a zone's list iff
+  (a) its id is verified for that zone -- by ATT Camelot zone membership
+  (coords on the zone map) or by the repo quests.json zone label (including
+  the Northshire Valley and Northshire Abbey sub-zone labels for Elwynn)
+  -- AND the repo zone label, when present, does not assign it to a
+  different zone -- AND (b) its name verifies in at least one
+  Questie-family source (repo quests.json preferred, else the installed
+  QuestieDB toc name decode). Verified same-name duplicates ship as
+  separate entries with sibling notes. Anything failing (a) or (b) goes to
+  the omissions ledger in the ticket report. Result: 142 Zephras Isle
+  quests (every ATT-verified in-zone id named) and 83 Elwynn Forest quests
+  (49 repo Elwynn-family labels plus 34 ATT extras). Deliberately excluded:
+  11 quests with Elwynn objectives that belong to other zones (345, 346,
+  1097 Stormwind City; 1667 Warrior; 1860 Mage; 2205, 2300 Rogue; 5623,
+  5624, 5628, 5635 Priest).
+- J1 seeds: Zephras Isle (Skyborne starting zone: ATT Camelot map 2521 lore
+  names the Skyborne and the floating island; checklist hunts reuse the name)
+  and Elwynn Forest (map 1429; 1-10 classic arc). No Polestar 01-guide exists
+  for either zone (guides start at 02), so `guideRefs` is empty for both.
+- Progress sources at render: quests from Skyrinis's per-character completed
+  set (`att.public.json` `characters[]` entry for `skyrinis`); exploration
+  from his per-character exploration set when the projection carries one --
+  today the public file holds exploration counts only, so exploration shows
+  pending until the projection gains the set (no generation change in J1);
+  collectibles account-wide by Collection History timeline name match (the
+  #39 normalization), so a collectible checks when ANY roster character
+  holds it. Rares, BoEs, and profession milestones are manual ticks.
+- Gating rule: a zone reads DONE only when Quests, Exploration, and
+  Collectibles all clear. Rares, BoEs, and professions count toward the
+  zone % but never gate DONE. Any route item may carry `"priority": true`,
+  rendered starred and surfaced in the route-header priority-targets list.
+- Manual checks persist in localStorage under `wow-forever-journey-v1`,
+  keyed `zoneId::item name`, with a reset control and an honest footer
+  ("Manual checks save on this device only"). Until Skyrinis is scanned
+  post-launch (`characters[]` empty), auto items render the honest pending
+  state "character not yet scanned", never fake zeros or false completions.
+- Butler packs gain a `## Journey` section for the journey character only:
+  overall %, current zone, per-zone lines with gating sub-counts, the next
+  unfinished gating item, and the honest no-scan line when no ATT data
+  exists. Manual ticks live in the browser only and print unchecked.
+- Tests: `scripts/tests/test-journey-logic.mjs` validates the route file
+  (parses, orders unique/sequential, every section key per zone) and asserts
+  the progress computation with synthetic fixtures only (auto vs manual,
+  gating, account-wide collectibles, priority surfacing, localStorage
+  round-trip); `scripts/tests/test-journey-pack.ps1` proves the pack summary
+  in the no-scan and scanned states.
