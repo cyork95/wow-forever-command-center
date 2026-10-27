@@ -903,14 +903,43 @@ function renderJournal() {
   rows.forEach((entry) => root.append(renderJournalEntry(entry)));
 }
 
+function bioInitials(name) {
+  return String(name || "").split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join("").toUpperCase();
+}
+
+function bioMonogram(character) {
+  const badge = el("div", { class: "portrait-mono" });
+  badge.style.setProperty("--class", CLASS_COLOR[character.className] || "var(--gold)");
+  badge.append(document.createTextNode(bioInitials(character.name)));
+  return badge;
+}
+
+function renderPortrait(character, story) {
+  const frame = el("div", { class: "portrait" });
+  const path = story && story.portrait;
+  if (typeof path === "string" && path) {
+    const img = el("img", { class: "portrait-img", src: path, alt: `${character.name} portrait` });
+    img.addEventListener("error", () => { img.replaceWith(bioMonogram(character)); });
+    frame.append(img);
+  } else {
+    frame.append(bioMonogram(character));
+  }
+  return frame;
+}
+
 function renderBio() {
   const bio = document.getElementById("roster");
   const character = selectedCharacter();
   bio.replaceChildren();
   if (!character) return;
-  bio.append(el("h3", { text: character.name }));
-  bio.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
   const story = backstoryFor(character.id);
+  const head = el("div", { class: "bio-head" });
+  head.append(renderPortrait(character, story));
+  const titles = el("div", { class: "bio-titles" });
+  titles.append(el("h3", { text: character.name }));
+  titles.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
+  head.append(titles);
+  bio.append(head);
   if (story && Object.keys(story.facts || {}).length) {
     const grid = el("div", { class: "facts" });
     Object.entries(story.facts).forEach(([label, value]) => grid.append(el("div", { class: "fact" }, [

@@ -35,6 +35,7 @@ for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
   assert(typeof entry.title === "string" && entry.title.length > 0, `backstory ${id} has a title`);
   assert(Array.isArray(entry.paragraphs) && entry.paragraphs.every((p) => typeof p === "string"), `backstory ${id} paragraphs is an array of strings`);
   assert(entry.facts && typeof entry.facts === "object" && !Array.isArray(entry.facts), `backstory ${id} facts is an object`);
+  assert(entry.portrait === undefined || entry.portrait === null || typeof entry.portrait === "string", `backstory ${id} portrait is a string when present`);
 }
 assert(Object.keys(backstoriesDoc.backstories).sort().join(",") === "malavus,skyrinis,sorinis,thorin",
   "backstories.json carries the four approved entries (malavus, skyrinis, sorinis, thorin)");

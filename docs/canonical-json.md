@@ -284,9 +284,10 @@ so no grouping information was clobbered.
 
 ## Backstories + Journal (board: backstories-journal)
 
-`data/backstories.json` is `{ schemaVersion, backstories: { <rosterId>: { title, paragraphs[], facts{} } } }`:
+`data/backstories.json` is `{ schemaVersion, backstories: { <rosterId>: { title, paragraphs[], facts{}, portrait? } } }`:
 `title` is the epithet, `paragraphs` an array of prose strings, `facts` a
-label-to-value object. `data/journals.json` is `{ schemaVersion, entries[] }`
+label-to-value object. `portrait`, when present, is a repo-relative image path for the Bio header; absent or null means the monogram placeholder renders.
+`data/journals.json` is `{ schemaVersion, entries[] }`
 with entries `{ id, character, date, title, body[], facts[], source }`:
 `character` holds a roster id, `date` an ISO date, `body` paragraph strings,
 `facts` "Session record" strings, `source` the publishing origin. Both files
