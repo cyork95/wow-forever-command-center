@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "note": "Vessel only: journal entries publish as owner-approved text via data-only commits. No generated text is committed by tooling; character holds roster character ids.",
+  "entries": []
+}
