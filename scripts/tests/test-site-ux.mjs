@@ -181,7 +181,7 @@ assert(textOf(byId.get("alto-note")).length > 0, "altoholic no-roster state show
 
 // Bio view: single selected character, populated and empty backstory states.
 seedRoster();
-ux.state.backstories = JSON.parse(readFileSync(path.join(repo, "data", "private", "fixtures", "backstories.fixture.json"), "utf8")).backstories;
+const fixtureStories = JSON.parse(readFileSync(path.join(repo, "data", "private", "fixtures", "backstories.fixture.json"), "utf8")).backstories; ux.state.backstories = fixtureStories;
 ux.state.guides = [{ id: "g-fixture", title: "Fixture Guide", url: "https://example.invalid/fixture", appliesTo: ["fixturin"] }];
 ux.state.selected = "fixturin";
 vm.runInContext("renderBio();", context);
@@ -200,6 +200,20 @@ const emptyBio = textOf(byId.get("roster"));
 assert(emptyBio.includes("No backstory yet."), "unwritten character shows the honest line");
 assert(emptyBio.includes("Sorinis Testmend"), "empty bio still renders the character header");
 assert(!emptyBio.includes("Fixture Guide"), "guides line follows appliesTo mapping");
+
+// Portrait slot: path present renders an <img>; absent renders the monogram.
+ux.state.backstories = { fixturin: { ...fixtureStories.fixturin, portrait: "assets/portraits/fixturin.jpg" } };
+ux.state.selected = "fixturin";
+vm.runInContext("renderBio();", context);
+const frame = byId.get("roster").children[0].children[0];
+assert(frame.className === "portrait", "portrait renders in a frame");
+assert(frame.children[0].tag === "img" && frame.children[0].getAttribute("src") === "assets/portraits/fixturin.jpg",
+  "portrait path renders an <img> with that src");
+ux.state.backstories = fixtureStories;
+vm.runInContext("renderBio();", context);
+const mono = byId.get("roster").children[0].children[0].children[0];
+assert(mono.className === "portrait-mono" && textOf(mono) === "FT",
+  "absent portrait renders the monogram placeholder with initials");
 
 // A saved pre-Bio tab value still loads (tab ids unchanged, label only).
 localStorage.setItem("wow-forever-command-center-v1", JSON.stringify({ selected: "sorinis", scope: "character", tab: "roster" }));
