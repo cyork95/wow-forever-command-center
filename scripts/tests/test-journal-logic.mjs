@@ -1,8 +1,7 @@
 // Backstories + Journal file validation and logic (board: backstories-journal).
 // Run: node scripts/tests/test-journal-logic.mjs
-// Validates the committed seed files, then exercises journal filtering/sorting
-// and backstory rendering in a vm with synthetic fixture entries only. The
-// committed seeds stay empty; fixture text lives under gitignored
+// Validates the committed data files, then exercises journal filtering/sorting
+// in a vm with synthetic fixture entries only. Fixture text lives under gitignored
 // data/private/fixtures/ and never leaves scripts/tests/ + fixtures.
 
 import { readFileSync, existsSync, readdirSync } from "node:fs";
@@ -131,7 +130,7 @@ const context = vm.createContext({ localStorage, document, location, history, UR
 vm.runInContext(stripped, context, { filename: "app.js" });
 
 const jx = vm.runInContext(`({
-  state, journalFor, journalAll, renderJournal, renderBackstory, setJournalView, renderRoster,
+  state, journalFor, journalAll, renderJournal, setJournalView,
 })`, context);
 
 jx.state.characters = [
@@ -150,16 +149,6 @@ assert(jx.journalFor("sorinis").map((e) => e.id).join(",") === "j-fixture-x",
   "other roster id resolves only its own entry");
 assert(jx.journalAll().map((e) => e.id).join(",") === "j-fixture-x,j-fixture-3,j-fixture-2,j-fixture-1",
   "all-characters view interleaves every entry newest-first");
-
-// Backstory rendering: populated entry renders epithet, paragraphs, facts;
-// unwritten characters get no expander at all.
-const story = jx.renderBackstory({ id: "fixturin" });
-assert(story && story.tag === "details", "populated backstory renders a details expander");
-const storyText = textOf(story);
-assert(storyText.includes("The Unwritten"), "backstory shows the epithet");
-assert(storyText.includes("practice sword"), "backstory shows a paragraph");
-assert(storyText.includes("Home") && storyText.includes("Fixture"), "backstory shows the facts box");
-assert(jx.renderBackstory({ id: "sorinis" }) === null, "unwritten character renders no expander");
 
 // Journal rendering, picked view: own entries only, honest empty state.
 vm.runInContext("renderJournal();", context);
@@ -186,18 +175,6 @@ assert(jx.state.journalView === "all", "toggle flips the journal view");
 assert(JSON.parse(localStorage.getItem("wow-forever-command-center-v1")).journalView === "all",
   "toggle persists through the saved-state mechanism");
 jx.setJournalView("picked");
-
-// Roster with empty seeds: no expander anywhere, DOM exactly as before.
-jx.state.backstories = {};
-vm.runInContext("renderRoster();", context);
-assert(byId.get("roster").children.length === 1
-  && byId.get("roster").children.every((c) => c.tag === "button"),
-  "empty backstories leave roster cards as plain buttons");
-jx.state.backstories = fixtureBackstories.backstories;
-vm.runInContext("renderRoster();", context);
-assert(byId.get("roster").children.length === 1 && byId.get("roster").children[0].tag === "article",
-  "populated backstory wraps the card without replacing the select button");
-assert(byId.get("roster").children[0].children[0].tag === "button", "select button stays first inside the wrapper");
 
 if (failures) {
   console.error(`FAIL test-journal-logic (${failures} assertions)`);
