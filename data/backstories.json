@@ -37,6 +37,40 @@
         "House": "Head of the -inis line",
         "Quirk": "Skins every beast he passes  and wears only his own leatherwork."
       }
+    },
+    "malavus": {
+      "title": "Keeper of the Fine Print",
+      "paragraphs": [
+        "The Blackwells of Stormwind were tailors  good ones, the kind whose coats outlived their wearers  and like many good houses they had a second trade conducted quietly, in the back, for customers who paid in things other than coin: the mending of arrangements. Debts refinanced. Signatures witnessed. Small dark problems made to go away neatly, the way a good tailor makes a seam disappear. Malavus grew up in the back of that shop, learning both trades at once: how to fit a coat, and how to read a contract for the clause that eats you.",
+        "What the Blackwells never had was a protector. Weavers and feeble mages, all of them  a house that could clothe a king and not defend a doorstep. So when Malavus was young, he went looking for the power his family lacked, and he knew exactly where to shop for it. The demons' contracts delighted him  they still do: literature with teeth, every clause load-bearing. He read his three times before he signed it, and improved two clauses, which the other party has never quite forgiven. He signed for protection, that a house of weavers might have one defender who is neither weaver nor feeble. And he signed for knowledge: the tailoring world whispers about felcloth, cloth worked through with fel, and Malavus holds the craftsman's view that to work a material you must understand it  and to understand fel, there is no better way than to become a little fel yourself. The interest accrues. He does not complain. A bargain is a bargain, and his  he will tell you, with some pride  was a good one. He checked.",
+        "That is why Northshire, and why the road: power is leverage, and Malavus intends to be holding a great deal of it when his own terms next come up for discussion. In the meantime he does the work properly. He clothes the guild in cloth his own hands enchanted  every stitch a small obligation of care he would deny incurring  and when the Lament of the Fallen was founded, it was Malavus who drafted the charter, because a company of friends deserves better fine print than most companies get. They made him guild master for it, which he accepted with the air of a man signing something he has already read twice.",
+        "If there is a warmer reason he gathers good people around him against the day his bill comes due, he has never entered it in any ledger. Some accounts a man keeps only in the original."
+      ],
+      "facts": {
+        "Race": "Human",
+        "Class": "Warlock",
+        "Role": "Affliction (Demonology dual)",
+        "Professions": "Enchanting & Tailoring",
+        "Guild": "Guild Master, Lament of the Fallen",
+        "Quirk": "The Staff Meeting  he consults each demon before a serious fight, and apologises in writing to any who fall."
+      }
+    },
+    "skyrinis": {
+      "title": "The Patriarch's Hero",
+      "paragraphs": [
+        "Until recently, Skyrinis Starhollow's family was a rumour in somebody else's records. The Skyborne branch of the -inis line had been sundered from the Night Elf clan for longer than either side could properly account  long enough that the kinship, when a lineage check finally established it, arrived as news: the sky elves were family. On paper, the matter was settled. But Skyrinis understands what paper is worth in a family. A name restored to the records is not the same as a branch restored to standing  and the wider clan, polite as it is, is watching to see what the new relations are for.",
+        "Sorinis received them as kin  warmly, deliberately. The patriarch wants elves standing tall in the world, and he is clear-eyed about the arithmetic: a Skyborne hero lifts the sky elves, and the sky elves, gathered under the -inis name, lift the whole clan. So when the Skyborne hopefuls volunteered for the proving, Sorinis came himself to choose  and chose Skyrinis: the youngest of the branch, the brightest-eyed, his hero out of their line. Friendship is his method, never pressure; a patriarch who means to build a cornerstone does not start by leaning on it. Skyrinis, for his part, knows he was picked, and intends to make the picking look wise. The great Journey is his proving. He will walk the whole world, zone by zone, and gather everything  every herb and ore the clan's crafts might need, every recipe, every weapon and curiosity worth the keeping  and lay it all at the family's feet, with the counts kept clean and reported to the patriarch as he goes. If the Skyborne branch's first gift to the -inis line is the entire world, itemised, let anyone call them the poor relations afterwards.",
+        "So he starts where his people start, on Zephras Isle, with an empty pack, a cousin's example, and a list with the whole world on it. The Journey is long. He wouldn't shorten it by a single item.",
+        "For the clan. All of it, for the clan."
+      ],
+      "facts": {
+        "Race": "Skyborne",
+        "Class": "Druid",
+        "Role": "Healkin (Feral dual)",
+        "Professions": "Mining & Herbalism",
+        "House": "The -inis line, Skyborne branch",
+        "Quirk": "The Offering  no node passes unharvested, and the finest find of every expedition goes to Sorinis."
+      }
     }
   }
 }
