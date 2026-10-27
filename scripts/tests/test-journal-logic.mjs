@@ -37,8 +37,8 @@ for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
   assert(Array.isArray(entry.paragraphs) && entry.paragraphs.every((p) => typeof p === "string"), `backstory ${id} paragraphs is an array of strings`);
   assert(entry.facts && typeof entry.facts === "object" && !Array.isArray(entry.facts), `backstory ${id} facts is an object`);
 }
-assert(Object.keys(backstoriesDoc.backstories).sort().join(",") === "sorinis,thorin",
-  "backstories.json carries the two approved entries (sorinis, thorin)");
+assert(Object.keys(backstoriesDoc.backstories).sort().join(",") === "malavus,skyrinis,sorinis,thorin",
+  "backstories.json carries the four approved entries (malavus, skyrinis, sorinis, thorin)");
 
 // Committed journals seed: shape plus character ids in roster. Ships empty.
 const journalsDoc = JSON.parse(readFileSync(path.join(repo, "data", "journals.json"), "utf8"));
