@@ -51,6 +51,8 @@ assert(html.includes('id="character-picker"'), "header carries the global charac
 assert(html.indexOf("<header") < html.indexOf('id="character-picker"')
   && html.indexOf('id="character-picker"') < html.indexOf('<nav class="tabs"'),
   "picker sits in the header above the tab bar");
+assert(html.includes('id="tab-journal"') && html.includes('id="panel-journal"') && html.includes('id="journal-list"'),
+  "journal tab button, panel, and list in markup");
 assert(!html.includes("tab-house") && !html.includes("panel-house") && !html.includes('data-tab="house"'),
   "no house tab button or panel in markup");
 for (const id of ["prof-character", "quest-character", "macro-character", "alto-character"]) {
@@ -111,7 +113,7 @@ function seedRoster() {
 
 // Tab list: house gone, order kept.
 assert(!ux.TABS.includes("house"), "TABS drops house");
-assert(ux.TABS.join(",") === "roster,hunts,journey,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros",
+assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros",
   "remaining tabs keep their relative order");
 
 // Tab bar invariant (tab-grid-fix): the desktop .tabs grid must fit every

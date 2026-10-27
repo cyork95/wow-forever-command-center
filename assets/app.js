@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "journey", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros"];
+const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros"];
 
 const HUNT_GROUPS = [
   { id: "collections", label: "Collections", types: ["collection"] },
@@ -28,6 +28,9 @@ const state = {
   checklist: [],
   journey: null,
   journeyChecks: {},
+  backstories: null,
+  journals: null,
+  journalView: "picked",
   stats: { updated: null, characters: {} },
   addons: null,
   dungeons: null,
@@ -67,6 +70,7 @@ function loadStore() {
     const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
     if (saved.selected) state.selected = saved.selected;
     if (saved.scope) state.scope = saved.scope;
+    if (["picked", "all"].includes(saved.journalView)) state.journalView = saved.journalView;
     if (typeof saved.place === "string") state.place = saved.place;
     if (["known", "make", "learn", "all"].includes(saved.profView)) state.profView = saved.profView;
     if (TABS.includes(saved.tab)) state.tab = saved.tab;
@@ -83,7 +87,8 @@ function saveStore() {
     scope: state.scope,
     place: state.place,
     profView: state.profView,
-    tab: state.tab
+    tab: state.tab,
+    journalView: state.journalView
   }));
 }
 
@@ -830,6 +835,93 @@ function el(tag, attrs, children) {
   return node;
 }
 
+function backstoryFor(characterId) {
+  return ((state.backstories || {})[characterId]) || null;
+}
+
+function renderBackstory(character) {
+  const story = backstoryFor(character.id);
+  if (!story) return null;
+  const box = el("details", { class: "backstory" });
+  box.append(el("summary", { text: story.title ? `Backstory — ${story.title}` : "Backstory" }));
+  asList(story.paragraphs).forEach((para) => box.append(el("p", { text: para })));
+  const facts = Object.entries(story.facts || {});
+  if (facts.length) {
+    const grid = el("div", { class: "facts" });
+    facts.forEach(([label, value]) => grid.append(el("div", { class: "fact" }, [
+      el("span", { text: label }),
+      el("b", { text: String(value) })
+    ])));
+    box.append(grid);
+  }
+  return box;
+}
+
+function journalFor(characterId) {
+  return asList(state.journals)
+    .filter((entry) => entry && entry.character === characterId)
+    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+}
+
+function journalAll() {
+  return asList(state.journals).filter(Boolean)
+    .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+}
+
+function setJournalView(view) {
+  state.journalView = view;
+  saveStore();
+  renderJournal();
+}
+
+function renderJournalEntry(entry) {
+  const owner = state.characters.find((c) => c.id === entry.character);
+  const card = el("article", { class: "card journal-entry" });
+  const bits = [entry.date ? String(entry.date).slice(0, 10) : ""];
+  if (state.journalView === "all" && owner) bits.push(owner.name);
+  card.append(el("p", { class: "meta", text: bits.filter(Boolean).join(" · ") }));
+  card.append(el("h3", { text: entry.title }));
+  asList(entry.body).forEach((para) => card.append(el("p", { text: para })));
+  if (asList(entry.facts).length) {
+    card.append(el("p", { class: "meta session-record", text: `Session record: ${asList(entry.facts).join(" · ")}` }));
+  }
+  return card;
+}
+
+function renderJournal() {
+  const root = document.getElementById("journal-list");
+  const note = document.getElementById("journal-note");
+  const view = document.getElementById("journal-view");
+  if (!root || !note || !view || !state.characters.length) return;
+  const who = selectedCharacter();
+  view.replaceChildren(
+    el("button", { type: "button", "aria-pressed": state.journalView === "all" ? "false" : "true", onclick: () => setJournalView("picked"), text: who ? who.name : "Selected character" }),
+    el("button", { type: "button", "aria-pressed": state.journalView === "all" ? "true" : "false", onclick: () => setJournalView("all"), text: "All characters" })
+  );
+  root.replaceChildren();
+  if (!state.journals) {
+    note.textContent = "Loading journal…";
+    return;
+  }
+  if (state.journalView === "all") {
+    note.textContent = "Newest first, across the whole house. Butler-published session records.";
+    const rows = journalAll();
+    if (!rows.length) {
+      root.append(el("p", { class: "empty-note", text: "No journal entries yet." }));
+      return;
+    }
+    rows.forEach((entry) => root.append(renderJournalEntry(entry)));
+    return;
+  }
+  note.textContent = `Newest first. Butler-published session records for ${who ? who.name : "this character"}.`;
+  const rows = who ? journalFor(who.id) : [];
+  if (!rows.length) {
+    root.append(el("p", { class: "empty-note", text: "No journal entries yet." }));
+    return;
+  }
+  rows.forEach((entry) => root.append(renderJournalEntry(entry)));
+}
+
 function renderRoster() {
   const roster = document.getElementById("roster");
   roster.replaceChildren();
@@ -846,7 +938,12 @@ function renderRoster() {
     who.append(document.createTextNode(character.name));
     button.append(who);
     button.append(el("small", { text: `${character.race} · ${character.className} · ${character.spec}` }));
-    roster.append(button);
+    const story = renderBackstory(character);
+    if (!story) { roster.append(button); return; }
+    const card = el("article", { class: "char-card" });
+    card.append(button);
+    card.append(story);
+    roster.append(card);
   });
 }
 
@@ -2476,6 +2573,7 @@ function render() {
   renderSheet();
   renderChecklist();
   renderJourney();
+  renderJournal();
   renderLedgerBoards();
   renderAltoholic();
   renderProfessions();
@@ -2499,7 +2597,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile] = await Promise.all([
+    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile, backstoriesFile, journalsFile] = await Promise.all([
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
@@ -2512,7 +2610,9 @@ async function main() {
       loadJson("data/guides.json").catch(() => ({ guides: [] })),
       loadJson("data/att.public.json").catch(() => null),
       loadJson("data/rarity.public.json").catch(() => null),
-      loadJson("data/journey.json").catch(() => null)
+      loadJson("data/journey.json").catch(() => null),
+      loadJson("data/backstories.json").catch(() => ({ backstories: {} })),
+      loadJson("data/journals.json").catch(() => ({ entries: [] }))
     ]);
     state.books = books;
     state.characters = characters;
@@ -2527,6 +2627,8 @@ async function main() {
     state.att = attFile;
     state.rarity = rarityFile;
     state.journey = journeyFile;
+    state.backstories = (backstoriesFile && backstoriesFile.backstories) || {};
+    state.journals = asList(journalsFile && journalsFile.entries);
     attCache = null;
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this

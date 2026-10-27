@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=24">
+  <link rel="stylesheet" href="assets/site.css?v=25">
 </head>
 <body>
   <div class="frame">
@@ -26,6 +26,7 @@
         <button type="button" class="tab" role="tab" id="tab-roster" data-tab="roster" aria-controls="panel-roster" aria-selected="true">Roster</button>
         <button type="button" class="tab" role="tab" id="tab-hunts" data-tab="hunts" aria-controls="panel-hunts" aria-selected="false" tabindex="-1">Hunts</button>
         <button type="button" class="tab" role="tab" id="tab-journey" data-tab="journey" aria-controls="panel-journey" aria-selected="false" tabindex="-1">Journey</button>
+        <button type="button" class="tab" role="tab" id="tab-journal" data-tab="journal" aria-controls="panel-journal" aria-selected="false" tabindex="-1">Journal</button>
         <button type="button" class="tab" role="tab" id="tab-mail" data-tab="mail" aria-controls="panel-mail" aria-selected="false" tabindex="-1">Mail</button>
         <button type="button" class="tab" role="tab" id="tab-altoholic" data-tab="altoholic" aria-controls="panel-altoholic" aria-selected="false" tabindex="-1">Altoholic</button>
         <button type="button" class="tab" role="tab" id="tab-professions" data-tab="professions" aria-controls="panel-professions" aria-selected="false" tabindex="-1">Professions</button>
@@ -75,6 +76,17 @@
       </div>
       <div id="journey-zones"></div>
       <p class="empty-note">Manual checks save on this device only.</p>
+    </section>
+
+    <section class="panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" data-panel="journal" hidden>
+      <div class="section-head">
+        <h2>Journal</h2>
+        <p id="journal-note">Loading journal…</p>
+      </div>
+      <div class="toolbar">
+        <div id="journal-view"></div>
+      </div>
+      <div id="journal-list"></div>
     </section>
 
     <section class="panel" id="panel-professions" role="tabpanel" aria-labelledby="tab-professions" data-panel="professions" hidden>
@@ -155,6 +167,6 @@
   </div>
   <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
   <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
-  <script src="assets/app.js?v=23"></script>
+  <script src="assets/app.js?v=24"></script>
 </body>
 </html>
