@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "note": "Vessel only: backstory text is authored by the Butler with the owner and arrives via data-only commits. No generated text is committed by tooling; keys are roster character ids.",
+  "backstories": {}
+}
