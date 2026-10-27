@@ -53,6 +53,7 @@ assert(html.indexOf("<header") < html.indexOf('id="character-picker"')
   "picker sits in the header above the tab bar");
 assert(html.includes('id="tab-journal"') && html.includes('id="panel-journal"') && html.includes('id="journal-list"'),
   "journal tab button, panel, and list in markup");
+assert(/data-tab="roster"[^>]*>Bio</.test(html), "first tab label reads Bio");
 assert(!html.includes("tab-house") && !html.includes("panel-house") && !html.includes('data-tab="house"'),
   "no house tab button or panel in markup");
 for (const id of ["prof-character", "quest-character", "macro-character", "alto-character"]) {
@@ -93,7 +94,7 @@ const context = vm.createContext({ localStorage, document, location, history, UR
 vm.runInContext(stripped, context, { filename: "app.js" });
 
 const ux = vm.runInContext(`({
-  TABS, state, selectCharacter, selectedCharacter, showTab, render, renderAltoholic,
+  TABS, state, selectCharacter, selectedCharacter, showTab, render, renderAltoholic, loadStore, renderBio,
 })`, context);
 
 function seedRoster() {
@@ -168,15 +169,44 @@ vm.runInContext("renderAltoholic();", context);
 assert(textOf(byId.get("alto-note")).includes("Canonical scan for Fixturin Testmend."),
   "altoholic lights up for the scanned selection");
 
-// Roster cards keep working and sync the header picker.
+// Selection syncs the header picker (Bio has no per-card controls).
 seedRoster();
 vm.runInContext("selectCharacter('sorinis');", context);
-assert(byId.get("character-picker").value === "sorinis", "roster-card selection updates the header picker");
+assert(byId.get("character-picker").value === "sorinis", "selection updates the header picker");
 
 // No-scan altoholic with an empty roster explains itself without a picker.
 ux.state.characters = [];
 vm.runInContext("renderAltoholic();", context);
 assert(textOf(byId.get("alto-note")).length > 0, "altoholic no-roster state shows its explanatory note");
+
+// Bio view: single selected character, populated and empty backstory states.
+seedRoster();
+ux.state.backstories = JSON.parse(readFileSync(path.join(repo, "data", "private", "fixtures", "backstories.fixture.json"), "utf8")).backstories;
+ux.state.guides = [{ id: "g-fixture", title: "Fixture Guide", url: "https://example.invalid/fixture", appliesTo: ["fixturin"] }];
+ux.state.selected = "fixturin";
+vm.runInContext("renderBio();", context);
+const bioText = textOf(byId.get("roster"));
+assert(bioText.includes("Fixturin Testmend"), "bio shows the selected character name");
+assert(bioText.includes("Night Elf"), "bio shows the race line from roster data");
+assert(bioText.includes("The Unwritten"), "bio shows the backstory title as section heading");
+assert(bioText.includes("practice sword"), "bio renders backstory prose, not an expander");
+assert(bioText.includes("Fixture Guide"), "bio carries the guides line");
+assert(!bioText.includes("No backstory yet."), "populated bio shows no empty line");
+assert(byId.get("roster").children.every((c) => c.tag !== "details" && c.className !== "char-card"),
+  "bio carries no expander or card markup");
+ux.state.selected = "sorinis";
+vm.runInContext("renderBio();", context);
+const emptyBio = textOf(byId.get("roster"));
+assert(emptyBio.includes("No backstory yet."), "unwritten character shows the honest line");
+assert(emptyBio.includes("Sorinis Testmend"), "empty bio still renders the character header");
+assert(!emptyBio.includes("Fixture Guide"), "guides line follows appliesTo mapping");
+
+// A saved pre-Bio tab value still loads (tab ids unchanged, label only).
+localStorage.setItem("wow-forever-command-center-v1", JSON.stringify({ selected: "sorinis", scope: "character", tab: "roster" }));
+vm.runInContext("loadStore();", context);
+assert(ux.state.tab === "roster", "saved pre-Bio tab value still loads");
+assert(ux.state.selected === "sorinis", "saved selection survives loadStore");
+
 
 if (failures) {
   console.error(`FAIL test-site-ux (${failures} assertions)`);

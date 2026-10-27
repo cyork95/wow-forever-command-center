@@ -52,7 +52,7 @@ const state = {
   profView: "known",
   profQuery: "",
   openDungeons: new Set(),
-  selected: "flann",
+  selected: "",
   scope: "character",
   place: "",
   query: "",
@@ -838,25 +838,6 @@ function el(tag, attrs, children) {
 function backstoryFor(characterId) {
   return ((state.backstories || {})[characterId]) || null;
 }
-
-function renderBackstory(character) {
-  const story = backstoryFor(character.id);
-  if (!story) return null;
-  const box = el("details", { class: "backstory" });
-  box.append(el("summary", { text: story.title ? `Backstory — ${story.title}` : "Backstory" }));
-  asList(story.paragraphs).forEach((para) => box.append(el("p", { text: para })));
-  const facts = Object.entries(story.facts || {});
-  if (facts.length) {
-    const grid = el("div", { class: "facts" });
-    facts.forEach(([label, value]) => grid.append(el("div", { class: "fact" }, [
-      el("span", { text: label }),
-      el("b", { text: String(value) })
-    ])));
-    box.append(grid);
-  }
-  return box;
-}
-
 function journalFor(characterId) {
   return asList(state.journals)
     .filter((entry) => entry && entry.character === characterId)
@@ -922,29 +903,37 @@ function renderJournal() {
   rows.forEach((entry) => root.append(renderJournalEntry(entry)));
 }
 
-function renderRoster() {
-  const roster = document.getElementById("roster");
-  roster.replaceChildren();
-  state.characters.forEach((character) => {
-    const button = el("button", {
-      class: "char",
-      type: "button",
-      "aria-pressed": character.id === state.selected ? "true" : "false",
-      onclick: () => selectCharacter(character.id)
+function renderBio() {
+  const bio = document.getElementById("roster");
+  const character = selectedCharacter();
+  bio.replaceChildren();
+  if (!character) return;
+  bio.append(el("h3", { text: character.name }));
+  bio.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
+  const story = backstoryFor(character.id);
+  if (story && Object.keys(story.facts || {}).length) {
+    const grid = el("div", { class: "facts" });
+    Object.entries(story.facts).forEach(([label, value]) => grid.append(el("div", { class: "fact" }, [
+      el("span", { text: label }),
+      el("b", { text: String(value) })
+    ])));
+    bio.append(grid);
+  }
+  if (story) {
+    bio.append(el("h4", { text: story.title }));
+    asList(story.paragraphs).forEach((para) => bio.append(el("p", { text: para })));
+  } else {
+    bio.append(el("p", { class: "empty-note", text: "No backstory yet." }));
+  }
+  const myGuides = asList(state.guides).filter((guide) => asList(guide.appliesTo).includes(character.id));
+  if (myGuides.length) {
+    const guideLine = el("p", { class: "meta", text: "Guides: " });
+    myGuides.forEach((guide, index) => {
+      if (index) guideLine.append(document.createTextNode(" · "));
+      guideLine.append(el("a", { href: guide.url, target: "_blank", rel: "noreferrer", text: guide.title }));
     });
-    button.style.setProperty("--class", CLASS_COLOR[character.className] || "var(--gold)");
-    const who = el("div", { class: "who" });
-    who.append(el("span", { class: "dot", style: `background:${CLASS_COLOR[character.className] || "var(--gold)"}` }));
-    who.append(document.createTextNode(character.name));
-    button.append(who);
-    button.append(el("small", { text: `${character.race} · ${character.className} · ${character.spec}` }));
-    const story = renderBackstory(character);
-    if (!story) { roster.append(button); return; }
-    const card = el("article", { class: "char-card" });
-    card.append(button);
-    card.append(story);
-    roster.append(card);
-  });
+    bio.append(guideLine);
+  }
 }
 
 function statBox(label, value) {
@@ -961,9 +950,6 @@ function renderSheet() {
   const identity = el("article", { class: "card" });
   identity.append(el("h3", { text: character.name }));
   identity.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
-  if (!character.betaSafe) {
-    identity.append(el("p", { class: "warn", text: "To be reserved Oct 27. Do not use this character in beta." }));
-  }
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
   const skills = new Map(asList(live.professions).map((p) => [p.name, p]));
@@ -984,7 +970,6 @@ function renderSheet() {
   asList(character.talentLinks).forEach((link) => {
     identity.append(el("a", { href: link.url, target: "_blank", rel: "noreferrer", text: link.label }));
   });
-  const myGuides = asList(state.guides).filter((guide) => asList(guide.appliesTo).includes(character.id));   if (myGuides.length) {     const guideLine = el("p", { class: "meta", text: "Guides: " });     myGuides.forEach((guide, index) => {       if (index) guideLine.append(document.createTextNode(" Â· "));       guideLine.append(el("a", { href: guide.url, target: "_blank", rel: "noreferrer", text: guide.title }));     });     identity.append(guideLine);   }
   if (character.pairsWith) {
     identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
   }
@@ -1002,7 +987,7 @@ function renderSheet() {
 
   const stats = el("article", { class: "card" });
   stats.append(el("h3", { text: "Stats" }));
-  // stats.json can carry a date from unrelated beta snapshots, so the
+  // stats.json can carry a date from unrelated snapshots, so the
   // "updated" line is only shown when THIS character actually has data.
   const hasLive = live && Object.keys(live).length > 0;
   const updated = hasLive && state.stats.updated
@@ -1825,7 +1810,7 @@ function renderDungeons() {
   }
   const q = nameKey(state.dungeonQuery);
   const version = versionLabel(journal.version);
-  note.textContent = `From ${journal.source}${version ? ` ${version}` : ""}. Beta loot can change.`;
+  note.textContent = `From ${journal.source}${version ? ` ${version}` : ""}.`;
   let shown = 0;
   asList(journal.dungeons).forEach((dungeon) => {
     const wholeDungeon = !q || nameKey(`${dungeon.name} ${dungeon.location}`).includes(q);
@@ -2569,7 +2554,7 @@ function renderAltoholic() {
 }
 function render() {
   renderCharacterPicker();
-  renderRoster();
+  renderBio();
   renderSheet();
   renderChecklist();
   renderJourney();
@@ -2648,7 +2633,7 @@ async function main() {
   }
   // Roster identity comes from data/characters.json alone. A saved or
   // linked id that is not on the roster falls back to the first roster
-  // character; there is no beta stand-in anymore.
+  // character.
   const explicit = params.get("c");
   const asked = explicit && state.characters.some((c) => c.id === explicit);
   if (asked) state.selected = explicit;

@@ -175,46 +175,10 @@ h2 {
 
 .section-head p { margin: 0; color: var(--muted); }
 
-.roster {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 10px;
-}
-
-.char {
-  text-align: left;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--class, var(--gold));
-  border-radius: 16px;
-  padding: 12px 12px 12px 14px;
-  cursor: pointer;
-  box-shadow: none;
-}
-
-.char[aria-pressed="true"] {
-  border-color: var(--class, var(--gold));
-  background: linear-gradient(180deg, #2c3824, var(--panel));
-  box-shadow: var(--shadow);
-}
-
-.char .who { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex: 0 0 auto;
-}
-
-.char small { display: block; color: var(--muted); margin-top: 4px; }
-
-.char-card { min-width: 0; }
-.char-card .char { width: 100%; }
-.backstory { margin-top: 8px; }
-.backstory summary { cursor: pointer; color: var(--gold); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
-.backstory .facts { margin-top: 8px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.bio h3 { margin: 0 0 4px; font-family: "Cinzel", Georgia, serif; font-size: 24px; letter-spacing: 0.02em; }
+.bio h4 { margin: 16px 0 8px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+.bio > p { max-width: 75ch; }
+.bio .facts { margin: 12px 0; }
 #journal-view { display: flex; gap: 8px; flex-wrap: wrap; }
 #journal-view button { min-height: 44px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
 #journal-view button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); background: linear-gradient(180deg, #f0d48a, var(--gold)); }
@@ -760,7 +724,7 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
 .saves summary { cursor: pointer; color: var(--muted); font-size: 13px; }
 .saves p { margin: 8px 0 0; font-size: 13px; }
 
-.actions button:hover, .char:hover { border-color: var(--gold); }
+.actions button:hover { border-color: var(--gold); }
 
 .sheet-settings { margin-top: 12px; max-width: 36rem; }
 .sheet-settings summary { cursor: pointer; }
@@ -958,7 +922,6 @@ footer.site {
   .tab { font-size: 11px; padding: 12px 4px; min-height: 44px; white-space: normal; }
 
   /* Roster and hunt cards go single column, full width. */
-  .roster { grid-template-columns: 1fr; }
 
   /* Toolbars wrap; controls reach tap height. */
   .toolbar input, .toolbar select, .toolbar button { min-height: 44px; }
