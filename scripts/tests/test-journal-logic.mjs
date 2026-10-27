@@ -39,6 +39,14 @@ for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
 }
 assert(Object.keys(backstoriesDoc.backstories).sort().join(",") === "malavus,skyrinis,sorinis,thorin",
   "backstories.json carries the four approved entries (malavus, skyrinis, sorinis, thorin)");
+for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
+  if (id === "skyrinis") {
+    assert(!("portrait" in entry), "skyrinis carries no portrait field");
+  } else {
+    assert(typeof entry.portrait === "string" && existsSync(path.join(repo, entry.portrait)),
+      `backstory ${id} portrait points at an existing file`);
+  }
+}
 
 // Committed journals seed: shape plus character ids in roster. Ships empty.
 const journalsDoc = JSON.parse(readFileSync(path.join(repo, "data", "journals.json"), "utf8"));

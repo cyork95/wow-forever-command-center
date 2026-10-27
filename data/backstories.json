@@ -18,7 +18,8 @@
         "Professions": "Herbalism & Alchemy",
         "Guild": "Lament of the Fallen",
         "Quirk": "A brew before every battle  ale or strong tea. All the guild's alcohol finds its way to his pack."
-      }
+      },
+      "portrait": "assets/portraits/thorin.jpg"
     },
     "sorinis": {
       "title": "Keeper of the Tally",
@@ -36,7 +37,8 @@
         "Professions": "Skinning & Leatherworking",
         "House": "Head of the -inis line",
         "Quirk": "Skins every beast he passes  and wears only his own leatherwork."
-      }
+      },
+      "portrait": "assets/portraits/sorinis.jpg"
     },
     "malavus": {
       "title": "Keeper of the Fine Print",
@@ -53,7 +55,8 @@
         "Professions": "Enchanting & Tailoring",
         "Guild": "Guild Master, Lament of the Fallen",
         "Quirk": "The Staff Meeting  he consults each demon before a serious fight, and apologises in writing to any who fall."
-      }
+      },
+      "portrait": "assets/portraits/malavus.jpg"
     },
     "skyrinis": {
       "title": "The Patriarch's Hero",
