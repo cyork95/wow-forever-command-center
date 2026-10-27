@@ -1,5 +1,42 @@
 {
   "schemaVersion": 1,
   "note": "Vessel only: backstory text is authored by the Butler with the owner and arrives via data-only commits. No generated text is committed by tooling; keys are roster character ids.",
-  "backstories": {}
+  "backstories": {
+    "thorin": {
+      "title": "The Cask-Mender",
+      "paragraphs": [
+        "The Caskmends were never the clan on the statues. They were the clan in the cellar  coopers and brewers in the stone-deep dark of Ironforge, mending the casks that held what other dwarves celebrated with. But trades die the way casks fail: slowly, at the seams. Sons went to the war and the engine-shops, daughters married into louder names, and the Caskmend mark faded off the cellar doors one winter at a time. By Thorin's day, the plain fact of it was this: there were no Caskmends selling in Ironforge anymore. The name had died out  and Thorin, ordinary at the family trade and entirely happy being so, found that was the one thing he couldn't be content about.",
+        "So he made a plan, the way his family made anything: without fuss, and built to last. He would revive the name  not as coopers this time, but as an alchemy house. A Caskmend brew, sold under the old mark, in cities the family never reached. Only, a man can't brew the world from one mountain's slopes. He needed the herbs of other valleys, other continents  and the recipes other peoples keep.",
+        "That's why the road, and why Coldridge Valley: a Caskmend starts at the beginning, properly, with his pack on his back like any lad setting out. What he had for the gathering was the listening  as a boy sent up the slopes for brewers' herbs he'd come home late with a full basket and no good explanation, having stood in the wind above the snowline hearing something in it that wasn't weather. The elements weren't calling him anywhere grand. They were, near as he could ever put it, asking after the place  and a Caskmend answers when something asks after the house. A cooper's patience became a healer's besides: Thorin mends people the way his family mended casks, find the failing seam and shore it kindly. And because he is a Caskmend to the bone, he still tastes the family work before anything serious  a brew before a battle is house tradition, ale or strong tea as the hour demands, and the whole guild has learned that any bottle worth keeping travels to Thorin's pack in the end.",
+        "When new companies began forming  the Lament of the Fallen among them  he joined without ceremony. Good company for the road, and a revival travels further with friends. Every herb learned and every brew mastered is one more board in the rebuilt name.",
+        "The mending is the point. The name is the work."
+      ],
+      "facts": {
+        "Race": "Dwarf",
+        "Class": "Shaman",
+        "Role": "Restoration (Enhancement dual)",
+        "Professions": "Herbalism & Alchemy",
+        "Guild": "Lament of the Fallen",
+        "Quirk": "A brew before every battle  ale or strong tea. All the guild's alcohol finds its way to his pack."
+      }
+    },
+    "sorinis": {
+      "title": "Keeper of the Tally",
+      "paragraphs": [
+        "Sorinis Starhollow is young, as his people count years  and he is head of his family anyway. The -inis line is an old one among the Night Elves, every name in it ending the same way, as if the family signs its work even on its children; when the headship came to Sorinis early, he took it up the way he takes up everything: completely, and with the count kept. A druid sage and patriarch both, he tends the whole line  down to a certain Skyborne cousin whose great solo wanderings will be reported back to Sorinis, as all family counts are.",
+        "Where other druids preach the balance and then buy their boots in Darnassus, Sorinis took up the knife and the needle himself: the beast that feeds the grove should also clothe it, and a healer who cannot work a hide has understood only half of what a life is for. He is, by his own cheerful account, very good at both halves. What he wears, he made  every leather piece on his back came off his own bench, from a beast his own knife opened. It is the closest thing Sorinis has to a boast, and he makes it silently, by standing there.",
+        "His pride is not in titles. It is in the tally  a long count he has kept since his first season: every skin taken clean, every piece finished and named for its wearer, every grove left taller than he found it, every family member accounted for and thriving. Ask him what he has done and he will not gesture at the world in general. He will tell you the number, and the number will be right.",
+        "That is why the road, and why Shadowglen  and it is not, at bottom, about the hides, though there are hides in the world he has never worked and his knife knows it. It is about the line. More of the -inis family will step into the world in time  that is not a hope, it is simply the family's future arriving on schedule  and every one of them will need a head who has been there: who knows which roads are kind, which forests are honest, which waters are safe to drink and which bargains are not. So the patriarch goes first. Sorinis walks the world to understand it, tallying not only skins and groves but the world itself, so that when the next -inis stands where he stood in Shadowglen, Sorinis can assist them with knowledge instead of comfort. When the companies began forming  the Lament of the Fallen among them  he joined with his tally open at a fresh page. He intends to be able to show his work: a guild outfitted in leather he cut, a family guided into lands their line has never touched by a head who learned those lands himself, and a count at the end of it that needs no embroidery.",
+        "The work speaks. He just makes sure it's quoted correctly."
+      ],
+      "facts": {
+        "Race": "Night Elf",
+        "Class": "Druid",
+        "Role": "Restoration (Balance dual)",
+        "Professions": "Skinning & Leatherworking",
+        "House": "Head of the -inis line",
+        "Quirk": "Skins every beast he passes  and wears only his own leatherwork."
+      }
+    }
+  }
 }
