@@ -114,6 +114,22 @@ assert(!ux.TABS.includes("house"), "TABS drops house");
 assert(ux.TABS.join(",") === "roster,hunts,journey,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros",
   "remaining tabs keep their relative order");
 
+// Tab bar invariant (tab-grid-fix): the desktop .tabs grid must fit every
+// tab button in one row without hard-coding the tab count, so adding a tab
+// can never silently re-wrap the bar the way repeat(10, ...) did at 11 tabs.
+const css = readFileSync(path.join(repo, "assets", "site.css"), "utf8");
+const firstMedia = css.indexOf("@media");
+const desktopCss = firstMedia === -1 ? css : css.slice(0, firstMedia);
+const desktopTabs = desktopCss.match(/\.tabs\s*\{([^}]*)\}/);
+assert(desktopTabs, "desktop .tabs rule found outside media queries");
+assert(!/repeat\s*\(\s*\d+/.test(desktopTabs[1]),
+  "desktop .tabs grid does not hard-code a column count");
+assert(/auto-fit|auto-fill/.test(desktopTabs[1]),
+  "desktop .tabs grid fits every tab in one row regardless of count");
+const tabButtons = html.match(/<button[^>]*class="tab"[^>]*>/g) || [];
+assert(tabButtons.length > 0 && tabButtons.length === ux.TABS.length,
+  `tab button count in markup (${tabButtons.length}) matches TABS (${ux.TABS.length})`);
+
 // A stale #house hash falls back to roster.
 seedRoster();
 ux.showTab("house");

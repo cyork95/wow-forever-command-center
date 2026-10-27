@@ -113,7 +113,9 @@ main { padding: 22px 0 64px; }
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
+  /* Count-independent single row: auto-fit collapses empty tracks and the
+     0 minimum lets every tab fit, so adding tabs cannot re-wrap the bar. */
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 4px;
   margin: 18px 0 0;
   padding: 0;
