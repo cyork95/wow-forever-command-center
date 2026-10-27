@@ -282,6 +282,36 @@ so no grouping information was clobbered.
   states, rarity text and guide refs with synthetic fixtures.
 
 
+## Backstories + Journal (board: backstories-journal)
+
+`data/backstories.json` is `{ schemaVersion, backstories: { <rosterId>: { title, paragraphs[], facts{} } } }`:
+`title` is the epithet, `paragraphs` an array of prose strings, `facts` a
+label-to-value object. `data/journals.json` is `{ schemaVersion, entries[] }`
+with entries `{ id, character, date, title, body[], facts[], source }`:
+`character` holds a roster id, `date` an ISO date, `body` paragraph strings,
+`facts` "Session record" strings, `source` the publishing origin. Both files
+ship empty: they are vessels, and prose arrives only as owner-approved text
+via data-only commits. Public-safe prose only -- the same redaction posture
+as `characters.public.json` (no gold, bags, bank, mail, or ledger detail).
+
+- Site: each roster card gains a Backstory expander when its id has an entry
+  (epithet summary, paragraphs, facts box reusing the `.facts` grid); the
+  expander is omitted entirely for unwritten characters, so empty seeds
+  render the roster exactly as before. The Journal tab is driven by the
+  global character picker (newest-first entries, date/title/body plus the
+  Session record footer, honest "No journal entries yet." when empty) with
+  an All characters toggle interleaving every entry newest-first and naming
+  the character on each card. Entry cards stack without a grid, so phone
+  widths stay single-column with no horizontal scroll.
+- Butler: packs gain a `## Journal` section per character -- "Latest journal
+  entry: <title> (<date>)" or "No journal entries yet" -- read from the
+  committed `data/journals.json` (`-JournalsPath` overrides it, mirroring
+  `-GuidesPath`/`-HuntsPath`).
+- Editorial gate: no tooling generates prose. Seeds stay empty, fixtures live
+  only under gitignored `data/private/fixtures/` with obviously-fake names,
+  and `scripts/tests/test-journal-logic.mjs` asserts the file shapes plus a
+  no-fixture leak check over committed files (scripts/tests/ excluded).
+
 ## Journey (board #51, Phase J1)
 
 `data/journey.json` is a hand-curated route for Skyrinis's 100% completionist

@@ -4,14 +4,15 @@
 # diffed against the previous private snapshot (retained under prev/).
 # Gold and ledger detail ARE included: this output is local-only, never
 # committed. See docs/canonical-json.md.
-# Usage: powershell -File scripts/butler-pack.ps1 [-PrivateDir <dir>] [-OutDir <dir>] [-GuidesPath <file>]
+# Usage: powershell -File scripts/butler-pack.ps1 [-PrivateDir <dir>] [-OutDir <dir>] [-GuidesPath <file>] [-JournalsPath <file>]
 
 param(
   [string]$PrivateDir = "",
   [string]$OutDir = "",
   [string]$GuidesPath = "",
   [string]$HuntsPath = "",
-  [string]$JourneyPath = ""
+  [string]$JourneyPath = "",
+  [string]$JournalsPath = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -20,6 +21,7 @@ if (-not $PrivateDir) { $PrivateDir = Join-Path $repo "data\private" }
 if (-not $OutDir) { $OutDir = Join-Path $PrivateDir "butler" }
 if (-not $HuntsPath) { $HuntsPath = Join-Path $repo "data\checklist.json" }
 if (-not $JourneyPath) { $JourneyPath = Join-Path $repo "data\journey.json" }
+if (-not $JournalsPath) { $JournalsPath = Join-Path $repo "data\journals.json" }
 
 function Read-JsonFile($path) {
   if (-not (Test-Path $path)) { return $null }
@@ -226,6 +228,18 @@ function Build-Pack($char, $coll, $econ, $prev, $guides, $extra) {
   foreach ($event in @($char.biography)) { $out += "- $($event.date) $($event.time): $($event.text)." }
   if (-not @($char.biography).Count) { $out += "No biography events recorded." }
   $out += ""
+  $myJournals = @()
+  if ($extra -and $extra.journals) { $myJournals = @($extra.journals | Where-Object { [string]$_.character -eq [string]$char.rosterId } | Sort-Object { [string]$_.date } -Descending) }
+  $out += "## Journal"
+  $out += ""
+  if ($myJournals.Count) {
+    $latestDate = ([string]$myJournals[0].date)
+    if ($latestDate.Length -gt 10) { $latestDate = $latestDate.Substring(0, 10) }
+    $out += "- Latest journal entry: $($myJournals[0].title) ($latestDate)."
+  } else {
+    $out += "- No journal entries yet."
+  }
+  $out += ""
   $out += "## Lockouts"
   $out += ""
   $out += "- Saved instances: $($char.lockouts.instanceCount)."
@@ -399,6 +413,9 @@ $historyDoc = Read-JsonFile (Join-Path $PrivateDir "collection-history.json")
 $historyEntries = @()
 $huntsDoc = Read-JsonFile $HuntsPath
 $journeyDoc = Read-JsonFile $JourneyPath
+$journalsDoc = Read-JsonFile $JournalsPath
+$journalsList = @()
+if ($journalsDoc -and $journalsDoc.entries) { $journalsList = @($journalsDoc.entries) }
 $huntsList = @()
 if ($huntsDoc -is [System.Collections.IList]) { $huntsList = @($huntsDoc) }
 if ($historyDoc) { $historyEntries = @($historyDoc.entries) }
@@ -415,7 +432,7 @@ $prevById = @{}
 if ($prevDoc) { foreach ($entry in @($prevDoc.characters)) { $prevById[$entry.id] = $entry } }
 foreach ($char in @($charsDoc.characters)) {
   $coll = @($collDoc.characters | Where-Object { $_.id -eq $char.id } | Select-Object -First 1)
-  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById; hunts = $huntsList; journey = $journeyDoc }
+  $pack = Build-Pack $char $(if ($coll.Count) { $coll[0] } else { $null }) $null $prevById[$char.id] $guides @{ attById = $attById; history = $historyEntries; rarityById = $rarityById; rarity = $rarityDoc; questieById = $questieById; hunts = $huntsList; journey = $journeyDoc; journals = $journalsList }
   Write-Pack (Join-Path $OutDir "$($char.id).md") $pack
   Write-Output "Wrote $($char.id).md ($($pack.Count) lines)"
 }
