@@ -204,6 +204,12 @@ account-level file is read -- do not go looking for per-char Journey files.
   timestamp, itemId; raw colour text stays private). Per-character detail is
   roster-matched only, like `characters.public.json` -- honestly empty until
   Nov 4. Rarity and quest history have no public projection: private only.
+  Each roster-gated character entry carries `explorationHave`, the ATT
+  exploration id array the Journey reader consumes (`journeyExplorationSet`
+  in `assets/app.js` accepts ids or names; the parser ships ids, the only
+  form ATT resolves). The key is always present on a projected row -- an
+  empty array means scanned with nothing found, while a missing row means
+  not yet scanned.
 - Butler packs gain optional sections, skipped when the files are absent:
   Collections detail (ATT), Recently obtained (account-wide last 5), Rarity
   attempts, Quest history (merged across each character's SV keys).

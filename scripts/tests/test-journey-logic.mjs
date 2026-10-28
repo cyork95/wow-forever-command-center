@@ -137,6 +137,13 @@ assert(questState.pending && !questState.done && questState.auto, "unscanned que
 let exploreState = j.journeyItemState(zoneA, "exploration", zoneA.exploration[0]);
 assert(exploreState.pending && !exploreState.done, "unscanned exploration is pending, not done");
 
+// The ATT projection ships exploration have-sets as numeric ids.
+seedJourney();
+j.state.att = { account: {}, obtainedTimeline: [], characters: [{ canonicalId: "fixturin", explorationHave: [4242] }] };
+resetAttCache();
+const idSet = j.journeyExplorationSet();
+assert(idSet && idSet.ids.join(",") === "4242" && idSet.names.length === 0, "numeric exploration ids land in the id set");
+
 // Scanned quest completes by id; name-only quests stay manual.
 seedJourney();
 j.state.att = { account: {}, obtainedTimeline: [], characters: [{ canonicalId: "fixturin", questsHave: [90001] }] };

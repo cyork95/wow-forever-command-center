@@ -84,6 +84,19 @@ try {
   Assert (@($public.characters)[0].canonicalId -eq "fixturin-id") "public character uses roster id"
   Assert ((@(@($public.characters)[0].questsHave) -contains 111) -and (@(@($public.characters)[0].questsHave) -contains 222)) "public character carries quest have-sets for mission progress"
   Assert ((@($public.characters)[0].questsHaveCount) -eq 2) "public character quest count 2"
+  $pubChar = @($public.characters)[0]
+  Assert ((@($pubChar.explorationHave) -contains 44)) "public character carries exploration have-set (id 44)"
+  Assert ((@($public.characters) | Where-Object { $_.name -eq "Exempla Testmore" }).Count -eq 0) "non-roster character absent, so its exploration data cannot appear"
+
+  # Honest empty state: a roster character with no exploration data keeps the
+  # key with an empty set (scanned, nothing found), never a missing key.
+  Write-Utf8 $rosterPath (@([ordered]@{ id = "fixturin-id"; name = "Fixturin Testmend" }, [ordered]@{ id = "exempla-id"; name = "Exempla Testmore" }) | ConvertTo-Json -Depth 20)
+  & powershell -NoProfile -File $parser -WtfRoot $wtf -PrivateDir $privateDir -PublicPath $publicPath -RosterPath $rosterPath | Out-Null
+  $public2 = Get-Content -Raw $publicPath -Encoding UTF8 | ConvertFrom-Json
+  Assert (@($public2.characters).Count -eq 2) "both roster characters projected"
+  $ex = @($public2.characters | Where-Object { $_.name -eq "Exempla Testmore" })[0]
+  Assert ($null -ne $ex.PSObject.Properties["explorationHave"]) "empty exploration set keeps the key"
+  Assert (@($ex.explorationHave).Count -eq 0) "roster character with no exploration data renders the honest empty set"
 
   # Ingest guard: a reset (empty) SV must WARN and keep the previous good file.
   $kept = Get-Content -Raw (Join-Path $privateDir "att.json") -Encoding UTF8

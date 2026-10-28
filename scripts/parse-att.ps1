@@ -284,7 +284,7 @@ foreach ($c in @($newDoc.characters)) {
           questsHave = @($c.have.quests.have)
           questsHaveCount = [int]$c.have.quests.count
           spellsHave = [int]$c.have.spells.count
-          explorationHave = [int]$c.have.exploration.count
+          explorationHave = @($c.have.exploration.have)
           flightPathsHave = [int]$c.have.flightpaths.count
           achievementsHave = [int]$c.have.achievements.count
           toysHave = [int]$c.have.toys.count
