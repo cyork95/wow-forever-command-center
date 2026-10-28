@@ -48,7 +48,7 @@ for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
   }
 }
 
-// Committed journals seed: shape plus character ids in roster. Ships empty.
+// Committed journals file: shape plus character ids in roster, plus the four owner-approved Session Zero entries.
 const journalsDoc = JSON.parse(readFileSync(path.join(repo, "data", "journals.json"), "utf8"));
 assert(journalsDoc.schemaVersion === 1, "journals.json schemaVersion is 1");
 assert(Array.isArray(journalsDoc.entries), "journals.json carries an entries array");
@@ -61,7 +61,10 @@ for (const entry of journalsDoc.entries) {
   assert(Array.isArray(entry.facts) && entry.facts.every((f) => typeof f === "string"), `journal entry ${entry.id} facts is an array of strings`);
   assert(typeof entry.source === "string", `journal entry ${entry.id} names a source`);
 }
-assert(journalsDoc.entries.length === 0, "journals.json seed stays empty (entries publish via data-only commits)");
+assert(journalsDoc.entries.map((e) => e.id).join(",") === "session-zero-thorin,session-zero-sorinis,session-zero-malavus,session-zero-skyrinis",
+  "journals.json carries the four Session Zero entries in order");
+assert(journalsDoc.entries.map((e) => e.title).join("|") === "A Name on the Door Again|The Count Begins at One|In Good Order|An Empty Pack",
+  "Session Zero titles match the owner-approved texts");
 
 // Fixture entries: obviously fake, gitignored, fixture character only.
 const fixtureDir = path.join(repo, "data", "private", "fixtures");
