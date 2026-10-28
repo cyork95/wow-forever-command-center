@@ -372,6 +372,19 @@ when one exists (`{id, name}`) or go in name-only (`{name}`, manual tick).
   11 quests with Elwynn objectives that belong to other zones (345, 346,
   1097 Stormwind City; 1667 Warrior; 1860 Mage; 2205, 2300 Rogue; 5623,
   5624, 5628, 5635 Priest).
+- Westfall (#55) adds 43 quests (order 3, levelBand 9-18; 80 route items
+  with 14 exploration, 10 collectibles, 7 rares, 1 BoE, 5 profession
+  milestones). Same rule, plus the ticket's dungeon-giver prong: Deadmines-zone
+  quests ship when the giver stands in Westfall (166, 214). Forever-original
+  quests verify by Forever sources (wowhandbook guide, Polestar quest data
+  built on Wowhead Forever, live beta ATT completions) where the repo snapshot
+  predates them. UNRESOLVED settlements: Furlbrow's Deed (184), The Coast
+  Isn't Clear (152), The Coastal Menace (104), the Sanders chain
+  (136/138/139/140, whose final step sources the three Sanders collectibles),
+  Continue to Stormwind (6281), and the eleventh Alba step (92750) enter;
+  A Swift Message (6181, Human-only), Dungar Longdrink (6261) and Return to
+  Lewis (6285, Stormwind givers), Thunderbrew (117), and the Sweet Amber
+  chain (48/49/50/51/53) stay ledgered with reasons in the ticket report.
 - J1 seeds: Zephras Isle (Skyborne starting zone: ATT Camelot map 2521 lore
   names the Skyborne and the floating island; checklist hunts reuse the name)
   and Elwynn Forest (map 1429; 1-10 classic arc). No Polestar 01-guide exists
