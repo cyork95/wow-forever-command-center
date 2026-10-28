@@ -1,5 +1,78 @@
 {
   "schemaVersion": 1,
   "note": "Vessel only: journal entries publish as owner-approved text via data-only commits. No generated text is committed by tooling; character holds roster character ids.",
-  "entries": []
+  "entries": [
+    {
+      "id": "session-zero-thorin",
+      "character": "thorin",
+      "date": "2026-10-27",
+      "title": "A Name on the Door Again",
+      "source": "butler-session-zero",
+      "body": [
+        "The clerks opened the rolls today, and the Caskmend name is on one again. Thorin Caskmend, written out plain  the first time in a good while that name has stood on any official list. Nobody made a fuss. That's fine. A name doesn't come back with a fuss. It comes back with work.",
+        "I'm to start in Coldridge on the fourth, with an empty pack and a head full of other people's recipes. Everything the revival needs is out there past the snow  herbs I've never gathered, brews I've never tasted, in valleys I've only heard named. So I'll go and learn them, one at a time, the way you mend anything: find the failing seam, and shore it kindly.",
+        "Tonight, though, the work is just this: a brew, taken properly, before the road. Strong tea  a man saves the ale for a battle, and this week's battle is only a beginning. To the name, then. May it be worth writing down again."
+      ],
+      "facts": [
+        "Name reserved Oct 27, 2026",
+        "Normal realm",
+        "Level 1  the road starts Nov 4, Coldridge Valley"
+      ]
+    },
+    {
+      "id": "session-zero-sorinis",
+      "character": "sorinis",
+      "date": "2026-10-27",
+      "title": "The Count Begins at One",
+      "source": "butler-session-zero",
+      "body": [
+        "Today the name Sorinis Starhollow was entered in the rolls, and I have opened a fresh page of the tally for it. Every count that matters starts this way: one mark, made carefully. Skins taken: none yet. Pieces finished: none. Groves healed: none. Family accounted for: all of them  that count, at least, never waits for the road to begin.",
+        "On the fourth I start in Shadowglen, and I go first on purpose. A head of family who sends others into a world he hasn't walked himself is offering comfort, not knowledge  and the -inis line deserves knowledge. More of mine will stand where I'm standing soon enough, my Skyborne cousin first among them; his proving begins the same day, and his reports will come back to me as all family counts do. I expect them to be long. The boy gathers everything.",
+        "So the page is open and the numbers are honest: all zeroes, except the one that counts. The work speaks  and from the fourth, it starts speaking in numbers."
+      ],
+      "facts": [
+        "Name reserved Oct 27, 2026",
+        "Normal realm",
+        "Level 1  starts Nov 4, Shadowglen",
+        "The Tally: new page opened"
+      ]
+    },
+    {
+      "id": "session-zero-malavus",
+      "character": "malavus",
+      "date": "2026-10-27",
+      "title": "In Good Order",
+      "source": "butler-session-zero",
+      "body": [
+        "The name Malavus Blackwell was entered in the rolls today, after due inspection. I read the terms before I let it stand  habit. A reservation is a small contract: a name, held; a place, promised; nothing yet owed on either side. It is, I confess, my favourite kind.",
+        "This week there is paperwork of a larger kind. The Lament of the Fallen does not exist yet  it will, on the fourth, in Stormwind  and so I am drafting its charter while the others are still packing. A company of friends deserves better fine print than most companies get: every clause load-bearing, every obligation mutual, nothing in it I would not sign myself. And I have signed worse, in my time. I read that three times first, too.",
+        "On the fourth I start in Northshire, alone, which will not last. Certain parties to my older arrangements will be joining me in due course, and before we take any field together there will be a staff meeting  each consulted in turn, each assigned according to his talents. It is only professional. A bargain kept well is kept by both sides. Everything is in good order. I checked."
+      ],
+      "facts": [
+        "Name reserved Oct 27, 2026",
+        "Normal realm",
+        "Level 1  starts Nov 4, Northshire",
+        "Charter of the Lament of the Fallen: in draft"
+      ]
+    },
+    {
+      "id": "session-zero-skyrinis",
+      "character": "skyrinis",
+      "date": "2026-10-27",
+      "title": "An Empty Pack",
+      "source": "butler-session-zero",
+      "body": [
+        "The rolls were opened today, and my name is not in them. Thorin's is written in good ink, and Malavus's, and my cousin the patriarch's. Mine gets written on the fourth, on Zephras Isle  and that's by design, whatever it looks like. A branch that was a rumour in somebody else's records not long ago doesn't get its standing back from a clerk. It earns it in the field.",
+        "So I have a week of waiting, and I am spending it the way I'll spend the year: making lists. Every zone I mean to walk, every road, every herb and ore and odd shining thing between Zephras and the far side of the world  the list has the whole world on it, and the counts all stand at zero, clean as fresh snow. Sorinis picked me out of every hopeful our branch put forward. I volunteered, yes  and I was chosen anyway, and I mean to make the choosing look wise. What I gather goes to the clan, all of it, and the finest find of every expedition goes to the patriarch with my reports.",
+        "For now the pack is empty and I wouldn't trade places with any written name in the rolls. They were claimed. I get to be proven. The fourth can't come soon enough.",
+        "For the clan. All of it, for the clan."
+      ],
+      "facts": [
+        "Name not reserved  claimed at creation, Nov 4",
+        "Starts Zephras Isle",
+        "Level 1",
+        "Route charted: Zephras Isle, then Elwynn  252 items on the list"
+      ]
+    }
+  ]
 }
