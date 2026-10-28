@@ -1091,6 +1091,371 @@
         }
       ],
       "guideRefs": []
+    },
+    {
+      "id": "westfall",
+      "name": "Westfall",
+      "order": 3,
+      "levelBand": "9-18",
+      "summary": "Stormwind's breadbasket, held by the People's Militia against the Defias Brotherhood. Alba Fairmoon's explosives chain and Gryan Stoutmantle's Defias investigation both end in the Deadmines.",
+      "quests": [
+        {
+          "id": 98021,
+          "name": "Journey to Sentinel Hill",
+          "note": "Skyborne breadcrumb; Bolvar to Gryan Stoutmantle. Forever-original; id via the Polestar Skyborne guide."
+        },
+        {
+          "id": 64,
+          "name": "The Forgotten Heirloom"
+        },
+        {
+          "id": 36,
+          "name": "Westfall Stew",
+          "note": "Same-name variant; see also quest 38 (Verna Furlbrow)."
+        },
+        {
+          "id": 151,
+          "name": "Poor Old Blanchy"
+        },
+        {
+          "id": 38,
+          "name": "Westfall Stew",
+          "note": "Same-name variant; see also quest 36 (Salma Saldean)."
+        },
+        {
+          "id": 22,
+          "name": "Goretusk Liver Pie",
+          "note": "Giver Salma Saldean per Classic Wiki and wowhandbook; no discrepancy at build."
+        },
+        {
+          "id": 9,
+          "name": "The Killing Fields"
+        },
+        {
+          "id": 92909,
+          "name": "Harvesting the Harvesters",
+          "note": "Same-name variant; see also quests 92910, 92911. Ozwin Ironsprocket direct offer."
+        },
+        {
+          "id": 92910,
+          "name": "Harvesting the Harvesters",
+          "note": "Same-name variant; see also quests 92909, 92911. Starts from the Precessive Autocognition Assembly drop."
+        },
+        {
+          "id": 92911,
+          "name": "Harvesting the Harvesters",
+          "note": "Same-name variant; see also quests 92909, 92910. Ozwin follow-up; Engineering parts."
+        },
+        {
+          "id": 12,
+          "name": "The People's Militia",
+          "note": "Same-name variant; see also quests 13, 14 (step 1 of 3)."
+        },
+        {
+          "id": 13,
+          "name": "The People's Militia",
+          "note": "Same-name variant; see also quests 12, 14 (step 2 of 3)."
+        },
+        {
+          "id": 14,
+          "name": "The People's Militia",
+          "note": "Same-name variant; see also quests 12, 13 (step 3 of 3)."
+        },
+        {
+          "id": 102,
+          "name": "Patrolling Westfall"
+        },
+        {
+          "id": 153,
+          "name": "Red Leather Bandanas"
+        },
+        {
+          "id": 92742,
+          "name": "Testing the Wells"
+        },
+        {
+          "id": 92744,
+          "name": "Murloc Gills"
+        },
+        {
+          "id": 92745,
+          "name": "The State of the Mines"
+        },
+        {
+          "id": 92747,
+          "name": "Moonbrook Espionage"
+        },
+        {
+          "id": 92748,
+          "name": "Explosive Consultation",
+          "note": "Same-name variant; see also quest 92752 (Alba to Sprite Jumpsprocket)."
+        },
+        {
+          "id": 92749,
+          "name": "A Dynamite Plan",
+          "note": "Sprite Jumpsprocket; Rough Dynamite in Forever (ATT 5.3.15)."
+        },
+        {
+          "id": 92750,
+          "name": "Detonation at a Distance",
+          "note": "Same-name variant; see also quest 92751 (Sprite to SI:7; ticket UNRESOLVED #17)."
+        },
+        {
+          "id": 92751,
+          "name": "Detonation at a Distance",
+          "note": "Same-name variant; see also quest 92750 (Jasper Fel to Sprite)."
+        },
+        {
+          "id": 92752,
+          "name": "Explosive Consultation",
+          "note": "Same-name variant; see also quest 92748 (Sprite back to Alba)."
+        },
+        {
+          "id": 92753,
+          "name": "Destruction in Deadmines",
+          "note": "Same-name variant; see also quest 92819 (plant the explosives)."
+        },
+        {
+          "id": 92819,
+          "name": "Destruction in Deadmines",
+          "note": "Same-name variant; see also quest 92753 (back-exit detonator with Alba)."
+        },
+        {
+          "id": 103,
+          "name": "Keeper of the Flame"
+        },
+        {
+          "id": 184,
+          "name": "Furlbrow's Deed",
+          "note": "Ticket UNRESOLVED #12; Elwynn drop, Furlbrow turn-in."
+        },
+        {
+          "id": 152,
+          "name": "The Coast Isn't Clear",
+          "note": "Ticket UNRESOLVED #13."
+        },
+        {
+          "id": 104,
+          "name": "The Coastal Menace",
+          "note": "Ticket UNRESOLVED #14."
+        },
+        {
+          "id": 65,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 132, 135, 141, 142, 155, 166 (step 1 of 7)."
+        },
+        {
+          "id": 132,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 65, 135, 141, 142, 155, 166 (step 2 of 7)."
+        },
+        {
+          "id": 135,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 65, 132, 141, 142, 155, 166 (step 3 of 7)."
+        },
+        {
+          "id": 141,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 65, 132, 135, 142, 155, 166 (step 4 of 7)."
+        },
+        {
+          "id": 142,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 65, 132, 135, 141, 155, 166 (step 5 of 7)."
+        },
+        {
+          "id": 155,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 65, 132, 135, 141, 142, 166 (step 6 of 7)."
+        },
+        {
+          "id": 166,
+          "name": "The Defias Brotherhood",
+          "note": "Same-name variant; see also quests 65, 132, 135, 141, 142, 155 (step 7 of 7; Deadmines-zone, Gryan chain)."
+        },
+        {
+          "id": 214,
+          "name": "Red Silk Bandanas",
+          "note": "Deadmines-zone; giver Scout Riell, Sentinel Tower."
+        },
+        {
+          "id": 136,
+          "name": "Captain Sanders' Hidden Treasure",
+          "note": "Same-name variant; see also quests 138, 139, 140 (step 1 of 4)."
+        },
+        {
+          "id": 138,
+          "name": "Captain Sanders' Hidden Treasure",
+          "note": "Same-name variant; see also quests 136, 139, 140 (step 2 of 4)."
+        },
+        {
+          "id": 139,
+          "name": "Captain Sanders' Hidden Treasure",
+          "note": "Same-name variant; see also quests 136, 138, 140 (step 3 of 4)."
+        },
+        {
+          "id": 140,
+          "name": "Captain Sanders' Hidden Treasure",
+          "note": "Same-name variant; see also quests 136, 138, 139 (step 4 of 4; rewards the Shirt, Sash, and Booty Bag)."
+        },
+        {
+          "id": 6281,
+          "name": "Continue to Stormwind",
+          "note": "Ticket UNRESOLVED #16; Thor to Osric Strang."
+        }
+      ],
+      "exploration": [
+        {
+          "name": "Furlbrow's Pumpkin Farm"
+        },
+        {
+          "name": "The Jansen Stead"
+        },
+        {
+          "name": "Saldean's Farm"
+        },
+        {
+          "name": "Jangolode Mine"
+        },
+        {
+          "name": "Sentinel Hill"
+        },
+        {
+          "name": "Alexston Farmstead"
+        },
+        {
+          "name": "The Molsen Farm"
+        },
+        {
+          "name": "The Dust Plains"
+        },
+        {
+          "name": "Gold Coast Quarry"
+        },
+        {
+          "name": "The Dead Acre"
+        },
+        {
+          "name": "Demont's Place"
+        },
+        {
+          "name": "Moonbrook"
+        },
+        {
+          "name": "The Dagger Hills"
+        },
+        {
+          "name": "Westfall Lighthouse"
+        }
+      ],
+      "collectibles": [
+        {
+          "name": "Recipe: Goretusk Liver Pie",
+          "note": "Quest award; also vendor-sold in Stormwind."
+        },
+        {
+          "name": "Recipe: Westfall Stew",
+          "note": "Quest award; also vendor-sold in Stormwind."
+        },
+        {
+          "name": "Blackened Defias Belt",
+          "note": "BoE transmog; Deadmines Defias (Classic-verified)."
+        },
+        {
+          "name": "Blackened Defias Boots",
+          "note": "BoE transmog; Deadmines Defias (Classic-verified)."
+        },
+        {
+          "name": "Blackened Defias Gloves",
+          "note": "BoE transmog; Deadmines Defias (Classic-verified)."
+        },
+        {
+          "name": "Blackened Defias Leggings",
+          "note": "BoE transmog; Deadmines Defias (Classic-verified)."
+        },
+        {
+          "name": "Blackened Defias Vest",
+          "note": "BoE transmog; Deadmines Defias (Classic-verified)."
+        },
+        {
+          "name": "Captain Sanders' Shirt",
+          "note": "Reward of Captain Sanders' Hidden Treasure (quest 140)."
+        },
+        {
+          "name": "Captain Sanders' Sash",
+          "note": "Reward of Captain Sanders' Hidden Treasure (quest 140)."
+        },
+        {
+          "name": "Captain Sanders' Booty Bag",
+          "note": "Reward of Captain Sanders' Hidden Treasure (quest 140)."
+        }
+      ],
+      "rares": [
+        {
+          "name": "Brack",
+          "note": "Murloc rare, north coast."
+        },
+        {
+          "name": "Foe Reaper 4000",
+          "priority": true,
+          "note": "Harvest golem rare, southern fields; drops Scarecrow Trousers."
+        },
+        {
+          "name": "Leprithus",
+          "note": "Ghoul rare, night spawn, southwest of Jangolode Mine / Dagger Hills."
+        },
+        {
+          "name": "Master Digger",
+          "note": "Kobold rare, Jangolode Mine."
+        },
+        {
+          "name": "Sergeant Brashclaw",
+          "note": "Rare; exact spawn area unconfirmed."
+        },
+        {
+          "name": "Slark",
+          "note": "Murloc rare, south coast."
+        },
+        {
+          "name": "Vultros",
+          "note": "Vulture rare, Dust Plains / Dagger Hills."
+        }
+      ],
+      "boes": [
+        {
+          "name": "Scarecrow Trousers",
+          "note": "Chase drop from Foe Reaper 4000 (~25% per Classic data)."
+        }
+      ],
+      "professions": [
+        {
+          "skill": "Mining",
+          "target": 125,
+          "note": "Tin in Jangolode Mine and Gold Coast Quarry, odd silver/gold."
+        },
+        {
+          "skill": "Herbalism",
+          "target": 150,
+          "note": "Briarthorn/Mageroyal in farm country; Swiftthistle feeds Thorin's Alchemy; Stranglekelp on the coast."
+        },
+        {
+          "skill": "Cooking",
+          "target": 100,
+          "note": "Goretusk Liver Pie (skill 50) and Westfall Stew (skill 75) are quest awards here."
+        },
+        {
+          "skill": "Fishing",
+          "target": 150,
+          "note": "Westfall coast, Raw Longjaw Mud Snapper."
+        },
+        {
+          "skill": "First Aid",
+          "target": 125,
+          "note": "Wool cloth from Defias/Riverpaw; Heavy Wool Bandages before Deadmines."
+        }
+      ],
+      "guideRefs": []
     }
   ]
 }

@@ -60,9 +60,25 @@ if (journey) {
       assert(typeof item.name === "string" && item.name.length > 0, `zone ${zone.id} exploration has a name`);
     });
   });
-  // J1 complete-coverage snapshot: 142 Zephras Isle + 83 Elwynn Forest quests.
+  // Coverage snapshot: 142 Zephras Isle + 83 Elwynn Forest + 43 Westfall quests.
+  // Westfall settles #55 UNRESOLVED #12-17 (+9: Deed, two Coast quests, four
+  // Sanders steps, two Sentinel Hill flight steps) plus the same-name Harvesting
+  // the Harvesters siblings (+2); the Human-only flight step, Thunderbrew,
+  // and Sweet Amber stay ledgered.
   const questTotal = journey.zones.reduce((sum, zone) => sum + (zone.quests || []).length, 0);
-  assert(questTotal === 225, `route ships 225 quests (142 Zephras Isle + 83 Elwynn Forest), got ${questTotal}`);
+  assert(questTotal === 268, `route ships 268 quests (142 Zephras Isle + 83 Elwynn Forest + 43 Westfall), got ${questTotal}`);
+  assert(journey.zones.length === 3, `route ships 3 zones, got ${journey.zones.length}`);
+  const westfall = journey.zones.find((zone) => zone.id === `westfall`);
+  assert(!!westfall, `westfall zone block exists`);
+  assert(westfall.order === 3 && westfall.levelBand === `9-18`, `westfall order is 3 with levelBand 9-18`);
+  assert(westfall.quests.length === 43, `westfall ships 43 quests, got ${westfall.quests.length}`);
+  assert(westfall.exploration.length === 14, `westfall ships 14 exploration, got ${westfall.exploration.length}`);
+  assert(westfall.collectibles.length === 10, `westfall ships 10 collectibles, got ${westfall.collectibles.length}`);
+  assert(westfall.rares.length === 7, `westfall ships 7 rares, got ${westfall.rares.length}`);
+  assert(westfall.boes.length === 1, `westfall ships 1 BoE target, got ${westfall.boes.length}`);
+  assert(westfall.professions.length === 5, `westfall ships 5 profession milestones, got ${westfall.professions.length}`);
+  const flagged = westfall.rares.filter((rare) => rare.priority);
+  assert(flagged.length === 1 && flagged[0].name === `Foe Reaper 4000`, `Foe Reaper 4000 is the only westfall priority flag`);
 }
 
 // Part B: progress computation (pure logic, synthetic fixtures only).
