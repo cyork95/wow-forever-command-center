@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="#1d2618"/>
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="none" stroke="#e0b85a" stroke-width="10"/>
+  <text x="256" y="338" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="220" font-weight="bold" fill="#e0b85a" letter-spacing="8">LF</text>
+</svg>

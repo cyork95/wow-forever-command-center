@@ -184,6 +184,16 @@ h2 {
 .portrait-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .portrait-mono { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: "Cinzel", Georgia, serif; font-size: 40px; color: var(--ink); background: linear-gradient(180deg, var(--class, var(--gold)), var(--panel)); }
 .bio .facts { margin: 12px 0; }
+#launch-strip { margin: 12px 0 0; text-align: center; color: var(--gold); font-family: "Cinzel", Georgia, serif; font-size: 15px; letter-spacing: 0.06em; }
+#launch-panel { margin-top: 12px; }
+#launch-progress { color: var(--muted); margin: 0 0 10px; }
+.launch-row { display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 8px; cursor: pointer; background: var(--panel); }
+.launch-row input[type="checkbox"] { width: 22px; height: 22px; flex: none; }
+#guild-list h3 { margin: 18px 0 8px; font-family: "Cinzel", Georgia, serif; font-size: 22px; letter-spacing: 0.02em; }
+#guild-list h3:first-child { margin-top: 0; }
+#guild-list h4 { margin: 16px 0 8px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+#guild-list > p { max-width: 75ch; }
+#guild-list .facts { margin: 12px 0; }
 #journal-view { display: flex; gap: 8px; flex-wrap: wrap; }
 #journal-view button { min-height: 44px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
 #journal-view button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); background: linear-gradient(180deg, #f0d48a, var(--gold)); }

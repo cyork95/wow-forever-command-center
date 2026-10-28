@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "note": "Pre-launch checklist for the Nov 4 launch. Ticks persist per device under localStorage key wow-forever-launch-v1; the panel hides once everything is done or after Nov 11.",
+  "items": [
+    { "id": "found-guild", "label": "Found Lament of the Fallen  Malavus signs as Guild Master" },
+    { "id": "invite-duos", "label": "Invite the Xorr trio (Ephai, Akian, Vitiate)" },
+    { "id": "bank-tabs", "label": "Set the four guild bank tabs: Skins & Leather / Cloth & Enchanting / Herbs & Ore / Consumables" },
+    { "id": "bank-alt", "label": "Create the Stormwind bank alt (no reservation slot)" },
+    { "id": "skyrinis-portrait", "label": "Skyrinis portrait snapshot from the character creator" },
+    { "id": "dossier-34-test", "label": "Dossier #34 mini-test: Questie switch on, ~5 quests incl. one deliberate abandon, export, check for the Quest history section" },
+    { "id": "first-exports", "label": "First Dossier exports for every character played" },
+    { "id": "first-journal", "label": "First real journal session with Butler" }
+  ]
+}

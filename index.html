@@ -6,10 +6,12 @@
   <title>Forever Command Center</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#141910">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=25">
+  <link rel="stylesheet" href="assets/site.css?v=26">
 </head>
 <body>
   <div class="frame">
@@ -21,6 +23,14 @@
       <p class="character-pick"><label for="character-picker">Character</label> <select id="character-picker" aria-label="Character"></select></p>
     </div>
   </header>
+  <div class="wrap">
+    <p id="launch-strip" hidden></p>
+  </div>
+  <section id="launch-panel" class="wrap" hidden>
+    <h2>Launch Day</h2>
+    <p id="launch-progress"></p>
+    <div id="launch-list"></div>
+  </section>
   <main class="wrap">
     <nav class="tabs" role="tablist" aria-label="Command center">
         <button type="button" class="tab" role="tab" id="tab-roster" data-tab="roster" aria-controls="panel-roster" aria-selected="true">Bio</button>
@@ -35,6 +45,7 @@
         <button type="button" class="tab" role="tab" id="tab-dungeons" data-tab="dungeons" aria-controls="panel-dungeons" aria-selected="false" tabindex="-1">Dungeons</button>
         <button type="button" class="tab" role="tab" id="tab-quests" data-tab="quests" aria-controls="panel-quests" aria-selected="false" tabindex="-1">Quests</button>
         <button type="button" class="tab" role="tab" id="tab-macros" data-tab="macros" aria-controls="panel-macros" aria-selected="false" tabindex="-1">Macros</button>
+        <button type="button" class="tab" role="tab" id="tab-guild" data-tab="guild" aria-controls="panel-guild" aria-selected="false" tabindex="-1">Guild</button>
       </nav>
     <section class="panel" id="panel-roster" role="tabpanel" aria-labelledby="tab-roster" data-panel="roster">
       <div class="section-head">
@@ -153,6 +164,11 @@
       <div class="section-head"><h2>Lockouts</h2><p id="lockouts-note">Loading lockouts…</p></div>
       <div id="lockouts-list"></div>
     </section>
+    <section class="panel" id="panel-guild" role="tabpanel" aria-labelledby="tab-guild" data-panel="guild" hidden>
+      <div class="section-head"><h2>Guild</h2><p id="guild-note">Loading guild charter…</p></div>
+      <div id="guild-list"></div>
+    </section>
+
     <section class="panel" id="panel-tasks" role="tabpanel" aria-labelledby="tab-tasks" data-panel="tasks" hidden>
       <div class="section-head"><h2>Tasks</h2><p id="tasks-note">Loading tasks…</p></div>
       <div id="tasks-list"></div>
@@ -167,6 +183,6 @@
   </div>
   <script>const whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: true };</script>
   <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
-  <script src="assets/app.js?v=24"></script>
+  <script src="assets/app.js?v=25"></script>
 </body>
 </html>

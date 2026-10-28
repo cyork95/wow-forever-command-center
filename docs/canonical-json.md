@@ -313,6 +313,28 @@ as `characters.public.json` (no gold, bags, bank, mail, or ledger detail).
   and `scripts/tests/test-journal-logic.mjs` asserts the file shapes plus a
   no-fixture leak check over committed files (scripts/tests/ excluded).
 
+## Launch surface (board #59)
+
+`data/launch.json` is `{ schemaVersion, items: [ { id, label } ] }`: the eight
+pre-launch checklist rows in display order. `data/guild.json` is
+`{ schemaVersion, charter: { byline, articles: [ { heading, paragraphs[] } ] },
+facts{}, pairings[], houses: [ { name, paragraphs[] } ] }`: the owner-approved
+charter text, the facts/pairings block, and one headed section per house.
+Article III's four house customs live in its paragraphs array as separate
+strings so they render as distinct lines.
+
+- Site: a slim `#launch-strip` under the header shows client-side date maths
+  only (launch 2026-11-04, raids 2026-12-09, local dates, no hard-coded day
+  counts) and does not render on/after raid day. The Launch Day panel below
+  it ticks into `localStorage` key `wow-forever-launch-v1` (the Hunts/Journey
+  manual-check pattern) and hides once everything is checked or after
+  2026-11-11; a missing `launch.json` hides the panel without errors. The
+  Guild tab is last in `TABS` and renders the charter statically, with an
+  honest note when `guild.json` fails to load.
+- Manifest: `manifest.webmanifest` (name/short name/display/colors) plus
+  `assets/icons/` (emblem SVG source, 192/512 PNGs, apple-touch-icon). No
+  service worker, no offline caching.
+
 ## Journey (board #51, Phase J1)
 
 `data/journey.json` is a hand-curated route for Skyrinis's 100% completionist
