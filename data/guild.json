@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "note": "Guild charter and houses, owner-approved text. Static rendering only; the Guild tab shows an honest note when this file fails to load.",
+  "charter": {
+    "byline": "Drafted by Malavus Blackwell, Guild Master. Read three times before signing.",
+    "articles": [
+      {
+        "heading": "Article I  The Company",
+        "paragraphs": [
+          "The Lament of the Fallen is a company of friends and family, founded in Stormwind on the fourth of November. It exists for the road: to walk the world thoroughly, to gather what it offers, and to come home with the counts kept and the stories straight. No member is a stranger here; every member is somebody's people."
+        ]
+      },
+      {
+        "heading": "Article II  The Common Purse",
+        "paragraphs": [
+          "What the company gathers together, it holds together. Shared materials go to the guild bank first, sorted by family  Skins & Leather; Cloth & Enchanting; Herbs & Ore; Consumables. What a member needs for honest work, they take without ceremony and without debt. Generosity is not tracked. Theft is not possible among people who give first. Personal overflow and bind-on-equip finds live with the bank keeper in Stormwind."
+        ]
+      },
+      {
+        "heading": "Article III  House Customs",
+        "paragraphs": [
+          "These are observed without exception and without apology:",
+          "The Brew. Before any serious undertaking, Thorin drinks  ale when there is ale, strong tea when there is not. All alcohol the company finds travels to Thorin's pack. This is house tradition and older than the house.",
+          "The Pause. Sorinis skins what the company kills. Runs wait. A beast that fed the grove should also clothe it, and a tally kept halfway is worse than none.",
+          "The Staff Meeting. Before a serious fight, Malavus consults his staff  each in turn, by name. Any who fall in service are apologised to, formally, in the journal.",
+          "The Offering. Skyrinis harvests every node he passes, detours be damned, and the finest or strangest find of every expedition goes to the patriarch with his reports. The counts travel with the gift."
+        ]
+      },
+      {
+        "heading": "Article IV  Amendments",
+        "paragraphs": [
+          "This charter may be amended by the Guild Master with notice to the whole company, provided the amendment is read three times, improves at least one clause, and obliges nobody retroactively. A bargain kept well is kept by both sides."
+        ]
+      }
+    ]
+  },
+  "facts": {
+    "Guild": "Lament of the Fallen",
+    "Founded": "November 4, 2026  Stormwind",
+    "Guild Master": "Malavus Blackwell",
+    "Bank tabs": "Skins & Leather  Cloth & Enchanting  Herbs & Ore  Consumables"
+  },
+  "pairings": [
+    "Ephai Xorr + Thorin Caskmend",
+    "Akian Xorr + Sorinis Starhollow",
+    "Vitiate Xorr + Malavus Blackwell"
+  ],
+  "houses": [
+    {
+      "name": "The -inis Line",
+      "paragraphs": [
+        "An old Night Elf family whose names all end the same way, as if the family signs its work even on its children. Sorinis Starhollow, its patriarch and druid sage, holds the headship young and keeps the Tally for the whole line. Its newest branch is the Skyborne  kin by a lineage check, family by choice on both sides  whose first hero, Skyrinis Starhollow, walks the world to prove the branch's standing. More -inis names are yet to come; the line's future arrives on schedule, and its head goes first so he can guide them with knowledge instead of comfort."
+      ]
+    },
+    {
+      "name": "The Caskmends",
+      "paragraphs": [
+        "Coopers and brewers of Ironforge  the clan in the cellar, not on the statues. The name died out in Ironforge; nobody sells under it anymore. Thorin Caskmend means to revive it as an alchemy house, one herb and one recipe at a time. Any dwarf of the family, now or yet to come, carries the name the same way: the mending is the point; the name is the work."
+      ]
+    },
+    {
+      "name": "The Blackwells",
+      "paragraphs": [
+        "Tailors of Stormwind, whose coats outlive their wearers, with a quiet second trade in the back of the shop: the mending of arrangements. A house that could clothe a king and not defend a doorstep  until Malavus Blackwell signed for the power it lacked, on terms he read three times and improved in two places. Future Blackwells tie into his line. The interest accrues; the house stands."
+      ]
+    }
+  ]
+}

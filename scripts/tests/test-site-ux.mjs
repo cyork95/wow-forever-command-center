@@ -3,7 +3,7 @@
 // Static asserts on index.html plus vm asserts against assets/app.js with a
 // fake DOM and synthetic fixtures only.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import vm from "node:vm";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -94,7 +94,7 @@ const context = vm.createContext({ localStorage, document, location, history, UR
 vm.runInContext(stripped, context, { filename: "app.js" });
 
 const ux = vm.runInContext(`({
-  TABS, state, selectCharacter, selectedCharacter, showTab, render, renderAltoholic, loadStore, renderBio,
+  TABS, state, selectCharacter, selectedCharacter, showTab, render, renderAltoholic, loadStore, renderBio, launchStripText, renderLaunchStrip, renderLaunch, renderGuild,
 })`, context);
 
 function seedRoster() {
@@ -114,7 +114,7 @@ function seedRoster() {
 
 // Tab list: house gone, order kept.
 assert(!ux.TABS.includes("house"), "TABS drops house");
-assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros",
+assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros,guild",
   "remaining tabs keep their relative order");
 
 // Tab bar invariant (tab-grid-fix): the desktop .tabs grid must fit every
@@ -220,6 +220,73 @@ localStorage.setItem("wow-forever-command-center-v1", JSON.stringify({ selected:
 vm.runInContext("loadStore();", context);
 assert(ux.state.tab === "roster", "saved pre-Bio tab value still loads");
 assert(ux.state.selected === "sorinis", "saved selection survives loadStore");
+
+// Launch countdown: injected dates, no hard-coded day counts.
+assert(ux.launchStripText("2026-10-28") === "Launch in 7 days  Wednesday, November 4", "Oct 28 shows the 7-day countdown");
+assert(ux.launchStripText("2026-11-03") === "Launch in 1 day  Wednesday, November 4", "singular day before launch");
+assert(ux.launchStripText("2026-11-04") === "Launch day  welcome to Forever.", "launch-day line on Nov 4");
+assert(ux.launchStripText("2026-11-20") === "First raids in 19 days  December 9.", "raids countdown after launch");
+assert(ux.launchStripText("2026-12-08") === "First raids in 1 day  December 9.", "singular day before raids");
+assert(ux.launchStripText("2026-12-10") === null, "strip absent from Dec 9 on");
+vm.runInContext('renderLaunchStrip("2026-10-28");', context);
+assert(textOf(byId.get("launch-strip")) === "Launch in 7 days  Wednesday, November 4", "strip renders the countdown text");
+vm.runInContext('renderLaunchStrip("2026-12-10");', context);
+assert(byId.get("launch-strip").hidden === true, "strip hides on/after raids day");
+
+// Launch checklist: 8 items, persistence, hide rules.
+const launchDoc = JSON.parse(readFileSync(path.join(repo, "data", "launch.json"), "utf8"));
+assert(launchDoc.schemaVersion === 1, "launch.json schemaVersion is 1");
+assert(launchDoc.items.length === 8, "launch checklist has 8 items");
+ux.state.launch = launchDoc;
+localStorage.removeItem("wow-forever-launch-v1");
+vm.runInContext('renderLaunch("2026-10-28");', context);
+assert(byId.get("launch-panel").hidden === false, "launch panel renders before launch");
+assert(textOf(byId.get("launch-progress")) === "0 of 8 done", "progress starts at 0 of 8");
+assert(byId.get("launch-list").children.length === 8, "all 8 items render");
+const firstBox = byId.get("launch-list").children[0].children[0];
+assert(firstBox.tag === "input", "checklist row carries a checkbox");
+firstBox.checked = true;
+firstBox.handlers.change();
+assert(JSON.parse(localStorage.getItem("wow-forever-launch-v1"))["found-guild"] === true, "tick persists to wow-forever-launch-v1");
+assert(textOf(byId.get("launch-progress")) === "1 of 8 done", "progress counts the tick");
+vm.runInContext('renderLaunch("2026-10-28");', context);
+assert(byId.get("launch-list").children[0].children[0].checked === true, "tick restores from the store");
+const allChecked = {};
+launchDoc.items.forEach((item) => { allChecked[item.id] = true; });
+localStorage.setItem("wow-forever-launch-v1", JSON.stringify(allChecked));
+vm.runInContext('renderLaunch("2026-10-28");', context);
+assert(byId.get("launch-panel").hidden === true, "panel hides when all items are checked");
+localStorage.removeItem("wow-forever-launch-v1");
+vm.runInContext('renderLaunch("2026-11-12");', context);
+assert(byId.get("launch-panel").hidden === true, "panel hides after 2026-11-11");
+
+// Guild tab: charter, customs, houses from the real guild.json.
+const guildDoc = JSON.parse(readFileSync(path.join(repo, "data", "guild.json"), "utf8"));
+ux.state.guild = guildDoc;
+vm.runInContext("renderGuild();", context);
+assert(textOf(byId.get("guild-note")) === guildDoc.charter.byline, "guild byline renders as the sub-line");
+const guildText = textOf(byId.get("guild-list"));
+for (const heading of ["Article I  The Company", "Article II  The Common Purse", "Article III  House Customs", "Article IV  Amendments"]) {
+  assert(guildText.includes(heading), `guild article renders: ${heading}`);
+}
+for (const custom of ["The Brew.", "The Pause.", "The Staff Meeting.", "The Offering."]) {
+  assert(guildText.includes(custom), `guild custom renders: ${custom}`);
+}
+for (const house of ["The -inis Line", "The Caskmends", "The Blackwells"]) {
+  assert(guildText.includes(house), `guild house renders: ${house}`);
+}
+assert(guildText.includes("The Houses"), "houses section is headed");
+
+// Manifest: parses, palette colors, icon files exist.
+const manifest = JSON.parse(readFileSync(path.join(repo, "manifest.webmanifest"), "utf8"));
+assert(manifest.name === "WoW Forever Command Center", "manifest name");
+assert(manifest.short_name === "WoW Forever", "manifest short name");
+assert(manifest.display === "standalone", "manifest display standalone");
+assert(manifest.theme_color === "#141910", "manifest theme color matches the site");
+assert(manifest.background_color === "#1d2618", "manifest background matches the site panel");
+for (const icon of manifest.icons) {
+  assert(existsSync(path.join(repo, icon.src)), `manifest icon exists: ${icon.src}`);
+}
 
 
 if (failures) {

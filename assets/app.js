@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros"];
+const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "guild"];
 
 const HUNT_GROUPS = [
   { id: "collections", label: "Collections", types: ["collection"] },
@@ -31,6 +31,8 @@ const state = {
   backstories: null,
   journals: null,
   journalView: "picked",
+  launch: null,
+  guild: null,
   stats: { updated: null, characters: {} },
   addons: null,
   dungeons: null,
@@ -925,6 +927,141 @@ function renderPortrait(character, story) {
     frame.append(bioMonogram(character));
   }
   return frame;
+}
+
+const LAUNCH_DAY = "2026-11-04";
+const RAIDS_DAY = "2026-12-09";
+
+function launchDayName(ymd) {
+  const [y, m, d] = String(ymd).split("-").map(Number);
+  return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][new Date(y, m - 1, d).getDay()];
+}
+
+function dayCount(fromYmd, toYmd) {
+  const [fy, fm, fd] = String(fromYmd).split("-").map(Number);
+  const [ty, tm, td] = String(toYmd).split("-").map(Number);
+  return Math.round((new Date(ty, tm - 1, td) - new Date(fy, fm - 1, fd)) / 86400000);
+}
+
+function dayLabel(n) {
+  return `${n} day${n === 1 ? "" : "s"}`;
+}
+
+function launchStripText(today) {
+  if (today >= RAIDS_DAY) return null;
+  if (today === LAUNCH_DAY) return "Launch day  welcome to Forever.";
+  if (today > LAUNCH_DAY) return `First raids in ${dayLabel(dayCount(today, RAIDS_DAY))}  December 9.`;
+  return `Launch in ${dayLabel(dayCount(today, LAUNCH_DAY))}  ${launchDayName(LAUNCH_DAY)}, November 4`;
+}
+
+function renderLaunchStrip(todayOverride) {
+  const strip = document.getElementById("launch-strip");
+  if (!strip) return;
+  const now = new Date();
+  const today = todayOverride || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  const text = launchStripText(today);
+  if (!text) {
+    strip.hidden = true;
+    strip.replaceChildren();
+    return;
+  }
+  strip.hidden = false;
+  strip.textContent = text;
+}
+
+var LAUNCH_STORE_KEY = "wow-forever-launch-v1";
+var LAUNCH_CUTOFF = "2026-11-11";
+
+function launchChecks() {
+  try {
+    return JSON.parse(localStorage.getItem(LAUNCH_STORE_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+
+function renderLaunch(todayOverride) {
+  const panel = document.getElementById("launch-panel");
+  const progress = document.getElementById("launch-progress");
+  const list = document.getElementById("launch-list");
+  if (!panel || !progress || !list) return;
+  const hide = () => {
+    panel.hidden = true;
+    progress.textContent = "";
+    list.replaceChildren();
+  };
+  const items = asList(state.launch && state.launch.items);
+  if (!items.length) {
+    hide();
+    return;
+  }
+  const now = new Date();
+  const today = todayOverride || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  const checks = launchChecks();
+  const done = items.filter((item) => item && checks[item.id]).length;
+  if (done >= items.length || today > LAUNCH_CUTOFF) {
+    hide();
+    return;
+  }
+  panel.hidden = false;
+  progress.textContent = `${done} of ${items.length} done`;
+  list.replaceChildren();
+  items.forEach((item) => {
+    const row = el("label", { class: "launch-row" });
+    const box = el("input", {
+      type: "checkbox",
+      onchange: () => {
+        const saved = launchChecks();
+        if (box.checked) saved[item.id] = true;
+        else delete saved[item.id];
+        try {
+          localStorage.setItem(LAUNCH_STORE_KEY, JSON.stringify(saved));
+        } catch {}
+        renderLaunch();
+      }
+    });
+    if (checks[item.id]) box.checked = true;
+    row.append(box);
+    row.append(el("span", { text: item.label }));
+    list.append(row);
+  });
+}
+
+function renderGuild() {
+  const root = document.getElementById("guild-list");
+  const note = document.getElementById("guild-note");
+  if (!root || !note) return;
+  root.replaceChildren();
+  const guild = state.guild;
+  if (!guild || !guild.charter) {
+    note.textContent = "Guild charter not loaded.";
+    return;
+  }
+  note.textContent = (guild.charter && guild.charter.byline) || "";
+  asList(guild.charter.articles).forEach((article) => {
+    root.append(el("h3", { text: article.heading }));
+    asList(article.paragraphs).forEach((para) => root.append(el("p", { text: para })));
+  });
+  const facts = guild.facts || {};
+  const factKeys = Object.keys(facts);
+  const pairings = asList(guild.pairings);
+  if (factKeys.length || pairings.length) {
+    const grid = el("div", { class: "facts" });
+    factKeys.forEach((label) => grid.append(el("div", { class: "fact" }, [
+      el("span", { text: label }),
+      el("b", { text: String(facts[label]) })
+    ])));
+    root.append(grid);
+    pairings.forEach((line) => root.append(el("p", { class: "meta", text: line })));
+  }
+  const houses = asList(guild.houses);
+  if (houses.length) {
+    root.append(el("h3", { text: "The Houses" }));
+    houses.forEach((house) => {
+      root.append(el("h4", { text: house.name }));
+      asList(house.paragraphs).forEach((para) => root.append(el("p", { text: para })));
+    });
+  }
 }
 
 function renderBio() {
@@ -2588,6 +2725,9 @@ function render() {
   renderChecklist();
   renderJourney();
   renderJournal();
+  renderLaunchStrip();
+  renderLaunch();
+  renderGuild();
   renderLedgerBoards();
   renderAltoholic();
   renderProfessions();
@@ -2611,7 +2751,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile, backstoriesFile, journalsFile] = await Promise.all([
+    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile, backstoriesFile, journalsFile, launchFile, guildFile] = await Promise.all([
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
@@ -2626,7 +2766,9 @@ async function main() {
       loadJson("data/rarity.public.json").catch(() => null),
       loadJson("data/journey.json").catch(() => null),
       loadJson("data/backstories.json").catch(() => ({ backstories: {} })),
-      loadJson("data/journals.json").catch(() => ({ entries: [] }))
+      loadJson("data/journals.json").catch(() => ({ entries: [] })),
+      loadJson("data/launch.json").catch(() => null),
+      loadJson("data/guild.json").catch(() => null)
     ]);
     state.books = books;
     state.characters = characters;
@@ -2643,6 +2785,8 @@ async function main() {
     state.journey = journeyFile;
     state.backstories = (backstoriesFile && backstoriesFile.backstories) || {};
     state.journals = asList(journalsFile && journalsFile.entries);
+    state.launch = launchFile;
+    state.guild = guildFile;
     attCache = null;
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this
