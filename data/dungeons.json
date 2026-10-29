@@ -5063,6 +5063,26 @@
                                                              "quality":  "Uncommon"
                                                          }
                                                      ]
+                                        },
+                                        {
+                                            "name":  "Sealed Curiosity",
+                                            "aliases":  [
+
+                                                        ],
+                                            "note":  "Named secret of the City of Dalaran; details unconfirmed.",
+                                            "loot":  [
+
+                                                        ]
+                                        },
+                                        {
+                                            "name":  "Blessing of Zephras",
+                                            "aliases":  [
+
+                                                        ],
+                                            "note":  "Named secret of the City of Dalaran; details unconfirmed.",
+                                            "loot":  [
+
+                                                        ]
                                         }
                                     ],
                          "quests":  [
@@ -5307,6 +5327,10 @@
 
                                                           ],
                                             "startItem":  null
+                                        },
+                                        {
+                                            "name":  "Kyle's Gone Missing!",
+                                            "note":  "City of Dalaran quest; giver, steps, and rewards unconfirmed."
                                         }
                                     ]
                      },
