@@ -348,6 +348,17 @@ strings so they render as distinct lines.
   `assets/icons/` (emblem SVG source, 192/512 PNGs, apple-touch-icon). No
   service worker, no offline caching.
 
+## Map tab (board #61)
+
+The Map tab is last in `TABS` and renders static markup only: an intro line,
+  an "Open in MapGenie" link (https://mapgenie.io/world-of-warcraft-forever/maps/azeroth,
+  target _blank), and the official embed iframe (same URL with `?embed=light`).
+  The iframe is the site's only external embed -- no MapGenie scripts, trackers,
+  or fonts are loaded; nothing is mirrored into the repo, so MapGenie stays the
+  source of truth for map data. The intro and link render even when the iframe
+  is blocked. `scripts/tests/test-site-ux.mjs` asserts the tab order and the
+  exact link href and iframe src.
+
 ## Journey (board #51, Phase J1)
 
 `data/journey.json` is a hand-curated route for Skyrinis's 100% completionist
