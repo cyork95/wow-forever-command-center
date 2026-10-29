@@ -303,6 +303,22 @@ for (const house of ["The -inis Line", "The Caskmends", "The Blackwells"]) {
 }
 assert(guildText.includes("The Houses"), "houses section is headed");
 
+// Roster data: canonical talent links and professions (#43/#44/#47 + Skyrinis inversion).
+const rosterDoc = JSON.parse(readFileSync(path.join(repo, "data", "characters.json"), "utf8"));
+const rosterById = Object.fromEntries(rosterDoc.map((c) => [c.id, c]));
+const thorinLinks = Object.fromEntries(rosterById.thorin.talentLinks.map((l) => [l.label, l.url]));
+assert(thorinLinks["Restoration 0/10/41"] === "https://talentsforever.com/shaman/60/-005032-5530003315513151-SikjopqrstuvwxUV-7?b=70425&d=261020", "thorin canonical restoration link");
+assert(thorinLinks["Enhancement 18/33/0 (dual)"] === "https://talentsforever.com/shaman/60/050533002-052032031005112251--6", "thorin enhancement dual unchanged");
+const sorinisLinks = Object.fromEntries(rosterById.sorinis.talentLinks.map((l) => [l.label, l.url]));
+assert(sorinisLinks["Restoration 19/0/32"] === "https://talentsforever.com/druid/60/053222311--5050035103113041-BCDFGIkmpqrtuvwyzEH-7?b=70425&d=261021", "sorinis canonical restoration link");
+assert(sorinisLinks["Balance 38/0/13 (dual)"] === "https://talentsforever.com/druid/60/5532223115021051--505003-ABCDEFGHIJLMOPkmp-7", "sorinis balance dual unchanged");
+assert(rosterById.thorin.professions.join(",") === "Herbalism,Alchemy", "thorin is Herbalism/Alchemy");
+assert(rosterById.sorinis.professions.join(",") === "Skinning,Leatherworking", "sorinis is Skinning/Leatherworking");
+assert(rosterById.skyrinis.spec === "Healkin 31/0/20 (main), Feral 0/43/8 (dual)", "skyrinis healkin main, feral dual");
+const skyrinisLinks = Object.fromEntries(rosterById.skyrinis.talentLinks.map((l) => [l.label, l.url]));
+assert(skyrinisLinks["Healkin 31/0/20"] === "https://talentsforever.com/druid/60/5532200115001051--50503301021-AkmpCEHDB2IruJ4MBJOPot-7?b=70425&d=261024", "skyrinis healkin main link");
+assert(skyrinisLinks["Feral 0/43/8 (dual)"] === "https://talentsforever.com/druid/60/-55230302120132012551-05003-QRSTV2XYZbcdfghijVlo-6", "skyrinis feral dual link unchanged");
+
 // Manifest: parses, palette colors, icon files exist.
 const manifest = JSON.parse(readFileSync(path.join(repo, "manifest.webmanifest"), "utf8"));
 assert(manifest.name === "WoW Forever Command Center", "manifest name");

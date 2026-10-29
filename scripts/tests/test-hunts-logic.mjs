@@ -54,8 +54,8 @@ const t = vm.runInContext(`({
 
 // 0. Checklist batch (#28/#29/#32/#33): committed file totals and entries.
 const checklist = JSON.parse(readFileSync(path.join(repo, "data", "checklist.json"), "utf8"));
-assert(checklist.length === 47, `checklist carries 47 entries, got ${checklist.length}`);
-assert(checklist.filter((h) => h.type === "collection").length === 26, "collections total 26");
+assert(checklist.length === 53, `checklist carries 53 entries, got ${checklist.length}`);
+assert(checklist.filter((h) => h.type === "collection").length === 32, "collections total 32");
 assert(checklist.filter((h) => h.type === "gear").length === 15, "gear hunts total 15");
 const huntById = Object.fromEntries(checklist.map((h) => [h.id, h]));
 const violet = huntById["violet-vestments"];
