@@ -52,6 +52,28 @@ const t = vm.runInContext(`({
   state, HUNT_GROUPS,
 })`, context);
 
+// 0. Checklist batch (#28/#29/#32/#33): committed file totals and entries.
+const checklist = JSON.parse(readFileSync(path.join(repo, "data", "checklist.json"), "utf8"));
+assert(checklist.length === 47, `checklist carries 47 entries, got ${checklist.length}`);
+assert(checklist.filter((h) => h.type === "collection").length === 26, "collections total 26");
+assert(checklist.filter((h) => h.type === "gear").length === 15, "gear hunts total 15");
+const huntById = Object.fromEntries(checklist.map((h) => [h.id, h]));
+const violet = huntById["violet-vestments"];
+assert(violet && checklist.filter((h) => h.id === "violet-vestments").length === 1, "violet-vestments exists exactly once");
+assert(violet.zone === "City of Dalaran", "violet-vestments zoned to City of Dalaran");
+assert(violet.targetCharacters.includes("malavus") && violet.targetCharacters.includes("lucinis"), "violet-vestments targets malavus and lucinis");
+assert(!violet.notes.includes("stats are still hidden"), "violet-vestments drops the stale datamine wording");
+assert(violet.status === "Planned", "violet-vestments is an active Planned hunt");
+const oilskin = huntById["oilskin-leggings"];
+assert(!!oilskin, "oilskin leggings entry exists");
+assert(oilskin.notes.includes("Uldaman") && oilskin.notes.includes("Grimlok") && oilskin.notes.includes("Feral Combat +1"), "oilskin notes carry zone, boss, and bonus");
+assert(oilskin.targetCharacters.includes("sorinis") && oilskin.targetCharacters.includes("skyrinis"), "oilskin targets both druids");
+for (const name of ["Cerulean Prideclaw", "Spectral Bear", "Spectral Bear Cub", "Mystmane", "Azurky"]) {
+  const entry = checklist.find((h) => h.name === name);
+  assert(!!entry, `collection entry exists: ${name}`);
+  assert(/unconfirmed/i.test(entry.notes), `collection entry notes say unconfirmed: ${name}`);
+}
+
 // 1. Bucket helpers.
 t.state.checklist = [];
 assert(t.huntBucket({ type: "collection" }) === "collection", "bucket collection");

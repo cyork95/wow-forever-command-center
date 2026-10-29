@@ -9,7 +9,7 @@
     "roles": ["melee", "loremaster"],
     "reserve": true,
     "betaSafe": false,
-    "blurb": "Main look. Cat primary, bear off-tank. Walk on Air plus loremaster nodes. Reserve Oct 27.",
+    "blurb": "Main look. Cat primary, bear off-tank. Walk on Air plus loremaster nodes. Reserve Oct 27. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
     "talentNote": "Feral cat primary. The old 16/0/35 resto tree is retired. Rebuild in beta around Charge, Primal Fury, and Berserk.",
     "talentLinks": [
       { "label": "Feral 0/43/8", "url": "https://talentsforever.com/druid/60/-55230302120132012551-05003-QRSTV2XYZbcdfghijVlo-6" }
@@ -44,7 +44,7 @@
     "roles": ["caster", "crafter"],
     "reserve": true,
     "betaSafe": false,
-    "blurb": "Pairs with Vitiate Xorr, a Human paladin with Mining and Engineering. Face 10, foxtail, green eyes.",
+    "blurb": "Pairs with Vitiate Xorr, a Human paladin with Mining and Engineering. Face 10, foxtail, green eyes. Ruthless: +1% crit. The Human Spirit: +10% Spirit.",
     "talentNote": "Affliction 40/11/0 main. Demonology 5/33/13 dual.",
     "talentLinks": [
       { "label": "Affliction 40/11/0", "url": "https://talentsforever.com/warlock/60/25550300035201351-0050203001--BCDFKLNOPQTVXaAJ-6" },
@@ -62,7 +62,7 @@
     "roles": ["crafter"],
     "reserve": true,
     "betaSafe": false,
-    "blurb": "Launch roster. Replaces Bramblebeard Emberkeg. Pairs with Ephai Xorr, a Human warrior with Mining and Blacksmithing.",
+    "blurb": "Launch roster. Replaces Bramblebeard Emberkeg. Pairs with Ephai Xorr, a Human warrior with Mining and Blacksmithing. Artisan's Precision: +1% hit with spells and attacks. (Earth Fury was removed in the final racial pass.)",
     "talentNote": "Restoration main, healing-focused. Enhancement dual.",
     "talentLinks": [
       { "label": "Restoration 0/8/43", "url": "https://talentsforever.com/shaman/60/-035-5030523315513151-RSikmopqrstuvwxn-6" },
