@@ -215,6 +215,26 @@ const mono = byId.get("roster").children[0].children[0].children[0];
 assert(mono.className === "portrait-mono" && textOf(mono) === "FT",
   "absent portrait renders the monogram placeholder with initials");
 
+// Quirk counters vessel: block for a character with an entry, nothing without one.
+ux.state.tallies = { fixturin: { heading: "Fixture Tally", counters: [{ label: "Deeds done", value: 0 }, { label: "Oaths kept", value: 7 }] } };
+ux.state.selected = "fixturin";
+vm.runInContext("renderBio();", context);
+const tallyKids = byId.get("roster").children;
+const tallyTags = tallyKids.map((c) => `${c.tag || ""}:${c.className || ""}:${textOf(c).slice(0, 24)}`);
+const tallyAt = tallyTags.findIndex((t) => t.startsWith("h4:") && t.includes("Fixture Tally"));
+assert(tallyAt > 0, "bio renders the counters heading for a character with a tallies entry");
+const factsAt = tallyTags.findIndex((t) => t.includes(":facts:"));
+assert(factsAt >= 0 && tallyAt > factsAt, "counters block renders after the facts grid");
+const tallyCells = (tallyKids[tallyAt + 1] && tallyKids[tallyAt + 1].children) || [];
+assert(tallyCells.length === 2 && textOf(tallyCells[0]).includes("Deeds done") && textOf(tallyCells[1]).includes("7"),
+  "counters block renders each label and value in facts-grid cells");
+ux.state.selected = "sorinis";
+vm.runInContext("renderBio();", context);
+assert(!textOf(byId.get("roster")).includes("Fixture Tally"), "bio renders no counters block for a character without an entry");
+ux.state.tallies = {};
+vm.runInContext("renderBio();", context);
+assert(!textOf(byId.get("roster")).includes("Fixture Tally"), "bio renders no counters block when tallies fail to load");
+
 // A saved pre-Bio tab value still loads (tab ids unchanged, label only).
 localStorage.setItem("wow-forever-command-center-v1", JSON.stringify({ selected: "sorinis", scope: "character", tab: "roster" }));
 vm.runInContext("loadStore();", context);

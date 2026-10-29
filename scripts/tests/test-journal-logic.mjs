@@ -48,6 +48,24 @@ for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
   }
 }
 
+// Committed tallies seed: vessel shape, exactly sorinis + thorin, all values numeric 0.
+const talliesDoc = JSON.parse(readFileSync(path.join(repo, "data", "tallies.json"), "utf8"));
+assert(talliesDoc.schemaVersion === 1, "tallies.json schemaVersion is 1");
+assert(talliesDoc.tallies && typeof talliesDoc.tallies === "object", "tallies.json carries a tallies map");
+assert(Object.keys(talliesDoc.tallies).sort().join(",") === "sorinis,thorin",
+  "tallies.json seeds exactly sorinis and thorin");
+const expectedCounters = { sorinis: ["Skins taken clean", "Pieces finished", "Groves healed"], thorin: ["Brews taken"] };
+const expectedHeadings = { sorinis: "The Tally", thorin: "Brews Before Battle" };
+for (const [id, entry] of Object.entries(talliesDoc.tallies)) {
+  assert(rosterIds.includes(id), `tally key ${id} is a roster id`);
+  assert(entry.heading === expectedHeadings[id], `tally ${id} heading is as specified`);
+  assert(Array.isArray(entry.counters) && entry.counters.map((c) => c.label).join(",") === expectedCounters[id].join(","),
+    `tally ${id} counters are exactly as specified`);
+  for (const counter of entry.counters) {
+    assert(typeof counter.value === "number" && counter.value === 0, `tally ${id} counter ${counter.label} seeds numeric 0`);
+  }
+}
+
 // Committed journals file: shape plus character ids in roster, plus the four owner-approved Session Zero entries.
 const journalsDoc = JSON.parse(readFileSync(path.join(repo, "data", "journals.json"), "utf8"));
 assert(journalsDoc.schemaVersion === 1, "journals.json schemaVersion is 1");

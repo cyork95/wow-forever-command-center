@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "note": "Vessel rule: counter values are maintained by Butler from Dossier exports via data-only commits; the site never computes, guesses, or increments them. A value of 0 means not yet counted, never a claim about play.",
+  "tallies": {
+    "sorinis": {
+      "heading": "The Tally",
+      "counters": [
+        { "label": "Skins taken clean", "value": 0 },
+        { "label": "Pieces finished", "value": 0 },
+        { "label": "Groves healed", "value": 0 }
+      ]
+    },
+    "thorin": {
+      "heading": "Brews Before Battle",
+      "counters": [
+        { "label": "Brews taken", "value": 0 }
+      ]
+    }
+  }
+}

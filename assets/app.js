@@ -840,6 +840,9 @@ function el(tag, attrs, children) {
 function backstoryFor(characterId) {
   return ((state.backstories || {})[characterId]) || null;
 }
+function tallyFor(characterId) {
+  return ((state.tallies || {})[characterId]) || null;
+}
 function journalFor(characterId) {
   return asList(state.journals)
     .filter((entry) => entry && entry.character === characterId)
@@ -1084,6 +1087,16 @@ function renderBio() {
       el("b", { text: String(value) })
     ])));
     bio.append(grid);
+  }
+  const tally = tallyFor(character.id);
+  if (tally && asList(tally.counters).length) {
+    bio.append(el("h4", { text: tally.heading }));
+    const counters = el("div", { class: "facts" });
+    asList(tally.counters).forEach((counter) => counters.append(el("div", { class: "fact" }, [
+      el("span", { text: counter.label }),
+      el("b", { text: String(counter.value) })
+    ])));
+    bio.append(counters);
   }
   if (story) {
     bio.append(el("h4", { text: story.title }));
@@ -2751,7 +2764,7 @@ async function main() {
   bindTabs();
   showTab(state.tab);
   try {
-    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile, backstoriesFile, journalsFile, launchFile, guildFile] = await Promise.all([
+    const [characters, checklist, stats, addons, ledger, publicChars, screenshots, dungeons, books, guidesFile, attFile, rarityFile, journeyFile, backstoriesFile, journalsFile, launchFile, guildFile, talliesFile] = await Promise.all([
       loadJson("data/characters.json"),
       loadJson("data/checklist.json"),
       loadJson("data/stats.json"),
@@ -2768,7 +2781,8 @@ async function main() {
       loadJson("data/backstories.json").catch(() => ({ backstories: {} })),
       loadJson("data/journals.json").catch(() => ({ entries: [] })),
       loadJson("data/launch.json").catch(() => null),
-      loadJson("data/guild.json").catch(() => null)
+      loadJson("data/guild.json").catch(() => null),
+      loadJson("data/tallies.json").catch(() => ({ tallies: {} }))
     ]);
     state.books = books;
     state.characters = characters;
@@ -2787,6 +2801,7 @@ async function main() {
     state.journals = asList(journalsFile && journalsFile.entries);
     state.launch = launchFile;
     state.guild = guildFile;
+    state.tallies = (talliesFile && talliesFile.tallies) || {};
     attCache = null;
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this

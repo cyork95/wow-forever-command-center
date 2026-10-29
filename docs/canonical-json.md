@@ -319,6 +319,13 @@ as `characters.public.json` (no gold, bags, bank, mail, or ledger detail).
   and `scripts/tests/test-journal-logic.mjs` asserts the file shapes plus a
   no-fixture leak check over committed files (scripts/tests/ excluded).
 
+## Quirk counters (board #60)
+
+`data/tallies.json` is `{ schemaVersion, note, tallies: { <rosterId>: { heading, counters: [ { label, value } ] } } }`: a counter vessel per quirk character. `heading` names the block, each counter carries a `label` and a numeric `value`. Vessel rule: values are maintained by Butler from Dossier exports via data-only commits; the site never computes, guesses, or increments them. A value of 0 means "not yet counted," never a claim about play. Only owner-named counters exist -- no entries ship for malavus or skyrinis and none are invented for them.
+
+- Site: the Bio view renders a character's block after the facts grid -- the heading plus one facts-grid cell per counter (same `.facts`/`.fact` treatment, no new styling). Characters without an entry, and a tallies.json fetch/parse failure, render Bio exactly as before: no block, no placeholder, no errors.
+- Tests: `scripts/tests/test-journal-logic.mjs` asserts the seed shape (exactly sorinis + thorin, specified headings/labels, all values numeric 0); `scripts/tests/test-site-ux.mjs` asserts the block renders for a character with an entry (after the facts grid) and renders nothing without one or on load failure.
+
 ## Launch surface (board #59)
 
 `data/launch.json` is `{ schemaVersion, items: [ { id, label } ] }`: the eight
