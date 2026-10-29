@@ -641,14 +641,14 @@
     "name": "Violet Sorcerer's Vestments",
     "kind": "Set",
     "type": "gear",
-    "zone": "Unknown",
+    "zone": "City of Dalaran",
     "minLevel": 1,
     "priority": "Medium",
-    "status": "Parked",
-    "owners": ["lucinis"],
-    "targetCharacters": ["lucinis"],
-    "notes": "Cloth caster set from the Forever beta datamine. More pieces may show up later. Item stats are still hidden, so this is not farmable yet.",
-    "how": "Leave it parked until a piece actually drops. Relevant to Lucinis.",
+    "status": "Planned",
+    "owners": ["lucinis", "malavus"],
+    "targetCharacters": ["lucinis", "malavus"],
+    "notes": "City of Dalaran cloth caster set. The 5-piece bonus summons an arcane elemental. Relevant to Malavus (warlock) and Lucinis.",
+    "how": "Farm the City of Dalaran for set pieces. Relevant to Malavus (warlock) and Lucinis.",
     "source": "Icy Veins",
     "defaultDone": false
   },
@@ -770,6 +770,155 @@
     "notes": "Caster robes with Spell Pierce. Spells ignore part of the target's magical resistance, in the same role as Spell Penetration. Relevant to Lucinis, Vesperinis, Malavus, and Sorinis.",
     "how": "Leave it parked until the robes drop and the stat is confirmed on a character.",
     "source": "Icy Veins",
+    "defaultDone": false
+  },
+  {
+    "id": "cerulean-prideclaw",
+    "name": "Cerulean Prideclaw",
+    "kind": "Mount",
+    "type": "collection",
+    "zone": "Unknown",
+    "minLevel": 1,
+    "priority": "Low",
+    "status": "Parked",
+    "owners": [
+      "all"
+    ],
+    "accountWide": true,
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Cerulean Prideclaw"
+      ]
+    },
+    "notes": "Drop source unconfirmed in Butler research; tracked so the house total reflects it. Do not farm until a source is confirmed.",
+    "how": "Drop source unconfirmed; no farm route yet.",
+    "source": "Unconfirmed",
+    "defaultDone": false
+  },
+  {
+    "id": "spectral-bear",
+    "name": "Spectral Bear",
+    "kind": "Mount",
+    "type": "collection",
+    "zone": "Unknown",
+    "minLevel": 1,
+    "priority": "Low",
+    "status": "Parked",
+    "owners": [
+      "all"
+    ],
+    "accountWide": true,
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Spectral Bear"
+      ]
+    },
+    "notes": "Drop source unconfirmed in Butler research; tracked so the house total reflects it. Do not farm until a source is confirmed.",
+    "how": "Drop source unconfirmed; no farm route yet.",
+    "source": "Unconfirmed",
+    "defaultDone": false
+  },
+  {
+    "id": "spectral-bear-cub",
+    "name": "Spectral Bear Cub",
+    "kind": "Pet",
+    "type": "collection",
+    "zone": "Unknown",
+    "minLevel": 1,
+    "priority": "Low",
+    "status": "Parked",
+    "owners": [
+      "all"
+    ],
+    "accountWide": true,
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Spectral Bear Cub"
+      ]
+    },
+    "notes": "Drop source unconfirmed in Butler research; tracked so the house total reflects it. Do not farm until a source is confirmed.",
+    "how": "Drop source unconfirmed; no farm route yet.",
+    "source": "Unconfirmed",
+    "defaultDone": false
+  },
+  {
+    "id": "mystmane",
+    "name": "Mystmane",
+    "kind": "Pet",
+    "type": "collection",
+    "zone": "Unknown",
+    "minLevel": 1,
+    "priority": "Low",
+    "status": "Parked",
+    "owners": [
+      "all"
+    ],
+    "accountWide": true,
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Mystmane"
+      ]
+    },
+    "notes": "Drop source unconfirmed in Butler research; tracked so the house total reflects it. Do not farm until a source is confirmed.",
+    "how": "Drop source unconfirmed; no farm route yet.",
+    "source": "Unconfirmed",
+    "defaultDone": false
+  },
+  {
+    "id": "azurky",
+    "name": "Azurky",
+    "kind": "Pet",
+    "type": "collection",
+    "zone": "Unknown",
+    "minLevel": 1,
+    "priority": "Low",
+    "status": "Parked",
+    "owners": [
+      "all"
+    ],
+    "accountWide": true,
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Azurky"
+      ]
+    },
+    "notes": "Drop source unconfirmed in Butler research; tracked so the house total reflects it. Do not farm until a source is confirmed.",
+    "how": "Drop source unconfirmed; no farm route yet.",
+    "source": "Unconfirmed",
+    "defaultDone": false
+  },
+  {
+    "id": "oilskin-leggings",
+    "name": "Oilskin Leggings",
+    "mobs": [
+      "Grimlok"
+    ],
+    "kind": "Gear",
+    "type": "gear",
+    "zone": "Uldaman",
+    "minLevel": 42,
+    "priority": "Medium",
+    "status": "Parked",
+    "owners": ["sorinis", "skyrinis"],
+    "targetCharacters": ["sorinis", "skyrinis"],
+    "notes": "Uldaman leather legs from Grimlok. Feral Combat +1; a level 42 future farm target for both druids, Sorinis and Skyrinis.",
+    "how": "Farm Grimlok in Uldaman at 42 for the Feral Combat +1 legs.",
+    "source": "House",
     "defaultDone": false
   }
 ]
