@@ -197,6 +197,8 @@ h2 {
 #journal-view { display: flex; gap: 8px; flex-wrap: wrap; }
 #journal-view button { min-height: 44px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
 #journal-view button[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); background: linear-gradient(180deg, #f0d48a, var(--gold)); }
+.map-open { display: inline-block; min-height: 44px; line-height: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; color: inherit; text-decoration: none; }
+.map-frame { display: block; width: 100%; height: 75vh; min-height: 420px; border: 1px solid var(--line); border-radius: 12px; }
 #journal-list .card + .card { margin-top: 12px; }
 
 .sheet {

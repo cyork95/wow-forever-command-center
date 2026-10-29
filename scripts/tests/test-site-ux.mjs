@@ -56,6 +56,12 @@ assert(html.includes('id="tab-journal"') && html.includes('id="panel-journal"') 
 assert(/data-tab="roster"[^>]*>Bio</.test(html), "first tab label reads Bio");
 assert(!html.includes("tab-house") && !html.includes("panel-house") && !html.includes('data-tab="house"'),
   "no house tab button or panel in markup");
+assert(/data-tab="map"[^>]*>Map</.test(html), "map tab button is last with label Map");
+assert(html.indexOf('data-tab="guild"') < html.indexOf('data-tab="map"'), "map tab button sits after guild");
+assert(html.includes('id="panel-map"'), "map panel in markup");
+assert(html.includes("Azeroth, whole"), "map intro line present");
+assert(html.includes('href="https://mapgenie.io/world-of-warcraft-forever/maps/azeroth"'), "map link points at MapGenie Azeroth");
+assert(html.includes('<iframe class="map-frame" src="https://mapgenie.io/world-of-warcraft-forever/maps/azeroth?embed=light"'), "map iframe carries the exact embed src");
 for (const id of ["prof-character", "quest-character", "macro-character", "alto-character"]) {
   assert(!html.includes(`id="${id}"`), `per-tab select ${id} removed from markup`);
 }
@@ -114,8 +120,8 @@ function seedRoster() {
 
 // Tab list: house gone, order kept.
 assert(!ux.TABS.includes("house"), "TABS drops house");
-assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros,guild",
-  "remaining tabs keep their relative order");
+assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros,guild,map",
+  "map appended last, prior tabs keep their relative order");
 
 // Tab bar invariant (tab-grid-fix): the desktop .tabs grid must fit every
 // tab button in one row without hard-coding the tab count, so adding a tab

@@ -46,6 +46,7 @@
         <button type="button" class="tab" role="tab" id="tab-quests" data-tab="quests" aria-controls="panel-quests" aria-selected="false" tabindex="-1">Quests</button>
         <button type="button" class="tab" role="tab" id="tab-macros" data-tab="macros" aria-controls="panel-macros" aria-selected="false" tabindex="-1">Macros</button>
         <button type="button" class="tab" role="tab" id="tab-guild" data-tab="guild" aria-controls="panel-guild" aria-selected="false" tabindex="-1">Guild</button>
+        <button type="button" class="tab" role="tab" id="tab-map" data-tab="map" aria-controls="panel-map" aria-selected="false" tabindex="-1">Map</button>
       </nav>
     <section class="panel" id="panel-roster" role="tabpanel" aria-labelledby="tab-roster" data-panel="roster">
       <div class="section-head">
@@ -172,6 +173,12 @@
     <section class="panel" id="panel-tasks" role="tabpanel" aria-labelledby="tab-tasks" data-panel="tasks" hidden>
       <div class="section-head"><h2>Tasks</h2><p id="tasks-note">Loading tasks…</p></div>
       <div id="tasks-list"></div>
+    </section>
+
+    <section class="panel" id="panel-map" role="tabpanel" aria-labelledby="tab-map" data-panel="map" hidden>
+      <div class="section-head"><h2>Map</h2><p id="map-note">Azeroth, whole — MapGenie's interactive map. Pan and search here; your PRO progress tracking lives on MapGenie itself.</p></div>
+      <p><a class="map-open" href="https://mapgenie.io/world-of-warcraft-forever/maps/azeroth" target="_blank" rel="noopener">Open in MapGenie</a></p>
+      <iframe class="map-frame" src="https://mapgenie.io/world-of-warcraft-forever/maps/azeroth?embed=light" title="MapGenie — Azeroth interactive map" loading="lazy"></iframe>
     </section>
 
   </main>

@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "guild"];
+const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "guild", "map"];
 
 const HUNT_GROUPS = [
   { id: "collections", label: "Collections", types: ["collection"] },
