@@ -314,7 +314,7 @@ assert(sorinisLinks["Restoration 19/0/32"] === "https://talentsforever.com/druid
 assert(sorinisLinks["Balance 38/0/13 (dual)"] === "https://talentsforever.com/druid/60/5532223115021051--505003-ABCDEFGHIJLMOPkmp-7", "sorinis balance dual unchanged");
 assert(rosterById.thorin.professions.join(",") === "Herbalism,Alchemy", "thorin is Herbalism/Alchemy");
 assert(rosterById.sorinis.professions.join(",") === "Skinning,Leatherworking", "sorinis is Skinning/Leatherworking");
-assert(rosterById.skyrinis.spec === "Adventurer 9/25/17 (main) [non-raid  solo Journey], Healkin 31/0/20 (dual) [non-raid  solo Journey]", "skyrinis adventurer main, healkin dual");
+assert(rosterById.skyrinis.spec === "Adventurer 9/25/17 (main) [non-raid—solo Journey], Healkin 31/0/20 (dual) [non-raid—solo Journey]", "skyrinis adventurer main, healkin dual");
 const skyrinisLinks = Object.fromEntries(rosterById.skyrinis.talentLinks.map((l) => [l.label, l.url]));
 assert(skyrinisLinks["Adventurer 9/25/17 (main)"] === "https://talentsforever.com/druid/60/050022-0520030212311212-05533000001-BEFlRSmnVXZYabcfedou-10?b=70685h&d=261101", "skyrinis adventurer main link");
 assert(skyrinisLinks["Healkin 31/0/20 (dual)"] === "https://talentsforever.com/druid/60/5532200115001051--50503301021-AkmpCEHDB2IruJ4MBJOPot-7?b=70425&d=261024", "skyrinis healkin dual link");
