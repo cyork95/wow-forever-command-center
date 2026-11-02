@@ -4,13 +4,13 @@
     "name": "Skyrinis Starhollow",
     "race": "Skyborne",
     "className": "Druid",
-    "spec": "Adventurer 9/25/17 (main) [non-raid  solo Journey], Healkin 31/0/20 (dual) [non-raid  solo Journey]",
+    "spec": "Adventurer 9/25/17 (main) [non-raid—solo Journey], Healkin 31/0/20 (dual) [non-raid—solo Journey]",
     "professions": ["Mining", "Herbalism"],
     "roles": ["melee", "loremaster"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Main look. Cat primary, bear off-tank. Walk on Air plus loremaster nodes. Reserve Oct 27. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
-    "talentNote": "Adventurer tri-spec main (Balance 9 / Feral Combat 25 / Restoration 17)  self-sustaining cat/bear with real heals (Swiftmend) for solo Journey play. Healkin 31/0/20 dual. Feral 0/43/8 and Feralkin 31/20/0 are alternates, tracked in the builds file, not shown here. The old 16/0/35 resto tree is retired.",
+    "talentNote": "Adventurer tri-spec main (Balance 9 / Feral Combat 25 / Restoration 17)—self-sustaining cat/bear with real heals (Swiftmend) for solo Journey play. Healkin 31/0/20 dual. Feral 0/43/8 and Feralkin 31/20/0 are alternates, tracked in the builds file, not shown here. The old 16/0/35 resto tree is retired.",
     "talentLinks": [
       { "label": "Adventurer 9/25/17 (main)", "url": "https://talentsforever.com/druid/60/050022-0520030212311212-05533000001-BEFlRSmnVXZYabcfedou-10?b=70685h&d=261101" },
       { "label": "Healkin 31/0/20 (dual)", "url": "https://talentsforever.com/druid/60/5532200115001051--50503301021-AkmpCEHDB2IruJ4MBJOPot-7?b=70425&d=261024" }
@@ -22,13 +22,13 @@
     "name": "Sorinis Starhollow",
     "race": "Night Elf",
     "className": "Druid",
-    "spec": "Restoration 19/0/32 (main) [RAID  healer], Balance 38/0/13 (dual)",
+    "spec": "Restoration 19/0/32 (main) [RAID—healer], Balance 38/0/13 (dual)",
     "professions": ["Skinning", "Leatherworking"],
     "roles": ["caster", "crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Owl flagship. Pairs with Akian Xorr, a Night Elf bear with Skinning and Leatherworking.",
-    "talentNote": "Restoration 19/0/32 main [RAID  healer]. Balance 38/0/13 dual.",
+    "talentNote": "Restoration 19/0/32 main [RAID—healer]. Balance 38/0/13 dual.",
     "talentLinks": [
       { "label": "Restoration 19/0/32", "url": "https://talentsforever.com/druid/60/053222311--5050035103113041-BCDFGIkmpqrtuvwyzEH-7?b=70425&d=261021" },
       { "label": "Balance 38/0/13 (dual)", "url": "https://talentsforever.com/druid/60/5532223115021051--505003-ABCDEFGHIJLMOPkmp-7" }
@@ -40,13 +40,13 @@
     "name": "Malavus Blackwell",
     "race": "Human",
     "className": "Warlock",
-    "spec": "Affliction 40/11/0 (main) [RAID  DPS], Demonology (dual) [non-raid  pet build]",
+    "spec": "Affliction 40/11/0 (main) [RAID—DPS], Demonology (dual) [non-raid—pet build]",
     "professions": ["Enchanting", "Tailoring"],
     "roles": ["caster", "crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Pairs with Vitiate Xorr, a Human paladin with Mining and Engineering. Face 10, foxtail, green eyes. Ruthless: +1% crit. The Human Spirit: +10% Spirit.",
-    "talentNote": "Affliction 40/11/0 main [RAID  DPS]. Demonology 5/33/13 dual [non-raid  pet build].",
+    "talentNote": "Affliction 40/11/0 main [RAID—DPS]. Demonology 5/33/13 dual [non-raid—pet build].",
     "talentLinks": [
       { "label": "Affliction 40/11/0", "url": "https://talentsforever.com/warlock/60/25550300035201351-0050203001--BCDFKLNOPQTVXaAJ-6" },
       { "label": "Demonology 5/33/13 (dual)", "url": "https://talentsforever.com/warlock/60/005-0050233201211031351-20550001-6" }
@@ -58,13 +58,13 @@
     "name": "Thorin Caskmend",
     "race": "Dwarf",
     "className": "Shaman",
-    "spec": "Restoration 0/10/41 (main) [RAID  healer], Enhancement 3/37/11 (dual) [non-raid  duo/leveling]",
+    "spec": "Restoration 0/10/41 (main) [RAID—healer], Enhancement 3/37/11 (dual) [non-raid—duo/leveling]",
     "professions": ["Herbalism", "Alchemy"],
     "roles": ["crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Launch roster. Replaces Bramblebeard Emberkeg. Pairs with Ephai Xorr, a Human warrior with Mining and Blacksmithing. Artisan's Precision: +1% hit with spells and attacks. (Earth Fury was removed in the final racial pass.)",
-    "talentNote": "Restoration main, healing-focused [RAID  healer]. Enhancement dual [non-raid  duo/leveling]  Intellect-stacking spellhancer: Ancestral Knowledge, Mental Dexterity, Mental Quickness, Maelstrom Weapon, Rage of the Farseer; sustain via Water Shield, Mindfulness, Tidal Focus; Restoration points Tidal Focus 5 / Mindfulness 3 / Totemic Focus 2 / Water Shield 1.",
+    "talentNote": "Restoration main, healing-focused [RAID—healer]. Enhancement dual [non-raid—duo/leveling]—Intellect-stacking spellhancer: Ancestral Knowledge, Mental Dexterity, Mental Quickness, Maelstrom Weapon, Rage of the Farseer; sustain via Water Shield, Mindfulness, Tidal Focus; Restoration points Tidal Focus 5 / Mindfulness 3 / Totemic Focus 2 / Water Shield 1.",
     "talentLinks": [
       { "label": "Restoration 0/10/41", "url": "https://talentsforever.com/shaman/60/-005032-5530003315513151-SikjopqrstuvwxUV-7?b=70425&d=261020" },
       { "label": "Enhancement 3/37/11 (dual)", "url": "https://talentsforever.com/shaman/60/03-055032031105112251-053020001-RS2UVXYbcdefghSBjkZmq-10?b=70685h&d=261101" }
