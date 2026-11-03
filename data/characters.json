@@ -22,13 +22,13 @@
     "name": "Sorinis Starhollow",
     "race": "Night Elf",
     "className": "Druid",
-    "spec": "Restoration 19/0/32 (main) [RAID—healer], Balance 38/0/13 (dual)",
+    "spec": "Restoration 19/0/32 (main) [RAID—healer], Balance 38/0/13 (dual) [RAID-flex]",
     "professions": ["Skinning", "Leatherworking"],
     "roles": ["caster", "crafter"],
     "reserve": true,
     "betaSafe": false,
     "blurb": "Owl flagship. Pairs with Akian Xorr, a Night Elf bear with Skinning and Leatherworking.",
-    "talentNote": "Restoration 19/0/32 main [RAID—healer]. Balance 38/0/13 dual.",
+    "talentNote": "Restoration 19/0/32 main [RAID—healer]. Balance 38/0/13 dual [RAID-flex].",
     "talentLinks": [
       { "label": "Restoration 19/0/32", "url": "https://talentsforever.com/druid/60/053222311--5050035103113041-BCDFGIkmpqrtuvwyzEH-7?b=70425&d=261021" },
       { "label": "Balance 38/0/13 (dual)", "url": "https://talentsforever.com/druid/60/5532223115021051--505003-ABCDEFGHIJLMOPkmp-7" }
