@@ -70,5 +70,125 @@
       { "label": "Enhancement 3/37/11 (dual)", "url": "https://talentsforever.com/shaman/60/03-055032031105112251-053020001-RS2UVXYbcdefghSBjkZmq-10?b=70685h&d=261101" }
     ],
     "pairsWith": "Ephai Xorr (Human warrior, Mining / Blacksmithing)"
+  },
+  {
+    "id": "zephinis",
+    "name": "Zephinis Starhollow",
+    "race": "Skyborne",
+    "className": "Mage",
+    "spec": "Frostfire 0/19/32 (main) [non-raid—duo leveling], Fire 0/28/22 (dual) [non-raid—dungeons/group]",
+    "professions": [
+      "Mining",
+      "Engineering"
+    ],
+    "roles": [
+      "caster",
+      "crafter"
+    ],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "The -inis line's arcane scholar, handpicked by Sorinis to read the world for the clan. Pairs with Av Xorr, a Skyborne mage with Tailoring and Enchanting. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
+    "talentNote": "Frostfire 0/19/32 main [non-raid—duo leveling]—Fire woven into a Frost base with Ice Barrier, built for duo leveling with Av. Fire 0/28/22 dual [non-raid—dungeons/group].",
+    "talentLinks": [
+      {
+        "label": "Frostfire 0/19/32 (main)",
+        "url": "https://talentsforever.com/mage/60/-055103010301-203530333111301201-TUVXZbdjlm2n2qsuvyxnpt0rm-9?b=70630h&d=261029"
+      },
+      {
+        "label": "Fire 0/28/22 (dual)",
+        "url": "https://talentsforever.com/mage/60/-0551030103013303-2035200301013002-9"
+      }
+    ],
+    "pairsWith": "Av Xorr (Skyborne mage, Tailoring / Enchanting)"
+  },
+  {
+    "id": "varinis",
+    "name": "Varinis Starhollow",
+    "race": "Night Elf",
+    "className": "Warrior",
+    "spec": "",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "Joined the roster at launch, Nov 4 2026. Professions, quirk, and builds are still to be shaped.",
+    "talentNote": "",
+    "talentLinks": [],
+    "pairsWith": null
+  },
+  {
+    "id": "baldric",
+    "name": "Baldric Caskmend",
+    "race": "Dwarf",
+    "className": "Priest",
+    "spec": "",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "Joined the roster at launch, Nov 4 2026. Professions, quirk, and builds are still to be shaped.",
+    "talentNote": "",
+    "talentLinks": [],
+    "pairsWith": null
+  },
+  {
+    "id": "vesinis",
+    "name": "Vesinis Starhollow",
+    "race": "Night Elf",
+    "className": "Rogue",
+    "spec": "",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "Joined the roster at launch, Nov 4 2026. Professions, quirk, and builds are still to be shaped.",
+    "talentNote": "",
+    "talentLinks": [],
+    "pairsWith": null
+  },
+  {
+    "id": "harlan",
+    "name": "Harlan Blackwell",
+    "race": "Human",
+    "className": "Hunter",
+    "spec": "",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "Joined the roster at launch, Nov 4 2026. Professions, quirk, and builds are still to be shaped.",
+    "talentNote": "",
+    "talentLinks": [],
+    "pairsWith": null
+  },
+  {
+    "id": "justus",
+    "name": "Justus Blackwell",
+    "race": "Human",
+    "className": "Paladin",
+    "spec": "",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "Joined the roster at launch, Nov 4 2026. Professions, quirk, and builds are still to be shaped.",
+    "talentNote": "",
+    "talentLinks": [],
+    "pairsWith": null
+  },
+  {
+    "id": "mortimer",
+    "name": "Mortimer Blackwell",
+    "race": "Human",
+    "className": "Rogue",
+    "spec": "",
+    "professions": [],
+    "roles": [],
+    "reserve": false,
+    "betaSafe": false,
+    "blurb": "The Stormwind bank alt. By Cody's ruling he does not quest, raid, or journey — he keeps the company's purse in the Trade District.",
+    "talentNote": "",
+    "talentLinks": [],
+    "pairsWith": null
   }
 ]
