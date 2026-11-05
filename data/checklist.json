@@ -580,7 +580,7 @@
     "owners": ["all"],
     "accountWide": true,
     "assignedTo": ["all"],
-    "match": {"names": ["Mini-Diablo"]},
+    "match": {"names": ["Mini-Diablo", "Mini Diablo"]},
     "notes": "Forever pet from the Epic Pack.",
     "source": "Pack",
     "defaultDone": true
