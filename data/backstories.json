@@ -74,6 +74,20 @@
         "House": "The -inis line, Skyborne branch",
         "Quirk": "The Offering  no node passes unharvested, and the finest find of every expedition goes to Sorinis."
       }
+    },
+    "zephinis": {
+      "title": "The Young Librarian",
+      "paragraphs": [
+        "The Skyborne branch kept two things through the long sundering: their names, and their books. When the kinship with the -inis line was established and Sorinis came to choose his volunteers, the druids and hunters stepped forward first — and then the branch's young librarian, who had spent the sundering's long twilight in the High Order's archives, learning the spellcraft his ancestors carried into the sky. Sorinis, who adventures so that future -inis may be guided by knowledge instead of comfort, recognised a kindred instrument. Skyrinis would prove the branch by gathering the world. This one would prove it by reading the world — every scroll the old kingdoms lost, every library the wars scattered, deciphered and tallied and sent home, until the -inis line held not just the land's bounty but its memory. He starts on Zephras Isle with an empty satchel and a patriarch's blessing, which is to say: a list, with the whole world's writing on it."
+      ],
+      "facts": {
+        "Race": "Skyborne",
+        "Class": "Mage",
+        "Role": "Frostfire (Fire dual)",
+        "Professions": "Mining & Engineering",
+        "House": "The -inis line, Skyborne branch",
+        "Quirk": "The Archive Stop — he cannot pass a scroll, book, or readable ruin without stopping to check it for the clan archive."
+      }
     }
   }
 }
