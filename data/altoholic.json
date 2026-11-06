@@ -1,446 +1,1380 @@
 {
-    "updated":  "2026-10-03T15:22:00",
-    "source":  "Altoholic",
-    "characters":  [
-                       {
-                           "name":  "Ullrathor Highgale",
-                           "realm":  "Classic Beta PvE 2",
-                           "level":  15,
-                           "class":  "Druid",
-                           "race":  "",
-                           "zone":  "Darkshore",
-                           "subZone":  "",
-                           "gold":  19523,
-                           "rested":  false,
-                           "xp":  12567,
-                           "maxXp":  14400,
-                           "played":  51608,
-                           "lastUpdate":  1791055320,
-                           "itemLevel":  7.1,
-                           "gear":  [
-                                        {
-                                            "slot":  "Shirt",
-                                            "name":  "Thendal Survivalist\u0027s Shirt",
-                                            "id":  271668
-                                        },
-                                        {
-                                            "slot":  "Chest",
-                                            "name":  "Elder\u0027s Tunic",
-                                            "id":  263332
-                                        },
-                                        {
-                                            "slot":  "Waist",
-                                            "name":  "Dryweed Belt",
-                                            "id":  15399
-                                        },
-                                        {
-                                            "slot":  "Legs",
-                                            "name":  "Shadowgale Pants",
-                                            "id":  263307
-                                        },
-                                        {
-                                            "slot":  "Feet",
-                                            "name":  "Empyrean Treads",
-                                            "id":  273875
-                                        },
-                                        {
-                                            "slot":  "Wrist",
-                                            "name":  "Windsong Bangles",
-                                            "id":  263336
-                                        },
-                                        {
-                                            "slot":  "Hands",
-                                            "name":  "Welldrip Gloves",
-                                            "id":  15401
-                                        },
-                                        {
-                                            "slot":  "Back",
-                                            "name":  "Hunter\u0027s Simple Cloak",
-                                            "id":  257943
-                                        },
-                                        {
-                                            "slot":  "Main Hand",
-                                            "name":  "Balanced Quarterstaff",
-                                            "id":  257343
-                                        }
-                                    ],
-                           "bags":  [
-                                        {
-                                            "id":  0,
-                                            "name":  "Backpack",
-                                            "items":  [
-                                                          {
-                                                              "name":  "Hearthstone",
-                                                              "id":  6948,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Minor Mana Potion",
-                                                              "id":  2455,
-                                                              "count":  5
-                                                          },
-                                                          {
-                                                              "name":  "Lesser Healing Potion",
-                                                              "id":  858,
-                                                              "count":  2
-                                                          },
-                                                          {
-                                                              "name":  "Minor Healing Potion",
-                                                              "id":  118,
-                                                              "count":  2
-                                                          },
-                                                          {
-                                                              "name":  "Minor Troll\u0027s Blood Elixir",
-                                                              "id":  3382,
-                                                              "count":  5
-                                                          },
-                                                          {
-                                                              "name":  "Scroll: LOWER PING WHOMEVER",
-                                                              "id":  211787,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Scroll: LOWER PING WHOMEVER",
-                                                              "id":  211787,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Pincer Bites",
-                                                              "id":  263512,
-                                                              "count":  5
-                                                          },
-                                                          {
-                                                              "name":  "Skywall Souffle",
-                                                              "id":  263509,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Windstone",
-                                                              "id":  255663,
-                                                              "count":  13
-                                                          },
-                                                          {
-                                                              "name":  "Mining Pick",
-                                                              "id":  2901,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Sorrowsong Gloves",
-                                                              "id":  263310,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Ancient Heirloom",
-                                                              "id":  264908,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Linen Cloth",
-                                                              "id":  2589,
-                                                              "count":  18
-                                                          },
-                                                          {
-                                                              "name":  "Recipe: Pincer Bites",
-                                                              "id":  263513,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Recipe: Skywall Souffle",
-                                                              "id":  263511,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Advisor Emerson\u0027s Instructions",
-                                                              "id":  285356,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Anaya\u0027s Pendant",
-                                                              "id":  5382,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Empty Cliffspring Falls Sampler",
-                                                              "id":  15844,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Empty Sampling Tube",
-                                                              "id":  12350,
-                                                              "count":  1
-                                                          }
-                                                      ]
-                                        },
-                                        {
-                                            "id":  1,
-                                            "name":  "Small Green Pouch",
-                                            "items":  [
-                                                          {
-                                                              "name":  "Fandral\u0027s Message",
-                                                              "id":  5390,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Feather of Jai\u0027vhanel",
-                                                              "id":  281038,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Highborne Relic",
-                                                              "id":  5360,
-                                                              "count":  7
-                                                          },
-                                                          {
-                                                              "name":  "Thundris\u0027 Letter",
-                                                              "id":  279045,
-                                                              "count":  1
-                                                          },
-                                                          {
-                                                              "name":  "Al\u0027Alketh Cultist\u0027s Ear",
-                                                              "id":  258771,
-                                                              "count":  3
-                                                          }
-                                                      ]
-                                        },
-                                        {
-                                            "id":  2,
-                                            "name":  "Simple Leather Satchel",
-                                            "items":  [
-                                                          {
-                                                              "name":  "Loose Chain Bracers",
-                                                              "id":  2643,
-                                                              "count":  1
-                                                          }
-                                                      ]
-                                        },
-                                        {
-                                            "id":  4,
-                                            "name":  "Linen Bag",
-                                            "items":  [
-                                                          {
-                                                              "name":  "Warped Cloak",
-                                                              "id":  1505,
-                                                              "count":  1
-                                                          }
-                                                      ]
-                                        }
-                                    ],
-                           "stats":  {
-                                         "health":  462,
-                                         "power":  "904",
-                                         "powerType":  "Mana",
-                                         "strength":  "34",
-                                         "agility":  "34",
-                                         "stamina":  "46",
-                                         "intellect":  "63",
-                                         "armor":  "88",
-                                         "melee":  "25-35",
-                                         "attackPower":  "48",
-                                         "spellDamage":  "3",
-                                         "spellHealing":  "3",
-                                         "spellCrit":  "6.18"
-                                     },
-                           "quests":  [
-                                          {
-                                              "zone":  "Ashenvale",
-                                              "quests":  [
-                                                             {
-                                                                 "id":  990,
-                                                                 "name":  "Trek to Ashenvale",
-                                                                 "ready":  false
-                                                             }
-                                                         ]
-                                          },
-                                          {
-                                              "zone":  "Darkshore",
-                                              "quests":  [
-                                                             {
-                                                                 "id":  958,
-                                                                 "name":  "Tools of the Highborne",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  957,
-                                                                 "name":  "Bashal\u0027Aran",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  98025,
-                                                                 "name":  "WANTED: Jai\u0027vhanel",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  1002,
-                                                                 "name":  "Buzzbox 323",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  4811,
-                                                                 "name":  "The Red Crystal",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  4762,
-                                                                 "name":  "The Cliffspring River",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  2138,
-                                                                 "name":  "Cleansing of the Infected",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  963,
-                                                                 "name":  "For Love Eternal",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  947,
-                                                                 "name":  "Cave Mushrooms",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  1138,
-                                                                 "name":  "Fruit of the Sea",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  952,
-                                                                 "name":  "Grove of the Ancients",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  965,
-                                                                 "name":  "The Tower of Althalaxx",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  4740,
-                                                                 "name":  "WANTED: Murkdeep!",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  986,
-                                                                 "name":  "A Lost Master",
-                                                                 "ready":  false
-                                                             },
-                                                             {
-                                                                 "id":  729,
-                                                                 "name":  "The Absent Minded Prospector",
-                                                                 "ready":  false
-                                                             }
-                                                         ]
-                                          },
-                                          {
-                                              "zone":  "Stormwind City",
-                                              "quests":  [
-                                                             {
-                                                                 "id":  97914,
-                                                                 "name":  "Quest 97914",
-                                                                 "ready":  false
-                                                             }
-                                                         ]
-                                          },
-                                          {
-                                              "zone":  "Westfall",
-                                              "quests":  [
-                                                             {
-                                                                 "id":  98021,
-                                                                 "name":  "Quest 98021",
-                                                                 "ready":  false
-                                                             }
-                                                         ]
-                                          },
-                                          {
-                                              "zone":  "Druid",
-                                              "quests":  [
-                                                             {
-                                                                 "id":  6122,
-                                                                 "name":  "The Principal Source",
-                                                                 "ready":  false
-                                                             }
-                                                         ]
-                                          }
-                                      ],
-                           "professions":  [
-                                               {
-                                                   "name":  "Cooking",
-                                                   "rank":  1,
-                                                   "max":  75
-                                               },
-                                               {
-                                                   "name":  "Mining",
-                                                   "rank":  1,
-                                                   "max":  75
-                                               },
-                                               {
-                                                   "name":  "Herbalism",
-                                                   "rank":  3,
-                                                   "max":  75
-                                               }
-                                           ],
-                           "reputations":  [
-                                               {
-                                                   "name":  "Faction 2758",
-                                                   "standing":  "Friendly",
-                                                   "progress":  2300,
-                                                   "next":  6000
-                                               },
-                                               {
-                                                   "name":  "Stormwind",
-                                                   "standing":  "Friendly",
-                                                   "progress":  602,
-                                                   "next":  6000
-                                               },
-                                               {
-                                                   "name":  "Alliance",
-                                                   "standing":  "Friendly",
-                                                   "progress":  727,
-                                                   "next":  6000
-                                               },
-                                               {
-                                                   "name":  "Faction 2740",
-                                                   "standing":  "Friendly",
-                                                   "progress":  200,
-                                                   "next":  6000
-                                               },
-                                               {
-                                                   "name":  "Faction 2779",
-                                                   "standing":  "Friendly",
-                                                   "progress":  3035,
-                                                   "next":  6000
-                                               },
-                                               {
-                                                   "name":  "Darnassus",
-                                                   "standing":  "Neutral",
-                                                   "progress":  2247,
-                                                   "next":  3000
-                                               },
-                                               {
-                                                   "name":  "Ironforge",
-                                                   "standing":  "Neutral",
-                                                   "progress":  2502,
-                                                   "next":  3000
-                                               },
-                                               {
-                                                   "name":  "Cenarion Circle",
-                                                   "standing":  "Neutral",
-                                                   "progress":  2135,
-                                                   "next":  3000
-                                               },
-                                               {
-                                                   "name":  "Gnomeregan",
-                                                   "standing":  "Neutral",
-                                                   "progress":  2690,
-                                                   "next":  3000
-                                               }
-                                           ],
-                           "currencies":  [
-
-                                          ],
-                           "mail":  [
-
-                                    ]
-                       }
-                   ]
+  "updated": "2026-11-06T07:05:41",
+  "source": "Altoholic",
+  "characters": [
+    {
+      "name": "Malavus Blackwell",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 1,
+      "class": "Warlock",
+      "race": "Human",
+      "zone": "Elwynn Forest",
+      "subZone": "Northshire Valley",
+      "gold": 0,
+      "rested": false,
+      "xp": 0,
+      "maxXp": 400,
+      "played": 5,
+      "lastUpdate": 1793847421,
+      "itemLevel": null,
+      "gear": [],
+      "bags": [
+        {
+          "id": 0,
+          "name": "Backpack",
+          "items": [
+            {
+              "name": "Forest Mushroom Cap",
+              "id": 4604,
+              "count": 4
+            },
+            {
+              "name": "Refreshing Spring Water",
+              "id": 159,
+              "count": 2
+            },
+            {
+              "name": "Hearthstone",
+              "id": 6948,
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "health": 53,
+        "power": "140",
+        "powerType": "Mana",
+        "strength": "20",
+        "agility": "20",
+        "stamina": "21",
+        "intellect": "22",
+        "armor": "0",
+        "melee": "2-4",
+        "attackPower": "10",
+        "spellDamage": "0",
+        "spellHealing": "0",
+        "spellCrit": "6.00"
+      },
+      "quests": [],
+      "professions": [],
+      "reputations": [
+        {
+          "name": "Alliance",
+          "standing": "Friendly",
+          "progress": 300,
+          "next": 6000
+        },
+        {
+          "name": "Darnassus",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Gnomeregan",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Ironforge",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Stormwind",
+          "standing": "Friendly",
+          "progress": 1000,
+          "next": 6000
+        }
+      ],
+      "currencies": [],
+      "mail": []
+    },
+    {
+      "name": "Mortimer Blackwell",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 1,
+      "class": "Rogue",
+      "race": "Human",
+      "zone": "Stormwind City",
+      "subZone": "Trade District",
+      "gold": 0,
+      "rested": true,
+      "xp": 55,
+      "maxXp": 400,
+      "played": 784,
+      "lastUpdate": 1793948741,
+      "itemLevel": null,
+      "gear": [],
+      "bags": [
+        {
+          "id": 0,
+          "name": "Backpack",
+          "items": [
+            {
+              "name": "Hearthstone",
+              "id": 6948,
+              "count": 1
+            },
+            {
+              "name": "Peacebloom",
+              "id": 2447,
+              "count": 13
+            },
+            {
+              "name": "Malachite",
+              "id": 774,
+              "count": 1
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 1
+            },
+            {
+              "name": "Copper Bar",
+              "id": 2840,
+              "count": 19
+            },
+            {
+              "name": "Silverleaf",
+              "id": 765,
+              "count": 7
+            },
+            {
+              "name": "Scroll: CHAP BALK WELLES",
+              "id": 211786,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Character Bank Tab Bag (DNT)",
+          "items": [
+            {
+              "name": "Copper Bar",
+              "id": 2840,
+              "count": 20
+            },
+            {
+              "name": "Copper Bar",
+              "id": 2840,
+              "count": 8
+            },
+            {
+              "name": "Copper Ore",
+              "id": 2770,
+              "count": 20
+            },
+            {
+              "name": "Copper Ore",
+              "id": 2770,
+              "count": 13
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 20
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 20
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 20
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 6
+            },
+            {
+              "name": "Malachite",
+              "id": 774,
+              "count": 1
+            },
+            {
+              "name": "Tigerseye",
+              "id": 818,
+              "count": 1
+            },
+            {
+              "name": "Shadowgem",
+              "id": 1210,
+              "count": 1
+            },
+            {
+              "name": "Silverleaf",
+              "id": 765,
+              "count": 9
+            },
+            {
+              "name": "Peacebloom",
+              "id": 2447,
+              "count": 20
+            },
+            {
+              "name": "Peacebloom",
+              "id": 2447,
+              "count": 3
+            },
+            {
+              "name": "Earthroot",
+              "id": 2449,
+              "count": 6
+            },
+            {
+              "name": "Linen Cloth",
+              "id": 2589,
+              "count": 7
+            },
+            {
+              "name": "Pyrite",
+              "id": 249391,
+              "count": 2
+            },
+            {
+              "name": "Scroll: LOWER PING WHOMEVER",
+              "id": 211787,
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "health": 55,
+        "power": "100",
+        "powerType": "Energy",
+        "strength": "21",
+        "agility": "23",
+        "stamina": "21",
+        "intellect": "20",
+        "armor": "0",
+        "melee": "3-5",
+        "attackPower": "26",
+        "spellDamage": "0",
+        "spellHealing": "0",
+        "spellCrit": "1.00"
+      },
+      "quests": [],
+      "professions": [],
+      "reputations": [
+        {
+          "name": "Alliance",
+          "standing": "Friendly",
+          "progress": 300,
+          "next": 6000
+        },
+        {
+          "name": "Darnassus",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Gnomeregan",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Ironforge",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Stormwind",
+          "standing": "Friendly",
+          "progress": 1000,
+          "next": 6000
+        }
+      ],
+      "currencies": [],
+      "mail": []
+    },
+    {
+      "name": "Skyrinis Starhollow",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 11,
+      "class": "Druid",
+      "race": "Skyborne",
+      "zone": "Zephras Isle",
+      "subZone": "Valanaar",
+      "gold": 3009,
+      "rested": true,
+      "xp": 1818,
+      "maxXp": 8800,
+      "played": 23927,
+      "lastUpdate": 1793948654,
+      "itemLevel": 2.7,
+      "gear": [
+        {
+          "slot": "Shirt",
+          "name": "Thendal Survivalist's Shirt",
+          "id": 271668
+        },
+        {
+          "slot": "Chest",
+          "name": "Worn Leather Vest",
+          "id": 1425
+        },
+        {
+          "slot": "Waist",
+          "name": "Wolfhide Belt",
+          "id": 263424
+        },
+        {
+          "slot": "Legs",
+          "name": "Well-Worn Pants",
+          "id": 257334
+        },
+        {
+          "slot": "Feet",
+          "name": "Worn Leather Boots",
+          "id": 1419
+        },
+        {
+          "slot": "Wrist",
+          "name": "Vuldren Hide Bracers",
+          "id": 257280
+        },
+        {
+          "slot": "Hands",
+          "name": "Ragged Leather Gloves",
+          "id": 1368
+        },
+        {
+          "slot": "Back",
+          "name": "Hunter's Simple Cloak",
+          "id": 257943
+        },
+        {
+          "slot": "Main Hand",
+          "name": "Novice's Quarterstaff",
+          "id": 257282
+        }
+      ],
+      "bags": [
+        {
+          "id": 0,
+          "name": "Backpack",
+          "items": [
+            {
+              "name": "Hearthstone",
+              "id": 6948,
+              "count": 1
+            },
+            {
+              "name": "Minor Mana Potion",
+              "id": 2455,
+              "count": 5
+            },
+            {
+              "name": "Minor Healing Potion",
+              "id": 118,
+              "count": 2
+            },
+            {
+              "name": "Red Delicious Stormapple",
+              "id": 252032,
+              "count": 5
+            },
+            {
+              "name": "Brilliant Smallfish",
+              "id": 6290,
+              "count": 5
+            },
+            {
+              "name": "Refreshing Spring Water",
+              "id": 159,
+              "count": 6
+            },
+            {
+              "name": "Linen Bandage",
+              "id": 1251,
+              "count": 10
+            },
+            {
+              "name": "Basic Campfire Kit",
+              "id": 279981,
+              "count": 4
+            },
+            {
+              "name": "First Aid Kit",
+              "id": 279968,
+              "count": 3
+            },
+            {
+              "name": "Fish Bowl",
+              "id": 279967,
+              "count": 4
+            },
+            {
+              "name": "Windstone",
+              "id": 255663,
+              "count": 3
+            },
+            {
+              "name": "Fishing Pole",
+              "id": 6256,
+              "count": 1
+            },
+            {
+              "name": "Flutterfly Swatter",
+              "id": 263329,
+              "count": 1
+            },
+            {
+              "name": "Worn Leather Pants",
+              "id": 1423,
+              "count": 1
+            },
+            {
+              "name": "Raw Brilliant Smallfish",
+              "id": 6291,
+              "count": 4
+            },
+            {
+              "name": "Flint and Tinder",
+              "id": 4471,
+              "count": 1
+            },
+            {
+              "name": "Index Esoteria",
+              "id": 254584,
+              "count": 1
+            },
+            {
+              "name": "Windsong Crawler Meat",
+              "id": 257941,
+              "count": 5
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Apprentice's Mining Pack",
+          "items": [
+            {
+              "name": "Mining Pick",
+              "id": 2901,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Character Bank Tab Bag (DNT)",
+          "items": [
+            {
+              "name": "Ancient Heirloom",
+              "id": 264908,
+              "count": 1
+            },
+            {
+              "name": "10 Pound Mud Snapper",
+              "id": 6292,
+              "count": 1
+            },
+            {
+              "name": "Recipe: Skywall Souffle",
+              "id": 263511,
+              "count": 1
+            },
+            {
+              "name": "Recipe: Longjaw Mud Snapper",
+              "id": 6328,
+              "count": 1
+            },
+            {
+              "name": "Raw Longjaw Mud Snapper",
+              "id": 6289,
+              "count": 6
+            },
+            {
+              "name": "Crawler Claw",
+              "id": 2675,
+              "count": 3
+            },
+            {
+              "name": "Small Egg",
+              "id": 6889,
+              "count": 7
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "health": 244,
+        "power": "440",
+        "powerType": "Mana",
+        "strength": "24",
+        "agility": "31",
+        "stamina": "28",
+        "intellect": "37",
+        "armor": "0",
+        "melee": "11-15",
+        "attackPower": "28",
+        "spellDamage": "0",
+        "spellHealing": "0",
+        "spellCrit": "5.28"
+      },
+      "quests": [
+        {
+          "zone": "Zephras Isle",
+          "quests": [
+            {
+              "id": 93317,
+              "name": "Crab Season",
+              "ready": false
+            },
+            {
+              "id": 92685,
+              "name": "The Hills Have Eyes",
+              "ready": false
+            },
+            {
+              "id": 94896,
+              "name": "Quest 94896",
+              "ready": false
+            },
+            {
+              "id": 92840,
+              "name": "Catching Wind",
+              "ready": false
+            },
+            {
+              "id": 94897,
+              "name": "Quest 94897",
+              "ready": false
+            },
+            {
+              "id": 94484,
+              "name": "Quest 94484",
+              "ready": false
+            },
+            {
+              "id": 92741,
+              "name": "Quest 92741",
+              "ready": false
+            }
+          ]
+        },
+        {
+          "zone": "Druid",
+          "quests": [
+            {
+              "id": 94006,
+              "name": "The Great Ursera Spirit",
+              "ready": false
+            }
+          ]
+        }
+      ],
+      "professions": [
+        {
+          "name": "Cooking",
+          "rank": 16,
+          "max": 75
+        },
+        {
+          "name": "First Aid",
+          "rank": 23,
+          "max": 75
+        },
+        {
+          "name": "Fishing",
+          "rank": 25,
+          "max": 75
+        },
+        {
+          "name": "Herbalism",
+          "rank": 35,
+          "max": 75
+        },
+        {
+          "name": "Mining",
+          "rank": 61,
+          "max": 150
+        }
+      ],
+      "reputations": [
+        {
+          "name": "Alliance",
+          "standing": "Friendly",
+          "progress": 300,
+          "next": 6000
+        },
+        {
+          "name": "Faction 2740",
+          "standing": "Friendly",
+          "progress": 0,
+          "next": 6000
+        },
+        {
+          "name": "Faction 2779",
+          "standing": "Friendly",
+          "progress": 2015,
+          "next": 6000
+        },
+        {
+          "name": "Stormwind",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Darnassus",
+          "standing": "Neutral",
+          "progress": 500,
+          "next": 3000
+        },
+        {
+          "name": "Faction 2758",
+          "standing": "Neutral",
+          "progress": 0,
+          "next": 3000
+        },
+        {
+          "name": "Gnomeregan",
+          "standing": "Neutral",
+          "progress": 2000,
+          "next": 3000
+        },
+        {
+          "name": "Ironforge",
+          "standing": "Neutral",
+          "progress": 2000,
+          "next": 3000
+        }
+      ],
+      "currencies": [],
+      "mail": []
+    },
+    {
+      "name": "Sorinis Starhollow",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 1,
+      "class": "Druid",
+      "race": "Night Elf",
+      "zone": "Teldrassil",
+      "subZone": "Shadowglen",
+      "gold": 0,
+      "rested": false,
+      "xp": 0,
+      "maxXp": 400,
+      "played": 189,
+      "lastUpdate": 1793847336,
+      "itemLevel": null,
+      "gear": [],
+      "bags": [
+        {
+          "id": 0,
+          "name": "Backpack",
+          "items": [
+            {
+              "name": "Refreshing Spring Water",
+              "id": 159,
+              "count": 2
+            },
+            {
+              "name": "Shiny Red Apple",
+              "id": 4536,
+              "count": 4
+            },
+            {
+              "name": "Hearthstone",
+              "id": 6948,
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "health": 53,
+        "power": "100",
+        "powerType": "Mana",
+        "strength": "18",
+        "agility": "25",
+        "stamina": "19",
+        "intellect": "22",
+        "armor": "0",
+        "melee": "6-9",
+        "attackPower": "16",
+        "spellDamage": "0",
+        "spellHealing": "0",
+        "spellCrit": "5.00"
+      },
+      "quests": [],
+      "professions": [],
+      "reputations": [
+        {
+          "name": "Alliance",
+          "standing": "Friendly",
+          "progress": 300,
+          "next": 6000
+        },
+        {
+          "name": "Darnassus",
+          "standing": "Friendly",
+          "progress": 1000,
+          "next": 6000
+        },
+        {
+          "name": "Gnomeregan",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Ironforge",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Stormwind",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        }
+      ],
+      "currencies": [],
+      "mail": []
+    },
+    {
+      "name": "Thorin Caskmend",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 11,
+      "class": "Shaman",
+      "race": "Dwarf",
+      "zone": "Dun Morogh",
+      "subZone": "Gol'Bolar Quarry",
+      "gold": 788,
+      "rested": false,
+      "xp": 6903,
+      "maxXp": 8800,
+      "played": 27075,
+      "lastUpdate": 1793924438,
+      "itemLevel": 3.2,
+      "gear": [],
+      "bags": [
+        {
+          "id": 0,
+          "name": "Backpack",
+          "items": [
+            {
+              "name": "Hearthstone",
+              "id": 6948,
+              "count": 1
+            },
+            {
+              "name": "Minor Healing Potion",
+              "id": 118,
+              "count": 3
+            },
+            {
+              "name": "Minor Troll's Blood Elixir",
+              "id": 3382,
+              "count": 3
+            },
+            {
+              "name": "Elixir of Minor Defense",
+              "id": 5997,
+              "count": 14
+            },
+            {
+              "name": "Elixir of Minor Force",
+              "id": 247755,
+              "count": 9
+            },
+            {
+              "name": "Elixir of Minor Strength",
+              "id": 2454,
+              "count": 4
+            },
+            {
+              "name": "Minor Arcane Elixir",
+              "id": 247754,
+              "count": 9
+            },
+            {
+              "name": "Beer Basted Boar Ribs",
+              "id": 2888,
+              "count": 2
+            },
+            {
+              "name": "Charred Wolf Meat",
+              "id": 2679,
+              "count": 3
+            },
+            {
+              "name": "Linen Bandage",
+              "id": 1251,
+              "count": 20
+            },
+            {
+              "name": "Basic Campfire Kit",
+              "id": 279981,
+              "count": 1
+            },
+            {
+              "name": "Mana Well",
+              "id": 279956,
+              "count": 3
+            },
+            {
+              "name": "Fishing Pole",
+              "id": 6256,
+              "count": 1
+            },
+            {
+              "name": "Linen Cloth",
+              "id": 2589,
+              "count": 20
+            },
+            {
+              "name": "Boar Intestines",
+              "id": 3172,
+              "count": 2
+            },
+            {
+              "name": "Crag Boar Rib",
+              "id": 2886,
+              "count": 2
+            },
+            {
+              "name": "Flint and Tinder",
+              "id": 4471,
+              "count": 1
+            },
+            {
+              "name": "Barrel of Shimmer Stout",
+              "id": 3085,
+              "count": 1
+            },
+            {
+              "name": "Earthroot",
+              "id": 2449,
+              "count": 19
+            },
+            {
+              "name": "Earth Totem",
+              "id": 5175,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "Small Blue Pouch",
+          "items": [
+            {
+              "name": "Stringy Wolf Meat",
+              "id": 2672,
+              "count": 4
+            },
+            {
+              "name": "Empty Powder Keg",
+              "id": 268548,
+              "count": 1
+            },
+            {
+              "name": "Dirty Trogg Cloth",
+              "id": 2591,
+              "count": 5
+            },
+            {
+              "name": "Cracked Buckler",
+              "id": 2212,
+              "count": 1
+            },
+            {
+              "name": "Skull Hatchet",
+              "id": 2066,
+              "count": 1
+            },
+            {
+              "name": "Cracked Shortbow",
+              "id": 2773,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Canvas Latchbag",
+          "items": [
+            {
+              "name": "Loose Chain Vest",
+              "id": 2648,
+              "count": 1
+            },
+            {
+              "name": "Tough Hunk of Bread",
+              "id": 4540,
+              "count": 2
+            },
+            {
+              "name": "Tough Jerky",
+              "id": 117,
+              "count": 4
+            },
+            {
+              "name": "Loose Chain Pants",
+              "id": 2646,
+              "count": 1
+            },
+            {
+              "name": "Earthroot",
+              "id": 2449,
+              "count": 3
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Linen Bag",
+          "items": [
+            {
+              "name": "Loose Chain Pants",
+              "id": 2646,
+              "count": 1
+            },
+            {
+              "name": "Linen Cloth",
+              "id": 2589,
+              "count": 15
+            },
+            {
+              "name": "Stone Buckler",
+              "id": 2900,
+              "count": 1
+            },
+            {
+              "name": "Cracked Sledge",
+              "id": 1414,
+              "count": 1
+            },
+            {
+              "name": "Refreshing Spring Water",
+              "id": 159,
+              "count": 4
+            },
+            {
+              "name": "Patchwork Shoes",
+              "id": 1427,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Linen Bag",
+          "items": [
+            {
+              "name": "Dirty Trogg Cloth",
+              "id": 2591,
+              "count": 5
+            },
+            {
+              "name": "Frostbit Staff",
+              "id": 2067,
+              "count": 1
+            },
+            {
+              "name": "Carving Knife of Nature Protection",
+              "id": 2140,
+              "count": 1
+            },
+            {
+              "name": "Frostbit Staff",
+              "id": 2067,
+              "count": 1
+            },
+            {
+              "name": "Small Green Pouch",
+              "id": 5572,
+              "count": 1
+            },
+            {
+              "name": "Cracked Sledge",
+              "id": 1414,
+              "count": 1
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Apprentice's Herb Pouch",
+          "items": [
+            {
+              "name": "Peacebloom",
+              "id": 2447,
+              "count": 4
+            },
+            {
+              "name": "Silverleaf",
+              "id": 765,
+              "count": 20
+            },
+            {
+              "name": "Silverleaf",
+              "id": 765,
+              "count": 20
+            },
+            {
+              "name": "Silverleaf",
+              "id": 765,
+              "count": 4
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Character Bank Tab Bag (DNT)",
+          "items": [
+            {
+              "name": "Recipe: Beer Basted Boar Ribs",
+              "id": 2889,
+              "count": 1
+            },
+            {
+              "name": "Recipe: Peace Tea",
+              "id": 249879,
+              "count": 1
+            },
+            {
+              "name": "Commonplace Herb Seeds",
+              "id": 268415,
+              "count": 5
+            },
+            {
+              "name": "Frilled Lichen",
+              "id": 249399,
+              "count": 1
+            },
+            {
+              "name": "Raw Brilliant Smallfish",
+              "id": 6291,
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "health": 287,
+        "power": "345",
+        "powerType": "Mana",
+        "strength": "35",
+        "agility": "20",
+        "stamina": "36",
+        "intellect": "29",
+        "armor": "60",
+        "melee": "20-27",
+        "attackPower": "72",
+        "spellDamage": "1",
+        "spellHealing": "1",
+        "spellCrit": "4.91"
+      },
+      "quests": [],
+      "professions": [
+        {
+          "name": "Alchemy",
+          "rank": 50,
+          "max": 75
+        },
+        {
+          "name": "Cooking",
+          "rank": 7,
+          "max": 75
+        },
+        {
+          "name": "First Aid",
+          "rank": 22,
+          "max": 75
+        },
+        {
+          "name": "Fishing",
+          "rank": 2,
+          "max": 75
+        },
+        {
+          "name": "Herbalism",
+          "rank": 75,
+          "max": 75
+        }
+      ],
+      "reputations": [
+        {
+          "name": "Alliance",
+          "standing": "Friendly",
+          "progress": 337,
+          "next": 6000
+        },
+        {
+          "name": "Darnassus",
+          "standing": "Friendly",
+          "progress": 137,
+          "next": 6000
+        },
+        {
+          "name": "Gnomeregan",
+          "standing": "Friendly",
+          "progress": 3303,
+          "next": 6000
+        },
+        {
+          "name": "Ironforge",
+          "standing": "Friendly",
+          "progress": 4203,
+          "next": 6000
+        },
+        {
+          "name": "Stormwind",
+          "standing": "Friendly",
+          "progress": 137,
+          "next": 6000
+        },
+        {
+          "name": "Argent Dawn",
+          "standing": "Neutral",
+          "progress": 200,
+          "next": 3000
+        }
+      ],
+      "currencies": [],
+      "mail": []
+    },
+    {
+      "name": "Zephinis Starhollow",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 6,
+      "class": "Mage",
+      "race": "Skyborne",
+      "zone": "Zephras Isle",
+      "subZone": "Thendal Grove",
+      "gold": 651,
+      "rested": false,
+      "xp": 93,
+      "maxXp": 3600,
+      "played": 4560,
+      "lastUpdate": 1793855590,
+      "itemLevel": 1.9,
+      "gear": [],
+      "bags": [
+        {
+          "id": 0,
+          "name": "Backpack",
+          "items": [
+            {
+              "name": "Hearthstone",
+              "id": 6948,
+              "count": 1
+            },
+            {
+              "name": "Conjured Water",
+              "id": 5350,
+              "count": 3
+            },
+            {
+              "name": "Tough Hunk of Bread",
+              "id": 4540,
+              "count": 12
+            },
+            {
+              "name": "Tough Jerky",
+              "id": 117,
+              "count": 2
+            },
+            {
+              "name": "Windstone",
+              "id": 255663,
+              "count": 3
+            },
+            {
+              "name": "Ancient Heirloom",
+              "id": 264908,
+              "count": 1
+            },
+            {
+              "name": "Linen Cloth",
+              "id": 2589,
+              "count": 10
+            },
+            {
+              "name": "Stringy Wolf Meat",
+              "id": 2672,
+              "count": 2
+            },
+            {
+              "name": "Broken Fang",
+              "id": 7073,
+              "count": 2
+            },
+            {
+              "name": "Frayed Pants",
+              "id": 1378,
+              "count": 1
+            },
+            {
+              "name": "Flimsy Chain Gloves",
+              "id": 2653,
+              "count": 1
+            },
+            {
+              "name": "Frayed Robe",
+              "id": 1380,
+              "count": 1
+            },
+            {
+              "name": "Ragged Leather Vest",
+              "id": 1364,
+              "count": 1
+            },
+            {
+              "name": "Frayed Cloak",
+              "id": 1376,
+              "count": 1
+            },
+            {
+              "name": "Battered Buckler",
+              "id": 2210,
+              "count": 1
+            },
+            {
+              "name": "Refreshing Spring Water",
+              "id": 159,
+              "count": 11
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Apprentice's Mining Pack",
+          "items": [
+            {
+              "name": "Mining Pick",
+              "id": 2901,
+              "count": 1
+            },
+            {
+              "name": "Copper Ore",
+              "id": 2770,
+              "count": 15
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 15
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "health": 102,
+        "power": "361",
+        "powerType": "Mana",
+        "strength": "17",
+        "agility": "25",
+        "stamina": "20",
+        "intellect": "34",
+        "armor": "0",
+        "melee": "7-11",
+        "attackPower": "7",
+        "spellDamage": "0",
+        "spellHealing": "0",
+        "spellCrit": "5.64"
+      },
+      "quests": [
+        {
+          "zone": "Zephras Isle",
+          "quests": [
+            {
+              "id": 92472,
+              "name": "The Next Step",
+              "ready": false
+            }
+          ]
+        },
+        {
+          "zone": "Camping",
+          "quests": [
+            {
+              "id": 96638,
+              "name": "The Adventurer",
+              "ready": false
+            }
+          ]
+        }
+      ],
+      "professions": [
+        {
+          "name": "Mining",
+          "rank": 13,
+          "max": 75
+        }
+      ],
+      "reputations": [
+        {
+          "name": "Alliance",
+          "standing": "Friendly",
+          "progress": 300,
+          "next": 6000
+        },
+        {
+          "name": "Faction 2740",
+          "standing": "Friendly",
+          "progress": 0,
+          "next": 6000
+        },
+        {
+          "name": "Faction 2779",
+          "standing": "Friendly",
+          "progress": 795,
+          "next": 6000
+        },
+        {
+          "name": "Stormwind",
+          "standing": "Friendly",
+          "progress": 100,
+          "next": 6000
+        },
+        {
+          "name": "Darnassus",
+          "standing": "Neutral",
+          "progress": 500,
+          "next": 3000
+        },
+        {
+          "name": "Faction 2758",
+          "standing": "Neutral",
+          "progress": 0,
+          "next": 3000
+        },
+        {
+          "name": "Gnomeregan",
+          "standing": "Neutral",
+          "progress": 2000,
+          "next": 3000
+        },
+        {
+          "name": "Ironforge",
+          "standing": "Neutral",
+          "progress": 2000,
+          "next": 3000
+        }
+      ],
+      "currencies": [],
+      "mail": []
+    }
+  ]
 }
