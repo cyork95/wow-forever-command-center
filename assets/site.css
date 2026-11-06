@@ -867,9 +867,9 @@ input[type="search"] { min-width: min(100%, 260px); flex: 1; }
   padding: 10px 12px;
   min-width: 0;
 }
-.macro-head { display: flex; align-items: center; gap: 10px; }
-.macro-head strong { font-size: 16px; }
-.macro-head .badge { font-size: 10px; padding: 2px 6px; }
+.macro-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.macro-head strong { font-size: 16px; flex: 1 1 120px; min-width: 0; }
+.macro-head .badge { font-size: 10px; padding: 2px 6px; max-width: 100%; }
 .macro-icon { width: 40px; height: 40px; border: 1px solid var(--gold-2); border-radius: 6px; flex: 0 0 auto; }
 .macro-copy {
   margin-left: auto;
