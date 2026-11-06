@@ -404,5 +404,47 @@
   "who": "Thorin Caskmend",
   "caption": "Reached level 10",
   "file": "assets/shots/thorin/2026-11-05_0156_Thorin-Caskmend_reached-level-10.jpg"
+ },
+ {
+  "source": "WoWScrnShot_110526_170647.jpg",
+  "takenAt": "2052-_1-10T_1:70:64",
+  "who": "Thorin Caskmend",
+  "caption": "",
+  "file": "assets/shots/thorin/2026-11-05_1706_Thorin-Caskmend_thunderbrew-distillery.jpg"
+ },
+ {
+  "source": "WoWScrnShot_110526_173133.jpg",
+  "takenAt": "2052-_1-10T_1:73:13",
+  "who": "Thorin Caskmend",
+  "caption": "New recipe: Incense Candle",
+  "file": "assets/shots/thorin/2026-11-05_1731_Thorin-Caskmend_new-recipe-incense-candle.jpg"
+ },
+ {
+  "source": "WoWScrnShot_110526_173327.jpg",
+  "takenAt": "2052-_1-10T_1:73:32",
+  "who": "Thorin Caskmend",
+  "caption": "New recipe: Elixir of Minor Defense, Minor Arcane Elixir, Elixir of Minor Force",
+  "file": "assets/shots/thorin/2026-11-05_1733_Thorin-Caskmend_alchemy-recipes.jpg"
+ },
+ {
+  "source": "WoWScrnShot_110526_173808.jpg",
+  "takenAt": "2052-_1-10T_1:73:80",
+  "who": "Thorin Caskmend",
+  "caption": "New recipe: Mana Well",
+  "file": "assets/shots/thorin/2026-11-05_1738_Thorin-Caskmend_new-recipe-mana-well.jpg"
+ },
+ {
+  "source": "WoWScrnShot_110526_173815.jpg",
+  "takenAt": "2052-_1-10T_1:73:81",
+  "who": "Thorin Caskmend",
+  "caption": "New recipe: Elixir of Minor Strength",
+  "file": "assets/shots/thorin/2026-11-05_1738_Thorin-Caskmend_new-recipe-elixir-of-minor-strength.jpg"
+ },
+ {
+  "source": "WoWScrnShot_110526_173822.jpg",
+  "takenAt": "2052-_1-10T_1:73:82",
+  "who": "Thorin Caskmend",
+  "caption": "New recipe: Minor Troll's Blood Elixir",
+  "file": "assets/shots/thorin/2026-11-05_1738_Thorin-Caskmend_new-recipe-minor-trolls-blood-elixir.jpg"
  }
 ]
