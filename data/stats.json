@@ -1792,34 +1792,34 @@
     },
     "skyrinis": {
       "character": "Skyrinis Starhollow",
-      "exportedAt": "2026-11-06T01:57:00",
+      "exportedAt": "2026-11-06T14:44:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
       "level": 11,
       "zone": "Zephras Isle",
-      "subzone": "Valanaar",
-      "goldCopper": 3009,
-      "health": "244 max",
+      "subzone": "Shen'dar Village",
+      "goldCopper": 3491,
+      "health": "284 max",
       "powerType": null,
       "stats": {
-        "Strength": "24",
-        "Agility": "31",
-        "Stamina": "28",
-        "Intellect": "37",
-        "Armor": "252",
-        "Attack Power": "28",
-        "Melee Crit": "5.13%",
-        "Spell Crit": "5.13%"
+        "Strength": "26",
+        "Agility": "32",
+        "Stamina": "32",
+        "Intellect": "38",
+        "Armor": "402",
+        "Attack Power": "44",
+        "Melee Crit": "5.32%",
+        "Spell Crit": "5.32%"
       },
       "professions": [
         {
           "name": "Herbalism",
-          "current": 35,
+          "current": 41,
           "max": 75
         },
         {
           "name": "Mining",
-          "current": 61,
+          "current": 62,
           "max": 150
         },
         {
@@ -1829,12 +1829,12 @@
         },
         {
           "name": "Fishing",
-          "current": 25,
+          "current": 50,
           "max": 75
         },
         {
           "name": "Cooking",
-          "current": 16,
+          "current": 20,
           "max": 75
         }
       ],
@@ -1895,31 +1895,46 @@
         }
       ],
       "owned": [
+        "Azurky",
         "Cerulean Prideclaw",
         "Musical Gustjumper",
-        "Shen'dorei Windwell"
+        "Pachimari",
+        "Panda Cub",
+        "Shen'dorei Windwell",
+        "Zergling"
       ],
-      "playedSeconds": 23460,
+      "playedSeconds": 25980,
       "items": [
+        "10 Pound Mud Snapper",
         "Basic Campfire Kit",
         "Brilliant Smallfish",
+        "Copper Ore",
+        "Cracked Bill",
+        "Crawler Claw",
+        "Earthroot",
         "First Aid Kit",
         "Fish Bowl",
         "Fishing Pole",
         "Flint and Tinder",
-        "Flutterfly Swatter",
+        "Frilled Lichen",
         "Hearthstone",
         "Hunter's Simple Cloak",
         "Index Esoteria",
         "Linen Bandage",
+        "Linen Cloth",
         "Mining Pick",
         "Minor Healing Potion",
         "Minor Mana Potion",
         "Novice's Quarterstaff",
+        "Peacebloom",
+        "Pungent Skycheddar",
         "Ragged Leather Gloves",
         "Raw Brilliant Smallfish",
+        "Raw Longjaw Mud Snapper",
         "Red Delicious Stormapple",
         "Refreshing Spring Water",
+        "Rough Stone",
+        "Silverleaf",
         "Thendal Survivalist's Shirt",
         "Vuldren Hide Bracers",
         "Well-Worn Pants",
@@ -1927,7 +1942,6 @@
         "Windstone",
         "Wolfhide Belt",
         "Worn Leather Boots",
-        "Worn Leather Pants",
         "Worn Leather Vest",
         "empty"
       ],
@@ -1959,8 +1973,8 @@
       "crafts": {},
       "collections": {
         "Mounts": 2,
-        "Pets": 1,
-        "Toys": 1,
+        "Pets": 6,
+        "Toys": 2,
         "Achievements": 0,
         "Titles": null
       },
@@ -1972,7 +1986,7 @@
           },
           {
             "name": "Quests completed",
-            "value": "56"
+            "value": "58"
           },
           {
             "name": "Instance lockouts",
@@ -1982,19 +1996,19 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "279"
+            "value": "300"
           },
           {
             "name": "Creature types",
-            "value": "39"
-          },
-          {
-            "name": "Prideclaw",
-            "value": "21"
+            "value": "42"
           },
           {
             "name": "Ornery Galestrider",
-            "value": "21"
+            "value": "23"
+          },
+          {
+            "name": "Prideclaw",
+            "value": "22"
           },
           {
             "name": "Ursera Scavenger",
@@ -2025,6 +2039,10 @@
             "value": "11"
           },
           {
+            "name": "Windsong Crawler",
+            "value": "11"
+          },
+          {
             "name": "Al'Aketh Assassin",
             "value": "11"
           },
@@ -2038,7 +2056,15 @@
           },
           {
             "name": "Skyhopper",
-            "value": "3"
+            "value": "9"
+          },
+          {
+            "name": "Hungry Bandit",
+            "value": "9"
+          },
+          {
+            "name": "Bandit Highwayman",
+            "value": "9"
           },
           {
             "name": "Juvenile Vuldren",
@@ -2046,10 +2072,6 @@
           },
           {
             "name": "Pesky Cirrusfly",
-            "value": "8"
-          },
-          {
-            "name": "Windsong Crawler",
             "value": "8"
           },
           {
@@ -2070,10 +2092,6 @@
           },
           {
             "name": "Al'Aketh Stormcaller",
-            "value": "6"
-          },
-          {
-            "name": "Hungry Bandit",
             "value": "6"
           },
           {
@@ -2101,6 +2119,7 @@
         92474,
         92485,
         92515,
+        92516,
         92517,
         92528,
         92529,
@@ -2110,33 +2129,21 @@
         92551,
         92553,
         92596,
+        92597,
         92679,
         92682,
         92683,
         92684,
+        92685,
+        92693,
         92698,
         92699,
         92701,
         92709,
-        93036,
-        93175,
+        92727,
+        92849,
         93318,
-        93319,
-        93461,
-        93463,
-        93552,
-        93926,
-        93927,
-        93948,
-        93949,
-        93951,
-        94413,
-        94414,
-        96047,
-        96055,
-        98289,
-        99260,
-        99582
+        93552
       ],
       "huntKills": {},
       "looted": [],
@@ -2148,7 +2155,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-06T01:57:00"
+        "Dossier": "2026-11-06T14:44:00"
       }
     }
   }
