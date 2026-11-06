@@ -4,14 +4,19 @@
     "name": "GGs",
     "scope": "shared",
     "icon": "racial_dwarf_findtreasure",
-    "lines": ["/p GGs!", "/cheer"]
+    "lines": [
+      "/p GGs!",
+      "/cheer"
+    ]
   },
   {
     "id": "thank",
     "name": "Thank",
     "scope": "shared",
     "icon": "spell_nature_earthbindtotem",
-    "lines": ["/thank"]
+    "lines": [
+      "/thank"
+    ]
   },
   {
     "id": "look-better",
@@ -21,5 +26,878 @@
     "lines": [
       "/run local c=C_CVar local d=c.GetCVar(\"groundEffectDensity\")==\"256\" c.SetCVar(\"groundEffectDensity\",d and 48 or 256) c.SetCVar(\"groundEffectDist\",d and 320 or 500) c.SetCVar(\"GroundEffectFade\",d and 70 or 370)"
     ]
+  },
+  {
+    "id": "smart-mount",
+    "name": "Smart Mount",
+    "scope": "shared",
+    "lines": [
+      "#showtooltip",
+      "/dismount [mounted]",
+      "/cast [nocombat,flyable] Cerulean Prideclaw; [nocombat] Veteran Adventurer's Loyal Companion"
+    ],
+    "note": "Your two account mounts. If the Prideclaw is not your flyer once flying unlocks, swap the two names. Out of combat only, so it never dismounts you mid-fight."
+  },
+  {
+    "id": "set-focus",
+    "name": "Set Focus",
+    "scope": "shared",
+    "lines": [
+      "#showtooltip",
+      "/clearfocus [mod:alt]",
+      "/focus [@mouseover,exists][]"
+    ],
+    "note": "Focus your mouseover target, or your current target if the mouse is empty. Alt clears your focus. Most focus macros on this tab feed off this button."
+  },
+  {
+    "id": "assist-focus",
+    "name": "Assist",
+    "scope": "shared",
+    "lines": [
+      "#showtooltip",
+      "/assist [@focus,exists][]",
+      "/startattack [harm]"
+    ],
+    "note": "Target whatever your focus is hitting (the tank, usually) and start swinging. No focus? Assists your current target instead."
+  },
+  {
+    "id": "eat-and-drink",
+    "name": "Eat & Drink",
+    "scope": "shared",
+    "lines": [
+      "#showtooltip",
+      "/use [nocombat] Tough Hunk of Bread",
+      "/use [nocombat] Refreshing Spring Water"
+    ],
+    "note": "Eats and drinks at the same time, out of combat. Swap the food and drink names for whatever is in your bags - these two are what Skyrinis is carrying."
+  },
+  {
+    "id": "skull-marker",
+    "name": "Skull Marker",
+    "scope": "shared",
+    "lines": [
+      "#showtooltip",
+      "/script SetRaidTarget(\"target\", 8)"
+    ],
+    "note": "Puts a skull on your target. Works in a party or raid with assist. Change the 8 for other marks: 1 Star, 2 Circle, 3 Diamond, 4 Triangle, 5 Moon, 6 Square, 7 Cross."
+  },
+  {
+    "id": "bandage-self",
+    "name": "Bandage Self",
+    "scope": "shared",
+    "lines": [
+      "#showtooltip",
+      "/use [@player] Linen Bandage"
+    ],
+    "note": "Bandages you without dropping your target. Update the bandage name as your First Aid climbs (Heavy Linen, Wool, and so on)."
+  },
+  {
+    "id": "thorin-mo-healing-wave",
+    "name": "Mouseover: Healing Wave",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Healing Wave"
+    ],
+    "note": "Restoration. Heals whoever your mouse is over; falls back to your target, then the game's default. This one template covers every heal below - one button each."
+  },
+  {
+    "id": "thorin-mo-chain-heal",
+    "name": "Mouseover: Chain Heal",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Chain Heal"
+    ],
+    "note": "Restoration. Aim Chain Heal by hovering the player you want it to start on - it still jumps from there."
+  },
+  {
+    "id": "thorin-mo-lesser-healing-wave",
+    "name": "Mouseover: Lesser Healing Wave",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Lesser Healing Wave"
+    ],
+    "note": "Restoration. The fast, expensive heal, on mouseover for emergencies."
+  },
+  {
+    "id": "thorin-ns-healing-wave",
+    "name": "Nature's Swiftness + Healing Wave",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip Healing Wave",
+      "/stopcasting",
+      "/cast Nature's Swiftness",
+      "/cast [@mouseover,help,nodead][] Healing Wave"
+    ],
+    "note": "Restoration. The oh-no button: stops your current cast and fires an instant full Healing Wave at your mouseover or target."
+  },
+  {
+    "id": "thorin-earth-shield",
+    "name": "Earth Shield (Tank)",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [@focus,help,nodead][@mouseover,help,nodead][] Earth Shield"
+    ],
+    "note": "Restoration. Keeps Earth Shield on your focus (set it to the tank with the Set Focus macro); mouseover wins if you are hovering someone."
+  },
+  {
+    "id": "thorin-wind-shear",
+    "name": "Wind Shear (Interrupt)",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/stopcasting",
+      "/cast [@focus,harm,nodead][@mouseover,harm,nodead][] Wind Shear"
+    ],
+    "note": "Both specs. Stops your cast and interrupts your focus first, then mouseover, then target. Wind Shear is off the global cooldown, so this never wastes the press."
+  },
+  {
+    "id": "thorin-purge",
+    "name": "Purge",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/stopcasting",
+      "/cast [@focus,harm,nodead][@mouseover,harm,nodead][] Purge"
+    ],
+    "note": "Both specs. Strips a buff from focus, mouseover, or target - magic buffs on enemy healers and casters first."
+  },
+  {
+    "id": "thorin-cleanse-spirit",
+    "name": "Mouseover: Cleanse Spirit",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Cleanse Spirit"
+    ],
+    "note": "Restoration. Cleanse curses, diseases, and poisons by hovering the afflicted player. If your cleanse goes by another name in your book, swap the spell name."
+  },
+  {
+    "id": "thorin-hex-focus",
+    "name": "Hex (Focus CC)",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/clearfocus [mod:alt][@focus,dead][@focus,noharm]",
+      "/focus [@mouseover,harm,nodead][@focus,noharm][@focus,dead]",
+      "/cast [@focus,harm,nodead] Hex"
+    ],
+    "note": "Sets your mouseover as focus if you need one, then Hexes the focus - so you keep DPS or healing on your main target while the frog stays put. Alt clears a stale focus."
+  },
+  {
+    "id": "thorin-totem-bar",
+    "name": "One-Button Totems + Recall",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:shift] Totemic Recall",
+      "/castsequence [mod:alt] reset=5 Tremor Totem, Grounding Totem, Earthbind Totem",
+      "/castsequence reset=5 Strength of Earth Totem, Windfury Totem, Mana Spring Totem, Searing Totem"
+    ],
+    "note": "Press repeatedly to lay the set: Strength of Earth, Windfury, Mana Spring, Searing. Hold Alt for the defensive set (Tremor, Grounding, Earthbind). Shift recalls everything for the mana refund. Swap totem names to taste - Resto may want Healing Stream in the water slot."
+  },
+  {
+    "id": "thorin-weapon-imbues",
+    "name": "Weapon Imbues (One Button)",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:alt] Earthliving Weapon; [mod:shift] Flametongue Weapon; Windfury Weapon"
+    ],
+    "note": "Applies to the main hand (press again after swapping weapons for the off hand). Plain press: Windfury (Enhancement). Shift: Flametongue - your spellhancer imbue. Alt: Earthliving (Restoration)."
+  },
+  {
+    "id": "thorin-stormstrike",
+    "name": "Stormstrike + Swing",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/startattack",
+      "/cast Stormstrike"
+    ],
+    "note": "Enhancement. Guarantees your auto-attacks are running even when Stormstrike is on cooldown - no more standing around mid-fight."
+  },
+  {
+    "id": "thorin-shock-button",
+    "name": "Shock Button",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/startattack",
+      "/cast [mod:shift] Earth Shock; Flame Shock"
+    ],
+    "note": "Enhancement. Flame Shock to keep the dot rolling; hold Shift for Earth Shock to spend the Stormstrike nature buff. Shared shock cooldown, one button."
+  },
+  {
+    "id": "thorin-maelstrom-bolt",
+    "name": "Maelstrom Bolt",
+    "scope": "character",
+    "character": "thorin",
+    "lines": [
+      "#showtooltip",
+      "/cast Lightning Bolt",
+      "/startattack"
+    ],
+    "note": "Enhancement. Fire this at 5 Maelstrom Weapon stacks; the /startattack line keeps your melee swings going after the cast. For packs, plain Chain Lightning does the same job - this one is the single-target spender."
+  },
+  {
+    "id": "sorinis-ez-downrank",
+    "name": "Spell Downranking (EZ)",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/startattack",
+      "/cast [mod:shift] Moonfire(Rank 1); Moonfire(Rank 2)"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted. Shift casts cheap Rank 1 to tag or finish; plain press casts Rank 2."
+  },
+  {
+    "id": "sorinis-ez-travel",
+    "name": "All In 1 Travel Forms (EZ)",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cancelform [swimming,noform:2][outdoors,noform:2/4]",
+      "/cast [swimming] Aquatic Form;[outdoors] Travel Form; Cat Form"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted."
+  },
+  {
+    "id": "sorinis-ez-maul",
+    "name": "EZ Maul Autos",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/startattack",
+      "/cast Maul"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted. Bear form rage dump that keeps auto-attacks running."
+  },
+  {
+    "id": "skyrinis-ez-downrank",
+    "name": "Spell Downranking (EZ)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/startattack",
+      "/cast [mod:shift] Moonfire(Rank 1); Moonfire(Rank 2)"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted. Shift casts cheap Rank 1 to tag or finish; plain press casts Rank 2."
+  },
+  {
+    "id": "skyrinis-ez-travel",
+    "name": "All In 1 Travel Forms (EZ)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cancelform [swimming,noform:2][outdoors,noform:2/4]",
+      "/cast [swimming] Aquatic Form;[outdoors] Travel Form; Cat Form"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted."
+  },
+  {
+    "id": "skyrinis-ez-maul",
+    "name": "EZ Maul Autos",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/startattack",
+      "/cast Maul"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted. Bear form rage dump that keeps auto-attacks running."
+  },
+  {
+    "id": "skyrinis-ez-gathering",
+    "name": "Gathering Toggle (EZ)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/castsequence !Find Herbs, !Find Minerals"
+    ],
+    "note": "From the Launch EZ Macros set you saved on Oct 23 - preserved exactly as pasted. Yours alone on the roster, Skyrinis - the only character running both Herbalism and Mining. Each press flips the minimap tracking."
+  },
+  {
+    "id": "sorinis-mo-rejuvenation",
+    "name": "Mouseover: Rejuvenation",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Rejuvenation"
+    ],
+    "note": "HoT on mouseover - the bread and butter. Works for both druids in either spec."
+  },
+  {
+    "id": "sorinis-mo-regrowth",
+    "name": "Mouseover: Regrowth",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Regrowth"
+    ],
+    "note": "Direct heal plus HoT, on mouseover."
+  },
+  {
+    "id": "sorinis-mo-lifebloom",
+    "name": "Mouseover: Lifebloom",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Lifebloom"
+    ],
+    "note": "Stack and roll Lifebloom on the tank by hovering their frame."
+  },
+  {
+    "id": "sorinis-mo-healing-touch",
+    "name": "Mouseover: Healing Touch",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Healing Touch"
+    ],
+    "note": "The big slow heal, on mouseover."
+  },
+  {
+    "id": "sorinis-mo-swiftmend",
+    "name": "Mouseover: Swiftmend",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Swiftmend"
+    ],
+    "note": "Needs a Rejuvenation or Regrowth ticking on the target to work - hover, press, instant rescue."
+  },
+  {
+    "id": "sorinis-ns-healing-touch",
+    "name": "Nature's Swiftness + Healing Touch",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip Nature's Swiftness",
+      "/stopcasting",
+      "/cast Nature's Swiftness",
+      "/cast [@mouseover,help,nodead][] Healing Touch"
+    ],
+    "note": "The druid oh-no button: instant Healing Touch on your mouseover or target."
+  },
+  {
+    "id": "sorinis-innervate",
+    "name": "Innervate",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:alt,@player][@focus,help,nodead][@mouseover,help,nodead][] Innervate"
+    ],
+    "note": "Focus first (set it to your healer partner or the tank's healer), mouseover second. Alt forces it onto yourself."
+  },
+  {
+    "id": "sorinis-rebirth",
+    "name": "Mouseover: Rebirth",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,dead][] Rebirth"
+    ],
+    "note": "Combat resurrection by hovering the fallen ally's frame or corpse. Note the [dead] check - this one only fires on the dead, as it should."
+  },
+  {
+    "id": "sorinis-cyclone-focus",
+    "name": "Cyclone (Focus/Mouseover)",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@focus,harm,nodead][@mouseover,harm,nodead][] Cyclone"
+    ],
+    "note": "Cyclone your focus to keep a caster out of the fight, or mouseover to improvise."
+  },
+  {
+    "id": "sorinis-roots-mouseover",
+    "name": "Mouseover: Entangling Roots",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][@focus,harm,nodead][] Entangling Roots"
+    ],
+    "note": "Root runners and adds without dropping your target - made for kiting and for Healkin-style solo control."
+  },
+  {
+    "id": "sorinis-powershift",
+    "name": "Powershift (Escape)",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cancelform",
+      "/cast Travel Form"
+    ],
+    "note": "Breaks roots and snares by shifting out and straight back in. The classic druid escape - spam it while running for the door."
+  },
+  {
+    "id": "sorinis-bear-emergency",
+    "name": "Bear Emergency",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast Barkskin",
+      "/cancelform [noform:1]",
+      "/cast [form:1] Frenzied Regeneration; Bear Form"
+    ],
+    "note": "One press: Barkskin, into bear, Frenzied Regeneration if you are already bear. When you learn Dire Bear Form, swap the name in. (Form 1 is Bear in the stance bar.)"
+  },
+  {
+    "id": "sorinis-mo-moonfire",
+    "name": "Mouseover: Moonfire",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][] Moonfire"
+    ],
+    "note": "Balance / Healkin. Dot adds by hovering nameplates; keeps your main target locked."
+  },
+  {
+    "id": "skyrinis-mo-rejuvenation",
+    "name": "Mouseover: Rejuvenation",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Rejuvenation"
+    ],
+    "note": "HoT on mouseover - the bread and butter. Works for both druids in either spec."
+  },
+  {
+    "id": "skyrinis-mo-regrowth",
+    "name": "Mouseover: Regrowth",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Regrowth"
+    ],
+    "note": "Direct heal plus HoT, on mouseover."
+  },
+  {
+    "id": "skyrinis-mo-lifebloom",
+    "name": "Mouseover: Lifebloom",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Lifebloom"
+    ],
+    "note": "Stack and roll Lifebloom on the tank by hovering their frame."
+  },
+  {
+    "id": "skyrinis-mo-healing-touch",
+    "name": "Mouseover: Healing Touch",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Healing Touch"
+    ],
+    "note": "The big slow heal, on mouseover."
+  },
+  {
+    "id": "skyrinis-mo-swiftmend",
+    "name": "Mouseover: Swiftmend",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead][] Swiftmend"
+    ],
+    "note": "Needs a Rejuvenation or Regrowth ticking on the target to work - hover, press, instant rescue."
+  },
+  {
+    "id": "skyrinis-ns-healing-touch",
+    "name": "Nature's Swiftness + Healing Touch",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip Nature's Swiftness",
+      "/stopcasting",
+      "/cast Nature's Swiftness",
+      "/cast [@mouseover,help,nodead][] Healing Touch"
+    ],
+    "note": "The druid oh-no button: instant Healing Touch on your mouseover or target."
+  },
+  {
+    "id": "skyrinis-innervate",
+    "name": "Innervate",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:alt,@player][@focus,help,nodead][@mouseover,help,nodead][] Innervate"
+    ],
+    "note": "Focus first (set it to your healer partner or the tank's healer), mouseover second. Alt forces it onto yourself."
+  },
+  {
+    "id": "skyrinis-rebirth",
+    "name": "Mouseover: Rebirth",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,dead][] Rebirth"
+    ],
+    "note": "Combat resurrection by hovering the fallen ally's frame or corpse. Note the [dead] check - this one only fires on the dead, as it should."
+  },
+  {
+    "id": "skyrinis-cyclone-focus",
+    "name": "Cyclone (Focus/Mouseover)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@focus,harm,nodead][@mouseover,harm,nodead][] Cyclone"
+    ],
+    "note": "Cyclone your focus to keep a caster out of the fight, or mouseover to improvise."
+  },
+  {
+    "id": "skyrinis-roots-mouseover",
+    "name": "Mouseover: Entangling Roots",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][@focus,harm,nodead][] Entangling Roots"
+    ],
+    "note": "Root runners and adds without dropping your target - made for kiting and for Healkin-style solo control."
+  },
+  {
+    "id": "skyrinis-powershift",
+    "name": "Powershift (Escape)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cancelform",
+      "/cast Travel Form"
+    ],
+    "note": "Breaks roots and snares by shifting out and straight back in. The classic druid escape - spam it while running for the door."
+  },
+  {
+    "id": "skyrinis-bear-emergency",
+    "name": "Bear Emergency",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast Barkskin",
+      "/cancelform [noform:1]",
+      "/cast [form:1] Frenzied Regeneration; Bear Form"
+    ],
+    "note": "One press: Barkskin, into bear, Frenzied Regeneration if you are already bear. When you learn Dire Bear Form, swap the name in. (Form 1 is Bear in the stance bar.)"
+  },
+  {
+    "id": "skyrinis-mo-moonfire",
+    "name": "Mouseover: Moonfire",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][] Moonfire"
+    ],
+    "note": "Balance / Healkin. Dot adds by hovering nameplates; keeps your main target locked."
+  },
+  {
+    "id": "skyrinis-prowl-opener",
+    "name": "Cat Opener",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [stealth] Pounce; [nocombat] Prowl; Shred"
+    ],
+    "note": "Adventurer spec solo work: out of combat it slips you into Prowl, stealthed it Pounces, in the open it Shreds. One button for the whole cat approach."
+  },
+  {
+    "id": "malavus-mo-corruption",
+    "name": "Mouseover: Corruption",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][] Corruption"
+    ],
+    "note": "Affliction. Multi-dot by hovering nameplates - your main target never changes."
+  },
+  {
+    "id": "malavus-mo-unstable",
+    "name": "Mouseover: Unstable Affliction",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][] Unstable Affliction"
+    ],
+    "note": "Affliction. Same pattern for UA once it is in your book - pair it with Corruption on every extra target."
+  },
+  {
+    "id": "malavus-curse-wheel",
+    "name": "Curse Wheel",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:ctrl] Curse of the Elements; [mod:shift] Curse of Tongues; [mod:alt] Curse of Weakness; Curse of Agony"
+    ],
+    "note": "One button, every curse: plain press Agony (your DPS curse), Ctrl Elements for the raid, Shift Tongues for casters, Alt Weakness for hard hitters."
+  },
+  {
+    "id": "malavus-drain-soul",
+    "name": "Drain Soul (No-Clip)",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nochanneling:Drain Soul][nochanneling:Drain Soul] Drain Soul"
+    ],
+    "note": "Execute and shard farming. Spammable - it will not restart the channel and clip your ticks, and it respects your mouseover for finishing adds."
+  },
+  {
+    "id": "malavus-multidrain",
+    "name": "All Drains, One Button",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:ctrl,nochanneling:Drain Mana] Drain Mana; [mod:alt,nochanneling:Drain Life] Drain Life; [nochanneling:Drain Soul] Drain Soul"
+    ],
+    "note": "Plain press Drain Soul, Alt Drain Life, Ctrl Drain Mana - all with the no-clip protection, so none of them restart mid-channel."
+  },
+  {
+    "id": "malavus-pet-bolt",
+    "name": "Pet Attack + Shadow Bolt",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/petattack [@mouseover,harm][]",
+      "/cast [@mouseover,harm,nodead][] Shadow Bolt"
+    ],
+    "note": "Sends the demon in and opens fire on the same target - mouseover if you are hovering one. Your demon is half your damage; this keeps it working the right mob."
+  },
+  {
+    "id": "malavus-pet-control",
+    "name": "Pet Control",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/petattack [nomod]",
+      "/petfollow [mod:shift]",
+      "/petpassive [mod:alt]"
+    ],
+    "note": "Plain press: pet attacks your target. Shift: pet follows. Alt: pet goes passive. One button for the whole leash."
+  },
+  {
+    "id": "malavus-fear-focus",
+    "name": "Fear (Focus CC)",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/clearfocus [mod:alt][@focus,dead][@focus,noharm]",
+      "/focus [@mouseover,harm,nodead][@focus,noharm][@focus,dead]",
+      "/cast [@focus,harm,nodead] Fear"
+    ],
+    "note": "Same shape as the Hex and Polymorph macros: keeps a focus Feared while you dot your real target. Alt clears a stale focus."
+  },
+  {
+    "id": "malavus-banish",
+    "name": "Banish (Focus/Mouseover)",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [@focus,harm,nodead][@mouseover,harm,nodead][] Banish"
+    ],
+    "note": "For demons and elementals - focus first, mouseover second, target last."
+  },
+  {
+    "id": "malavus-armor-toggle",
+    "name": "Armor Toggle",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:shift] Demon Armor; Fel Armor"
+    ],
+    "note": "Plain press Fel Armor; Shift for Demon Armor when you are taking hits. (If only one armor exists in your book, the other branch simply does nothing.)"
+  },
+  {
+    "id": "malavus-soulstone",
+    "name": "Soulstone (Mouseover)",
+    "scope": "character",
+    "character": "malavus",
+    "lines": [
+      "#showtooltip",
+      "/use [@mouseover,help,nodead][] Master Soulstone"
+    ],
+    "note": "Uses your pre-made Soulstone on whoever you hover - the healer, ideally, before the pull. Swap 'Master Soulstone' for whatever rank of stone you are currently making."
+  },
+  {
+    "id": "zephinis-polymorph-focus",
+    "name": "Polymorph (Focus Keeper)",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip Polymorph",
+      "/clearfocus [@focus,noharm][@focus,dead]",
+      "/focus [@mouseover,harm,nodead][@focus,noharm][@focus,dead]",
+      "/cast [@focus,harm] Polymorph"
+    ],
+    "note": "The classic sheep keeper: it focuses your mouseover (or keeps a good focus), then Polymorphs the focus - so you keep blasting your real target while the sheep stays sheeped."
+  },
+  {
+    "id": "zephinis-counterspell",
+    "name": "Counterspell (Interrupt)",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/stopcasting",
+      "/cast [@focus,harm,nodead][@mouseover,harm,nodead][] Counterspell"
+    ],
+    "note": "Stops your cast and silences focus, mouseover, or target. The healer never finishes that heal."
+  },
+  {
+    "id": "zephinis-steal-or-curse",
+    "name": "Spellsteal / Remove Curse",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,help,nodead] Remove Curse; [@mouseover,harm,nodead] Spellsteal; [harm] Spellsteal; Remove Curse"
+    ],
+    "note": "One smart button: hover an ally to decurse them, hover an enemy to steal their buff, target an enemy to steal, otherwise decurse your target or yourself."
+  },
+  {
+    "id": "zephinis-ice-block",
+    "name": "Ice Block (Safe)",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/stopcasting",
+      "/cast Ice Block"
+    ],
+    "note": "Stops everything and blocks. Deliberately NOT a toggle - pair it with the cancel macro below so a panicked double-tap never drops your block early."
+  },
+  {
+    "id": "zephinis-cancel-block",
+    "name": "Cancel Ice Block",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cancelaura Ice Block"
+    ],
+    "note": "Drops Ice Block on purpose, when YOU decide. Put it somewhere you will not fat-finger."
+  },
+  {
+    "id": "zephinis-mo-living-bomb",
+    "name": "Mouseover: Living Bomb",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [@mouseover,harm,nodead][] Living Bomb"
+    ],
+    "note": "Fire dual spec. Spread Living Bomb across a pack by sweeping your mouse over nameplates."
+  },
+  {
+    "id": "zephinis-combustion-burst",
+    "name": "Combustion Burst",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cast Combustion",
+      "/use 13",
+      "/use 14",
+      "/cast Pyroblast"
+    ],
+    "note": "Fire dual spec. Combustion plus both trinket slots (empty slots just do nothing), straight into Pyroblast - made for Hot Streak windows. If you run no trinkets, the /use lines are harmless."
+  },
+  {
+    "id": "zephinis-buffs",
+    "name": "Buffs & Armor (One Button)",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:ctrl] Arcane Brilliance; [mod:alt,@mouseover,help,nodead][mod:alt] Arcane Intellect; [mod:shift] Molten Armor; Mage Armor"
+    ],
+    "note": "Plain press: Mage Armor (your Frostfire sustain). Shift: Molten Armor for Fire crit. Alt: Arcane Intellect on mouseover or target. Ctrl: Arcane Brilliance for the whole group."
+  },
+  {
+    "id": "zephinis-teleports",
+    "name": "Teleport / Portal",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cast [mod:alt] Portal: Stormwind; [mod:shift] Teleport: Ironforge; Teleport: Stormwind"
+    ],
+    "note": "Plain press teleports you home to Stormwind, Shift goes to Ironforge, Alt opens a Stormwind portal for the group. Swap the cities as you learn more of them."
+  },
+  {
+    "id": "zephinis-barrier-snap",
+    "name": "Ice Barrier / Cold Snap",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip Ice Barrier",
+      "/cast [mod:shift] Cold Snap; Ice Barrier"
+    ],
+    "note": "Frostfire main. Plain press refreshes Ice Barrier. If it is on cooldown and you need it NOW, Shift fires Cold Snap to reset it - press again right after for the fresh barrier. This is the button your build was made for."
+  },
+  {
+    "id": "zephinis-flamestrike",
+    "name": "Flamestrike (Sticky Targeting)",
+    "scope": "character",
+    "character": "zephinis",
+    "lines": [
+      "#showtooltip",
+      "/cast !Flamestrike"
+    ],
+    "note": "The ! keeps the targeting circle from cancelling itself if you click the button again - mash-friendly ground AoE."
   }
 ]
