@@ -1,1 +1,38 @@
-ewogICJjaGFyYWN0ZXIiOiAiTW9ydGltZXIgQmxhY2t3ZWxsIiwKICAidXBkYXRlZCI6ICIyMDI2LTExLTA0VDIyOjM5OjAwIiwKICAiY291bnQiOiA1LAogICJldmVudHMiOiBbCiAgICB7CiAgICAgICJ0IjogMTc5Mzg0OTcwMCwKICAgICAgImF0IjogIjIwMjYtMTEtMDRUMjI6MzU6MDAiLAogICAgICAia2luZCI6ICJsb2dpbiIsCiAgICAgICJ0ZXh0IjogIkJpb2dyYXBoeSBzdGFydGVkIGF0IGxldmVsIDEgaW4gYW4gdW5rbm93biB6b25lIgogICAgfSwKICAgIHsKICAgICAgInQiOiAxNzkzODQ5NzAwLAogICAgICAiYXQiOiAiMjAyNi0xMS0wNFQyMjozNTowMCIsCiAgICAgICJraW5kIjogInpvbmUiLAogICAgICAidGV4dCI6ICJFbnRlcmVkIEVsd3lubiBGb3Jlc3QiCiAgICB9LAogICAgewogICAgICAidCI6IDE3OTM4NDk4ODAsCiAgICAgICJhdCI6ICIyMDI2LTExLTA0VDIyOjM4OjAwIiwKICAgICAgImtpbmQiOiAiZGVhdGgiLAogICAgICAidGV4dCI6ICJEaWVkIGluIEVsd3lubiBGb3Jlc3QiCiAgICB9LAogICAgewogICAgICAidCI6IDE3OTM4NDk4ODAsCiAgICAgICJhdCI6ICIyMDI2LTExLTA0VDIyOjM4OjAwIiwKICAgICAgImtpbmQiOiAic2NyZWVuc2hvdCIsCiAgICAgICJ0ZXh0IjogIlNjcmVlbnNob3Q6IERpZWQsIGluIEVsd3lubiBGb3Jlc3QiLAogICAgICAicmVhc29uIjogIkRpZWQiCiAgICB9LAogICAgewogICAgICAidCI6IDE3OTM4NDk5NDAsCiAgICAgICJhdCI6ICIyMDI2LTExLTA0VDIyOjM5OjAwIiwKICAgICAgImtpbmQiOiAiem9uZSIsCiAgICAgICJ0ZXh0IjogIkVudGVyZWQgU3Rvcm13aW5kIENpdHkiCiAgICB9CiAgXQp9
+{
+  "character": "Mortimer Blackwell",
+  "updated": "2026-11-04T22:39:00",
+  "count": 5,
+  "events": [
+    {
+      "t": 1793849700,
+      "at": "2026-11-04T22:35:00",
+      "kind": "login",
+      "text": "Biography started at level 1 in an unknown zone"
+    },
+    {
+      "t": 1793849700,
+      "at": "2026-11-04T22:35:00",
+      "kind": "zone",
+      "text": "Entered Elwynn Forest"
+    },
+    {
+      "t": 1793849880,
+      "at": "2026-11-04T22:38:00",
+      "kind": "death",
+      "text": "Died in Elwynn Forest"
+    },
+    {
+      "t": 1793849880,
+      "at": "2026-11-04T22:38:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Died, in Elwynn Forest",
+      "reason": "Died"
+    },
+    {
+      "t": 1793849940,
+      "at": "2026-11-04T22:39:00",
+      "kind": "zone",
+      "text": "Entered Stormwind City"
+    }
+  ]
+}
