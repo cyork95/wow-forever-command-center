@@ -73,6 +73,115 @@
         "Level 1",
         "Route charted: Zephras Isle, then Elwynn  252 items on the list"
       ]
+    },
+    {
+      "id": "launch-night-thorin",
+      "character": "thorin",
+      "date": "2026-11-04",
+      "title": "First Work Under the Name",
+      "source": "butler-export",
+      "body": [
+        "The road started in Coldridge snow at six bells, with an empty pack and a name that hasn't been written on any roll in a long while. First work was small work: mail carried, boars thinned, a troll cave looked into and reported on. Small is fine. A house comes back the way it was built \u2014 one honest job laid on another.",
+        "The earth called before the light went. I answered \u2014 Call of Earth, done properly, three times over before the elders were satisfied \u2014 and somewhere in there the gathering started in earnest. Every slope in that valley grows something worth picking, and I picked the valley near bare. Fifty-four points of Herbalism by nightfall, and a pack that smells of peacebloom and snow.",
+        "Thunderbrew Distillery took me in at the end of it: First Aid learned, Cooking learned, a fire built and ribs basted over it. The Grizzled Den took me once, too \u2014 the bears keep their own ledger, and I won't pretend the mark isn't mine. Level eight by the depot, a brew before sleep, taken properly. The name held up its first day. That's enough to ask of any day."
+      ],
+      "facts": [
+        "Started Nov 4, Coldridge Valley, Dun Morogh",
+        "Call of Earth completed",
+        "Herbalism 54 by nightfall",
+        "Died once \u2014 The Grizzled Den",
+        "Reached level 8 at Steelgrill's Depot"
+      ]
+    },
+    {
+      "id": "ironforge-thorin",
+      "character": "thorin",
+      "date": "2026-11-05",
+      "title": "The Second Trade",
+      "source": "butler-export",
+      "body": [
+        "The day started before the day did \u2014 Evershine's errands run in the small hours, and the mountain reminding me twice, in the way it has, that a healer's road is still a road. Level ten came at the Grizzled Den, which is fitting. The den and I are becoming acquainted. It keeps the first mark; I keep coming back.",
+        "Evening was Ironforge. I walked in a gatherer and walked out an alchemist: Alchemy learned in Tinker Town, and then the whole stockpile of two days' picking went across the bench in one sitting \u2014 elixirs of defense and force, a mana well, troll's blood \u2014 one point to fifty without stopping. A Caskmend learns a trade by working it, not by reading about it.",
+        "Herbalism topped out somewhere on the road home \u2014 seventy-five, nothing left in the low hills to teach me. Level eleven at Brewnall Village with the light going. Two trades now, and the second one smells of the first one's harvest. That's the whole plan, working the way plans rarely do."
+      ],
+      "facts": [
+        "Reached level 10 at The Grizzled Den",
+        "Alchemy learned in Ironforge \u2014 trained 1 to 50 in one sitting",
+        "Herbalism mastered: 75/75",
+        "Reached level 11 at Brewnall Village"
+      ]
+    },
+    {
+      "id": "launch-night-zephinis",
+      "character": "zephinis",
+      "date": "2026-11-04",
+      "title": "The Late Start",
+      "source": "butler-export",
+      "body": [
+        "My proving began at 22:56, hours after the others \u2014 the rolls will show Thorin starting at six bells and me near midnight, and I would like the record to note that the delay was the archive's, not mine. Some of us had to be catalogued before we could be sent. I have made my peace with being a late entry in my own story.",
+        "Zephras Isle, though, does not care when you start. By the second hour I had read the Glowing Recall Crystal \u2014 an actual text, in the field, which I maintain counts as the expedition's first scholarly act \u2014 and turned in A Student of the Arcane to examiners who seemed satisfied. Reading the Leylines followed before the night was out. The work here is legible if you know how to look: the isle is a page, and the leylines are its ruling.",
+        "Mining came along without being asked to head the expedition \u2014 copper smelted in Thendal Village, the pick rising faster than my staff work, which the record may note without commentary. Level six shortly after midnight, Al'Aketh thugs seen to. The patriarch chose me for this. The first night's marginalia, at least, should please him."
+      ],
+      "facts": [
+        "Started Nov 4, 22:56, Zephras Isle",
+        "Read the Glowing Recall Crystal",
+        "Reading the Leylines completed",
+        "Mining: Smelt Copper learned",
+        "Reached level 6 just after midnight"
+      ]
+    },
+    {
+      "id": "first-harvest-skyrinis",
+      "character": "skyrinis",
+      "date": "2026-11-05",
+      "title": "Everything I Could Carry",
+      "source": "butler-export",
+      "body": [
+        "Report for the patriarch, first proving, Zephras Isle. I started at 19:21 and I did not stop \u2014 six and a half hours, ten levels, and the isle picked over like a carcass at a rookery. Two hundred and seventy-nine creatures down. Four hundred and forty-four gatherings in. That is the whole method: if it grows, I pick it; if it glitters, I dig it; if it can be carried, it goes in the pack for the clan.",
+        "Mining stands at sixty-one \u2014 eighty copper ore alone came out of those hills \u2014 and Herbalism at thirty-five, peacebloom by the armful. I learned Cooking, First Aid, and Fishing in Shen'dar Village and put all three straight to work. The Highlands charged me for the education: five deaths on the day, two of them in the same field an hour apart. The tally keeps those too. Nothing in this report is rounded down.",
+        "The prize of the night came at the end of it, in Gustberry Lowlands: a Musical Gustjumper, caught wild, now part of the clan's collection \u2014 the first new companion any of us has brought home. Level eleven at Windfield Orchard, pack full, boots ruined, everything mailed on to Stormwind for keeping. Sorinis handpicked me to be his hero. This is what the hero brought back: everything he could carry, and a bird that sings."
+      ],
+      "facts": [
+        "Single session: 6h 31m, levels 1 to 11",
+        "279 kills, 444 gathered",
+        "Mining 61 \u2014 80 Copper Ore",
+        "New pet: Musical Gustjumper (Gustberry Lowlands)",
+        "5 deaths \u2014 the Highlands keep their tally too"
+      ]
+    },
+    {
+      "id": "the-walk-mortimer",
+      "character": "mortimer",
+      "date": "2026-11-04",
+      "title": "Delivered",
+      "source": "butler-export",
+      "body": [
+        "Ledger, first entry. Subject arrived in Elwynn Forest at 22:35 with nothing, which was the correct amount. The position calls for a man who holds things, not a man who needs them.",
+        "Elwynn took its fee at 22:38 \u2014 one death, on the road, before the city was even in sight. Noted without complaint. Every vault charges something for the privilege of reaching it.",
+        "Stormwind, Trade District, 22:39. Post taken up. The subject does not quest, does not raid, does not advance. The subject waits, receives, and keeps. It is the whole of the job, and it will be done properly."
+      ],
+      "facts": [
+        "Arrived Stormwind Trade District, Nov 4, 22:39",
+        "One death \u2014 Elwynn Forest, on the road in",
+        "Bank alt: no quests, by design"
+      ]
+    },
+    {
+      "id": "first-deposits-mortimer",
+      "character": "mortimer",
+      "date": "2026-11-06",
+      "title": "First Deposits",
+      "source": "butler-export",
+      "body": [
+        "Ledger, second entry. The vault is open for business. Skyrinis's first harvest came down from Zephras Isle by post \u2014 ore, stone, and herbs in quantity, the gleanings of a cousin who cannot walk past a copper vein without introducing himself. All of it received, sorted, and shelved: the raw makings of the clan's trades, waiting in the dark for the craftsmen to call on them.",
+        "The pack overflowed before the bank did, which the subject records as the correct order of things. A companion also joined the household's collection in the night \u2014 a Musical Gustjumper, caught by the gatherer himself \u2014 and the subject notes its arrival in the rolls with the same care as the copper. Everything the clan wins goes in the book.",
+        "Balance carried forward: a working vault, a full set of shelves, and a family that produces more than it stores. The subject anticipates no difficulty keeping up. The subject does not, as a rule, have difficulties. He has entries."
+      ],
+      "facts": [
+        "Bank cache established and opened, Nov 6",
+        "First deposits: Skyrinis's Zephras Isle harvest",
+        "Account collections now include the Musical Gustjumper \u2014 6 battle pets"
+      ]
     }
   ]
 }
