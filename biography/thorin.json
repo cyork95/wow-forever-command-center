@@ -1,7 +1,7 @@
 {
   "character": "Thorin Caskmend",
-  "updated": "2026-11-06T22:14:00",
-  "count": 167,
+  "updated": "2026-11-07T15:14:00",
+  "count": 234,
   "events": [
     {
       "t": 1793834220,
@@ -1099,6 +1099,444 @@
       "at": "2026-11-06T22:14:00",
       "kind": "quest",
       "text": "Turned in Call of Fire"
+    },
+    {
+      "t": 1794067380,
+      "at": "2026-11-07T11:03:00",
+      "kind": "quest",
+      "text": "Turned in Honor Students",
+      "questID": 6387
+    },
+    {
+      "t": 1794067380,
+      "at": "2026-11-07T11:03:00",
+      "kind": "zone",
+      "text": "Entered Dun Morogh"
+    },
+    {
+      "t": 1794067440,
+      "at": "2026-11-07T11:04:00",
+      "kind": "zone",
+      "text": "Entered Ironforge"
+    },
+    {
+      "t": 1794067560,
+      "at": "2026-11-07T11:06:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Minor Healing Potion, in The Great Forge, Ironforge",
+      "reason": "New recipe: Minor Healing Potion"
+    },
+    {
+      "t": 1794067680,
+      "at": "2026-11-07T11:08:00",
+      "kind": "profession",
+      "text": "First Aid rose from 52 to 70"
+    },
+    {
+      "t": 1794067740,
+      "at": "2026-11-07T11:09:00",
+      "kind": "quest",
+      "text": "Turned in Ride to Ironforge",
+      "questID": 6391
+    },
+    {
+      "t": 1794068160,
+      "at": "2026-11-07T11:16:00",
+      "kind": "quest",
+      "text": "Turned in Gryth Thurden",
+      "questID": 6388
+    },
+    {
+      "t": 1794068340,
+      "at": "2026-11-07T11:19:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Minor Mana Potion, New recipe: Cerulean Dye, in Tinker Town, Ironforge",
+      "reason": "New recipe: Minor Mana Potion, New recipe: Cerulean Dye"
+    },
+    {
+      "t": 1794068340,
+      "at": "2026-11-07T11:19:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Minor Rejuvenation Potion, New recipe: Sulfuric Acid, in Tinker Town, Ironforge",
+      "reason": "New recipe: Minor Rejuvenation Potion, New recipe: Sulfuric Acid"
+    },
+    {
+      "t": 1794068340,
+      "at": "2026-11-07T11:19:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Elixir of Minor Fortitude, in Tinker Town, Ironforge",
+      "reason": "New recipe: Elixir of Minor Fortitude"
+    },
+    {
+      "t": 1794068640,
+      "at": "2026-11-07T11:24:00",
+      "kind": "profession",
+      "text": "Alchemy rose from 50 to 70"
+    },
+    {
+      "t": 1794069960,
+      "at": "2026-11-07T11:46:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Slitherskin Mackerel, in The Forlorn Cavern, Ironforge",
+      "reason": "New recipe: Slitherskin Mackerel"
+    },
+    {
+      "t": 1794070380,
+      "at": "2026-11-07T11:53:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Brilliant Smallfish, in Tinker Town, Ironforge",
+      "reason": "New recipe: Brilliant Smallfish"
+    },
+    {
+      "t": 1794070380,
+      "at": "2026-11-07T11:53:00",
+      "kind": "profession",
+      "text": "Cooking rose from 17 to 40"
+    },
+    {
+      "t": 1794070740,
+      "at": "2026-11-07T11:59:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Beer Basted Boar Ribs, in Ironforge",
+      "reason": "New recipe: Beer Basted Boar Ribs"
+    },
+    {
+      "t": 1794071220,
+      "at": "2026-11-07T12:07:00",
+      "kind": "profession",
+      "text": "Cooking rose from 40 to 42"
+    },
+    {
+      "t": 1794071280,
+      "at": "2026-11-07T12:08:00",
+      "kind": "profession",
+      "text": "Alchemy rose from 70 to 80"
+    },
+    {
+      "t": 1794071280,
+      "at": "2026-11-07T12:08:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Blackmouth Oil, in Tinker Town, Ironforge",
+      "reason": "New recipe: Blackmouth Oil"
+    },
+    {
+      "t": 1794071340,
+      "at": "2026-11-07T12:09:00",
+      "kind": "profession",
+      "text": "Alchemy rose from 80 to 83"
+    },
+    {
+      "t": 1794071460,
+      "at": "2026-11-07T12:11:00",
+      "kind": "zone",
+      "text": "Entered Deeprun Tram"
+    },
+    {
+      "t": 1794071580,
+      "at": "2026-11-07T12:13:00",
+      "kind": "quest",
+      "text": "Turned in Deeprun Rat Roundup",
+      "questID": 6661
+    },
+    {
+      "t": 1794071760,
+      "at": "2026-11-07T12:16:00",
+      "kind": "quest",
+      "text": "Turned in Me Brother, Nipsy",
+      "questID": 6662
+    },
+    {
+      "t": 1794071880,
+      "at": "2026-11-07T12:18:00",
+      "kind": "zone",
+      "text": "Entered Stormwind City"
+    },
+    {
+      "t": 1794071940,
+      "at": "2026-11-07T12:19:00",
+      "kind": "quest",
+      "text": "Turned in Stormpike's Order",
+      "questID": 1338
+    },
+    {
+      "t": 1794073440,
+      "at": "2026-11-07T12:44:00",
+      "kind": "zone",
+      "text": "Entered Elwynn Forest"
+    },
+    {
+      "t": 1794073620,
+      "at": "2026-11-07T12:47:00",
+      "kind": "quest",
+      "text": "Turned in A Fishy Peril",
+      "questID": 40
+    },
+    {
+      "t": 1794073860,
+      "at": "2026-11-07T12:51:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 75 to 77"
+    },
+    {
+      "t": 1794074160,
+      "at": "2026-11-07T12:56:00",
+      "kind": "quest",
+      "text": "Turned in Further Concerns",
+      "questID": 35
+    },
+    {
+      "t": 1794074220,
+      "at": "2026-11-07T12:57:00",
+      "kind": "quest",
+      "text": "Turned in Find the Lost Guards",
+      "questID": 37
+    },
+    {
+      "t": 1794074520,
+      "at": "2026-11-07T13:02:00",
+      "kind": "quest",
+      "text": "Turned in Discover Rolf's Fate",
+      "questID": 45
+    },
+    {
+      "t": 1794074760,
+      "at": "2026-11-07T13:06:00",
+      "kind": "level",
+      "text": "Reached level 16 in Elwynn Forest",
+      "level": 16
+    },
+    {
+      "t": 1794074760,
+      "at": "2026-11-07T13:06:00",
+      "kind": "quest",
+      "text": "Turned in A Bundle of Trouble",
+      "questID": 5545
+    },
+    {
+      "t": 1794074760,
+      "at": "2026-11-07T13:06:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Reached level 16, in Eastvale Logging Camp, Elwynn Forest",
+      "reason": "Reached level 16"
+    },
+    {
+      "t": 1794074820,
+      "at": "2026-11-07T13:07:00",
+      "kind": "profession",
+      "text": "Cooking rose from 42 to 50"
+    },
+    {
+      "t": 1794075240,
+      "at": "2026-11-07T13:14:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 77 to 78"
+    },
+    {
+      "t": 1794075420,
+      "at": "2026-11-07T13:17:00",
+      "kind": "death",
+      "text": "Died at Stone Cairn Lake in Elwynn Forest"
+    },
+    {
+      "t": 1794075480,
+      "at": "2026-11-07T13:18:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Died, in Stone Cairn Lake, Elwynn Forest",
+      "reason": "Died"
+    },
+    {
+      "t": 1794075840,
+      "at": "2026-11-07T13:24:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 78 to 81"
+    },
+    {
+      "t": 1794075960,
+      "at": "2026-11-07T13:26:00",
+      "kind": "death",
+      "text": "Died at Stone Cairn Lake in Elwynn Forest"
+    },
+    {
+      "t": 1794075960,
+      "at": "2026-11-07T13:26:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Died, in Stone Cairn Lake, Elwynn Forest",
+      "reason": "Died"
+    },
+    {
+      "t": 1794076380,
+      "at": "2026-11-07T13:33:00",
+      "kind": "quest",
+      "text": "Turned in Report to Thomas",
+      "questID": 71
+    },
+    {
+      "t": 1794076440,
+      "at": "2026-11-07T13:34:00",
+      "kind": "quest",
+      "text": "Turned in Protect the Frontier",
+      "questID": 52
+    },
+    {
+      "t": 1794076500,
+      "at": "2026-11-07T13:35:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 81 to 82"
+    },
+    {
+      "t": 1794076560,
+      "at": "2026-11-07T13:36:00",
+      "kind": "profession",
+      "text": "Fishing rose from 2 to 22"
+    },
+    {
+      "t": 1794077640,
+      "at": "2026-11-07T13:54:00",
+      "kind": "quest",
+      "text": "Turned in Stolen Enchanting Supplies"
+    },
+    {
+      "t": 1794077880,
+      "at": "2026-11-07T13:58:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 82 to 83"
+    },
+    {
+      "t": 1794078060,
+      "at": "2026-11-07T14:01:00",
+      "kind": "death",
+      "text": "Died in Elwynn Forest"
+    },
+    {
+      "t": 1794078060,
+      "at": "2026-11-07T14:01:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Died, in Elwynn Forest",
+      "reason": "Died"
+    },
+    {
+      "t": 1794078180,
+      "at": "2026-11-07T14:03:00",
+      "kind": "quest",
+      "text": "Turned in Downstream"
+    },
+    {
+      "t": 1794078300,
+      "at": "2026-11-07T14:05:00",
+      "kind": "quest",
+      "text": "Turned in Croaky's Head"
+    },
+    {
+      "t": 1794078480,
+      "at": "2026-11-07T14:08:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 83 to 84"
+    },
+    {
+      "t": 1794078540,
+      "at": "2026-11-07T14:09:00",
+      "kind": "zone",
+      "text": "Entered Redridge Mountains"
+    },
+    {
+      "t": 1794078660,
+      "at": "2026-11-07T14:11:00",
+      "kind": "quest",
+      "text": "Turned in Encroaching Gnolls",
+      "questID": 244
+    },
+    {
+      "t": 1794080160,
+      "at": "2026-11-07T14:36:00",
+      "kind": "quest",
+      "text": "Turned in Deliver Thomas' Report",
+      "questID": 39
+    },
+    {
+      "t": 1794080220,
+      "at": "2026-11-07T14:37:00",
+      "kind": "quest",
+      "text": "Turned in The Collector",
+      "questID": 123
+    },
+    {
+      "t": 1794080280,
+      "at": "2026-11-07T14:38:00",
+      "kind": "quest",
+      "text": "Turned in Elmpaw's Head"
+    },
+    {
+      "t": 1794080520,
+      "at": "2026-11-07T14:42:00",
+      "kind": "quest",
+      "text": "Turned in Princess Must Die!",
+      "questID": 88
+    },
+    {
+      "t": 1794080760,
+      "at": "2026-11-07T14:46:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 84 to 86"
+    },
+    {
+      "t": 1794081180,
+      "at": "2026-11-07T14:53:00",
+      "kind": "quest",
+      "text": "Turned in Manhunt",
+      "questID": 147
+    },
+    {
+      "t": 1794081240,
+      "at": "2026-11-07T14:54:00",
+      "kind": "login",
+      "text": "Earned the achievement Explore Elwynn Forest",
+      "unclassified": true
+    },
+    {
+      "t": 1794081240,
+      "at": "2026-11-07T14:54:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Earned Explore Elwynn Forest, in Forest's Edge, Elwynn Forest",
+      "reason": "Earned Explore Elwynn Forest"
+    },
+    {
+      "t": 1794081780,
+      "at": "2026-11-07T15:03:00",
+      "kind": "quest",
+      "text": "Turned in WANTED: \"Hogger\""
+    },
+    {
+      "t": 1794082020,
+      "at": "2026-11-07T15:07:00",
+      "kind": "profession",
+      "text": "Cooking rose from 50 to 68"
+    },
+    {
+      "t": 1794082140,
+      "at": "2026-11-07T15:09:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Boiled Clams, in Lion's Pride Inn",
+      "reason": "New recipe: Boiled Clams"
+    },
+    {
+      "t": 1794082140,
+      "at": "2026-11-07T15:09:00",
+      "kind": "screenshot",
+      "text": "Screenshot: New recipe: Coyote Steak, in Lion's Pride Inn",
+      "reason": "New recipe: Coyote Steak"
+    },
+    {
+      "t": 1794082380,
+      "at": "2026-11-07T15:13:00",
+      "kind": "zone",
+      "text": "Entered Westfall"
+    },
+    {
+      "t": 1794082440,
+      "at": "2026-11-07T15:14:00",
+      "kind": "quest",
+      "text": "Turned in Furlbrow's Deed",
+      "questID": 184
     }
   ]
 }

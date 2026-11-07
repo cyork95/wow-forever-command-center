@@ -1065,62 +1065,62 @@
     },
     "thorin": {
       "character": "Thorin Caskmend",
-      "exportedAt": "2026-11-06T22:14:00",
+      "exportedAt": "2026-11-07T15:14:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
-      "level": 15,
-      "zone": "Loch Modan",
-      "subzone": "Stonewrought Dam",
-      "goldCopper": 12353,
-      "health": "365 max",
+      "level": 16,
+      "zone": "Westfall",
+      "subzone": "The Jansen Stead",
+      "goldCopper": 9666,
+      "health": "432 max",
       "powerType": null,
       "stats": {
-        "Strength": "42",
-        "Agility": "23",
-        "Stamina": "41",
-        "Intellect": "36",
-        "Armor": "615",
-        "Attack Power": "197",
-        "Melee Crit": "4.47%",
-        "Spell Crit": "4.47%"
+        "Strength": "36",
+        "Agility": "22",
+        "Stamina": "47",
+        "Intellect": "45",
+        "Armor": "562",
+        "Attack Power": "129",
+        "Melee Crit": "4.17%",
+        "Spell Crit": "4.17%"
       },
       "professions": [
         {
           "name": "Alchemy",
-          "current": 50,
-          "max": 75
+          "current": 83,
+          "max": 150
         },
         {
           "name": "Herbalism",
-          "current": 75,
-          "max": 75
+          "current": 86,
+          "max": 150
         },
         {
           "name": "First Aid",
-          "current": 52,
-          "max": 75
+          "current": 70,
+          "max": 150
         },
         {
           "name": "Fishing",
-          "current": 2,
+          "current": 22,
           "max": 75
         },
         {
           "name": "Cooking",
-          "current": 17,
-          "max": 75
+          "current": 68,
+          "max": 150
         }
       ],
       "gear": [
         {
           "slot": "Back",
-          "name": "Bard's Cloak",
-          "itemLevel": 14,
-          "quality": "Common"
+          "name": "Reinforced Linen Cape",
+          "itemLevel": 12,
+          "quality": "Uncommon"
         },
         {
           "slot": "Chest",
-          "name": "Disciple's Robe",
+          "name": "Apprentice Wizard's Gown",
           "itemLevel": 13,
           "quality": "Uncommon"
         },
@@ -1179,76 +1179,92 @@
         "Musical Gustjumper",
         "Pachimari",
         "Panda Cub",
-        "Recipe: Succulent Pork Ribs",
         "Shen'dorei Windwell",
         "Zergling"
       ],
-      "playedSeconds": 45540,
+      "playedSeconds": 65160,
       "items": [
-        "Bard's Cloak",
+        "Apprentice Wizard's Gown",
+        "Archmage Theocritus' Research Journal",
         "Basic Campfire Kit",
         "Blood Sausage",
         "Briarthorn",
-        "Brock's List",
+        "Brilliant Smallfish",
         "Burnt Hide Bracers",
         "Compact Hammer",
-        "Crisp Spider Meat",
+        "Copper Tube",
         "Disciple's Pants",
-        "Disciple's Robe",
-        "Disciple's Stein",
         "Earth Totem",
         "Earthroot",
         "Elixir of Minor Defense",
         "Elixir of Minor Force",
+        "Elixir of Minor Fortitude",
         "Fire Totem",
         "Fishing Pole",
+        "Flask of Oil",
         "Flint and Tinder",
         "Hearthstone",
+        "Heavy Linen Bandage",
+        "Honorary Picks",
         "Ice Cold Milk",
         "Ironplate Buckler",
         "Lesser Healing Potion",
-        "Linen Bandage",
         "Linen Cloth",
-        "Mageroyal",
         "Mana Well",
         "Minor Arcane Elixir",
         "Minor Healing Potion",
         "Minor Mana Potion",
-        "Pattern: Dark Leather Tunic",
+        "Package for Stormpike",
+        "Peace Tea",
         "Peacebloom",
         "Pioneer Boots",
         "Pioneer Gloves",
         "Primitive Mantle",
-        "Recipe: Blood Sausage",
-        "Recipe: Succulent Pork Ribs",
-        "Roasted Boar Meat",
+        "Raw Longjaw Mud Snapper",
+        "Refreshing Spring Water",
+        "Reinforced Linen Cape",
+        "Ripe Watermelon",
         "Rumi of Gnomeregan: The Collected Works",
+        "Scroll of Protection",
         "Silverleaf",
-        "Small Spider Leg",
-        "Stormpike's Request",
+        "Slitherskin Mackerel",
+        "Small Pumpkin",
+        "Verna's Westfall Stew Recipe",
         "Warped Leather Belt",
         "empty"
       ],
       "itemCounts": {},
       "recipes": {
         "Alchemy": [
+          "Blackmouth Oil",
+          "Cerulean Dye",
           "Elixir of Minor Defense",
           "Elixir of Minor Force",
+          "Elixir of Minor Fortitude",
           "Elixir of Minor Strength",
           "Mana Well",
           "Minor Arcane Elixir",
-          "Minor Troll's Blood Elixir"
+          "Minor Mana Potion",
+          "Minor Rejuvenation Potion",
+          "Minor Troll's Blood Elixir",
+          "Sulfuric Acid"
         ],
         "Cooking": [
           "Basic Campfire",
+          "Beer Basted Boar Ribs",
+          "Brilliant Smallfish",
           "Charred Wolf Meat",
           "Herb Baked Egg",
+          "Peace Tea",
           "Roasted Boar Meat",
+          "Slitherskin Mackerel",
           "Spiced Wolf Meat"
         ],
         "First Aid": [
           "First Aid Kit",
-          "Linen Bandage"
+          "Heavy Linen Bandage",
+          "Linen Bandage",
+          "Minor Healing Potion"
         ],
         "Herbalism": [
           "Incense Candle"
@@ -1259,18 +1275,18 @@
         "Mounts": 2,
         "Pets": 6,
         "Toys": 2,
-        "Achievements": 1,
+        "Achievements": 2,
         "Titles": null
       },
       "statistics": {
         "Character": [
           {
             "name": "Deaths",
-            "value": "5"
+            "value": "8"
           },
           {
             "name": "Quests completed",
-            "value": "71"
+            "value": "95"
           },
           {
             "name": "Instance lockouts",
@@ -1280,35 +1296,39 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "1259"
+            "value": "494"
           },
           {
             "name": "Creature types",
-            "value": "51"
+            "value": "64"
           },
           {
             "name": "Tunnel Rat Vermin",
-            "value": "52"
+            "value": "65"
           },
           {
             "name": "Tunnel Rat Kobold",
-            "value": "31"
+            "value": "37"
           },
           {
             "name": "Frostmane Troll Whelp",
             "value": "30"
           },
           {
+            "name": "Tunnel Rat Forager",
+            "value": "26"
+          },
+          {
             "name": "Rockjaw Skullthumper",
             "value": "25"
           },
           {
-            "name": "Tunnel Rat Forager",
-            "value": "23"
-          },
-          {
             "name": "Leper Gnome",
             "value": "14"
+          },
+          {
+            "name": "Riverpaw Outrunner",
+            "value": "13"
           },
           {
             "name": "Crag Boar",
@@ -1351,6 +1371,10 @@
             "value": "9"
           },
           {
+            "name": "Tunnel Rat Digger",
+            "value": "9"
+          },
+          {
             "name": "Elder Wendigo",
             "value": "9"
           },
@@ -1359,7 +1383,15 @@
             "value": "8"
           },
           {
+            "name": "Prowler",
+            "value": "7"
+          },
+          {
             "name": "Ragged Young Wolf",
+            "value": "7"
+          },
+          {
+            "name": "Murloc Lurker",
             "value": "7"
           },
           {
@@ -1367,35 +1399,33 @@
             "value": "7"
           },
           {
-            "name": "Tunnel Rat Digger",
-            "value": "7"
-          },
-          {
             "name": "Frostmane Seer",
             "value": "7"
-          },
-          {
-            "name": "Rockjaw Trogg",
-            "value": "6"
-          },
-          {
-            "name": "Young Wendigo",
-            "value": "6"
-          },
-          {
-            "name": "Forest Lurker",
-            "value": "5"
           }
         ]
       },
       "completedQuests": [
+        35,
+        37,
+        39,
+        40,
+        45,
+        52,
+        71,
+        88,
+        123,
+        147,
         170,
         179,
         182,
         183,
+        184,
         218,
+        224,
         233,
         234,
+        237,
+        244,
         267,
         282,
         287,
@@ -1423,6 +1453,7 @@
         420,
         432,
         433,
+        1338,
         1339,
         1516,
         1517,
@@ -1433,33 +1464,30 @@
         3364,
         3365,
         5541,
+        5545,
+        6387,
+        6388,
+        6391,
+        6661,
         92466,
         92467,
         94373,
         94374,
+        94465,
+        94466,
+        94467,
         95212,
-        95998,
-        96045,
+        95213,
         96047,
-        96055,
-        96101,
         96390,
-        96391,
-        96392,
-        96408,
-        96604,
-        96605,
-        96606,
-        96607,
-        98321,
-        98326
+        97277,
+        98321
       ],
       "huntKills": {
         "Frostmane Seer": 7
       },
       "looted": [
-        "Recipe: Peace Tea",
-        "Recipe: Succulent Pork Ribs"
+        "Recipe: Peace Tea"
       ],
       "sources": {
         "CharacterExport": null,
@@ -1469,7 +1497,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-06T22:14:00"
+        "Dossier": "2026-11-07T15:14:00"
       }
     },
     "zephinis": {
