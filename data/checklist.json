@@ -517,7 +517,7 @@
     "zone": "Dun Morogh",
     "minLevel": 8,
     "priority": "Medium",
-    "status": "Planned",
+    "status": "Owned",
     "owners": [
       "flann"
     ],
@@ -525,7 +525,7 @@
     "assignedTo": [
       "flann"
     ],
-    "notes": "Drops from Frostmane Seers. Bind on pickup. Cooking 25: one Refreshing Spring Water and two Peacebloom. The drink restores 42 mana over 18 sec, then 2 Healing Power for 15 min if you sit for 10 seconds.",
+    "notes": "Drops from Frostmane Seers. Bind on pickup. Cooking 25: one Refreshing Spring Water and two Peacebloom. The drink restores 42 mana over 18 sec, then 2 Healing Power for 15 min if you sit for 10 seconds. OBTAINED 2026-11-06: recipe in Thorin's bank (Frostmane drop, Loch Modan session).",
     "source": "Beta",
     "defaultDone": false
   },
@@ -1371,7 +1371,7 @@
     "zone": "Loch Modan",
     "minLevel": 10,
     "priority": "Medium",
-    "status": "Planned",
+    "status": "Owned",
     "owners": [
       "all"
     ],
@@ -1379,7 +1379,7 @@
     "assignedTo": [
       "all"
     ],
-    "notes": "Drops from Tunnel Rats in Loch Modan. Cody is actively hunting it (noted 2026-11-06).",
+    "notes": "Drops from Tunnel Rats in Loch Modan. Cody is actively hunting it (noted 2026-11-06). DROPPED 2026-11-06: recipe in Thorin's bags after 113 Tunnel Rats (52 Vermin, 31 Kobold, 23 Forager, 7 Digger).",
     "source": "House",
     "defaultDone": false
   }

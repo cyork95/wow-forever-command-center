@@ -1065,24 +1065,24 @@
     },
     "thorin": {
       "character": "Thorin Caskmend",
-      "exportedAt": "2026-11-05T18:41:00",
+      "exportedAt": "2026-11-06T22:14:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
-      "level": 11,
-      "zone": "Dun Morogh",
-      "subzone": "Gol'Bolar Quarry",
-      "goldCopper": 788,
-      "health": "287 max",
+      "level": 15,
+      "zone": "Loch Modan",
+      "subzone": "Stonewrought Dam",
+      "goldCopper": 12353,
+      "health": "365 max",
       "powerType": null,
       "stats": {
-        "Strength": "35",
-        "Agility": "20",
-        "Stamina": "36",
-        "Intellect": "29",
-        "Armor": "252",
-        "Attack Power": "140",
-        "Melee Crit": "4.41%",
-        "Spell Crit": "4.41%"
+        "Strength": "42",
+        "Agility": "23",
+        "Stamina": "41",
+        "Intellect": "36",
+        "Armor": "615",
+        "Attack Power": "197",
+        "Melee Crit": "4.47%",
+        "Spell Crit": "4.47%"
       },
       "professions": [
         {
@@ -1097,7 +1097,7 @@
         },
         {
           "name": "First Aid",
-          "current": 22,
+          "current": 52,
           "max": 75
         },
         {
@@ -1107,22 +1107,22 @@
         },
         {
           "name": "Cooking",
-          "current": 7,
+          "current": 17,
           "max": 75
         }
       ],
       "gear": [
         {
           "slot": "Back",
-          "name": "Worn Hide Cloak",
-          "itemLevel": 10,
-          "quality": "Poor"
+          "name": "Bard's Cloak",
+          "itemLevel": 14,
+          "quality": "Common"
         },
         {
           "slot": "Chest",
-          "name": "Frostmane Leather Vest",
-          "itemLevel": 4,
-          "quality": "Common"
+          "name": "Disciple's Robe",
+          "itemLevel": 13,
+          "quality": "Uncommon"
         },
         {
           "slot": "Shirt",
@@ -1132,99 +1132,102 @@
         },
         {
           "slot": "Wrist",
-          "name": "Ragged Leather Bracers",
-          "itemLevel": 4,
-          "quality": "Poor"
+          "name": "Burnt Hide Bracers",
+          "itemLevel": 12,
+          "quality": "Common"
         },
         {
           "slot": "Hands",
-          "name": "Driving Gloves",
-          "itemLevel": 9,
+          "name": "Pioneer Gloves",
+          "itemLevel": 11,
           "quality": "Common"
         },
         {
           "slot": "Waist",
-          "name": "Ragged Leather Belt",
-          "itemLevel": 5,
+          "name": "Warped Leather Belt",
+          "itemLevel": 14,
           "quality": "Poor"
         },
         {
           "slot": "Legs",
-          "name": "Rancher's Trousers",
+          "name": "Disciple's Pants",
           "itemLevel": 12,
           "quality": "Uncommon"
         },
         {
           "slot": "Feet",
-          "name": "Frosthowl's Footwarmers",
-          "itemLevel": 9,
+          "name": "Pioneer Boots",
+          "itemLevel": 11,
           "quality": "Common"
         },
         {
           "slot": "Main Hand",
-          "name": "Copper Mace",
-          "itemLevel": 9,
-          "quality": "Common"
+          "name": "Compact Hammer",
+          "itemLevel": 13,
+          "quality": "Uncommon"
+        },
+        {
+          "slot": "Off Hand",
+          "name": "Ironplate Buckler",
+          "itemLevel": 15,
+          "quality": "Uncommon"
         }
       ],
       "owned": [
         "Azurky",
         "Cerulean Prideclaw",
+        "Musical Gustjumper",
         "Pachimari",
         "Panda Cub",
+        "Recipe: Succulent Pork Ribs",
         "Shen'dorei Windwell",
         "Zergling"
       ],
-      "playedSeconds": 23580,
+      "playedSeconds": 45540,
       "items": [
-        "Barrel of Shimmer Stout",
+        "Bard's Cloak",
         "Basic Campfire Kit",
-        "Beer Basted Boar Ribs",
-        "Boar Intestines",
-        "Carving Knife",
-        "Charred Wolf Meat",
-        "Copper Mace",
-        "Cracked Buckler",
-        "Cracked Shortbow",
-        "Cracked Sledge",
-        "Crag Boar Rib",
-        "Dirty Trogg Cloth",
-        "Driving Gloves",
+        "Blood Sausage",
+        "Briarthorn",
+        "Brock's List",
+        "Burnt Hide Bracers",
+        "Compact Hammer",
+        "Crisp Spider Meat",
+        "Disciple's Pants",
+        "Disciple's Robe",
+        "Disciple's Stein",
         "Earth Totem",
         "Earthroot",
         "Elixir of Minor Defense",
         "Elixir of Minor Force",
-        "Elixir of Minor Strength",
-        "Empty Powder Keg",
+        "Fire Totem",
         "Fishing Pole",
         "Flint and Tinder",
-        "Frostbit Staff x2",
-        "Frosthowl's Footwarmers",
-        "Frostmane Leather Vest",
         "Hearthstone",
+        "Ice Cold Milk",
+        "Ironplate Buckler",
+        "Lesser Healing Potion",
         "Linen Bandage",
         "Linen Cloth",
-        "Loose Chain Pants",
-        "Loose Chain Vest",
+        "Mageroyal",
         "Mana Well",
         "Minor Arcane Elixir",
         "Minor Healing Potion",
-        "Minor Troll's Blood Elixir",
-        "Patchwork Shoes",
+        "Minor Mana Potion",
+        "Pattern: Dark Leather Tunic",
         "Peacebloom",
+        "Pioneer Boots",
+        "Pioneer Gloves",
         "Primitive Mantle",
-        "Ragged Leather Belt",
-        "Ragged Leather Bracers",
-        "Rancher's Trousers",
-        "Refreshing Spring Water",
+        "Recipe: Blood Sausage",
+        "Recipe: Succulent Pork Ribs",
+        "Roasted Boar Meat",
+        "Rumi of Gnomeregan: The Collected Works",
         "Silverleaf",
-        "Skull Hatchet",
-        "Small Green Pouch",
-        "Stone Buckler",
-        "Stringy Wolf Meat",
-        "Tough Hunk of Bread",
-        "Tough Jerky",
-        "Worn Hide Cloak"
+        "Small Spider Leg",
+        "Stormpike's Request",
+        "Warped Leather Belt",
+        "empty"
       ],
       "itemCounts": {},
       "recipes": {
@@ -1240,7 +1243,8 @@
           "Basic Campfire",
           "Charred Wolf Meat",
           "Herb Baked Egg",
-          "Roasted Boar Meat"
+          "Roasted Boar Meat",
+          "Spiced Wolf Meat"
         ],
         "First Aid": [
           "First Aid Kit",
@@ -1253,20 +1257,20 @@
       "crafts": {},
       "collections": {
         "Mounts": 2,
-        "Pets": 5,
-        "Toys": 1,
-        "Achievements": 0,
+        "Pets": 6,
+        "Toys": 2,
+        "Achievements": 1,
         "Titles": null
       },
       "statistics": {
         "Character": [
           {
             "name": "Deaths",
-            "value": "3"
+            "value": "5"
           },
           {
             "name": "Quests completed",
-            "value": "48"
+            "value": "71"
           },
           {
             "name": "Instance lockouts",
@@ -1276,11 +1280,19 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "605"
+            "value": "1259"
           },
           {
             "name": "Creature types",
-            "value": "30"
+            "value": "51"
+          },
+          {
+            "name": "Tunnel Rat Vermin",
+            "value": "52"
+          },
+          {
+            "name": "Tunnel Rat Kobold",
+            "value": "31"
           },
           {
             "name": "Frostmane Troll Whelp",
@@ -1289,6 +1301,10 @@
           {
             "name": "Rockjaw Skullthumper",
             "value": "25"
+          },
+          {
+            "name": "Tunnel Rat Forager",
+            "value": "23"
           },
           {
             "name": "Leper Gnome",
@@ -1307,6 +1323,14 @@
             "value": "13"
           },
           {
+            "name": "Elder Snow Leopard",
+            "value": "13"
+          },
+          {
+            "name": "Elder Black Bear",
+            "value": "12"
+          },
+          {
             "name": "Ice Claw Bear",
             "value": "11"
           },
@@ -1315,12 +1339,20 @@
             "value": "10"
           },
           {
-            "name": "Elder Wendigo",
+            "name": "Rockjaw Bonesnapper",
+            "value": "10"
+          },
+          {
+            "name": "Stonesplinter Trogg",
             "value": "9"
           },
           {
-            "name": "Rockjaw Bonesnapper",
-            "value": "8"
+            "name": "Stonesplinter Scout",
+            "value": "9"
+          },
+          {
+            "name": "Elder Wendigo",
+            "value": "9"
           },
           {
             "name": "Young Black Bear",
@@ -1328,6 +1360,14 @@
           },
           {
             "name": "Ragged Young Wolf",
+            "value": "7"
+          },
+          {
+            "name": "Elder Crag Boar",
+            "value": "7"
+          },
+          {
+            "name": "Tunnel Rat Digger",
             "value": "7"
           },
           {
@@ -1343,44 +1383,8 @@
             "value": "6"
           },
           {
-            "name": "Elder Crag Boar",
+            "name": "Forest Lurker",
             "value": "5"
-          },
-          {
-            "name": "Rockjaw Raider",
-            "value": "5"
-          },
-          {
-            "name": "Rabbit",
-            "value": "4"
-          },
-          {
-            "name": "Juvenile Snow Leopard",
-            "value": "4"
-          },
-          {
-            "name": "Wendigo Shaman",
-            "value": "4"
-          },
-          {
-            "name": "Ragged Timber Wolf",
-            "value": "3"
-          },
-          {
-            "name": "Burly Rockjaw Trogg",
-            "value": "3"
-          },
-          {
-            "name": "Winter Wolf",
-            "value": "3"
-          },
-          {
-            "name": "Frostmane Troll",
-            "value": "2"
-          },
-          {
-            "name": "Snow Tracker Wolf",
-            "value": "2"
           }
         ]
       },
@@ -1390,8 +1394,13 @@
         182,
         183,
         218,
+        233,
+        234,
+        267,
+        282,
         287,
         291,
+        307,
         310,
         311,
         312,
@@ -1405,28 +1414,52 @@
         384,
         400,
         412,
+        413,
+        414,
+        416,
+        417,
+        418,
+        419,
+        420,
+        432,
+        433,
+        1339,
+        1516,
+        1517,
+        1519,
+        1520,
         2160,
         3361,
         3364,
         3365,
         5541,
+        92466,
+        92467,
+        94373,
+        94374,
+        95212,
+        95998,
+        96045,
         96047,
         96055,
+        96101,
+        96390,
+        96391,
         96392,
         96408,
-        97277,
-        98289,
+        96604,
+        96605,
+        96606,
+        96607,
         98321,
-        98326,
-        98581,
-        99158,
-        99582
+        98326
       ],
       "huntKills": {
         "Frostmane Seer": 7
       },
       "looted": [
-        "Recipe: Peace Tea"
+        "Recipe: Peace Tea",
+        "Recipe: Succulent Pork Ribs"
       ],
       "sources": {
         "CharacterExport": null,
@@ -1436,7 +1469,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-05T18:41:00"
+        "Dossier": "2026-11-06T22:14:00"
       }
     },
     "zephinis": {
@@ -1792,34 +1825,34 @@
     },
     "skyrinis": {
       "character": "Skyrinis Starhollow",
-      "exportedAt": "2026-11-06T14:44:00",
+      "exportedAt": "2026-11-07T00:16:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
       "level": 11,
       "zone": "Zephras Isle",
-      "subzone": "Shen'dar Village",
-      "goldCopper": 3491,
+      "subzone": "Valanaar",
+      "goldCopper": 2091,
       "health": "284 max",
       "powerType": null,
       "stats": {
-        "Strength": "26",
-        "Agility": "32",
+        "Strength": "25",
+        "Agility": "31",
         "Stamina": "32",
-        "Intellect": "38",
-        "Armor": "402",
-        "Attack Power": "44",
-        "Melee Crit": "5.32%",
-        "Spell Crit": "5.32%"
+        "Intellect": "39",
+        "Armor": "286",
+        "Attack Power": "30",
+        "Melee Crit": "3.45%",
+        "Spell Crit": "3.45%"
       },
       "professions": [
         {
           "name": "Herbalism",
-          "current": 41,
+          "current": 44,
           "max": 75
         },
         {
           "name": "Mining",
-          "current": 62,
+          "current": 63,
           "max": 150
         },
         {
@@ -1829,13 +1862,13 @@
         },
         {
           "name": "Fishing",
-          "current": 50,
-          "max": 75
+          "current": 100,
+          "max": 150
         },
         {
           "name": "Cooking",
-          "current": 20,
-          "max": 75
+          "current": 77,
+          "max": 150
         }
       ],
       "gear": [
@@ -1889,9 +1922,9 @@
         },
         {
           "slot": "Main Hand",
-          "name": "Novice's Quarterstaff",
-          "itemLevel": 5,
-          "quality": "Common"
+          "name": "Planting Shovel",
+          "itemLevel": 10,
+          "quality": "Uncommon"
         }
       ],
       "owned": [
@@ -1903,42 +1936,33 @@
         "Shen'dorei Windwell",
         "Zergling"
       ],
-      "playedSeconds": 25980,
+      "playedSeconds": 31920,
       "items": [
-        "10 Pound Mud Snapper",
         "Basic Campfire Kit",
         "Brilliant Smallfish",
-        "Copper Ore",
-        "Cracked Bill",
-        "Crawler Claw",
-        "Earthroot",
         "First Aid Kit",
         "Fish Bowl",
         "Fishing Pole",
         "Flint and Tinder",
-        "Frilled Lichen",
         "Hearthstone",
         "Hunter's Simple Cloak",
-        "Index Esoteria",
         "Linen Bandage",
         "Linen Cloth",
+        "Longjaw Mud Snapper",
         "Mining Pick",
         "Minor Healing Potion",
         "Minor Mana Potion",
-        "Novice's Quarterstaff",
-        "Peacebloom",
-        "Pungent Skycheddar",
+        "Minor Troll's Blood Elixir",
+        "Pincer Bites",
+        "Planting Shovel",
         "Ragged Leather Gloves",
-        "Raw Brilliant Smallfish",
-        "Raw Longjaw Mud Snapper",
+        "Recipe: Slitherskin Mackerel",
         "Red Delicious Stormapple",
         "Refreshing Spring Water",
-        "Rough Stone",
-        "Silverleaf",
+        "Shiny Bauble",
         "Thendal Survivalist's Shirt",
         "Vuldren Hide Bracers",
         "Well-Worn Pants",
-        "Windsong Crawler Meat",
         "Windstone",
         "Wolfhide Belt",
         "Worn Leather Boots",
@@ -1949,11 +1973,16 @@
       "recipes": {
         "Cooking": [
           "Basic Campfire",
+          "Boiled Clams",
           "Brilliant Smallfish",
           "Charred Wolf Meat",
+          "Coyote Steak",
           "Herb Baked Egg",
+          "Longjaw Mud Snapper",
+          "Pincer Bites",
           "Roasted Boar Meat",
-          "Slitherskin Mackerel"
+          "Slitherskin Mackerel",
+          "Spiced Wolf Meat"
         ],
         "First Aid": [
           "First Aid Kit",
@@ -1975,7 +2004,7 @@
         "Mounts": 2,
         "Pets": 6,
         "Toys": 2,
-        "Achievements": 0,
+        "Achievements": 1,
         "Titles": null
       },
       "statistics": {
@@ -1986,7 +2015,7 @@
           },
           {
             "name": "Quests completed",
-            "value": "58"
+            "value": "63"
           },
           {
             "name": "Instance lockouts",
@@ -1996,15 +2025,15 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "300"
+            "value": "302"
           },
           {
             "name": "Creature types",
-            "value": "42"
+            "value": "43"
           },
           {
             "name": "Ornery Galestrider",
-            "value": "23"
+            "value": "24"
           },
           {
             "name": "Prideclaw",
@@ -2139,11 +2168,15 @@
         92698,
         92699,
         92701,
+        92703,
         92709,
         92727,
-        92849,
-        93318,
-        93552
+        92840,
+        93317,
+        93552,
+        94413,
+        96047,
+        96055
       ],
       "huntKills": {},
       "looted": [],
@@ -2155,7 +2188,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-06T14:44:00"
+        "Dossier": "2026-11-07T00:16:00"
       }
     }
   }
