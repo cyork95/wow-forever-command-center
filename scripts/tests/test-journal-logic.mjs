@@ -37,11 +37,11 @@ for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
   assert(entry.facts && typeof entry.facts === "object" && !Array.isArray(entry.facts), `backstory ${id} facts is an object`);
   assert(entry.portrait === undefined || entry.portrait === null || typeof entry.portrait === "string", `backstory ${id} portrait is a string when present`);
 }
-assert(Object.keys(backstoriesDoc.backstories).sort().join(",") === "malavus,skyrinis,sorinis,thorin",
-  "backstories.json carries the four approved entries (malavus, skyrinis, sorinis, thorin)");
+assert(Object.keys(backstoriesDoc.backstories).sort().join(",") === "malavus,skyrinis,sorinis,thorin,zephinis",
+  "backstories.json carries the five approved entries (malavus, skyrinis, sorinis, thorin, zephinis)");
 for (const [id, entry] of Object.entries(backstoriesDoc.backstories)) {
-  if (id === "skyrinis") {
-    assert(!("portrait" in entry), "skyrinis carries no portrait field");
+  if (id === "skyrinis" || id === "zephinis") {
+    assert(!("portrait" in entry), `${id} carries no portrait field`);
   } else {
     assert(typeof entry.portrait === "string" && existsSync(path.join(repo, entry.portrait)),
       `backstory ${id} portrait points at an existing file`);
@@ -79,9 +79,9 @@ for (const entry of journalsDoc.entries) {
   assert(Array.isArray(entry.facts) && entry.facts.every((f) => typeof f === "string"), `journal entry ${entry.id} facts is an array of strings`);
   assert(typeof entry.source === "string", `journal entry ${entry.id} names a source`);
 }
-assert(journalsDoc.entries.map((e) => e.id).join(",") === "session-zero-thorin,session-zero-sorinis,session-zero-malavus,session-zero-skyrinis",
-  "journals.json carries the four Session Zero entries in order");
-assert(journalsDoc.entries.map((e) => e.title).join("|") === "A Name on the Door Again|The Count Begins at One|In Good Order|An Empty Pack",
+assert(journalsDoc.entries.slice(0, 4).map((e) => e.id).join(",") === "session-zero-thorin,session-zero-sorinis,session-zero-malavus,session-zero-skyrinis",
+  "journals.json opens with the four Session Zero entries in order");
+assert(journalsDoc.entries.slice(0, 4).map((e) => e.title).join("|") === "A Name on the Door Again|The Count Begins at One|In Good Order|An Empty Pack",
   "Session Zero titles match the owner-approved texts");
 
 // Fixture entries: obviously fake, gitignored, fixture character only.

@@ -100,7 +100,7 @@ const context = vm.createContext({ localStorage, document, location, history, UR
 vm.runInContext(stripped, context, { filename: "app.js" });
 
 const ux = vm.runInContext(`({
-  TABS, state, selectCharacter, selectedCharacter, showTab, render, renderAltoholic, loadStore, renderBio, launchStripText, renderLaunchStrip, renderLaunch, renderGuild,
+  TABS, state, selectCharacter, selectedCharacter, showTab, render, renderAltoholic, loadStore, renderBio, launchStripText, renderLaunchStrip, renderLaunch, renderGuild, setTasksOpen, loadUi, renderTasksPanel, renderPortrait,
 })`, context);
 
 function seedRoster() {
@@ -120,8 +120,8 @@ function seedRoster() {
 
 // Tab list: house gone, order kept.
 assert(!ux.TABS.includes("house"), "TABS drops house");
-assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,tasks,dungeons,quests,macros,guild,map",
-  "map appended last, prior tabs keep their relative order");
+assert(ux.TABS.join(",") === "roster,hunts,journey,journal,mail,altoholic,professions,lockouts,dungeons,quests,macros,guild,map",
+  "tasks lives in the header panel now; map appended last, prior tabs keep their relative order");
 
 // Tab bar invariant (tab-grid-fix): the desktop .tabs grid must fit every
 // tab button in one row without hard-coding the tab count, so adding a tab
@@ -192,34 +192,29 @@ ux.state.guides = [{ id: "g-fixture", title: "Fixture Guide", url: "https://exam
 ux.state.selected = "fixturin";
 vm.runInContext("renderBio();", context);
 const bioText = textOf(byId.get("roster"));
-assert(bioText.includes("Fixturin Testmend"), "bio shows the selected character name");
-assert(bioText.includes("Night Elf"), "bio shows the race line from roster data");
 assert(bioText.includes("The Unwritten"), "bio shows the backstory title as section heading");
 assert(bioText.includes("practice sword"), "bio renders backstory prose, not an expander");
 assert(bioText.includes("Fixture Guide"), "bio carries the guides line");
 assert(!bioText.includes("No backstory yet."), "populated bio shows no empty line");
 assert(byId.get("roster").children.every((c) => c.tag !== "details" && c.className !== "char-card"),
   "bio carries no expander or card markup");
+assert(byId.get("roster").children.every((c) => c.className !== "bio-head" && c.className !== "portrait"),
+  "bio carries no portrait or identity header (sheet owns those)");
+assert(bioText.includes("Home") && bioText.includes("Fixture"), "bio keeps non-duplicated facts");
+assert(!bioText.includes("Night Elf"), "bio drops the roster race line (sheet chip owns it)");
 ux.state.selected = "sorinis";
 vm.runInContext("renderBio();", context);
 const emptyBio = textOf(byId.get("roster"));
 assert(emptyBio.includes("No backstory yet."), "unwritten character shows the honest line");
-assert(emptyBio.includes("Sorinis Testmend"), "empty bio still renders the character header");
+assert(!emptyBio.includes("Sorinis Testmend"), "empty bio renders no identity header");
 assert(!emptyBio.includes("Fixture Guide"), "guides line follows appliesTo mapping");
 
-// Portrait slot: path present renders an <img>; absent renders the monogram.
-ux.state.backstories = { fixturin: { ...fixtureStories.fixturin, portrait: "assets/portraits/fixturin.jpg" } };
-ux.state.selected = "fixturin";
-vm.runInContext("renderBio();", context);
-const frame = byId.get("roster").children[0].children[0];
-assert(frame.className === "portrait", "portrait renders in a frame");
-assert(frame.children[0].tag === "img" && frame.children[0].getAttribute("src") === "assets/portraits/fixturin.jpg",
-  "portrait path renders an <img> with that src");
-ux.state.backstories = fixtureStories;
-vm.runInContext("renderBio();", context);
-const mono = byId.get("roster").children[0].children[0].children[0];
-assert(mono.className === "portrait-mono" && textOf(mono) === "FT",
-  "absent portrait renders the monogram placeholder with initials");
+// Portrait slot on the sheet identity: path present renders an <img>;
+// absent renders the monogram.
+const portraitImg = vm.runInContext(`(() => { const f = renderPortrait({ name: "Fixturin Testmend", className: "Druid" }, { portrait: "assets/portraits/fixturin.jpg" }); return f.className === "portrait" && f.children[0].tag === "img" && f.children[0].getAttribute("src") === "assets/portraits/fixturin.jpg"; })()`, context);
+assert(portraitImg, "portrait path renders an <img> with that src");
+const portraitMono = vm.runInContext(`(() => { const f = renderPortrait({ name: "Fixturin Testmend", className: "Druid" }, null); const m = f.children[0]; return m.className === "portrait-mono" && m.children.join("") === "FT"; })()`, context);
+assert(portraitMono, "absent portrait renders the monogram placeholder with initials");
 
 // Quirk counters vessel: block for a character with an entry, nothing without one.
 ux.state.tallies = { fixturin: { heading: "Fixture Tally", counters: [{ label: "Deeds done", value: 0 }, { label: "Oaths kept", value: 7 }] } };
@@ -286,6 +281,22 @@ localStorage.removeItem("wow-forever-launch-v1");
 vm.runInContext('renderLaunch("2026-11-12");', context);
 assert(byId.get("launch-panel").hidden === true, "panel hides after 2026-11-11");
 
+// Tasks panel (tickets #77/#78): collapsed by default, toggle persists to a UI-only key.
+localStorage.removeItem("wow-forever-ui-v1");
+vm.runInContext("loadUi(); renderTasksPanel();", context);
+assert(byId.get("tasks-panel").hidden === true, "tasks panel starts collapsed");
+assert(byId.get("tasks-toggle").getAttribute("aria-expanded") === "false", "tasks toggle starts collapsed");
+vm.runInContext("setTasksOpen(true);", context);
+assert(byId.get("tasks-panel").hidden === false, "tasks panel opens on toggle");
+assert(byId.get("tasks-toggle").getAttribute("aria-expanded") === "true", "tasks toggle reflects open");
+assert(JSON.parse(localStorage.getItem("wow-forever-ui-v1")).tasksOpen === true, "tasks open state persists to the UI-only key");
+vm.runInContext("state.ui = { tasksOpen: false }; loadUi(); renderTasksPanel();", context);
+assert(byId.get("tasks-panel").hidden === false, "tasks open state restores from the UI-only key");
+vm.runInContext("setTasksOpen(false);", context);
+assert(byId.get("tasks-panel").hidden === true, "tasks panel closes again");
+const savedV1 = JSON.parse(localStorage.getItem("wow-forever-command-center-v1") || "{}");
+assert(!("tasksOpen" in savedV1) && !("ui" in savedV1), "UI toggle state never bleeds into the saved-state key");
+
 // Guild tab: charter, customs, houses from the real guild.json.
 const guildDoc = JSON.parse(readFileSync(path.join(repo, "data", "guild.json"), "utf8"));
 ux.state.guild = guildDoc;
@@ -314,7 +325,7 @@ assert(sorinisLinks["Restoration 19/0/32"] === "https://talentsforever.com/druid
 assert(sorinisLinks["Balance 38/0/13 (dual)"] === "https://talentsforever.com/druid/60/5532223115021051--505003-ABCDEFGHIJLMOPkmp-7", "sorinis balance dual unchanged");
 assert(rosterById.thorin.professions.join(",") === "Herbalism,Alchemy", "thorin is Herbalism/Alchemy");
 assert(rosterById.sorinis.professions.join(",") === "Skinning,Leatherworking", "sorinis is Skinning/Leatherworking");
-assert(rosterById.skyrinis.spec === "Adventurer 9/25/17 (main) [non-raid—solo Journey], Healkin 31/0/20 (dual) [non-raid—solo Journey]", "skyrinis adventurer main, healkin dual");
+assert(rosterById.skyrinis.spec === "Adventurer 9/25/17 [main — solo Journey] · Healkin 31/0/20 [dual]", "skyrinis adventurer main, healkin dual");
 const skyrinisLinks = Object.fromEntries(rosterById.skyrinis.talentLinks.map((l) => [l.label, l.url]));
 assert(skyrinisLinks["Adventurer 9/25/17 (main)"] === "https://talentsforever.com/druid/60/050022-0520030212311212-05533000001-BEFlRSmnVXZYabcfedou-10?b=70685h&d=261101", "skyrinis adventurer main link");
 assert(skyrinisLinks["Healkin 31/0/20 (dual)"] === "https://talentsforever.com/druid/60/5532200115001051--50503301021-AkmpCEHDB2IruJ4MBJOPot-7?b=70425&d=261024", "skyrinis healkin dual link");
@@ -325,8 +336,8 @@ const manifest = JSON.parse(readFileSync(path.join(repo, "manifest.webmanifest")
 assert(manifest.name === "WoW Forever Command Center", "manifest name");
 assert(manifest.short_name === "WoW Forever", "manifest short name");
 assert(manifest.display === "standalone", "manifest display standalone");
-assert(manifest.theme_color === "#141910", "manifest theme color matches the site");
-assert(manifest.background_color === "#1d2618", "manifest background matches the site panel");
+assert(manifest.theme_color === "#0D1117", "manifest theme color matches the site");
+assert(manifest.background_color === "#11161D", "manifest background matches the site panel");
 for (const icon of manifest.icons) {
   assert(existsSync(path.join(repo, icon.src)), `manifest icon exists: ${icon.src}`);
 }
