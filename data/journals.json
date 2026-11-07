@@ -202,6 +202,50 @@
         "New toy collected: Pouch of Violet Dust (toys 2/21)",
         "Gold 34s 91c — the most he has ever held"
       ]
+    },
+    {
+      "id": "for-the-table-thorin",
+      "character": "thorin",
+      "date": "2026-11-06",
+      "title": "For the Table",
+      "source": "butler-export",
+      "body": [
+        "I left Dun Morogh this morning with the snow barely off my boots, and I will say plainly what I told no one at the inn: I was nervous. A Caskmend does not shrink from work, but Loch Modan is a bigger country than the valley I was raised in, and the name I am rebuilding deserves better than a dwarf who only ever mended his own fence.",
+        "The mountain answered kindly. The Call of Fire found me, as the Call of Earth did before it, and there is a new totem standing in my pack tonight that burns steady when I set it down. Fire is a cook's element as much as a shaman's. I choose to take that as encouragement.",
+        "Then, the mine. Word had reached me that the Tunnel Rats of Silver Stream carry a recipe worth having — succulent pork ribs, the kind of dish a clan table remembers. I went down into that dark with my hammer and my patience, and I came up again one hundred and thirteen rats later with the recipe in my pouch. Let the bards sing of dragons. A recipe is forever, and it feeds people.",
+        "The day was generous besides: a second recipe came home with me, a peace tea from the Frostmane, of all unlikely donors. Dun Morogh showed me its last corner and marked it explored. My purse holds its first gold piece. The inn at Thelsamar — the Stoutlager — is my hearth now, and the lake country is ahead of me. I am nobody's legend. But the table, when this clan finally sits at one together, will be ready. That is the whole of my ambition, and it is enough."
+      ],
+      "facts": [
+        "Level 15",
+        "Loch Modan reached; hearth moved to Stoutlager Inn, Thelsamar",
+        "Call of Fire completed — Fire totem earned",
+        "113 Tunnel Rats killed in Silver Stream Mine",
+        "Recipe: Succulent Pork Ribs obtained — the hunt is complete",
+        "Recipe: Peace Tea also obtained (banked)",
+        "Achievement: Explore Dun Morogh",
+        "Quests completed 71 (game statistic)"
+      ]
+    },
+    {
+      "id": "a-hundred-casts-skyrinis",
+      "character": "skyrinis",
+      "date": "2026-11-06",
+      "title": "A Hundred Casts",
+      "source": "butler-export",
+      "body": [
+        "The afternoon asked its errands of me and I ran them gladly — the Great Ursera Spirit honored, crabs counted for Crab Season, news carried, wind caught. Small services. The isle is held together by small services, the way a net is held together by knots nobody praises.",
+        "Then the light began to lean, and I did the thing I was made for. I went down to the water at Valanaar with my pole and my patience and I fished. Not for a quest. Not for a tally — though the tally came, as tallies do when you are not watching them. Cast, wait, listen. The lake decides what it gives; my whole art is to still be standing there, grateful, when it gives it.",
+        "Somewhere past the hundredth cast the skill settled into my hands like a path worn smooth — one hundred, the trainers would call it, out of a hundred and fifty the road allows. The catch filled my bags the way the morning's harvest fills Mortimer's bank: mud snapper on mud snapper, a ten-pounder among them that I have saved rather than sold. Some finds are for keeping.",
+        "Past midnight I cooked at the fire until the pans stopped surprising me — five new recipes learned in one sitting, steam in my face, the village asleep around me. My hearthstone wakes in Valanaar now. It is not Shen'dar, and it is not home, exactly. But a place you have fed yourself in, slowly and well, is a place that has agreed to know your name. For the clan, always — even the quiet parts. Especially the quiet parts."
+      ],
+      "facts": [
+        "Fishing reached 100/150 in a single evening sitting at Valanaar",
+        "Cooking reached 77; five recipes learned past midnight (Spiced Wolf Meat, Boiled Clams, Coyote Steak, Pincer Bites, Longjaw Mud Snapper)",
+        "Quests completed 63 (game statistic)",
+        "Hearthstone moved to Valanaar",
+        "115 fish caught lifetime (game statistic)",
+        "A 10 Pound Mud Snapper kept in the bank"
+      ]
     }
   ]
 }
