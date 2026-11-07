@@ -30,6 +30,7 @@ const state = {
   journeyChecks: {},
   backstories: null,
   journals: null,
+  biography: {},
   journalView: "picked",
   launch: null,
   guild: null,
@@ -841,6 +842,9 @@ function el(tag, attrs, children) {
 function backstoryFor(characterId) {
   return ((state.backstories || {})[characterId]) || null;
 }
+function biographyFor(characterId) {
+  return ((state.biography || {})[characterId]) || null;
+}
 function tallyFor(characterId) {
   return ((state.tallies || {})[characterId]) || null;
 }
@@ -855,6 +859,34 @@ function journalAll() {
     .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
 }
 
+function biographyEvents(characterId) {
+  const doc = biographyFor(characterId);
+  return asList(doc && doc.events)
+    .filter((event) => event && event.text)
+    .sort((a, b) => Number(b.t || 0) - Number(a.t || 0)
+      || String(b.at || "").localeCompare(String(a.at || "")));
+}
+function renderBiography(characterId) {
+  const doc = biographyFor(characterId);
+  if (!doc) return null;
+  const box = el("article", { class: "card biography" });
+  box.append(el("h4", { text: "Biography" }));
+  if (doc.updated) box.append(el("p", { class: "meta", text: `Updated ${String(doc.updated).slice(0, 10)}.` }));
+  const events = biographyEvents(characterId);
+  if (!events.length) {
+    box.append(el("p", { class: "empty-note", text: "No biography events yet." }));
+    return box;
+  }
+  events.forEach((event) => {
+    const bits = [String(event.at || "").slice(0, 10), event.kind].filter(Boolean).join(" · ");
+    const line = el("p", { text: event.reason ? `${event.text} — ${event.reason}` : event.text });
+    box.append(el("div", { class: "bio-event" }, [
+      bits ? el("p", { class: "meta", text: bits }) : null,
+      line
+    ]));
+  });
+  return box;
+}
 function setJournalView(view) {
   state.journalView = view;
   saveStore();
@@ -1134,6 +1166,8 @@ function renderBio() {
   } else {
     bio.append(el("p", { class: "empty-note", text: "No backstory yet." }));
   }
+  const timeline = renderBiography(character.id);
+  if (timeline) bio.append(timeline);
   const myGuides = asList(state.guides).filter((guide) => asList(guide.appliesTo).includes(character.id));
   if (myGuides.length) {
     const guideLine = el("p", { class: "meta", text: "Guides: " });
@@ -2849,6 +2883,15 @@ async function main() {
     state.launch = launchFile;
     state.guild = guildFile;
     state.tallies = (talliesFile && talliesFile.tallies) || {};
+    // Dossier-fed biographies: one file per roster character when present.
+    // Missing files stay absent; the Bio tab renders no timeline for them.
+    state.biography = {};
+    await Promise.all(asList(characters).map(async (character) => {
+      if (!character || !character.id) return;
+      try {
+        state.biography[character.id] = await loadJson(`biography/${character.id}.json`);
+      } catch (error) { /* no biography file yet */ }
+    }));
     attCache = null;
     // The Google Sheet is retired: the repo JSON files are the only source.
     // state.checks/attempts/taskChecks start empty and live only in this

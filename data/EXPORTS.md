@@ -1,8 +1,10 @@
 # Addon exports
 
-The site reads roster identity from `characters.json`. Live character numbers, hunt rows, and task checks come from the Google Sheet. `stats.json` and `checklist.json` are the fallback when that sheet does not load. Checkboxes are columns on the sheet, one per character. They are not stored in the browser. Checks saved in a browser before the sheet were left behind.
+The site reads roster identity from `characters.json`. Live character numbers, hunt rows/checks, and task checks render from repo data as primary: `data/stats.json` (with per-character owned / looted / huntKills driving checklist state against `data/checklist.json`). The Google Sheet no longer overrides numbers; its import is retired for numbers. Hunt and task checks live on this device only (localStorage), and `checklist.json` still carries the saved hunt list.
 
-Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.lua` dump is fine too. Name the file with the character and the date, for example `skyrinis-2026-11-04.json`. Paste that JSON into the sheet Import tab (cell B2, then **Command center → Parse import**) to update the live page. Committing `stats.json` only refreshes the fallback.
+The pipeline is Dossier text: in game, `/dossier` builds a text report for the character. Paste that text to Butler, and Butler converts it and commits the result as data-only commits to `data/stats.json` and `biography/<id>.json`. Butler maintains both files going forward. Committing `stats.json` refreshes the live page.
+
+Drop raw exports in `data/exports/` for the record. Name the file with the character and the date, for example `skyrinis-2026-11-04.txt` for a Dossier text paste or `skyrinis-2026-11-04.json` for JSON. The committed `stats.json` entry keeps this shape:
 
 ```json
 {
@@ -45,9 +47,9 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 }
 ```
 
-`character` must match a name in `characters.json`, or the JSON can be the whole `stats.json` map (`characters` keyed by roster id). `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts are rows on the sheet Hunts tab. `checklist.json` stays the fallback, so add the hunt there too when the offline copy should match. The in-game `/dossier` report is text. `parseImport` accepts this JSON, not that text.
+`character` must match a name in `characters.json`. `owned` marks checklist rows whose name matches. `statistics` is the character window's statistics tab, grouped however you like. New hunts are rows in `checklist.json`. Butler-fed entries may honestly omit what the text export cannot carry: empty `itemCounts` and `crafts` (both ID-keyed from Syndicator / Profession Master internals, which the text export names instead of numbering), a `statistics` Character group with no `Areas explored` row, and `collections.Titles` set to null. The site renders those as absent, never as zeros.
 
-`scripts/scan-addons.ps1` also reads addon saves under `WTF` and adds these fields to each character in `stats.json`:
+`scripts/scan-addons.ps1` still reads addon saves under `WTF` and can add these fields to each character in `data/stats.json`, but that role is retired now that Butler owns the file (see the script header): do not run the scan to update numbers.
 
 - `items`: item names from Syndicator (bags, bank, mail, worn). Hunts with a matching name check themselves.
 - `recipes`: known recipes by profession from Profession Master. Recipe hunts check themselves once learned. Its skill levels raise `professions[].current`.
@@ -58,13 +60,13 @@ Drop exports in `data/exports/`. JSON is the easiest shape. A SavedVariables `.l
 - `looted`: hunt items, and dungeon-journal drops, that KillDex saw drop for this character. A matching hunt checks itself, and the dungeon row shows the drop in hand, even after the item is sold or used.
 - `sources`: each addon and the time its save was written. Nova Instance Tracker's level and gold win when its save is newer than `exportedAt`.
 
-Dossier's Biography lives in `biography/<id>.json`, one file per roster character. The scan copies every event from the character's `Dossier.lua` save (`AIExport.lua` before the 2.0.0 rename) and keeps the ones already in the file, so nothing drops out:
+Dossier's Biography lives in `biography/<id>.json`, one file per roster character. The site Bio tab renders the timeline newest-first when the file is present; a missing file renders no timeline. The files arrive through Butler data-only commits (the first: thorin, zephinis, mortimer). The local scan also keeps the same files from the character's `Dossier.lua` save (`AIExport.lua` before the 2.0.0 rename), copying every event and keeping the ones already in the file, so nothing drops out:
 
 ```json
 {
   "character": "Flann Anvilhew",
   "updated": "2026-09-29T21:40:00",
-  "count": 2,
+  "count": 84,
   "events": [
     { "t": 1790000000, "at": "2026-09-21T10:13:20", "kind": "level", "text": "Reached level 12 in Westfall", "zone": "Westfall", "level": 12 },
     { "t": 1790000100, "at": "2026-09-21T10:15:00", "kind": "quest", "text": "Turned in The Defias Brotherhood", "zone": "Westfall", "questID": 155 }
@@ -78,7 +80,7 @@ Screenshots live in `screenshots.json`, one entry per file in the game's `Screen
 
 ```json
 {
-  "source": "WoWScrnShot_092426_184911.jpg",
+  "source": "WoScrnShot_092426_184911.jpg",
   "takenAt": "2026-09-24T18:49:11",
   "who": "Flann Anvilhew",
   "caption": "Father Gavin offers Rime's Wrath.",
