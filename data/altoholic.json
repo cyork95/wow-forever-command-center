@@ -298,7 +298,50 @@
         }
       ],
       "currencies": [],
-      "mail": []
+      "mail": [
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        },
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        },
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        },
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        },
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        },
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        },
+        {
+          "sender": "Skyrinis Starhollow",
+          "subject": null,
+          "money": null,
+          "daysLeft": 30
+        }
+      ]
     },
     {
       "name": "Skyrinis Starhollow",
@@ -308,13 +351,13 @@
       "race": "Skyborne",
       "zone": "Zephras Isle",
       "subZone": "Valanaar",
-      "gold": 3009,
+      "gold": 3996,
       "rested": true,
-      "xp": 1818,
+      "xp": 7805,
       "maxXp": 8800,
-      "played": 23927,
-      "lastUpdate": 1793948654,
-      "itemLevel": 2.7,
+      "played": 30576,
+      "lastUpdate": 1794003235,
+      "itemLevel": 3.3,
       "gear": [
         {
           "slot": "Shirt",
@@ -358,8 +401,8 @@
         },
         {
           "slot": "Main Hand",
-          "name": "Novice's Quarterstaff",
-          "id": 257282
+          "name": "Planting Shovel",
+          "id": 263312
         }
       ],
       "bags": [
@@ -383,19 +426,29 @@
               "count": 2
             },
             {
+              "name": "Minor Troll's Blood Elixir",
+              "id": 3382,
+              "count": 5
+            },
+            {
+              "name": "Pincer Bites",
+              "id": 263512,
+              "count": 5
+            },
+            {
               "name": "Red Delicious Stormapple",
               "id": 252032,
-              "count": 5
+              "count": 16
             },
             {
               "name": "Brilliant Smallfish",
               "id": 6290,
-              "count": 5
+              "count": 20
             },
             {
               "name": "Refreshing Spring Water",
               "id": 159,
-              "count": 6
+              "count": 2
             },
             {
               "name": "Linen Bandage",
@@ -420,7 +473,7 @@
             {
               "name": "Windstone",
               "id": 255663,
-              "count": 3
+              "count": 7
             },
             {
               "name": "Fishing Pole",
@@ -428,19 +481,19 @@
               "count": 1
             },
             {
-              "name": "Flutterfly Swatter",
-              "id": 263329,
+              "name": "Bow of Hours",
+              "id": 263404,
               "count": 1
             },
             {
-              "name": "Worn Leather Pants",
-              "id": 1423,
-              "count": 1
+              "name": "Linen Cloth",
+              "id": 2589,
+              "count": 9
             },
             {
-              "name": "Raw Brilliant Smallfish",
-              "id": 6291,
-              "count": 4
+              "name": "Cracked Bill",
+              "id": 4775,
+              "count": 1
             },
             {
               "name": "Flint and Tinder",
@@ -448,14 +501,25 @@
               "count": 1
             },
             {
-              "name": "Index Esoteria",
-              "id": 254584,
+              "name": "Recipe: Pincer Bites",
+              "id": 263513,
               "count": 1
             },
             {
-              "name": "Windsong Crawler Meat",
-              "id": 257941,
+              "name": "Brilliant Smallfish",
+              "id": 6290,
               "count": 5
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "Simple Leather Satchel",
+          "items": [
+            {
+              "name": "Peacebloom",
+              "id": 2447,
+              "count": 2
             }
           ]
         },
@@ -467,6 +531,16 @@
               "name": "Mining Pick",
               "id": 2901,
               "count": 1
+            },
+            {
+              "name": "Rough Stone",
+              "id": 2835,
+              "count": 2
+            },
+            {
+              "name": "Copper Ore",
+              "id": 2770,
+              "count": 2
             }
           ]
         },
@@ -497,12 +571,12 @@
             {
               "name": "Raw Longjaw Mud Snapper",
               "id": 6289,
-              "count": 6
+              "count": 14
             },
             {
               "name": "Crawler Claw",
               "id": 2675,
-              "count": 3
+              "count": 5
             },
             {
               "name": "Small Egg",
@@ -514,46 +588,41 @@
       ],
       "stats": {
         "health": 244,
-        "power": "440",
+        "power": "470",
         "powerType": "Mana",
-        "strength": "24",
+        "strength": "25",
         "agility": "31",
         "stamina": "28",
-        "intellect": "37",
+        "intellect": "39",
         "armor": "0",
-        "melee": "11-15",
-        "attackPower": "28",
+        "melee": "19-27",
+        "attackPower": "30",
         "spellDamage": "0",
         "spellHealing": "0",
-        "spellCrit": "5.28"
+        "spellCrit": "7.47"
       },
       "quests": [
         {
           "zone": "Zephras Isle",
           "quests": [
             {
-              "id": 93317,
-              "name": "Crab Season",
-              "ready": false
-            },
-            {
-              "id": 92685,
-              "name": "The Hills Have Eyes",
-              "ready": false
-            },
-            {
               "id": 94896,
               "name": "Quest 94896",
               "ready": false
             },
             {
-              "id": 92840,
-              "name": "Catching Wind",
+              "id": 92834,
+              "name": "Quest 92834",
               "ready": false
             },
             {
               "id": 94897,
               "name": "Quest 94897",
+              "ready": false
+            },
+            {
+              "id": 93320,
+              "name": "Tower Defense",
               "ready": false
             },
             {
@@ -572,8 +641,8 @@
           "zone": "Druid",
           "quests": [
             {
-              "id": 94006,
-              "name": "The Great Ursera Spirit",
+              "id": 94638,
+              "name": "Strength and Mercy",
               "ready": false
             }
           ]
@@ -582,7 +651,7 @@
       "professions": [
         {
           "name": "Cooking",
-          "rank": 16,
+          "rank": 37,
           "max": 75
         },
         {
@@ -592,17 +661,17 @@
         },
         {
           "name": "Fishing",
-          "rank": 25,
+          "rank": 51,
           "max": 75
         },
         {
           "name": "Herbalism",
-          "rank": 35,
+          "rank": 44,
           "max": 75
         },
         {
           "name": "Mining",
-          "rank": 61,
+          "rank": 63,
           "max": 150
         }
       ],
@@ -622,7 +691,7 @@
         {
           "name": "Faction 2779",
           "standing": "Friendly",
-          "progress": 2015,
+          "progress": 2265,
           "next": 6000
         },
         {
@@ -630,6 +699,12 @@
           "standing": "Friendly",
           "progress": 100,
           "next": 6000
+        },
+        {
+          "name": "Cenarion Circle",
+          "standing": "Neutral",
+          "progress": 2100,
+          "next": 3000
         },
         {
           "name": "Darnassus",
@@ -762,10 +837,61 @@
       "rested": false,
       "xp": 6903,
       "maxXp": 8800,
-      "played": 27075,
-      "lastUpdate": 1793924438,
+      "played": 27123,
+      "lastUpdate": 1794003950,
       "itemLevel": 3.2,
-      "gear": [],
+      "gear": [
+        {
+          "slot": "Shirt",
+          "name": "Primitive Mantle",
+          "id": 154
+        },
+        {
+          "slot": "Chest",
+          "name": "Frostmane Leather Vest",
+          "id": 2108
+        },
+        {
+          "slot": "Waist",
+          "name": "Ragged Leather Belt",
+          "id": 1369
+        },
+        {
+          "slot": "Legs",
+          "name": "Rancher's Trousers",
+          "id": 10549
+        },
+        {
+          "slot": "Feet",
+          "name": "Frosthowl's Footwarmers",
+          "id": 281322
+        },
+        {
+          "slot": "Wrist",
+          "name": "Ragged Leather Bracers",
+          "id": 1370
+        },
+        {
+          "slot": "Hands",
+          "name": "Driving Gloves",
+          "id": 3152
+        },
+        {
+          "slot": "Back",
+          "name": "Worn Hide Cloak",
+          "id": 1421
+        },
+        {
+          "slot": "Main Hand",
+          "name": "Copper Mace",
+          "id": 2844
+        },
+        {
+          "slot": "Off Hand",
+          "name": "Disciple's Stein of the Owl",
+          "id": 15932
+        }
+      ],
       "bags": [
         {
           "id": 0,
@@ -1079,7 +1205,7 @@
         "stamina": "36",
         "intellect": "29",
         "armor": "60",
-        "melee": "20-27",
+        "melee": "33-40",
         "attackPower": "72",
         "spellDamage": "1",
         "spellHealing": "1",
