@@ -14,7 +14,7 @@ const STAT_KEYS = [
 
 const STORE_KEY = "wow-forever-command-center-v1";
 
-const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "tasks", "dungeons", "quests", "macros", "guild", "map"];
+const TABS = ["roster", "hunts", "journey", "journal", "mail", "altoholic", "professions", "lockouts", "dungeons", "quests", "macros", "guild", "map"];
 
 const HUNT_GROUPS = [
   { id: "collections", label: "Collections", types: ["collection"] },
@@ -64,7 +64,8 @@ const state = {
   checks: {},
   attempts: {},
   tasks: [],
-  taskChecks: {}
+  taskChecks: {},
+  ui: { tasksOpen: false }
 };
 
 function loadStore() {
@@ -975,6 +976,37 @@ function renderLaunchStrip(todayOverride) {
 var LAUNCH_STORE_KEY = "wow-forever-launch-v1";
 var LAUNCH_CUTOFF = "2026-11-11";
 
+var UI_STORE_KEY = "wow-forever-ui-v1";
+
+function loadUi() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(UI_STORE_KEY) || "{}");
+    state.ui = { tasksOpen: !!(saved && saved.tasksOpen) };
+  } catch {
+    state.ui = { tasksOpen: false };
+  }
+}
+
+function saveUi() {
+  try {
+    localStorage.setItem(UI_STORE_KEY, JSON.stringify({ tasksOpen: !!(state.ui && state.ui.tasksOpen) }));
+  } catch {}
+}
+
+function renderTasksPanel() {
+  const panel = document.getElementById("tasks-panel");
+  const toggle = document.getElementById("tasks-toggle");
+  const open = !!(state.ui && state.ui.tasksOpen);
+  if (panel) panel.hidden = !open;
+  if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+}
+
+function setTasksOpen(open) {
+  state.ui = { tasksOpen: !!open };
+  saveUi();
+  renderTasksPanel();
+}
+
 function launchChecks() {
   try {
     return JSON.parse(localStorage.getItem(LAUNCH_STORE_KEY) || "{}") || {};
@@ -1073,20 +1105,18 @@ function renderBio() {
   bio.replaceChildren();
   if (!character) return;
   const story = backstoryFor(character.id);
-  const head = el("div", { class: "bio-head" });
-  head.append(renderPortrait(character, story));
-  const titles = el("div", { class: "bio-titles" });
-  titles.append(el("h3", { text: character.name }));
-  titles.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
-  head.append(titles);
-  bio.append(head);
+  // Bio stays prose: portrait, name, and race/class/profession chips live on
+  // the character sheet identity card. Only non-duplicated facts render here.
+  const chipFacts = new Set(["race", "class", "professions"]);
   if (story && Object.keys(story.facts || {}).length) {
     const grid = el("div", { class: "facts" });
-    Object.entries(story.facts).forEach(([label, value]) => grid.append(el("div", { class: "fact" }, [
-      el("span", { text: label }),
-      el("b", { text: String(value) })
-    ])));
-    bio.append(grid);
+    Object.entries(story.facts)
+      .filter(([label]) => !chipFacts.has(String(label).toLowerCase()))
+      .forEach(([label, value]) => grid.append(el("div", { class: "fact" }, [
+        el("span", { text: label }),
+        el("b", { text: String(value) })
+      ])));
+    if (grid.children.length) bio.append(grid);
   }
   const tally = tallyFor(character.id);
   if (tally && asList(tally.counters).length) {
@@ -1122,13 +1152,33 @@ function statBox(label, value) {
   ]);
 }
 
+function collapseCard(title, sub, kids) {
+  const head = el("summary", {}, [el("h3", { text: title })]);
+  if (sub) head.append(el("span", { class: "meta", text: sub }));
+  const box = el("details", { class: "collapse" }, [head]);
+  asList(kids).filter(Boolean).forEach((kid) => box.append(kid));
+  return box;
+}
+
 function renderSheet() {
   const character = selectedCharacter();
   const live = (state.stats.characters || {})[character.id] || {};
   const sheet = document.getElementById("sheet");
-  const identity = el("article", { class: "card" });
-  identity.append(el("h3", { text: character.name }));
-  identity.append(el("p", { class: "meta", text: `${character.race} · ${character.className} · ${character.spec}` }));
+  const story = backstoryFor(character.id);
+  const identity = el("article", { class: "card identity" });
+  const head = el("div", { class: "bio-head" });
+  head.append(renderPortrait(character, story));
+  const titles = el("div", { class: "bio-titles" });
+  titles.append(el("h3", { text: character.name }));
+  const chips = el("div", { class: "chips" });
+  [character.race, character.className].forEach((chip) => {
+    if (chip) chips.append(el("span", { class: "chip", text: chip }));
+  });
+  String(character.spec || "").split(",").map((part) => part.trim()).filter(Boolean)
+    .forEach((spec) => chips.append(el("span", { class: "chip", text: spec })));
+  titles.append(chips);
+  head.append(titles);
+  identity.append(head);
   identity.append(el("p", { text: character.blurb }));
   const profs = el("div", { class: "profs" });
   const skills = new Map(asList(live.professions).map((p) => [p.name, p]));
@@ -1145,34 +1195,7 @@ function renderSheet() {
     }
   });
   identity.append(profs);
-  identity.append(el("p", { class: "meta", text: character.talentNote }));
-  asList(character.talentLinks).forEach((link) => {
-    identity.append(el("a", { href: link.url, target: "_blank", rel: "noreferrer", text: link.label }));
-  });
-  if (character.pairsWith) {
-    identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
-  }
-  const recipeGroups = Object.entries(live.recipes || {}).filter(([, list]) => asList(list).length);
-  if (recipeGroups.length) {
-    const total = recipeGroups.reduce((sum, [, list]) => sum + asList(list).length, 0);
-    const box = el("details", { class: "recipes" });
-    box.append(el("summary", { text: `${total} known recipes` }));
-    recipeGroups.forEach(([prof, list]) => {
-      box.append(el("h4", { text: prof }));
-      box.append(el("p", { class: "meta", text: asList(list).join(", ") }));
-    });
-    identity.append(box);
-  }
-
-  const stats = el("article", { class: "card" });
-  stats.append(el("h3", { text: "Stats" }));
-  // stats.json can carry a date from unrelated snapshots, so the
-  // "updated" line is only shown when THIS character actually has data.
-  const hasLive = live && Object.keys(live).length > 0;
-  const updated = hasLive && state.stats.updated
-    ? `Updated ${state.stats.updated}.`
-    : "No addon export merged yet. Level, gear, and gold show up here after the first launch-roster export.";
-  stats.append(el("p", { class: "empty-note", text: updated }));
+  if (character.talentNote) identity.append(el("p", { class: "meta", text: character.talentNote }));
   const grid = el("div", { class: "stat-grid" });
   [
     ["Level", live.level],
@@ -1182,13 +1205,31 @@ function renderSheet() {
     ["Gold", live.goldCopper === undefined ? null : formatGold(live.goldCopper)],
     ["Played", live.playedSeconds === undefined ? null : formatPlayed(live.playedSeconds)]
   ].forEach(([label, value]) => grid.append(statBox(label, value)));
+  identity.append(grid);
+  const links = asList(character.talentLinks);
+  if (links.length) {
+    const box = el("div", { class: "talent-links" });
+    links.forEach((link) => box.append(el("a", { class: "tlink", href: link.url, target: "_blank", rel: "noreferrer", text: link.label })));
+    identity.append(box);
+  }
+  if (character.pairsWith) {
+    identity.append(el("p", { text: `Pairs with ${character.pairsWith}.` }));
+  }
+
+  const hasLive = live && Object.keys(live).length > 0;
+  // stats.json can carry a date from unrelated snapshots, so the
+  // "updated" line is only shown when THIS character actually has data.
+  const updated = hasLive && state.stats.updated
+    ? `Updated ${state.stats.updated}.`
+    : "No addon export merged yet. Level, gear, and gold show up here after the first launch-roster export.";
+  const more = el("div", { class: "stat-grid" });
   const extra = live.stats || {};
-  STAT_KEYS.forEach((key) => grid.append(statBox(key, extra[key])));
-  Object.entries(live.collections || {}).forEach(([label, value]) => grid.append(statBox(label, value)));
-  stats.append(grid);
+  STAT_KEYS.forEach((key) => more.append(statBox(key, extra[key])));
+  Object.entries(live.collections || {}).forEach(([label, value]) => more.append(statBox(label, value)));
+  const extras = [el("p", { class: "empty-note", text: updated }), more];
   const sources = Object.entries(live.sources || {})
     .map(([name, when]) => (when ? `${name} ${String(when).slice(5, 10).replace("-", "/")}` : name));
-  if (sources.length) stats.append(el("p", { class: "meta sources", text: `From ${sources.join(" · ")}` }));
+  if (sources.length) extras.push(el("p", { class: "meta sources", text: `From ${sources.join(" · ")}` }));
   const record = ledgerRecord(character);
   if (record) {
     const goldLines = asList(record.gold).slice(0, 6).map((row) => {
@@ -1198,14 +1239,15 @@ function renderSheet() {
     const currencyLines = asList(record.currencies).slice(0, 6).map((row) => `${row.name} ${row.quantity}`);
     const repLines = asList(record.reputations).slice(0, 6).map((row) => `${row.name} ${row.standing || row.value || ""}`.trim());
     const bits = [...goldLines, ...currencyLines, ...repLines];
-    if (bits.length) stats.append(el("p", { class: "meta", text: bits.join(" · ") }));
+    if (bits.length) extras.push(el("p", { class: "meta", text: bits.join(" · ") }));
   }
 
+  const cards = [identity, collapseCard("Attributes & collections", hasLive ? "Beyond the key tiles" : "", extras)];
   if (asList(live.gear).length) {
     const table = el("table", { class: "gear" });
-    const head = el("tr");
-    ["Slot", "Item", "ilvl"].forEach((label) => head.append(el("th", { text: label })));
-    table.append(el("thead", {}, [head]));
+    const headRow = el("tr");
+    ["Slot", "Item", "ilvl"].forEach((label) => headRow.append(el("th", { text: label })));
+    table.append(el("thead", {}, [headRow]));
     const body = el("tbody");
     asList(live.gear).forEach((piece) => {
       const row = el("tr");
@@ -1215,17 +1257,13 @@ function renderSheet() {
       body.append(row);
     });
     table.append(body);
-    stats.append(table);
+    cards.push(collapseCard("Gear", `${asList(live.gear).length} pieces`, [table]));
   }
 
-  const lifetime = el("article", { class: "card lifetime" });
-  lifetime.append(el("h3", { text: "Statistics" }));
   const groups = statisticGroups(live.statistics);
-  if (!groups.length) {
-    lifetime.append(el("p", { class: "empty-note", text: "No statistics recorded yet." }));
-  } else {
-    const wrap = el("div", { class: "stat-groups" });
-    groups.forEach((group) => {
+  const lifetimeKids = !groups.length
+    ? [el("p", { class: "empty-note", text: "No statistics recorded yet." })]
+    : [el("div", { class: "stat-groups" }, groups.map((group) => {
       const block = el("section");
       block.append(el("h4", { text: group.name }));
       const list = el("dl");
@@ -1236,34 +1274,41 @@ function renderSheet() {
         list.append(line);
       });
       block.append(list);
-      wrap.append(block);
-    });
-    lifetime.append(wrap);
-  }
+      return block;
+    }))];
+  cards.push(collapseCard("Statistics", groups.length ? `${groups.length} groups` : "", lifetimeKids));
 
   const shots = asList(state.screenshots)
     .filter((shot) => String(shot.file || "").startsWith(`assets/shots/${character.id}/`))
     .sort((a, b) => String(b.takenAt).localeCompare(String(a.takenAt)));
   if (shots.length) {
-    identity.append(el("h4", { class: "shots-head", text: `Screenshots (${shots.length})` }));
-    const grid = el("div", { class: "shots" });
+    const gallery = el("article", { class: "card gallery" });
+    gallery.append(el("h3", { text: `Screenshots (${shots.length})` }));
+    const shotGrid = el("div", { class: "shots" });
     shots.forEach((shot) => {
       const when = new Date(shot.takenAt);
       const date = Number.isNaN(when.getTime())
         ? ""
         : when.toLocaleDateString(undefined, { month: "short", day: "numeric" });
       const label = shot.caption || `Screenshot from ${date}`;
-      const link = el("a", { href: shot.file, target: "_blank", rel: "noreferrer", "aria-label": `Open full size: ${label}` }, [
+      const thumb = el("button", { type: "button", class: "shot", "aria-label": `Expand: ${label}`, "aria-expanded": "false" }, [
         el("img", { src: shot.file, alt: label, loading: "lazy" })
       ]);
-      grid.append(el("figure", {}, [
-        link,
+      const figure = el("figure", {}, [
+        thumb,
         el("figcaption", { text: [date, shot.caption].filter(Boolean).join(" · ") })
-      ]));
+      ]);
+      thumb.addEventListener("click", () => {
+        const open = figure.className.indexOf("expanded") < 0;
+        figure.className = open ? "expanded" : "";
+        thumb.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      shotGrid.append(figure);
     });
-    identity.append(grid);
+    gallery.append(shotGrid);
+    cards.push(gallery);
   }
-  sheet.replaceChildren(identity, stats, lifetime);
+  sheet.replaceChildren(...cards);
 }
 
 function statisticGroups(statistics) {
@@ -2707,7 +2752,7 @@ function renderAltoholic() {
         el("span", { text: right || (max > 0 ? `${value}/${max}` : "") })
       ]),
       el("div", { class: "lock-bar", "aria-hidden": "true" }, [
-        el("div", { style: `width:${ratio}%;background:var(--gold)` })
+        el("div", { style: `width:${ratio}%;background:var(--teal)` })
       ])
     ]);
   };
@@ -2747,6 +2792,7 @@ function render() {
   renderDungeons();
   renderQuests();
   renderMacros();
+  renderTasksPanel();
 }
 
 async function loadJson(path) {
@@ -2757,6 +2803,7 @@ async function loadJson(path) {
 
 async function main() {
   loadStore();
+  loadUi();
   const params = new URLSearchParams(location.search);
   const hash = location.hash.replace("#", "");
   if (TABS.includes(hash)) state.tab = hash;
@@ -2841,6 +2888,7 @@ async function main() {
     renderChecklist();
   });
   document.getElementById("character-picker").addEventListener("change", (event) => selectCharacter(event.target.value));
+  document.getElementById("tasks-toggle").addEventListener("click", () => setTasksOpen(!(state.ui && state.ui.tasksOpen)));
   document.getElementById("prof-view").addEventListener("change", (event) => {
     state.profView = event.target.value;
     saveStore();
