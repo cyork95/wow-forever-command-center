@@ -246,6 +246,29 @@
         "115 fish caught lifetime (game statistic)",
         "A 10 Pound Mud Snapper kept in the bank"
       ]
+    },
+    {
+      "id": "road-west-thorin",
+      "character": "thorin",
+      "date": "2026-11-07",
+      "title": "The Road West",
+      "source": "butler-export",
+      "body": [
+        "Ironforge first, and the morning went to the trades. I sat in Tinker Town until the fumes made my eyes water and came out the other side an alchemist in earnest — recipe after recipe, until the bench work runs ahead of my hammer work. First Aid past seventy, too. A healer ought to be able to patch a man without the Light's cousin doing all the lifting, and a Caskmend ought to know what's in the bottle before he brews it.",
+        "Then the tram. Under the mountain, through the dark, and out into Stormwind with Stormpike's package delivered — the world is wider than Dun Morogh, and today it finally felt like it. Elwynn after: honest work under green trees. Sixteen at Eastvale Logging Camp, Hogger's bounty claimed, and the whole forest walked end to end until the chart-makers had no quarrel with me.",
+        "The lake at Stone Cairn took me twice, and the forest once more besides. Write it plain: three deaths, none of them glorious, all of them mine. Humility is cheaper learned at sixteen than at sixty.",
+        "By mid-afternoon I'd crossed into Westfall and turned in the Furlbrow deed at the Jansen Stead. The stew pot's still waiting on me, and a family's pocket watch besides. The road west is long. Good. So is the name I'm carrying down it."
+      ],
+      "facts": [
+        "Level 16 in Elwynn Forest (Eastvale Logging Camp)",
+        "Achievement: Explore Elwynn Forest",
+        "WANTED: \"Hogger\" turned in",
+        "Alchemy 50 to 83 in one Ironforge morning; First Aid to 70",
+        "Cooking 17 to 68 across the day",
+        "First Deeprun Tram ride; Stormpike's Order delivered in Stormwind",
+        "Three deaths: Stone Cairn Lake twice, Elwynn Forest once",
+        "Crossed into Westfall; Furlbrow's Deed turned in"
+      ]
     }
   ]
 }
