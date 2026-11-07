@@ -1,6 +1,14 @@
 # Scan the local WoW AddOns folder and refresh the command center data files.
 # Usage: powershell -File scripts/scan-addons.ps1
 # Path: copy scripts/addons.example.json to scripts/addons.local.json and set addonsPath.
+#
+# RETIRED ROLE (board #72): this script no longer owns data/stats.json. Butler
+# maintains stats.json and biography/ from Dossier text exports pasted to it,
+# committed as data-only commits; the site reads those files as primary. The
+# stats.json merge and snapshot code below stays in place as an archive of that
+# older pipeline (it still runs when the script runs) and must not be relied on
+# pipeline and must not be re-enabled without an owner decision. The script's
+# live roles are unchanged: biography/, ledger, altoholic, and screenshots.
 
 $ErrorActionPreference = "Stop"
 . (Join-Path $PSScriptRoot "read-saves.ps1")
@@ -475,9 +483,12 @@ foreach ($source in ($sources | Sort-Object LastWriteTime -Descending)) {
 }
 
 if (-not $parsed.Count) {
-  Write-Output "No Dossier, AIExport, or CharacterExport dump found. Addon saves still update the sheet."
+  Write-Output "No Dossier, AIExport, or CharacterExport dump found. Stats stay as Butler left them; the sheet is retired for numbers."
 }
 
+# RETIRED ROLE (board #72): the export-merge below still runs, but its output is
+# an archive of the older pipeline. Do not run this script to update numbers;
+# Butler owns data/stats.json now.
 $stats = Read-JsonFile $statsPath
 if (-not $stats.characters) {
   $stats | Add-Member -NotePropertyName characters -NotePropertyValue ([pscustomobject]@{}) -Force
@@ -541,6 +552,9 @@ function Merge-StatRows($statistics, $group, $rows) {
   return $groups
 }
 
+# RETIRED ROLE (board #72): the addon-save snapshot below still runs, but its
+# output is an archive of the older pipeline. Do not run this script to update
+# numbers; Butler owns data/stats.json now.
 function Apply-Snapshot($record, $snap, $character) {
   $rec = [ordered]@{}
   if ($record) { foreach ($p in $record.PSObject.Properties) { $rec[$p.Name] = $p.Value } }
