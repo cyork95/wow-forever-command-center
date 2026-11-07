@@ -7,7 +7,9 @@
     "minLevel": 1,
     "priority": "High",
     "status": "Planned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "notes": "Done Sep 23, 2026: Flann Anvilhew, level 10 Dwarf shaman, Classic Beta PvE 2. Do not spend Skyrinis, Sorinis, or Malavus. Those names wait for reservation.",
     "source": "House",
     "defaultDone": true
@@ -20,7 +22,9 @@
     "minLevel": 1,
     "priority": "High",
     "status": "Planned",
-    "owners": ["skyrinis"],
+    "owners": [
+      "skyrinis"
+    ],
     "notes": "Slot 1 of 3. Oct 27 through Nov 3. Skyborne Druid, Feral.",
     "source": "House",
     "defaultDone": false
@@ -33,7 +37,9 @@
     "minLevel": 1,
     "priority": "High",
     "status": "Planned",
-    "owners": ["sorinis"],
+    "owners": [
+      "sorinis"
+    ],
     "notes": "Slot 2 of 3. Night Elf Druid, Balance.",
     "source": "House",
     "defaultDone": false
@@ -46,7 +52,9 @@
     "minLevel": 1,
     "priority": "High",
     "status": "Planned",
-    "owners": ["malavus"],
+    "owners": [
+      "malavus"
+    ],
     "notes": "Slot 3 of 3. Human Warlock, Affliction.",
     "source": "House",
     "defaultDone": false
@@ -54,15 +62,25 @@
   {
     "id": "rockslicer",
     "name": "Rockslicer",
-    "mobs": ["Rhahk'Zor"],
+    "mobs": [
+      "Rhahk'Zor"
+    ],
     "kind": "Gear",
     "type": "gear",
     "zone": "Deadmines",
     "minLevel": 17,
     "priority": "High",
     "status": "Planned",
-    "owners": ["malavus", "sorinis", "taloninis"],
-    "targetCharacters": ["malavus", "sorinis", "taloninis"],
+    "owners": [
+      "malavus",
+      "sorinis",
+      "taloninis"
+    ],
+    "targetCharacters": [
+      "malavus",
+      "sorinis",
+      "taloninis"
+    ],
     "notes": "Unique two-hand axe. Mines Copper, Tin, Silver, or Iron without Mining. 30 charges, then the effect dies and the weapon stays.",
     "how": "Kill Rhahk'Zor, the first boss at the Deadmines entrance. Farm it on Malavus, Sorinis, or Taloninis, the characters without Mining. Clear the same run for First Mate Band and Lookie's Spyglass.",
     "source": "House",
@@ -77,8 +95,12 @@
     "minLevel": 16,
     "priority": "High",
     "status": "Planned",
-    "owners": ["melee"],
-    "targetCharacters": ["melee"],
+    "owners": [
+      "melee"
+    ],
+    "targetCharacters": [
+      "melee"
+    ],
     "notes": "Two rings. The 2-piece is an angry proc. The set box stays locked until both rings are checked.",
     "how": "First Mate Band drops inside the Deadmines. Band of the Better Half is a level 60 ring whose source is still unpublished, so that piece stays parked.",
     "source": "Wowhead",
@@ -87,7 +109,9 @@
       {
         "id": "first-mate-band",
         "name": "First Mate Band",
-        "mobs": ["Mr. Smite"],
+        "mobs": [
+          "Mr. Smite"
+        ],
         "how": "Kill Mr. Smite on the ship in the Deadmines, after the cannon room. Item level 22 strength ring. Bank it. Ephai can wear the same ring."
       },
       {
@@ -107,8 +131,12 @@
     "minLevel": 15,
     "priority": "High",
     "status": "Planned",
-    "owners": ["skyrinis"],
-    "targetCharacters": ["skyrinis"],
+    "owners": [
+      "skyrinis"
+    ],
+    "targetCharacters": [
+      "skyrinis"
+    ],
     "notes": "Five leather pieces from Wailing Caverns. The hidden 5-piece turns Cat Form into a race-colored serpent that slithers while prowling.",
     "how": "Forever bonuses: 2 pieces +10 Intellect, 3 pieces +10 Attack Power, 4 pieces a heal when you drop to 25% health, 5 pieces a chance to stun with Dream Venom. Boss sources match Classic. Gloves are a trash drop, so expect more tries on that piece. Drop rates in Forever are not published.",
     "source": "Wowhead",
@@ -117,31 +145,41 @@
       {
         "id": "fang-belt",
         "name": "Belt of the Fang",
-        "mobs": ["Lady Anacondra"],
+        "mobs": [
+          "Lady Anacondra"
+        ],
         "how": "Lady Anacondra, the first fanglord in Wailing Caverns."
       },
       {
         "id": "fang-leggings",
         "name": "Leggings of the Fang",
-        "mobs": ["Lord Cobrahn"],
+        "mobs": [
+          "Lord Cobrahn"
+        ],
         "how": "Lord Cobrahn in Wailing Caverns."
       },
       {
         "id": "fang-armor",
         "name": "Armor of the Fang",
-        "mobs": ["Lord Pythas"],
+        "mobs": [
+          "Lord Pythas"
+        ],
         "how": "Lord Pythas in Wailing Caverns. Chest piece. Requires level 18."
       },
       {
         "id": "fang-footpads",
         "name": "Footpads of the Fang",
-        "mobs": ["Lord Serpentis"],
+        "mobs": [
+          "Lord Serpentis"
+        ],
         "how": "Lord Serpentis in Wailing Caverns."
       },
       {
         "id": "fang-gloves",
         "name": "Gloves of the Fang",
-        "mobs": ["Druid of the Fang"],
+        "mobs": [
+          "Druid of the Fang"
+        ],
         "how": "Druid of the Fang trash in Wailing Caverns, not a boss. In Classic this was about a 2% drop, so it is usually the long piece."
       }
     ],
@@ -156,8 +194,16 @@
     "minLevel": 17,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["lucinis", "vesperinis", "malavus"],
-    "targetCharacters": ["lucinis", "vesperinis", "malavus"],
+    "owners": [
+      "lucinis",
+      "vesperinis",
+      "malavus"
+    ],
+    "targetCharacters": [
+      "lucinis",
+      "vesperinis",
+      "malavus"
+    ],
     "notes": "Five cloth pieces: Robes, Sash, Leggings, Treads, Gloves. Wear them from level 17, boots at 19. (2) +10 Intellect. (3) 5% less threat. (4) below 15% mana, restore 600 mana over 15 sec, once per 5 min. (5) healing spells can apply Rotmending, 40 health every 3 sec for 15 sec. Robes and gloves bind on equip. Leggings and treads bind on pickup. Drops in Ruins of Lordaeron.",
     "source": "Stiven_SRB",
     "defaultDone": false
@@ -170,7 +216,9 @@
     "minLevel": 10,
     "priority": "High",
     "status": "Planned",
-    "owners": ["taloninis"],
+    "owners": [
+      "taloninis"
+    ],
     "notes": "Keep one pet from each family that has a unique skill. The reported payoff is 10% attack power and 100% crit.",
     "how": "This is a stable plan, not one drop. Tame the family uniques as you level and keep them. The exact family list is not published as a loot table, so it stays one hunt until those pets are named.",
     "source": "TheoryWiseOS",
@@ -185,8 +233,12 @@
     "minLevel": 21,
     "priority": "High",
     "status": "Planned",
-    "owners": ["lucinis"],
-    "targetCharacters": ["lucinis"],
+    "owners": [
+      "lucinis"
+    ],
+    "targetCharacters": [
+      "lucinis"
+    ],
     "notes": "Mage sword. +7 Intellect, up to +32 spell power, and +98 Fire melee damage against Frozen targets. Fingers of Frost does not count as Frozen for the proc.",
     "how": "Use Scroll of the Saber on Blade of Silverlaine. Both pieces have to be on the mage. This is a weapon, not a new class.",
     "source": "Farmerfarms",
@@ -200,7 +252,9 @@
       {
         "id": "blade-of-silverlaine",
         "name": "Blade of Silverlaine",
-        "mobs": ["Baron Silverlaine"],
+        "mobs": [
+          "Baron Silverlaine"
+        ],
         "how": "Baron Silverlaine in Shadowfang Keep. This is a new sword, not Silverlaine's Family Seal. Reset and repeat the baron until it drops, then use the scroll on it."
       }
     ],
@@ -215,9 +269,13 @@
     "minLevel": 1,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["loremaster"],
+    "owners": [
+      "loremaster"
+    ],
     "accountWide": true,
-    "assignedTo": ["loremaster"],
+    "assignedTo": [
+      "loremaster"
+    ],
     "notes": "Any class can turn library books in. Ten books pay a neck. Twenty books total pay a ring. The first ten count toward the twenty. Greater Friend of the Library rewards: Truthseeker's Bow, Crest of Elucidation, Researcher's Night Light, Field Researcher's Loop.",
     "how": "Alliance turns books in to Garion Wendell in the Stormwind Mage Quarter. Horde uses Owen Thadd in the Undercity Magic Quarter. Carry the book so the turn-in quest appears. Mages who finish this also learn Research, an hourly Study scroll craft. The set box unlocks after both rewards. Every book spot, with a map, is in the Library books section at the bottom of Hunts.",
     "source": "Warcraft Tavern",
@@ -239,15 +297,21 @@
   {
     "id": "malignant-root",
     "name": "Malignant Root",
-    "mobs": ["Nightveiled Rotheap"],
+    "mobs": [
+      "Nightveiled Rotheap"
+    ],
     "kind": "Relic",
     "type": "gear",
     "zone": "Wetlands",
     "minLevel": 20,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["all"],
-    "targetCharacters": ["all"],
+    "owners": [
+      "all"
+    ],
+    "targetCharacters": [
+      "all"
+    ],
     "notes": "Level 32 ring. +7 Stamina, attack power, and a small spell bonus. Unique turn-in, once per character.",
     "how": "Kill Nightveiled Rotheap in the Wetlands. /target Nightveiled Rotheap helps. Rotheap Innards is a party drop. Turn the innards in to the Greenwarden. He is hostile to Horde, so this is an Alliance turn-in. You cannot turn in a second one.",
     "source": "HelloJTello",
@@ -262,8 +326,12 @@
     "minLevel": 15,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["all"],
-    "targetCharacters": ["all"],
+    "owners": [
+      "all"
+    ],
+    "targetCharacters": [
+      "all"
+    ],
     "notes": "Blessing of Kalimdor. Two of the three pieces give 5% movement speed in the Barrens and Stonetalon. The set box unlocks at two.",
     "how": "The three rares are Humar the Pridelord, Swiftmane, and Takk the Leaper. Wowhead has not published which rare drops which piece, so kill all three on each circuit. Swiftmane patrols fast near Ratchet.",
     "source": "Wowhead",
@@ -272,19 +340,31 @@
       {
         "id": "pack-leader",
         "name": "Mark of the Pack Leader",
-        "mobs": ["Humar the Pridelord", "Swiftmane", "Takk the Leaper"],
+        "mobs": [
+          "Humar the Pridelord",
+          "Swiftmane",
+          "Takk the Leaper"
+        ],
         "how": "Neck. Requires level 20. +5 Strength and +5 Intellect. Drops from one of the three Barrens rares. The exact rare is not published."
       },
       {
         "id": "zhevra-signet",
         "name": "Signet of the Zhevra",
-        "mobs": ["Humar the Pridelord", "Swiftmane", "Takk the Leaper"],
+        "mobs": [
+          "Humar the Pridelord",
+          "Swiftmane",
+          "Takk the Leaper"
+        ],
         "how": "Finger. Requires level 18. +6 Agility and +2 Spirit. Drops from one of the three Barrens rares. The exact rare is not published."
       },
       {
         "id": "raptor-hide-cloak",
         "name": "Raptor Hide Cloak",
-        "mobs": ["Humar the Pridelord", "Swiftmane", "Takk the Leaper"],
+        "mobs": [
+          "Humar the Pridelord",
+          "Swiftmane",
+          "Takk the Leaper"
+        ],
         "how": "Back. Requires level 16. +4 Stamina and +3 Spirit. Drops from one of the three Barrens rares. The exact rare is not published."
       }
     ],
@@ -299,8 +379,12 @@
     "minLevel": 40,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["crafter"],
-    "targetCharacters": ["crafter"],
+    "owners": [
+      "crafter"
+    ],
+    "targetCharacters": [
+      "crafter"
+    ],
     "notes": "Class crafted sets. Recipes are not published yet, so this stays one hunt until the piece list is real.",
     "how": "Patterns are expected from endgame content. Crafting uses Malleable Essence of Nature, which comes from disenchanting Hyjal Summit or Barrow Deeps gear. Shoulders seen in the datamine cost 3 essences. Do not split this into pieces until the slots are confirmed.",
     "source": "Chromie",
@@ -315,10 +399,18 @@
     "minLevel": 10,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["alliance"],
+    "owners": [
+      "alliance"
+    ],
     "accountWide": true,
-    "assignedTo": ["alliance"],
-    "match": {"names": ["Reins of the Pack Kodo"]},
+    "assignedTo": [
+      "alliance"
+    ],
+    "match": {
+      "names": [
+        "Reins of the Pack Kodo"
+      ]
+    },
     "notes": "Alliance kodo from the Azeroth Commerce Authority.",
     "how": "Fill Waylaid Crates and turn them in to Marcy Baker for Merchant's Favor. Huey Sunnydale at Three Corners sells Reins of the Pack Kodo for 6000 Favor.",
     "source": "Wowhead",
@@ -333,8 +425,12 @@
     "minLevel": 5,
     "priority": "Medium",
     "status": "Parked",
-    "owners": ["horde"],
-    "targetCharacters": ["horde"],
+    "owners": [
+      "horde"
+    ],
+    "targetCharacters": [
+      "horde"
+    ],
     "notes": "Reported to cut shapeshift mana cost by 40. Likely a Horde Windshaper relic. Confirm the drop before anyone farms it.",
     "how": "Named in Zephras and Shen'dar. No confirmed mob or object yet. Leave it parked.",
     "source": "BwuhMG",
@@ -343,15 +439,21 @@
   {
     "id": "lookies-spyglass",
     "name": "Lookie's Spyglass",
-    "mobs": ["Cookie"],
+    "mobs": [
+      "Cookie"
+    ],
     "kind": "Trinket",
     "type": "gear",
     "zone": "Deadmines",
     "minLevel": 18,
     "priority": "Low",
     "status": "Planned",
-    "owners": ["all"],
-    "targetCharacters": ["all"],
+    "owners": [
+      "all"
+    ],
+    "targetCharacters": [
+      "all"
+    ],
     "notes": "Zoom toy, not a combat trinket.",
     "how": "Kill Cookie, the murloc cook at the end of the Deadmines, on the same run as Mr. Smite.",
     "source": "Blainie",
@@ -366,10 +468,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Planned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Prairie Chicken"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Prairie Chicken"
+      ]
+    },
     "notes": "Egg pet for the first Alliance character.",
     "how": "Buy Special Chicken Feed from Farmer Saldean at Saldean's Farm in Westfall. Use it on a chicken, then type /chicken until the chicken turns green and offers the egg.",
     "source": "Blainie",
@@ -384,9 +494,13 @@
     "minLevel": 20,
     "priority": "Low",
     "status": "Planned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
+    "assignedTo": [
+      "all"
+    ],
     "notes": "Cooking 85. One Whimsyfin plus Mild Spices makes two servings. One hour as an ogre or a murloc.",
     "how": "Find the recipe in Redridge. This is a cooking recipe, not the Goblin Gumbo Kettle toy.",
     "source": "Chromie",
@@ -395,16 +509,22 @@
   {
     "id": "peace-tea",
     "name": "Recipe: Peace Tea",
-    "mobs": ["Frostmane Seer"],
+    "mobs": [
+      "Frostmane Seer"
+    ],
     "kind": "Recipe",
     "type": "collection",
     "zone": "Dun Morogh",
     "minLevel": 8,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["flann"],
+    "owners": [
+      "flann"
+    ],
     "accountWide": true,
-    "assignedTo": ["flann"],
+    "assignedTo": [
+      "flann"
+    ],
     "notes": "Drops from Frostmane Seers. Bind on pickup. Cooking 25: one Refreshing Spring Water and two Peacebloom. The drink restores 42 mana over 18 sec, then 2 Healing Power for 15 min if you sit for 10 seconds.",
     "source": "Beta",
     "defaultDone": false
@@ -418,10 +538,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["taloninis"],
+    "owners": [
+      "taloninis"
+    ],
     "accountWide": true,
-    "assignedTo": ["taloninis"],
-    "match": {"names": ["Musical Gustjumper"]},
+    "assignedTo": [
+      "taloninis"
+    ],
+    "match": {
+      "names": [
+        "Musical Gustjumper"
+      ]
+    },
     "rarityId": "Musical Gustjumper",
     "notes": "Singing-frog pet on Zephras Isle. Ullrathor Highgale got it on beta, Sep 27, at Valanaar. Tradeable, so Taloninis still keeps the launch copy.",
     "how": "Find the singing frog on Zephras Isle and type /sing. It gives you the Musical Gustjumper.",
@@ -437,10 +565,18 @@
     "minLevel": 10,
     "priority": "Low",
     "status": "Planned",
-    "owners": ["alliance"],
+    "owners": [
+      "alliance"
+    ],
     "accountWide": true,
-    "assignedTo": ["alliance"],
-    "match": {"names": ["Minimule"]},
+    "assignedTo": [
+      "alliance"
+    ],
+    "match": {
+      "names": [
+        "Minimule"
+      ]
+    },
     "notes": "Small pack-mule pet.",
     "how": "Same Azeroth Commerce Authority vendors as the Pack Kodo. 1500 Merchant's Favor, and it teaches Packmule Treat.",
     "source": "Wowhead",
@@ -455,10 +591,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Planned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Excitable Slime"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Excitable Slime"
+      ]
+    },
     "notes": "Slime pet from a dance quest. Undercity is a Horde city, so an Alliance character has to reach Boyle some other way.",
     "how": "Buy Nutritious Slime Slude from Boyle in the Apothecarium, south-west Undercity. Jump into the green water, find the Excitable Slime, and spam /dance at it (a /dance macro helps). It offers a quest; hand in the Slime Slude.",
     "source": "Hozitojones",
@@ -467,17 +611,27 @@
   {
     "id": "tallstrider-hatchling",
     "name": "Tallstrider Hatchling",
-    "mobs": ["Strider Clutchmother"],
+    "mobs": [
+      "Strider Clutchmother"
+    ],
     "kind": "Pet",
     "type": "collection",
     "zone": "Darkshore",
     "minLevel": 18,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["flann"],
+    "owners": [
+      "flann"
+    ],
     "accountWide": true,
-    "assignedTo": ["flann"],
-    "match": {"names": ["Tallstrider Hatchling"]},
+    "assignedTo": [
+      "flann"
+    ],
+    "match": {
+      "names": [
+        "Tallstrider Hatchling"
+      ]
+    },
     "rarityId": "Tallstrider Hatchling",
     "notes": "Hatchling pet that drops from the Strider Clutchmother. Flann got it on beta.",
     "how": "Kill the Strider Clutchmother, a teal rare tallstrider south of the Ruins of Auberdine in Darkshore. Her two Foreststrider Fledglings join the fight, so pull them first. She respawns quickly.",
@@ -492,7 +646,9 @@
     "minLevel": 20,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "notes": "Gold sink for pets, TCG toys, tier 0, and mounts. Not a gear plan.",
     "how": "Madam Swyndle's Black Market at Powderfuse Port in Riverglades. Check it when you are nearby. Do not build a route around it.",
     "source": "Icy Veins",
@@ -507,10 +663,18 @@
     "minLevel": 20,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Goblin Gumbo Kettle"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Goblin Gumbo Kettle"
+      ]
+    },
     "notes": "TCG toy, not a cooking recipe. Five-minute poison belch, and it does not feed you.",
     "how": "Watch Madam Swyndle on the Black Market at Powderfuse Port in Riverglades. Parked vanity.",
     "source": "House",
@@ -525,10 +689,18 @@
     "minLevel": 18,
     "priority": "Low",
     "status": "Planned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Night Watchman's Torch"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Night Watchman's Torch"
+      ]
+    },
     "notes": "Torch toy. Works anywhere you can place a campfire.",
     "how": "A dead Night Watch Guard spawns at several spots in Duskwood. Click the body for an instant-finish quest that rewards the torch. Several people can take it before the body despawns, so group up.",
     "source": "PaladinBeans",
@@ -543,10 +715,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Zergling"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Zergling"
+      ]
+    },
     "notes": "Forever pet from the Epic Pack.",
     "source": "Pack",
     "defaultDone": true
@@ -560,10 +740,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Panda Cub"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Panda Cub"
+      ]
+    },
     "notes": "Forever pet from the Epic Pack.",
     "source": "Pack",
     "defaultDone": true
@@ -577,10 +765,19 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Mini-Diablo", "Mini Diablo"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Mini-Diablo",
+        "Mini Diablo"
+      ]
+    },
     "notes": "Forever pet from the Epic Pack.",
     "source": "Pack",
     "defaultDone": true
@@ -594,10 +791,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Pachimari"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Pachimari"
+      ]
+    },
     "notes": "Forever pet from the Epic Pack.",
     "source": "Pack",
     "defaultDone": true
@@ -611,10 +816,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Lordaeron tabard"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Lordaeron tabard"
+      ]
+    },
     "notes": "Pack tabard.",
     "source": "Pack",
     "defaultDone": true
@@ -628,10 +841,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Owned",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Shen'dorei tabard"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Shen'dorei tabard"
+      ]
+    },
     "notes": "Pack tabard.",
     "source": "Pack",
     "defaultDone": true
@@ -645,8 +866,14 @@
     "minLevel": 1,
     "priority": "Medium",
     "status": "Planned",
-    "owners": ["lucinis", "malavus"],
-    "targetCharacters": ["lucinis", "malavus"],
+    "owners": [
+      "lucinis",
+      "malavus"
+    ],
+    "targetCharacters": [
+      "lucinis",
+      "malavus"
+    ],
     "notes": "City of Dalaran cloth caster set. The 5-piece bonus summons an arcane elemental. Relevant to Malavus (warlock) and Lucinis.",
     "how": "Farm the City of Dalaran for set pieces. Relevant to Malavus (warlock) and Lucinis.",
     "source": "Icy Veins",
@@ -661,8 +888,12 @@
     "minLevel": 40,
     "priority": "Medium",
     "status": "Parked",
-    "owners": ["bramblebeard"],
-    "targetCharacters": ["bramblebeard"],
+    "owners": [
+      "bramblebeard"
+    ],
+    "targetCharacters": [
+      "bramblebeard"
+    ],
     "notes": "Expected from Krol'dok Stronghold, levels 40-45. Likely mail or plate melee. Item stats are still hidden, so this is not farmable yet. Taloninis may care if the set is mail.",
     "how": "Leave it parked until a piece actually drops.",
     "source": "Icy Veins",
@@ -677,8 +908,12 @@
     "minLevel": 48,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
-    "targetCharacters": ["all"],
+    "owners": [
+      "all"
+    ],
+    "targetCharacters": [
+      "all"
+    ],
     "notes": "Expected from Alcaz Prison, levels 48-53. Likely a rogue leather set. No rogue is on the roster. Item stats are still hidden, so this is not farmable yet.",
     "how": "Informational until someone plays a rogue and a piece drops.",
     "source": "Icy Veins",
@@ -693,10 +928,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Galestrider mounts"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Galestrider mounts"
+      ]
+    },
     "notes": "Eight colors in the beta datamine. Not obtainable yet. Ullrathor has already killed 16 galestriders on Zephras Isle.",
     "how": "Leave the family parked until a color can be learned.",
     "source": "Datamine",
@@ -711,10 +954,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Devilsaur mounts"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Devilsaur mounts"
+      ]
+    },
     "notes": "Five colors in the beta datamine. Not obtainable yet.",
     "how": "Leave the family parked until a color can be learned.",
     "source": "Datamine",
@@ -729,10 +980,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Warden Saber mounts"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Warden Saber mounts"
+      ]
+    },
     "notes": "Four colors in the beta datamine. Not obtainable yet.",
     "how": "Leave the family parked until a color can be learned.",
     "source": "Datamine",
@@ -747,10 +1006,18 @@
     "minLevel": 1,
     "priority": "Low",
     "status": "Parked",
-    "owners": ["all"],
+    "owners": [
+      "all"
+    ],
     "accountWide": true,
-    "assignedTo": ["all"],
-    "match": {"names": ["Druid Moose mounts"]},
+    "assignedTo": [
+      "all"
+    ],
+    "match": {
+      "names": [
+        "Druid Moose mounts"
+      ]
+    },
     "notes": "Four colors in the beta datamine. Not obtainable yet.",
     "how": "Leave the family parked until a color can be learned.",
     "source": "Datamine",
@@ -765,8 +1032,18 @@
     "minLevel": 1,
     "priority": "Medium",
     "status": "Parked",
-    "owners": ["lucinis", "vesperinis", "malavus", "sorinis"],
-    "targetCharacters": ["lucinis", "vesperinis", "malavus", "sorinis"],
+    "owners": [
+      "lucinis",
+      "vesperinis",
+      "malavus",
+      "sorinis"
+    ],
+    "targetCharacters": [
+      "lucinis",
+      "vesperinis",
+      "malavus",
+      "sorinis"
+    ],
     "notes": "Caster robes with Spell Pierce. Spells ignore part of the target's magical resistance, in the same role as Spell Penetration. Relevant to Lucinis, Vesperinis, Malavus, and Sorinis.",
     "how": "Leave it parked until the robes drop and the stat is confirmed on a character.",
     "source": "Icy Veins",
@@ -914,8 +1191,14 @@
     "minLevel": 42,
     "priority": "Medium",
     "status": "Parked",
-    "owners": ["sorinis", "skyrinis"],
-    "targetCharacters": ["sorinis", "skyrinis"],
+    "owners": [
+      "sorinis",
+      "skyrinis"
+    ],
+    "targetCharacters": [
+      "sorinis",
+      "skyrinis"
+    ],
     "notes": "Uldaman leather legs from Grimlok. Feral Combat +1; a level 42 future farm target for both druids, Sorinis and Skyrinis.",
     "how": "Farm Grimlok in Uldaman at 42 for the Feral Combat +1 legs.",
     "source": "House",
@@ -1075,6 +1358,29 @@
     "notes": "Drop source unconfirmed in Butler research; tracked so the house total reflects it. Do not farm until a source is confirmed.",
     "how": "Drop source unconfirmed; no farm route yet.",
     "source": "Unconfirmed",
+    "defaultDone": false
+  },
+  {
+    "id": "succulent-pork-ribs",
+    "name": "Recipe: Succulent Pork Ribs",
+    "mobs": [
+      "Tunnel Rat"
+    ],
+    "kind": "Recipe",
+    "type": "collection",
+    "zone": "Loch Modan",
+    "minLevel": 10,
+    "priority": "Medium",
+    "status": "Planned",
+    "owners": [
+      "all"
+    ],
+    "accountWide": true,
+    "assignedTo": [
+      "all"
+    ],
+    "notes": "Drops from Tunnel Rats in Loch Modan. Cody is actively hunting it (noted 2026-11-06).",
+    "source": "House",
     "defaultDone": false
   }
 ]
