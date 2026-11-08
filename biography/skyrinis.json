@@ -1,7 +1,7 @@
 {
   "character": "Skyrinis Starhollow",
-  "updated": "2026-11-08T13:03:00",
-  "count": 189,
+  "updated": "2026-11-08T18:05:00",
+  "count": 197,
   "events": [
     {
       "t": 1793924460,
@@ -1236,6 +1236,54 @@
       "at": "2026-11-08T13:03:00",
       "kind": "quest",
       "text": "Turned in Avenged Tenfold"
+    },
+    {
+      "t": 1794178020,
+      "at": "2026-11-08T17:47:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 46 to 49"
+    },
+    {
+      "t": 1794178140,
+      "at": "2026-11-08T17:49:00",
+      "kind": "quest",
+      "text": "Turned in The Turncoat"
+    },
+    {
+      "t": 1794178140,
+      "at": "2026-11-08T17:49:00",
+      "kind": "quest",
+      "text": "Read On The Windlord"
+    },
+    {
+      "t": 1794178320,
+      "at": "2026-11-08T17:52:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 49 to 51"
+    },
+    {
+      "t": 1794178500,
+      "at": "2026-11-08T17:55:00",
+      "kind": "quest",
+      "text": "Turned in Unfortunate News"
+    },
+    {
+      "t": 1794178620,
+      "at": "2026-11-08T17:57:00",
+      "kind": "quest",
+      "text": "Turned in The Cult's True Plans"
+    },
+    {
+      "t": 1794179040,
+      "at": "2026-11-08T18:04:00",
+      "kind": "quest",
+      "text": "Turned in Desperate Times"
+    },
+    {
+      "t": 1794179100,
+      "at": "2026-11-08T18:05:00",
+      "kind": "quest",
+      "text": "Turned in Prepare for Battle"
     }
   ]
 }

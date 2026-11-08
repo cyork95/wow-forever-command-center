@@ -1853,29 +1853,29 @@
     },
     "skyrinis": {
       "character": "Skyrinis Starhollow",
-      "exportedAt": "2026-11-08T13:03:00",
+      "exportedAt": "2026-11-08T18:05:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
       "level": 12,
       "zone": "Zephras Isle",
       "subzone": "Valanaar",
-      "goldCopper": 3987,
+      "goldCopper": 1623,
       "health": "261 max",
       "powerType": null,
       "stats": {
         "Strength": "24",
         "Agility": "29",
         "Stamina": "29",
-        "Intellect": "37",
-        "Armor": "309",
+        "Intellect": "41",
+        "Armor": "286",
         "Attack Power": "28",
-        "Melee Crit": "4.67%",
-        "Spell Crit": "4.67%"
+        "Melee Crit": "4.71%",
+        "Spell Crit": "4.71%"
       },
       "professions": [
         {
           "name": "Herbalism",
-          "current": 46,
+          "current": 51,
           "max": 75
         },
         {
@@ -1908,9 +1908,9 @@
         },
         {
           "slot": "Chest",
-          "name": "Worn Leather Vest",
-          "itemLevel": 9,
-          "quality": "Poor"
+          "name": "Elder's Tunic",
+          "itemLevel": 13,
+          "quality": "Uncommon"
         },
         {
           "slot": "Shirt",
@@ -1926,9 +1926,9 @@
         },
         {
           "slot": "Hands",
-          "name": "Ragged Leather Gloves",
-          "itemLevel": 4,
-          "quality": "Poor"
+          "name": "Broken Cultist Gloves",
+          "itemLevel": 13,
+          "quality": "Uncommon"
         },
         {
           "slot": "Waist",
@@ -1961,22 +1961,24 @@
         "Musical Gustjumper",
         "Pachimari",
         "Panda Cub",
-        "Shen'dorei Windwell",
         "Zergling"
       ],
-      "playedSeconds": 35280,
+      "playedSeconds": 36660,
       "items": [
         "Airy Windseeker's Shirt",
         "Balanced Quarterstaff",
         "Basic Campfire Kit",
         "Brilliant Smallfish",
+        "Broken Cultist Gloves",
         "Copper Ore",
         "Crisp Spring Water",
+        "Elder's Tunic",
         "First Aid Kit",
         "Fish Bowl",
         "Fishing Pole",
         "Flint and Tinder",
         "Fresh Gustberry Bread",
+        "Galeswept Forestshroom",
         "Hearthstone",
         "Hunter's Simple Cloak",
         "Light Feather",
@@ -1994,6 +1996,7 @@
         "Ragged Leather Gloves",
         "Red Delicious Stormapple",
         "Rough Stone",
+        "Ruffled Feather",
         "Sash of Sorrow",
         "Shiny Bauble",
         "Silverleaf",
@@ -2051,7 +2054,7 @@
           },
           {
             "name": "Quests completed",
-            "value": "70"
+            "value": "75"
           },
           {
             "name": "Instance lockouts",
@@ -2061,7 +2064,7 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "332"
+            "value": "335"
           },
           {
             "name": "Creature types",
@@ -2069,7 +2072,7 @@
           },
           {
             "name": "Ornery Galestrider",
-            "value": "26"
+            "value": "27"
           },
           {
             "name": "Prideclaw",
@@ -2096,6 +2099,10 @@
             "value": "12"
           },
           {
+            "name": "Al'Aketh Assassin",
+            "value": "12"
+          },
+          {
             "name": "Roiling Winds",
             "value": "11"
           },
@@ -2104,19 +2111,15 @@
             "value": "11"
           },
           {
+            "name": "Al'Aketh Pillager",
+            "value": "11"
+          },
+          {
             "name": "Windsong Crawler",
             "value": "11"
           },
           {
-            "name": "Al'Aketh Assassin",
-            "value": "11"
-          },
-          {
             "name": "Hippogryph Protector",
-            "value": "10"
-          },
-          {
-            "name": "Al'Aketh Pillager",
             "value": "10"
           },
           {
@@ -2201,23 +2204,7 @@
         92682,
         92683,
         92684,
-        92685,
-        92693,
-        92698,
-        92699,
-        92701,
-        92703,
-        92709,
-        92727,
-        92840,
-        92849,
-        93317,
-        93320,
-        93552,
-        94413,
-        94638,
-        96047,
-        96055
+        93318
       ],
       "huntKills": {},
       "looted": [],
@@ -2229,7 +2216,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-08T13:03:00"
+        "Dossier": "2026-11-08T18:05:00"
       }
     },
     "sorinis": {

@@ -311,6 +311,26 @@
     "Quests completed 70 (game statistic)",
     "Died once (six total); Unnerving Silence stands complete and ready to turn in"
    ]
+  },
+  {
+   "id": "before-the-move-skyrinis",
+   "character": "skyrinis",
+   "date": "2026-11-08",
+   "title": "Before the Move",
+   "source": "butler-export",
+   "body": [
+    "The evening's errand looked small: a turncoat's secret, carried to the right ears. It was not small. I delivered it, and read what the wind had kept for me — On The Windlord — and by the time I came back down the path, the isle was speaking differently.",
+    "The cult's true plans are known now, and the news I carried home was unfortunate in the formal, capitalised sense. Inside the hour the village's errands changed their grammar: Desperate Times. Prepare for Battle. And then the charge itself, laid on me by name — make our move against the Al'Aketh, seven Guardians, seven Spiritcallers, seven Blademasters. A gatherer counts such things carefully, and writes them down, and does not pretend the count is anything other than what it is.",
+    "And still: peacebloom does not stop growing because men are planning a war. I picked my way from forty-six to fifty-one on the roads between errands, because the Offering does not pause. The trainers took my coin and gave me back green kindnesses — Regrowth, and Revive for the worst moment a friend can have, and Nature's Grasp, the root that says wait. Thirteen is a breath away now. For the clan — which, I am learning, includes an isle getting ready to fight."
+   ],
+   "facts": [
+    "Turned in The Turncoat, Unfortunate News, The Cult's True Plans, Desperate Times, and Prepare for Battle",
+    "Read On The Windlord",
+    "Accepted Making Our Move against the Al'Aketh — seven each of Guardians, Spiritcallers, and Blademasters",
+    "New spells in the book: Regrowth, Revive, Nature's Grasp",
+    "Herbalism rose from 46 to 51; quests completed 75 (game statistic)",
+    "Level 12 at 8,657/10,100 XP — a short session from 13"
+   ]
   }
  ]
 }
