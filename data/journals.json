@@ -269,6 +269,29 @@
         "Three deaths: Stone Cairn Lake twice, Elwynn Forest once",
         "Crossed into Westfall; Furlbrow's Deed turned in"
       ]
+    },
+    {
+      "id": "the-tally-begins-sorinis",
+      "character": "sorinis",
+      "date": "2026-11-07",
+      "title": "The Tally Begins",
+      "source": "butler-export",
+      "body": [
+        "The Tally opens on Teldrassil, and the first page is full. Shadowglen to the Wellspring River, every path walked, every debt the forest owed collected in turn. I skinned what I killed — all of it, as is proper — and by the time the light changed my satchel held more leather than some tanners see in a season. Nothing wasted. That is the whole of the law, and the rest is commentary.",
+        "At Moonglade the Great Bear Spirit weighed me and found the shape acceptable. Body and Heart is done; the bear walks with me now. A rare one crossed my path in the deep wood — Fury Shelda — and the Tally has her name too. Darnassus calls me Honored, which I record without ornament: it is a fact, and facts are the furniture of a life.",
+        "One line in the Tally is empty, and I mean to keep it so: the forest never took me. Not once, from the first spider in Shadowthread Cave to the last furbolg at the Cleft. Thorin will call that luck when he reads it. It was not luck. It was patience, and a healer's habit of leaving before the argument turns.",
+        "The hearth is set at Auberdine now, and Darkshore is already on the page — Bashal'Aran's seal broken, the sickened bears of the coast fifteen of twenty relieved. The line has a head, and the head has work. Onward."
+      ],
+      "facts": [
+        "Levels 1 to 14 in one sitting (Teldrassil into Darkshore)",
+        "Achievements: Explore Teldrassil, Explore Moonglade",
+        "Bear Form earned (Great Bear Spirit; Body and Heart)",
+        "Skinning 99, Leatherworking 37 — 161 leather gathered",
+        "Darnassus raised to Honored",
+        "Rare sighting: Fury Shelda (Teldrassil)",
+        "Zero deaths on the day",
+        "Hearth set to Auberdine; Bashal'Aran completed"
+      ]
     }
   ]
 }
