@@ -2218,6 +2218,385 @@
         "Questie": null,
         "Dossier": "2026-11-07T00:16:00"
       }
+    },
+    "sorinis": {
+      "character": "Sorinis Starhollow",
+      "exportedAt": "2026-11-08T02:40:00",
+      "addon": "Dossier 2.2.18",
+      "realm": "CAMWOW US2 Realm 5 PvE",
+      "level": 14,
+      "zone": "Darkshore",
+      "subzone": "Auberdine",
+      "goldCopper": 8340,
+      "health": "365 max",
+      "powerType": null,
+      "stats": {
+        "Strength": "28",
+        "Agility": "34",
+        "Stamina": "37",
+        "Intellect": "42",
+        "Armor": "379",
+        "Attack Power": "36",
+        "Melee Crit": "5.8%",
+        "Spell Crit": "5.8%"
+      },
+      "professions": [
+        {
+          "name": "Leatherworking",
+          "current": 37,
+          "max": 75
+        },
+        {
+          "name": "Skinning",
+          "current": 99,
+          "max": 150
+        },
+        {
+          "name": "First Aid",
+          "current": 45,
+          "max": 75
+        },
+        {
+          "name": "Fishing",
+          "current": 1,
+          "max": 75
+        },
+        {
+          "name": "Cooking",
+          "current": 19,
+          "max": 75
+        }
+      ],
+      "gear": [
+        {
+          "slot": "Back",
+          "name": "Forest Oracle's Cloak",
+          "itemLevel": 11,
+          "quality": "Uncommon"
+        },
+        {
+          "slot": "Chest",
+          "name": "Ancestral Robe",
+          "itemLevel": 13,
+          "quality": "Uncommon"
+        },
+        {
+          "slot": "Wrist",
+          "name": "Grizzly Bracers",
+          "itemLevel": 11,
+          "quality": "Common"
+        },
+        {
+          "slot": "Hands",
+          "name": "Primal Mitts",
+          "itemLevel": 10,
+          "quality": "Common"
+        },
+        {
+          "slot": "Waist",
+          "name": "Dryweed Belt",
+          "itemLevel": 14,
+          "quality": "Uncommon"
+        },
+        {
+          "slot": "Legs",
+          "name": "Beaded Britches",
+          "itemLevel": 11,
+          "quality": "Uncommon"
+        },
+        {
+          "slot": "Feet",
+          "name": "Warped Leather Boots",
+          "itemLevel": 15,
+          "quality": "Poor"
+        },
+        {
+          "slot": "Main Hand",
+          "name": "Gritroot Staff",
+          "itemLevel": 10,
+          "quality": "Uncommon"
+        }
+      ],
+      "owned": [
+        "Azurky",
+        "Cerulean Prideclaw",
+        "Musical Gustjumper",
+        "Pachimari",
+        "Panda Cub",
+        "Shen'dorei Windwell",
+        "Zergling"
+      ],
+      "playedSeconds": 37980,
+      "items": [
+        "Ancestral Robe",
+        "Ancient Moonstone Seal",
+        "Beaded Britches",
+        "Bear Meat",
+        "Clam Meat",
+        "Crawler Claw",
+        "Crawler Meat",
+        "Dryweed Belt",
+        "Earthroot",
+        "Elixir of Minor Defense",
+        "Empty Sampling Tube",
+        "Fandral's Message",
+        "Fishing Pole",
+        "Forest Oracle's Cloak",
+        "Gritroot Staff",
+        "Grizzly Bracers",
+        "Hearthstone",
+        "Herb Baked Egg",
+        "Ice Cold Milk",
+        "Kaldorei Spider Kabob",
+        "Lesser Healing Potion",
+        "Light Feather",
+        "Light Hide",
+        "Light Leather",
+        "Linen Bandage",
+        "Linen Cloth",
+        "Minor Arcane Elixir",
+        "Minor Healing Potion",
+        "Mist Veil's Lockbox",
+        "Moonwell Water Tube",
+        "Pattern: Fine Leather Pants",
+        "Primal Mitts",
+        "Pristine Leather",
+        "Raw Longjaw Mud Snapper",
+        "Raw Rainbow Fin Albacore",
+        "Refreshing Spring Water",
+        "Ruined Leather Scraps",
+        "Scroll: LOWER PING WHOMEVER",
+        "Sea Creature Bones",
+        "Silver Dawning's Lockbox",
+        "Skinning Knife",
+        "Small Egg",
+        "Warped Leather Boots",
+        "empty"
+      ],
+      "itemCounts": {},
+      "recipes": {
+        "Cooking": [
+          "Basic Campfire",
+          "Brilliant Smallfish",
+          "Charred Wolf Meat",
+          "Herb Baked Egg",
+          "Kaldorei Spider Kabob",
+          "Roasted Boar Meat"
+        ],
+        "First Aid": [
+          "First Aid Kit",
+          "Linen Bandage"
+        ],
+        "Leatherworking": [
+          "Camp Tent",
+          "Cured Light Hide",
+          "Handstitched Leather Belt",
+          "Handstitched Leather Boots",
+          "Handstitched Leather Bracers",
+          "Handstitched Leather Cloak",
+          "Handstitched Leather Pants",
+          "Handstitched Leather Vest",
+          "Light Armor Kit",
+          "Light Leather",
+          "Light Leather Quiver",
+          "Small Leather Ammo Pouch"
+        ]
+      },
+      "crafts": {},
+      "collections": {
+        "Mounts": 2,
+        "Pets": 6,
+        "Toys": 2,
+        "Achievements": 4,
+        "Titles": null
+      },
+      "statistics": {
+        "Character": [
+          {
+            "name": "Deaths",
+            "value": "0"
+          },
+          {
+            "name": "Quests completed",
+            "value": "88"
+          },
+          {
+            "name": "Instance lockouts",
+            "value": "0"
+          }
+        ],
+        "Kills": [
+          {
+            "name": "Total kills",
+            "value": "774"
+          },
+          {
+            "name": "Creature types",
+            "value": "55"
+          },
+          {
+            "name": "Webwood Spider",
+            "value": "35"
+          },
+          {
+            "name": "Timberling",
+            "value": "21"
+          },
+          {
+            "name": "Grellkin",
+            "value": "18"
+          },
+          {
+            "name": "Gnarlpine Defender",
+            "value": "13"
+          },
+          {
+            "name": "Thistle Boar",
+            "value": "12"
+          },
+          {
+            "name": "Mangy Nightsaber",
+            "value": "11"
+          },
+          {
+            "name": "Nightsaber",
+            "value": "11"
+          },
+          {
+            "name": "Strigid Owl",
+            "value": "10"
+          },
+          {
+            "name": "Webwood Lurker",
+            "value": "9"
+          },
+          {
+            "name": "Vile Sprite",
+            "value": "8"
+          },
+          {
+            "name": "Pygmy Tide Crawler",
+            "value": "8"
+          },
+          {
+            "name": "Lasher Sproutling",
+            "value": "8"
+          },
+          {
+            "name": "Bloodfeather Fury",
+            "value": "7"
+          },
+          {
+            "name": "Darkshore Thresher",
+            "value": "7"
+          },
+          {
+            "name": "Foreststrider Fledgling",
+            "value": "7"
+          },
+          {
+            "name": "Gnarlpine Ambusher",
+            "value": "6"
+          },
+          {
+            "name": "Wild Grell",
+            "value": "6"
+          },
+          {
+            "name": "Bloodfeather Wind Witch",
+            "value": "5"
+          },
+          {
+            "name": "Rabid Thistle Bear",
+            "value": "5"
+          },
+          {
+            "name": "Greymist Coastrunner",
+            "value": "5"
+          },
+          {
+            "name": "Gnarlpine Mystic",
+            "value": "5"
+          },
+          {
+            "name": "Gnarlpine Shaman",
+            "value": "4"
+          },
+          {
+            "name": "Gnarlpine Augur",
+            "value": "4"
+          },
+          {
+            "name": "Elder Timberling",
+            "value": "4"
+          },
+          {
+            "name": "Moonstalker Runt",
+            "value": "4"
+          }
+        ]
+      },
+      "completedQuests": [
+        475,
+        476,
+        483,
+        486,
+        487,
+        488,
+        489,
+        916,
+        917,
+        918,
+        919,
+        920,
+        922,
+        923,
+        930,
+        931,
+        932,
+        937,
+        938,
+        940,
+        983,
+        997,
+        1001,
+        2118,
+        2159,
+        2399,
+        2438,
+        2459,
+        2518,
+        2519,
+        2520,
+        2541,
+        2561,
+        3120,
+        3519,
+        4161,
+        4495,
+        4761,
+        4811,
+        5931,
+        6341,
+        6342,
+        6343,
+        6344,
+        96047,
+        98289,
+        99582
+      ],
+      "huntKills": {},
+      "looted": [],
+      "sources": {
+        "CharacterExport": null,
+        "Nova Instance Tracker": null,
+        "Syndicator": null,
+        "Profession Master": null,
+        "AllTheThings": null,
+        "KillDex": null,
+        "Questie": null,
+        "Dossier": "2026-11-08T02:40:00"
+      }
     }
   }
 }
