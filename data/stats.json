@@ -1853,29 +1853,29 @@
     },
     "skyrinis": {
       "character": "Skyrinis Starhollow",
-      "exportedAt": "2026-11-07T00:16:00",
+      "exportedAt": "2026-11-08T13:03:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
-      "level": 11,
+      "level": 12,
       "zone": "Zephras Isle",
       "subzone": "Valanaar",
-      "goldCopper": 2091,
-      "health": "284 max",
+      "goldCopper": 3987,
+      "health": "261 max",
       "powerType": null,
       "stats": {
-        "Strength": "25",
-        "Agility": "31",
-        "Stamina": "32",
-        "Intellect": "39",
-        "Armor": "286",
-        "Attack Power": "30",
-        "Melee Crit": "3.45%",
-        "Spell Crit": "3.45%"
+        "Strength": "24",
+        "Agility": "29",
+        "Stamina": "29",
+        "Intellect": "37",
+        "Armor": "309",
+        "Attack Power": "28",
+        "Melee Crit": "4.67%",
+        "Spell Crit": "4.67%"
       },
       "professions": [
         {
           "name": "Herbalism",
-          "current": 44,
+          "current": 46,
           "max": 75
         },
         {
@@ -1885,7 +1885,7 @@
         },
         {
           "name": "First Aid",
-          "current": 23,
+          "current": 32,
           "max": 75
         },
         {
@@ -1914,15 +1914,15 @@
         },
         {
           "slot": "Shirt",
-          "name": "Thendal Survivalist's Shirt",
+          "name": "Airy Windseeker's Shirt",
           "itemLevel": 1,
           "quality": "Common"
         },
         {
           "slot": "Wrist",
-          "name": "Vuldren Hide Bracers",
-          "itemLevel": 5,
-          "quality": "Common"
+          "name": "Windsong Bangles",
+          "itemLevel": 13,
+          "quality": "Uncommon"
         },
         {
           "slot": "Hands",
@@ -1932,9 +1932,9 @@
         },
         {
           "slot": "Waist",
-          "name": "Wolfhide Belt",
-          "itemLevel": 10,
-          "quality": "Common"
+          "name": "Sash of Sorrow",
+          "itemLevel": 11,
+          "quality": "Uncommon"
         },
         {
           "slot": "Legs",
@@ -1944,14 +1944,14 @@
         },
         {
           "slot": "Feet",
-          "name": "Worn Leather Boots",
-          "itemLevel": 8,
-          "quality": "Poor"
+          "name": "Windswept Slippers",
+          "itemLevel": 13,
+          "quality": "Uncommon"
         },
         {
           "slot": "Main Hand",
-          "name": "Planting Shovel",
-          "itemLevel": 10,
+          "name": "Balanced Quarterstaff",
+          "itemLevel": 13,
           "quality": "Uncommon"
         }
       ],
@@ -1964,36 +1964,44 @@
         "Shen'dorei Windwell",
         "Zergling"
       ],
-      "playedSeconds": 31920,
+      "playedSeconds": 35280,
       "items": [
+        "Airy Windseeker's Shirt",
+        "Balanced Quarterstaff",
         "Basic Campfire Kit",
         "Brilliant Smallfish",
+        "Copper Ore",
+        "Crisp Spring Water",
         "First Aid Kit",
         "Fish Bowl",
         "Fishing Pole",
         "Flint and Tinder",
+        "Fresh Gustberry Bread",
         "Hearthstone",
         "Hunter's Simple Cloak",
+        "Light Feather",
         "Linen Bandage",
         "Linen Cloth",
         "Longjaw Mud Snapper",
+        "Malachite",
         "Mining Pick",
         "Minor Healing Potion",
         "Minor Mana Potion",
         "Minor Troll's Blood Elixir",
+        "Peacebloom",
         "Pincer Bites",
-        "Planting Shovel",
+        "Pungent Skycheddar",
         "Ragged Leather Gloves",
-        "Recipe: Slitherskin Mackerel",
         "Red Delicious Stormapple",
-        "Refreshing Spring Water",
+        "Rough Stone",
+        "Sash of Sorrow",
         "Shiny Bauble",
-        "Thendal Survivalist's Shirt",
-        "Vuldren Hide Bracers",
+        "Silverleaf",
+        "Small Egg",
         "Well-Worn Pants",
+        "Windsong Bangles",
         "Windstone",
-        "Wolfhide Belt",
-        "Worn Leather Boots",
+        "Windswept Slippers",
         "Worn Leather Vest",
         "empty"
       ],
@@ -2032,18 +2040,18 @@
         "Mounts": 2,
         "Pets": 6,
         "Toys": 2,
-        "Achievements": 1,
+        "Achievements": 4,
         "Titles": null
       },
       "statistics": {
         "Character": [
           {
             "name": "Deaths",
-            "value": "5"
+            "value": "6"
           },
           {
             "name": "Quests completed",
-            "value": "63"
+            "value": "70"
           },
           {
             "name": "Instance lockouts",
@@ -2053,15 +2061,15 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "302"
+            "value": "332"
           },
           {
             "name": "Creature types",
-            "value": "43"
+            "value": "47"
           },
           {
             "name": "Ornery Galestrider",
-            "value": "24"
+            "value": "26"
           },
           {
             "name": "Prideclaw",
@@ -2108,6 +2116,10 @@
             "value": "10"
           },
           {
+            "name": "Al'Aketh Pillager",
+            "value": "10"
+          },
+          {
             "name": "Al'Aketh Brute",
             "value": "9"
           },
@@ -2132,6 +2144,10 @@
             "value": "8"
           },
           {
+            "name": "Al'Aketh Brawler",
+            "value": "8"
+          },
+          {
             "name": "Vuldren",
             "value": "7"
           },
@@ -2150,14 +2166,6 @@
           {
             "name": "Al'Aketh Stormcaller",
             "value": "6"
-          },
-          {
-            "name": "Cirrusfly Soldier",
-            "value": "5"
-          },
-          {
-            "name": "Living Lightning",
-            "value": "5"
           }
         ]
       },
@@ -2187,6 +2195,8 @@
         92553,
         92596,
         92597,
+        92642,
+        92645,
         92679,
         92682,
         92683,
@@ -2200,9 +2210,12 @@
         92709,
         92727,
         92840,
+        92849,
         93317,
+        93320,
         93552,
         94413,
+        94638,
         96047,
         96055
       ],
@@ -2216,7 +2229,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-07T00:16:00"
+        "Dossier": "2026-11-08T13:03:00"
       }
     },
     "sorinis": {

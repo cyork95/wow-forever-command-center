@@ -1,7 +1,7 @@
 {
   "character": "Skyrinis Starhollow",
-  "updated": "2026-11-07T00:16:00",
-  "count": 176,
+  "updated": "2026-11-08T13:03:00",
+  "count": 189,
   "events": [
     {
       "t": 1793924460,
@@ -1151,6 +1151,91 @@
       "at": "2026-11-07T00:16:00",
       "kind": "profession",
       "text": "Cooking rose from 56 to 77"
+    },
+    {
+      "t": 1794157740,
+      "at": "2026-11-08T12:09:00",
+      "kind": "profession",
+      "text": "First Aid rose from 23 to 32"
+    },
+    {
+      "t": 1794157980,
+      "at": "2026-11-08T12:13:00",
+      "kind": "quest",
+      "text": "Turned in Tower Defense",
+      "questID": 93320
+    },
+    {
+      "t": 1794158160,
+      "at": "2026-11-08T12:16:00",
+      "kind": "death",
+      "text": "Died in Zephras Isle"
+    },
+    {
+      "t": 1794158160,
+      "at": "2026-11-08T12:16:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Died, in Zephras Isle",
+      "reason": "Died"
+    },
+    {
+      "t": 1794158280,
+      "at": "2026-11-08T12:18:00",
+      "kind": "level",
+      "text": "Reached level 12 in Zephras Isle",
+      "level": 12
+    },
+    {
+      "t": 1794158280,
+      "at": "2026-11-08T12:18:00",
+      "kind": "screenshot",
+      "text": "Screenshot: Reached level 12, in Gustberry Lowlands, Zephras Isle",
+      "reason": "Reached level 12"
+    },
+    {
+      "t": 1794159180,
+      "at": "2026-11-08T12:33:00",
+      "kind": "quest",
+      "text": "Turned in Disrupting Logistics",
+      "questID": 92642
+    },
+    {
+      "t": 1794159180,
+      "at": "2026-11-08T12:33:00",
+      "kind": "quest",
+      "text": "Turned in Breaking the Breaker",
+      "questID": 92645
+    },
+    {
+      "t": 1794160080,
+      "at": "2026-11-08T12:48:00",
+      "kind": "profession",
+      "text": "Herbalism rose from 44 to 46"
+    },
+    {
+      "t": 1794160680,
+      "at": "2026-11-08T12:58:00",
+      "kind": "quest",
+      "text": "Turned in Strength and Mercy",
+      "questID": 94638
+    },
+    {
+      "t": 1794160920,
+      "at": "2026-11-08T13:02:00",
+      "kind": "quest",
+      "text": "Turned in Return to Valanaar"
+    },
+    {
+      "t": 1794160920,
+      "at": "2026-11-08T13:02:00",
+      "kind": "quest",
+      "text": "Turned in The High Elder's Request"
+    },
+    {
+      "t": 1794160980,
+      "at": "2026-11-08T13:03:00",
+      "kind": "quest",
+      "text": "Turned in Avenged Tenfold"
     }
   ]
 }

@@ -1,297 +1,316 @@
 {
-  "schemaVersion": 1,
-  "note": "Vessel only: journal entries publish as owner-approved text via data-only commits. No generated text is committed by tooling; character holds roster character ids.",
-  "entries": [
-    {
-      "id": "session-zero-thorin",
-      "character": "thorin",
-      "date": "2026-10-27",
-      "title": "A Name on the Door Again",
-      "source": "butler-session-zero",
-      "body": [
-        "The clerks opened the rolls today, and the Caskmend name is on one again. Thorin Caskmend, written out plain  the first time in a good while that name has stood on any official list. Nobody made a fuss. That's fine. A name doesn't come back with a fuss. It comes back with work.",
-        "I'm to start in Coldridge on the fourth, with an empty pack and a head full of other people's recipes. Everything the revival needs is out there past the snow  herbs I've never gathered, brews I've never tasted, in valleys I've only heard named. So I'll go and learn them, one at a time, the way you mend anything: find the failing seam, and shore it kindly.",
-        "Tonight, though, the work is just this: a brew, taken properly, before the road. Strong tea  a man saves the ale for a battle, and this week's battle is only a beginning. To the name, then. May it be worth writing down again."
-      ],
-      "facts": [
-        "Name reserved Oct 27, 2026",
-        "Normal realm",
-        "Level 1  the road starts Nov 4, Coldridge Valley"
-      ]
-    },
-    {
-      "id": "session-zero-sorinis",
-      "character": "sorinis",
-      "date": "2026-10-27",
-      "title": "The Count Begins at One",
-      "source": "butler-session-zero",
-      "body": [
-        "Today the name Sorinis Starhollow was entered in the rolls, and I have opened a fresh page of the tally for it. Every count that matters starts this way: one mark, made carefully. Skins taken: none yet. Pieces finished: none. Groves healed: none. Family accounted for: all of them  that count, at least, never waits for the road to begin.",
-        "On the fourth I start in Shadowglen, and I go first on purpose. A head of family who sends others into a world he hasn't walked himself is offering comfort, not knowledge  and the -inis line deserves knowledge. More of mine will stand where I'm standing soon enough, my Skyborne cousin first among them; his proving begins the same day, and his reports will come back to me as all family counts do. I expect them to be long. The boy gathers everything.",
-        "So the page is open and the numbers are honest: all zeroes, except the one that counts. The work speaks  and from the fourth, it starts speaking in numbers."
-      ],
-      "facts": [
-        "Name reserved Oct 27, 2026",
-        "Normal realm",
-        "Level 1  starts Nov 4, Shadowglen",
-        "The Tally: new page opened"
-      ]
-    },
-    {
-      "id": "session-zero-malavus",
-      "character": "malavus",
-      "date": "2026-10-27",
-      "title": "In Good Order",
-      "source": "butler-session-zero",
-      "body": [
-        "The name Malavus Blackwell was entered in the rolls today, after due inspection. I read the terms before I let it stand  habit. A reservation is a small contract: a name, held; a place, promised; nothing yet owed on either side. It is, I confess, my favourite kind.",
-        "This week there is paperwork of a larger kind. The Lament of the Fallen does not exist yet  it will, on the fourth, in Stormwind  and so I am drafting its charter while the others are still packing. A company of friends deserves better fine print than most companies get: every clause load-bearing, every obligation mutual, nothing in it I would not sign myself. And I have signed worse, in my time. I read that three times first, too.",
-        "On the fourth I start in Northshire, alone, which will not last. Certain parties to my older arrangements will be joining me in due course, and before we take any field together there will be a staff meeting  each consulted in turn, each assigned according to his talents. It is only professional. A bargain kept well is kept by both sides. Everything is in good order. I checked."
-      ],
-      "facts": [
-        "Name reserved Oct 27, 2026",
-        "Normal realm",
-        "Level 1  starts Nov 4, Northshire",
-        "Charter of the Lament of the Fallen: in draft"
-      ]
-    },
-    {
-      "id": "session-zero-skyrinis",
-      "character": "skyrinis",
-      "date": "2026-10-27",
-      "title": "An Empty Pack",
-      "source": "butler-session-zero",
-      "body": [
-        "The rolls were opened today, and my name is not in them. Thorin's is written in good ink, and Malavus's, and my cousin the patriarch's. Mine gets written on the fourth, on Zephras Isle  and that's by design, whatever it looks like. A branch that was a rumour in somebody else's records not long ago doesn't get its standing back from a clerk. It earns it in the field.",
-        "So I have a week of waiting, and I am spending it the way I'll spend the year: making lists. Every zone I mean to walk, every road, every herb and ore and odd shining thing between Zephras and the far side of the world  the list has the whole world on it, and the counts all stand at zero, clean as fresh snow. Sorinis picked me out of every hopeful our branch put forward. I volunteered, yes  and I was chosen anyway, and I mean to make the choosing look wise. What I gather goes to the clan, all of it, and the finest find of every expedition goes to the patriarch with my reports.",
-        "For now the pack is empty and I wouldn't trade places with any written name in the rolls. They were claimed. I get to be proven. The fourth can't come soon enough.",
-        "For the clan. All of it, for the clan."
-      ],
-      "facts": [
-        "Name not reserved  claimed at creation, Nov 4",
-        "Starts Zephras Isle",
-        "Level 1",
-        "Route charted: Zephras Isle, then Elwynn  252 items on the list"
-      ]
-    },
-    {
-      "id": "launch-night-thorin",
-      "character": "thorin",
-      "date": "2026-11-04",
-      "title": "First Work Under the Name",
-      "source": "butler-export",
-      "body": [
-        "The road started in Coldridge snow at six bells, with an empty pack and a name that hasn't been written on any roll in a long while. First work was small work: mail carried, boars thinned, a troll cave looked into and reported on. Small is fine. A house comes back the way it was built — one honest job laid on another.",
-        "The earth called before the light went. I answered — Call of Earth, done properly, three times over before the elders were satisfied — and somewhere in there the gathering started in earnest. Every slope in that valley grows something worth picking, and I picked the valley near bare. Fifty-four points of Herbalism by nightfall, and a pack that smells of peacebloom and snow.",
-        "Thunderbrew Distillery took me in at the end of it: First Aid learned, Cooking learned, a fire built and ribs basted over it. The Grizzled Den took me once, too — the bears keep their own ledger, and I won't pretend the mark isn't mine. Level eight by the depot, a brew before sleep, taken properly. The name held up its first day. That's enough to ask of any day."
-      ],
-      "facts": [
-        "Started Nov 4, Coldridge Valley, Dun Morogh",
-        "Call of Earth completed",
-        "Herbalism 54 by nightfall",
-        "Died once — The Grizzled Den",
-        "Reached level 8 at Steelgrill's Depot"
-      ]
-    },
-    {
-      "id": "ironforge-thorin",
-      "character": "thorin",
-      "date": "2026-11-05",
-      "title": "The Second Trade",
-      "source": "butler-export",
-      "body": [
-        "The day started before the day did — Evershine's errands run in the small hours, and the mountain reminding me twice, in the way it has, that a healer's road is still a road. Level ten came at the Grizzled Den, which is fitting. The den and I are becoming acquainted. It keeps the first mark; I keep coming back.",
-        "Evening was Ironforge. I walked in a gatherer and walked out an alchemist: Alchemy learned in Tinker Town, and then the whole stockpile of two days' picking went across the bench in one sitting — elixirs of defense and force, a mana well, troll's blood — one point to fifty without stopping. A Caskmend learns a trade by working it, not by reading about it.",
-        "Herbalism topped out somewhere on the road home — seventy-five, nothing left in the low hills to teach me. Level eleven at Brewnall Village with the light going. Two trades now, and the second one smells of the first one's harvest. That's the whole plan, working the way plans rarely do."
-      ],
-      "facts": [
-        "Reached level 10 at The Grizzled Den",
-        "Alchemy learned in Ironforge — trained 1 to 50 in one sitting",
-        "Herbalism mastered: 75/75",
-        "Reached level 11 at Brewnall Village"
-      ]
-    },
-    {
-      "id": "launch-night-zephinis",
-      "character": "zephinis",
-      "date": "2026-11-04",
-      "title": "The Late Start",
-      "source": "butler-export",
-      "body": [
-        "My proving began at 22:56, hours after the others — the rolls will show Thorin starting at six bells and me near midnight, and I would like the record to note that the delay was the archive's, not mine. Some of us had to be catalogued before we could be sent. I have made my peace with being a late entry in my own story.",
-        "Zephras Isle, though, does not care when you start. By the second hour I had read the Glowing Recall Crystal — an actual text, in the field, which I maintain counts as the expedition's first scholarly act — and turned in A Student of the Arcane to examiners who seemed satisfied. Reading the Leylines followed before the night was out. The work here is legible if you know how to look: the isle is a page, and the leylines are its ruling.",
-        "Mining came along without being asked to head the expedition — copper smelted in Thendal Village, the pick rising faster than my staff work, which the record may note without commentary. Level six shortly after midnight, Al'Aketh thugs seen to. The patriarch chose me for this. The first night's marginalia, at least, should please him."
-      ],
-      "facts": [
-        "Started Nov 4, 22:56, Zephras Isle",
-        "Read the Glowing Recall Crystal",
-        "Reading the Leylines completed",
-        "Mining: Smelt Copper learned",
-        "Reached level 6 just after midnight"
-      ]
-    },
-    {
-      "id": "first-harvest-skyrinis",
-      "character": "skyrinis",
-      "date": "2026-11-05",
-      "title": "Everything I Could Carry",
-      "source": "butler-export",
-      "body": [
-        "Report for the patriarch, first proving, Zephras Isle. I started at 19:21 and I did not stop — six and a half hours, ten levels, and the isle picked over like a carcass at a rookery. Two hundred and seventy-nine creatures down. Four hundred and forty-four gatherings in. That is the whole method: if it grows, I pick it; if it glitters, I dig it; if it can be carried, it goes in the pack for the clan.",
-        "Mining stands at sixty-one — eighty copper ore alone came out of those hills — and Herbalism at thirty-five, peacebloom by the armful. I learned Cooking, First Aid, and Fishing in Shen'dar Village and put all three straight to work. The Highlands charged me for the education: five deaths on the day, two of them in the same field an hour apart. The tally keeps those too. Nothing in this report is rounded down.",
-        "The prize of the night came at the end of it, in Gustberry Lowlands: a Musical Gustjumper, caught wild, now part of the clan's collection — the first new companion any of us has brought home. Level eleven at Windfield Orchard, pack full, boots ruined, everything mailed on to Stormwind for keeping. Sorinis handpicked me to be his hero. This is what the hero brought back: everything he could carry, and a bird that sings."
-      ],
-      "facts": [
-        "Single session: 6h 31m, levels 1 to 11",
-        "279 kills, 444 gathered",
-        "Mining 61 — 80 Copper Ore",
-        "New pet: Musical Gustjumper (Gustberry Lowlands)",
-        "5 deaths — the Highlands keep their tally too"
-      ]
-    },
-    {
-      "id": "the-walk-mortimer",
-      "character": "mortimer",
-      "date": "2026-11-04",
-      "title": "Delivered",
-      "source": "butler-export",
-      "body": [
-        "Ledger, first entry. Subject arrived in Elwynn Forest at 22:35 with nothing, which was the correct amount. The position calls for a man who holds things, not a man who needs them.",
-        "Elwynn took its fee at 22:38 — one death, on the road, before the city was even in sight. Noted without complaint. Every vault charges something for the privilege of reaching it.",
-        "Stormwind, Trade District, 22:39. Post taken up. The subject does not quest, does not raid, does not advance. The subject waits, receives, and keeps. It is the whole of the job, and it will be done properly."
-      ],
-      "facts": [
-        "Arrived Stormwind Trade District, Nov 4, 22:39",
-        "One death — Elwynn Forest, on the road in",
-        "Bank alt: no quests, by design"
-      ]
-    },
-    {
-      "id": "first-deposits-mortimer",
-      "character": "mortimer",
-      "date": "2026-11-06",
-      "title": "First Deposits",
-      "source": "butler-export",
-      "body": [
-        "Ledger, second entry. The vault is open for business. Skyrinis's first harvest came down from Zephras Isle by post — ore, stone, and herbs in quantity, the gleanings of a cousin who cannot walk past a copper vein without introducing himself. All of it received, sorted, and shelved: the raw makings of the clan's trades, waiting in the dark for the craftsmen to call on them.",
-        "The pack overflowed before the bank did, which the subject records as the correct order of things. A companion also joined the household's collection in the night — a Musical Gustjumper, caught by the gatherer himself — and the subject notes its arrival in the rolls with the same care as the copper. Everything the clan wins goes in the book.",
-        "Balance carried forward: a working vault, a full set of shelves, and a family that produces more than it stores. The subject anticipates no difficulty keeping up. The subject does not, as a rule, have difficulties. He has entries."
-      ],
-      "facts": [
-        "Bank cache established and opened, Nov 6",
-        "First deposits: Skyrinis's Zephras Isle harvest",
-        "Account collections now include the Musical Gustjumper — 6 battle pets"
-      ]
-    },
-    {
-      "id": "quiet-hours-skyrinis",
-      "character": "skyrinis",
-      "date": "2026-11-06",
-      "title": "The Quiet Hours",
-      "source": "butler-export",
-      "body": [
-        "After the long night — ten levels between dusk and dawn — I owed myself a slower afternoon, and Valanaar is a good place to owe it. I took the fishing pole down to the water and mostly stayed there. The fish come if you are patient, and I am learning to be patient: fifty casts' worth of patience, if the tally-keepers are counting, and my hands know the line far better than they did yesterday.",
-        "The catch went over the fire, as it should. A fisher who cannot cook is only half provisioned, and the smallfish recipes are mine now. Between the water and the fire I walked the paths and did what I always do — every herb that showed itself came home with me, peacebloom and silverleaf and earthroot, because a node unharvested is a gift refused. Two debts of honour were settled as well: The Hills Have Eyes, and Standing Our Ground, both turned in and done.",
-        "The strange find of the day was a little pouch of violet dust. It has no earthly use that I can name. I kept it anyway, and I would keep it again — when Sorinis chose me, he chose the one who brings home everything, the useful and the wonderful alike. For the clan means all of it. My purse sits heavier than it ever has, and half the road to twelve is already behind me. Rest now. Then onward."
-      ],
-      "facts": [
-        "Level 11, 4,415/8,800 XP (50.17%)",
-        "Fishing 25 -> 50 in one afternoon session",
-        "Cooking 16 -> 20; Herbalism 35 -> 41; Mining 61 -> 62",
-        "Turned in: The Hills Have Eyes, Standing Our Ground (58 quests completed)",
-        "New toy collected: Pouch of Violet Dust (toys 2/21)",
-        "Gold 34s 91c — the most he has ever held"
-      ]
-    },
-    {
-      "id": "for-the-table-thorin",
-      "character": "thorin",
-      "date": "2026-11-06",
-      "title": "For the Table",
-      "source": "butler-export",
-      "body": [
-        "I left Dun Morogh this morning with the snow barely off my boots, and I will say plainly what I told no one at the inn: I was nervous. A Caskmend does not shrink from work, but Loch Modan is a bigger country than the valley I was raised in, and the name I am rebuilding deserves better than a dwarf who only ever mended his own fence.",
-        "The mountain answered kindly. The Call of Fire found me, as the Call of Earth did before it, and there is a new totem standing in my pack tonight that burns steady when I set it down. Fire is a cook's element as much as a shaman's. I choose to take that as encouragement.",
-        "Then, the mine. Word had reached me that the Tunnel Rats of Silver Stream carry a recipe worth having — succulent pork ribs, the kind of dish a clan table remembers. I went down into that dark with my hammer and my patience, and I came up again one hundred and thirteen rats later with the recipe in my pouch. Let the bards sing of dragons. A recipe is forever, and it feeds people.",
-        "The day was generous besides: a second recipe came home with me, a peace tea from the Frostmane, of all unlikely donors. Dun Morogh showed me its last corner and marked it explored. My purse holds its first gold piece. The inn at Thelsamar — the Stoutlager — is my hearth now, and the lake country is ahead of me. I am nobody's legend. But the table, when this clan finally sits at one together, will be ready. That is the whole of my ambition, and it is enough."
-      ],
-      "facts": [
-        "Level 15",
-        "Loch Modan reached; hearth moved to Stoutlager Inn, Thelsamar",
-        "Call of Fire completed — Fire totem earned",
-        "113 Tunnel Rats killed in Silver Stream Mine",
-        "Recipe: Succulent Pork Ribs obtained — the hunt is complete",
-        "Recipe: Peace Tea also obtained (banked)",
-        "Achievement: Explore Dun Morogh",
-        "Quests completed 71 (game statistic)"
-      ]
-    },
-    {
-      "id": "a-hundred-casts-skyrinis",
-      "character": "skyrinis",
-      "date": "2026-11-06",
-      "title": "A Hundred Casts",
-      "source": "butler-export",
-      "body": [
-        "The afternoon asked its errands of me and I ran them gladly — the Great Ursera Spirit honored, crabs counted for Crab Season, news carried, wind caught. Small services. The isle is held together by small services, the way a net is held together by knots nobody praises.",
-        "Then the light began to lean, and I did the thing I was made for. I went down to the water at Valanaar with my pole and my patience and I fished. Not for a quest. Not for a tally — though the tally came, as tallies do when you are not watching them. Cast, wait, listen. The lake decides what it gives; my whole art is to still be standing there, grateful, when it gives it.",
-        "Somewhere past the hundredth cast the skill settled into my hands like a path worn smooth — one hundred, the trainers would call it, out of a hundred and fifty the road allows. The catch filled my bags the way the morning's harvest fills Mortimer's bank: mud snapper on mud snapper, a ten-pounder among them that I have saved rather than sold. Some finds are for keeping.",
-        "Past midnight I cooked at the fire until the pans stopped surprising me — five new recipes learned in one sitting, steam in my face, the village asleep around me. My hearthstone wakes in Valanaar now. It is not Shen'dar, and it is not home, exactly. But a place you have fed yourself in, slowly and well, is a place that has agreed to know your name. For the clan, always — even the quiet parts. Especially the quiet parts."
-      ],
-      "facts": [
-        "Fishing reached 100/150 in a single evening sitting at Valanaar",
-        "Cooking reached 77; five recipes learned past midnight (Spiced Wolf Meat, Boiled Clams, Coyote Steak, Pincer Bites, Longjaw Mud Snapper)",
-        "Quests completed 63 (game statistic)",
-        "Hearthstone moved to Valanaar",
-        "115 fish caught lifetime (game statistic)",
-        "A 10 Pound Mud Snapper kept in the bank"
-      ]
-    },
-    {
-      "id": "road-west-thorin",
-      "character": "thorin",
-      "date": "2026-11-07",
-      "title": "The Road West",
-      "source": "butler-export",
-      "body": [
-        "Ironforge first, and the morning went to the trades. I sat in Tinker Town until the fumes made my eyes water and came out the other side an alchemist in earnest — recipe after recipe, until the bench work runs ahead of my hammer work. First Aid past seventy, too. A healer ought to be able to patch a man without the Light's cousin doing all the lifting, and a Caskmend ought to know what's in the bottle before he brews it.",
-        "Then the tram. Under the mountain, through the dark, and out into Stormwind with Stormpike's package delivered — the world is wider than Dun Morogh, and today it finally felt like it. Elwynn after: honest work under green trees. Sixteen at Eastvale Logging Camp, Hogger's bounty claimed, and the whole forest walked end to end until the chart-makers had no quarrel with me.",
-        "The lake at Stone Cairn took me twice, and the forest once more besides. Write it plain: three deaths, none of them glorious, all of them mine. Humility is cheaper learned at sixteen than at sixty.",
-        "By mid-afternoon I'd crossed into Westfall and turned in the Furlbrow deed at the Jansen Stead. The stew pot's still waiting on me, and a family's pocket watch besides. The road west is long. Good. So is the name I'm carrying down it."
-      ],
-      "facts": [
-        "Level 16 in Elwynn Forest (Eastvale Logging Camp)",
-        "Achievement: Explore Elwynn Forest",
-        "WANTED: \"Hogger\" turned in",
-        "Alchemy 50 to 83 in one Ironforge morning; First Aid to 70",
-        "Cooking 17 to 68 across the day",
-        "First Deeprun Tram ride; Stormpike's Order delivered in Stormwind",
-        "Three deaths: Stone Cairn Lake twice, Elwynn Forest once",
-        "Crossed into Westfall; Furlbrow's Deed turned in"
-      ]
-    },
-    {
-      "id": "the-tally-begins-sorinis",
-      "character": "sorinis",
-      "date": "2026-11-07",
-      "title": "The Tally Begins",
-      "source": "butler-export",
-      "body": [
-        "The Tally opens on Teldrassil, and the first page is full. Shadowglen to the Wellspring River, every path walked, every debt the forest owed collected in turn. I skinned what I killed — all of it, as is proper — and by the time the light changed my satchel held more leather than some tanners see in a season. Nothing wasted. That is the whole of the law, and the rest is commentary.",
-        "At Moonglade the Great Bear Spirit weighed me and found the shape acceptable. Body and Heart is done; the bear walks with me now. A rare one crossed my path in the deep wood — Fury Shelda — and the Tally has her name too. Darnassus calls me Honored, which I record without ornament: it is a fact, and facts are the furniture of a life.",
-        "One line in the Tally is empty, and I mean to keep it so: the forest never took me. Not once, from the first spider in Shadowthread Cave to the last furbolg at the Cleft. Thorin will call that luck when he reads it. It was not luck. It was patience, and a healer's habit of leaving before the argument turns.",
-        "The hearth is set at Auberdine now, and Darkshore is already on the page — Bashal'Aran's seal broken, the sickened bears of the coast fifteen of twenty relieved. The line has a head, and the head has work. Onward."
-      ],
-      "facts": [
-        "Levels 1 to 14 in one sitting (Teldrassil into Darkshore)",
-        "Achievements: Explore Teldrassil, Explore Moonglade",
-        "Bear Form earned (Great Bear Spirit; Body and Heart)",
-        "Skinning 99, Leatherworking 37 — 161 leather gathered",
-        "Darnassus raised to Honored",
-        "Rare sighting: Fury Shelda (Teldrassil)",
-        "Zero deaths on the day",
-        "Hearth set to Auberdine; Bashal'Aran completed"
-      ]
-    }
-  ]
+ "schemaVersion": 1,
+ "note": "Vessel only: journal entries publish as owner-approved text via data-only commits. No generated text is committed by tooling; character holds roster character ids.",
+ "entries": [
+  {
+   "id": "session-zero-thorin",
+   "character": "thorin",
+   "date": "2026-10-27",
+   "title": "A Name on the Door Again",
+   "source": "butler-session-zero",
+   "body": [
+    "The clerks opened the rolls today, and the Caskmend name is on one again. Thorin Caskmend, written out plain  the first time in a good while that name has stood on any official list. Nobody made a fuss. That's fine. A name doesn't come back with a fuss. It comes back with work.",
+    "I'm to start in Coldridge on the fourth, with an empty pack and a head full of other people's recipes. Everything the revival needs is out there past the snow  herbs I've never gathered, brews I've never tasted, in valleys I've only heard named. So I'll go and learn them, one at a time, the way you mend anything: find the failing seam, and shore it kindly.",
+    "Tonight, though, the work is just this: a brew, taken properly, before the road. Strong tea  a man saves the ale for a battle, and this week's battle is only a beginning. To the name, then. May it be worth writing down again."
+   ],
+   "facts": [
+    "Name reserved Oct 27, 2026",
+    "Normal realm",
+    "Level 1  the road starts Nov 4, Coldridge Valley"
+   ]
+  },
+  {
+   "id": "session-zero-sorinis",
+   "character": "sorinis",
+   "date": "2026-10-27",
+   "title": "The Count Begins at One",
+   "source": "butler-session-zero",
+   "body": [
+    "Today the name Sorinis Starhollow was entered in the rolls, and I have opened a fresh page of the tally for it. Every count that matters starts this way: one mark, made carefully. Skins taken: none yet. Pieces finished: none. Groves healed: none. Family accounted for: all of them  that count, at least, never waits for the road to begin.",
+    "On the fourth I start in Shadowglen, and I go first on purpose. A head of family who sends others into a world he hasn't walked himself is offering comfort, not knowledge  and the -inis line deserves knowledge. More of mine will stand where I'm standing soon enough, my Skyborne cousin first among them; his proving begins the same day, and his reports will come back to me as all family counts do. I expect them to be long. The boy gathers everything.",
+    "So the page is open and the numbers are honest: all zeroes, except the one that counts. The work speaks  and from the fourth, it starts speaking in numbers."
+   ],
+   "facts": [
+    "Name reserved Oct 27, 2026",
+    "Normal realm",
+    "Level 1  starts Nov 4, Shadowglen",
+    "The Tally: new page opened"
+   ]
+  },
+  {
+   "id": "session-zero-malavus",
+   "character": "malavus",
+   "date": "2026-10-27",
+   "title": "In Good Order",
+   "source": "butler-session-zero",
+   "body": [
+    "The name Malavus Blackwell was entered in the rolls today, after due inspection. I read the terms before I let it stand  habit. A reservation is a small contract: a name, held; a place, promised; nothing yet owed on either side. It is, I confess, my favourite kind.",
+    "This week there is paperwork of a larger kind. The Lament of the Fallen does not exist yet  it will, on the fourth, in Stormwind  and so I am drafting its charter while the others are still packing. A company of friends deserves better fine print than most companies get: every clause load-bearing, every obligation mutual, nothing in it I would not sign myself. And I have signed worse, in my time. I read that three times first, too.",
+    "On the fourth I start in Northshire, alone, which will not last. Certain parties to my older arrangements will be joining me in due course, and before we take any field together there will be a staff meeting  each consulted in turn, each assigned according to his talents. It is only professional. A bargain kept well is kept by both sides. Everything is in good order. I checked."
+   ],
+   "facts": [
+    "Name reserved Oct 27, 2026",
+    "Normal realm",
+    "Level 1  starts Nov 4, Northshire",
+    "Charter of the Lament of the Fallen: in draft"
+   ]
+  },
+  {
+   "id": "session-zero-skyrinis",
+   "character": "skyrinis",
+   "date": "2026-10-27",
+   "title": "An Empty Pack",
+   "source": "butler-session-zero",
+   "body": [
+    "The rolls were opened today, and my name is not in them. Thorin's is written in good ink, and Malavus's, and my cousin the patriarch's. Mine gets written on the fourth, on Zephras Isle  and that's by design, whatever it looks like. A branch that was a rumour in somebody else's records not long ago doesn't get its standing back from a clerk. It earns it in the field.",
+    "So I have a week of waiting, and I am spending it the way I'll spend the year: making lists. Every zone I mean to walk, every road, every herb and ore and odd shining thing between Zephras and the far side of the world  the list has the whole world on it, and the counts all stand at zero, clean as fresh snow. Sorinis picked me out of every hopeful our branch put forward. I volunteered, yes  and I was chosen anyway, and I mean to make the choosing look wise. What I gather goes to the clan, all of it, and the finest find of every expedition goes to the patriarch with my reports.",
+    "For now the pack is empty and I wouldn't trade places with any written name in the rolls. They were claimed. I get to be proven. The fourth can't come soon enough.",
+    "For the clan. All of it, for the clan."
+   ],
+   "facts": [
+    "Name not reserved  claimed at creation, Nov 4",
+    "Starts Zephras Isle",
+    "Level 1",
+    "Route charted: Zephras Isle, then Elwynn  252 items on the list"
+   ]
+  },
+  {
+   "id": "launch-night-thorin",
+   "character": "thorin",
+   "date": "2026-11-04",
+   "title": "First Work Under the Name",
+   "source": "butler-export",
+   "body": [
+    "The road started in Coldridge snow at six bells, with an empty pack and a name that hasn't been written on any roll in a long while. First work was small work: mail carried, boars thinned, a troll cave looked into and reported on. Small is fine. A house comes back the way it was built — one honest job laid on another.",
+    "The earth called before the light went. I answered — Call of Earth, done properly, three times over before the elders were satisfied — and somewhere in there the gathering started in earnest. Every slope in that valley grows something worth picking, and I picked the valley near bare. Fifty-four points of Herbalism by nightfall, and a pack that smells of peacebloom and snow.",
+    "Thunderbrew Distillery took me in at the end of it: First Aid learned, Cooking learned, a fire built and ribs basted over it. The Grizzled Den took me once, too — the bears keep their own ledger, and I won't pretend the mark isn't mine. Level eight by the depot, a brew before sleep, taken properly. The name held up its first day. That's enough to ask of any day."
+   ],
+   "facts": [
+    "Started Nov 4, Coldridge Valley, Dun Morogh",
+    "Call of Earth completed",
+    "Herbalism 54 by nightfall",
+    "Died once — The Grizzled Den",
+    "Reached level 8 at Steelgrill's Depot"
+   ]
+  },
+  {
+   "id": "ironforge-thorin",
+   "character": "thorin",
+   "date": "2026-11-05",
+   "title": "The Second Trade",
+   "source": "butler-export",
+   "body": [
+    "The day started before the day did — Evershine's errands run in the small hours, and the mountain reminding me twice, in the way it has, that a healer's road is still a road. Level ten came at the Grizzled Den, which is fitting. The den and I are becoming acquainted. It keeps the first mark; I keep coming back.",
+    "Evening was Ironforge. I walked in a gatherer and walked out an alchemist: Alchemy learned in Tinker Town, and then the whole stockpile of two days' picking went across the bench in one sitting — elixirs of defense and force, a mana well, troll's blood — one point to fifty without stopping. A Caskmend learns a trade by working it, not by reading about it.",
+    "Herbalism topped out somewhere on the road home — seventy-five, nothing left in the low hills to teach me. Level eleven at Brewnall Village with the light going. Two trades now, and the second one smells of the first one's harvest. That's the whole plan, working the way plans rarely do."
+   ],
+   "facts": [
+    "Reached level 10 at The Grizzled Den",
+    "Alchemy learned in Ironforge — trained 1 to 50 in one sitting",
+    "Herbalism mastered: 75/75",
+    "Reached level 11 at Brewnall Village"
+   ]
+  },
+  {
+   "id": "launch-night-zephinis",
+   "character": "zephinis",
+   "date": "2026-11-04",
+   "title": "The Late Start",
+   "source": "butler-export",
+   "body": [
+    "My proving began at 22:56, hours after the others — the rolls will show Thorin starting at six bells and me near midnight, and I would like the record to note that the delay was the archive's, not mine. Some of us had to be catalogued before we could be sent. I have made my peace with being a late entry in my own story.",
+    "Zephras Isle, though, does not care when you start. By the second hour I had read the Glowing Recall Crystal — an actual text, in the field, which I maintain counts as the expedition's first scholarly act — and turned in A Student of the Arcane to examiners who seemed satisfied. Reading the Leylines followed before the night was out. The work here is legible if you know how to look: the isle is a page, and the leylines are its ruling.",
+    "Mining came along without being asked to head the expedition — copper smelted in Thendal Village, the pick rising faster than my staff work, which the record may note without commentary. Level six shortly after midnight, Al'Aketh thugs seen to. The patriarch chose me for this. The first night's marginalia, at least, should please him."
+   ],
+   "facts": [
+    "Started Nov 4, 22:56, Zephras Isle",
+    "Read the Glowing Recall Crystal",
+    "Reading the Leylines completed",
+    "Mining: Smelt Copper learned",
+    "Reached level 6 just after midnight"
+   ]
+  },
+  {
+   "id": "first-harvest-skyrinis",
+   "character": "skyrinis",
+   "date": "2026-11-05",
+   "title": "Everything I Could Carry",
+   "source": "butler-export",
+   "body": [
+    "Report for the patriarch, first proving, Zephras Isle. I started at 19:21 and I did not stop — six and a half hours, ten levels, and the isle picked over like a carcass at a rookery. Two hundred and seventy-nine creatures down. Four hundred and forty-four gatherings in. That is the whole method: if it grows, I pick it; if it glitters, I dig it; if it can be carried, it goes in the pack for the clan.",
+    "Mining stands at sixty-one — eighty copper ore alone came out of those hills — and Herbalism at thirty-five, peacebloom by the armful. I learned Cooking, First Aid, and Fishing in Shen'dar Village and put all three straight to work. The Highlands charged me for the education: five deaths on the day, two of them in the same field an hour apart. The tally keeps those too. Nothing in this report is rounded down.",
+    "The prize of the night came at the end of it, in Gustberry Lowlands: a Musical Gustjumper, caught wild, now part of the clan's collection — the first new companion any of us has brought home. Level eleven at Windfield Orchard, pack full, boots ruined, everything mailed on to Stormwind for keeping. Sorinis handpicked me to be his hero. This is what the hero brought back: everything he could carry, and a bird that sings."
+   ],
+   "facts": [
+    "Single session: 6h 31m, levels 1 to 11",
+    "279 kills, 444 gathered",
+    "Mining 61 — 80 Copper Ore",
+    "New pet: Musical Gustjumper (Gustberry Lowlands)",
+    "5 deaths — the Highlands keep their tally too"
+   ]
+  },
+  {
+   "id": "the-walk-mortimer",
+   "character": "mortimer",
+   "date": "2026-11-04",
+   "title": "Delivered",
+   "source": "butler-export",
+   "body": [
+    "Ledger, first entry. Subject arrived in Elwynn Forest at 22:35 with nothing, which was the correct amount. The position calls for a man who holds things, not a man who needs them.",
+    "Elwynn took its fee at 22:38 — one death, on the road, before the city was even in sight. Noted without complaint. Every vault charges something for the privilege of reaching it.",
+    "Stormwind, Trade District, 22:39. Post taken up. The subject does not quest, does not raid, does not advance. The subject waits, receives, and keeps. It is the whole of the job, and it will be done properly."
+   ],
+   "facts": [
+    "Arrived Stormwind Trade District, Nov 4, 22:39",
+    "One death — Elwynn Forest, on the road in",
+    "Bank alt: no quests, by design"
+   ]
+  },
+  {
+   "id": "first-deposits-mortimer",
+   "character": "mortimer",
+   "date": "2026-11-06",
+   "title": "First Deposits",
+   "source": "butler-export",
+   "body": [
+    "Ledger, second entry. The vault is open for business. Skyrinis's first harvest came down from Zephras Isle by post — ore, stone, and herbs in quantity, the gleanings of a cousin who cannot walk past a copper vein without introducing himself. All of it received, sorted, and shelved: the raw makings of the clan's trades, waiting in the dark for the craftsmen to call on them.",
+    "The pack overflowed before the bank did, which the subject records as the correct order of things. A companion also joined the household's collection in the night — a Musical Gustjumper, caught by the gatherer himself — and the subject notes its arrival in the rolls with the same care as the copper. Everything the clan wins goes in the book.",
+    "Balance carried forward: a working vault, a full set of shelves, and a family that produces more than it stores. The subject anticipates no difficulty keeping up. The subject does not, as a rule, have difficulties. He has entries."
+   ],
+   "facts": [
+    "Bank cache established and opened, Nov 6",
+    "First deposits: Skyrinis's Zephras Isle harvest",
+    "Account collections now include the Musical Gustjumper — 6 battle pets"
+   ]
+  },
+  {
+   "id": "quiet-hours-skyrinis",
+   "character": "skyrinis",
+   "date": "2026-11-06",
+   "title": "The Quiet Hours",
+   "source": "butler-export",
+   "body": [
+    "After the long night — ten levels between dusk and dawn — I owed myself a slower afternoon, and Valanaar is a good place to owe it. I took the fishing pole down to the water and mostly stayed there. The fish come if you are patient, and I am learning to be patient: fifty casts' worth of patience, if the tally-keepers are counting, and my hands know the line far better than they did yesterday.",
+    "The catch went over the fire, as it should. A fisher who cannot cook is only half provisioned, and the smallfish recipes are mine now. Between the water and the fire I walked the paths and did what I always do — every herb that showed itself came home with me, peacebloom and silverleaf and earthroot, because a node unharvested is a gift refused. Two debts of honour were settled as well: The Hills Have Eyes, and Standing Our Ground, both turned in and done.",
+    "The strange find of the day was a little pouch of violet dust. It has no earthly use that I can name. I kept it anyway, and I would keep it again — when Sorinis chose me, he chose the one who brings home everything, the useful and the wonderful alike. For the clan means all of it. My purse sits heavier than it ever has, and half the road to twelve is already behind me. Rest now. Then onward."
+   ],
+   "facts": [
+    "Level 11, 4,415/8,800 XP (50.17%)",
+    "Fishing 25 -> 50 in one afternoon session",
+    "Cooking 16 -> 20; Herbalism 35 -> 41; Mining 61 -> 62",
+    "Turned in: The Hills Have Eyes, Standing Our Ground (58 quests completed)",
+    "New toy collected: Pouch of Violet Dust (toys 2/21)",
+    "Gold 34s 91c — the most he has ever held"
+   ]
+  },
+  {
+   "id": "for-the-table-thorin",
+   "character": "thorin",
+   "date": "2026-11-06",
+   "title": "For the Table",
+   "source": "butler-export",
+   "body": [
+    "I left Dun Morogh this morning with the snow barely off my boots, and I will say plainly what I told no one at the inn: I was nervous. A Caskmend does not shrink from work, but Loch Modan is a bigger country than the valley I was raised in, and the name I am rebuilding deserves better than a dwarf who only ever mended his own fence.",
+    "The mountain answered kindly. The Call of Fire found me, as the Call of Earth did before it, and there is a new totem standing in my pack tonight that burns steady when I set it down. Fire is a cook's element as much as a shaman's. I choose to take that as encouragement.",
+    "Then, the mine. Word had reached me that the Tunnel Rats of Silver Stream carry a recipe worth having — succulent pork ribs, the kind of dish a clan table remembers. I went down into that dark with my hammer and my patience, and I came up again one hundred and thirteen rats later with the recipe in my pouch. Let the bards sing of dragons. A recipe is forever, and it feeds people.",
+    "The day was generous besides: a second recipe came home with me, a peace tea from the Frostmane, of all unlikely donors. Dun Morogh showed me its last corner and marked it explored. My purse holds its first gold piece. The inn at Thelsamar — the Stoutlager — is my hearth now, and the lake country is ahead of me. I am nobody's legend. But the table, when this clan finally sits at one together, will be ready. That is the whole of my ambition, and it is enough."
+   ],
+   "facts": [
+    "Level 15",
+    "Loch Modan reached; hearth moved to Stoutlager Inn, Thelsamar",
+    "Call of Fire completed — Fire totem earned",
+    "113 Tunnel Rats killed in Silver Stream Mine",
+    "Recipe: Succulent Pork Ribs obtained — the hunt is complete",
+    "Recipe: Peace Tea also obtained (banked)",
+    "Achievement: Explore Dun Morogh",
+    "Quests completed 71 (game statistic)"
+   ]
+  },
+  {
+   "id": "a-hundred-casts-skyrinis",
+   "character": "skyrinis",
+   "date": "2026-11-06",
+   "title": "A Hundred Casts",
+   "source": "butler-export",
+   "body": [
+    "The afternoon asked its errands of me and I ran them gladly — the Great Ursera Spirit honored, crabs counted for Crab Season, news carried, wind caught. Small services. The isle is held together by small services, the way a net is held together by knots nobody praises.",
+    "Then the light began to lean, and I did the thing I was made for. I went down to the water at Valanaar with my pole and my patience and I fished. Not for a quest. Not for a tally — though the tally came, as tallies do when you are not watching them. Cast, wait, listen. The lake decides what it gives; my whole art is to still be standing there, grateful, when it gives it.",
+    "Somewhere past the hundredth cast the skill settled into my hands like a path worn smooth — one hundred, the trainers would call it, out of a hundred and fifty the road allows. The catch filled my bags the way the morning's harvest fills Mortimer's bank: mud snapper on mud snapper, a ten-pounder among them that I have saved rather than sold. Some finds are for keeping.",
+    "Past midnight I cooked at the fire until the pans stopped surprising me — five new recipes learned in one sitting, steam in my face, the village asleep around me. My hearthstone wakes in Valanaar now. It is not Shen'dar, and it is not home, exactly. But a place you have fed yourself in, slowly and well, is a place that has agreed to know your name. For the clan, always — even the quiet parts. Especially the quiet parts."
+   ],
+   "facts": [
+    "Fishing reached 100/150 in a single evening sitting at Valanaar",
+    "Cooking reached 77; five recipes learned past midnight (Spiced Wolf Meat, Boiled Clams, Coyote Steak, Pincer Bites, Longjaw Mud Snapper)",
+    "Quests completed 63 (game statistic)",
+    "Hearthstone moved to Valanaar",
+    "115 fish caught lifetime (game statistic)",
+    "A 10 Pound Mud Snapper kept in the bank"
+   ]
+  },
+  {
+   "id": "road-west-thorin",
+   "character": "thorin",
+   "date": "2026-11-07",
+   "title": "The Road West",
+   "source": "butler-export",
+   "body": [
+    "Ironforge first, and the morning went to the trades. I sat in Tinker Town until the fumes made my eyes water and came out the other side an alchemist in earnest — recipe after recipe, until the bench work runs ahead of my hammer work. First Aid past seventy, too. A healer ought to be able to patch a man without the Light's cousin doing all the lifting, and a Caskmend ought to know what's in the bottle before he brews it.",
+    "Then the tram. Under the mountain, through the dark, and out into Stormwind with Stormpike's package delivered — the world is wider than Dun Morogh, and today it finally felt like it. Elwynn after: honest work under green trees. Sixteen at Eastvale Logging Camp, Hogger's bounty claimed, and the whole forest walked end to end until the chart-makers had no quarrel with me.",
+    "The lake at Stone Cairn took me twice, and the forest once more besides. Write it plain: three deaths, none of them glorious, all of them mine. Humility is cheaper learned at sixteen than at sixty.",
+    "By mid-afternoon I'd crossed into Westfall and turned in the Furlbrow deed at the Jansen Stead. The stew pot's still waiting on me, and a family's pocket watch besides. The road west is long. Good. So is the name I'm carrying down it."
+   ],
+   "facts": [
+    "Level 16 in Elwynn Forest (Eastvale Logging Camp)",
+    "Achievement: Explore Elwynn Forest",
+    "WANTED: \"Hogger\" turned in",
+    "Alchemy 50 to 83 in one Ironforge morning; First Aid to 70",
+    "Cooking 17 to 68 across the day",
+    "First Deeprun Tram ride; Stormpike's Order delivered in Stormwind",
+    "Three deaths: Stone Cairn Lake twice, Elwynn Forest once",
+    "Crossed into Westfall; Furlbrow's Deed turned in"
+   ]
+  },
+  {
+   "id": "the-tally-begins-sorinis",
+   "character": "sorinis",
+   "date": "2026-11-07",
+   "title": "The Tally Begins",
+   "source": "butler-export",
+   "body": [
+    "The Tally opens on Teldrassil, and the first page is full. Shadowglen to the Wellspring River, every path walked, every debt the forest owed collected in turn. I skinned what I killed — all of it, as is proper — and by the time the light changed my satchel held more leather than some tanners see in a season. Nothing wasted. That is the whole of the law, and the rest is commentary.",
+    "At Moonglade the Great Bear Spirit weighed me and found the shape acceptable. Body and Heart is done; the bear walks with me now. A rare one crossed my path in the deep wood — Fury Shelda — and the Tally has her name too. Darnassus calls me Honored, which I record without ornament: it is a fact, and facts are the furniture of a life.",
+    "One line in the Tally is empty, and I mean to keep it so: the forest never took me. Not once, from the first spider in Shadowthread Cave to the last furbolg at the Cleft. Thorin will call that luck when he reads it. It was not luck. It was patience, and a healer's habit of leaving before the argument turns.",
+    "The hearth is set at Auberdine now, and Darkshore is already on the page — Bashal'Aran's seal broken, the sickened bears of the coast fifteen of twenty relieved. The line has a head, and the head has work. Onward."
+   ],
+   "facts": [
+    "Levels 1 to 14 in one sitting (Teldrassil into Darkshore)",
+    "Achievements: Explore Teldrassil, Explore Moonglade",
+    "Bear Form earned (Great Bear Spirit; Body and Heart)",
+    "Skinning 99, Leatherworking 37 — 161 leather gathered",
+    "Darnassus raised to Honored",
+    "Rare sighting: Fury Shelda (Teldrassil)",
+    "Zero deaths on the day",
+    "Hearth set to Auberdine; Bashal'Aran completed"
+   ]
+  },
+  {
+   "id": "seventy-receipts-skyrinis",
+   "character": "skyrinis",
+   "date": "2026-11-08",
+   "title": "Seventy Receipts",
+   "source": "butler-export",
+   "body": [
+    "The day began with bandages, which is not how songs start, but songs are not the point. A gatherer who cannot patch his own hurts is a story the isle only tells once, so I sat in Valanaar and practiced on linen until the wraps came out even — twenty-three to thirty-two, the trainers would say, and my hands agree with them. Small skill, kept sharp. Everything counted, everything carried.",
+    "Then the road asked its questions. The tower stands defended. The cult's supply lines are disrupted, and the Breaker — whatever it was breaking — is broken. The isle took me once along the way, my sixth death, and I record it the way I record everything: plainly, and without bargaining. Two minutes later, in Gustberry Lowlands, the twelfth level arrived, as if the isle had thought better of it. Strength and mercy were both asked of me before noon, in that order and then the other, and I gave both. They are not opposites. They are two hands of the same gatherer.",
+    "Home to Valanaar by early afternoon, to answer the High Elder's request and close a vengeance tenfold deep. Seventy quests now stand in the isle's ledger under my name — seventy receipts for work actually done. One silence still waits to be reported, and it will keep until tomorrow; a waiting errand is not a failed one. For the clan, always — even the bookkeeping. Especially the bookkeeping."
+   ],
+   "facts": [
+    "Reached Level 12 in Gustberry Lowlands",
+    "Turned in Tower Defense, Disrupting Logistics, Breaking the Breaker, Strength and Mercy, Return to Valanaar, The High Elder's Request, and Avenged Tenfold",
+    "First Aid rose from 23 to 32; Herbalism from 44 to 46",
+    "Quests completed 70 (game statistic)",
+    "Died once (six total); Unnerving Silence stands complete and ready to turn in"
+   ]
+  }
+ ]
 }
