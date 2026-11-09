@@ -1073,7 +1073,8 @@
       "subzone": "The Jansen Stead",
       "goldCopper": 9666,
       "health": "432 max",
-      "powerType": null,
+      "power": "615 max",
+      "powerType": "Mana",
       "stats": {
         "Strength": "36",
         "Agility": "22",
@@ -1081,6 +1082,7 @@
         "Intellect": "45",
         "Armor": "562",
         "Attack Power": "129",
+        "Spell Power": "5",
         "Melee Crit": "4.17%",
         "Spell Crit": "4.17%"
       },
@@ -1510,7 +1512,8 @@
       "subzone": "Thendal Grove",
       "goldCopper": 651,
       "health": "117 max",
-      "powerType": null,
+      "power": "361 max",
+      "powerType": "Mana",
       "stats": {
         "Strength": "18",
         "Agility": "25",
@@ -1518,6 +1521,7 @@
         "Intellect": "35",
         "Armor": "119",
         "Attack Power": "8",
+        "Spell Power": "0",
         "Melee Crit": "4.78%",
         "Spell Crit": "4.78%"
       },
@@ -1739,7 +1743,8 @@
       "subzone": "Trade District",
       "goldCopper": 0,
       "health": "55 max",
-      "powerType": null,
+      "power": "100 max",
+      "powerType": "Energy",
       "stats": {
         "Strength": "21",
         "Agility": "23",
@@ -1747,6 +1752,7 @@
         "Intellect": "20",
         "Armor": "50",
         "Attack Power": "26",
+        "Spell Power": "0",
         "Melee Crit": "10.84%",
         "Spell Crit": "10.84%"
       },
@@ -1861,7 +1867,8 @@
       "subzone": "Valanaar",
       "goldCopper": 1623,
       "health": "261 max",
-      "powerType": null,
+      "power": "517 max",
+      "powerType": "Mana",
       "stats": {
         "Strength": "24",
         "Agility": "29",
@@ -1869,6 +1876,7 @@
         "Intellect": "41",
         "Armor": "286",
         "Attack Power": "28",
+        "Spell Power": "1",
         "Melee Crit": "4.71%",
         "Spell Crit": "4.71%"
       },
@@ -2229,7 +2237,8 @@
       "subzone": null,
       "goldCopper": 24133,
       "health": "454 max",
-      "powerType": null,
+      "power": "850 max",
+      "powerType": "Mana",
       "stats": {
         "Strength": "30",
         "Agility": "37",
@@ -2237,6 +2246,7 @@
         "Intellect": "55",
         "Armor": "450",
         "Attack Power": "40",
+        "Spell Power": "22",
         "Melee Crit": "5.56%",
         "Spell Crit": "5.56%"
       },
