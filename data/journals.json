@@ -331,6 +331,28 @@
     "Herbalism rose from 46 to 51; quests completed 75 (game statistic)",
     "Level 12 at 8,657/10,100 XP — a short session from 13"
    ]
+  },
+  {
+   "id": "the-first-mark-against-sorinis",
+   "character": "sorinis",
+   "date": "2026-11-08",
+   "title": "The First Mark Against",
+   "source": "butler-export",
+   "body": [
+    "Darkshore is closed, and the Tally balances. The last of the infected bears is relieved — twenty of twenty, the column I have carried since Auberdine now ruled off and finished. The beached creatures along that coast were answered one by one, turtle and sea creature alike, and what the tide left behind, I recorded. A keeper does not leave a page half-ruled because the country changes.",
+    "Then the crossing. Stormwind's leatherworkers keep a different school than Darnassus, and they were generous with it: pattern after pattern, embossed work, fine cloaks and tunics, until my hands knew more in an afternoon than a week at home had taught them. What I wear of those lessons, I cut and stitched myself — as is proper. Nothing on this back was made by another's hand.",
+    "The road east is stone and snow. Dun Morogh's troggs object to everything as a matter of policy; Loch Modan's crocolisks at least argue back honestly, and their hides are already in the count. Fifteen to eighteen on that road, and every skinnable thing between the Cliffspring River and Grizzlepaw Ridge met the knife. The Tally grew fat on troggs.",
+    "In the Hall of Thanes I put down Faldrim Anvilmar, and an ancient grudge was settled in his own rest. Then, in that same quiet hall, I died — the first time. I will not dress it up: the line in the Tally that stood empty from Shadowglen to Darkshore has its entry now, written in the same hand as everything else. A column kept honestly does not fear its first mark against it. It closes, and the count goes on — more carefully."
+   ],
+   "facts": [
+    "Levels 15 to 18 (Darkshore into Dun Morogh and Loch Modan)",
+    "Cleansing of the Infected completed (20/20)",
+    "Defeated Faldrim Anvilmar in The Hall of Thanes",
+    "First death recorded — the zero-death column closes",
+    "Leatherworking 86 — new patterns learned in Stormwind and Ironforge",
+    "Skinning 130",
+    "Hearth remains Auberdine"
+   ]
   }
  ]
 }
