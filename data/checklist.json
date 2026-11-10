@@ -1499,5 +1499,36 @@
   "how": "Source to confirm in play; do not assume the classic-era drop.",
   "source": "MythicSim",
   "defaultDone": false
+ },
+ {
+  "id": "breakfast-omelette",
+  "name": "Recipe: Breakfast Omelette",
+  "mobs": [
+   "Condor",
+   "Black Whelp"
+  ],
+  "kind": "Recipe",
+  "type": "collection",
+  "zone": "Redridge Mountains",
+  "minLevel": 15,
+  "priority": "Medium",
+  "status": "Planned",
+  "owners": [
+   "all"
+  ],
+  "accountWide": false,
+  "assignedTo": [
+   "all"
+  ],
+  "targetCharacters": [
+   "thorin",
+   "sorinis",
+   "malavus",
+   "skyrinis",
+   "zephinis"
+  ],
+  "notes": "Cooking recipe dropping in Redridge Mountains. Cody asked 2026-11-10 for this one to be tracked PER CHARACTER (each character who cooks gets their own copy), unlike the account-wide recipe hunts. OBTAINED by Sorinis 2026-11-10 in Redridge \u2014 Cody's report: from the condors or possibly the black whelps; exact mob unconfirmed. Still to get: Thorin, Malavus, Skyrinis, Zephinis.",
+  "source": "House",
+  "defaultDone": false
  }
 ]
