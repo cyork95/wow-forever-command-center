@@ -184,11 +184,14 @@
     "race": "Night Elf",
     "className": "Hunter",
     "spec": "",
-    "professions": [],
+    "professions": [
+      "Mining",
+      "Enchanting"
+    ],
     "roles": [],
     "reserve": false,
     "betaSafe": false,
-    "blurb": "Joined the roster Nov 10, 2026, recreated as a Night Elf hunter of the -inis line. Professions, quirk, and builds are still to be shaped.",
+    "blurb": "Joined the roster Nov 10, 2026, recreated as a Night Elf hunter of the -inis line. The second Journey character: Mining and Enchanting, disenchanting gear to feed enchanting materials to Malavus. Quirk and builds are still to be shaped.",
     "talentNote": "",
     "talentLinks": [],
     "pairsWith": null
