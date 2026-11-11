@@ -123,7 +123,7 @@
     "name": "Zephinis Starhollow",
     "race": "Skyborne",
     "className": "Mage",
-    "spec": "Frostfire 0/19/32 [main — duo] · Fire 0/28/22 [dual]",
+    "spec": "Frost 3/0/48 [main — solo adventurer · Journey] · Frostfire 0/19/32 [dual — dungeons]",
     "professions": [
       "Mining",
       "Engineering"
@@ -134,19 +134,19 @@
     ],
     "reserve": false,
     "betaSafe": false,
-    "blurb": "The -inis line's arcane scholar, handpicked by Sorinis to read the world for the clan. Pairs with Av Xorr, a Skyborne mage with Tailoring and Enchanting. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
+    "blurb": "The -inis line's arcane scholar, handpicked by Sorinis to read the world for the clan. Once paired with Av Xorr; the duo-mage pair retired in Nov 2026 and Av is shelved for now, so he adventures solo — a formal Journey character, set on doing everything himself. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
     "talentNote": "",
     "talentLinks": [
       {
-        "label": "Frostfire 0/19/32 (main)",
+        "label": "Frostfire 0/19/32 (dual — dungeons)",
         "url": "https://talentsforever.com/mage/60/-055103010301-203530333111301201-TUVXZbdjlm2n2qsuvyxnpt0rm-9?b=70630h&d=261029"
       },
       {
-        "label": "Fire 0/28/22 (dual)",
+        "label": "Fire 0/28/22 (former dual)",
         "url": "https://talentsforever.com/mage/60/-0551030103013303-2035200301013002-9"
       }
     ],
-    "pairsWith": "Av Xorr (Skyborne mage, Tailoring / Enchanting)"
+    "pairsWith": null
   },
   {
     "id": "varinis",
