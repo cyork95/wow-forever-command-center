@@ -528,6 +528,30 @@
     "icon": "spell_nature_starfall"
   },
   {
+    "id": "sorinis-dash-cycle",
+    "name": "Dash Cycle (Cat Form)",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip Dash",
+      "/cancelform [mod:shift]",
+      "/castsequence [nomod:shift] reset=15 Cat Form, Dash, Cat Form"
+    ],
+    "note": "Cody's Dash cycle (2026-11-11): press for Cat Form, press again for Dash, press a third time once Dash ends to drop back to caster form. Shift+press drops form immediately. Leaving Cat Form ends Dash, so time the exit press yourself."
+  },
+  {
+    "id": "sorinis-prowl-cycle",
+    "name": "Prowl Cycle (Cat Form Stealth)",
+    "scope": "character",
+    "character": "sorinis",
+    "lines": [
+      "#showtooltip Prowl",
+      "/cancelform [mod:shift]",
+      "/castsequence [nomod:shift] reset=10 Cat Form, Prowl, Cat Form"
+    ],
+    "note": "The stealth twin of the Dash cycle (2026-11-11): press for Cat Form, press again for Prowl, press a third time to drop stealth and form and return to caster form. Shift+press drops form immediately. Prowl only works out of combat."
+  },
+  {
     "id": "skyrinis-mo-rejuvenation",
     "name": "Mouseover: Rejuvenation",
     "scope": "character",
@@ -699,6 +723,30 @@
     ],
     "note": "Adventurer spec solo work: out of combat it slips you into Prowl, stealthed it Pounces, in the open it Shreds. One button for the whole cat approach.",
     "icon": "ability_ambush"
+  },
+  {
+    "id": "skyrinis-dash-cycle",
+    "name": "Dash Cycle (Cat Form)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip Dash",
+      "/cancelform [mod:shift]",
+      "/castsequence [nomod:shift] reset=15 Cat Form, Dash, Cat Form"
+    ],
+    "note": "Cody's Dash cycle (2026-11-11): press for Cat Form, press again for Dash, press a third time once Dash ends to drop back to caster form. Shift+press drops form immediately. Leaving Cat Form ends Dash, so time the exit press yourself."
+  },
+  {
+    "id": "skyrinis-prowl-cycle",
+    "name": "Prowl Cycle (Cat Form Stealth)",
+    "scope": "character",
+    "character": "skyrinis",
+    "lines": [
+      "#showtooltip Prowl",
+      "/cancelform [mod:shift]",
+      "/castsequence [nomod:shift] reset=10 Cat Form, Prowl, Cat Form"
+    ],
+    "note": "The stealth twin of the Dash cycle (2026-11-11): press for Cat Form, press again for Prowl, press a third time to drop stealth and form and return to caster form. Shift+press drops form immediately. Prowl only works out of combat."
   },
   {
     "id": "malavus-mo-corruption",
