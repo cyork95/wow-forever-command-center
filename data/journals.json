@@ -353,6 +353,30 @@
     "Skinning 130",
     "Hearth remains Auberdine"
    ]
+  },
+  {
+   "id": "the-descent-and-the-fair-road-sorinis",
+   "character": "sorinis",
+   "date": "2026-11-11",
+   "title": "The Descent, and the Fair Road",
+   "source": "butler-export",
+   "body": [
+    "Darkshore is ruled off at last, every line of it. The coast gave up its final secrets reluctantly — the Master's Glaive, the Twilight camp, the beached dead answered one after another — and the Grove's trials closed the account properly: the Great Cat Spirit has my measure now, and the cat's shape is mine to wear. The Sea Lion's trial followed, cold water and colder patience, and the Tally gained a second new form in as many days. A druid's book should grow heavier as he walks. Mine does.",
+    "Then the fair road, of all things. The Darkmoon Faire had pitched its tents south of Goldshire, and I answered its herald before turning south in earnest — a keeper pays his respects to any institution that keeps good records of strange things. Redridge followed: gnolls on the highway, Blackrock orcs in the hills, a bridge held plank by plank. And in a Lakeshire kitchen, of all places, the Redridge omelette finally gave up its secret. The clan has eaten well since. So have I.",
+    "The Deadmines was the descent the road had been promising. I went down the whole of it — Rhahk'Zor at his forge, Sneed and his shredder, Gilnid among the furnaces, Smite on his own deck, Greenskin, and at the last VanCleef himself, with Cookie still stirring something below. The Staff of Westfall came up out of that dark over my shoulder. The Hall of Thanes, meanwhile, has learned my step by heart; Faldrim's rest is disturbed on a schedule now, like everything else I keep.",
+    "The cost column is not empty, and I do not hide it. Blackwood Den took its mark, and the Zoram Strand took another — three deaths stand in the Tally now, each entered in the same hand as the victories. That is what a tally is for. Tonight the road ends at the Deepwater Tavern in the Wetlands, level twenty-six, with Ashenvale and Stonetalon ruled off behind me and the marsh country opening ahead. The book goes on. So do I."
+   ],
+   "facts": [
+    "Levels 19 to 26 (Darkshore, Redridge, Ashenvale, Stonetalon, Wetlands)",
+    "Cat Form earned — the Great Cat Spirit trials completed",
+    "Aquatic Form earned — Trial of the Sea Lion completed",
+    "The Deadmines cleared in full — Edwin VanCleef defeated",
+    "Recipe: Breakfast Omelette learned; the clan hunt closes for Sorinis",
+    "Darkmoon Faire herald answered (50 reputation)",
+    "Deaths two and three recorded — Blackwood Den and the Zoram Strand",
+    "Leatherworking 100, Skinning 151, Cooking 115",
+    "Hearth moved to the Deepwater Tavern, Wetlands"
+   ]
   }
  ]
 }
