@@ -1073,7 +1073,7 @@
       "subzone": "The Jansen Stead",
       "goldCopper": 9666,
       "health": "432 max",
-      "power": "615 max",
+      "power": "675 max",
       "powerType": "Mana",
       "stats": {
         "Strength": "36",
@@ -1867,7 +1867,7 @@
       "subzone": "Valanaar",
       "goldCopper": 1623,
       "health": "261 max",
-      "power": "517 max",
+      "power": "674 max",
       "powerType": "Mana",
       "stats": {
         "Strength": "24",
@@ -1876,7 +1876,7 @@
         "Intellect": "41",
         "Armor": "286",
         "Attack Power": "28",
-        "Spell Power": "1",
+        "Spell Power": "3",
         "Melee Crit": "4.71%",
         "Spell Crit": "4.71%"
       },
@@ -2229,42 +2229,42 @@
     },
     "sorinis": {
       "character": "Sorinis Starhollow",
-      "exportedAt": "2026-11-08T23:44:00",
+      "exportedAt": "2026-11-11T20:21:00",
       "addon": "Dossier 2.2.18",
       "realm": "CAMWOW US2 Realm 5 PvE",
-      "level": 18,
-      "zone": "Ironforge",
-      "subzone": null,
-      "goldCopper": 24133,
-      "health": "454 max",
-      "power": "850 max",
+      "level": 26,
+      "zone": "Wetlands",
+      "subzone": "Deepwater Tavern",
+      "goldCopper": 61484,
+      "health": "644 max",
+      "power": "1534 max",
       "powerType": "Mana",
       "stats": {
-        "Strength": "30",
-        "Agility": "37",
-        "Stamina": "42",
-        "Intellect": "55",
-        "Armor": "450",
-        "Attack Power": "40",
-        "Spell Power": "22",
-        "Melee Crit": "5.56%",
-        "Spell Crit": "5.56%"
+        "Strength": "35",
+        "Agility": "41",
+        "Stamina": "49",
+        "Intellect": "77",
+        "Armor": "353",
+        "Attack Power": "50",
+        "Spell Power": "27",
+        "Melee Crit": "4.74%",
+        "Spell Crit": "4.74%"
       },
       "professions": [
         {
           "name": "Leatherworking",
-          "current": 86,
+          "current": 100,
           "max": 150
         },
         {
           "name": "Skinning",
-          "current": 130,
-          "max": 150
+          "current": 151,
+          "max": 225
         },
         {
           "name": "First Aid",
-          "current": 50,
-          "max": 75
+          "current": 130,
+          "max": 150
         },
         {
           "name": "Fishing",
@@ -2273,27 +2273,27 @@
         },
         {
           "name": "Cooking",
-          "current": 41,
-          "max": 75
+          "current": 115,
+          "max": 150
         }
       ],
       "gear": [
         {
           "slot": "Shoulder",
-          "name": "Canvas Shoulderpads",
-          "itemLevel": 20,
-          "quality": "Poor"
-        },
-        {
-          "slot": "Back",
-          "name": "Fine Leather Cloak",
-          "itemLevel": 15,
+          "name": "Double-Stitched Woolen Shoulders",
+          "itemLevel": 22,
           "quality": "Uncommon"
         },
         {
+          "slot": "Back",
+          "name": "Spiritwraith Drape",
+          "itemLevel": 18,
+          "quality": "Rare"
+        },
+        {
           "slot": "Chest",
-          "name": "Ancestral Robe",
-          "itemLevel": 13,
+          "name": "Robes of Antiquity",
+          "itemLevel": 25,
           "quality": "Uncommon"
         },
         {
@@ -2310,97 +2310,139 @@
         },
         {
           "slot": "Hands",
-          "name": "Willow Gloves",
-          "itemLevel": 16,
+          "name": "Greenweave Gloves",
+          "itemLevel": 25,
           "quality": "Uncommon"
         },
         {
           "slot": "Waist",
-          "name": "Dryweed Belt",
-          "itemLevel": 14,
+          "name": "Relic Hunter Belt",
+          "itemLevel": 20,
           "quality": "Uncommon"
         },
         {
           "slot": "Legs",
-          "name": "Embossed Leather Pants",
-          "itemLevel": 15,
+          "name": "Dreamer's Leggings",
+          "itemLevel": 22,
           "quality": "Uncommon"
         },
         {
           "slot": "Feet",
-          "name": "Embossed Leather Boots",
-          "itemLevel": 15,
+          "name": "Incinerator's Boots",
+          "itemLevel": 28,
           "quality": "Uncommon"
         },
         {
           "slot": "Main Hand",
-          "name": "Oak Mallet",
-          "itemLevel": 21,
-          "quality": "Uncommon"
+          "name": "Staff of Westfall",
+          "itemLevel": 24,
+          "quality": "Rare"
         }
       ],
       "owned": [
         "Cerulean Prideclaw"
       ],
-      "playedSeconds": 72480,
+      "playedSeconds": 167640,
       "items": [
         "Aetherwisp Bracers",
-        "Alexston's Reply",
-        "Ancestral Robe",
-        "Bear Meat",
-        "Blood Sausage",
-        "Canvas Shoulderpads",
-        "Crisp Spider Meat",
-        "Dryweed Belt",
-        "Dwarven Tome",
-        "Earthroot",
-        "Embossed Leather Boots",
-        "Embossed Leather Pants",
-        "Fandral's Message",
+        "Ancient Moonstone Seal",
+        "Basic Campfire Kit",
+        "Breakfast Omelette",
+        "Bronze Tube",
+        "Bubbling Water",
+        "Copper Modulator",
+        "Curative Animal Salve",
+        "Double-Stitched Woolen Shoulders",
+        "Dreamer's Leggings",
+        "Elixir of Minor Spirit",
+        "Elixir of Wisdom",
+        "Expert Cookbook",
         "Fine Cloth Shirt",
-        "Fine Leather Cloak",
+        "Flagon of Dwarven Honeymead",
+        "Flint and Tinder",
+        "Glyph of Azora",
+        "Gooey Spider Leg",
+        "Greenweave Gloves",
+        "Healing Potion",
         "Hearthstone",
-        "Herb Baked Egg",
+        "Heavy Wool Bandage",
         "Ice Cold Milk",
-        "Ironband's Progress Report",
+        "Incinerator's Boots",
         "Lesser Healing Potion",
+        "Lesser Mana Potion",
+        "Light Hide",
         "Light Leather",
-        "Linen Bandage",
         "Linen Cloth",
-        "Medium Armor Kit",
+        "Lunar Fungus",
+        "Maple Seed",
+        "Medium Hide",
+        "Medium Leather",
+        "Melon Juice",
         "Minor Arcane Elixir",
-        "Minor Healing Potion",
-        "Moonstalker Fang",
-        "Oak Mallet",
-        "Repurposed Hair Band",
+        "Minor Cleric's Elixir",
+        "Moist Cornbread",
+        "Moss Agate",
+        "Murloc Fin",
+        "Pristine Leather",
+        "Relic Hunter Belt",
+        "Replica Crescent Necklace",
+        "Restoring Balm",
+        "Robes of Antiquity",
+        "Rotting Bear Carcass",
         "Ruined Leather Scraps",
-        "Shipping Label",
+        "Scroll: OMIT KESA",
+        "Sealed Apprentice Crate",
         "Skinning Knife",
-        "Stormpike's Request",
-        "Willow Gloves",
+        "Spiritwraith Drape",
+        "Staff of Westfall",
+        "Torn Bear Pelt",
+        "Wool Cloth",
         "empty"
       ],
       "itemCounts": {},
       "recipes": {
         "Cooking": [
           "Basic Campfire",
+          "Blood Sausage",
+          "Boiled Clams",
+          "Breakfast Omelette",
           "Brilliant Smallfish",
           "Charred Wolf Meat",
+          "Coyote Steak",
+          "Crab Cake",
+          "Crocolisk Steak",
+          "Dry Pork Ribs",
           "Herb Baked Egg",
           "Kaldorei Spider Kabob",
+          "Murloc Fin Soup",
+          "Redridge Goulash",
           "Roasted Boar Meat",
-          "Spiced Wolf Meat"
+          "Spiced Wolf Meat",
+          "Strider Stew"
         ],
         "First Aid": [
+          "Anti-Venom",
           "First Aid Kit",
-          "Linen Bandage"
+          "Healing Potion",
+          "Heavy Linen Bandage",
+          "Heavy Wool Bandage",
+          "Lesser Healing Potion",
+          "Linen Bandage",
+          "Minor Healing Potion",
+          "Simple Poultice",
+          "Wool Bandage",
+          "Woolen Tourniquet"
         ],
         "Leatherworking": [
           "Black Whelp Slippers",
+          "Black Whelp Tunic",
           "Camp Tent",
           "Cured Light Hide",
           "Cured Medium Hide",
           "Dark Leather Boots",
+          "Dark Leather Cloak",
+          "Dark Leather Pants",
+          "Dark Leather Tunic",
           "Embossed Leather Boots",
           "Embossed Leather Cloak",
           "Embossed Leather Gloves",
@@ -2408,16 +2450,17 @@
           "Embossed Leather Vest",
           "Fine Leather Belt",
           "Fine Leather Cloak",
+          "Fine Leather Pants",
           "Fine Leather Tunic",
+          "Forceful Medium Armor Kit",
           "Gray Leather Boots",
           "Handstitched Leather Belt",
           "Handstitched Leather Boots",
-          "Handstitched Leather Bracers",
-          "Handstitched Leather Cloak",
-          "Handstitched Leather Pants",
           "Light Leather Bracers",
           "Light Leather Pants",
-          "Medium Armor Kit"
+          "Medium Armor Kit",
+          "Moonglow Vest",
+          "Mystic Medium Armor Kit"
         ],
         "Skinning": [
           "Camp Chair"
@@ -2428,18 +2471,18 @@
         "Mounts": 2,
         "Pets": 0,
         "Toys": 2,
-        "Achievements": 4,
+        "Achievements": 6,
         "Titles": null
       },
       "statistics": {
         "Character": [
           {
             "name": "Deaths",
-            "value": "1"
+            "value": "3"
           },
           {
             "name": "Quests completed",
-            "value": "136"
+            "value": "274"
           },
           {
             "name": "Instance lockouts",
@@ -2449,11 +2492,19 @@
         "Kills": [
           {
             "name": "Total kills",
-            "value": "1412"
+            "value": "3427"
           },
           {
             "name": "Creature types",
-            "value": "91"
+            "value": "199"
+          },
+          {
+            "name": "Twilight Disciple",
+            "value": "51"
+          },
+          {
+            "name": "Twilight Thug",
+            "value": "38"
           },
           {
             "name": "Webwood Spider",
@@ -2468,7 +2519,15 @@
             "value": "18"
           },
           {
+            "name": "Black Dragon Whelp",
+            "value": "14"
+          },
+          {
             "name": "Elder Crag Boar",
+            "value": "14"
+          },
+          {
+            "name": "Moonstalker",
             "value": "14"
           },
           {
@@ -2478,6 +2537,14 @@
           {
             "name": "Gnarlpine Defender",
             "value": "13"
+          },
+          {
+            "name": "Rabid Thistle Bear",
+            "value": "13"
+          },
+          {
+            "name": "Redridge Thrasher",
+            "value": "12"
           },
           {
             "name": "Rockjaw Ambusher",
@@ -2496,6 +2563,22 @@
             "value": "11"
           },
           {
+            "name": "Grizzled Thistle Bear",
+            "value": "11"
+          },
+          {
+            "name": "Stormscale Myrmidon",
+            "value": "11"
+          },
+          {
+            "name": "Murloc Coastrunner",
+            "value": "10"
+          },
+          {
+            "name": "Dire Condor",
+            "value": "10"
+          },
+          {
             "name": "Loch Crocolisk",
             "value": "10"
           },
@@ -2504,130 +2587,71 @@
             "value": "10"
           },
           {
+            "name": "Thistle Bear",
+            "value": "10"
+          },
+          {
+            "name": "Reef Crawler",
+            "value": "10"
+          },
+          {
             "name": "Webwood Lurker",
             "value": "9"
-          },
-          {
-            "name": "Moonstalker",
-            "value": "9"
-          },
-          {
-            "name": "Writhing Highborne",
-            "value": "9"
-          },
-          {
-            "name": "Stonesplinter Skullthumper",
-            "value": "8"
-          },
-          {
-            "name": "Rabid Thistle Bear",
-            "value": "8"
-          },
-          {
-            "name": "Vile Sprite",
-            "value": "8"
-          },
-          {
-            "name": "Pygmy Tide Crawler",
-            "value": "8"
-          },
-          {
-            "name": "Foreststrider Fledgling",
-            "value": "8"
-          },
-          {
-            "name": "Dark Iron Spy",
-            "value": "8"
-          },
-          {
-            "name": "Lasher Sproutling",
-            "value": "8"
-          },
-          {
-            "name": "Stonesplinter Scout",
-            "value": "7"
-          },
-          {
-            "name": "Bloodfeather Fury",
-            "value": "7"
-          },
-          {
-            "name": "Thistle Bear",
-            "value": "7"
           }
         ]
       },
       "completedQuests": [
+        20,
+        26,
+        29,
+        34,
+        52,
+        65,
+        89,
+        92,
+        104,
+        109,
+        118,
+        119,
+        120,
+        121,
+        122,
+        124,
+        125,
+        126,
+        127,
+        129,
+        130,
+        131,
+        132,
+        135,
+        141,
+        142,
+        150,
+        155,
+        166,
+        167,
+        168,
+        214,
+        217,
+        224,
         237,
+        244,
+        246,
         257,
         258,
+        263,
         267,
+        271,
+        272,
         297,
         298,
-        307,
-        314,
-        385,
-        416,
-        418,
-        432,
-        433,
-        436,
-        456,
-        457,
-        458,
-        459,
-        475,
-        476,
-        483,
-        486,
-        487,
-        488,
-        489,
-        490,
-        531,
-        916,
-        917,
-        918,
-        919,
-        920,
-        921,
-        922,
-        923,
-        928,
-        929,
-        930,
-        931,
-        932,
-        933,
-        934,
-        935,
-        937,
-        938,
-        940,
-        953,
-        954,
-        958,
-        963,
-        983,
-        997,
-        1001,
-        1339,
-        2039,
-        2118,
-        2138,
-        2159,
-        2178,
-        4762,
-        4811,
-        4812,
-        6661,
-        96394,
-        96395,
-        96403,
-        98025
+        301
       ],
       "huntKills": {},
-      "looted": [],
+      "looted": [
+        "Recipe: Breakfast Omelette"
+      ],
       "sources": {
         "CharacterExport": null,
         "Nova Instance Tracker": null,
@@ -2636,7 +2660,7 @@
         "AllTheThings": null,
         "KillDex": null,
         "Questie": null,
-        "Dossier": "2026-11-08T23:44:00"
+        "Dossier": "2026-11-11T20:21:00"
       }
     }
   }
