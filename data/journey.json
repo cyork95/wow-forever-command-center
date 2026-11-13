@@ -10,6 +10,18 @@
       "summary": "Floating island home of the Skyborne and Skyrinis's starting zone. Leads on to Stormwind and Elwynn Forest.",
       "quests": [
         {
+          "id": 92460,
+          "name": "Coming of Age"
+        },
+        {
+          "id": 92461,
+          "name": "Harmony in Balance"
+        },
+        {
+          "id": 92462,
+          "name": "Infestation Investigation"
+        },
+        {
           "id": 92463,
           "name": "The Cirrusfly Queen"
         },
