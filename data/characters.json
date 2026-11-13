@@ -123,7 +123,7 @@
     "name": "Zephinis Starhollow",
     "race": "Skyborne",
     "className": "Mage",
-    "spec": "Frost 3/0/48 [main — solo adventurer · Journey] · Frostfire 0/19/32 [dual — dungeons]",
+    "spec": "Frost 3/0/48 [main — Journey · duo with Ren Xorr] · Frostfire 0/19/32 [dual — dungeons]",
     "professions": [
       "Mining",
       "Engineering"
@@ -134,7 +134,7 @@
     ],
     "reserve": false,
     "betaSafe": false,
-    "blurb": "The -inis line's arcane scholar, handpicked by Sorinis to read the world for the clan. Once paired with Av Xorr; the duo-mage pair retired in Nov 2026 and Av is shelved for now, so he adventures solo — a formal Journey character, set on doing everything himself. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
+    "blurb": "The -inis line's arcane scholar, handpicked by Sorinis to read the world for the clan. Once paired with Av Xorr; that duo-mage pair retired in Nov 2026 and Av is shelved for now. As of Nov 12, 2026 he pairs with Mat's new Mage, Ren Xorr — and remains a formal Journey character, set on doing everything. Wind-Blessed: +2% haste. Attuned (Read Leyline) and Charged (Skysight): hour-long buffs that persist through death.",
     "talentNote": "",
     "talentLinks": [
       {
@@ -146,7 +146,7 @@
         "url": "https://talentsforever.com/mage/60/-0551030103013303-2035200301013002-9"
       }
     ],
-    "pairsWith": null
+    "pairsWith": "Ren Xorr (Mage)"
   },
   {
     "id": "varinis",
